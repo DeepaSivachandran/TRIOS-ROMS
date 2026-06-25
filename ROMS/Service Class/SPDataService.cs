@@ -1103,7 +1103,7 @@ namespace ROMS
             return ds;
         }
         //Created BY:-Sathish
-        public string udfnStockLocation(int paraviewType, int paraStockId, int paraConcern, int paraLocationType, string paraLocationNameEnglish, string paraLocationNameTamil, string paraShortName, int paraGodownType, int paraStockApplicable, int paraStockStatusId, string paraOriginator, string paraUserID, int paraRKCreation, int paraRKGCreation, int paraDeleteFlag,int paraPickupGBMins,int paraPickupOBMins)
+        public string udfnStockLocation(int paraviewType, int paraStockId, int paraConcern, int paraLocationType, string paraLocationNameEnglish, string paraLocationNameTamil, string paraShortName, int paraGodownType, int paraStockApplicable, int paraStockStatusId, string paraOriginator, string paraUserID, int paraRKCreation, int paraRKGCreation, int paraDeleteFlag,int paraPickupGBMins,int paraPickupOBMins,int paraOrderNo)
         {
             string varResult = "";
             try
@@ -1129,6 +1129,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraPickupGBMins", paraPickupGBMins);
                 varSqlCommand.Parameters.AddWithValue("@paraPickupOBMins", paraPickupOBMins);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderNo", paraOrderNo);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();

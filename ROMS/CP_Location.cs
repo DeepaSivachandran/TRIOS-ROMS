@@ -35,7 +35,7 @@ namespace ROMS
         public string pbPickupGBMins = "";
         public string pbPickupOBMins = "";
         public string varUserID = "";
-        public int PbConcernID = 0;
+        public int PbConcernID = 0,pbOrderNo=0;
         public int PbLocationTypeID=0;
         public int PbStockApplicableID = 0;
         public string PbDefault;
@@ -159,6 +159,7 @@ namespace ROMS
             try
             {
                 chkRKGCreation.Enabled = false;
+                udfnLoadSlNo();
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 4;
@@ -227,6 +228,43 @@ namespace ROMS
                
             }
         }
+        public void udfnLoadSlNo()
+        {
+            try
+            {
+                int ViewType = 0;
+                if (varlocationcode == 0)
+                {
+                    ViewType = 2;
+                }
+                else
+                {
+                    ViewType = 3;
+                }
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnSINO(ViewType, varlocationcode);
+                objdserv.CloseConnection();
+                cmbOrderNo.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbOrderNo.ValueMember = "num";
+                            cmbOrderNo.DisplayMember = "num";
+                            cmbOrderNo.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void udfnLoad()
         {
             try
@@ -247,6 +285,7 @@ namespace ROMS
                     { rbOutside.Checked = true; }
                 //}
                 pnlStatus.Enabled = true;
+               cmbOrderNo.SelectedValue = pbOrderNo;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
                 if (PbRKCreationID == "1") { chkRKCreation.Checked = true; } else { chkRKCreation.Checked = false; }
@@ -406,7 +445,7 @@ namespace ROMS
                 }
                 if (saveflag == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID, RKCheck, RKGCheck, 0, int.TryParse(txtPGBMins.Text, out int pgbMins) ? pgbMins : 0, int.TryParse(txtPOBMins.Text, out int pobMins) ? pobMins : 0);
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID, RKCheck, RKGCheck, 0, int.TryParse(txtPGBMins.Text, out int pgbMins) ? pgbMins : 0, int.TryParse(txtPOBMins.Text, out int pobMins) ? pobMins : 0,Convert.ToInt32(cmbOrderNo.SelectedValue));
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -886,18 +925,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled==true)
-                    {
-                        if(rbActive.Checked==true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInactive.Focus();
-                        }
-                    }
-                    else { txtPGBMins.Focus(); }
+                    cmbOrderNo.Focus();
                 }
             }
             catch (Exception ex)
@@ -1354,6 +1382,73 @@ namespace ROMS
             try
             {
                 txtPOBMins.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else { txtPGBMins.Focus(); }
+                }
             }
             catch (Exception ex)
             {

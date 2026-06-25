@@ -44,6 +44,13 @@
             this.txtLocationNameInEnglish = new System.Windows.Forms.TextBox();
             this.txtDGodownName = new System.Windows.Forms.TextBox();
             this.grbGodown = new System.Windows.Forms.GroupBox();
+            this.grbAvgPickupTiime = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtPGBMins = new System.Windows.Forms.TextBox();
+            this.txtPOBMins = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.chkRKGCreation = new System.Windows.Forms.CheckBox();
             this.chkRKCreation = new System.Windows.Forms.CheckBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -56,13 +63,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.txtPGBMins = new System.Windows.Forms.TextBox();
-            this.txtPOBMins = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.grbAvgPickupTiime = new System.Windows.Forms.GroupBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.cmbOrderNo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.pnlGodownType.SuspendLayout();
@@ -81,10 +83,10 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Enabled = false;
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(203, 213);
+            this.pnlStatus.Location = new System.Drawing.Point(203, 240);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
-            this.pnlStatus.TabIndex = 8;
+            this.pnlStatus.TabIndex = 9;
             // 
             // rbInactive
             // 
@@ -93,7 +95,7 @@
             this.rbInactive.Location = new System.Drawing.Point(146, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 9;
+            this.rbInactive.TabIndex = 10;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.Enter += new System.EventHandler(this.RbInactive_Enter);
@@ -108,7 +110,7 @@
             this.rbActive.Location = new System.Drawing.Point(29, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 8;
+            this.rbActive.TabIndex = 9;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -121,7 +123,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(489, 246);
+            this.btnSave.Location = new System.Drawing.Point(489, 276);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 14;
@@ -137,7 +139,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(22, 213);
+            this.txtDStatus.Location = new System.Drawing.Point(22, 240);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -149,7 +151,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(579, 246);
+            this.btnClose.Location = new System.Drawing.Point(579, 276);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 15;
@@ -240,6 +242,8 @@
             // 
             // grbGodown
             // 
+            this.grbGodown.Controls.Add(this.cmbOrderNo);
+            this.grbGodown.Controls.Add(this.textBox7);
             this.grbGodown.Controls.Add(this.grbAvgPickupTiime);
             this.grbGodown.Controls.Add(this.btnSave);
             this.grbGodown.Controls.Add(this.chkRKGCreation);
@@ -264,9 +268,104 @@
             this.grbGodown.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbGodown.Location = new System.Drawing.Point(12, 3);
             this.grbGodown.Name = "grbGodown";
-            this.grbGodown.Size = new System.Drawing.Size(672, 288);
+            this.grbGodown.Size = new System.Drawing.Size(672, 314);
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
+            // 
+            // grbAvgPickupTiime
+            // 
+            this.grbAvgPickupTiime.Controls.Add(this.textBox5);
+            this.grbAvgPickupTiime.Controls.Add(this.textBox10);
+            this.grbAvgPickupTiime.Controls.Add(this.txtPGBMins);
+            this.grbAvgPickupTiime.Controls.Add(this.txtPOBMins);
+            this.grbAvgPickupTiime.Controls.Add(this.textBox9);
+            this.grbAvgPickupTiime.Controls.Add(this.textBox6);
+            this.grbAvgPickupTiime.Location = new System.Drawing.Point(506, 14);
+            this.grbAvgPickupTiime.Name = "grbAvgPickupTiime";
+            this.grbAvgPickupTiime.Size = new System.Drawing.Size(148, 113);
+            this.grbAvgPickupTiime.TabIndex = 10;
+            this.grbAvgPickupTiime.TabStop = false;
+            this.grbAvgPickupTiime.Text = "Average Pickup Time";
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(6, 31);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(68, 27);
+            this.textBox5.TabIndex = 58;
+            this.textBox5.Text = "General Bill";
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.Location = new System.Drawing.Point(102, 64);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(34, 27);
+            this.textBox10.TabIndex = 63;
+            this.textBox10.Text = "Mins";
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtPGBMins
+            // 
+            this.txtPGBMins.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPGBMins.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPGBMins.Location = new System.Drawing.Point(74, 31);
+            this.txtPGBMins.MaxLength = 2;
+            this.txtPGBMins.Name = "txtPGBMins";
+            this.txtPGBMins.Size = new System.Drawing.Size(28, 27);
+            this.txtPGBMins.TabIndex = 10;
+            this.txtPGBMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPGBMins.Enter += new System.EventHandler(this.txtPGBMins_Enter);
+            this.txtPGBMins.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPGBMins_KeyDown);
+            this.txtPGBMins.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPGBMins_KeyPress);
+            this.txtPGBMins.Leave += new System.EventHandler(this.txtPGBMins_Leave);
+            // 
+            // txtPOBMins
+            // 
+            this.txtPOBMins.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPOBMins.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPOBMins.Location = new System.Drawing.Point(74, 64);
+            this.txtPOBMins.MaxLength = 2;
+            this.txtPOBMins.Name = "txtPOBMins";
+            this.txtPOBMins.Size = new System.Drawing.Size(28, 27);
+            this.txtPOBMins.TabIndex = 11;
+            this.txtPOBMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPOBMins.Enter += new System.EventHandler(this.txtPOBMins_Enter);
+            this.txtPOBMins.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPOBMins_KeyDown);
+            this.txtPOBMins.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPOBMins_KeyPress);
+            this.txtPOBMins.Leave += new System.EventHandler(this.txtPOBMins_Leave);
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(102, 31);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(34, 27);
+            this.textBox9.TabIndex = 62;
+            this.textBox9.Text = "Mins";
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox6.Enabled = false;
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(6, 64);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(68, 27);
+            this.textBox6.TabIndex = 59;
+            this.textBox6.Text = "Order Bill";
             // 
             // chkRKGCreation
             // 
@@ -421,107 +520,37 @@
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
             // 
-            // textBox5
+            // textBox7
             // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(6, 31);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(68, 27);
-            this.textBox5.TabIndex = 58;
-            this.textBox5.Text = "General Bill";
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(22, 213);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(181, 27);
+            this.textBox7.TabIndex = 59;
+            this.textBox7.Text = "Order No.";
             // 
-            // textBox6
+            // cmbOrderNo
             // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(6, 64);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(68, 27);
-            this.textBox6.TabIndex = 59;
-            this.textBox6.Text = "Order Bill";
-            // 
-            // txtPGBMins
-            // 
-            this.txtPGBMins.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPGBMins.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPGBMins.Location = new System.Drawing.Point(74, 31);
-            this.txtPGBMins.MaxLength = 2;
-            this.txtPGBMins.Name = "txtPGBMins";
-            this.txtPGBMins.Size = new System.Drawing.Size(28, 27);
-            this.txtPGBMins.TabIndex = 10;
-            this.txtPGBMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPGBMins.Enter += new System.EventHandler(this.txtPGBMins_Enter);
-            this.txtPGBMins.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPGBMins_KeyDown);
-            this.txtPGBMins.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPGBMins_KeyPress);
-            this.txtPGBMins.Leave += new System.EventHandler(this.txtPGBMins_Leave);
-            // 
-            // txtPOBMins
-            // 
-            this.txtPOBMins.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPOBMins.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPOBMins.Location = new System.Drawing.Point(74, 64);
-            this.txtPOBMins.MaxLength = 2;
-            this.txtPOBMins.Name = "txtPOBMins";
-            this.txtPOBMins.Size = new System.Drawing.Size(28, 27);
-            this.txtPOBMins.TabIndex = 11;
-            this.txtPOBMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPOBMins.Enter += new System.EventHandler(this.txtPOBMins_Enter);
-            this.txtPOBMins.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPOBMins_KeyDown);
-            this.txtPOBMins.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPOBMins_KeyPress);
-            this.txtPOBMins.Leave += new System.EventHandler(this.txtPOBMins_Leave);
-            // 
-            // textBox9
-            // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(102, 31);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(34, 27);
-            this.textBox9.TabIndex = 62;
-            this.textBox9.Text = "Mins";
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(102, 64);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(34, 27);
-            this.textBox10.TabIndex = 63;
-            this.textBox10.Text = "Mins";
-            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // grbAvgPickupTiime
-            // 
-            this.grbAvgPickupTiime.Controls.Add(this.textBox5);
-            this.grbAvgPickupTiime.Controls.Add(this.textBox10);
-            this.grbAvgPickupTiime.Controls.Add(this.txtPGBMins);
-            this.grbAvgPickupTiime.Controls.Add(this.txtPOBMins);
-            this.grbAvgPickupTiime.Controls.Add(this.textBox9);
-            this.grbAvgPickupTiime.Controls.Add(this.textBox6);
-            this.grbAvgPickupTiime.Location = new System.Drawing.Point(506, 14);
-            this.grbAvgPickupTiime.Name = "grbAvgPickupTiime";
-            this.grbAvgPickupTiime.Size = new System.Drawing.Size(148, 113);
-            this.grbAvgPickupTiime.TabIndex = 10;
-            this.grbAvgPickupTiime.TabStop = false;
-            this.grbAvgPickupTiime.Text = "Average Pickup Time";
+            this.cmbOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrderNo.FormattingEnabled = true;
+            this.cmbOrderNo.Location = new System.Drawing.Point(203, 213);
+            this.cmbOrderNo.Name = "cmbOrderNo";
+            this.cmbOrderNo.Size = new System.Drawing.Size(288, 27);
+            this.cmbOrderNo.TabIndex = 8;
+            this.cmbOrderNo.Enter += new System.EventHandler(this.cmbOrderNo_Enter);
+            this.cmbOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOrderNo_KeyDown);
+            this.cmbOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbOrderNo_KeyPress);
+            this.cmbOrderNo.Leave += new System.EventHandler(this.cmbOrderNo_Leave);
             // 
             // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(697, 301);
+            this.ClientSize = new System.Drawing.Size(697, 328);
             this.Controls.Add(this.grbGodown);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -584,5 +613,7 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.GroupBox grbAvgPickupTiime;
+        private System.Windows.Forms.TextBox textBox7;
+        public System.Windows.Forms.ComboBox cmbOrderNo;
     }
 }

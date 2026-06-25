@@ -1205,6 +1205,7 @@ namespace ROMS
                 {
                     cmbConcern.Enabled = true;
                 }
+                grdStockRequest.Sort(grdStockRequest.Columns[0], ListSortDirection.Descending);
             }
         }
         private void TxtRequiredQty_Enter(object sender, EventArgs e)
@@ -2251,7 +2252,15 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkRackGroup.Focus();
+                    if (chkRackGroup.Enabled == true)
+                    {
+                        chkRackGroup.Focus();
+                    }
+                    else
+                    {
+                        if (txtProductNamePICode.Visible == true) { txtProductNamePICode.Focus(); }
+                        else { cmbProductType.Focus(); }
+                    }
                 }
                 if (e.KeyCode == Keys.F5)
                 {
@@ -2947,7 +2956,7 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt16(cmbRackGroup)==-1 || Convert.ToInt16(cmbRackGroup) == 0)
+                if(Convert.ToInt16(cmbRackGroup.SelectedValue)==-1 || Convert.ToInt16(cmbRackGroup.SelectedValue) == 0)
                 {
                     errStockRequest.SetError(cmbRackGroup, "Please select rack group");
                     cmbRackGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
