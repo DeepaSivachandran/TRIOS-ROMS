@@ -336,6 +336,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
+                cmbProductName.SelectedValue = 271;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     string privilege = "";

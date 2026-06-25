@@ -151,6 +151,8 @@ namespace ROMS
         public static CP_Verify objCP_Verify;
         public static ReportLoad objReportLoad;
         public static CP_ProductApprovalList objCP_ProductApprovalList;
+        public static CP_ProductImageApprovalList objCP_ProductImageApprovalList;
+        public static CP_ProductImageApproval objCP_ProductImageApproval;
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
@@ -5122,6 +5124,20 @@ namespace ROMS
             {
                 OpenReportForm(ref MainForm.objCP_AddressBookList, "CP_AddressBookList", 501);
                 PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductImageApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_ProductImageApprovalList, "CP_ProductImageApprovalList", 50512);
+                PbCurrentForm = "5.12";
             }
             catch (Exception ex)
             {

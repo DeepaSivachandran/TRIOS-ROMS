@@ -233,6 +233,18 @@
     <Compile Include="CP_CostPrice_Update_Bulk_Approval_List.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_ProductImageApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductImageApproval.designer.cs">
+      <DependentUpon>CP_ProductImageApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductImageApprovalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductImageApprovalList.designer.cs">
+      <DependentUpon>CP_ProductImageApprovalList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Product_Supplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4623,6 +4635,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk_Approval_List.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductImageApproval.resx">
+      <DependentUpon>CP_ProductImageApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductImageApprovalList.resx">
+      <DependentUpon>CP_ProductImageApprovalList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Product_Supplier.resx">
       <DependentUpon>CP_Product_Supplier.cs</DependentUpon>
