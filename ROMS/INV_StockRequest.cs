@@ -39,7 +39,7 @@ namespace ROMS
         public int varStatus = 0, varMainStatus=0;
         public int varSLID = 0;
         public int varRKID = 0;
-        public int varClose = 0, varCloseFlag = 0, varDateChange = 0, varUpDownKey=0;
+        public int varClose = 0, varCloseFlag = 0, varDateChange = 0, varUpDownKey=0,pbDeleteFlag=0;
         public string varErrQty = "0";
         public string SSRUpdatevalue = "";
         public bool VarSearchFlag = true;
@@ -274,9 +274,6 @@ namespace ROMS
                             txtRequestNo.Text = objDS.Tables[0].Rows[0]["Request No."].ToString().Replace("''", "'");
                             txtRemarks.Text = objDS.Tables[0].Rows[0]["Remarks"].ToString().Replace("''", "'");
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["ConcernID"].ToString();
-                            
-                          
-
                             if (Convert.ToInt16(objDS.Tables[0].Rows[0]["SR_LoadByRackGroup"])==0)
                             {
                                 chkRackGroup.Checked=false;
@@ -331,7 +328,7 @@ namespace ROMS
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequest.Columns["clmSnoDup"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                            if (varStatus != 28)
+                            if (varStatus != 28 || pbDeleteFlag==1)
                             {
                                 txtProductNamePICode.Enabled = false;
                                 this.ActiveControl = txtRemarks;
@@ -374,7 +371,7 @@ namespace ROMS
                                     out _))
                     .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
                     .ToString();
-                if (varMainStatus==48 || varMainStatus==29)
+                if (varMainStatus==48 || varMainStatus==29 || pbDeleteFlag==1)
                 {
                     btnSave.Enabled = false;
                     txtTeller.Enabled = false;
