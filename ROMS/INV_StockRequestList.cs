@@ -71,7 +71,13 @@ namespace ROMS
         {
             try
             {
-                udfndelete();
+                if (grdStockRequestList.SelectedRows.Count > 0)
+                {
+                    if (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48)
+                    {
+                        udfndelete();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -195,9 +201,13 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
                 {
-                    if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 47 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 28 || ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29) && (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0))))
+                    //if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 47 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 28 || ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29) && (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0))))
+                    //{
+                    //    tsbDelete_Click(sender, e);
+                    //}
+                    if (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48)
                     {
-                        tsbDelete_Click(sender, e);
+                        udfndelete();
                     }
                 }
                 if (e.KeyCode == Keys.Escape)
@@ -210,7 +220,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 47 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 28 || ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29) && (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0))))
+                    //if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 47 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 28 || ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29) && (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0))))
+                    //{
+                    //    udfndelete();
+                    //}
+                    if (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48)
                     {
                         udfndelete();
                     }
@@ -2166,15 +2180,28 @@ namespace ROMS
         {
             try
             {
-                if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48))
+                //if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48))
+                //{
+                //    tsbDelete.Visible = false;
+                //    tssEdit.Visible = false;
+                //}
+                //else
+                //{
+                //    tsbDelete.Visible = true;
+                //    tssEdit.Visible = true;
+                //}
+                if (grdStockRequestList.SelectedRows.Count > 0)
                 {
-                    tsbDelete.Visible = false;
-                    tssEdit.Visible = false;
-                }
-                else
-                {
-                    tsbDelete.Visible = true;
-                    tssEdit.Visible = true;
+                    if (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48)
+                    {
+                        tsbDelete.Visible = true;
+                        tssEdit.Visible = true;
+                    }
+                    else
+                    {
+                        tsbDelete.Visible = false;
+                        tssEdit.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
