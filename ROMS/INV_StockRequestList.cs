@@ -903,6 +903,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdStockRequestList.DataSource = objDs.Tables[0];
                             grdStockRequestList.Columns["clmDelete"].Visible = true;
+                            grdStockRequestList.Columns["clmprint"].Visible = true;
                             grdStockRequestList.Columns["ConcernID"].Visible = false;
                             grdStockRequestList.Columns["StatusID"].Visible = false;
                             grdStockRequestList.Columns["SRQID"].Visible = false;
@@ -936,6 +937,7 @@ namespace ROMS
                         else
                         {
                             grdStockRequestList.Columns["clmDelete"].Visible = false;
+                            grdStockRequestList.Columns["clmprint"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
@@ -943,6 +945,7 @@ namespace ROMS
                     else
                     {
                         grdStockRequestList.Columns["clmDelete"].Visible = false;
+                        grdStockRequestList.Columns["clmprint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
@@ -951,6 +954,7 @@ namespace ROMS
                 else
                 {
                     grdStockRequestList.Columns["clmDelete"].Visible = false;
+                    grdStockRequestList.Columns["clmprint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }

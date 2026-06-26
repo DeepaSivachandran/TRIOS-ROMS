@@ -1949,8 +1949,11 @@ namespace ROMS
                     if (txtLocation.Text.Length > 0)
                     {
                         MR_Location objMR_Location = new MR_Location();
-                        objMR_Location.paraViewType = 12;
-                        objMR_Location.paraLocationName = txtLocation.Text;
+                        objMR_Location.paraViewType = 27;
+                        objMR_Location.paraId = 9;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtLocation.Text.Trim();
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
                         objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
                         //objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
@@ -1964,8 +1967,6 @@ namespace ROMS
                                     DGV_FilterLocation.DataSource = objDs.Tables[0];
                                     DGV_FilterLocation.Columns["SLID"].Visible = false;
                                     DGV_FilterLocation.Columns["SL_TName"].Visible = false;
-                                    DGV_FilterLocation.Columns["SL_ShortName"].Visible = false;
-                                    DGV_FilterLocation.Columns["SL_RKCreation"].Visible = false;
                                     DGV_FilterLocation.Columns["SL_EName"].HeaderText = "Location";
                                     DGV_FilterLocation.Columns["SL_EName"].Width = 220;
                                     DGV_FilterLocation.Columns["SL_EName"].DisplayIndex = 0;
