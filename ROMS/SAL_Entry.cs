@@ -1839,7 +1839,7 @@ namespace ROMS
                 objMR_SalesEntry.paraUnitId = varUnit;
                 objMR_SalesEntry.paraFilterType = varFilterType;
                 objMR_SalesEntry.paraProductNameID = Convert.ToInt32(cmbProductName.SelectedValue);
-                objMR_SalesEntry.paraRateCategoryIDs = pbRateCategoryIDs;
+                objMR_SalesEntry.paraRateCategoryIDs = pbRateCategoryIDs; 
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnsaleslist(objMR_SalesEntry);

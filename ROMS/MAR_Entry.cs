@@ -134,7 +134,7 @@ namespace ROMS
                         }
                     }
                 }
-                cmbProductName.SelectedValue = 271;
+                cmbProductName.SelectedValue = 270;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
@@ -1839,7 +1839,7 @@ namespace ROMS
                 objMR_MarginEntry.paraType = varTypeId;
                 objMR_MarginEntry.paraUnitId = varUnit;
                 objMR_MarginEntry.paraFilterType = varFilterType;
-                objMR_MarginEntry.paraProductNameID = Convert.ToInt32(cmbProductName.SelectedValue);
+                objMR_MarginEntry.paraProductNameID = Convert.ToInt32(cmbProductName.SelectedValue); 
                 objMR_MarginEntry.paraRateCategoryIDs = pbRateCategoryIDs;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();

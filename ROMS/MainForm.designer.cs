@@ -253,11 +253,11 @@ namespace ROMS
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1958,14 +1958,14 @@ namespace ROMS
             // tsmEntryReport
             // 
             this.tsmEntryReport.Name = "tsmEntryReport";
-            this.tsmEntryReport.Size = new System.Drawing.Size(152, 22);
+            this.tsmEntryReport.Size = new System.Drawing.Size(180, 22);
             this.tsmEntryReport.Text = "Entry Report";
             this.tsmEntryReport.Click += new System.EventHandler(this.tsmEntryReport_Click);
             // 
             // tsmMValueReport
             // 
             this.tsmMValueReport.Name = "tsmMValueReport";
-            this.tsmMValueReport.Size = new System.Drawing.Size(152, 22);
+            this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
             this.tsmMValueReport.Text = "M. Value Report";
             this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
             // 
@@ -2115,7 +2115,7 @@ namespace ROMS
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
-            this.tsmMarginEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
@@ -2123,7 +2123,7 @@ namespace ROMS
             // tsmSalesEntry
             // 
             this.tsmSalesEntry.Name = "tsmSalesEntry";
-            this.tsmSalesEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmSalesEntry.Text = "S. Entry";
             this.tsmSalesEntry.Visible = false;
             this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
@@ -2274,6 +2274,13 @@ namespace ROMS
             this.tsmF9.Text = "F9  -  Supplier Product";
             this.tsmF9.Click += new System.EventHandler(this.tsmF9_Click);
             // 
+            // tsmF10
+            // 
+            this.tsmF10.Name = "tsmF10";
+            this.tsmF10.Size = new System.Drawing.Size(199, 24);
+            this.tsmF10.Text = "F10  -  Product Stock";
+            this.tsmF10.Click += new System.EventHandler(this.tsmF10_Click);
+            // 
             // tsmGif
             // 
             this.tsmGif.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2304,13 +2311,6 @@ namespace ROMS
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // tsmF10
-            // 
-            this.tsmF10.Name = "tsmF10";
-            this.tsmF10.Size = new System.Drawing.Size(199, 24);
-            this.tsmF10.Text = "F10  -  Product Stock";
-            this.tsmF10.Click += new System.EventHandler(this.tsmF10_Click);
             // 
             // MainForm
             // 

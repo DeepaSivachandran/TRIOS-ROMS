@@ -937,7 +937,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 16/10/2023 for purchase damage list
-        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername,int paraPRID, string paraUserLocations,int ParaReasonId)
+        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername,int paraPRID, string paraUserLocations,int ParaReasonId,int paraEntryTypeID)
         {
             DataSet ds = new DataSet();
             try
@@ -957,6 +957,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@ParaReasonId", ParaReasonId);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryTypeID", paraEntryTypeID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -6504,6 +6505,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_MarginEntry.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_MarginEntry.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraEntryType", objMR_MarginEntry.paraEntryType);
+                varSqlCommand.Parameters.AddWithValue("@paraProductNameID", objMR_MarginEntry.paraProductNameID);
                 varSqlCommand.Parameters.AddWithValue("@paraRateCategoryIDs", objMR_MarginEntry.paraRateCategoryIDs);
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

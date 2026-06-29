@@ -143,8 +143,7 @@
             this.RPTViewer.Size = new System.Drawing.Size(1348, 460);
             this.RPTViewer.TabIndex = 111111231;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.RPTViewer.Visible = false;
-            this.RPTViewer.Load += new System.EventHandler(this.RPTViewer_Load);
+            this.RPTViewer.Visible = false; 
             // 
             // lblNoRecordsFound
             // 
@@ -397,8 +396,7 @@
             this.txtRateCategory.Name = "txtRateCategory";
             this.txtRateCategory.ReadOnly = true;
             this.txtRateCategory.Size = new System.Drawing.Size(169, 27);
-            this.txtRateCategory.TabIndex = 15;
-            this.txtRateCategory.TextChanged += new System.EventHandler(this.txtRateCategory_TextChanged);
+            this.txtRateCategory.TabIndex = 15; 
             this.txtRateCategory.Enter += new System.EventHandler(this.txtRateCategory_Enter);
             this.txtRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRateCategory_KeyDown);
             // 
@@ -420,8 +418,7 @@
             this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbProductName.Name = "cmbProductName";
             this.cmbProductName.Size = new System.Drawing.Size(87, 28);
-            this.cmbProductName.TabIndex = 12;
-            this.cmbProductName.SelectedIndexChanged += new System.EventHandler(this.cmbProductName_SelectedIndexChanged);
+            this.cmbProductName.TabIndex = 12; 
             this.cmbProductName.Enter += new System.EventHandler(this.cmbProductName_Enter);
             this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbProductName_KeyDown);
             this.cmbProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProductName_KeyPress);
@@ -436,8 +433,7 @@
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(85, 20);
             this.lblProductName.TabIndex = 111111240;
-            this.lblProductName.Text = "Product Name";
-            this.lblProductName.Click += new System.EventHandler(this.lblProductName_Click);
+            this.lblProductName.Text = "Product Name"; 
             // 
             // lblEntryType
             // 
@@ -512,8 +508,7 @@
             this.cmbPrintType.Location = new System.Drawing.Point(826, 111);
             this.cmbPrintType.Name = "cmbPrintType";
             this.cmbPrintType.Size = new System.Drawing.Size(82, 27);
-            this.cmbPrintType.TabIndex = 14;
-            this.cmbPrintType.SelectedIndexChanged += new System.EventHandler(this.cmbPrintType_SelectedIndexChanged);
+            this.cmbPrintType.TabIndex = 14; 
             this.cmbPrintType.Enter += new System.EventHandler(this.cmbPrintType_Enter);
             this.cmbPrintType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbPrintType_KeyDown);
             this.cmbPrintType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPrintType_KeyPress);
@@ -526,8 +521,7 @@
             this.lblPrintType.Name = "lblPrintType";
             this.lblPrintType.Size = new System.Drawing.Size(64, 20);
             this.lblPrintType.TabIndex = 111111232;
-            this.lblPrintType.Text = "Print Type";
-            this.lblPrintType.Click += new System.EventHandler(this.lblPrintType_Click);
+            this.lblPrintType.Text = "Print Type"; 
             // 
             // lblReportType
             // 
@@ -561,8 +555,7 @@
             this.lblUnits.Size = new System.Drawing.Size(412, 17);
             this.lblUnits.TabIndex = 111111229;
             this.lblUnits.Text = "Pkt,Kg,Nos,Ltrs,Box.,Box,Bag,Bot,Doz,SET,Bag.,Jar,Tin,ml,Can,gm,Chp,Chp.,kg.,Pcs," +
-    "C,test";
-            this.lblUnits.Click += new System.EventHandler(this.lblUnits_Click);
+    "C,test"; 
             // 
             // lblSchedleCode
             // 
@@ -753,8 +746,7 @@
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 20);
             this.lblType.TabIndex = 111111207;
-            this.lblType.Text = "Type";
-            this.lblType.Click += new System.EventHandler(this.lblType_Click);
+            this.lblType.Text = "Type"; 
             // 
             // cmbCategory
             // 

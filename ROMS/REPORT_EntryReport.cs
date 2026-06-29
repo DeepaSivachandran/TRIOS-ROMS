@@ -144,6 +144,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
+                cmbProductName.SelectedValue = 271;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     string privilege = "";
@@ -2088,47 +2089,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void lblType_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblProductName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblPrintType_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblUnits_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtRateCategory_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RPTViewer_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbPrintType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbProductName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+         
         private void cmbProductName_Enter(object sender, EventArgs e)
         {
             try

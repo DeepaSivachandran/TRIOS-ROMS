@@ -650,7 +650,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(9, 0, 0, 0, 0, 0, "","", "", Convert.ToInt32(varPRID), varStockLocaionId, 0);
+                objDs = objspservice.udfnproductDamage(9, 0, 0, 0, 0, 0, "","", "", Convert.ToInt32(varPRID), varStockLocaionId, 0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
