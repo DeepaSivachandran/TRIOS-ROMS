@@ -871,13 +871,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_PurchaseReturnDC.cs">
-      <DependentUpon>RPT_PUR_PurchaseReturnDC.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\RPT_MarginEntryReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -918,12 +911,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_MValue_SubgroupWiseReport.rpt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\RPT_PUR_PurchaseReturnDC1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_PUR_PurchaseReturnDC.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_SalesEntryReport.cs">
@@ -5689,11 +5676,6 @@
       <LastGenOutput>RPT_CP_Supplier_OtherProduct.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Reports\RPT_PUR_PurchaseReturnDC.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>RPT_PUR_PurchaseReturnDC1.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_MarginEntryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_MarginEntryReport.cs</LastGenOutput>
