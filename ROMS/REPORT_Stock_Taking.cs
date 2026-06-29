@@ -171,6 +171,11 @@ namespace ROMS
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
+                    int varWithPICode = 0;
+                    if(Convert.ToInt32(cmbPrintFormat.SelectedValue) == 406)    //  Without P.I Code
+                    {
+                        varWithPICode = 1;
+                    }
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
@@ -191,6 +196,7 @@ namespace ROMS
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_TakingSheet.rpt");
                         }
                         objBillreport.SetParameterValue("paraConcernName", cmbConcern.Text);
+                        objBillreport.SetParameterValue("paraWithPICode", varWithPICode);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 468)  
                     {
