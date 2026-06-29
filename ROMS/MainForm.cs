@@ -864,7 +864,7 @@ namespace ROMS
                 //This is close the already opened form
                 CloseAllOtherForms(formInstance);
 
-                if (pbUserRoleId == "0")
+                if (pbUserRoleId == "0" || menuCode == 9)
                 {
                     if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                     {
