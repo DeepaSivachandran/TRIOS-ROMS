@@ -308,6 +308,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY CASE MSTID WHEN -1 THEN 1 WHEN 469 THEN 2 WHEN 468 THEN 3 ELSE 4 END", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbReportFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=108 ", "MST_DisplayText,MSTID", cmbSizeType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=124 ", "MST_DisplayText,MSTID", cmbPrintFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
@@ -1799,7 +1800,14 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    btnView.Focus();
+                    if(cmbPrintFormat.Enabled==true)
+                    {
+                        cmbPrintFormat.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2237,6 +2245,61 @@ namespace ROMS
             }
         }
 
+        private void cmbPrintFormat_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintFormat.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintFormat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintFormat_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                  cmbPrintFormat.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2348,6 +2411,7 @@ namespace ROMS
                 //    }
                 //}
                 cmbSizeType.Enabled = false;
+                cmbPrintFormat.Enabled = false;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) != -1)
                 {
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 468)
@@ -2358,6 +2422,7 @@ namespace ROMS
                     else
                     {
                         cmbSizeType.Enabled = true;
+                        cmbPrintFormat.Enabled = true;
                         if (Convert.ToInt32(cmbReportType.SelectedValue) == 469 && Convert.ToInt32(cmbSizeType.SelectedValue) == 360)
                         {
                             tsbPrintFormat.Text = "A4-Landscape";
