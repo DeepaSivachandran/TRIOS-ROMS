@@ -112,7 +112,7 @@ namespace ROMS
             {
                 epReport.Clear();
                 string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varSupplierName = "-All-", varLocationName = "-All-",varPICodeName="-All-";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierCode = 0, varScheduleCode = 0, varViewType = 36, varParaFlag = 0, varLocationCode = 0;
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierCode = 0, varScheduleCode = 0, varViewType = 37, varParaFlag = 0, varLocationCode = 0;
                 if(txtGroup.Text.Trim()!="")
                 {
                     varGroupName = txtGroup.Text;
@@ -150,7 +150,7 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 469)
                 {
-                    varViewType= 37;
+                    varViewType= 36;
                 }
                 if (Convert.ToInt32(cmbReportFormat.SelectedValue) == 357)
                 {
@@ -182,7 +182,14 @@ namespace ROMS
 
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 469)  
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_TakingSheet.rpt");
+                        if (Convert.ToInt32(cmbSizeType.SelectedValue) == 359)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_TakingSheet_Portrait.rpt");
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_TakingSheet.rpt");
+                        }
                         objBillreport.SetParameterValue("paraConcernName", cmbConcern.Text);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 468)  
@@ -300,6 +307,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY CASE MSTID WHEN -1 THEN 1 WHEN 469 THEN 2 WHEN 468 THEN 3 ELSE 4 END", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbReportFormat, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=108 ", "MST_DisplayText,MSTID", cmbSizeType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
@@ -1531,7 +1539,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbConcern.Focus();
+                    if (cmbSizeType.Enabled == true)
+                    {
+                        cmbSizeType.Focus();
+                    }
+                    else
+                    {
+                        cmbConcern.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2145,6 +2160,83 @@ namespace ROMS
             }
         }
 
+        private void cmbSizeType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSizeType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSizeType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    cmbConcern.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSizeType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSizeType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSizeType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSizeType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 469 && Convert.ToInt32(cmbSizeType.SelectedValue) == 360)
+                {
+                    tsbPrintFormat.Text = "A4-Landscape";
+                    tsbPrintFormat.ToolTipText = "A4-Landscape";
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 469 && Convert.ToInt32(cmbSizeType.SelectedValue) == 359)
+                {
+                    tsbPrintFormat.Text = "A4-Portrait";
+                    tsbPrintFormat.ToolTipText = "A4-Portrait";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2237,21 +2329,44 @@ namespace ROMS
         {
             try
             {
-                if (cmbReportType.SelectedItem is DataRowView drv)
+                //if (cmbReportType.SelectedItem is DataRowView drv)
+                //{
+                //    if (Convert.ToInt32(cmbReportType.SelectedValue) != -1)
+                //    {
+                //        if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                //        drv["MST_ShortName"] != DBNull.Value)
+                //        {
+                //            string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                //            tsbPrintFormat.Text = varTooltipText;
+                //            tsbPrintFormat.ToolTipText = varTooltipText;
+                //        }
+                //        else
+                //        {
+                //            tsbPrintFormat.Text = string.Empty;
+                //            tsbPrintFormat.ToolTipText = string.Empty;
+                //        }
+                //    }
+                //}
+                cmbSizeType.Enabled = false;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) != -1)
                 {
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) != -1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 468)
                     {
-                        if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
-                        drv["MST_ShortName"] != DBNull.Value)
+                        tsbPrintFormat.Text = "Thermal";
+                        tsbPrintFormat.ToolTipText = "Thermal";
+                    }
+                    else
+                    {
+                        cmbSizeType.Enabled = true;
+                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 469 && Convert.ToInt32(cmbSizeType.SelectedValue) == 360)
                         {
-                            string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
-                            tsbPrintFormat.Text = varTooltipText;
-                            tsbPrintFormat.ToolTipText = varTooltipText;
+                            tsbPrintFormat.Text = "A4-Landscape";
+                            tsbPrintFormat.ToolTipText = "A4-Landscape";
                         }
-                        else
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 469 && Convert.ToInt32(cmbSizeType.SelectedValue) == 359)
                         {
-                            tsbPrintFormat.Text = string.Empty;
-                            tsbPrintFormat.ToolTipText = string.Empty;
+                            tsbPrintFormat.Text = "A4-Portrait";
+                            tsbPrintFormat.ToolTipText = "A4-Portrait";
                         }
                     }
                 }
