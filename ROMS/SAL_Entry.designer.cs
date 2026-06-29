@@ -279,7 +279,7 @@
             this.DGV_FilterBrand.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_FilterBrand.RowTemplate.Height = 25;
             this.DGV_FilterBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterBrand.Size = new System.Drawing.Size(408, 226);
+            this.DGV_FilterBrand.Size = new System.Drawing.Size(427, 226);
             this.DGV_FilterBrand.TabIndex = 111111176;
             this.DGV_FilterBrand.Visible = false;
             this.DGV_FilterBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterBrand_CellContentClick);
@@ -324,7 +324,7 @@
             this.DGV_FilterSubgroup.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_FilterSubgroup.RowTemplate.Height = 25;
             this.DGV_FilterSubgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterSubgroup.Size = new System.Drawing.Size(374, 226);
+            this.DGV_FilterSubgroup.Size = new System.Drawing.Size(472, 226);
             this.DGV_FilterSubgroup.TabIndex = 111111226;
             this.DGV_FilterSubgroup.Visible = false;
             this.DGV_FilterSubgroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSubgroup_CellDoubleClick);
@@ -368,7 +368,7 @@
             this.DGV_FilterGroup.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_FilterGroup.RowTemplate.Height = 25;
             this.DGV_FilterGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterGroup.Size = new System.Drawing.Size(299, 226);
+            this.DGV_FilterGroup.Size = new System.Drawing.Size(408, 226);
             this.DGV_FilterGroup.TabIndex = 111111175;
             this.DGV_FilterGroup.Visible = false;
             this.DGV_FilterGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterGroup_CellContentClick);

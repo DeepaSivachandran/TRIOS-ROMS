@@ -77,7 +77,6 @@
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.cmbFilterType = new System.Windows.Forms.ComboBox();
             this.lblFilterType = new System.Windows.Forms.Label();
-            this.cmbMultiUnit = new MultiSelectComboBox();
             this.lblUnit = new System.Windows.Forms.Label();
             this.lblAlpha = new System.Windows.Forms.Label();
             this.txtAlpha = new System.Windows.Forms.TextBox();
@@ -125,6 +124,7 @@
             this.tsbOriginalProducts = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tsMarginEntry = new System.Windows.Forms.ToolStrip();
+            this.cmbMultiUnit = new MultiSelectComboBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.pnlMarginEntry.SuspendLayout();
             this.pnlRateCategory.SuspendLayout();
@@ -277,7 +277,7 @@
             this.DGV_FilterBrand.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_FilterBrand.RowTemplate.Height = 25;
             this.DGV_FilterBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterBrand.Size = new System.Drawing.Size(263, 226);
+            this.DGV_FilterBrand.Size = new System.Drawing.Size(437, 226);
             this.DGV_FilterBrand.TabIndex = 111111176;
             this.DGV_FilterBrand.Visible = false;
             this.DGV_FilterBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterBrand_CellContentClick);
@@ -322,7 +322,7 @@
             this.DGV_FilterSubgroup.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_FilterSubgroup.RowTemplate.Height = 25;
             this.DGV_FilterSubgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterSubgroup.Size = new System.Drawing.Size(272, 226);
+            this.DGV_FilterSubgroup.Size = new System.Drawing.Size(446, 226);
             this.DGV_FilterSubgroup.TabIndex = 111111226;
             this.DGV_FilterSubgroup.Visible = false;
             this.DGV_FilterSubgroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSubgroup_CellDoubleClick);
@@ -366,7 +366,7 @@
             this.DGV_FilterGroup.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_FilterGroup.RowTemplate.Height = 25;
             this.DGV_FilterGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterGroup.Size = new System.Drawing.Size(284, 226);
+            this.DGV_FilterGroup.Size = new System.Drawing.Size(389, 226);
             this.DGV_FilterGroup.TabIndex = 111111175;
             this.DGV_FilterGroup.Visible = false;
             this.DGV_FilterGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterGroup_CellContentClick);
@@ -700,20 +700,6 @@
             this.lblFilterType.Size = new System.Drawing.Size(65, 20);
             this.lblFilterType.TabIndex = 111111224;
             this.lblFilterType.Text = "Filter Type";
-            // 
-            // cmbMultiUnit
-            // 
-            this.cmbMultiUnit.DropDownHeight = 1;
-            this.cmbMultiUnit.FormattingEnabled = true;
-            this.cmbMultiUnit.IntegralHeight = false;
-            this.cmbMultiUnit.Location = new System.Drawing.Point(752, 64);
-            this.cmbMultiUnit.Name = "cmbMultiUnit";
-            this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
-            this.cmbMultiUnit.TabIndex = 9;
-            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
-            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
-            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
-            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
             // 
             // lblUnit
             // 
@@ -1289,6 +1275,20 @@
             this.tsMarginEntry.Size = new System.Drawing.Size(1354, 28);
             this.tsMarginEntry.TabIndex = 35;
             this.tsMarginEntry.Text = "GRN Summary Report";
+            // 
+            // cmbMultiUnit
+            // 
+            this.cmbMultiUnit.DropDownHeight = 1;
+            this.cmbMultiUnit.FormattingEnabled = true;
+            this.cmbMultiUnit.IntegralHeight = false;
+            this.cmbMultiUnit.Location = new System.Drawing.Point(752, 64);
+            this.cmbMultiUnit.Name = "cmbMultiUnit";
+            this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
+            this.cmbMultiUnit.TabIndex = 9;
+            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
+            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
+            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
+            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
             // 
             // dynamicLabelControl
             // 

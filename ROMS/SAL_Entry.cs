@@ -315,7 +315,7 @@ namespace ROMS
                                     DGV_FilterGroup.Columns["PRGID"].Visible = false;
                                     DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
                                     DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
-                                    DGV_FilterGroup.Columns["PRG_TName"].Visible = false;
+                                    DGV_FilterGroup.Columns["PRG_TName"].Visible = true;
                                     DGV_FilterGroup.Columns["PRG_EName"].Width = 200;
                                     DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
                                     DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
@@ -583,7 +583,7 @@ namespace ROMS
                                     DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
                                     DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
-                                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = false;
+                                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = true;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 200;
                                     DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
@@ -770,7 +770,7 @@ namespace ROMS
                                     DGV_FilterBrand.Columns["BDID"].Visible = false;
                                     DGV_FilterBrand.Columns["BD_EName"].HeaderText = "Brand English Name";
                                     DGV_FilterBrand.Columns["BD_TName"].HeaderText = "Brand Tamil Name";
-                                    DGV_FilterBrand.Columns["BD_TName"].Visible = false;
+                                    DGV_FilterBrand.Columns["BD_TName"].Visible = true;
                                     DGV_FilterBrand.Columns["BD_EName"].Width = 200;
                                     DGV_FilterBrand.Columns["BD_TName"].Width = 200;
                                     DGV_FilterBrand.Columns["BD_EName"].DisplayIndex = 0;
@@ -2718,7 +2718,7 @@ namespace ROMS
                 {
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
-                    DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure want to refresh the filter?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         epReport.Clear();

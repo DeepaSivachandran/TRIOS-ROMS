@@ -281,6 +281,12 @@
     <Compile Include="CP_CostPrice_Update_Bulk.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductDetails.designer.cs">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_SalesUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3996,11 +4002,11 @@
     <Compile Include="PUR_DCGoodsInward.designer.cs">
       <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_ProductDetails.cs">
+    <Compile Include="CP_ProductDetails_Rack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_ProductDetails.designer.cs">
-      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    <Compile Include="CP_ProductDetails_Rack.designer.cs">
+      <DependentUpon>CP_ProductDetails_Rack.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_Supplier.cs">
       <SubType>Form</SubType>
@@ -4660,6 +4666,9 @@
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductDetails.resx">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_SalesUser.resx">
       <DependentUpon>CP_SalesUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -5068,8 +5077,8 @@
     <EmbeddedResource Include="PUR_DCGoodsInward.resx">
       <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_ProductDetails.resx">
-      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    <EmbeddedResource Include="CP_ProductDetails_Rack.resx">
+      <DependentUpon>CP_ProductDetails_Rack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Supplier.resx">
       <DependentUpon>CP_Supplier.cs</DependentUpon>

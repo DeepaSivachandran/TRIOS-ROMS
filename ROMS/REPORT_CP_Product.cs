@@ -1450,6 +1450,11 @@ namespace ROMS
                 else { varSubgroupName = txtSubGroup.Text.Trim(); }
                 lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
 
+                string locationname = "--All--";
+                if(Convert.ToInt32(lblLocationId.Text)!=0)
+                { locationname = txtLocation.Text; }
+
+
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -1496,6 +1501,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
+                    objBillreport.SetParameterValue("paraLocationName", locationname);
                     objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(lblLocationId.Text));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/

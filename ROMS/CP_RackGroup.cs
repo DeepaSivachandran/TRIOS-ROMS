@@ -2168,11 +2168,11 @@ namespace ROMS
             {
                 if (Convert.ToInt32(grdRack.SelectedRows[0].Cells["Total Products"].Value) != 0 && grdRack.SelectedRows[0].Cells[e.ColumnIndex].OwningColumn.Name == "Rack")
                 {
-                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
-                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdRack.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdRack.SelectedRows[0].Cells["Rack"].Value);
-                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdRack.SelectedRows[0].Cells["Description"].Value);
-                    MainForm.objCP_ProductDetails.ShowDialog();
+                    MainForm.objCP_ProductDetails_Rack = new CP_ProductDetails_Rack();
+                    MainForm.objCP_ProductDetails_Rack.varRackId = Convert.ToInt32(grdRack.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_ProductDetails_Rack.varRackName = Convert.ToString(grdRack.SelectedRows[0].Cells["Rack"].Value);
+                    MainForm.objCP_ProductDetails_Rack.varDescription = Convert.ToString(grdRack.SelectedRows[0].Cells["Description"].Value);
+                    MainForm.objCP_ProductDetails_Rack.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -2189,11 +2189,11 @@ namespace ROMS
             {
                 if (Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value) != 0 && grdSelectedRack.SelectedRows[0].Cells[e.ColumnIndex].OwningColumn.Name == "clmRack")
                 {
-                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
-                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value);
-                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value);
-                    MainForm.objCP_ProductDetails.ShowDialog();
+                    MainForm.objCP_ProductDetails_Rack = new CP_ProductDetails_Rack();
+                    MainForm.objCP_ProductDetails_Rack.varRackId = Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_ProductDetails_Rack.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value);
+                    MainForm.objCP_ProductDetails_Rack.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value);
+                    MainForm.objCP_ProductDetails_Rack.ShowDialog();
                 }
             }
             catch (Exception ex)
