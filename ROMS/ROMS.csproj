@@ -871,6 +871,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.cs">
+      <DependentUpon>RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_PurchaseReturnDC_Supplierwise_Detail.cs">
       <DependentUpon>RPT_PUR_PurchaseReturnDC_Supplierwise_Detail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5716,6 +5723,11 @@
     <Content Include="Reports\RPT_PUR_PurchaseReturnDC_Supplierwise_Detail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_PurchaseReturnDC_Supplierwise_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_MarginEntryReport.rpt">
