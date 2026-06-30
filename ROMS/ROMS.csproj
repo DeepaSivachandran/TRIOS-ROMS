@@ -1599,6 +1599,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="REPORT_PUR_ReturnDC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_ReturnDC.designer.cs">
+      <DependentUpon>REPORT_PUR_ReturnDC.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_MValueReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7085,6 +7091,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_PUR_ReturnDC.resx">
+      <DependentUpon>REPORT_PUR_ReturnDC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_MValueReport.resx">
       <DependentUpon>REPORT_MValueReport.cs</DependentUpon>
     </EmbeddedResource>
