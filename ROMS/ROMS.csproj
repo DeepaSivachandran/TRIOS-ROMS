@@ -918,6 +918,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_PurchaseReturnDC.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_SalesEntryReport.cs">
       <DependentUpon>RPT_SalesEntryReport.rpt</DependentUpon>
@@ -5960,6 +5961,7 @@
     <EmbeddedResource Include="Reports\RPT_PUR_PurchaseReturnDC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_PurchaseReturnDC.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_REPORT_Product_RC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
