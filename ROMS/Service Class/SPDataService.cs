@@ -749,6 +749,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRN_Damage.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraDMFromOtherLoc", objTRN_Damage.paraDMFromOtherLoc);
                 varSqlCommand.Parameters.AddWithValue("@paraQueid", objTRN_Damage.paraQueid);
+                varSqlCommand.Parameters.AddWithValue("@paraChecker", objTRN_Damage.paraChecker);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objTRN_Damage.paraTeller);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
