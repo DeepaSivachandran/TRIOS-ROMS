@@ -137,7 +137,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(varViewType, 0, varSupplierCode, varScheduleCode, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", varProductCode, "", Convert.ToInt32(cmbReason.SelectedValue),0);
+                objDs = objspservice.udfnproductDamage(varViewType, 0, varSupplierCode, varScheduleCode, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", varProductCode, "", Convert.ToInt32(cmbReason.SelectedValue),0,0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

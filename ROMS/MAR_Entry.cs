@@ -1896,9 +1896,9 @@ namespace ROMS
                                 grdMarginList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdMarginList.Columns["M.Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdMarginList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdMarginList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdMarginList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdMarginList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdMarginList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdMarginList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdMarginList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdMarginList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
                                 grdMarginList.Columns["M.Value"].DefaultCellStyle.Format = "0.00";
 

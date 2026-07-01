@@ -24,6 +24,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public int MenuCode = 0;
         string privilege = "";
+        public int pbViewFlag = 0;
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_DamageEntryList()
         {
@@ -611,8 +612,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (53) AND MSTID !=0", "MST_DisplayText,MSTID", cmbDMShow, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (186,0) AND MSTID !=-1", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                cmbStatus.SelectedValue = 6;
-                 
+                //cmbStatus.SelectedValue = 6; 
+                pbViewFlag = 6;//For the fisttime only load all draft status records
                 dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
@@ -630,6 +631,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
         public void udfnFieldAccess()
         {
             try
@@ -1081,7 +1083,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(1, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0,Convert.ToInt16(cmbEntryType.SelectedValue));
+                objDs = objspservice.udfnproductDamage(1, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0,Convert.ToInt16(cmbEntryType.SelectedValue),pbViewFlag);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1158,6 +1160,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+                pbViewFlag = 0;
             }
         }
         public void udfnDefaultSearchGrid()
@@ -1246,7 +1249,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0,Convert.ToInt16(cmbEntryType.SelectedValue));
+                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0,Convert.ToInt16(cmbEntryType.SelectedValue),0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1384,7 +1387,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(6, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0,Convert.ToInt16(cmbEntryType.SelectedValue));
+                objDs = objspservice.udfnproductDamage(6, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0,Convert.ToInt16(cmbEntryType.SelectedValue),0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -2138,7 +2141,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0, Convert.ToInt16(cmbEntryType.SelectedValue));
+                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0, Convert.ToInt16(cmbEntryType.SelectedValue),0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -2233,7 +2236,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(7, 0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0, Convert.ToInt16(cmbEntryType.SelectedValue));
+                objDs = objspservice.udfnproductDamage(7, 0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0, Convert.ToInt16(cmbEntryType.SelectedValue),0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -3179,7 +3182,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
 
-                objDs = objspservice.udfnproductDamage(10, 0, 0, 0, 0, 0, "", "", "",0, "", 0,0);
+                objDs = objspservice.udfnproductDamage(10, 0, 0, 0, 0, 0, "", "", "",0, "", 0,0,0); 
                 objspservice.CloseConnection(); 
                 if (objDs != null)
                 {

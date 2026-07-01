@@ -939,7 +939,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 16/10/2023 for purchase damage list
-        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername,int paraPRID, string paraUserLocations,int ParaReasonId,int paraEntryTypeID)
+        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername,int paraPRID, string paraUserLocations,int ParaReasonId,int paraEntryTypeID,int paraFlag)
         {
             DataSet ds = new DataSet();
             try
@@ -960,6 +960,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@ParaReasonId", ParaReasonId);
                 varSqlCommand.Parameters.AddWithValue("@paraEntryTypeID", paraEntryTypeID);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -6577,6 +6578,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUnitId", objMR_SalesEntry.paraUnitId);
                 varSqlCommand.Parameters.AddWithValue("@paraFilterType", objMR_SalesEntry.paraFilterType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductNameID", objMR_SalesEntry.paraProductNameID);
+                varSqlCommand.Parameters.AddWithValue("@paraRateCategoryIDs", objMR_SalesEntry.paraRateCategoryIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

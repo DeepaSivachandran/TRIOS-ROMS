@@ -143,8 +143,7 @@ namespace ROMS
                 int varPrint = 0;
                  MR_Product objMR_ProductReport = new MR_Product();
                 objMR_ProductReport.paraViewType = 1;
-                objMR_ProductReport.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objMR_ProductReport.ParaDate = Convert.ToString(dpFromDate.Text);
+                objMR_ProductReport.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue); 
                 objMR_ProductReport.paraGroup = varGroupId;
                 objMR_ProductReport.paraSubgroup = varSubgroupId;
                 objMR_ProductReport.paraBrandID = varBrandId; 
@@ -183,8 +182,7 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_ProductWeight_LocationWiseProductDetail.rpt");
                     }
-                    objBillreport.SetParameterValue("ParaConcernName", Convert.ToString(cmbConcern.Text));
-                    objBillreport.SetParameterValue("paraDate", Convert.ToString(dpFromDate.Text));
+                    objBillreport.SetParameterValue("ParaConcernName", Convert.ToString(cmbConcern.Text)); 
                     objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
@@ -286,9 +284,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,152) AND MSTID<>0    ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
 
                 objDataBind = null;
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId; 
-                dpFromDate.MinDate = MainForm.pbFYStartDate;
-                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;  
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0; 
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
@@ -1241,7 +1237,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    cmbReportType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1503,21 +1499,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void dpFromDate_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                dpFromDate.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
         private void dpFromDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1526,19 +1508,6 @@ namespace ROMS
                 {
                     cmbReportType.Focus();
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void dpFromDate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                dpFromDate.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1827,13 +1796,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void grpfilter_Enter(object sender, EventArgs e)
-        {
-
-        }
-
+        } 
         private void DGV_FilterLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { 
             try

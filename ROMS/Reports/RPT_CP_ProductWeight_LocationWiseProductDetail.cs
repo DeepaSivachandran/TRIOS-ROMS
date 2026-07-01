@@ -178,7 +178,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraLocationName {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -186,7 +186,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraLocationName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraGroup {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -194,7 +194,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGroup {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -202,7 +202,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandName {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -210,7 +210,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProCategory {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -218,7 +218,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProCategory {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCategoryName {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -226,7 +226,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraCategoryName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandID {
             get {
                 return this.DataDefinition.ParameterFields[11];
             }
@@ -234,7 +234,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandID {
+        public CrystalDecisions.Shared.IParameterField Parameter_ParaCompanycode {
             get {
                 return this.DataDefinition.ParameterFields[12];
             }
@@ -242,7 +242,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaCompanycode {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraLocationId {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -250,7 +250,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraLocationId {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductCategory {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -258,7 +258,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProductCategory {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductType {
             get {
                 return this.DataDefinition.ParameterFields[15];
             }
@@ -266,7 +266,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProductType {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroup {
             get {
                 return this.DataDefinition.ParameterFields[16];
             }
@@ -274,17 +274,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroup {
-            get {
-                return this.DataDefinition.ParameterFields[17];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
             get {
-                return this.DataDefinition.ParameterFields[18];
+                return this.DataDefinition.ParameterFields[17];
             }
         }
     }

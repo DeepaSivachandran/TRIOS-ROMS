@@ -135,7 +135,7 @@ namespace ROMS
                     }
                 }
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                cmbProductName.SelectedValue = 271;
+                cmbProductName.SelectedValue = 270;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
@@ -1897,9 +1897,9 @@ namespace ROMS
                                 grdSalesList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSalesList.Columns["S.Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSalesList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdSalesList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdSalesList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdSalesList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdSalesList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdSalesList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdSalesList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdSalesList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
                                 grdSalesList.Columns["S.Qty"].DefaultCellStyle.Format = "0.00";
 
