@@ -871,6 +871,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_PurchaseReturnDC_Summary1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_PurchaseReturnDC_Summary.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.cs">
       <DependentUpon>RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5720,6 +5725,7 @@
     <Content Include="Reports\RPT_PUR_PurchaseReturnDC_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_PUR_PurchaseReturnDC_Summary1.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\RPT_PUR_PurchaseReturnDC_Detail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
