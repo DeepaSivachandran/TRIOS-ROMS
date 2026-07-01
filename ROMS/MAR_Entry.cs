@@ -23,8 +23,7 @@ namespace ROMS
         public string pbRateCategoryIDs = "";
         public MAR_Entry()
         {
-            InitializeComponent();
-            this.DoubleBuffered = true;
+            InitializeComponent(); 
             windowControl.Initialize(tsMarginEntry, this);
         }
         public void udfnGridNull(Control skipControl)
