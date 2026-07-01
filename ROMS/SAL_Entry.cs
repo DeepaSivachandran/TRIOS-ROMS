@@ -22,8 +22,7 @@ namespace ROMS
         public string pbRateCategoryIDs = "";
         public SAL_Entry()
         {
-            InitializeComponent();
-            this.DoubleBuffered = true;
+            InitializeComponent(); 
             windowControl.Initialize(tsSalesEntry, this);
         }
 
