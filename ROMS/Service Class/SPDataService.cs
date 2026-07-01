@@ -2955,6 +2955,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_GoodsOutward.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_GoodsOutward.paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objTRNG_GoodsOutward.paraUserLocations);
+                varSqlCommand.Parameters.AddWithValue("@paraTypeID", objTRNG_GoodsOutward.paraTypeID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

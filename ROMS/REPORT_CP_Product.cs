@@ -1451,7 +1451,7 @@ namespace ROMS
                 lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
 
                 string locationname = "--All--";
-                if(Convert.ToInt32(lblLocationId.Text)!=0)
+                if(Convert.ToString(txtLocation.Text.Trim())!="")
                 { locationname = txtLocation.Text; }
 
 

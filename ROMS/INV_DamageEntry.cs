@@ -4565,7 +4565,7 @@ namespace ROMS
                         {
                             if (txtMrp.Enabled == true)
                             { txtMrp.Focus(); }
-                            if (txtDay.Enabled == true)
+                            else if (txtDay.Enabled == true)
                             { txtDay.Focus(); }
                             else if (txtBatchNo.Enabled == true)
                             { txtBatchNo.Focus(); }
