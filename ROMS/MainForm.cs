@@ -315,6 +315,7 @@ namespace ROMS
         public static PUR_DC_PrintPopUp objPUR_DC_PrintPopUp;
         public static PO_Details objPO_Details;
         public static PUR_RemainingProductList objPUR_RemainingProductList;
+        public static REPORT_PUR_ReturnDC objREPORT_PUR_ReturnDC;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -5138,6 +5139,20 @@ namespace ROMS
             {
                 OpenReportForm(ref MainForm.objCP_ProductImageApprovalList, "CP_ProductImageApprovalList", 50512);
                 PbCurrentForm = "5.12";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmPurchaseReturnDCReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_PUR_ReturnDC, "REPORT_PUR_ReturnDC", 80318);
+                PbCurrentForm = "7.2.2";
             }
             catch (Exception ex)
             {

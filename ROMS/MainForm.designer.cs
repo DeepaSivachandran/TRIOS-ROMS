@@ -91,6 +91,7 @@ namespace ROMS
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductClassification = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductApproval = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProductImageApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkRateCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkupdateProductminbulk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkOffsetUpdate = new System.Windows.Forms.ToolStripMenuItem();
@@ -189,6 +190,7 @@ namespace ROMS
             this.tsmRcPriceList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseConsolidated = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseProductwiseBatch = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseReturnDCReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInwardStockReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockInwardReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockOutwardReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -252,7 +254,6 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmProductImageApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -818,6 +819,14 @@ namespace ROMS
             this.tsmProductApproval.Text = "Product Approval";
             this.tsmProductApproval.Visible = false;
             this.tsmProductApproval.Click += new System.EventHandler(this.tsmProductApproval_Click);
+            // 
+            // tsmProductImageApproval
+            // 
+            this.tsmProductImageApproval.Name = "tsmProductImageApproval";
+            this.tsmProductImageApproval.Size = new System.Drawing.Size(264, 22);
+            this.tsmProductImageApproval.Text = "Product Image Approval";
+            this.tsmProductImageApproval.Visible = false;
+            this.tsmProductImageApproval.Click += new System.EventHandler(this.tsmProductImageApproval_Click);
             // 
             // tsmBulkRateCategory
             // 
@@ -1544,7 +1553,8 @@ namespace ROMS
             this.tsmPurchaseDiscountValue,
             this.tsmRcPriceList,
             this.tsmPurchaseConsolidated,
-            this.tsmPurchaseProductwiseBatch});
+            this.tsmPurchaseProductwiseBatch,
+            this.tsmPurchaseReturnDCReport});
             this.tsmPurchaseReport.Name = "tsmPurchaseReport";
             this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseReport.Text = "Purchase";
@@ -1689,6 +1699,14 @@ namespace ROMS
             this.tsmPurchaseProductwiseBatch.Size = new System.Drawing.Size(280, 22);
             this.tsmPurchaseProductwiseBatch.Text = "Purchase Productwise Batch";
             this.tsmPurchaseProductwiseBatch.Click += new System.EventHandler(this.tsmPurchaseProductwiseBatch_Click);
+            // 
+            // tsmPurchaseReturnDCReport
+            // 
+            this.tsmPurchaseReturnDCReport.Name = "tsmPurchaseReturnDCReport";
+            this.tsmPurchaseReturnDCReport.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseReturnDCReport.Text = "Purchase Return DC";
+            this.tsmPurchaseReturnDCReport.Visible = false;
+            this.tsmPurchaseReturnDCReport.Click += new System.EventHandler(this.tsmPurchaseReturnDCReport_Click);
             // 
             // tsmInwardStockReport
             // 
@@ -2260,14 +2278,6 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmProductImageApproval
-            // 
-            this.tsmProductImageApproval.Name = "tsmProductImageApproval";
-            this.tsmProductImageApproval.Size = new System.Drawing.Size(264, 22);
-            this.tsmProductImageApproval.Text = "Product Image Approval";
-            this.tsmProductImageApproval.Visible = false;
-            this.tsmProductImageApproval.Click += new System.EventHandler(this.tsmProductImageApproval_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2523,5 +2533,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmCustomerGroup;
         private System.Windows.Forms.ToolStripMenuItem tsmAddressBook;
         private System.Windows.Forms.ToolStripMenuItem tsmProductImageApproval;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseReturnDCReport;
     }
 }

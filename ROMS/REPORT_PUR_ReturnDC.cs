@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using ROMS.Model;
 using System;
 using System.Data;
 using System.Drawing;
@@ -77,7 +78,7 @@ namespace ROMS
         {
             try
             {
-                udfnDamageEntryReports(varFlag);
+                udfnPurchaseReturnDCReports(varFlag);
             }
             catch (Exception ex)
             {
@@ -97,7 +98,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnDamageEntryReports(int varFlag)
+        public void udfnPurchaseReturnDCReports(int varFlag)
         {
             try
             {
@@ -115,15 +116,15 @@ namespace ROMS
                     varProductName = txtProductName.Text.Trim();
                     varProductCode = Convert.ToInt32(lblProductcode.Text);
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 520)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 618)
                 {
                     varViewType = 12;
                 }
-                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 521)
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 619)
                 {
                     varViewType = 13;
                 }
-                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 522)
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 620)
                 {
                     varViewType = 14;
                 }
@@ -137,7 +138,16 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(varViewType, 0, varSupplierCode, varScheduleCode, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", varProductCode, "", Convert.ToInt32(cmbReason.SelectedValue));
+                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                objTRN_PurchaseReturnDC.paraViewType = varViewType;
+                objTRN_PurchaseReturnDC.ParaSupplierId = varSupplierCode;
+                objTRN_PurchaseReturnDC.ParaScheduleID = varScheduleCode;
+                objTRN_PurchaseReturnDC.paraProductId = varProductCode;
+                objTRN_PurchaseReturnDC.paraFromDate = dpFromDate.Text;
+                objTRN_PurchaseReturnDC.paraToDate = dpToDate.Text;
+                objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objDs = objspservice.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -149,35 +159,33 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 519)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 617)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Summary.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PurchaseReturnDC_Summary.rpt");
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 520)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 618)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Detail.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PurchaseReturnDC_Detail.rpt");
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 521)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 619)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Supplierwise_Damage_Detail.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PurchaseReturnDC_Supplierwise_Detail.rpt");
                         objBillreport.SetParameterValue("ParaSupplierId", varSupplierCode);
                         objBillreport.SetParameterValue("ParaScheduleId", varScheduleCode);
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                        objBillreport.SetParameterValue("paraPRID", varProductCode);
+                        objBillreport.SetParameterValue("paraProductId", varProductCode);
                         objBillreport.SetParameterValue("paraProductName", varProductName);
-                        objBillreport.SetParameterValue("ParaReasonId", Convert.ToInt32(cmbReason.SelectedValue));
-                        objBillreport.SetParameterValue("paraReasonName", Convert.ToString(cmbReason.Text));
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 522)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 620)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Supplierwise_Damage_Summary.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.rpt");
                     }
                     objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
-                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("ParaDMFromDate", dpFromDate.Text);
-                    objBillreport.SetParameterValue("ParaDMToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -243,7 +251,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80414;
+                int currentMUCode = 80318;
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
@@ -258,7 +266,6 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID In (0,52) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3,0) AND STSID NOT IN(-1,36)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
@@ -305,7 +312,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterSupplier.Visible == false)
                 {
-                    cmbReason.Focus();
+                    cmbStatus.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -378,7 +385,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbReason.Focus();
+                        cmbStatus.Focus();
                     }
                 }
             }
@@ -483,7 +490,7 @@ namespace ROMS
                     lblschedleCode.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
-                cmbReason.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
@@ -703,7 +710,7 @@ namespace ROMS
             {
                 varUpDownKeySupplier = 1;
                 udfnListViewData();
-                cmbReason.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
@@ -773,7 +780,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbReason.Focus();
+                        cmbStatus.Focus();
                     }
                 }
             }
@@ -1119,20 +1126,6 @@ namespace ROMS
             }
         }
 
-        private void cmbReason_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnGridNull((Control)sender);
-                cmbReason.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1154,12 +1147,10 @@ namespace ROMS
                 }
                 txtProductName.Enabled = false;
                 txtSupplier.Enabled = false;
-                cmbReason.Enabled = false;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 521)
                 {
                     txtProductName.Enabled = true;
                     txtSupplier.Enabled = true;
-                    cmbReason.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -1217,48 +1208,6 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbReason_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if(e.KeyCode == Keys.Enter)
-                {
-                    cmbStatus.Focus();
-                }   
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbReason_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbReason_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbReason.BackColor = Color.White;  
             }
             catch (Exception ex)
             {
