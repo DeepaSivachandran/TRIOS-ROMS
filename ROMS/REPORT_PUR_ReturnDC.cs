@@ -1147,7 +1147,7 @@ namespace ROMS
                 }
                 txtProductName.Enabled = false;
                 txtSupplier.Enabled = false;
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 521)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 619)
                 {
                     txtProductName.Enabled = true;
                     txtSupplier.Enabled = true;
