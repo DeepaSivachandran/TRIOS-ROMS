@@ -272,6 +272,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraConcernName", cmbConcern.Text);
                         objBillreport.SetParameterValue("paraUnitName", cmbUnit.Text);
                         objBillreport.SetParameterValue("paraStockTypeName", cmbStockType.Text);
+                        objBillreport.SetParameterValue("paraLocationName", string.IsNullOrWhiteSpace(cmbStockLocation.Text) ? "-All-" : cmbStockLocation.Text.Trim());
                     }
                     else
                     {
