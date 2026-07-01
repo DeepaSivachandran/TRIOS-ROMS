@@ -69,6 +69,12 @@ namespace ROMS
                     DGV_FilterBrand.DataSource = null;
                     DGV_FilterBrand.Visible = false;
                 }
+                if (skipControl != txtLocation)
+                {
+                    varUpDownKeyLocation = 0;
+                    DGV_FilterLocation.DataSource = null;
+                    DGV_FilterLocation.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1587,6 +1593,7 @@ namespace ROMS
                 {
                     lblLocationCode.Text = DGV_FilterLocation.SelectedRows[0].Cells["SLID"].Value.ToString();
                     txtLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
+
                 }
             }
             catch (Exception ex)
@@ -1796,7 +1803,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void DGV_FilterLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void DGV_FilterLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         { 
             try

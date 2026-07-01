@@ -186,7 +186,7 @@
             this.DGV_FilterLocation.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterLocation.EnableHeadersVisualStyles = false;
             this.DGV_FilterLocation.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterLocation.Location = new System.Drawing.Point(620, 94);
+            this.DGV_FilterLocation.Location = new System.Drawing.Point(620, 51);
             this.DGV_FilterLocation.Name = "DGV_FilterLocation";
             this.DGV_FilterLocation.ReadOnly = true;
             this.DGV_FilterLocation.RowHeadersVisible = false;
@@ -199,6 +199,7 @@
             this.DGV_FilterLocation.Size = new System.Drawing.Size(341, 226);
             this.DGV_FilterLocation.TabIndex = 111111177;
             this.DGV_FilterLocation.Visible = false;
+            this.DGV_FilterLocation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterLocation_CellContentClick);
             this.DGV_FilterLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterLocation_CellDoubleClick);
             this.DGV_FilterLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterLocation_KeyDown);
             // 
@@ -274,7 +275,7 @@
             this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(968, 94);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(968, 51);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
@@ -318,7 +319,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(891, 94);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(891, 51);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
