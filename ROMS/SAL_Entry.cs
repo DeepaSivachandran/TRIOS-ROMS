@@ -22,8 +22,7 @@ namespace ROMS
         public string pbRateCategoryIDs = "";
         public SAL_Entry()
         {
-            InitializeComponent();
-            this.DoubleBuffered = true;
+            InitializeComponent(); 
             windowControl.Initialize(tsSalesEntry, this);
         }
 
@@ -135,7 +134,7 @@ namespace ROMS
                     }
                 }
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                cmbProductName.SelectedValue = 271;
+                cmbProductName.SelectedValue = 270;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
@@ -315,7 +314,7 @@ namespace ROMS
                                     DGV_FilterGroup.Columns["PRGID"].Visible = false;
                                     DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
                                     DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
-                                    DGV_FilterGroup.Columns["PRG_TName"].Visible = false;
+                                    DGV_FilterGroup.Columns["PRG_TName"].Visible = true;
                                     DGV_FilterGroup.Columns["PRG_EName"].Width = 200;
                                     DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
                                     DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
@@ -583,7 +582,7 @@ namespace ROMS
                                     DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
                                     DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
-                                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = false;
+                                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = true;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 200;
                                     DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
@@ -770,7 +769,7 @@ namespace ROMS
                                     DGV_FilterBrand.Columns["BDID"].Visible = false;
                                     DGV_FilterBrand.Columns["BD_EName"].HeaderText = "Brand English Name";
                                     DGV_FilterBrand.Columns["BD_TName"].HeaderText = "Brand Tamil Name";
-                                    DGV_FilterBrand.Columns["BD_TName"].Visible = false;
+                                    DGV_FilterBrand.Columns["BD_TName"].Visible = true;
                                     DGV_FilterBrand.Columns["BD_EName"].Width = 200;
                                     DGV_FilterBrand.Columns["BD_TName"].Width = 200;
                                     DGV_FilterBrand.Columns["BD_EName"].DisplayIndex = 0;
@@ -1839,7 +1838,7 @@ namespace ROMS
                 objMR_SalesEntry.paraUnitId = varUnit;
                 objMR_SalesEntry.paraFilterType = varFilterType;
                 objMR_SalesEntry.paraProductNameID = Convert.ToInt32(cmbProductName.SelectedValue);
-                objMR_SalesEntry.paraRateCategoryIDs = pbRateCategoryIDs;
+                objMR_SalesEntry.paraRateCategoryIDs = pbRateCategoryIDs; 
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnsaleslist(objMR_SalesEntry);
@@ -1897,9 +1896,9 @@ namespace ROMS
                                 grdSalesList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSalesList.Columns["S.Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSalesList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdSalesList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdSalesList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdSalesList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdSalesList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdSalesList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdSalesList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdSalesList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
                                 grdSalesList.Columns["S.Qty"].DefaultCellStyle.Format = "0.00";
 
@@ -2718,7 +2717,7 @@ namespace ROMS
                 {
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
-                    DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure want to refresh the filter?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         epReport.Clear();

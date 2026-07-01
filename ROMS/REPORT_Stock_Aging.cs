@@ -187,18 +187,20 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 310)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 310 || Convert.ToInt32(cmbReportType.SelectedValue) == 604)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Aging.rpt");
                         //objBillreport.SetParameterValue("paraMonthsName", varMonthsName);
                         varReportName = "Stock_Aging";
                     }
-                    else
+                    else if ((Convert.ToInt32(cmbReportType.SelectedValue) == 311) || (Convert.ToInt32(cmbReportType.SelectedValue) == 616))
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Expiry.rpt");
                         //objBillreport.SetParameterValue("paraDayName", varMonthsName);
                         varReportName = "Stock_Expiry";
                     }
+                    objBillreport.SetParameterValue("paraReportType", Convert.ToInt32(cmbReportType.SelectedValue));
+                    objBillreport.SetParameterValue("paraReportName", Convert.ToString(cmbReportType.Text)); 
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraSLID", varLocationId);
                     objBillreport.SetParameterValue("paraMonth", varMonths);
@@ -294,7 +296,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 //Transaction id 	91
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=109", "MST_DisplayText,MSTID,MST_ShortName", cmbOrderBy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;

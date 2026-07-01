@@ -267,7 +267,7 @@ namespace ROMS
                     dtChecker.Columns.Add("Employee Category", typeof(string));
                     dtChecker.Columns.Add("EMPID", typeof(int));
                     dtChecker.Columns.Add("CT_SINO", typeof(int));
-                    udfnemployeeload();
+                    udfnTellerload();
                     udfnCheckerload();
                     if (varID == 0)
                     {
@@ -330,7 +330,7 @@ namespace ROMS
             {
             }
         }
-        public void udfnemployeeload()
+        public void udfnTellerload()
         {
             try
             {
@@ -339,43 +339,60 @@ namespace ROMS
                 grdEmployee.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnEmployeeList(9, "", 0, "", 1, 0, 0);
+                int checherId = 0;
+                if(cmbChecker.SelectedValue != null && Convert.ToInt16(cmbChecker.SelectedValue)!=-1) 
+                { checherId = Convert.ToInt16(cmbChecker.SelectedValue); }
+                objDs = objdserv.udfnEmployeeList(9, "", checherId, "", 1, 0, 0);
                 objdserv.CloseConnection();
-                if (objDs.Tables[0].Rows.Count != 0)
+                if (objDs != null)
                 {
-                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    if (objDs.Tables.Count > 0)
                     {
-                        dtEmployee.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Employee Code"], objDs.Tables[0].Rows[i]["Employee Name"],
-                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"], objDs.Tables[0].Rows[i]["CT_SINO"]);
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            cmbTeller.ValueMember = "EMPID";
+                            cmbTeller.DisplayMember = "Employee Name";
+                            cmbTeller.DataSource = objDs.Tables[0];
+                        }
                     }
                 }
+
+
                 //if (objDs.Tables[0].Rows.Count != 0)
                 //{
                 //    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                 //    {
-                //        grdEmployee.Rows.Add(false,Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["EMPID"]), Convert.ToString(objDs.Tables[0].Rows[i]["CT_SINO"]),
-                //          Convert.ToString(objDs.Tables[0].Rows[i]["Employee Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Category"]));
+                //        dtEmployee.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Employee Code"], objDs.Tables[0].Rows[i]["Employee Name"],
+                //           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"], objDs.Tables[0].Rows[i]["CT_SINO"]);
                 //    }
                 //}
-                grdEmployee.DataSource = null;
-                grdEmployee.DataSource = dtEmployee;
-                grdEmployee.Columns[0].HeaderText = "";
-                grdEmployee.Columns[0].Width = 30;
-                grdEmployee.Columns["S.No."].Width = 40;
-                grdEmployee.Columns["S.No."].Visible = false;
-                grdEmployee.Columns["Emp. Code"].Width = 75;
-                grdEmployee.Columns["Employee Name"].Width = 150;
-                grdEmployee.Columns["Employee Category"].Width = 120;
-                grdEmployee.Columns["EMPID"].Visible = false;
-                grdEmployee.Columns["CT_SINO"].Visible = false;
-                grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                ////if (objDs.Tables[0].Rows.Count != 0)
+                ////{
+                ////    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                ////    {
+                ////        grdEmployee.Rows.Add(false,Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["EMPID"]), Convert.ToString(objDs.Tables[0].Rows[i]["CT_SINO"]),
+                ////          Convert.ToString(objDs.Tables[0].Rows[i]["Employee Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Category"]));
+                ////    }
+                ////}
+                //grdEmployee.DataSource = null;
+                //grdEmployee.DataSource = dtEmployee;
+                //grdEmployee.Columns[0].HeaderText = "";
+                //grdEmployee.Columns[0].Width = 30;
+                //grdEmployee.Columns["S.No."].Width = 40;
+                //grdEmployee.Columns["S.No."].Visible = false;
+                //grdEmployee.Columns["Emp. Code"].Width = 75;
+                //grdEmployee.Columns["Employee Name"].Width = 150;
+                //grdEmployee.Columns["Employee Category"].Width = 120;
+                //grdEmployee.Columns["EMPID"].Visible = false;
+                //grdEmployee.Columns["CT_SINO"].Visible = false;
+                //grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                grdEmployee.Columns["S.No."].ReadOnly = true;
-                grdEmployee.Columns["Emp. Code"].ReadOnly = true;
-                grdEmployee.Columns["Employee Name"].ReadOnly = true;
-                grdEmployee.Columns["Employee Category"].ReadOnly = true;
+                //grdEmployee.Columns["S.No."].ReadOnly = true;
+                //grdEmployee.Columns["Emp. Code"].ReadOnly = true;
+                //grdEmployee.Columns["Employee Name"].ReadOnly = true;
+                //grdEmployee.Columns["Employee Category"].ReadOnly = true;
 
-                udfnSearchGridHead();
+                //udfnSearchGridHead();
 
 
                 //for (int i = 1; i < DGV_SearchGridLeft.ColumnCount; i++)
@@ -401,16 +418,34 @@ namespace ROMS
                 grdChecker.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnEmployeeList(9, "", 0, "", 1, 0, 0);
+                int tellerID = 0;
+                if (cmbTeller.SelectedValue != null && Convert.ToInt16(cmbTeller.SelectedValue) != -1)
+                { tellerID = Convert.ToInt16(cmbTeller.SelectedValue); }
+                objDs = objdserv.udfnEmployeeList(9, "",tellerID, "", 1, 0, 0);
                 objdserv.CloseConnection();
-                if (objDs.Tables[1].Rows.Count != 0)
+                if (objDs != null)
                 {
-                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                    if (objDs.Tables.Count > 0)
                     {
-                        dtChecker.Rows.Add(false, objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["Employee Code"], objDs.Tables[1].Rows[i]["Employee Name"],
-                           objDs.Tables[1].Rows[i]["Employee Category"], objDs.Tables[1].Rows[i]["EMPID"], objDs.Tables[1].Rows[i]["CT_SINO"]);
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            cmbChecker.ValueMember = "EMPID";
+                            cmbChecker.DisplayMember = "Employee Name";
+                            cmbChecker.DataSource = objDs.Tables[1];
+                        }
                     }
                 }
+                //if (objDs.Tables[1].Rows.Count != 0)
+                //{
+                //    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                //    {
+                //        dtChecker.Rows.Add(false, objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["Employee Code"], objDs.Tables[1].Rows[i]["Employee Name"],
+                //           objDs.Tables[1].Rows[i]["Employee Category"], objDs.Tables[1].Rows[i]["EMPID"], objDs.Tables[1].Rows[i]["CT_SINO"]);
+                //    }
+                //}
+
+
+
                 //if (objDs.Tables[0].Rows.Count != 0)
                 //{
                 //    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -419,26 +454,26 @@ namespace ROMS
                 //          Convert.ToString(objDs.Tables[0].Rows[i]["Employee Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Category"]));
                 //    }
                 //}
-                grdChecker.DataSource = null;
-                grdChecker.DataSource = dtChecker;
+                //grdChecker.DataSource = null;
+                //grdChecker.DataSource = dtChecker;
 
-                grdChecker.Columns[0].HeaderText = "";
-                grdChecker.Columns[0].Width = 30;
-                grdChecker.Columns["S.No."].Width = 40;
-                grdChecker.Columns["S.No."].Visible = false;
-                grdChecker.Columns["Emp. Code"].Width = 75;
-                grdChecker.Columns["Employee Name"].Width = 150;
-                grdChecker.Columns["Employee Category"].Width = 120;
-                grdChecker.Columns["EMPID"].Visible = false;
-                grdChecker.Columns["CT_SINO"].Visible = false;
-                grdChecker.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //grdChecker.Columns[0].HeaderText = "";
+                //grdChecker.Columns[0].Width = 30;
+                //grdChecker.Columns["S.No."].Width = 40;
+                //grdChecker.Columns["S.No."].Visible = false;
+                //grdChecker.Columns["Emp. Code"].Width = 75;
+                //grdChecker.Columns["Employee Name"].Width = 150;
+                //grdChecker.Columns["Employee Category"].Width = 120;
+                //grdChecker.Columns["EMPID"].Visible = false;
+                //grdChecker.Columns["CT_SINO"].Visible = false;
+                //grdChecker.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                grdChecker.Columns["S.No."].ReadOnly = true;
-                grdChecker.Columns["Emp. Code"].ReadOnly = true;
-                grdChecker.Columns["Employee Name"].ReadOnly = true;
-                grdChecker.Columns["Employee Category"].ReadOnly = true;
+                //grdChecker.Columns["S.No."].ReadOnly = true;
+                //grdChecker.Columns["Emp. Code"].ReadOnly = true;
+                //grdChecker.Columns["Employee Name"].ReadOnly = true;
+                //grdChecker.Columns["Employee Category"].ReadOnly = true;
 
-                udfnsearchgridhead();
+                //udfnsearchgridhead();
                 //for (int i = 1; i < DGV_SearchGridLeft.ColumnCount; i++)
                 //{
                 //    DGV_SearchGridLeft.Rows[0].Cells[0].Value = "";
@@ -448,10 +483,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-            }
+            } 
         }
         private void udfnSearchGridHead()
         {
@@ -1845,7 +1877,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnproductDamage(2, varID, 0, 0, 0, 0, "", "", "", 0, "", 0);
+                    objDS = objspservice.udfnproductDamage(2, varID, 0, 0, 0, 0, "", "", "", 0, "", 0,0,0);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -1885,26 +1917,29 @@ namespace ROMS
                                     grdDamageEntry.Rows[i].Cells["clmSupplier"].Style.BackColor = Color.LightPink;
                                 }
                             }
-                            for (int i = 0; i < grdEmployee.Rows.Count; i++)
-                            {
-                                for (int j = 0; j < objDS.Tables[1].Rows.Count; j++)
-                                {
-                                    if (Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) == Convert.ToString(objDS.Tables[1].Rows[j]["EMPID"]))
-                                    {
-                                        grdEmployee.Rows[i].Cells[0].Value = true;
-                                    }
-                                }
-                            }
-                            for (int i = 0; i < grdChecker.Rows.Count; i++)
-                            {
-                                for (int j = 0; j < objDS.Tables[2].Rows.Count; j++)
-                                {
-                                    if (Convert.ToString(grdChecker.Rows[i].Cells["EMPID"].Value) == Convert.ToString(objDS.Tables[2].Rows[j]["EMPID"]))
-                                    {
-                                        grdChecker.Rows[i].Cells[0].Value = true;
-                                    }
-                                }
-                            }
+                            cmbTeller.SelectedValue = Convert.ToInt16(objDS.Tables[2].Rows[0]["EMPID"]);
+                            cmbChecker.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["EMPID"]);
+                            
+                            //for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                            //{
+                            //    for (int j = 0; j < objDS.Tables[1].Rows.Count; j++)
+                            //    {
+                            //        if (Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) == Convert.ToString(objDS.Tables[1].Rows[j]["EMPID"]))
+                            //        {
+                            //            grdEmployee.Rows[i].Cells[0].Value = true;
+                            //        }
+                            //    }
+                            //}
+                            //for (int i = 0; i < grdChecker.Rows.Count; i++)
+                            //{
+                            //    for (int j = 0; j < objDS.Tables[2].Rows.Count; j++)
+                            //    {
+                            //        if (Convert.ToString(grdChecker.Rows[i].Cells["EMPID"].Value) == Convert.ToString(objDS.Tables[2].Rows[j]["EMPID"]))
+                            //        {
+                            //            grdChecker.Rows[i].Cells[0].Value = true;
+                            //        }
+                            //    }
+                            //}
                         }
                         ((DataGridViewTextBoxColumn)grdDamageEntry.Columns["clmQuantity"]).MaxInputLength = 8;
                     }
@@ -2086,8 +2121,7 @@ namespace ROMS
             {
                 varEmployeeId = "";
                 epDamageEntry.Clear();
-                bool blnErrorFlag = false;
-
+                bool blnErrorFlag = false; 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
                     epDamageEntry.SetError(cmbConcern, "Please select concern");
@@ -2144,41 +2178,41 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
-                string varTeller = "0", varChecker = "0";
-                if (grdEmployee.Rows.Count > 0)
-                {
-                    grdEmployee.DataSource = dtEmployee;
-                    for (int i = 0; i < grdEmployee.Rows.Count; i++)
-                    {
-                        if (Convert.ToBoolean(grdEmployee.Rows[i].Cells[0].Value) == true)
-                        {
-                            varTeller = "1";
-                            if (varEmployeeId == "")
-                            {
-                                varEmployeeId = Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) + '~' + "1";
-                            }
-                            else
-                            {
-                                varEmployeeId = varEmployeeId + ',' + Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) + '~' + "1";
-                            }
-                        }
-                    }
-                }
-                if (grdChecker.Rows.Count > 0)
-                {
-                    grdChecker.DataSource = dtChecker;
-                    for (int i = 0; i < grdChecker.Rows.Count; i++)
-                    {
-                        if (Convert.ToBoolean(grdChecker.Rows[i].Cells[0].Value) == true)
-                        {
-                            varChecker = "2";
-                            varEmployeeId = varEmployeeId + ',' + Convert.ToString(grdChecker.Rows[i].Cells["EMPID"].Value) + '~' + "2";
-                        }
-                    }
-                }
+                int varTeller = 0, varChecker = 0;
+                //if (grdEmployee.Rows.Count > 0)
+                //{
+                //    grdEmployee.DataSource = dtEmployee;
+                //    for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                //    {
+                //        if (Convert.ToBoolean(grdEmployee.Rows[i].Cells[0].Value) == true)
+                //        {
+                //            varTeller = "1";
+                //            if (varEmployeeId == "")
+                //            {
+                //                varEmployeeId = Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) + '~' + "1";
+                //            }
+                //            else
+                //            {
+                //                varEmployeeId = varEmployeeId + ',' + Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) + '~' + "1";
+                //            }
+                //        }
+                //    }
+                //}
+                //if (grdChecker.Rows.Count > 0)
+                //{
+                //    grdChecker.DataSource = dtChecker;
+                //    for (int i = 0; i < grdChecker.Rows.Count; i++)
+                //    {
+                //        if (Convert.ToBoolean(grdChecker.Rows[i].Cells[0].Value) == true)
+                //        {
+                //            varChecker = "2";
+                //            varEmployeeId = varEmployeeId + ',' + Convert.ToString(grdChecker.Rows[i].Cells["EMPID"].Value) + '~' + "2";
+                //        }
+                //    }
+                //}
                 if (chkStatus.Checked == true)
                 {
-                    if (varTeller == "0")
+                    if (Convert.ToInt16(cmbTeller.SelectedValue) == -1)
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(101);
@@ -2186,7 +2220,7 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         blnErrorFlag = true;
                     }
-                    if (varChecker == "0")
+                    if (Convert.ToInt16(cmbChecker.SelectedValue) == -1)
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(103);
@@ -2296,6 +2330,8 @@ namespace ROMS
                     objTRN_Damage.paraEmployeeId = varEmployeeId;
                     objTRN_Damage.paraDMFromOtherLoc = varDMFromOther;
                     objTRN_Damage.paraQueid = varQueid;
+                    objTRN_Damage.paraChecker = Convert.ToInt16(cmbChecker.SelectedValue);
+                    objTRN_Damage.paraTeller = Convert.ToInt16(cmbTeller.SelectedValue);
                     varResult = objspservice.udfnDamageEntry(objTRN_Damage);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
@@ -4113,6 +4149,164 @@ namespace ROMS
             }
         }
 
+        private void txtDay_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtDay.Text.Length == 2)
+                {
+                    txtMonth.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtYear_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtYear.Text.Length == 2)
+                {
+                    if (txtBatchNo.Enabled == true)
+                    {
+                        txtBatchNo.Focus();
+                    }
+                    else { txtQuantity.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTeller_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            udfnCheckerload();
+        }
+
+        private void cmbChecker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void cmbTeller_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbTeller.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbChecker_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbChecker.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbTeller.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbChecker_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    chkStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTeller_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbChecker_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTeller_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTeller.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbChecker_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbChecker.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void chkDamageOtherLoc_Enter(object sender, EventArgs e)
         {
             try
@@ -4191,7 +4385,18 @@ namespace ROMS
 
         private void txtMonth_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (txtMonth.Text.Length == 2)
+                {
+                    txtYear.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtDay_KeyPress_1(object sender, KeyPressEventArgs e)
@@ -4227,6 +4432,8 @@ namespace ROMS
                 {
                     if (txtMrp.Enabled == true)
                     { txtMrp.Focus(); }
+                    if(txtDay.Enabled==true)
+                    { txtDay.Focus(); }
                     else if (txtBatchNo.Enabled == true)
                     { txtBatchNo.Focus(); }
                     else { txtQuantity.Focus(); }
@@ -4358,6 +4565,8 @@ namespace ROMS
                         {
                             if (txtMrp.Enabled == true)
                             { txtMrp.Focus(); }
+                            if (txtDay.Enabled == true)
+                            { txtDay.Focus(); }
                             else if (txtBatchNo.Enabled == true)
                             { txtBatchNo.Focus(); }
                             else { txtQuantity.Focus(); }

@@ -69,7 +69,6 @@ namespace ROMS
             this.tsmSupplierPayment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChequeTransaction = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGSTRDetails = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTime = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,6 +90,7 @@ namespace ROMS
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductClassification = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductApproval = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProductImageApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkRateCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkupdateProductminbulk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkOffsetUpdate = new System.Windows.Forms.ToolStripMenuItem();
@@ -231,6 +231,7 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarginEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalesEntry = new System.Windows.Forms.ToolStripMenuItem();
@@ -249,10 +250,14 @@ namespace ROMS
             this.tsmBasket = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomerGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddressBook = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmProductImageApproval = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -593,19 +598,6 @@ namespace ROMS
             this.tsmGSTRDetails.Visible = false;
             this.tsmGSTRDetails.Click += new System.EventHandler(this.tsmGSTRDetails_Click);
             // 
-            // lblDb
-            // 
-            this.lblDb.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.lblDb.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDb.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.lblDb.Name = "lblDb";
-            this.lblDb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblDb.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.lblDb.ShowShortcutKeys = false;
-            this.lblDb.Size = new System.Drawing.Size(12, 24);
-            this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblDb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // tsDLogo
             // 
             this.tsDLogo.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -818,6 +810,14 @@ namespace ROMS
             this.tsmProductApproval.Text = "Product Approval";
             this.tsmProductApproval.Visible = false;
             this.tsmProductApproval.Click += new System.EventHandler(this.tsmProductApproval_Click);
+            // 
+            // tsmProductImageApproval
+            // 
+            this.tsmProductImageApproval.Name = "tsmProductImageApproval";
+            this.tsmProductImageApproval.Size = new System.Drawing.Size(264, 22);
+            this.tsmProductImageApproval.Text = "Product Image Approval";
+            this.tsmProductImageApproval.Visible = false;
+            this.tsmProductImageApproval.Click += new System.EventHandler(this.tsmProductImageApproval_Click);
             // 
             // tsmBulkRateCategory
             // 
@@ -1958,14 +1958,14 @@ namespace ROMS
             // tsmEntryReport
             // 
             this.tsmEntryReport.Name = "tsmEntryReport";
-            this.tsmEntryReport.Size = new System.Drawing.Size(152, 22);
+            this.tsmEntryReport.Size = new System.Drawing.Size(180, 22);
             this.tsmEntryReport.Text = "Entry Report";
             this.tsmEntryReport.Click += new System.EventHandler(this.tsmEntryReport_Click);
             // 
             // tsmMValueReport
             // 
             this.tsmMValueReport.Name = "tsmMValueReport";
-            this.tsmMValueReport.Size = new System.Drawing.Size(152, 22);
+            this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
             this.tsmMValueReport.Text = "M. Value Report";
             this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
             // 
@@ -2076,6 +2076,7 @@ namespace ROMS
             this.tsmFYSettings,
             this.tsmSalesMasters,
             this.tsmMyProfile,
+            this.tsmHelp,
             this.tsmGif});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
@@ -2084,6 +2085,19 @@ namespace ROMS
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
+            // 
+            // lblDb
+            // 
+            this.lblDb.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblDb.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDb.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.lblDb.Name = "lblDb";
+            this.lblDb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblDb.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.lblDb.ShowShortcutKeys = false;
+            this.lblDb.Size = new System.Drawing.Size(12, 24);
+            this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblDb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsmMs
             // 
@@ -2101,7 +2115,7 @@ namespace ROMS
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
-            this.tsmMarginEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
@@ -2109,7 +2123,7 @@ namespace ROMS
             // tsmSalesEntry
             // 
             this.tsmSalesEntry.Name = "tsmSalesEntry";
-            this.tsmSalesEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmSalesEntry.Text = "S. Entry";
             this.tsmSalesEntry.Visible = false;
             this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
@@ -2235,6 +2249,38 @@ namespace ROMS
             this.tsmAddressBook.Text = "Address Book";
             this.tsmAddressBook.Click += new System.EventHandler(this.tsmAddressBook_Click);
             // 
+            // tsmHelp
+            // 
+            this.tsmHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmF4,
+            this.tsmF9,
+            this.tsmF10});
+            this.tsmHelp.Image = global::ROMS.Properties.Resources.comment;
+            this.tsmHelp.Name = "tsmHelp";
+            this.tsmHelp.Size = new System.Drawing.Size(65, 24);
+            this.tsmHelp.Text = "Help";
+            // 
+            // tsmF4
+            // 
+            this.tsmF4.Name = "tsmF4";
+            this.tsmF4.Size = new System.Drawing.Size(199, 24);
+            this.tsmF4.Text = "F4 - Product Details";
+            this.tsmF4.Click += new System.EventHandler(this.tsmF4_Click);
+            // 
+            // tsmF9
+            // 
+            this.tsmF9.Name = "tsmF9";
+            this.tsmF9.Size = new System.Drawing.Size(199, 24);
+            this.tsmF9.Text = "F9  -  Supplier Product";
+            this.tsmF9.Click += new System.EventHandler(this.tsmF9_Click);
+            // 
+            // tsmF10
+            // 
+            this.tsmF10.Name = "tsmF10";
+            this.tsmF10.Size = new System.Drawing.Size(199, 24);
+            this.tsmF10.Text = "F10  -  Product Stock";
+            this.tsmF10.Click += new System.EventHandler(this.tsmF10_Click);
+            // 
             // tsmGif
             // 
             this.tsmGif.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2260,13 +2306,11 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmProductImageApproval
+            // helpToolStripMenuItem
             // 
-            this.tsmProductImageApproval.Name = "tsmProductImageApproval";
-            this.tsmProductImageApproval.Size = new System.Drawing.Size(264, 22);
-            this.tsmProductImageApproval.Text = "Product Image Approval";
-            this.tsmProductImageApproval.Visible = false;
-            this.tsmProductImageApproval.Click += new System.EventHandler(this.tsmProductImageApproval_Click);
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.helpToolStripMenuItem.Text = "Help";
             // 
             // MainForm
             // 
@@ -2336,7 +2380,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmSupplierPayment;
         private System.Windows.Forms.ToolStripMenuItem tsmChequeTransaction;
         private System.Windows.Forms.ToolStripMenuItem tsmGSTRDetails;
-        private System.Windows.Forms.ToolStripMenuItem lblDb;
         private System.Windows.Forms.ToolStripMenuItem tsDLogo;
         private System.Windows.Forms.ToolStripMenuItem lblTimeValue;
         private System.Windows.Forms.ToolStripMenuItem lblTime;
@@ -2523,5 +2566,11 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmCustomerGroup;
         private System.Windows.Forms.ToolStripMenuItem tsmAddressBook;
         private System.Windows.Forms.ToolStripMenuItem tsmProductImageApproval;
+        private System.Windows.Forms.ToolStripMenuItem lblDb;
+        private System.Windows.Forms.ToolStripMenuItem tsmHelp;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmF4;
+        private System.Windows.Forms.ToolStripMenuItem tsmF9;
+        private System.Windows.Forms.ToolStripMenuItem tsmF10;
     }
 }

@@ -119,7 +119,7 @@ namespace ROMS
         public static CP_RackSettinglist objCP_RackSettinglist;
         public static CP_RackSettings objCP_RackSettings;
         public static CP_ProductList objCP_Itemlist;
-        public static CP_ProductDetails objCP_ProductDetails;
+        public static CP_ProductDetails_Rack objCP_ProductDetails_Rack;
         public static CP_Purchase_Inward objCP_Purchase_Inward;
         public static CP_Purchase_PO objCP_Purchase_PO;
         public static CP_SupplierMapping objCP_SupplierMapping;
@@ -450,6 +450,7 @@ namespace ROMS
         public static CP_Basketlist objCP_Basketlist;
         public static CP_Basket objCP_Basket;
         public static CP_Product_Supplier objCP_Product_Supplier;
+        public static CP_ProductDetails objCP_ProductDetails;
 
         public MainForm()
         {
@@ -864,7 +865,7 @@ namespace ROMS
                 //This is close the already opened form
                 CloseAllOtherForms(formInstance);
 
-                if (pbUserRoleId == "0")
+                if (pbUserRoleId == "0" || menuCode == 9)
                 {
                     if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                     {
@@ -874,7 +875,7 @@ namespace ROMS
                     this.CenterChildForm(formInstance);
                     formInstance.Show();
                 }
-                else if (objDtMenuDetailsUser != null)
+                else if (objDtMenuDetailsUser != null )
                 {
                     var hasPrivilege = objDtMenuDetailsUser.AsEnumerable()
                         .Any(r => r.Field<int>("MU_Code") == menuCode);
@@ -1046,7 +1047,7 @@ namespace ROMS
 
                 MoveCurrentOpenFormToStatusBar(formInstance);
 
-                if (pbUserRoleId == "0")
+                if (pbUserRoleId == "0" || menuCode == 9)
                 {
                     if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                     {
@@ -4453,6 +4454,12 @@ namespace ROMS
                     MainForm.objCP_Product_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Product_Supplier.ShowDialog();
                 }
+                if (e.KeyCode == Keys.F4) //Supplier products
+                {
+                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                    MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
+                    MainForm.objCP_ProductDetails.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -5144,6 +5151,28 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void tsmF4_Click(object sender, EventArgs e)
+        {
+            MainForm.objCP_ProductDetails = new CP_ProductDetails();
+            MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
+            MainForm.objCP_ProductDetails.ShowDialog();
+        }
+
+        private void tsmF9_Click(object sender, EventArgs e)
+        {
+              
+                MainForm.objCP_Product_Supplier = new CP_Product_Supplier();
+                MainForm.objCP_Product_Supplier.MdiParent = this.ParentForm;
+                MainForm.objCP_Product_Supplier.ShowDialog(); 
+        }
+
+        private void tsmF10_Click(object sender, EventArgs e)
+        { 
+                MainForm.objCP_Product_Popup = new CP_Product_Popup();
+                MainForm.objCP_Product_Popup.MdiParent = this.ParentForm;
+                MainForm.objCP_Product_Popup.ShowDialog(); 
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

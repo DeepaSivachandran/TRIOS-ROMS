@@ -23,8 +23,7 @@ namespace ROMS
         public string pbRateCategoryIDs = "";
         public MAR_Entry()
         {
-            InitializeComponent();
-            this.DoubleBuffered = true;
+            InitializeComponent(); 
             windowControl.Initialize(tsMarginEntry, this);
         }
         public void udfnGridNull(Control skipControl)
@@ -134,7 +133,7 @@ namespace ROMS
                         }
                     }
                 }
-                cmbProductName.SelectedValue = 271;
+                cmbProductName.SelectedValue = 270;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
@@ -315,7 +314,7 @@ namespace ROMS
                                     DGV_FilterGroup.Columns["PRGID"].Visible = false;
                                     DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
                                     DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
-                                    DGV_FilterGroup.Columns["PRG_TName"].Visible = false;
+                                    DGV_FilterGroup.Columns["PRG_TName"].Visible = true;
                                     DGV_FilterGroup.Columns["PRG_EName"].Width = 200;
                                     DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
                                     DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;  
@@ -583,7 +582,7 @@ namespace ROMS
                                     DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
                                     DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
-                                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = false;
+                                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = true;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 200;
                                     DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
                                     DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
@@ -770,7 +769,7 @@ namespace ROMS
                                     DGV_FilterBrand.Columns["BDID"].Visible = false;
                                     DGV_FilterBrand.Columns["BD_EName"].HeaderText = "Brand English Name";
                                     DGV_FilterBrand.Columns["BD_TName"].HeaderText = "Brand Tamil Name";
-                                    DGV_FilterBrand.Columns["BD_TName"].Visible = false;
+                                    DGV_FilterBrand.Columns["BD_TName"].Visible = true;
                                     DGV_FilterBrand.Columns["BD_EName"].Width = 200;
                                     DGV_FilterBrand.Columns["BD_TName"].Width = 200;
                                     DGV_FilterBrand.Columns["BD_EName"].DisplayIndex = 0;
@@ -1839,7 +1838,7 @@ namespace ROMS
                 objMR_MarginEntry.paraType = varTypeId;
                 objMR_MarginEntry.paraUnitId = varUnit;
                 objMR_MarginEntry.paraFilterType = varFilterType;
-                objMR_MarginEntry.paraProductNameID = Convert.ToInt32(cmbProductName.SelectedValue);
+                objMR_MarginEntry.paraProductNameID = Convert.ToInt32(cmbProductName.SelectedValue); 
                 objMR_MarginEntry.paraRateCategoryIDs = pbRateCategoryIDs;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -1896,9 +1895,9 @@ namespace ROMS
                                 grdMarginList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdMarginList.Columns["M.Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdMarginList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdMarginList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdMarginList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdMarginList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdMarginList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdMarginList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdMarginList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdMarginList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
                                 grdMarginList.Columns["M.Value"].DefaultCellStyle.Format = "0.00";
 
@@ -2679,7 +2678,7 @@ namespace ROMS
                 {
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
-                    DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure want to refresh the filters?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         epReport.Clear();
@@ -2986,7 +2985,7 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete all margin entries?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     string varResult = "";

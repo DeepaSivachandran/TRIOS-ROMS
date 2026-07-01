@@ -749,6 +749,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRN_Damage.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraDMFromOtherLoc", objTRN_Damage.paraDMFromOtherLoc);
                 varSqlCommand.Parameters.AddWithValue("@paraQueid", objTRN_Damage.paraQueid);
+                varSqlCommand.Parameters.AddWithValue("@paraChecker", objTRN_Damage.paraChecker);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objTRN_Damage.paraTeller);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -937,7 +939,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 16/10/2023 for purchase damage list
-        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername,int paraPRID, string paraUserLocations,int ParaReasonId)
+        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername,int paraPRID, string paraUserLocations,int ParaReasonId,int paraEntryTypeID,int paraFlag)
         {
             DataSet ds = new DataSet();
             try
@@ -957,6 +959,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@ParaReasonId", ParaReasonId);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryTypeID", paraEntryTypeID);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -6504,6 +6508,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_MarginEntry.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_MarginEntry.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraEntryType", objMR_MarginEntry.paraEntryType);
+                varSqlCommand.Parameters.AddWithValue("@paraProductNameID", objMR_MarginEntry.paraProductNameID);
                 varSqlCommand.Parameters.AddWithValue("@paraRateCategoryIDs", objMR_MarginEntry.paraRateCategoryIDs);
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -6573,6 +6578,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUnitId", objMR_SalesEntry.paraUnitId);
                 varSqlCommand.Parameters.AddWithValue("@paraFilterType", objMR_SalesEntry.paraFilterType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductNameID", objMR_SalesEntry.paraProductNameID);
+                varSqlCommand.Parameters.AddWithValue("@paraRateCategoryIDs", objMR_SalesEntry.paraRateCategoryIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

@@ -21,7 +21,9 @@ namespace ROMS.Model
         public string paraEmployeeId { get; set; } = "";
         public int paraSHID { get; set; } = 0;
         public int paraDMFromOtherLoc { get; set; } = 0;
-        public int paraQueid { get; set; } = 0;
+        public int paraQueid { get; set; } = 0; 
+        public int paraChecker { get; set; } = 0;
+        public int paraTeller { get; set; } = 0; 
         public DataTable paraDamageEntry { get; set; } = null;
         public byte[] paraQrimg { get; set; } = null;
     }
