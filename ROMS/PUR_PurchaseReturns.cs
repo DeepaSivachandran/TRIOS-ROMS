@@ -469,6 +469,8 @@ namespace ROMS
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_MRP", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_ExpDate", typeof(string));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_BatchNo", typeof(string));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_RetailRate", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_LPRate", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_AppRate", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_Qty", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_UTID", typeof(int));
@@ -726,17 +728,18 @@ namespace ROMS
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Name"]),0,0, Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]),
-                                    Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["RetailRate"]), Convert.ToString(objDs.Tables[0].Rows[i]["LPRate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),
                                     Convert.ToString(objDs.Tables[0].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]));
 
-                                dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]),
-                                        Convert.ToDecimal(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["UTID"]),
+                                dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]),Convert.ToDecimal(objDs.Tables[0].Rows[i]["RetailRate"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["LPRate"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GST Amt"]),
                                         Convert.ToDecimal(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["DMID"]), Convert.ToString(objDs.Tables[0].Rows[i]["DM_Dest_SLID"]), 0,0,0);
                             }
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["clmRetailRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["clmLPRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["clmTax"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -751,6 +754,8 @@ namespace ROMS
                             grdReturnDC.Columns["clmUnit"].Width = 70;
                             grdReturnDC.Columns["clmGST"].Width = 70;
                             grdReturnDC.Columns["clmGSTAmount"].Width = 70;
+                            grdReturnDC.Columns["clmRetailRate"].Width = 80;
+                            grdReturnDC.Columns["clmLPRate"].Width = 80;
                             grdReturnDC.Columns["clmApprox"].Width = 120;
                             grdReturnDC.Columns["clmPRID"].Visible = false;
                             grdReturnDC.Columns["clmUTID"].Visible = false;
@@ -877,12 +882,12 @@ namespace ROMS
                                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                     {
                                         grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name"]),Convert.ToString(objDs.Tables[1].Rows[i]["Location"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
-                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["FreeQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]),
+                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["RetailRate"]),Convert.ToString(objDs.Tables[1].Rows[i]["LPRate"]),Convert.ToString(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["FreeQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURPRID"]));
 
                                         dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), 0, 0); 
 
-                                        dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
+                                        dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["RetailRate"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["LPRate"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST Amt"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["FreeQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]));
@@ -892,6 +897,8 @@ namespace ROMS
                                     lblNoRecordsFound.SendToBack();
                                     //grdReturnDC.DataSource = objDs.Tables[1];
                                     grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["clmRetailRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmLPRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmFreeQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -907,6 +914,8 @@ namespace ROMS
                                     grdReturnDC.Columns["clmUnit"].Width = 70;
                                     grdReturnDC.Columns["clmGST"].Width = 70;
                                     grdReturnDC.Columns["clmGSTAmount"].Width = 70;
+                                    grdReturnDC.Columns["clmRetailRate"].Width = 80;
+                                    grdReturnDC.Columns["clmLPRate"].Width = 80;
                                     grdReturnDC.Columns["clmApprox"].Width = 120;
                                     grdReturnDC.Columns["clmPRID"].Visible = false;
                                     grdReturnDC.Columns["clmUTID"].Visible = false;
@@ -2477,6 +2486,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["RKID"].Visible = false;
                                     DGV_FilterProduct.Columns["SLID"].Visible = false;
                                     DGV_FilterProduct.Columns["APPROX"].Visible = false;
+                                    DGV_FilterProduct.Columns["RetailRate"].Visible = false;
+                                    DGV_FilterProduct.Columns["LPRate"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
                                     DGV_FilterProduct.Columns["GST_Value"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
@@ -2716,6 +2727,8 @@ namespace ROMS
                     txtMRP.Text= DGV_FilterProduct.SelectedRows[0].Cells["STK_MRP"].Value.ToString();
                     txtExpiryDate.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_ExpiryDate"].Value.ToString();
                     txtBatchNo.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_BatchNo"].Value.ToString();
+                    txtRetailRate.Text = DGV_FilterProduct.SelectedRows[0].Cells["RetailRate"].Value.ToString();
+                    txtLPRate.Text = DGV_FilterProduct.SelectedRows[0].Cells["LPRate"].Value.ToString();
                     varApprox = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["APPROX"].Value.ToString());
                     varGST = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["GST_Value"].Value.ToString());
                     txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
@@ -2987,14 +3000,16 @@ namespace ROMS
                     }
                 }
                 grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,varApprox,txtQuantity.Text,0,lblUnit.Text,Tax, varGST, GST,Net,lblProduct.Text,0,0,varSLID,varRKID);
+                grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,txtRetailRate.Text,txtLPRate.Text,varApprox,txtQuantity.Text,0,lblUnit.Text,Tax, varGST, GST,Net,lblProduct.Text,0,0,varSLID,varRKID);
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID,0,0);
 
-                dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(lblProduct.Text), Convert.ToDecimal(txtMRP.Text), Convert.ToString(txtExpiryDate.Text), Convert.ToString(txtBatchNo.Text),
+                dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(lblProduct.Text), Convert.ToDecimal(txtMRP.Text), Convert.ToString(txtExpiryDate.Text), Convert.ToString(txtBatchNo.Text), Convert.ToDecimal(txtRetailRate.Text), Convert.ToDecimal(txtLPRate.Text),
                 Convert.ToDecimal(varApprox), Convert.ToDecimal(txtQuantity.Text),0,Convert.ToDecimal(Tax), Convert.ToDecimal(varGST), Convert.ToDecimal(GST),
                 Convert.ToDecimal(Net), 0, varSLID, varRKID,0,0);
                 udfnTotal();
                 grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdReturnDC.Columns["clmRetailRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdReturnDC.Columns["clmLPRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmFreeQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -3010,6 +3025,8 @@ namespace ROMS
                 grdReturnDC.Columns["clmUnit"].Width = 70;
                 grdReturnDC.Columns["clmGST"].Width = 70;
                 grdReturnDC.Columns["clmGSTAmount"].Width = 70;
+                grdReturnDC.Columns["clmRetailRate"].Width = 80;
+                grdReturnDC.Columns["clmLPRate"].Width = 80;
                 grdReturnDC.Columns["clmApprox"].Width = 120;
                 grdReturnDC.Columns["clmPRID"].Visible = false;
                 grdReturnDC.Columns["clmUTID"].Visible = false;
@@ -3067,6 +3084,8 @@ namespace ROMS
                 txtMRP.Text = "";
                 txtExpiryDate.Text = "";
                 txtBatchNo.Text = "";
+                txtRetailRate.Text = "";
+                txtLPRate.Text = "";
                 txtStockQty.Text = "";
                 txtQuantity.Text = "";
                 lblUnit.Text = "";

@@ -189,6 +189,7 @@ namespace ROMS
             this.tsmRcPriceList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseConsolidated = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseProductwiseBatch = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseReturnDCReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInwardStockReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockInwardReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockOutwardReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -1544,7 +1545,8 @@ namespace ROMS
             this.tsmPurchaseDiscountValue,
             this.tsmRcPriceList,
             this.tsmPurchaseConsolidated,
-            this.tsmPurchaseProductwiseBatch});
+            this.tsmPurchaseProductwiseBatch,
+            this.tsmPurchaseReturnDCReport});
             this.tsmPurchaseReport.Name = "tsmPurchaseReport";
             this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseReport.Text = "Purchase";
@@ -1689,6 +1691,14 @@ namespace ROMS
             this.tsmPurchaseProductwiseBatch.Size = new System.Drawing.Size(280, 22);
             this.tsmPurchaseProductwiseBatch.Text = "Purchase Productwise Batch";
             this.tsmPurchaseProductwiseBatch.Click += new System.EventHandler(this.tsmPurchaseProductwiseBatch_Click);
+            // 
+            // tsmPurchaseReturnDCReport
+            // 
+            this.tsmPurchaseReturnDCReport.Name = "tsmPurchaseReturnDCReport";
+            this.tsmPurchaseReturnDCReport.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseReturnDCReport.Text = "Purchase Return DC";
+            this.tsmPurchaseReturnDCReport.Visible = false;
+            this.tsmPurchaseReturnDCReport.Click += new System.EventHandler(this.tsmPurchaseReturnDCReport_Click);
             // 
             // tsmInwardStockReport
             // 
@@ -2572,5 +2582,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmF4;
         private System.Windows.Forms.ToolStripMenuItem tsmF9;
         private System.Windows.Forms.ToolStripMenuItem tsmF10;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseReturnDCReport;
     }
 }

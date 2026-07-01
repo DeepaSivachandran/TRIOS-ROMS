@@ -269,6 +269,7 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1018,7 +1019,8 @@ namespace ROMS
                                 grdReturnDCList.Columns["Tot Pro"].Width = 100;
                                 grdReturnDCList.Columns["Created By"].Width = 200;
                                 grdReturnDCList.Columns["Pur Ret Dc Status"].Width = 150;
-                                grdReturnDCList.Columns["Print"].Width = 50;
+                                grdReturnDCList.Columns["clmThermalPrint"].Width = 50;
+                                grdReturnDCList.Columns["clmPrint"].Width = 70;
                                 grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
                                 grdReturnDCList.Columns["GRN Status"].Visible = false;
@@ -1478,8 +1480,10 @@ namespace ROMS
         {
             try
             {
-                grdReturnDCList.Columns["Print"].Frozen = true;
-                grdReturnDCList.Columns["Print"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["clmThermalPrint"].Frozen = true;
+                grdReturnDCList.Columns["clmThermalPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["clmPrint"].Frozen = true;
+                grdReturnDCList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdReturnDCList.Columns["S.No."].Frozen = true;
                 grdReturnDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdReturnDCList.Columns["Pur Ret Dc Status"].Frozen = true;
@@ -1526,7 +1530,7 @@ namespace ROMS
                         grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.Black;
                     }
                 }
-                grdReturnDCList.Columns["Print"].Resizable = DataGridViewTriState.False;
+                grdReturnDCList.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {
@@ -1606,7 +1610,7 @@ namespace ROMS
                 {
                     switch (grdReturnDCList.Columns[e.ColumnIndex].Name)
                     {
-                        case "Print":
+                        case "clmThermalPrint":
                             try
                             {
                                 string ReturnDCID = "0";
@@ -1629,6 +1633,41 @@ namespace ROMS
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                        case "clmPrint":
+                            try
+                            {
+                                string ReturnDCID = "0";
+                                ReturnDCID = Convert.ToString(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PurchaseReturnDC.rpt");
+                                    varHeader = "Purchase Return DC";
+
+                                    objBillreport.SetParameterValue("paraReturnDCID", Convert.ToInt32(ReturnDCID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objValidation.CrySqlConnection(objBillreport);
 
                                     MainForm.objReportLoad = new ReportLoad();

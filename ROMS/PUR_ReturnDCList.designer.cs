@@ -45,7 +45,6 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdReturnDCList = new System.Windows.Forms.DataGridView();
-            this.Print = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -73,6 +72,7 @@
             this.lblInvoicedate = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.ep_ReturnDC = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmThermalPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsReturnDCList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReturnDCList)).BeginInit();
@@ -211,7 +211,8 @@
             this.grdReturnDCList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdReturnDCList.ColumnHeadersVisible = false;
             this.grdReturnDCList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Print});
+            this.clmThermalPrint,
+            this.clmPrint});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -242,15 +243,6 @@
             this.grdReturnDCList.SelectionChanged += new System.EventHandler(this.GrdReturnDCList_SelectionChanged);
             this.grdReturnDCList.DoubleClick += new System.EventHandler(this.GrdReturnDCList_DoubleClick);
             this.grdReturnDCList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdReturnDCList_KeyDown);
-            // 
-            // Print
-            // 
-            this.Print.HeaderText = "Print";
-            this.Print.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.Print.Name = "Print";
-            this.Print.ReadOnly = true;
-            this.Print.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Print.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // lblNoRecordsFound
             // 
@@ -602,10 +594,19 @@
             // 
             this.ep_ReturnDC.ContainerControl = this;
             // 
+            // clmThermalPrint
+            // 
+            this.clmThermalPrint.HeaderText = "Print";
+            this.clmThermalPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmThermalPrint.Name = "clmThermalPrint";
+            this.clmThermalPrint.ReadOnly = true;
+            this.clmThermalPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmThermalPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // clmPrint
             // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.HeaderText = "A4 Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint.Name = "clmPrint";
             this.clmPrint.ReadOnly = true;
             this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -680,9 +681,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ErrorProvider ep_ReturnDC;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
-        private System.Windows.Forms.DataGridViewImageColumn Print;
         public System.Windows.Forms.ToolStripButton tsbDClist;
         public System.Windows.Forms.ToolStripSeparator tssDelete;
+        private System.Windows.Forms.DataGridViewImageColumn clmThermalPrint;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }
