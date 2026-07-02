@@ -160,6 +160,7 @@ namespace ROMS
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_Rate_ChangeApproval objCP_Rate_ChangeApproval;
+        public static CP_Rate_Change_Confirmation objCP_Rate_Change_Confirmation;
         public static CP_Rate_CategoryList objCP_Rate_CategoryList;
         public static CP_Rate_Category objCP_Rate_Category;
         public static CP_StickerPrint objCP_StickerPrint;
@@ -5193,6 +5194,19 @@ namespace ROMS
         private void tsmMastersReport_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tsmRateChangeConfirmation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Rate_Change_Confirmation, "CP_Rate_Change_Confirmation", 51306);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

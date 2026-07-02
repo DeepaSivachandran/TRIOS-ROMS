@@ -287,6 +287,12 @@
     <Compile Include="CP_ProductDetails.designer.cs">
       <DependentUpon>CP_ProductDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Rate_Change_Confirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rate_Change_Confirmation.designer.cs">
+      <DependentUpon>CP_Rate_Change_Confirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_SalesUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4716,6 +4722,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductDetails.resx">
       <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rate_Change_Confirmation.resx">
+      <DependentUpon>CP_Rate_Change_Confirmation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SalesUser.resx">
       <DependentUpon>CP_SalesUser.cs</DependentUpon>

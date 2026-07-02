@@ -29,6 +29,7 @@ namespace ROMS.Model
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
         public int paraCompanyCode { get; set; } = 0; 
+        public int paraFlag { get; set; } = 0; 
         public  DataTable paraApprove { get; set; } = null;
         public  DataTable paraBulk { get; set; } = null;
 
