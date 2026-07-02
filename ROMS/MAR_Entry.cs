@@ -2674,8 +2674,8 @@ namespace ROMS
         {
             try
             {
-                if (grdMarginList.Rows.Count > 0)
-                {
+                //if (grdMarginList.Rows.Count > 0)
+                //{
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
                     DialogResult dialogResult = MessageBox.Show("Are you sure want to refresh the filters?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -2692,16 +2692,23 @@ namespace ROMS
                         cmbType.SelectedIndex = 0;
                         cmbFilterType.SelectedIndex = 0;
                         cmbMultiUnit.ClearAll();
+                        for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                        {
+                            chkboxRatelist.SetItemChecked(i, false);
+                        } 
+                        txtRateCategory.Text = "";
+                        pbRateCategoryIDs = "";
+                        btnUpdate.Enabled = false; 
                         udfnList(0);
                     }
-                }
-                else
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(79);
-                    objDServ.CloseConnection();
-                    DialogResult dialogResult = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //}
+                //else
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(79);
+                //    objDServ.CloseConnection();
+                //    DialogResult dialogResult = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
                 lblFilterCount.Text = Convert.ToString(grdMarginList.Rows.Count);
             }
             catch (Exception ex)
@@ -2831,6 +2838,7 @@ namespace ROMS
             try
             {
                 pnlRateCategory.Visible = true;
+                pnlRateCategory.BringToFront();
             }
             catch (Exception ex)
             {

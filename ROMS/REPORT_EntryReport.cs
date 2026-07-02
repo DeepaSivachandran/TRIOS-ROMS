@@ -361,22 +361,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DGV_FilterGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                varUpDownKeyGroup = 1;
-                udfnGroupAutocomplete();
-                txtSubGroup.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+         
         private void DGV_FilterGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2153,6 +2138,7 @@ namespace ROMS
                 if(RPTViewer.Visible ==true)
                 {   RPTViewer.SendToBack(); }
                 pnlRateCategory.Visible = true;
+                pnlRateCategory.BringToFront();
             }
             catch (Exception ex)
             {
@@ -2269,6 +2255,21 @@ namespace ROMS
         private void grpfilter_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void DGV_FilterGroup_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyGroup = 1;
+                udfnGroupAutocomplete();
+                txtSubGroup.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnList(int varFlag)

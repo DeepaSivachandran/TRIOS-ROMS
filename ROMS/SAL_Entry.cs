@@ -2713,8 +2713,8 @@ namespace ROMS
         {
             try
             {
-                if (grdSalesList.Rows.Count > 0)
-                {
+                //if (grdSalesList.Rows.Count > 0)
+                //{
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
                     DialogResult dialogResult = MessageBox.Show("Are you sure want to refresh the filter?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -2731,16 +2731,23 @@ namespace ROMS
                         cmbType.SelectedIndex = 0;
                         cmbFilterType.SelectedIndex = 0;
                         cmbMultiUnit.ClearAll();
+                        for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                        {
+                            chkboxRatelist.SetItemChecked(i, false);
+                        }
+
+                        txtRateCategory.Text = "";
+                        pbRateCategoryIDs = "";
                         udfnList(0);
                     }
-                }
-                else
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(79);
-                    objDServ.CloseConnection();
-                    DialogResult dialogResult = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //}
+                //else
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(79);
+                //    objDServ.CloseConnection();
+                //    DialogResult dialogResult = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
                 lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
             }
             catch (Exception ex)
@@ -2896,6 +2903,7 @@ namespace ROMS
             try
             {
                 pnlRateCategory.Visible = true;
+                pnlRateCategory.BringToFront();
             }
             catch (Exception ex)
             {
