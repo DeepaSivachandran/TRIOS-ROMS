@@ -317,6 +317,8 @@ namespace ROMS
         public static PUR_RemainingProductList objPUR_RemainingProductList;
         public static REPORT_PUR_ReturnDC objREPORT_PUR_ReturnDC;
 
+        public static REPORT_INV_Count objREPORT_INV_Count;
+
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
@@ -5181,6 +5183,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_PUR_ReturnDC, "REPORT_PUR_ReturnDC", 80318);
+                PbCurrentForm = "7.2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void inventoryCountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_INV_Count, "REPORT_INV_Count", 80318);
                 PbCurrentForm = "7.2.2";
             }
             catch (Exception ex)
