@@ -1483,7 +1483,7 @@ namespace ROMS
                             grdItemList.Columns["Unit"].Width = 60;
                             grdItemList.Columns["Last Rate"].Width = 100; 
                             grdItemList.Columns["Live Rate"].Width = 100; 
-                            //grdItemList.Columns["RC_PR_TYPE"].Visible = false;
+                            grdItemList.Columns["RC_PR_TYPE"].Visible = false;
                             grdItemList.Columns["PRPM_Source"].Visible = false;
                             grdItemList.Columns["PRPM_Source_TRNID"].Visible = false;
                              
@@ -1667,7 +1667,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns["PR_SALE_SLID"].Visible = false;
                     DGV_SearchGrid.Columns["PR_PUR_RKID"].Visible = false;
                     DGV_SearchGrid.Columns["PR_PUR_SLID"].Visible = false;
-                    //DGV_SearchGrid.Columns["RC_PR_TYPE"].Visible = false;
+                    DGV_SearchGrid.Columns["RC_PR_TYPE"].Visible = false;
                     DGV_SearchGrid.Columns["PRPM_Source"].Visible = false;
                     DGV_SearchGrid.Columns["PRPM_Source_TRNID"].Visible = false;
                      
@@ -2370,31 +2370,43 @@ namespace ROMS
                 }
 
                 if (objRADataTable.Rows.Count > 0)
-                { 
-                    TRN_RateChange objRateChange = new TRN_RateChange();
-                    if (flagType == 1)
-                    {
-                        objRateChange.paraViewType = 1;
-                        objRateChange.paraOriginator = "Rate Change Approval";
-                    }
-                    else
-                    {
-                        objRateChange.paraViewType = 2;
-                        objRateChange.paraOriginator = "Rate Change Reject";
-                    }
-                    objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text);
-                    objRateChange.paraRemarks = txtRemark.Text;
-                    objRateChange.paraApprove = objRADataTable;  
-
+                {
+                    string varResult = "";
                     SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnRateChange(objRateChange);
+                    TRN_RateChange objRateChange = new TRN_RateChange();
+                    objRateChange.paraViewType = 3;
+                    objRateChange.paraOriginator = "Rate Change Confirmation";
+                    objRateChange.paraRemarks = txtRemark.Text;
+                    objRateChange.paraApprove = objRADataTable;
+                    objRateChange.paraConfirmUserID = 0;
+                    varResult = objspservice.udfnRateChange(objRateChange);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
+                    if (varvalue[0] == "3" && varvalue[1] == "1")
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                        //udfnclose(); 
-                        udfnRateApprovalList();
+                    Verify:
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+
+                        if (MainForm.objCP_Verify.flag == 1)
+                        {
+                            string ApproverID = MainForm.objCP_Verify.varUserId; 
+                            objRateChange.paraConfirmUserID = Convert.ToInt32(ApproverID);
+                            varResult = objspservice.udfnRateChange(objRateChange);
+                            string[] value = varResult.Split('~');
+                            if (value[0] == "3")
+                            {
+                                MessageBox.Show(value[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnRateApprovalList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(value[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                                if (value[0] == "5" || value[0] == "4")
+                                    goto Verify;
+                            }
+                        }
                     }
                     else
                     {

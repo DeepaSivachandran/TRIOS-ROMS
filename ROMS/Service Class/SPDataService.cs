@@ -4179,6 +4179,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraWRatePrev", objTrnRateChange.WRate_Prev);
                 varSqlCommand.Parameters.AddWithValue("@paraApprove", objTrnRateChange.paraApprove);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTrnRateChange.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraConfirmUserID", objTrnRateChange.paraConfirmUserID);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
