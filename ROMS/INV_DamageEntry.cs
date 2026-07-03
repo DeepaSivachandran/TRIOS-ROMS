@@ -3016,14 +3016,14 @@ namespace ROMS
                             {
                                 txtBatchNo.Text = "";
                                 txtBatchNo.Enabled = false;
-                                //  txtBatchNo.ReadOnly = true;
+                                  txtBatchNo.ReadOnly = true;
                             }
                             else if (Convert.ToInt32(varBatchNoFlag) == 72) //enabled
                             {
                                 if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
                                 {
                                     txtBatchNo.Enabled = true;
-                                    //txtBatchNo.ReadOnly = false;
+                                    txtBatchNo.ReadOnly = false;
                                 }
                                 else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                                 {
@@ -4565,7 +4565,7 @@ namespace ROMS
                         {
                             if (txtMrp.Enabled == true)
                             { txtMrp.Focus(); }
-                            if (txtDay.Enabled == true)
+                            else if (txtDay.Enabled == true)
                             { txtDay.Focus(); }
                             else if (txtBatchNo.Enabled == true)
                             { txtBatchNo.Focus(); }

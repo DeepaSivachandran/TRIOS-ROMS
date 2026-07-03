@@ -81,6 +81,7 @@ namespace ROMS
                 }
                 else
                 {
+                    epReport.Clear();
                     udfnCountReport(varFlag);
                 }
             }
@@ -252,7 +253,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80405;
+                int currentMUCode = 80416;
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)

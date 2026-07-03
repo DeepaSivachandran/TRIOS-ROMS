@@ -1238,6 +1238,7 @@ namespace ROMS
             this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
             this.tsmMastersReport.Text = "Masters";
             this.tsmMastersReport.Visible = false;
+            this.tsmMastersReport.Click += new System.EventHandler(this.tsmMastersReport_Click);
             // 
             // tsmCityReport
             // 

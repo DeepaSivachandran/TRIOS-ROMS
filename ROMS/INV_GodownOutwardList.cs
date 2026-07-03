@@ -267,7 +267,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    cmbStatus.Focus();
+                    cmbType.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -338,7 +338,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        cmbType.Focus();
                     }
                 }
             }
@@ -441,7 +441,7 @@ namespace ROMS
                     MR_Location objMR_Location = new MR_Location();
                     objMR_Location.paraViewType = 14;
                     objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim(); ;
                     objDsSalesLoc = objDServ5.udfnStockLocationList(objMR_Location);
                     objDServ5.CloseConnection();
 
@@ -486,6 +486,7 @@ namespace ROMS
                 objTRNG_GoodsOutward.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_GoodsOutward.paraIPAddress = MainForm.pbIpAddress;
                 objTRNG_GoodsOutward.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                objTRNG_GoodsOutward.paraTypeID = Convert.ToInt32(cmbType.SelectedValue);   
                 objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
                 objdserv.CloseConnection();                 
                 //objDs = objspservice.udfnGOList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dtpOutwardDate.Text), Convert.ToString(dtpOutwardDate2.Text), Convert.ToInt32(varStockLocationId), varPRID, Convert.ToInt32(cmbStatus.SelectedValue));
@@ -589,9 +590,11 @@ namespace ROMS
                 MenuCode = 302;
                 udfnConcern();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID"); 
+                cmbStatus.SelectedValue = 0; 
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in ( 24,0) AND MSTID not in ( 71,-1) ", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                cmbStatus.SelectedValue = 0;
+                cmbType.SelectedValue = 0;
                 //DataSet objDS = new DataSet();
                 //SPDataService objspservice = new SPDataService();
                 //objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
@@ -1709,7 +1712,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
-                cmbStatus.Focus();
+                cmbType.Focus();
             }
             catch (Exception ex)
             {
@@ -1807,7 +1810,68 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void comboBox1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
+                DGV_FilterProduct.Visible = false;
+                cmbType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.White;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdOutwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try

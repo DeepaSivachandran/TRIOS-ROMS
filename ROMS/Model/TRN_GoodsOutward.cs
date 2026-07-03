@@ -30,5 +30,6 @@ namespace ROMS.Model
         public string paraUserLocations { get; set; } = "";
         public DataTable paraStockChild { get; set; } = null;
         public DataTable paraStockConversion { get; set; } = null;
+        public int paraTypeID { get; set; } = 0;
     }
 }
