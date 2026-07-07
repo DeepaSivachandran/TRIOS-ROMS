@@ -404,7 +404,9 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
+                                    ListViewItem objList = new ListViewItem(row); 
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvMappingGroup.Items.Add(objList);
                                 }
                                 lvMappingGroup.Visible = true;
@@ -782,6 +784,8 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvMappingSubGroup.Items.Add(objList);
                                 }
                                 lvMappingSubGroup.Visible = true;
@@ -855,6 +859,8 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString(), };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvBrand.Items.Add(objList);
                                 }
                                 lvBrand.Visible = true;
@@ -1072,8 +1078,6 @@ namespace ROMS
             try
             {
                 (grdProducts.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
-
-
             }
             catch (Exception ex)
             {
