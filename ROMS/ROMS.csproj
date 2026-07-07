@@ -827,6 +827,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Rackgroup_Product_Weight.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_Rackgroup_Product_Weight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Rack_Product_StockTaking.cs">
       <DependentUpon>RPT_CP_Rackgroup_Rack_Product_StockTaking.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3405,8 +3412,8 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RPT_CP_Rackgroup_Product_Weight.cs">
-      <DependentUpon>RPT_CP_Rackgroup_Product_Weight.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_CP_Rackgroup_Product_Weight_Loc_Split.cs">
+      <DependentUpon>RPT_CP_Rackgroup_Product_Weight_Loc_Split.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
@@ -5483,9 +5490,9 @@
       <LastGenOutput>RPT_CP_Rackgroup_Product_Msq.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_CP_Rackgroup_Product_Weight.rpt">
+    <Content Include="Reports\RPT_CP_Rackgroup_Product_Weight_Loc_Split.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_CP_Rackgroup_Product_Weight.cs</LastGenOutput>
+      <LastGenOutput>RPT_CP_Rackgroup_Product_Weight_Loc_Split.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt">
@@ -5721,6 +5728,11 @@
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_Product_Weight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rackgroup_Product_Weight.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_ShelfLife.rpt">
