@@ -890,6 +890,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_Godown_Valuation_Summary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.cs">
       <DependentUpon>RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1127,13 +1134,6 @@
       <DependentUpon>RPT_CP_User_Role.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Reports\RPT_Godown_Valuation_Summary.cs">
-      <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Detail.cs">
       <DependentUpon>RPT_INV_Damage_Detail.rpt</DependentUpon>
@@ -5630,11 +5630,6 @@
       <LastGenOutput>RPT_Tax_Changes.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_Godown_Valuation_Summary.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>RPT_Godown_Valuation_Summary1.cs</LastGenOutput>
-    </Content>
     <Content Include="Reports\RPT_CP_Product_Category_Location.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Product_Category_Location.cs</LastGenOutput>
@@ -5780,6 +5775,11 @@
       <LastGenOutput>RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_Godown_Valuation_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Godown_Valuation_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_MarginEntryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_MarginEntryReport.cs</LastGenOutput>

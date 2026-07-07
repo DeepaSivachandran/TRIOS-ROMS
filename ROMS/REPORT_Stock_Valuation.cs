@@ -144,6 +144,7 @@ namespace ROMS
                 objTRNG_Stock.paraPICode = txtSearchByPICode.Text.Trim();
                 objTRNG_Stock.paraFilterType = Convert.ToInt32(cmbFilterType.SelectedValue);
                 objTRNG_Stock.paraCategoryID = Convert.ToInt32(cmbRateCategory.SelectedValue);
+                objTRNG_Stock.paraRateType = Convert.ToInt32(cmbRateType.SelectedValue);
                 objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
@@ -179,6 +180,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraLocationName", varLocationName);
                         varReportName = "Godown_Valuation_Summary";
                     }
+                    objBillreport.SetParameterValue("paraRateType", Convert.ToInt32(cmbRateType.SelectedValue));
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbRateCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSLID", varLocationId);
@@ -269,6 +271,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,120) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=139", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,185) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
@@ -1149,7 +1152,7 @@ namespace ROMS
             {
                 if(e.KeyCode== Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbRateType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1177,6 +1180,61 @@ namespace ROMS
             try
             {
                 cmbRateCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                 cmbRateType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateType.BackColor = Color.White;
             }
             catch (Exception ex)
             {
