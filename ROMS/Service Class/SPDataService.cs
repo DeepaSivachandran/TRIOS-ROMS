@@ -794,6 +794,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRKGID", objTRNS_StockRequest.paraRKGID); 
                 varSqlCommand.Parameters.AddWithValue("@paraProductTypeID", objTRNS_StockRequest.paraProductTypeID);  
                 varSqlCommand.Parameters.AddWithValue("@paraTellerID", objTRNS_StockRequest.paraTellerID);  
+                varSqlCommand.Parameters.AddWithValue("@paraLocationIDs", objTRNS_StockRequest.paraLocationIDs);  
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -830,6 +831,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", MainForm.pbUserMappedLocationIds);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNG_StockRequest.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationIDs", objTRNG_StockRequest.paraLocationIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

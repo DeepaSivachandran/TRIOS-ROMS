@@ -25,13 +25,21 @@ namespace ROMS
         private ToolTip tpReportType = new ToolTip();
         private ToolTip tpPrintType = new ToolTip();
         public string pbRateCategoryIDs = "";
+        private int _escPressCount = 0;
+        private Timer _escTimer;
         public REPORT_MValueReport()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
+            _escTimer = new System.Windows.Forms.Timer();
+            _escTimer.Interval = 1000; // 1 second
+            _escTimer.Tick += EscTimer_Tick; 
             windowControl.Initialize(tsMValue_Report, this);
         }
-
+        private void EscTimer_Tick(object sender, EventArgs e)
+        {
+            _escTimer.Stop();
+            _escPressCount = 0;
+        }
         public void udfnGridNull(Control skipControl)
         {
             try
@@ -2196,6 +2204,47 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+         public void udfnSelectAll()
+        {
+            try
+            {
+                txtRateCategory.Text = "";
+                pbRateCategoryIDs = "";
+                List<string> texts = new List<string>();
+                List<string> ids = new List<string>();
+
+                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                {
+                    DataRowView row = (DataRowView)chkboxRatelist.Items[i];
+                    int id = Convert.ToInt32(row["MSTID"]);
+                    if (Convert.ToInt32(row["MSTID"]) == 0)
+                        continue;
+
+                    chkboxRatelist.SetItemChecked(i, true);
+
+                    texts.Add(row["MST_DisplayText"].ToString());
+                    ids.Add(id.ToString());
+                }
+                // TextBox (RR, WR)
+                txtRateCategory.Text = texts.Count > 0
+                    ? string.Join(", ", texts)
+                    : "";
+
+                // Label (447,448)
+                pbRateCategoryIDs = ids.Count > 0
+                    ? string.Join(",", ids)
+                    : "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            udfnSelectAll();
         }
 
         public void udfnList(int varFlag)

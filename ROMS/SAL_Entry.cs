@@ -134,7 +134,7 @@ namespace ROMS
                     }
                 }
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                cmbProductName.SelectedValue = 270;
+                cmbProductName.SelectedValue = 271;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
@@ -165,7 +165,8 @@ namespace ROMS
                     }
                 }
                 objdserv.CloseConnection();
-                udfnList(0);
+                udfnFilterCount();
+                //udfnList(0);
                 btnUpdate.Enabled = false;
             }
             catch (Exception ex)
@@ -756,7 +757,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtBrand.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnBrandList(14, "0", 0, 0, 0, txtBrand.Text.Trim(), 0);
+                        objDs = objspdservice.udfnBrandList(14, "0", Convert.ToInt16(lblGroupCode.Text), Convert.ToInt16(lblSubGroupCode.Text), 0, txtBrand.Text.Trim(), 0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -1173,7 +1174,10 @@ namespace ROMS
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
-                        objMR_Supplier.ViewType = 15;
+                        objMR_Supplier.ViewType = 52;
+                        objMR_Supplier.paraGroupCode = Convert.ToInt16(lblGroupCode.Text);
+                        objMR_Supplier.paraSubgroupCode = Convert.ToInt16(lblSubGroupCode.Text);
+                        objMR_Supplier.paraBrandCode = Convert.ToInt16(lblBrandCode.Text);
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
@@ -1751,6 +1755,32 @@ namespace ROMS
             }
         }
 
+        public void udfnFilterCount()
+        {
+            try
+            {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 40;
+                DataSet objDs = new DataSet();
+                SPDataService objdSer = new SPDataService();
+                objDs = objdSer.udfnMaster(objMR_Master);
+                objdSer.CloseConnection();
+                if (objDs != null)
+                { 
+                    lblGroupCount.Text = objDs.Tables[0].Rows[0]["GroupCount"].ToString().Trim();
+                    lblSubGroupCount.Text = objDs.Tables[1].Rows[0]["SubGroupCount"].ToString().Trim();
+                    lblBrandCount.Text = objDs.Tables[2].Rows[0]["BrandCount"].ToString().Trim();
+                    tsbOriginalProducts.Text = objDs.Tables[3].Rows[0]["OriginalProCount"].ToString().Trim();
+                    tsbTotalProducts.Text = objDs.Tables[4].Rows[0]["TotalProCount"].ToString().Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnList(int varFlag)
         {
             try
@@ -1900,15 +1930,11 @@ namespace ROMS
                                 //grdSalesList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 //grdSalesList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdSalesList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
-                                grdSalesList.Columns["S.Qty"].DefaultCellStyle.Format = "0.00";
+                                grdSalesList.Columns["S.Qty"].DefaultCellStyle.Format = "0.00"; 
 
-                                tsbOriginalProducts.Text = objDs.Tables[1].Rows[0]["OriginalProCount"].ToString().Trim();
-                                tsbMppedCount.Text = objDs.Tables[2].Rows[0]["MappedCount"].ToString().Trim();
-                                tsbUnmappedCount.Text = objDs.Tables[3].Rows[0]["UnmappedCount"].ToString().Trim();
-                                lblGroupCount.Text = objDs.Tables[4].Rows[0]["GroupCount"].ToString().Trim();
-                                lblSubGroupCount.Text = objDs.Tables[5].Rows[0]["SubGroupCount"].ToString().Trim();
-                                lblBrandCount.Text = objDs.Tables[6].Rows[0]["BrandCount"].ToString().Trim();
-                                tsbTotalProducts.Text = objDs.Tables[7].Rows[0]["TotalProCount"].ToString().Trim();
+                                tsbMppedCount.Text = objDs.Tables[1].Rows[0]["MappedCount"].ToString().Trim();
+                                tsbUnmappedCount.Text = objDs.Tables[2].Rows[0]["UnmappedCount"].ToString().Trim();
+                               
                             }
                             else
                             {
@@ -3051,6 +3077,47 @@ namespace ROMS
         private void DGV_FilterBrand_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        public void udfnSelectAll()
+        {
+            try
+            {
+                txtRateCategory.Text = "";
+                pbRateCategoryIDs = "";
+                List<string> texts = new List<string>();
+                List<string> ids = new List<string>();
+
+                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                {
+                    DataRowView row = (DataRowView)chkboxRatelist.Items[i];
+                    int id = Convert.ToInt32(row["MSTID"]);
+                    if (Convert.ToInt32(row["MSTID"]) == 0)
+                        continue;
+
+                    chkboxRatelist.SetItemChecked(i, true);
+
+                    texts.Add(row["MST_DisplayText"].ToString());
+                    ids.Add(id.ToString());
+                }
+                // TextBox (RR, WR)
+                txtRateCategory.Text = texts.Count > 0
+                    ? string.Join(", ", texts)
+                    : "";
+
+                // Label (447,448)
+                pbRateCategoryIDs = ids.Count > 0
+                    ? string.Join(",", ids)
+                    : "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            udfnSelectAll();
         }
 
         public void udfnclose()

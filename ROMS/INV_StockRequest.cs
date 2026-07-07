@@ -117,7 +117,7 @@ namespace ROMS
                 {
                     if (varStatus != 29)
                     {
-                        this.ActiveControl = cmbRequestType;
+                        this.ActiveControl = txtTeller;
                     }
                 }
                 if (varStatus != 28 && varStatus != 47 && varStatus != 0)
@@ -2029,14 +2029,15 @@ namespace ROMS
                     cmbRackGroup.Visible = false;
                     lblProductType.Visible = false;
                     cmbProductType.Visible = false;
-                    grdStockRequest.Rows.Clear();
-                    dtStock.Rows.Clear();
+                    //grdStockRequest.Rows.Clear();
+                    //dtStock.Rows.Clear();
                     grdStockRequest.Columns["clmRemove"].Visible = true;
                     btnView.Visible = false;
                     txtReqUnit.Visible = true;
                     txtStockUnit.Visible = true;
                     lblProductTamil.Text = "";
                     txtProductNamePICode.Text = "";
+                    udfnRemoveRequiredQty();
                 }
                 else if (chkRackGroup.Checked == true)
                 {
@@ -2068,7 +2069,8 @@ namespace ROMS
                 }
                 cmbRackGroup.SelectedValue = -1;
                 cmbProductType.SelectedValue = -1;
-                
+
+
             }
             catch (Exception ex)
             {
@@ -2098,8 +2100,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        public void udfnRemoveRequiredQty()
+        {
+            try
+            {
+                var rowsToDelete = grdStockRequest.Rows
+                 .Cast<DataGridViewRow>()
+                 .Where(r => !r.IsNewRow &&
+                            (string.IsNullOrWhiteSpace(Convert.ToString(r.Cells["clmRequiredQty"].Value)) ||
+                             Convert.ToDecimal(r.Cells["clmRequiredQty"].Value ?? 0) == 0))
+                 .ToList();
+
+                List<int> varPrIDs = grdStockRequest.Rows
+      .Cast<DataGridViewRow>()
+      .Where(r => !r.IsNewRow &&
+                  decimal.TryParse(Convert.ToString(r.Cells["clmRequiredQty"].Value), out decimal qty) &&
+                  qty != 0)
+      .Select(r => Convert.ToInt32(r.Cells["clmPRID"].Value))
+      .ToList();
+
+                if (varPrIDs.Count != 0)
+                {
+                    varProductsIDs.AddRange(varPrIDs);
+                    varProducts = string.Join(",", varPrIDs);
+                }
+
+                foreach (var row in rowsToDelete)
+                {
+                    grdStockRequest.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void chkRackGroup_CheckedChanged(object sender, EventArgs e)
-        { 
+        {
             udfnRackGroupEnable(); 
         }
 
@@ -2156,8 +2196,8 @@ namespace ROMS
                 }
                 chkRackGroup.Checked = false;
                 if (Convert.ToInt16(cmbRequestType.SelectedValue) == 563)
-                { chkRackGroup.Enabled = true; }
-                else { chkRackGroup.Enabled = false; }
+                { chkRackGroup.Visible = true; }
+                else { chkRackGroup.Visible = false; }
             }
             catch (Exception ex)
             {
@@ -2250,7 +2290,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (chkRackGroup.Enabled == true)
+                    if (chkRackGroup.Visible == true)
                     {
                         chkRackGroup.Focus();
                     }
