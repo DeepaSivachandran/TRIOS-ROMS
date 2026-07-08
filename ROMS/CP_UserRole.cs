@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.EMMA;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -58,7 +59,7 @@ namespace ROMS
         }
         public CP_UserRole()
         {
-            InitializeComponent();
+            InitializeComponent(); tvMappedMenus.CheckBoxes = false;
         }
 
         private void CP_UserRole_Load(object sender, EventArgs e)
@@ -178,17 +179,19 @@ namespace ROMS
                 _loadingMappedMenus = true;
                 tvMappedMenus.BeginUpdate();
                 tvMappedMenus.Nodes.Clear();
+                tvMappedMenus.CheckBoxes = false;
 
                 DataRow[] rootRows = objDtUserMenuDetails.Select("MU_ParentMenuCode IS NULL");
 
                 foreach (DataRow row in rootRows)
                 {
-                    TreeNode root = CreateMappedNode(row);
+                    //TreeNode root = CreateMappedNode(row);
+                    TreeNode root = CreateCheckedTree(row);
+                    if (root != null)
+                        tvMappedMenus.Nodes.Add(root);
 
-                    tvMappedMenus.Nodes.Add(root);
-
-                    LoadMappedChildren(root,
-                        Convert.ToInt32(row["MU_Code"]));
+                    //LoadMappedChildren(root,
+                    //    Convert.ToInt32(row["MU_Code"]));
                 }
 
                 tvMappedMenus.ExpandAll();
@@ -209,6 +212,39 @@ namespace ROMS
                 _loadingMappedMenus = false;
             }
         }
+       
+        private TreeNode CreateCheckedTree(DataRow row)
+        {
+            TreeNode node = new TreeNode();
+            node.Text = row["MU_Name"].ToString();
+            node.Tag = row["MU_Code"];
+
+            bool isChecked =
+                row["Menuflag"] != DBNull.Value &&
+                Convert.ToInt32(row["Menuflag"]) == 1;
+
+            DataRow[] childRows = objDtUserMenuDetails.Select(
+                "MU_ParentMenuCode=" + row["MU_Code"]);
+
+            foreach (DataRow childRow in childRows)
+            {
+                TreeNode childNode = CreateCheckedTree(childRow);
+
+                if (childNode != null)
+                    node.Nodes.Add(childNode);
+            }
+
+            // Return this node if:
+            // 1. It is checked
+            // 2. OR it has checked descendants
+            if (isChecked || node.Nodes.Count > 0)
+                return node;
+
+            return null;
+        }
+
+        //  Incase of the future the client wants to show the All menus with the checked menus in the treeview then we can command it the below code and uncomment the above code and call the LoadMappedMenus() function
+        /*
         private void LoadMappedChildren(TreeNode parentNode,
                                 int parentCode)
         {
@@ -220,7 +256,7 @@ namespace ROMS
 
                 foreach (DataRow row in childRows)
                 {
-                    TreeNode child = CreateMappedNode(row);
+                    TreeNode child = CreateCheckedTree(row);
 
                     parentNode.Nodes.Add(child);
 
@@ -256,90 +292,9 @@ namespace ROMS
             return node;
         }
 
-        private void LoadAllMenus()
-        {
-            try
-            {
+        */
+        //  Incase of the future the client wants to show the All menus with the checked menus in the treeview then we can command it the above code and uncomment the above code and call the LoadMappedMenus() function
 
-                grdAllMenus.Rows.Clear();
-
-                foreach (DataRow row in objDtUserMenuDetails.Rows)
-                {
-                    // Skip Main Menu
-                    if (Convert.IsDBNull(row["MU_ParentMenuCode"]))
-                        continue;
-
-                    string mainMenu = "";
-                    string level1 = "";
-                    string level2 = "";
-
-                    bool checkedValue =
-                        row["Menuflag"] != DBNull.Value &&
-                        Convert.ToInt32(row["Menuflag"]) == 1;
-
-                    int menuCode = Convert.ToInt32(row["MU_Code"]);
-
-                    BuildHierarchy(menuCode,
-                                   ref mainMenu,
-                                   ref level1,
-                                   ref level2);
-
-                    grdAllMenus.Rows.Add(
-                        mainMenu,
-                        level1,
-                        level2,
-                        checkedValue);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BuildHierarchy(
-    int menuCode,
-    ref string mainMenu,
-    ref string level1,
-    ref string level2)
-        {
-            try
-            {
-                List<string> names = new List<string>();
-
-                while (true)
-                {
-                    DataRow row = objDtUserMenuDetails
-                        .Select("MU_Code=" + menuCode)
-                        .FirstOrDefault();
-
-                    if (row == null)
-                        break;
-
-                    names.Insert(0, row["MU_Name"].ToString());
-
-                    if (row["MU_ParentMenuCode"] == DBNull.Value)
-                        break;
-
-                    menuCode = Convert.ToInt32(row["MU_ParentMenuCode"]);
-                }
-
-                if (names.Count > 0)
-                    mainMenu = names[0];
-
-                if (names.Count > 1)
-                    level1 = names[1];
-
-                if (names.Count > 2)
-                    level2 = names[2];
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void txtUserRole_Enter(object sender, EventArgs e)
         {
             try
