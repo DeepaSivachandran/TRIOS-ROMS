@@ -32,6 +32,30 @@ namespace ROMS
         private DataTable dtMenus;
         private bool _loadingMappedMenus = false;
 
+
+        public class ReadOnlyCheckboxTreeView : TreeView
+        {
+            private const int WM_LBUTTONDBLCLK = 0x0203;
+
+            protected override void WndProc(ref Message m)
+            {
+                // Check if the user double-clicked
+                if (m.Msg == WM_LBUTTONDBLCLK)
+                {
+                    var pos = this.PointToClient(Cursor.Position);
+                    var hit = this.HitTest(pos);
+
+                    // If they double-clicked exactly on the checkbox, destroy the message
+                    if (hit.Location == TreeViewHitTestLocations.StateImage)
+                    {
+                        m.Result = IntPtr.Zero;
+                        return; // Blocks the double click from toggling the check
+                    }
+                }
+
+                base.WndProc(ref m);
+            }
+        }
         public CP_UserRole()
         {
             InitializeComponent();
@@ -150,8 +174,9 @@ namespace ROMS
         {
             try
             {
+                //This is not a windows treeview --- it's manual treeview for the check box check beheviour stop purpose   "ReadOnlyCheckboxTreeView"
                 _loadingMappedMenus = true;
-
+                tvMappedMenus.BeginUpdate();
                 tvMappedMenus.Nodes.Clear();
 
                 DataRow[] rootRows = objDtUserMenuDetails.Select("MU_ParentMenuCode IS NULL");
@@ -167,6 +192,11 @@ namespace ROMS
                 }
 
                 tvMappedMenus.ExpandAll();
+                if (tvMappedMenus.Nodes.Count > 0)
+                {
+                    tvMappedMenus.Nodes[0].EnsureVisible();
+                    tvMappedMenus.TopNode = tvMappedMenus.Nodes[0];
+                }
             }
             catch (Exception ex)
             {
@@ -175,6 +205,7 @@ namespace ROMS
             }
             finally
             {
+                tvMappedMenus.EndUpdate();
                 _loadingMappedMenus = false;
             }
         }
@@ -1890,15 +1921,22 @@ namespace ROMS
 
         private void tvMappedMenus_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {
-            if (!_loadingMappedMenus)
-            {
-                e.Cancel = true;
-            }
+            if (_loadingMappedMenus) return;
+
+            e.Cancel = true;
         }
 
         private void tvMappedMenus_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             tvMappedMenus.SelectedNode = e.Node;
+        }
+
+        private void tvMappedMenus_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                e.Handled = true;
+            }
         }
 
         private void txtMenuName_Leave(object sender, EventArgs e)
