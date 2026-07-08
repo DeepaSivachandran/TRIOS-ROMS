@@ -9,16 +9,31 @@ namespace ROMS.Service_Class
 {
     public static class DataGridViewExtensions
     { 
-        public static void ScrollToMatchingRow(this DataGridView dgv, string columnName, string searchText)
-        {
-            if (dgv == null || dgv.DataSource == null || string.IsNullOrWhiteSpace(searchText))
+       public static void ScrollToMatchingRow(this DataGridView dgv, string columnName, string searchText)
+       {
+            if (dgv == null || dgv.DataSource == null)
+            {
+                dgv.Visible = false;
                 return;
+            }
 
             if (!dgv.Columns.Contains(columnName))
                 return;
 
             int columnIndex = dgv.Columns[columnName].Index;
 
+            // If the search text is empty, reset to the first row
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                dgv.Visible = true;
+                dgv.BringToFront();
+                dgv.ClearSelection();
+                dgv.CurrentCell = dgv.Rows[0].Cells[columnIndex];
+                dgv.Rows[0].Selected = true;
+                dgv.FirstDisplayedScrollingRowIndex = 0;
+                return;
+            }
+            // Otherwise, perform the search loop
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
                 if (dgv.Rows[i].IsNewRow)
@@ -28,6 +43,8 @@ namespace ROMS.Service_Class
 
                 if (value.StartsWith(searchText, StringComparison.OrdinalIgnoreCase))
                 {
+                    dgv.Visible = true;
+                    dgv.BringToFront();
                     dgv.ClearSelection();
                     dgv.CurrentCell = dgv.Rows[i].Cells[columnIndex];
                     dgv.Rows[i].Selected = true;
@@ -35,6 +52,9 @@ namespace ROMS.Service_Class
                     return;
                 }
             }
+            // No match found: Hide the grid automatically
+            dgv.Visible = false;
+            return;
         }
     }
 }
