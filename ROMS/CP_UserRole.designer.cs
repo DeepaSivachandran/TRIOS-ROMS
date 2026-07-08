@@ -32,10 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.pnlUserRole = new System.Windows.Forms.Panel();
+            this.cmbMenus = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtMenuName = new System.Windows.Forms.TextBox();
             this.btnMappedUser = new System.Windows.Forms.Button();
@@ -81,7 +85,13 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cmbMenus = new System.Windows.Forms.ComboBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.grdAllMenus = new System.Windows.Forms.DataGridView();
+            this.clmMainMenu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLevel1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLevel2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tvMappedMenus = new System.Windows.Forms.TreeView();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.pnlUserRole.SuspendLayout();
@@ -95,6 +105,8 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserPermission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAllMenus)).BeginInit();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -149,6 +161,23 @@
             this.pnlUserRole.Name = "pnlUserRole";
             this.pnlUserRole.Size = new System.Drawing.Size(1330, 53);
             this.pnlUserRole.TabIndex = 4;
+            // 
+            // cmbMenus
+            // 
+            this.cmbMenus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMenus.FormattingEnabled = true;
+            this.cmbMenus.Items.AddRange(new object[] {
+            "MDU Road"});
+            this.cmbMenus.Location = new System.Drawing.Point(981, 13);
+            this.cmbMenus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbMenus.Name = "cmbMenus";
+            this.cmbMenus.Size = new System.Drawing.Size(157, 27);
+            this.cmbMenus.TabIndex = 25;
+            this.cmbMenus.SelectedIndexChanged += new System.EventHandler(this.cmbMenus_SelectedIndexChanged);
+            this.cmbMenus.Enter += new System.EventHandler(this.cmbMenus_Enter);
+            this.cmbMenus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMenus_KeyDown);
+            this.cmbMenus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMenus_KeyPress);
+            this.cmbMenus.Leave += new System.EventHandler(this.cmbMenus_Leave);
             // 
             // label4
             // 
@@ -319,6 +348,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.grpMainmenu);
@@ -333,7 +363,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tvLevl2Submenu);
-            this.groupBox3.Location = new System.Drawing.Point(839, 5);
+            this.groupBox3.Location = new System.Drawing.Point(464, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(477, 503);
             this.groupBox3.TabIndex = 1111184;
@@ -353,9 +383,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tvSubmenu);
-            this.groupBox1.Location = new System.Drawing.Point(372, 5);
+            this.groupBox1.Location = new System.Drawing.Point(183, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(461, 503);
+            this.groupBox1.Size = new System.Drawing.Size(275, 503);
             this.groupBox1.TabIndex = 1111183;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Level 1 - Sub-Menu";
@@ -366,7 +396,7 @@
             this.tvSubmenu.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvSubmenu.Location = new System.Drawing.Point(6, 26);
             this.tvSubmenu.Name = "tvSubmenu";
-            this.tvSubmenu.Size = new System.Drawing.Size(449, 471);
+            this.tvSubmenu.Size = new System.Drawing.Size(260, 471);
             this.tvSubmenu.TabIndex = 1;
             this.tvSubmenu.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvSubmenu_BeforeCheck);
             this.tvSubmenu.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvSubmenu_AfterCheck);
@@ -379,7 +409,7 @@
             this.grpMainmenu.Controls.Add(this.tvMainmenu);
             this.grpMainmenu.Location = new System.Drawing.Point(3, 5);
             this.grpMainmenu.Name = "grpMainmenu";
-            this.grpMainmenu.Size = new System.Drawing.Size(363, 503);
+            this.grpMainmenu.Size = new System.Drawing.Size(174, 503);
             this.grpMainmenu.TabIndex = 1111182;
             this.grpMainmenu.TabStop = false;
             this.grpMainmenu.Text = "Main Menu";
@@ -389,7 +419,7 @@
             this.tvMainmenu.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvMainmenu.Location = new System.Drawing.Point(6, 26);
             this.tvMainmenu.Name = "tvMainmenu";
-            this.tvMainmenu.Size = new System.Drawing.Size(351, 471);
+            this.tvMainmenu.Size = new System.Drawing.Size(161, 471);
             this.tvMainmenu.TabIndex = 0;
             this.tvMainmenu.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMainmenu_AfterSelect);
             // 
@@ -602,22 +632,98 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // cmbMenus
+            // groupBox4
             // 
-            this.cmbMenus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMenus.FormattingEnabled = true;
-            this.cmbMenus.Items.AddRange(new object[] {
-            "MDU Road"});
-            this.cmbMenus.Location = new System.Drawing.Point(981, 13);
-            this.cmbMenus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbMenus.Name = "cmbMenus";
-            this.cmbMenus.Size = new System.Drawing.Size(157, 27);
-            this.cmbMenus.TabIndex = 25;
-            this.cmbMenus.SelectedIndexChanged += new System.EventHandler(this.cmbMenus_SelectedIndexChanged);
-            this.cmbMenus.Enter += new System.EventHandler(this.cmbMenus_Enter);
-            this.cmbMenus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMenus_KeyDown);
-            this.cmbMenus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMenus_KeyPress);
-            this.cmbMenus.Leave += new System.EventHandler(this.cmbMenus_Leave);
+            this.groupBox4.Controls.Add(this.tvMappedMenus);
+            this.groupBox4.Controls.Add(this.grdAllMenus);
+            this.groupBox4.Location = new System.Drawing.Point(947, 8);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(368, 503);
+            this.groupBox4.TabIndex = 1111185;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "All Menus";
+            // 
+            // grdAllMenus
+            // 
+            this.grdAllMenus.AllowUserToAddRows = false;
+            this.grdAllMenus.AllowUserToDeleteRows = false;
+            this.grdAllMenus.AllowUserToResizeColumns = false;
+            this.grdAllMenus.AllowUserToResizeRows = false;
+            this.grdAllMenus.BackgroundColor = System.Drawing.Color.White;
+            this.grdAllMenus.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdAllMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.grdAllMenus.ColumnHeadersHeight = 30;
+            this.grdAllMenus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdAllMenus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmMainMenu,
+            this.clmLevel1,
+            this.clmLevel2,
+            this.clmChecked});
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdAllMenus.DefaultCellStyle = dataGridViewCellStyle20;
+            this.grdAllMenus.EnableHeadersVisualStyles = false;
+            this.grdAllMenus.GridColor = System.Drawing.Color.White;
+            this.grdAllMenus.Location = new System.Drawing.Point(6, 26);
+            this.grdAllMenus.Name = "grdAllMenus";
+            this.grdAllMenus.ReadOnly = true;
+            this.grdAllMenus.RowHeadersVisible = false;
+            this.grdAllMenus.RowHeadersWidth = 51;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
+            this.grdAllMenus.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            this.grdAllMenus.RowTemplate.Height = 25;
+            this.grdAllMenus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdAllMenus.Size = new System.Drawing.Size(356, 468);
+            this.grdAllMenus.TabIndex = 1111143;
+            // 
+            // clmMainMenu
+            // 
+            this.clmMainMenu.HeaderText = "Main Menu";
+            this.clmMainMenu.Name = "clmMainMenu";
+            this.clmMainMenu.ReadOnly = true;
+            // 
+            // clmLevel1
+            // 
+            this.clmLevel1.HeaderText = "Level 1";
+            this.clmLevel1.Name = "clmLevel1";
+            this.clmLevel1.ReadOnly = true;
+            // 
+            // clmLevel2
+            // 
+            this.clmLevel2.HeaderText = "Level 2";
+            this.clmLevel2.Name = "clmLevel2";
+            this.clmLevel2.ReadOnly = true;
+            // 
+            // clmChecked
+            // 
+            this.clmChecked.HeaderText = "";
+            this.clmChecked.Name = "clmChecked";
+            this.clmChecked.ReadOnly = true;
+            this.clmChecked.Width = 50;
+            // 
+            // tvMappedMenus
+            // 
+            this.tvMappedMenus.CheckBoxes = true;
+            this.tvMappedMenus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvMappedMenus.Location = new System.Drawing.Point(6, 26);
+            this.tvMappedMenus.Name = "tvMappedMenus";
+            this.tvMappedMenus.Size = new System.Drawing.Size(338, 471);
+            this.tvMappedMenus.TabIndex = 1111144;
+            this.tvMappedMenus.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvMappedMenus_BeforeCheck);
+            this.tvMappedMenus.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvMappedMenus_NodeMouseClick);
             // 
             // CP_UserRole
             // 
@@ -652,6 +758,8 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUserPermission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdAllMenus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -709,5 +817,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsplflag;
         private System.Windows.Forms.DataGridViewImageColumn Action;
         private System.Windows.Forms.ComboBox cmbMenus;
+        private System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.DataGridView grdAllMenus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMainMenu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLevel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLevel2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmChecked;
+        private System.Windows.Forms.TreeView tvMappedMenus;
     }
 }

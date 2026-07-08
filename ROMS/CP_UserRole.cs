@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ROMS.Model;
 namespace ROMS
 {
     public partial class CP_UserRole : Form
@@ -20,7 +16,7 @@ namespace ROMS
         public string varupdate = "0";
         public string varstatusid = "0", varcontactcompanyid = "0", varSlNo = "0", varCMSlNo = "0", varUserRoleName = "";
         public static int varCloseFlag = 0, varflag = 0, varstatusidContact = 1;
-        public int varstatus = 0, varUserRoleID = 0, varChangesFlag = 0,varCLone=0;
+        public int varstatus = 0, varUserRoleID = 0, varChangesFlag = 0, varCLone = 0;
 
 
         DataTable objDtMainMenu = new DataTable();
@@ -34,6 +30,7 @@ namespace ROMS
         public int varFormFlag = 0, varCurrentUserId = 0, varUsersCount = 0, varCloneUserRoleID = 0;
         public MainForm MainObj { get; set; }
         private DataTable dtMenus;
+        private bool _loadingMappedMenus = false;
 
         public CP_UserRole()
         {
@@ -74,10 +71,10 @@ namespace ROMS
                 LoadTreeViewFromDataTable(tvMainmenu, objDtMainMenu);
                 txtUserRole.Focus();
                 this.ActiveControl = txtUserRole;
-                if(varFormFlag== 1)
+                if (varFormFlag == 1)
                 {
                     pnlUserRole.Visible = false;
-                    tbFirst.Location=new Point(12, 29);
+                    tbFirst.Location = new Point(12, 29);
                     tbFirst.Size = new Size(1330, 566);
                     varCloneUserRoleID = varUserRoleID;
                 }
@@ -109,7 +106,10 @@ namespace ROMS
                         }
                     }
                 }
-
+                _loadingMappedMenus = true;
+                LoadMappedMenus();
+                _loadingMappedMenus = false;
+                //LoadAllMenus();
                 grdUserPermission_DataBindingComplete(grdUserPermission, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
             }
             catch (Exception ex)
@@ -119,6 +119,196 @@ namespace ROMS
             }
         }
 
+        //private void LoadMappedMenus()
+        //{
+        //    try
+        //    {
+        //        tvMappedMenus.Nodes.Clear();
+
+        //        // Root menus
+        //        DataRow[] rootRows = objDtUserMenuDetails.Select("MU_ParentMenuCode IS NULL");
+
+        //        foreach (DataRow row in rootRows)
+        //        {
+        //            TreeNode root = CreateMappedNode(row);
+
+        //            tvMappedMenus.Nodes.Add(root);
+
+        //            LoadMappedChildren(root,
+        //                Convert.ToInt32(row["MU_Code"]));
+        //        }
+
+        //        tvMappedMenus.ExpandAll();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
+        private void LoadMappedMenus()
+        {
+            try
+            {
+                _loadingMappedMenus = true;
+
+                tvMappedMenus.Nodes.Clear();
+
+                DataRow[] rootRows = objDtUserMenuDetails.Select("MU_ParentMenuCode IS NULL");
+
+                foreach (DataRow row in rootRows)
+                {
+                    TreeNode root = CreateMappedNode(row);
+
+                    tvMappedMenus.Nodes.Add(root);
+
+                    LoadMappedChildren(root,
+                        Convert.ToInt32(row["MU_Code"]));
+                }
+
+                tvMappedMenus.ExpandAll();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                _loadingMappedMenus = false;
+            }
+        }
+        private void LoadMappedChildren(TreeNode parentNode,
+                                int parentCode)
+        {
+            try
+            {
+                DataRow[] childRows =
+                    objDtUserMenuDetails.Select(
+                        "MU_ParentMenuCode=" + parentCode);
+
+                foreach (DataRow row in childRows)
+                {
+                    TreeNode child = CreateMappedNode(row);
+
+                    parentNode.Nodes.Add(child);
+
+                    LoadMappedChildren(child,
+                        Convert.ToInt32(row["MU_Code"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private TreeNode CreateMappedNode(DataRow row)
+        {
+            TreeNode node = new TreeNode();
+            try
+            {
+                node.Text = row["MU_Name"].ToString();
+
+                node.Tag = row["MU_Code"];
+
+                node.Checked =
+                    row["Menuflag"] != DBNull.Value &&
+                    Convert.ToInt32(row["Menuflag"]) == 1;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+            return node;
+        }
+
+        private void LoadAllMenus()
+        {
+            try
+            {
+
+                grdAllMenus.Rows.Clear();
+
+                foreach (DataRow row in objDtUserMenuDetails.Rows)
+                {
+                    // Skip Main Menu
+                    if (Convert.IsDBNull(row["MU_ParentMenuCode"]))
+                        continue;
+
+                    string mainMenu = "";
+                    string level1 = "";
+                    string level2 = "";
+
+                    bool checkedValue =
+                        row["Menuflag"] != DBNull.Value &&
+                        Convert.ToInt32(row["Menuflag"]) == 1;
+
+                    int menuCode = Convert.ToInt32(row["MU_Code"]);
+
+                    BuildHierarchy(menuCode,
+                                   ref mainMenu,
+                                   ref level1,
+                                   ref level2);
+
+                    grdAllMenus.Rows.Add(
+                        mainMenu,
+                        level1,
+                        level2,
+                        checkedValue);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BuildHierarchy(
+    int menuCode,
+    ref string mainMenu,
+    ref string level1,
+    ref string level2)
+        {
+            try
+            {
+                List<string> names = new List<string>();
+
+                while (true)
+                {
+                    DataRow row = objDtUserMenuDetails
+                        .Select("MU_Code=" + menuCode)
+                        .FirstOrDefault();
+
+                    if (row == null)
+                        break;
+
+                    names.Insert(0, row["MU_Name"].ToString());
+
+                    if (row["MU_ParentMenuCode"] == DBNull.Value)
+                        break;
+
+                    menuCode = Convert.ToInt32(row["MU_ParentMenuCode"]);
+                }
+
+                if (names.Count > 0)
+                    mainMenu = names[0];
+
+                if (names.Count > 1)
+                    level1 = names[1];
+
+                if (names.Count > 2)
+                    level2 = names[2];
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void txtUserRole_Enter(object sender, EventArgs e)
         {
             try
@@ -166,13 +356,13 @@ namespace ROMS
                 if (menuCode == "")
                 {
                     menuCode = "0";
-                } 
+                }
 
                 objDtSubMenu.Clear();
                 if (e.Node.IsSelected)
-                    LoadSubMenuForParent(tvSubmenu,menuCode);
+                    LoadSubMenuForParent(tvSubmenu, menuCode);
                 else
-                    RemoveSubMenu(tvSubmenu,Convert.ToInt32(menuCode));
+                    RemoveSubMenu(tvSubmenu, Convert.ToInt32(menuCode));
 
                 //if (btnSave.Text=="Update" || varCLone == 1 )
                 //{
@@ -188,7 +378,7 @@ namespace ROMS
                 tvMainmenu.SelectedNode = e.Node;
                 e.Node.BackColor = Color.LightBlue;
                 tvLevl2Submenu.Nodes.Clear();
-                 
+
 
             }
             catch (Exception ex)
@@ -389,9 +579,9 @@ namespace ROMS
                         );
                     }
                 }
-                                
 
-                DataTable saveobjDtSplPermission = objDtSplPermission.DefaultView.ToTable(false, "MUP_MU_Code", "ViewAccess", "EditAccess", "MUP_CODE" );
+
+                DataTable saveobjDtSplPermission = objDtSplPermission.DefaultView.ToTable(false, "MUP_MU_Code", "ViewAccess", "EditAccess", "MUP_CODE");
 
                 varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), varUserRoleName1, varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access, saveobjDtSplPermission, varFormFlag, varCurrentUserId);
                 objspservice.CloseConnection();
@@ -411,7 +601,7 @@ namespace ROMS
                         else
                         {
                             btnSave.Text = "Save";
-                        } 
+                        }
                     }
                     else
                     {
@@ -481,7 +671,7 @@ namespace ROMS
         {
             try
             {
-                 
+
                 submenu.Nodes.Clear(); // clear previous second tree
 
                 // Create root node for this parent
@@ -493,18 +683,18 @@ namespace ROMS
                         Tag = parentRow["MU_Code"]
                     };
                     int parenttype = 0;
-                    
-                    if (submenu.Name == "tvLevl2Submenu") 
+
+                    if (submenu.Name == "tvLevl2Submenu")
                     {
-                         parenttype = 1;
+                        parenttype = 1;
                     }
                     submenu.Nodes.Add(rootNode);
 
-                    
+
 
                     // Load all children recursively
                     LoadSubMenu(rootNode, parentMenuCode, parenttype);
-                    
+
                 }
                 tvSubmenu.ExpandAll();
             }
@@ -515,7 +705,7 @@ namespace ROMS
             }
         }
 
-        private void LoadSubMenu(TreeNode parentNode, string parentMenuCode,int parenttype)
+        private void LoadSubMenu(TreeNode parentNode, string parentMenuCode, int parenttype)
         {
             try
             {
@@ -526,7 +716,7 @@ namespace ROMS
                 if (objDtSubMenu.Rows.Count == 0)
                 {
                     objDtSubMenu = dv.ToTable();
-                } 
+                }
 
                 foreach (DataRow row in objDtSubMenuClone.Rows)
                 {
@@ -553,16 +743,16 @@ namespace ROMS
                     //// Recursive call to add children of this child
                     ///
                     if (parenttype == 1)
-                    { 
-                        LoadSubMenu(childNode, nodeValue, 1); 
-                    } 
+                    {
+                        LoadSubMenu(childNode, nodeValue, 1);
+                    }
                 }
 
 
                 if (tvLevl2Submenu.Nodes.Count == 1)
                 {
                     TreeNode parentNode1 = tvLevl2Submenu.Nodes[0];
-                     
+
                     if (parentNode1.Nodes.Count == 0)
                     {
                         tvLevl2Submenu.Nodes.Clear(); // Clear entire tree
@@ -678,7 +868,7 @@ namespace ROMS
                                 //**** To call the function from SP ***************
                                 SPDataService objspservice = new SPDataService();
                                 grdUserPermission.Rows.Clear();
-                                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(UserRoleID), 0, 0,"", 0, 0);
+                                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(UserRoleID), 0, 0, "", 0, 0);
                                 objspservice.CloseConnection();
                                 if (objDs != null)
                                 {
@@ -1295,7 +1485,7 @@ namespace ROMS
                     {
                         return;
                     }
-                        switch (grdUserPermission.Columns[e.ColumnIndex].Name)
+                    switch (grdUserPermission.Columns[e.ColumnIndex].Name)
                     {
                         case "Action":
                             try
@@ -1368,9 +1558,10 @@ namespace ROMS
 
                     if (matchingNode != null && matchingNode.Checked != e.Node.Checked)
                     {
-                        matchingNode.Checked = e.Node.Checked; 
+                        matchingNode.Checked = e.Node.Checked;
                     }
                 }
+                //LoadAllMenus();
             }
             catch (Exception ex)
             {
@@ -1385,7 +1576,8 @@ namespace ROMS
 
         private void tvSubmenu_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            try {
+            try
+            {
                 tvSubmenu.Nodes.Cast<TreeNode>()
                 .SelectMany(n => new[] { n }.Concat(n.Nodes.Cast<TreeNode>()))
                 .ToList()
@@ -1395,7 +1587,7 @@ namespace ROMS
                     n.ForeColor = Color.Black;
                 });
                 if (e.Action != TreeViewAction.Unknown)
-                { 
+                {
                     TreeNode clickedNode = e.Node;
                     if (e.Node.Level != 0)
                     {
@@ -1420,7 +1612,8 @@ namespace ROMS
                         tvMainmenu.SelectedNode = e.Node;
                         e.Node.BackColor = Color.LightBlue;
                     }
-                    else {
+                    else
+                    {
                         tvLevl2Submenu.Nodes.Clear();
                     }
                 }
@@ -1434,7 +1627,7 @@ namespace ROMS
 
         private void grdUserPermission_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            
+
         }
 
         private void tvSubmenu_DrawNode(object sender, DrawTreeNodeEventArgs e)
@@ -1599,7 +1792,7 @@ namespace ROMS
         {
             try
             {
-                  cmbMenus.BackColor = Color.White;
+                cmbMenus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1694,11 +1887,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void tvMappedMenus_BeforeCheck(object sender, TreeViewCancelEventArgs e)
+        {
+            if (!_loadingMappedMenus)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void tvMappedMenus_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            tvMappedMenus.SelectedNode = e.Node;
+        }
+
         private void txtMenuName_Leave(object sender, EventArgs e)
         {
             try
             {
-                 txtMenuName.BackColor = Color.White;
+                txtMenuName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1726,7 +1933,7 @@ namespace ROMS
 
                     // Step 3 → update DataTable flag for the clicked node
                     UpdateFlag(e.Node.Tag.ToString(), e.Node.Checked, clickedNode.Nodes.Count);
-                     
+
                     TreeNode mainNode = tvMainmenu.SelectedNode;
                     if (mainNode != null)
                     {
@@ -1737,7 +1944,7 @@ namespace ROMS
                             if (mainRows.Length > 0)
                             {
                                 bool anyChecked = HasAnyCheckedNode(tvSubmenu.Nodes);
-                                 
+
                                 mainRows[0]["Menuflag"] = anyChecked ? 1 : 0;
                             }
                         }
@@ -1807,13 +2014,13 @@ namespace ROMS
                 UpdateParentNodes(node.Parent);
 
 
-                 
-                TreeNode matchingNode = FindNodeByText(tvSubmenu.Nodes, node.Parent.Text); 
+
+                TreeNode matchingNode = FindNodeByText(tvSubmenu.Nodes, node.Parent.Text);
 
                 if (matchingNode != null && matchingNode.Checked != allChecked)
                 {
                     matchingNode.Checked = allChecked;
-                     
+
                 }
 
 
@@ -1838,7 +2045,7 @@ namespace ROMS
                 // 2. If it's a parent, update all descendants (DOWNWARD propagation)
                 //if (nodeCount > 0)
                 //{
-                    UpdateAllDescendantFlags(menuCode, isChecked);
+                UpdateAllDescendantFlags(menuCode, isChecked);
                 //}
 
                 // 3. If it's a leaf/child or an intermediate parent, update flags UPWARDS
@@ -1947,7 +2154,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objspservice = new SPDataService();
 
-                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0, 0,"", 0, 0);
+                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0);
                     objspservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1976,7 +2183,7 @@ namespace ROMS
                         }
                     }
 
-                    if (varCLone == 1) 
+                    if (varCLone == 1)
                     {
                         grdUserPermission.Rows.Clear();
                         objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0);
@@ -1997,7 +2204,7 @@ namespace ROMS
 
                         grdUserPermission_DataBindingComplete(grdUserPermission, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
                     }
-                   
+
                 }
             }
             catch (Exception ex)
@@ -2015,7 +2222,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUserRoleList(3, varUserRoleID, 0, 0,"",0,0);
+                objDs = objspservice.udfnUserRoleList(3, varUserRoleID, 0, 0, "", 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -2045,7 +2252,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public  TreeNode FindNodeByText(TreeNodeCollection nodes, string text)
+        public TreeNode FindNodeByText(TreeNodeCollection nodes, string text)
         {
             try
             {
@@ -2070,7 +2277,8 @@ namespace ROMS
 
         private bool HasAnyCheckedNode(TreeNodeCollection nodes)
         {
-            try {
+            try
+            {
                 foreach (TreeNode node in nodes)
                 {
                     if (node.Checked) return true;
