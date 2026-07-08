@@ -1991,7 +1991,6 @@ namespace ROMS
                         MR_Supplier objMR_Supplier = new MR_Supplier();
                         objMR_Supplier.ViewType = 15;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text; 
-                        objMR_Supplier.paraProductCode = Convert.ToInt32(lblProduct.Text); 
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnSupplierList(objMR_Supplier);

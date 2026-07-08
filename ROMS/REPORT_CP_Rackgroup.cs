@@ -31,7 +31,7 @@ namespace ROMS
         {
             try
             {
-                lvRack.Visible = false; 
+                lvRack.Visible = false;
                 varUpDownKeyRackGroup = 0;
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
@@ -92,27 +92,27 @@ namespace ROMS
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 122)
                     {
-                        udfnRGProRackMinQty(varFlag,itemType);
+                        udfnRGProRackMinQty(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 432)
                     {
-                        udfnRGProShelflife(varFlag,itemType);
+                        udfnRGProShelflife(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 465)
                     {
-                        udfnRKGProductOrderNo(varFlag,itemType);
+                        udfnRKGProductOrderNo(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 473)
                     {
-                        udfnRKGProductStockTaking(varFlag,itemType);
+                        udfnRKGProductStockTaking(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 474)
                     {
-                        udfnRKGProductAssigned(varFlag,itemType);
+                        udfnRKGProductAssigned(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 475)
                     {
-                        udfnRKGProductUnassigned(varFlag,itemType);
+                        udfnRKGProductUnassigned(varFlag, itemType);
                     }
                 }
             }
@@ -139,15 +139,15 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
-                if(Convert.ToInt32(cmbReportType.SelectedValue)==-1)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbConcern.SelectedValue = 0;
                     cmbRackGroup.SelectedValue = 0; ;
                 }
-                if(Convert.ToInt32(cmbReportType.SelectedValue)==117)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 117)
                 {
                     cmbRackGroup.Enabled = false;
-                    
+
                     txtEmployeeName.Enabled = false;
                     txtRack.Enabled = false;
                     cmbProductCategory.SelectedValue = 0;
@@ -197,11 +197,11 @@ namespace ROMS
                 {
                     cmbType.Enabled = false;
                 }
-                if(cmbReportType.SelectedValue != null)
+                if (cmbReportType.SelectedValue != null)
                 {
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 122)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 122 || Convert.ToInt32(cmbReportType.SelectedValue) == 121)
                     {
-                        cmbLocationType.Enabled=true;
+                        cmbLocationType.Enabled = true;
                         chkLocBreakup.Enabled = true;
                     }
                     else
@@ -218,7 +218,7 @@ namespace ROMS
             }
         }
         public void udfnClear()
-        { 
+        {
             txtEmployeeName.Text = "";
             txtRack.Text = "";
             cmbConcern.SelectedValue = 0;
@@ -238,7 +238,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackGroupList(3, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "",Convert.ToInt32(cmbproductStatus.SelectedValue), Convert.ToInt32(cmbStockTakken.SelectedValue));
+                objDs = objspservice.udfnRackGroupList(3, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "", Convert.ToInt32(cmbproductStatus.SelectedValue), Convert.ToInt32(cmbStockTakken.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -246,7 +246,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup.rpt");
@@ -258,7 +258,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName); 
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -313,11 +313,11 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
-                int RKGCode = 0,RKCode=0,EMPCode=0;
+                int RKGCode = 0, RKCode = 0, EMPCode = 0;
                 string RKGName = "", RKName = "", RKInchargeName = "";
-                
-                    RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
-                    RKGName = Convert.ToString(cmbRackGroup.Name); 
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
@@ -362,7 +362,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -389,7 +389,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objBillreport.SetParameterValue("paraWithCode", itemType); 
+                    objBillreport.SetParameterValue("paraWithCode", itemType);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -429,7 +429,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProBarcode(int varFlag,int itemType)
+        public void udfnRGProBarcode(int varFlag, int itemType)
         {
             try
             {
@@ -492,7 +492,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -569,7 +569,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProMsq(int varFlag,int itemType)
+        public void udfnRGProMsq(int varFlag, int itemType)
         {
             try
             {
@@ -632,7 +632,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -698,7 +698,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProWeight(int varFlag,int itemType)
+        public void udfnRGProWeight(int varFlag, int itemType)
         {
             try
             {
@@ -751,6 +751,7 @@ namespace ROMS
                 objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
                 objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
+                objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -761,12 +762,26 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Weight.rpt");
+                    if (chkLocBreakup.Checked == true)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Weight_Loc_Split.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Weight.rpt");
+                    }
                     objBillreport.PrintOptions.NoPrinter = true;
+
+                    int varChkLocationBreakupFlag = 0;
+                    if (chkLocBreakup.Checked == true)
+                    {
+                        varChkLocationBreakupFlag = 1;
+                    }
+                    objBillreport.SetParameterValue("paraLocationGroupingFlag", varChkLocationBreakupFlag);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
                     objBillreport.SetParameterValue("paraRKGId", RKGCode);
@@ -785,6 +800,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
                     objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -829,7 +845,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProRackMinQty(int varFlag,int itemType)
+        public void udfnRGProRackMinQty(int varFlag, int itemType)
         {
             try
             {
@@ -892,7 +908,7 @@ namespace ROMS
                 {
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true; 
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     //int varType = Convert.ToInt32(cmbType.SelectedValue);
@@ -903,22 +919,20 @@ namespace ROMS
                     //{ varType = 1; }
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.PrintOptions.NoPrinter = true;
                     if (Convert.ToInt32(cmbType.SelectedValue) == 405)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_PICode.rpt");
-                        objBillreport.PrintOptions.NoPrinter = true;
                     }
                     else
                     {
                         if (chkLocBreakup.Checked == true)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt");
-                            objBillreport.PrintOptions.NoPrinter = true;
                         }
                         else
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
-                            objBillreport.PrintOptions.NoPrinter = true;
                         }
                     }
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
@@ -944,7 +958,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     }
                     int varChkLocationBreakupFlag = 0;
-                    if(chkLocBreakup.Checked==true)
+                    if (chkLocBreakup.Checked == true)
                     {
                         varChkLocationBreakupFlag = 1;
                     }
@@ -1075,7 +1089,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                   ////  //// /////RPTViewer.RefreshReport();
+                    ////  //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -1180,7 +1194,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -1267,7 +1281,7 @@ namespace ROMS
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
-                objMR_Product.paraPicode ="";
+                objMR_Product.paraPicode = "";
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -1278,7 +1292,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -1377,7 +1391,7 @@ namespace ROMS
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
-                objMR_Product.paraPicode ="";
+                objMR_Product.paraPicode = "";
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -1388,7 +1402,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -1486,7 +1500,7 @@ namespace ROMS
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
-                objMR_Product.paraPicode ="";
+                objMR_Product.paraPicode = "";
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -1497,7 +1511,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                     //// /////RPTViewer.RefreshReport();
+                    //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -1569,7 +1583,7 @@ namespace ROMS
                 string varId_PurRack = "0";
                 DataSet objDsPurRack = new DataSet();
                 SPDataService objDServ4 = new SPDataService();
-                objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtRack.Text.Trim(),0,0);
+                objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtRack.Text.Trim(), 0, 0);
                 objDServ4.CloseConnection();
                 if (objDsPurRack != null)
                 {
@@ -1623,7 +1637,7 @@ namespace ROMS
                 string varId_RackIncharge = "0";
                 DataSet objDsRackIncharge = new DataSet();
                 SPDataService objDServ4 = new SPDataService();
-                objDsRackIncharge = objDServ4.udfnEmployeeList(8,txtEmployeeName.Text.Trim(),0,"",0,0,0);
+                objDsRackIncharge = objDServ4.udfnEmployeeList(8, txtEmployeeName.Text.Trim(), 0, "", 0, 0, 0);
                 objDServ4.CloseConnection();
                 if (objDsRackIncharge != null)
                 {
@@ -1685,7 +1699,7 @@ namespace ROMS
         private void CmbReportType_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 varUpDownKeyRackGroup = 0;
                 cmbReportType.BackColor = Color.LemonChiffon;
             }
@@ -1748,7 +1762,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnRackGroupList(6, 0, 0, 0, 0, "", 0,0);
+                objDs = objdserv.udfnRackGroupList(6, 0, 0, 0, 0, "", 0, 0);
                 objdserv.CloseConnection();
 
                 if (objDs != null)
@@ -1780,7 +1794,7 @@ namespace ROMS
                             cmbProductCategory.DataSource = objDsPro.Tables[0];
                         }
                     }
-                } 
+                }
                 DataBind objDataBind = new DataBind(); //Transaction id 	41
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
@@ -1816,7 +1830,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void TxtRack_Enter(object sender, EventArgs e)
         {
             try
@@ -1968,7 +1982,7 @@ namespace ROMS
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -2153,7 +2167,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtEmployeeName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnEmployeeList(2,txtEmployeeName.Text.Trim(),0,"",0,0,0);
+                    objDs = objspdservice.udfnEmployeeList(2, txtEmployeeName.Text.Trim(), 0, "", 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2208,7 +2222,7 @@ namespace ROMS
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 varUpDownKeyRackGroup = 0;
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
@@ -2282,12 +2296,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
 
         private void CmbSubgroupType_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 cmbSubgroupType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2342,7 +2356,7 @@ namespace ROMS
         private void CmbProductCategory_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 cmbProductCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2358,7 +2372,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(cmbFormat.Enabled==true)
+                    if (cmbFormat.Enabled == true)
                     {
                         cmbFormat.Focus();
                     }
@@ -2404,7 +2418,7 @@ namespace ROMS
         private void CmbFormat_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 cmbFormat.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2459,7 +2473,7 @@ namespace ROMS
         private void cmbStatus_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2511,7 +2525,7 @@ namespace ROMS
             }
         }
 
-         
+
         private void btnTelegram_Enter(object sender, EventArgs e)
         {
             try
@@ -2541,7 +2555,7 @@ namespace ROMS
         private void cmbproductStatus_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 cmbproductStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2561,7 +2575,7 @@ namespace ROMS
                     {
                         cmbType.Focus();
                     }
-                    else 
+                    else
                     {
                         cmbRetailRate.Focus();
                     }
@@ -2572,7 +2586,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }  
+        }
 
         private void cmbproductStatus_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -2875,7 +2889,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(cmbLocationType.Enabled == true)
+                    if (cmbLocationType.Enabled == true)
                     {
                         cmbLocationType.Focus();
                     }
@@ -2932,7 +2946,7 @@ namespace ROMS
         {
             try
             {
-                cmbLocationType.BackColor = Color.LemonChiffon; 
+                cmbLocationType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -2945,7 +2959,7 @@ namespace ROMS
         {
             try
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     chkLocBreakup.Focus();
                 }
@@ -2974,7 +2988,7 @@ namespace ROMS
         {
             try
             {
-                cmbLocationType.BackColor = Color.White;    
+                cmbLocationType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

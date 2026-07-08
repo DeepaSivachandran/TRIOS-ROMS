@@ -73,6 +73,18 @@ namespace ROMS
                     DGV_FilterBrand.DataSource = null;
                     DGV_FilterBrand.Visible = false;
                 }
+                if (skipControl != txtSupplier)
+                {
+                    varUpDownKeySupplier = 0;
+                    DGV_FilterSupplier.DataSource = null;
+                    DGV_FilterSupplier.Visible = false;
+                }
+                if (skipControl != txtLocation)
+                {
+                    varUpDownKeyLocation = 0;
+                    DGV_FilterLocation.DataSource = null;
+                    DGV_FilterLocation.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -308,7 +320,7 @@ namespace ROMS
                 lblNoRecordsFound.BringToFront();
 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (189,5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY CASE MSTID WHEN -1 THEN 1 WHEN 469 THEN 2 WHEN 468 THEN 3 ELSE 4 END", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
@@ -1451,6 +1463,12 @@ namespace ROMS
                     objDataBind = null;
                     cmbType.Enabled = true;
                 }
+                else if (Convert.ToInt32(cmbCategory.SelectedValue) == 625)  //Trading+Child
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbType.Enabled = false;
+                }
                 else
                 {
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
@@ -1694,9 +1712,8 @@ namespace ROMS
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
-                        objMR_Supplier.ViewType = 26;
+                        objMR_Supplier.ViewType = 15;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
-                        objMR_Supplier.paraFlag = 8;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -1715,6 +1732,7 @@ namespace ROMS
                                     DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
                                     DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
                                     DGV_FilterSupplier.Columns["SP_NAME"].Width = 260;
+                                    DGV_FilterSupplier.Columns["SP_NAME1"].Visible = false;
                                     DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
                                     DGV_FilterSupplier.BringToFront();
                                 }
@@ -2136,6 +2154,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtSearchByPICode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2178,6 +2197,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbSizeType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2255,6 +2275,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbPrintFormat.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

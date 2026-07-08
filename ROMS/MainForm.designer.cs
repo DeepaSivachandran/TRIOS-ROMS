@@ -259,9 +259,6 @@ namespace ROMS
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateChangeConfirmation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInvcount = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();

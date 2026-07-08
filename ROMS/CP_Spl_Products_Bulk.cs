@@ -43,7 +43,7 @@ namespace ROMS
         DataSet objDSBatchNo = new DataSet();
         DataSet objDSBatchNoGeneration = new DataSet();
 
-        DataTable objdtProducts = new DataTable(); 
+        DataTable objdtProducts = new DataTable();
         DataTable objdtProductsMapping = new DataTable();
         private ToolTip tpFiledtype = new ToolTip();
 
@@ -61,8 +61,8 @@ namespace ROMS
                   .Select(q => q.Value.ToString())
                   ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
-                DataBind objDataBind = new DataBind();  
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MST_TransactionID=136", "MST_DisplayText,MSTID,MST_ShortName", cmbFiledtype, "", "MST_DisplayText", "MSTID"); 
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MST_TransactionID=136", "MST_DisplayText,MSTID,MST_ShortName", cmbFiledtype, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbFiledtype.Focus();
             }
@@ -404,7 +404,9 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
+                                    ListViewItem objList = new ListViewItem(row); 
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvMappingGroup.Items.Add(objList);
                                 }
                                 lvMappingGroup.Visible = true;
@@ -439,7 +441,8 @@ namespace ROMS
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.paraBrandID = varBrandId;
-                if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 437) {
+                if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 437)
+                {
                     //// Priority
                     objMR_Product.paraFlag = 1;
                 }
@@ -516,22 +519,22 @@ namespace ROMS
                 {
                     lblNoRecordsFound.Visible = true;
                     objdtProducts.Rows.Clear();
-                    objdtProducts=null;
+                    objdtProducts = null;
                     lblNoRecordsFound.BringToFront();
                     //objdtProducts.AcceptChanges();
                     grdProducts.DataSource = objdtProducts;
                 }
                 if (objDs.Tables[1].Rows.Count > 0)
                 {
-                    if (grdFinalSupplierMapping.Rows.Count == 0) 
-                    { 
+                    if (grdFinalSupplierMapping.Rows.Count == 0)
+                    {
                         objdtProductsMapping = null;
-                        udfnInitMappedProduct(); 
+                        udfnInitMappedProduct();
                         grdFinalSupplierMapping.DataSource = null;
                     }
 
                     int varcount = 1;
-                  
+
                     if (grdFinalSupplierMapping.Rows.Count == 0)
                     {
                         for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
@@ -542,8 +545,8 @@ namespace ROMS
                             objDs.Tables[1].Rows[i]["GROUPID"].ToString().Replace("''", "'"), objDs.Tables[1].Rows[i]["SUBGROUPID"].ToString().Replace("''", "'"),
                             objDs.Tables[1].Rows[i]["PRODUCTID"].ToString().Replace("''", "'"), objDs.Tables[1].Rows[i]["Product Name in English"].ToString().Replace("''", "'"),
                              Convert.ToInt32(objDs.Tables[1].Rows[i]["Mapped Flag"].ToString())
-                            ); 
-                        } 
+                            );
+                        }
                     }
                     grdFinalSupplierMapping.DataSource = objdtProductsMapping;
                     //grdFinalSupplierMapping.Columns[0].Frozen = true;
@@ -589,7 +592,7 @@ namespace ROMS
             }
             finally
             {
-                SearchFlag = 0; 
+                SearchFlag = 0;
                 lblTotalProducts.Text = grdProducts.Rows.Count.ToString();
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
             }
@@ -781,6 +784,8 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvMappingSubGroup.Items.Add(objList);
                                 }
                                 lvMappingSubGroup.Visible = true;
@@ -854,6 +859,8 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString(), };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvBrand.Items.Add(objList);
                                 }
                                 lvBrand.Visible = true;
@@ -991,7 +998,7 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(cmbFiledtype.SelectedValue) == -1)
-                { 
+                {
                     errSpl.SetError(cmbFiledtype, "Please select field type");
                     cmbFiledtype.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpFiledtype.ShowAlways = true;
@@ -999,7 +1006,7 @@ namespace ROMS
                     return;
                 }
                 errSpl.Clear();
-                cmbFiledtype.BackColor=Color.White;
+                cmbFiledtype.BackColor = Color.White;
                 btnMappingView.Enabled = false;
                 if (txtMappingGroup.Text != "")
                 {
@@ -1071,8 +1078,6 @@ namespace ROMS
             try
             {
                 (grdProducts.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
-
-                
             }
             catch (Exception ex)
             {
@@ -1344,7 +1349,7 @@ namespace ROMS
                                 grdProducts.Columns["Product SubGroup"].Width = 170;
                                 grdProducts.Columns["GROUPID"].Visible = false;
                                 grdProducts.Columns["SUBGROUPID"].Visible = false;
-                                grdProducts.Columns["PRODUCTID"].Visible = false; 
+                                grdProducts.Columns["PRODUCTID"].Visible = false;
                                 grdProducts.Columns["Product Name in English"].Visible = false;
                                 grdProducts.Columns["S.No."].Visible = false;
 
@@ -1384,7 +1389,7 @@ namespace ROMS
         private void grdFinalSupplierMapping_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
-            { 
+            {
 
                 for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
                 {
@@ -1642,7 +1647,7 @@ namespace ROMS
             }
         }
 
-        private   void BtnaddMove_Click(object sender, EventArgs e)
+        private void BtnaddMove_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1666,15 +1671,15 @@ namespace ROMS
                 lblTotalProducts.Text = grdProducts.Rows.Count.ToString();
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
 
-               
-                
+
+
             }
         }
-        
 
-        
 
-        private   void btnRemove_Click(object sender, EventArgs e)
+
+
+        private void btnRemove_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1733,8 +1738,8 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 objdtProductsMapping.Rows.Add(false, Convert.ToInt32(objdtProductsMapping.Rows.Count) + 1, objdtProducts.Rows[i]["P.I Code"], objdtProducts.Rows[i]["Product Name in Tamil"], objdtProducts.Rows[i]["Unit"], objdtProducts.Rows[i]["Brand"], objdtProducts.Rows[i]["Product SubGroup"], objdtProducts.Rows[i]["Product Group"],
-                                objdtProducts.Rows[i]["GROUPID"], objdtProducts.Rows[i]["SUBGROUPID"], objdtProducts.Rows[i]["PRODUCTID"], objdtProducts.Rows[i]["Product Name in English"],1);
-                               
+                                objdtProducts.Rows[i]["GROUPID"], objdtProducts.Rows[i]["SUBGROUPID"], objdtProducts.Rows[i]["PRODUCTID"], objdtProducts.Rows[i]["Product Name in English"], 1);
+
                             }
                         }
                         else
@@ -1750,7 +1755,7 @@ namespace ROMS
                             }
                         }
                     }
-                    grdFinalSupplierMapping.DataSource = null; 
+                    grdFinalSupplierMapping.DataSource = null;
                     grdFinalSupplierMapping.DataSource = objdtProductsMapping;
                     //  grdFinalSupplierMapping.Columns[0].Frozen = true;
                     grdFinalSupplierMapping.Columns[0].HeaderText = "";
@@ -1762,7 +1767,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["Product SubGroup"].Width = 120;
                     grdFinalSupplierMapping.Columns["GROUPID"].Visible = false;
                     grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
-                    grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false; 
+                    grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
                     grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
                     grdProducts.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1775,11 +1780,11 @@ namespace ROMS
 
                     grdFinalSupplierMapping.Sort(grdFinalSupplierMapping.Columns["Mapped Flag"], ListSortDirection.Descending);
                     udfnsearchgridHead();
-                    udfnGridRemove(); 
+                    udfnGridRemove();
 
                     DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                     grdFinalSupplierMapping_DataBindingComplete(grdFinalSupplierMapping, args);
-                    
+
                 }
                 else
                 {
@@ -1824,14 +1829,14 @@ namespace ROMS
                     grdProducts.Rows[i].Cells[0].Value = false;
                 }
                 btnRemove.Enabled = true;
-                BtnaddMove.Enabled = false; 
+                BtnaddMove.Enabled = false;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
 
         private void btnMappingSelectAll_Click(object sender, EventArgs e)
         {
@@ -1859,7 +1864,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Rows[i].Cells[0].Value = false;
                 }
                 btnRemove.Enabled = false;
-                BtnaddMove.Enabled = true; 
+                BtnaddMove.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -1900,7 +1905,7 @@ namespace ROMS
         public void udfnGridRemove()
         {
             try
-            { 
+            {
                 HashSet<string> productIdsToRemove = new HashSet<string>();
                 foreach (DataGridViewRow row in grdFinalSupplierMapping.Rows)
                 {
@@ -1935,7 +1940,7 @@ namespace ROMS
 
         private void cmbFiledtype_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try  
+            try
             {
                 udfnClear();
                 //if (Convert.ToInt32(cmbFiledtype.SelectedValue) == -1)
@@ -1948,7 +1953,7 @@ namespace ROMS
                 //    return;
                 //}
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1957,7 +1962,8 @@ namespace ROMS
 
         private void btnMappingClose_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 udfnClose();
             }
             catch (Exception ex)
@@ -1972,7 +1978,7 @@ namespace ROMS
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
-                { 
+                {
                     windowControl?.TriggerClose();
                 }
             }
@@ -2015,7 +2021,7 @@ namespace ROMS
             {
                 if (grdFinalSupplierMapping.Rows.Count != 0)
                 {
-                    string result  = "", varOriginator = "";
+                    string result = "", varOriginator = "";
                     SPDataService objDSer = new SPDataService();
                     int flag = 0;
                     if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 437)
@@ -2045,7 +2051,7 @@ namespace ROMS
 
                     DataTable saveobjDtProductsMapping = objdtProductsMapping.DefaultView.ToTable(false, "PRODUCTID", "P.I Code");
 
-                    result = objDSer.udfnProductMaster(18, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID , MainForm.pbIpAddress, varOriginator, 0, null, flag, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, saveobjDtProductsMapping, 0, 0, 0, 0, null,0,"","", "", "","", 0, 0);
+                    result = objDSer.udfnProductMaster(18, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varOriginator, 0, null, flag, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, saveobjDtProductsMapping, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
                     objDSer.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -2061,7 +2067,8 @@ namespace ROMS
                     cmbFiledtype.SelectedIndex = 0;
                     cmbFiledtype.Focus();
                 }
-                else { 
+                else
+                {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(80);
                     objDServ.CloseConnection();
@@ -2137,7 +2144,7 @@ namespace ROMS
         }
 
         private void cmbFiledtype_Leave(object sender, EventArgs e)
-        { 
+        {
             try { cmbFiledtype.BackColor = Color.White; }
             catch (Exception ex)
             {
@@ -2160,7 +2167,8 @@ namespace ROMS
             }
         }
 
-        public void udfnProductRemove(object sender, EventArgs e) {
+        public void udfnProductRemove(object sender, EventArgs e)
+        {
 
             try
             {
@@ -2276,8 +2284,10 @@ namespace ROMS
             }
 
         }
-        public void udfnClear() {
-            try {
+        public void udfnClear()
+        {
+            try
+            {
                 objdtProducts.Rows.Clear();
                 objdtProductsMapping.Rows.Clear();
                 grdFinalSupplierMapping.DataSource = null;
@@ -2288,6 +2298,8 @@ namespace ROMS
                 varGroupId = 0;
                 varSubGroupId = 0;
                 varBrandId = 0;
+                lblTotalProducts.Text = grdProducts.Rows.Count.ToString();
+                lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -2295,15 +2307,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnSno() {
-            try {
-
+        public void udfnSno()
+        {
+            try
+            {
                 for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
                 {
                     grdFinalSupplierMapping.Rows[i].Cells["S.No."].Value = i + 1;
                 }
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
