@@ -359,7 +359,7 @@
             this.groupBox4.Size = new System.Drawing.Size(368, 503);
             this.groupBox4.TabIndex = 1111185;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "All Menus";
+            this.groupBox4.Text = "Mapped Menus";
             // 
             // tvMappedMenus
             // 

@@ -163,9 +163,10 @@ namespace ROMS
                             grdUserList.Columns["StatusID"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50; 
                             grdUserList.Columns["Status"].Width = 80;
-                            grdUserList.Columns["Created On"].Width = 180;
-                            grdUserList.Columns["Updated On"].Width = 180;
+                            grdUserList.Columns["Created By"].Width = 220;
+                            grdUserList.Columns["Updated By"].Width = 220;
                             grdUserList.Columns["MainMenu Count"].Width = 110;
+                            grdUserList.Columns["SP Modify Count"].Width = 110;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Total User"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -173,6 +174,8 @@ namespace ROMS
                             grdUserList.Columns["Level1 Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdUserList.Columns["Level2 Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdUserList.Columns["Level2 Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdUserList.Columns["SP View Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdUserList.Columns["SP Modify Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
