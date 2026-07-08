@@ -33,6 +33,8 @@ namespace ROMS
 
         public int varFormFlag = 0, varCurrentUserId = 0, varUsersCount = 0, varCloneUserRoleID = 0;
         public MainForm MainObj { get; set; }
+        private DataTable dtMenus;
+
         public CP_UserRole()
         {
             InitializeComponent();
@@ -42,7 +44,9 @@ namespace ROMS
         {
             try
             {
-
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("(SELECT 0 AS MU_Code, '- All -' AS MU_Name " + "UNION ALL " + "SELECT MU_Code, MU_Name FROM DEF_MENU WHERE COALESCE(MU_ParentMenuCode,0)=0) AS M", "1=1 ORDER BY MU_Code", "MU_Name,MU_Code", cmbMenus, "", "MU_Name", "MU_Code");
+                objDataBind = null;
                 objdtMR_UserRole_Menu_SPL_Access.TableName = "MR_UserRole_Menu_SPL_Access";
                 objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_Menuid", typeof(int));
                 objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_ViewAccess", typeof(int));
@@ -96,6 +100,7 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            dtMenus = objDs.Tables[0];
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
@@ -681,6 +686,7 @@ namespace ROMS
                                     {
                                         if (objDs.Tables[0].Rows.Count != 0)
                                         {
+                                            dtMenus = objDs.Tables[0];
                                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                             {
                                                 grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
@@ -1550,6 +1556,144 @@ namespace ROMS
             }
         }
 
+        private void cmbMenus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMenus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMenus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMenus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMenus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                  cmbMenus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMenus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnFilter();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GetChildMenus(int parentCode, List<int> menuCodes)
+        {
+            try
+            {
+                var childRows = dtMenus.AsEnumerable().Where(r => !Convert.IsDBNull(r["MU_ParentMenuCode"]) &&
+                                Convert.ToInt32(r["MU_ParentMenuCode"]) == parentCode);
+
+                foreach (DataRow row in childRows)
+                {
+                    int menuCode = Convert.ToInt32(row["Menu Code"]);
+
+                    if (!menuCodes.Contains(menuCode))
+                    {
+                        menuCodes.Add(menuCode);
+                        GetChildMenus(menuCode, menuCodes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFilter()
+        {
+            try
+            {
+                if (cmbMenus.SelectedValue == null)
+                    return;
+                if (tbFirst.SelectedIndex == 0)
+                    return;
+                if (Convert.ToInt32(cmbMenus.SelectedValue) != 0)
+                {
+                    int parentCode = Convert.ToInt32(cmbMenus.SelectedValue);
+
+                    // Show all menus when "All" is selected
+                    if (parentCode == 0)
+                    {
+                        foreach (DataGridViewRow row in grdUserPermission.Rows)
+                            row.Visible = true;
+
+                        return;
+                    }
+
+                    List<int> menuCodes = new List<int>();
+
+                    // Include the selected parent
+                    menuCodes.Add(parentCode);
+
+                    // Include all children and grandchildren
+                    GetChildMenus(parentCode, menuCodes);
+
+                    foreach (DataGridViewRow row in grdUserPermission.Rows)
+                    {
+                        int menuCode = Convert.ToInt32(row.Cells["clmMenuId"].Value);
+                        row.Visible = menuCodes.Contains(menuCode);
+                    }
+                }
+                else
+                {
+                    foreach (DataGridViewRow row in grdUserPermission.Rows)
+                    {
+                        row.Visible = true;
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void txtMenuName_Leave(object sender, EventArgs e)
         {
             try

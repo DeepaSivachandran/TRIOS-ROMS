@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -61,11 +61,6 @@
             this.grpUserPermission = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdUserPermission = new System.Windows.Forms.DataGridView();
-            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmMenuname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFullAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmViewchk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -81,6 +76,12 @@
             this.clmPrivilegeCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsplflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewImageColumn();
+            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cmbMenus = new System.Windows.Forms.ComboBox();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.pnlUserRole.SuspendLayout();
@@ -133,6 +134,7 @@
             // 
             // pnlUserRole
             // 
+            this.pnlUserRole.Controls.Add(this.cmbMenus);
             this.pnlUserRole.Controls.Add(this.label4);
             this.pnlUserRole.Controls.Add(this.txtMenuName);
             this.pnlUserRole.Controls.Add(this.btnMappedUser);
@@ -151,7 +153,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(842, 16);
+            this.label4.Location = new System.Drawing.Point(903, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 24;
@@ -160,10 +162,11 @@
             // txtMenuName
             // 
             this.txtMenuName.BackColor = System.Drawing.Color.White;
-            this.txtMenuName.Location = new System.Drawing.Point(920, 13);
+            this.txtMenuName.Location = new System.Drawing.Point(593, 13);
             this.txtMenuName.Name = "txtMenuName";
             this.txtMenuName.Size = new System.Drawing.Size(218, 27);
             this.txtMenuName.TabIndex = 23;
+            this.txtMenuName.Visible = false;
             this.txtMenuName.TextChanged += new System.EventHandler(this.txtMenuName_TextChanged);
             this.txtMenuName.Enter += new System.EventHandler(this.txtMenuName_Enter);
             this.txtMenuName.Leave += new System.EventHandler(this.txtMenuName_Leave);
@@ -418,14 +421,14 @@
             this.grdUserPermission.AllowUserToResizeRows = false;
             this.grdUserPermission.BackgroundColor = System.Drawing.Color.White;
             this.grdUserPermission.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.grdUserPermission.ColumnHeadersHeight = 30;
             this.grdUserPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdUserPermission.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -444,23 +447,23 @@
             this.clmPrivilegeCode,
             this.clmsplflag,
             this.Action});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle23;
             this.grdUserPermission.EnableHeadersVisualStyles = false;
             this.grdUserPermission.GridColor = System.Drawing.Color.White;
             this.grdUserPermission.Location = new System.Drawing.Point(6, 20);
             this.grdUserPermission.Name = "grdUserPermission";
             this.grdUserPermission.RowHeadersVisible = false;
             this.grdUserPermission.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.grdUserPermission.RowTemplate.Height = 25;
             this.grdUserPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUserPermission.ShowRowErrors = false;
@@ -473,41 +476,6 @@
             this.grdUserPermission.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdUserPermission_CurrentCellDirtyStateChanged);
             this.grdUserPermission.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdUserPermission_DataBindingComplete);
             this.grdUserPermission.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.grdUserPermission_DefaultValuesNeeded);
-            // 
-            // epCompany
-            // 
-            this.epCompany.ContainerControl = this;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Edit";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn1.MinimumWidth = 6;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 120;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Remove";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Width = 80;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "Edit";
-            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "Remove";
-            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // clmMenuname
             // 
@@ -599,6 +567,58 @@
             this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Action.Width = 120;
             // 
+            // epCompany
+            // 
+            this.epCompany.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Edit";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 120;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Width = 80;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Edit";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Remove";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cmbMenus
+            // 
+            this.cmbMenus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMenus.FormattingEnabled = true;
+            this.cmbMenus.Items.AddRange(new object[] {
+            "MDU Road"});
+            this.cmbMenus.Location = new System.Drawing.Point(981, 13);
+            this.cmbMenus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbMenus.Name = "cmbMenus";
+            this.cmbMenus.Size = new System.Drawing.Size(157, 27);
+            this.cmbMenus.TabIndex = 25;
+            this.cmbMenus.SelectedIndexChanged += new System.EventHandler(this.cmbMenus_SelectedIndexChanged);
+            this.cmbMenus.Enter += new System.EventHandler(this.cmbMenus_Enter);
+            this.cmbMenus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMenus_KeyDown);
+            this.cmbMenus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMenus_KeyPress);
+            this.cmbMenus.Leave += new System.EventHandler(this.cmbMenus_Leave);
+            // 
             // CP_UserRole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -688,5 +708,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrivilegeCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsplflag;
         private System.Windows.Forms.DataGridViewImageColumn Action;
+        private System.Windows.Forms.ComboBox cmbMenus;
     }
 }
