@@ -192,6 +192,12 @@
     <Compile Include="CP_AddressBook.designer.cs">
       <DependentUpon>CP_AddressBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Bulk_Image_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Bulk_Image_Update.designer.cs">
+      <DependentUpon>CP_Bulk_Image_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_ContactGrouplist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4695,6 +4701,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_AddressBook.resx">
       <DependentUpon>CP_AddressBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Bulk_Image_Update.resx">
+      <DependentUpon>CP_Bulk_Image_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ContactGrouplist.resx">
       <DependentUpon>CP_ContactGrouplist.cs</DependentUpon>
