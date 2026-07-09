@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Bulk_Image_Update));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,6 +45,7 @@
             this.tsbBrowse = new System.Windows.Forms.ToolStripButton();
             this.grbSubgroups = new System.Windows.Forms.GroupBox();
             this.tvSubgroupProducts = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.flpSubGroups = new System.Windows.Forms.FlowLayoutPanel();
             this.grdSubgroups = new System.Windows.Forms.DataGridView();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -135,6 +138,9 @@
             this.btnSave.Text = "Upload";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
             // pnlImageContainer
             // 
@@ -192,10 +198,20 @@
             // tvSubgroupProducts
             // 
             this.tvSubgroupProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvSubgroupProducts.ImageIndex = 0;
+            this.tvSubgroupProducts.ImageList = this.imageList1;
             this.tvSubgroupProducts.Location = new System.Drawing.Point(9, 353);
             this.tvSubgroupProducts.Name = "tvSubgroupProducts";
+            this.tvSubgroupProducts.SelectedImageIndex = 0;
             this.tvSubgroupProducts.Size = new System.Drawing.Size(623, 270);
             this.tvSubgroupProducts.TabIndex = 1111145;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Folder.png");
+            this.imageList1.Images.SetKeyName(1, "Product.png");
             // 
             // flpSubGroups
             // 
@@ -394,5 +410,6 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.FlowLayoutPanel flpSubGroups;
         private System.Windows.Forms.TreeView tvSubgroupProducts;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

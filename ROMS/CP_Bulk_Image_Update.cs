@@ -126,7 +126,7 @@ namespace ROMS
 
                 BindTree(ds.Tables[0]);
 
-                tvSubgroupProducts.ExpandAll();
+                tvSubgroupProducts.CollapseAll();
                 if (tvSubgroupProducts.Nodes.Count > 0)
                 {
                     tvSubgroupProducts.Nodes[0].EnsureVisible();
@@ -142,34 +142,49 @@ namespace ROMS
         }
         private void BindTree(DataTable dt)
         {
-            TreeNode parentNode = null;
+            tvSubgroupProducts.Nodes.Clear();
 
-            int previousID = -1;
+            tvSubgroupProducts.ImageList = imageList1;
+
+            Dictionary<int, TreeNode> groups = new Dictionary<int, TreeNode>();
 
             foreach (DataRow row in dt.Rows)
             {
                 int subgroupID = Convert.ToInt32(row["PR_PRSGID"]);
+                string subgroup = row["Subgroup"].ToString();
+                string product = row["Product"].ToString();
 
-                if (previousID != subgroupID)
+                TreeNode parentNode;
+
+                if (!groups.ContainsKey(subgroupID))
                 {
-                    parentNode = new TreeNode(row["Subgroup"].ToString());
+                    parentNode = new TreeNode(subgroup);
 
-                    parentNode.Name = subgroupID.ToString();
-
-                    //Store subgroup id if required
                     parentNode.Tag = subgroupID;
 
-                    tvSubgroupProducts.Nodes.Add(parentNode);
+                    parentNode.ImageKey = "Folder.png";
+                    parentNode.SelectedImageKey = "Folder.png";
 
-                    previousID = subgroupID;
+                    groups.Add(subgroupID, parentNode);
+
+                    tvSubgroupProducts.Nodes.Add(parentNode);
+                }
+                else
+                {
+                    parentNode = groups[subgroupID];
                 }
 
-                TreeNode childNode = new TreeNode(row["Product"].ToString());
+                TreeNode child = new TreeNode(product);
 
-                childNode.Tag = subgroupID;
+                child.Tag = subgroupID;
 
-                parentNode.Nodes.Add(childNode);
+                child.ImageKey = "Product.png";
+                child.SelectedImageKey = "Product.png";
+
+                parentNode.Nodes.Add(child);
             }
+
+            tvSubgroupProducts.CollapseAll();
         }
         private void grdSubgroups_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -185,6 +200,90 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Save logic here
+                udfnSave();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSave()
+        {
+            try
+            {
+                btnSave.Enabled = false;
+                string varResult = ""; string varOriginator = "Product Sub Group Image Mapping";
+                
+                SPDataService objDser = new SPDataService();
+                if (grdSubgroups.Rows.Count > 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(60);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                }
+                else
+                {
+                    varResult = objDser.udfnSubGroup(3, 0, 0, "", "", 0, 0, 0, 0, varOriginator, "", MainForm.pbUserID, 0, 0, 0, "", "");
+                    objDser.CloseConnection();
+                    btnSave.Enabled = true;
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
         }
     }

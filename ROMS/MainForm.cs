@@ -4536,8 +4536,9 @@ namespace ROMS
                 MainForm.objCP_Spl_Products_Bulk = new CP_Spl_Products_Bulk();
                 MainForm.objCP_Spl_Products_Bulk.pbMenuFlag = 1;
                 OpenReportForm(ref MainForm.objCP_Spl_Products_Bulk, "CP_Spl_Products_Bulk", 50507);
-                //objCP_Spl_Products_Bulk.Text = "Product Classification";
-                //objCP_Spl_Products_Bulk.tspHeader.Text = "Product Classification";
+
+                //OpenReportForm(ref MainForm.objCP_Bulk_Image_Update, "CP_Bulk_Image_Update", 50507);
+
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)

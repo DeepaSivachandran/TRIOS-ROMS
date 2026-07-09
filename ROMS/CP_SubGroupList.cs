@@ -428,7 +428,7 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objDser = new SPDataService();
-                            string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID, 0, 0,0);
+                            string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID, 0, 0,0, "", "");
                             objDser.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -440,7 +440,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objDser = new SPDataService();
-                                        varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID, 1, 0,0);
+                                        varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID, 1, 0,0, "", "");
                                         objDser.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
