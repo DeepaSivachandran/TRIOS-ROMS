@@ -34,5 +34,6 @@ namespace ROMS.Model
         public int paraTellerID { get; set; } = 0; 
         public int paraFlag { get; set; } = 0; 
         public string paraLocationIDs { get; set; } = ""; 
+        public string paraProductIDs { get; set; } = ""; 
     }
 }

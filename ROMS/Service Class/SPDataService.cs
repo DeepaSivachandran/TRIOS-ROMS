@@ -832,6 +832,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", MainForm.pbUserMappedLocationIds);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNG_StockRequest.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraLocationIDs", objTRNG_StockRequest.paraLocationIDs);
+                varSqlCommand.Parameters.AddWithValue("@paraProductIDs", objTRNG_StockRequest.paraProductIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
