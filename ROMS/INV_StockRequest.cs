@@ -156,7 +156,7 @@ namespace ROMS
             }
         }
         private void udfnAddDuplicateSNoColumn()
-        {
+        { 
             try
             {
                 // Avoid duplicate adding
@@ -171,10 +171,7 @@ namespace ROMS
                     dupCol.ReadOnly = true;
                     dupCol.Visible = true;
 
-                    grdStockRequest.Columns.Insert(
-                        grdStockRequest.Columns["clmRequiredQty"].Index,
-                        dupCol
-                    );
+                    grdStockRequest.Columns.Insert(grdStockRequest.Columns["clmRequiredQty"].Index,  dupCol );
                 }
             }
             catch (Exception ex)
@@ -1712,7 +1709,7 @@ namespace ROMS
         {
             try
             {
-                errStockRequest.Clear(); varErrQty = "0";
+                errStockRequest.Clear(); varErrQty = "0";int varLocationError = 0; 
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
@@ -1738,7 +1735,7 @@ namespace ROMS
                         );
                 if (count!=0)
                 {
-                    varErrQty = "1";
+                    varErrQty = "1"; varLocationError = 1;
                 }
 
                 if (chkRackGroup.Checked == false)
@@ -1776,11 +1773,21 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbRequestType.SelectedValue) == -1)
                 {
-                    errStockRequest.SetError(cmbRequestType, "Please select request type.");
-                    cmbRequestType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpType.ShowAlways = true;
-                    tpType.Show("Please select request type.", cmbRequestType, 5000);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
+                    return;
+                }
+                if (varLocationError==1)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(237);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                    return;
                 }
                 //if (Convert.ToInt32(cmbRequestType.SelectedValue) == 562 && txtGeneralBillNo.Text.Trim() == "")
                 //{
@@ -3202,7 +3209,43 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnProductClear()
+        {
+            try
+            {
+                if (varProductsIDs?.Count > 0)
+                {
+                    HashSet<int> productIds = new HashSet<int>(varProductsIDs);
 
+                    for (int i = dtStock.Rows.Count - 1; i >= 0; i--)
+                    {
+                        if (!productIds.Contains(Convert.ToInt32(dtStock.Rows[i]["SRQ_PRID"])))
+                        {
+                            dtStock.Rows.RemoveAt(i);
+                        }
+                    }
+                    for (int i = grdStockRequest.Rows.Count - 1; i >= 0; i--)
+                    {
+                        int prId = Convert.ToInt32(grdStockRequest.Rows[i].Cells["clmPRID"].Value);
+
+                        if (!productIds.Contains(prId))
+                        { 
+                            grdStockRequest.Rows.RemoveAt(i);
+                        }
+                    }
+                }
+                else
+                {
+                    grdStockRequest.Rows.Clear();
+                    dtStock.Rows.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void LoadProductByRackGroup()
         {
             try
@@ -3243,6 +3286,7 @@ namespace ROMS
                 {
                     //grdStockRequest.Rows.Clear();
                     //dtStock.Rows.Clear();
+                    udfnProductClear();
                     if (objDs.Tables[1].Rows.Count > 0)
                     {
                         dtLocation = objDs.Tables[1];
@@ -3253,7 +3297,8 @@ namespace ROMS
                         int shopFlag = 0,PRID=0;
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
-                            grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["RK_ShortName"]),
+                            int rowindex = Convert.ToInt16(grdStockRequest.Rows.Count);
+                            grdStockRequest.Rows.Add(grdStockRequest.Rows.Count+1, Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["RK_ShortName"]),
                                 Convert.ToString(objDs.Tables[0].Rows[i]["EMP_Name"]), "", grdStockRequest.Rows.Count + 1, "", Convert.ToString(objDs.Tables[0].Rows[i]["UT_Symbol"]), "",
                                 Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]),Convert.ToInt16(objDs.Tables[0].Rows[i]["ShopFlag"])); 
                             dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["RKID"]), 0, 0);
@@ -3263,26 +3308,30 @@ namespace ROMS
 
                             if (shopFlag == 1)
                             { 
+                                
                                 var rows = dtLocation.AsEnumerable().Where(x => x.Field<int>("PRID") == PRID); 
                                 dtStockLocation = dtLocation.Clone();
                                 if (rows.Any())
                                 {
                                     dtStockLocation = rows.CopyToDataTable();
                                 }
-                                DataGridViewComboBoxCell cmb = (DataGridViewComboBoxCell)grdStockRequest.Rows[i].Cells["clmLoc"];
-                                 
-                                cmb.DisplayMember = "Location";
-                                cmb.ValueMember = "LocationID";
-                                cmb.DataSource = dtStockLocation; 
-                                grdStockRequest.Rows[i].Cells["clmLoc"].Value = -1;
+                                if (dtStockLocation.Rows.Count > 0)
+                                {
+                                    DataGridViewComboBoxCell cmb = (DataGridViewComboBoxCell)grdStockRequest.Rows[rowindex].Cells["clmLoc"];
+
+                                    cmb.DisplayMember = "Location";
+                                    cmb.ValueMember = "LocationID";
+                                    cmb.DataSource = dtStockLocation;
+                                    grdStockRequest.Rows[rowindex].Cells["clmLoc"].Value = -1;
+                                }
                             }
                             else
                             {
                                 DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
                                 textBoxCell.Value = ""; // or any string value
-                                grdStockRequest.Rows[i].Cells["clmLoc"] = textBoxCell;
-                                grdStockRequest.Rows[i].Cells["clmLoc"].ReadOnly = true;
-                                grdStockRequest.Rows[i].Cells["clmLoc"].Style.BackColor = Color.LightGray;
+                                grdStockRequest.Rows[rowindex].Cells["clmLoc"] = textBoxCell;
+                                grdStockRequest.Rows[rowindex].Cells["clmLoc"].ReadOnly = true;
+                                grdStockRequest.Rows[rowindex].Cells["clmLoc"].Style.BackColor = Color.LightGray;
                             } 
                         }
                         ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
