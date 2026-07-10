@@ -42,16 +42,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockRequest = new System.Windows.Forms.ToolStrip();
             this.tspStockRequest = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlStockRequest = new System.Windows.Forms.Panel();
             this.grpStockRequest = new System.Windows.Forms.GroupBox();
             this.lblProductTamil = new System.Windows.Forms.Label();
-            this.txtStockUnit = new System.Windows.Forms.TextBox();
             this.txtReqUnit = new System.Windows.Forms.TextBox();
             this.cmbRackGroup = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
@@ -93,23 +92,6 @@
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.lblRemarks = new System.Windows.Forms.Label();
             this.grdStockRequest = new System.Windows.Forms.DataGridView();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRackGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmIncharge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSnoDup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRequiredQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtStockQty = new System.Windows.Forms.TextBox();
             this.lblStock = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
@@ -120,7 +102,29 @@
             this.lblRackGroup = new System.Windows.Forms.Label();
             this.lblDEProductName = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.txtStockUnit = new System.Windows.Forms.TextBox();
             this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbLocation = new System.Windows.Forms.ComboBox();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmLoc = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.clmShopFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRequiredQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSnoDup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmIncharge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRackGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -182,12 +186,13 @@
             // grpStockRequest
             // 
             this.grpStockRequest.BackColor = System.Drawing.Color.White;
+            this.grpStockRequest.Controls.Add(this.cmbLocation);
+            this.grpStockRequest.Controls.Add(this.lblLocation);
             this.grpStockRequest.Controls.Add(this.lblProductTamil);
             this.grpStockRequest.Controls.Add(this.txtReqUnit);
             this.grpStockRequest.Controls.Add(this.cmbRackGroup);
             this.grpStockRequest.Controls.Add(this.btnView);
             this.grpStockRequest.Controls.Add(this.QrcodeImg);
-            this.grpStockRequest.Controls.Add(this.lvVerified);
             this.grpStockRequest.Controls.Add(this.txttotalUnits);
             this.grpStockRequest.Controls.Add(this.label2);
             this.grpStockRequest.Controls.Add(this.DGV_FilterProduct);
@@ -230,32 +235,23 @@
             this.grpStockRequest.Controls.Add(this.lblDEProductName);
             this.grpStockRequest.Controls.Add(this.picLoader);
             this.grpStockRequest.Controls.Add(this.txtStockUnit);
+            this.grpStockRequest.Controls.Add(this.lvVerified);
             this.grpStockRequest.Location = new System.Drawing.Point(12, 3);
             this.grpStockRequest.Name = "grpStockRequest";
             this.grpStockRequest.Size = new System.Drawing.Size(1329, 634);
             this.grpStockRequest.TabIndex = 0;
             this.grpStockRequest.TabStop = false;
+            this.grpStockRequest.Enter += new System.EventHandler(this.grpStockRequest_Enter);
             // 
             // lblProductTamil
             // 
             this.lblProductTamil.AutoSize = true;
-            this.lblProductTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductTamil.ForeColor = System.Drawing.Color.ForestGreen;
             this.lblProductTamil.Location = new System.Drawing.Point(236, 78);
             this.lblProductTamil.Name = "lblProductTamil";
-            this.lblProductTamil.Size = new System.Drawing.Size(0, 18);
+            this.lblProductTamil.Size = new System.Drawing.Size(0, 20);
             this.lblProductTamil.TabIndex = 1110001037;
-            // 
-            // txtStockUnit
-            // 
-            this.txtStockUnit.Enabled = false;
-            this.txtStockUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockUnit.Location = new System.Drawing.Point(732, 48);
-            this.txtStockUnit.MaxLength = 50;
-            this.txtStockUnit.Name = "txtStockUnit";
-            this.txtStockUnit.ReadOnly = true;
-            this.txtStockUnit.Size = new System.Drawing.Size(50, 27);
-            this.txtStockUnit.TabIndex = 1110001036;
-            this.txtStockUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtReqUnit
             // 
@@ -265,7 +261,7 @@
             this.txtReqUnit.MaxLength = 50;
             this.txtReqUnit.Name = "txtReqUnit";
             this.txtReqUnit.ReadOnly = true;
-            this.txtReqUnit.Size = new System.Drawing.Size(50, 27);
+            this.txtReqUnit.Size = new System.Drawing.Size(84, 27);
             this.txtReqUnit.TabIndex = 1110001035;
             this.txtReqUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -384,7 +380,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(236, 75);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(236, 79);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -434,7 +430,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchStock.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_SearchStock.RowTemplate.Height = 25;
-            this.DGV_SearchStock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchStock.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchStock.ShowRowErrors = false;
             this.DGV_SearchStock.Size = new System.Drawing.Size(1305, 56);
@@ -462,7 +458,7 @@
             this.chbCompleted.Location = new System.Drawing.Point(669, 592);
             this.chbCompleted.Name = "chbCompleted";
             this.chbCompleted.Size = new System.Drawing.Size(86, 24);
-            this.chbCompleted.TabIndex = 1110001029;
+            this.chbCompleted.TabIndex = 13;
             this.chbCompleted.Text = "Completed";
             this.chbCompleted.UseVisualStyleBackColor = true;
             this.chbCompleted.Visible = false;
@@ -619,11 +615,11 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1028, 48);
+            this.btnAdd.Location = new System.Drawing.Point(1287, 49);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 10;
+            this.btnAdd.TabIndex = 11;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -799,7 +795,7 @@
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(466, 42);
-            this.txtRemarks.TabIndex = 11;
+            this.txtRemarks.TabIndex = 12;
             this.txtRemarks.Enter += new System.EventHandler(this.TxtRemarks_Enter);
             this.txtRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemarks_KeyDown);
             this.txtRemarks.Leave += new System.EventHandler(this.TxtRemarks_Leave);
@@ -850,6 +846,8 @@
             this.clmPRID,
             this.clmStatusID,
             this.clmSLID,
+            this.clmShopFlag,
+            this.clmLoc,
             this.clmRemove});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
@@ -881,165 +879,6 @@
             this.grdStockRequest.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockRequest_DataBindingComplete);
             this.grdStockRequest.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdStockRequest_EditingControlShowing);
             this.grdStockRequest.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdStockRequest_Scroll);
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.MinimumWidth = 6;
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmSno.Width = 50;
-            // 
-            // clmPICode
-            // 
-            this.clmPICode.HeaderText = "P.I Code";
-            this.clmPICode.MinimumWidth = 6;
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
-            this.clmPICode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmPICode.Width = 125;
-            // 
-            // clmProductnameInEnglish
-            // 
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12.25F);
-            this.clmProductnameInEnglish.DefaultCellStyle = dataGridViewCellStyle11;
-            this.clmProductnameInEnglish.HeaderText = "Product Name";
-            this.clmProductnameInEnglish.MinimumWidth = 6;
-            this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
-            this.clmProductnameInEnglish.ReadOnly = true;
-            this.clmProductnameInEnglish.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmProductnameInEnglish.Width = 300;
-            // 
-            // clmPurLocation
-            // 
-            this.clmPurLocation.HeaderText = "Location";
-            this.clmPurLocation.Name = "clmPurLocation";
-            this.clmPurLocation.ReadOnly = true;
-            this.clmPurLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmRackGroup
-            // 
-            this.clmRackGroup.HeaderText = "Rack Group";
-            this.clmRackGroup.MinimumWidth = 6;
-            this.clmRackGroup.Name = "clmRackGroup";
-            this.clmRackGroup.ReadOnly = true;
-            this.clmRackGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRackGroup.Width = 80;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.MinimumWidth = 6;
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRack.Width = 80;
-            // 
-            // clmIncharge
-            // 
-            this.clmIncharge.HeaderText = "Rack In-charge";
-            this.clmIncharge.MinimumWidth = 6;
-            this.clmIncharge.Name = "clmIncharge";
-            this.clmIncharge.ReadOnly = true;
-            this.clmIncharge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmIncharge.Width = 250;
-            // 
-            // clmStockQty
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmStockQty.DefaultCellStyle = dataGridViewCellStyle12;
-            this.clmStockQty.HeaderText = "Stock Qty";
-            this.clmStockQty.MinimumWidth = 6;
-            this.clmStockQty.Name = "clmStockQty";
-            this.clmStockQty.ReadOnly = true;
-            this.clmStockQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmStockQty.Visible = false;
-            this.clmStockQty.Width = 125;
-            // 
-            // clmSnoDup
-            // 
-            this.clmSnoDup.HeaderText = "S.No.";
-            this.clmSnoDup.Name = "clmSnoDup";
-            this.clmSnoDup.Width = 50;
-            // 
-            // clmRequiredQty
-            // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
-            this.clmRequiredQty.DefaultCellStyle = dataGridViewCellStyle13;
-            this.clmRequiredQty.HeaderText = "Required Qty";
-            this.clmRequiredQty.MaxInputLength = 8;
-            this.clmRequiredQty.MinimumWidth = 6;
-            this.clmRequiredQty.Name = "clmRequiredQty";
-            this.clmRequiredQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRequiredQty.Width = 125;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.MinimumWidth = 6;
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUnit.Width = 70;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.MinimumWidth = 6;
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            this.clmStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmStatus.Visible = false;
-            this.clmStatus.Width = 125;
-            // 
-            // clmUTDecimal
-            // 
-            this.clmUTDecimal.HeaderText = "Unit Decimal";
-            this.clmUTDecimal.MinimumWidth = 6;
-            this.clmUTDecimal.Name = "clmUTDecimal";
-            this.clmUTDecimal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUTDecimal.Visible = false;
-            this.clmUTDecimal.Width = 10;
-            // 
-            // clmPRID
-            // 
-            this.clmPRID.HeaderText = "PRID";
-            this.clmPRID.MinimumWidth = 6;
-            this.clmPRID.Name = "clmPRID";
-            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmPRID.Visible = false;
-            this.clmPRID.Width = 125;
-            // 
-            // clmStatusID
-            // 
-            this.clmStatusID.HeaderText = "Status ID";
-            this.clmStatusID.MinimumWidth = 6;
-            this.clmStatusID.Name = "clmStatusID";
-            this.clmStatusID.ReadOnly = true;
-            this.clmStatusID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmStatusID.Visible = false;
-            this.clmStatusID.Width = 125;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            this.clmSLID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.MinimumWidth = 6;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Width = 50;
             // 
             // txtStockQty
             // 
@@ -1163,9 +1002,220 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // txtStockUnit
+            // 
+            this.txtStockUnit.Enabled = false;
+            this.txtStockUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockUnit.Location = new System.Drawing.Point(732, 48);
+            this.txtStockUnit.MaxLength = 50;
+            this.txtStockUnit.Name = "txtStockUnit";
+            this.txtStockUnit.ReadOnly = true;
+            this.txtStockUnit.Size = new System.Drawing.Size(50, 27);
+            this.txtStockUnit.TabIndex = 1110001036;
+            this.txtStockUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // errStockRequest
             // 
             this.errStockRequest.ContainerControl = this;
+            // 
+            // cmbLocation
+            // 
+            this.cmbLocation.Enabled = false;
+            this.cmbLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLocation.FormattingEnabled = true;
+            this.cmbLocation.Location = new System.Drawing.Point(1124, 49);
+            this.cmbLocation.Name = "cmbLocation";
+            this.cmbLocation.Size = new System.Drawing.Size(151, 27);
+            this.cmbLocation.TabIndex = 10;
+            this.cmbLocation.Enter += new System.EventHandler(this.cmbLocation_Enter);
+            this.cmbLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbLocation_KeyDown);
+            this.cmbLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbLocation_KeyPress);
+            this.cmbLocation.Leave += new System.EventHandler(this.cmbLocation_Leave);
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(1057, 50);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(54, 20);
+            this.lblLocation.TabIndex = 1110001039;
+            this.lblLocation.Text = "Location";
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.MinimumWidth = 6;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.Width = 50;
+            // 
+            // clmLoc
+            // 
+            this.clmLoc.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.clmLoc.HeaderText = "Loaction";
+            this.clmLoc.Name = "clmLoc";
+            this.clmLoc.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmLoc.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // clmShopFlag
+            // 
+            this.clmShopFlag.HeaderText = "Shop Flag";
+            this.clmShopFlag.Name = "clmShopFlag";
+            this.clmShopFlag.ReadOnly = true;
+            this.clmShopFlag.Visible = false;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            this.clmSLID.Visible = false;
+            // 
+            // clmStatusID
+            // 
+            this.clmStatusID.HeaderText = "Status ID";
+            this.clmStatusID.MinimumWidth = 6;
+            this.clmStatusID.Name = "clmStatusID";
+            this.clmStatusID.ReadOnly = true;
+            this.clmStatusID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmStatusID.Visible = false;
+            this.clmStatusID.Width = 125;
+            // 
+            // clmPRID
+            // 
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.MinimumWidth = 6;
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPRID.Visible = false;
+            this.clmPRID.Width = 125;
+            // 
+            // clmUTDecimal
+            // 
+            this.clmUTDecimal.HeaderText = "Unit Decimal";
+            this.clmUTDecimal.MinimumWidth = 6;
+            this.clmUTDecimal.Name = "clmUTDecimal";
+            this.clmUTDecimal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUTDecimal.Visible = false;
+            this.clmUTDecimal.Width = 10;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.MinimumWidth = 6;
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmStatus.Visible = false;
+            this.clmStatus.Width = 125;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.MinimumWidth = 6;
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUnit.Width = 70;
+            // 
+            // clmRequiredQty
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            this.clmRequiredQty.DefaultCellStyle = dataGridViewCellStyle13;
+            this.clmRequiredQty.HeaderText = "Required Qty";
+            this.clmRequiredQty.MaxInputLength = 8;
+            this.clmRequiredQty.MinimumWidth = 6;
+            this.clmRequiredQty.Name = "clmRequiredQty";
+            this.clmRequiredQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRequiredQty.Width = 125;
+            // 
+            // clmSnoDup
+            // 
+            this.clmSnoDup.HeaderText = "S.No.";
+            this.clmSnoDup.Name = "clmSnoDup";
+            this.clmSnoDup.Width = 50;
+            // 
+            // clmStockQty
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmStockQty.DefaultCellStyle = dataGridViewCellStyle12;
+            this.clmStockQty.HeaderText = "Stock Qty";
+            this.clmStockQty.MinimumWidth = 6;
+            this.clmStockQty.Name = "clmStockQty";
+            this.clmStockQty.ReadOnly = true;
+            this.clmStockQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmStockQty.Visible = false;
+            this.clmStockQty.Width = 125;
+            // 
+            // clmIncharge
+            // 
+            this.clmIncharge.HeaderText = "Rack In-charge";
+            this.clmIncharge.MinimumWidth = 6;
+            this.clmIncharge.Name = "clmIncharge";
+            this.clmIncharge.ReadOnly = true;
+            this.clmIncharge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmIncharge.Width = 250;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.MinimumWidth = 6;
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRack.Width = 80;
+            // 
+            // clmRackGroup
+            // 
+            this.clmRackGroup.HeaderText = "Rack Group";
+            this.clmRackGroup.MinimumWidth = 6;
+            this.clmRackGroup.Name = "clmRackGroup";
+            this.clmRackGroup.ReadOnly = true;
+            this.clmRackGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRackGroup.Width = 80;
+            // 
+            // clmPurLocation
+            // 
+            this.clmPurLocation.HeaderText = "Location";
+            this.clmPurLocation.Name = "clmPurLocation";
+            this.clmPurLocation.ReadOnly = true;
+            this.clmPurLocation.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPurLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmProductnameInEnglish
+            // 
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12.25F);
+            this.clmProductnameInEnglish.DefaultCellStyle = dataGridViewCellStyle11;
+            this.clmProductnameInEnglish.HeaderText = "Product Name";
+            this.clmProductnameInEnglish.MinimumWidth = 6;
+            this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
+            this.clmProductnameInEnglish.ReadOnly = true;
+            this.clmProductnameInEnglish.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmProductnameInEnglish.Width = 300;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.MinimumWidth = 6;
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
+            this.clmPICode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPICode.Width = 125;
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.MinimumWidth = 6;
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSno.Width = 50;
             // 
             // INV_StockRequest
             // 
@@ -1263,6 +1313,8 @@
         private System.Windows.Forms.TextBox txtStockUnit;
         private System.Windows.Forms.TextBox txtReqUnit;
         private System.Windows.Forms.Label lblProductTamil;
+        private System.Windows.Forms.ComboBox cmbLocation;
+        private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
@@ -1279,6 +1331,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatusID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShopFlag;
+        private System.Windows.Forms.DataGridViewComboBoxColumn clmLoc;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

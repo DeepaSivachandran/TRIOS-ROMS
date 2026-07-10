@@ -50,6 +50,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MAR_Entry));
             this.pnlMarginEntry = new System.Windows.Forms.Panel();
             this.pnlRateCategory = new System.Windows.Forms.Panel();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnConditionClear = new System.Windows.Forms.Button();
             this.chkboxRatelist = new System.Windows.Forms.CheckedListBox();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
@@ -165,20 +166,36 @@
             // 
             // pnlRateCategory
             // 
+            this.pnlRateCategory.Controls.Add(this.btnSelectAll);
             this.pnlRateCategory.Controls.Add(this.btnConditionClear);
             this.pnlRateCategory.Controls.Add(this.chkboxRatelist);
             this.pnlRateCategory.Location = new System.Drawing.Point(972, 94);
             this.pnlRateCategory.Name = "pnlRateCategory";
-            this.pnlRateCategory.Size = new System.Drawing.Size(125, 147);
+            this.pnlRateCategory.Size = new System.Drawing.Size(133, 147);
             this.pnlRateCategory.TabIndex = 111111236;
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAll.Image = global::ROMS.Properties.Resources.checked1;
+            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectAll.Location = new System.Drawing.Point(3, 119);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(72, 24);
+            this.btnSelectAll.TabIndex = 111111225;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // btnConditionClear
             // 
+            this.btnConditionClear.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConditionClear.Image = global::ROMS.Properties.Resources.Cleared;
             this.btnConditionClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConditionClear.Location = new System.Drawing.Point(3, 119);
+            this.btnConditionClear.Location = new System.Drawing.Point(77, 119);
             this.btnConditionClear.Name = "btnConditionClear";
-            this.btnConditionClear.Size = new System.Drawing.Size(57, 24);
+            this.btnConditionClear.Size = new System.Drawing.Size(51, 24);
             this.btnConditionClear.TabIndex = 111111224;
             this.btnConditionClear.Text = "Clear";
             this.btnConditionClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,10 +204,11 @@
             // 
             // chkboxRatelist
             // 
+            this.chkboxRatelist.CheckOnClick = true;
             this.chkboxRatelist.FormattingEnabled = true;
             this.chkboxRatelist.Location = new System.Drawing.Point(3, 3);
             this.chkboxRatelist.Name = "chkboxRatelist";
-            this.chkboxRatelist.Size = new System.Drawing.Size(120, 114);
+            this.chkboxRatelist.Size = new System.Drawing.Size(125, 114);
             this.chkboxRatelist.TabIndex = 111111221;
             this.chkboxRatelist.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkboxRatelist_ItemCheck);
             this.chkboxRatelist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkboxRatelist_KeyDown);
@@ -280,7 +298,6 @@
             this.DGV_FilterBrand.Size = new System.Drawing.Size(437, 226);
             this.DGV_FilterBrand.TabIndex = 111111176;
             this.DGV_FilterBrand.Visible = false;
-            this.DGV_FilterBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterBrand_CellContentClick);
             this.DGV_FilterBrand.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterBrand_CellDoubleClick);
             this.DGV_FilterBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterBrand_KeyDown);
             // 
@@ -1410,5 +1427,6 @@
         public System.Windows.Forms.ToolStripButton tsbOriginalProducts;
         public System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnSelectAll;
     }
 }

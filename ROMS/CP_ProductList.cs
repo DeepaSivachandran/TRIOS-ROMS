@@ -3599,6 +3599,11 @@ namespace ROMS
             }
         }
 
+        private void DGV_SearchGridPro_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void grdProDetails_Scroll(object sender, ScrollEventArgs e)
         {
             try
