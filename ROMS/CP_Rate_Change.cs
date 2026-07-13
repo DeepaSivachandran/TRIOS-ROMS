@@ -2,7 +2,9 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ROMS
 {
@@ -21,8 +23,8 @@ namespace ROMS
         public string varupdate = "0";
         public int varProductload = 0, ratetype = 0;
         public decimal Rrate = 0,prevRrate = 0,Wrate = 0, prevWrate = 0 , rate = 0 , prevrate = 0;
+        MainForm objMainForm = new MainForm();
 
-         
 
         //tool tip
         private ToolTip tpRRate = new ToolTip();
@@ -112,6 +114,37 @@ namespace ROMS
             }
              
         }
+        public void udfnTelegramNotification()
+        {
+            try
+            {
+                string productName = txtProductName.Text;
+                string productCode = lblPICode.Text;
+                decimal oldRate = Convert.ToDecimal(txtRRateLast.Text);
+                decimal newRate = Convert.ToDecimal(txtRRateLive.Text);
+                string userName = txtTeller.Text;
+                string message = $@"⚡ *Rate Change Alert* ⚡
+
+ *Product :* {productName}
+ *P.I Code:* {productCode}
+
+ *Rate Updated*
+    • Previous Rate : ₹{oldRate:N2}
+    • New Rate        : ₹{newRate:N2}
+
+*Difference* : ₹{Math.Abs(newRate - oldRate):N2} 
+
+*Updated By :* {userName} 
+
+ ⚠️ This notification was generated because the rate change exceeded ₹{MainForm.pbRateTolerance}.";
+                 objMainForm.udfnTelegramRCNotification(message);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave()
         {
             try
@@ -133,9 +166,7 @@ namespace ROMS
                     prevWrate = Convert.ToDecimal(txtWRatePrev.Text);
                 }
                 
-
-
-
+                 
                 TRN_RateChange objRateChange = new TRN_RateChange();
                 objRateChange.paraViewType = 0;
                 objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text);
@@ -154,11 +185,17 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (varvalue.Length > 2)
+                    {
+                        if (varvalue[2] == "1")
+                        {
+                            udfnTelegramNotification();
+                        }
+                    }
                     udfnclear();
                     varupdate = "1";
                     //udfnclose();
-                    txtProductName.Focus();
-                    MainForm.objCP_Rate_ChangeList.udfnList();
+                    txtProductName.Focus(); 
                 }
                 else
                 {
