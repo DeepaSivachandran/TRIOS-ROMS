@@ -1503,19 +1503,17 @@ namespace ROMS
 
 
                             grdItemList.Columns["Group Id"].Visible = false;
-                            grdItemList.Columns["Group Name"].Visible = false;
+                            //grdItemList.Columns["Group Name"].Visible = false;
                             grdItemList.Columns["Subgroup Id"].Visible = false;
-                            grdItemList.Columns["Subgroup Name"].Visible = false;
+                            //grdItemList.Columns["Subgroup Name"].Visible = false;
                             grdItemList.Columns["Brand Id"].Visible = false;
-                            grdItemList.Columns["Brand Name"].Visible = false;
+                            //grdItemList.Columns["Brand Name"].Visible = false;
                             grdItemList.Columns["clmCheck"].Visible = true; 
-                             
-
+                            grdItemList.Columns["RCLOGID"].Visible = false; 
+                              
                             grdItemList.Columns["Live Rate"].HeaderText = "New Rate";
                             grdItemList.Columns["Last Rate"].HeaderText = "Last Rate";
-
-
-
+                             
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                         }
@@ -2365,7 +2363,7 @@ namespace ROMS
                 {
                     if (Convert.ToBoolean(grdItemList.Rows[i].Cells["clmCheck"].Value) == true)
                     {
-                        objRADataTable.Rows.Add(grdItemList.Rows[i].Cells["PRID"].Value, grdItemList.Rows[i].Cells["RC_PR_TYPE"].Value );
+                        objRADataTable.Rows.Add(grdItemList.Rows[i].Cells["PRID"].Value, grdItemList.Rows[i].Cells["RCLOGID"].Value );
                     }
                 }
 

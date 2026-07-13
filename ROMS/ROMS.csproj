@@ -1782,6 +1782,7 @@
     <Compile Include="SAL_Entry.designer.cs">
       <DependentUpon>SAL_Entry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service Class\DataGridViewFilter.cs" />
     <Compile Include="Service Class\UserAccessHelper.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
     <Compile Include="User Controls\DynamicWindowControl.cs" />

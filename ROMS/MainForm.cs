@@ -1,17 +1,19 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using System.Net;
-using System.Net.Sockets;
 using System.Globalization;
-using ROMS.Model;
-using System.Threading.Tasks;
-using System.Net.Http;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Sockets;
+using System.Security.Policy;
+using System.Threading.Tasks;
+using System.Web.Services.Description;
+using System.Windows.Forms;
 
 
 
@@ -28,8 +30,7 @@ namespace ROMS
         // Entry/List control flags
         public bool IsEntryFormOpen = false;
         public Form CurrentEntryForm = null;
-        public Form CurrentParentListForm = null;
-
+        public Form CurrentParentListForm = null; 
         public class MinimizedFormInfo
         {
             public int Index { get; set; }
@@ -81,6 +82,9 @@ namespace ROMS
         public static string pbUserMappedLocationIds = "0";
         public static  int pbMenucode = 0;
         public static string varratechangecount = "0";
+        public static string pbRateTolerance = "0";
+
+         
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart; 
@@ -1661,6 +1665,7 @@ namespace ROMS
                 pbCurrentDate = varDate;
                 pbFYStartDate = varFYStartDate;
                 pbFYEndDate = varFYEndDate;
+                pbRateTolerance = objDs.Tables[3].Rows[0]["RateTolerance"].ToString();
                 objspservice.CloseConnection();
             }
             catch (Exception ex)
@@ -1777,6 +1782,17 @@ namespace ROMS
                 DataService objdser = new DataService(); 
                 pbTelegramPath = objdser.displaydata(" SELECT SF_Path FROM DEF_SharedFolderPath");
                 objds = objdser.GetDataset("SELECT ChatID, Token  FROM DEF_TELEGRAM_BOT_DETAILS A INNER JOIN DEF_TELEGRAM_GROUP_DETAILS B ON A.BOTID = B.BOTID");
+                if (objds != null)
+                {
+                    if (objds.Tables.Count > 0)
+                    {
+                        if (objds.Tables[0].Rows.Count > 0)
+                        {
+                            varChatID = (Convert.ToString(objds.Tables[0].Rows[0]["ChatID"]));
+                            varToken = (Convert.ToString(objds.Tables[0].Rows[0]["Token"]));
+                        }
+                    }
+                }
                 pbTelegramPath = pbTelegramPath + "\\Telegram Reports\\"; 
                 // Ensure the folder exists — creates it if not
                 if (!Directory.Exists(pbTelegramPath))
@@ -1784,17 +1800,7 @@ namespace ROMS
                     Directory.CreateDirectory(pbTelegramPath);
                 }
                 objdser.CloseConnection();
-                if (objds != null)
-                {
-                    if (objds.Tables.Count > 0)
-                    {
-                        if (objds.Tables[0].Rows.Count > 0)
-                        {  
-                            varChatID=(Convert.ToString(objds.Tables[0].Rows[0]["ChatID"]));
-                            varToken=(Convert.ToString(objds.Tables[0].Rows[0]["Token"]));
-                        }
-                    }
-                }
+               
             }
             catch (Exception ex)
             {
@@ -1826,6 +1832,51 @@ namespace ROMS
             }
             catch (Exception ex)
             {
+            }
+        }
+        public async Task udfnTelegramRCNotification(string varMessage)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendMessage?chat_id=" + varChatID;
+                    var data = new Dictionary<string, string>
+                    { 
+                        { "text", varMessage },
+                        { "parse_mode", "Markdown" } // Enables *bold* formatting
+                    };
+                    var response = await httpClient.PostAsync(apiUrl, new FormUrlEncodedContent(data));
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Notification sent successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(await response.Content.ReadAsStringAsync());
+                    }
+                    //using (var form = new MultipartFormDataContent())
+                    //{
+                    //    // Add file content
+                    //    var fileContent = new ByteArrayContent(System.IO.File.ReadAllBytes(varPath));
+                    //    fileContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("multipart/form-data");
+                    //    form.Add(fileContent, "document", System.IO.Path.GetFileName(varPath));
+                    //    if (varChatID != "")
+                    //    {
+                    //        // Telegram API endpoint for sending documents
+                    //        var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendDocument?chat_id=" + varChatID;
+                    //        // Send request
+                    //        var response = await httpClient.PostAsync(apiUrl, form);
+                    //    }
+                    //}
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         //take all splfield  menu for user role master

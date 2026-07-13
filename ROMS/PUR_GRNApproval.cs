@@ -31,9 +31,7 @@ namespace ROMS
         public PUR_GRNApproval()
         {
             InitializeComponent();
-        }
-
-        
+        } 
         public void udfnclose()
         {
             try
