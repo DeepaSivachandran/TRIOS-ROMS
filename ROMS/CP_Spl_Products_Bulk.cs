@@ -1942,7 +1942,17 @@ namespace ROMS
         {
             try
             {
-                udfnClear();
+                if (grdFinalSupplierMapping.Rows.Count > 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(70);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        udfnClear();
+                    }
+                }
                 //if (Convert.ToInt32(cmbFiledtype.SelectedValue) == -1)
                 //{
 
