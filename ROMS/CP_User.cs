@@ -921,11 +921,13 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbUserRole.Select(int.MaxValue, 0)));
                 if (Convert.ToInt32(cmbUserRole.SelectedValue) == 1)
                 {
+                    btnUserRoleMapped.Enabled = false;
                     dtLocation = null;
                     grdLocation.DataSource = dtLocation;
                 }
                 else
                 {
+                    btnUserRoleMapped.Enabled = true;
                     udfnLocationBind();
                 }
                 pbVarUserRoleID = Convert.ToInt32(cmbUserRole.SelectedValue);
