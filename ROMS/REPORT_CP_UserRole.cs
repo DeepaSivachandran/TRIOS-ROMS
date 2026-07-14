@@ -39,7 +39,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {
             try
@@ -74,8 +74,8 @@ namespace ROMS
                     cmbReportType.Focus();
                 }
                 else
-                { 
-                    udfnUserRole(varFlag); 
+                {
+                    udfnUserRole(varFlag);
                 }
             }
             catch (Exception ex)
@@ -120,7 +120,7 @@ namespace ROMS
                     reportType = 2;
                 }
                 int varUserRoleId = 0, varUserId = 0, varViewType = 5;
-                string varUserRoleName="-All-",varFilterUserName="-All-";
+                string varUserRoleName = "-All-", varFilterUserName = "-All-";
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 576)
                 {
                     varViewType = 0;
@@ -149,13 +149,14 @@ namespace ROMS
                 {
                     varViewType = 11;
                 }
-                if (txtUserRole.Text.Trim() != "") {
-                    varUserRoleId=Convert.ToInt32(lblUserRoleId.Text);
+                if (txtUserRole.Text.Trim() != "")
+                {
+                    varUserRoleId = Convert.ToInt32(lblUserRoleId.Text);
                     varUserRoleName = txtUserRole.Text.Trim();
                 }
                 if (txtDUserList.Text.Trim() != "")
                 {
-                    varUserId=Convert.ToInt32(lblUserId.Text);
+                    varUserId = Convert.ToInt32(lblUserId.Text);
                     varFilterUserName = txtDUserList.Text.Trim();
                 }
                 objDs = objspservice.udfnUserRoleList(varViewType, varUserRoleId, 0, 0, "", reportType, varUserId);
@@ -171,10 +172,10 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    
+
                     ///user role 
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 413)
-                    { 
+                    {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role.rpt");
                         varReportName = "User_Role";
                     }
@@ -238,7 +239,7 @@ namespace ROMS
                     else
                     {
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        
+
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
@@ -280,7 +281,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackGroupList(2,0,0,0,0,"",0,0);
+                objDs = objspservice.udfnRackGroupList(2, 0, 0, 0, 0, "", 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -383,11 +384,11 @@ namespace ROMS
                   .Where(q => q.HasValue)
                   .Select(q => q.Value.ToString())
                   ?? Enumerable.Empty<string>());
-                 
+
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID"); 
-                cmbReportType.SelectedValue = -1; 
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                cmbReportType.SelectedValue = -1;
                 //btnListPrint.Enabled = true;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -532,7 +533,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtUserRole.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserRoleList(4, 0, 1, 0, txtUserRole.Text,0,0);
+                    objDs = objspdservice.udfnUserRoleList(4, 0, 1, 0, txtUserRole.Text, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
