@@ -6631,6 +6631,38 @@ namespace ROMS
             }
             return varResult;
         }
+
+        public DataSet udfnSchemeReport(TRN_Scheme objTRN_Scheme)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_SchemeReport]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Scheme.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupID", objTRN_Scheme.paraGroupID); 
+                varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", objTRN_Scheme.paraSubGroupID); 
+                varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRN_Scheme.paraOrderType); 
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRN_Scheme.paraBrandID);  
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }

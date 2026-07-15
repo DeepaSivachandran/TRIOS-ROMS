@@ -661,6 +661,7 @@
     <Compile Include="INV_StockRequestQueueList.designer.cs">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Scheme.cs" />
     <Compile Include="PrintDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -903,6 +904,13 @@
       <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_SAL_ProductScheme.cs">
+      <DependentUpon>RPT_SAL_ProductScheme.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.cs">
       <DependentUpon>RPT_PUR_PurchaseReturnDC_Supplierwise_ReturnDC_Summary.rpt</DependentUpon>
@@ -1655,6 +1663,12 @@
     </Compile>
     <Compile Include="REPORT_INV_Count.designer.cs">
       <DependentUpon>REPORT_INV_Count.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SAL_Scheme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SAL_Scheme.designer.cs">
+      <DependentUpon>REPORT_SAL_Scheme.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Stock_Taking.cs">
       <SubType>Form</SubType>
@@ -6071,6 +6085,11 @@
       <LastGenOutput>RPT_PUR_PurchaseReturnDC.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_SAL_ProductScheme.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SAL_ProductScheme.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_REPORT_Product_RC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_REPORT_Product_RC.cs</LastGenOutput>
@@ -7162,6 +7181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_INV_Count.resx">
       <DependentUpon>REPORT_INV_Count.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SAL_Scheme.resx">
+      <DependentUpon>REPORT_SAL_Scheme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Taking.resx">
       <DependentUpon>REPORT_Stock_Taking.cs</DependentUpon>

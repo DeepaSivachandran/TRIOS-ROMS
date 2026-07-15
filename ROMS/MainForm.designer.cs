@@ -120,6 +120,7 @@ namespace ROMS
             this.tsmCPApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateApproval = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRateChangeConfirmation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUsersMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
@@ -206,6 +207,7 @@ namespace ROMS
             this.tsmStockConversionReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockJournalReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockTaking = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmInvcount = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinanceReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierLedgerReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -251,16 +253,16 @@ namespace ROMS
             this.tsmBasket = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomerGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddressBook = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRateChangeConfirmation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmInvcount = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmScheme = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1071,6 +1073,14 @@ namespace ROMS
             this.tsmRateApproval.Visible = false;
             this.tsmRateApproval.Click += new System.EventHandler(this.tsmRateApproval_Click);
             // 
+            // tsmRateChangeConfirmation
+            // 
+            this.tsmRateChangeConfirmation.Name = "tsmRateChangeConfirmation";
+            this.tsmRateChangeConfirmation.Size = new System.Drawing.Size(204, 22);
+            this.tsmRateChangeConfirmation.Text = "Rate Change Confirmation";
+            this.tsmRateChangeConfirmation.Visible = false;
+            this.tsmRateChangeConfirmation.Click += new System.EventHandler(this.tsmRateChangeConfirmation_Click);
+            // 
             // tsmUsersMenu
             // 
             this.tsmUsersMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1847,6 +1857,13 @@ namespace ROMS
             this.tsmStockTaking.Text = "Stock Taking";
             this.tsmStockTaking.Click += new System.EventHandler(this.tsmStockTaking_Click);
             // 
+            // tsmInvcount
+            // 
+            this.tsmInvcount.Name = "tsmInvcount";
+            this.tsmInvcount.Size = new System.Drawing.Size(204, 22);
+            this.tsmInvcount.Text = "Inventory Count ";
+            this.tsmInvcount.Click += new System.EventHandler(this.inventoryCountToolStripMenuItem_Click);
+            // 
             // tsmFinanceReport
             // 
             this.tsmFinanceReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2090,6 +2107,7 @@ namespace ROMS
             this.tsmReports,
             this.tsmFYSettings,
             this.tsmSalesMasters,
+            this.tsmSalesReports,
             this.tsmMyProfile,
             this.tsmHelp,
             this.tsmGif});
@@ -2264,26 +2282,6 @@ namespace ROMS
             this.tsmAddressBook.Text = "Address Book";
             this.tsmAddressBook.Click += new System.EventHandler(this.tsmAddressBook_Click);
             // 
-            // timer2
-            // 
-            this.timer2.Interval = 5000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // statusBar
-            // 
-            this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusBar.Location = new System.Drawing.Point(0, 537);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1275, 22);
-            this.statusBar.TabIndex = 115;
-            this.statusBar.Text = "statusStrip1";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
             // tsmHelp
             // 
             this.tsmHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2327,12 +2325,10 @@ namespace ROMS
             this.tsmGif.Visible = false;
             this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
             // 
-            // tsmInvcount
+            // timer2
             // 
-            this.tsmInvcount.Name = "tsmInvcount";
-            this.tsmInvcount.Size = new System.Drawing.Size(204, 22);
-            this.tsmInvcount.Text = "Inventory Count ";
-            this.tsmInvcount.Click += new System.EventHandler(this.inventoryCountToolStripMenuItem_Click);
+            this.timer2.Interval = 5000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // statusBar
             // 
@@ -2349,13 +2345,21 @@ namespace ROMS
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // tsmRateChangeConfirmation
+            // tsmSalesReports
             // 
-            this.tsmRateChangeConfirmation.Name = "tsmRateChangeConfirmation";
-            this.tsmRateChangeConfirmation.Size = new System.Drawing.Size(204, 22);
-            this.tsmRateChangeConfirmation.Text = "Rate Change Confirmation";
-            this.tsmRateChangeConfirmation.Visible = false;
-            this.tsmRateChangeConfirmation.Click += new System.EventHandler(this.tsmRateChangeConfirmation_Click);
+            this.tsmSalesReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmScheme});
+            this.tsmSalesReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmSalesReports.Name = "tsmSalesReports";
+            this.tsmSalesReports.Size = new System.Drawing.Size(80, 24);
+            this.tsmSalesReports.Text = "Sales Report";
+            // 
+            // tsmScheme
+            // 
+            this.tsmScheme.Name = "tsmScheme";
+            this.tsmScheme.Size = new System.Drawing.Size(180, 22);
+            this.tsmScheme.Text = "Scheme";
+            this.tsmScheme.Click += new System.EventHandler(this.tsmScheme_Click);
             // 
             // MainForm
             // 
@@ -2620,5 +2624,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseReturnDCReport;
         private System.Windows.Forms.ToolStripMenuItem tsmRateChangeConfirmation;
         private System.Windows.Forms.ToolStripMenuItem tsmInvcount;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesReports;
+        private System.Windows.Forms.ToolStripMenuItem tsmScheme;
     }
 }

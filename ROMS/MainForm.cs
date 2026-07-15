@@ -460,6 +460,7 @@ namespace ROMS
         public static CP_Basket objCP_Basket;
         public static CP_Product_Supplier objCP_Product_Supplier;
         public static CP_ProductDetails objCP_ProductDetails;
+        public static REPORT_SAL_Scheme objREPORT_SAL_Scheme;
 
         public MainForm()
         {
@@ -5276,6 +5277,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void tsmScheme_Click(object sender, EventArgs e)
+        {
+            OpenReportForm(ref MainForm.objREPORT_SAL_Scheme, "REPORT_SAL_Scheme", 80124);
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

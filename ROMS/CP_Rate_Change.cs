@@ -111,33 +111,46 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-             
+            } 
         }
         public void udfnTelegramNotification()
         {
             try
             {
-                string productName = txtProductName.Text;
-                string productCode = lblPICode.Text;
-                decimal oldRate = Convert.ToDecimal(txtRRateLast.Text);
-                decimal newRate = Convert.ToDecimal(txtRRateLive.Text);
-                string userName = txtTeller.Text;
-                string message = $@"⚡ *Rate Change Alert* ⚡
+                string varResult = "";
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                TRN_RateChange objRateChange = new TRN_RateChange();
+                objRateChange.paraViewType = 5; 
+                objRateChange.paraProductID = Convert.ToInt16(lblProductcode.Text); 
+                objDs = objdserv.udfnRateChangeList(objRateChange);
+                objdserv.CloseConnection(); 
+                 varResult = objDs.Tables[0].Rows[0]["Message"].ToString(); 
+                //                string productName = txtProductName.Text;
+                //                string productCode = lblPICode.Text;
+                //                decimal oldRate = Convert.ToDecimal(txtRRateLast.Text);
+                //                decimal newRate = Convert.ToDecimal(txtRRateLive.Text);
+                //                string userName = txtTeller.Text;
+                //                string message = $@"⚡ *Rate Change Alert* ⚡
 
- *Product :* {productName}
- *P.I Code:* {productCode}
+                // *Product :* {productName}
+                // *P.I Code:* {productCode}
 
- *Rate Updated*
-    • Previous Rate : ₹{oldRate:N2}
-    • New Rate        : ₹{newRate:N2}
+                // *Rate Updated*
+                //    • Previous Rate : ₹{oldRate:N2}
+                //    • New Rate        : ₹{newRate:N2}
 
-*Difference* : ₹{Math.Abs(newRate - oldRate):N2} 
+                //*Difference* : ₹{Math.Abs(newRate - oldRate):N2} 
 
-*Updated By :* {userName} 
+                //*Updated By :* {userName} 
 
- ⚠️ This notification was generated because the rate change exceeded ₹{MainForm.pbRateTolerance}.";
-                 objMainForm.udfnTelegramRCNotification(message);
+                // ⚠️ This notification was generated because the rate change exceeded ₹{MainForm.pbRateTolerance}.";
+                 
+                MessageBox.Show(varResult, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //objMainForm.udfnTelegramRCNotification(message);
+
+
             }
             catch (Exception ex)
             {
