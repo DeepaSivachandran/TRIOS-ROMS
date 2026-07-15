@@ -63,6 +63,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MST_TransactionID=136", "MST_DisplayText,MSTID,MST_ShortName", cmbFiledtype, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbFiledtype.Focus();
             }
@@ -433,7 +434,6 @@ namespace ROMS
 
             try
             {
-
                 lblNoRecordsFound.Visible = false;
                 grdProducts.DataSource = null;
                 MR_Product objMR_Product = new MR_Product();
@@ -441,6 +441,7 @@ namespace ROMS
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.paraBrandID = varBrandId;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 437)
                 {
                     //// Priority
@@ -463,10 +464,8 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 objdtProducts = null;
-
                 udfnInitProduct();
                 SPDataService objspservice = new SPDataService();
-
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
@@ -933,7 +932,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     //cmbStatus.Focus();
-                    btnMappingView.Focus();
+                    cmbCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -950,7 +949,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLvBrand();
-                    btnMappingView.Focus();
+                    cmbCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -965,7 +964,7 @@ namespace ROMS
             try
             {
                 udfnLvBrand();
-                btnMappingView.Focus();
+                cmbCategory.Focus();
             }
             catch (Exception ex)
             {
@@ -2176,6 +2175,62 @@ namespace ROMS
                 udfnClose();
             }
         }
+
+        private void cmbCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnMappingView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
 
         public void udfnProductRemove(object sender, EventArgs e)
         {
