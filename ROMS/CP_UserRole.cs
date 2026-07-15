@@ -136,6 +136,8 @@ namespace ROMS
                 _loadingMappedMenus = false;
                 //LoadAllMenus();
                 grdUserPermission_DataBindingComplete(grdUserPermission, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
+                cmbMenus.Enabled = false;
+                cmbMenus.SelectedValue = 0;
             }
             catch (Exception ex)
             {
@@ -814,6 +816,8 @@ namespace ROMS
         {
             try
             {
+                cmbMenus.Enabled = false;
+                cmbMenus.SelectedValue = 0;
                 int errorflag = 0;
                 if (varChangesFlag == 1 && btnSave.Text != "Save")
                 {
@@ -830,6 +834,7 @@ namespace ROMS
 
                 if (tbFirst.SelectedIndex == 1)
                 {
+                    cmbMenus.Enabled = true;
                     if (e.TabPage == grpUserPermission)
                     {
 

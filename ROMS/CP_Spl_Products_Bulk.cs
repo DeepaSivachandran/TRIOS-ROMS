@@ -13,7 +13,7 @@ namespace ROMS
     public partial class CP_Spl_Products_Bulk : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        private int _previousIndex = -1;
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
@@ -1944,12 +1944,20 @@ namespace ROMS
                 if (grdFinalSupplierMapping.Rows.Count > 0)
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(70);
+                    string varMessage = objDServ.udfnGetMessages(78);
                     objDServ.CloseConnection();
-                    DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    if (dialogResult == DialogResult.OK)
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
                         udfnClear();
+                    }
+                    else
+                    {
+                        cmbFiledtype.SelectedIndexChanged -= cmbFiledtype_SelectedIndexChanged;
+                        cmbFiledtype.SelectedIndex = _previousIndex;
+                        cmbFiledtype.SelectedIndexChanged += cmbFiledtype_SelectedIndexChanged;
+
+                        return;
                     }
                 }
                 //if (Convert.ToInt32(cmbFiledtype.SelectedValue) == -1)
@@ -2144,7 +2152,10 @@ namespace ROMS
 
         private void cmbFiledtype_Enter(object sender, EventArgs e)
         {
-            try { cmbFiledtype.BackColor = Color.LemonChiffon; }
+            try
+            {
+                _previousIndex = cmbFiledtype.SelectedIndex; 
+                cmbFiledtype.BackColor = Color.LemonChiffon; }
             catch (Exception ex)
             {
                 objError = new DataError();
