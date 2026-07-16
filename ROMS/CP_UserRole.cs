@@ -603,6 +603,7 @@ namespace ROMS
                     {
                         MainForm.objCP_User.pbVarUserRoleID = Convert.ToInt32(varvalue[2]);
                         varCloneUserRoleID = Convert.ToInt32(varvalue[2]);
+                        varFormFlag = 0;
                     }
                     tbFirst.SelectedIndex = 1;
                 }
