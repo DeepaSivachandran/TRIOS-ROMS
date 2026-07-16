@@ -124,7 +124,7 @@ namespace ROMS
             {
                 epReport.Clear();
                 string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varSupplierName = "-All-", varLocationName = "-All-",varPICodeName="-All-";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierCode = 0, varScheduleCode = 0, varViewType = 37, varParaFlag = 0, varLocationCode = 0;
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierCode = 0, varScheduleCode = 0, varViewType = 1, varParaFlag = 0, varLocationCode = 0;
                 if(txtGroup.Text.Trim()!="")
                 {
                     varGroupName = txtGroup.Text;
@@ -162,7 +162,7 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 469)
                 {
-                    varViewType= 36;
+                    varViewType= 0;
                 }
                 if (Convert.ToInt32(cmbReportFormat.SelectedValue) == 357)
                 {
@@ -178,7 +178,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(varViewType, 0, "", 0, "", "", 0, varGroupId, varSubgroupId, varParaFlag, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierCode, varScheduleCode, 0, 0, 0, 0, 0, "", "", 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbType.SelectedValue), 0, 0, varLocationCode, txtSearchByPICode.Text.Trim());
+                objDs = objdserv.udfnStockReport(varViewType, 0, "", 0, "", "", 0, varGroupId, varSubgroupId, varParaFlag, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierCode, varScheduleCode, 0, 0, 0, 0, 0, "", "", 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbType.SelectedValue), 0, 0, varLocationCode, txtSearchByPICode.Text.Trim());
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
