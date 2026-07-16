@@ -6645,6 +6645,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", objTRN_Scheme.paraSubGroupID); 
                 varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRN_Scheme.paraOrderType); 
                 varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRN_Scheme.paraBrandID);  
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_Scheme.paraFlag);  
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

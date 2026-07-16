@@ -203,7 +203,16 @@ namespace ROMS
         {
             try
             {
-                epReport.Clear();
+                if(Convert.ToInt16(cmbReportType.SelectedValue)==0)
+                {
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSupplier.ShowAlways = true;
+                    tpSupplier.Show("Please select report type.", cmbReportType, 5000);
+                    cmbReportType.Focus();
+                    return;
+                }
+                epReport.Clear(); int varViewType = 0;
                 string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-";
                 int varGroupId = 0, varSubgroupId = 0, varBrandId = 0;
                  
@@ -229,12 +238,19 @@ namespace ROMS
                 picLoader.BringToFront();
                  Application.DoEvents();
                 int varPrint = 0;
-                 TRN_Scheme objTRN_Scheme = new TRN_Scheme();
-                objTRN_Scheme.ViewType = 1; 
+                if (Convert.ToInt16(cmbReportType.SelectedValue) == 626)
+                {  varViewType = 0; }
+                else if (Convert.ToInt16(cmbReportType.SelectedValue) == 627)
+                { varViewType = 1; }
+                else if (Convert.ToInt16(cmbReportType.SelectedValue) == 628)
+                { varViewType = 2; }
+                TRN_Scheme objTRN_Scheme = new TRN_Scheme();
+                objTRN_Scheme.ViewType = varViewType; 
                 objTRN_Scheme.paraGroupID = varGroupId;
                 objTRN_Scheme.paraSubGroupID = varSubgroupId;
                 objTRN_Scheme.paraBrandID = varBrandId;  
                 objTRN_Scheme.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue); 
+                objTRN_Scheme.paraFlag = Convert.ToInt32(cmbSchemeType.SelectedValue); 
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnSchemeReport(objTRN_Scheme);
@@ -249,10 +265,24 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();  
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 626) //Product scheme
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 626)  //Product scheme
                     { 
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_ProductScheme.rpt");
-                    }  
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 627) //Rate scheme
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_RateScheme.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 628 && (Convert.ToInt16(cmbSchemeType.SelectedValue)== 631 || Convert.ToInt16(cmbSchemeType.SelectedValue) == 632)
+                        ) //Bill Discount scheme - Disc value and Disc %
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_BillDiscountScheme.rpt");
+                        objBillreport.SetParameterValue("paraFlag", Convert.ToInt16(cmbSchemeType.SelectedValue)); 
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 628 && Convert.ToInt16(cmbSchemeType.SelectedValue) == 630)  //Bill Discount Product scheme
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_BillDiscountScheme_Product.rpt");
+                    }
                     objBillreport.SetParameterValue("paraGroupID", varGroupId);   
                     objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);   
                     objBillreport.SetParameterValue("paraBrandID", varBrandId);   

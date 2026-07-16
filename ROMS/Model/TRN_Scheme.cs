@@ -18,5 +18,6 @@ namespace ROMS.Model
         public int paraSubGroupID = 0; 
         public int paraBrandID = 0; 
         public int paraOrderType = 0; 
+        public int paraFlag = 0; 
     }
 }
