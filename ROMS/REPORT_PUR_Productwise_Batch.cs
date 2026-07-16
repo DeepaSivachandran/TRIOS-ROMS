@@ -169,7 +169,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(38, 0, "", 0, dpFromDate.Text, dpToDate.Text, varProductCode, varGroupId, varSubgroupId, varParaFlag, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierCode, varScheduleCode, 0, 0, 0, Convert.ToInt32(cmbStockType.SelectedValue), 0, "", "", 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbType.SelectedValue), 0, 0, 0, "");
+                objDs = objdserv.udfnStockReport(2, 0, "", 0, dpFromDate.Text, dpToDate.Text, varProductCode, varGroupId, varSubgroupId, varParaFlag, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierCode, varScheduleCode, 0, 0, 0, Convert.ToInt32(cmbStockType.SelectedValue), 0, "", "", 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbType.SelectedValue), 0, 0, 0, "");
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
