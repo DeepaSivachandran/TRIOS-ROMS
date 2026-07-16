@@ -2242,7 +2242,61 @@ namespace ROMS
             }
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if(objdtProductsMapping.Rows.Count !=0 )
+            {
+                udfnPrint();
+            }
+        }
 
+        public void udfnPrint() {
+            try
+            {
+                int paraFlag = 0;
+                if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 437)
+                {
+                    //// Priority
+                    paraFlag = 1;
+                }
+                else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 438)
+                {
+                    ////Special
+                    paraFlag = 2;
+                }
+                else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 439)
+                {
+                    ////focus
+                    paraFlag = 3;
+                }
+                else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 440)
+                {
+                    ////own
+                    paraFlag = 4;
+                }
+                string varHeader = "";
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_ProductClassification_Mapped.rpt");
+
+                objBillreport.SetParameterValue("paraFlag", Convert.ToInt32(paraFlag)); 
+                objBillreport.SetParameterValue("paraType", cmbFiledtype.Text); 
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);  
+                objValidation.CrySqlConnection(objBillreport);
+                //objValidation.CrySqlConnection(objBillreport);
+
+                MainForm.objReportLoad = new ReportLoad();
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                MainForm.objReportLoad.Text = varHeader;
+                MainForm.objReportLoad.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnProductRemove(object sender, EventArgs e)
         {
 

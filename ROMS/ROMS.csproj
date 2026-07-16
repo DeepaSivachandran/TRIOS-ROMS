@@ -1016,6 +1016,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_ProductClassification_Mapped.cs">
+      <DependentUpon>RPT_ProductClassification_Mapped.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_TakingSheet_Portrait.cs">
       <DependentUpon>RPT_Stock_TakingSheet_Portrait.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6159,6 +6166,11 @@
     <Content Include="Reports\RPT_Stock_TakingSheet_Portrait.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_TakingSheet_Portrait.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_ProductClassification_Mapped.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_ProductClassification_Mapped.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_TP_Count.rpt">
