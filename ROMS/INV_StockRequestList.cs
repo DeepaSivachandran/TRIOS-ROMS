@@ -1680,6 +1680,14 @@ namespace ROMS
                         grdStockRequestList.Rows[i].Cells["clmDelete"] = print;
                         print.ReadOnly = true;
                     }
+                    if (Convert.ToString(grdStockRequestList.Rows[i].Cells["StatusID"].Value) == "28")
+                    {
+                        grdStockRequestList.Rows[i].Cells["clmprint"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdStockRequestList.Rows[i].Cells["clmprint"] = print;
+                        print.ReadOnly = true;
+                    }
                     if (Convert.ToString(grdStockRequestList.Rows[i].Cells["DeleteFlag"].Value) == "1")
                     {
                         grdStockRequestList.Rows[i].DefaultCellStyle.BackColor = Color.Crimson;

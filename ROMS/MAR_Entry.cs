@@ -71,7 +71,15 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose();
+                    if (RPTViewer.Visible == true)
+                    {
+                        btnView.Enabled = true;
+                        RPTViewer.Visible = false;
+                    }
+                    else
+                    {
+                        udfnclose();
+                    }
                 }
                 if (e.KeyCode == Keys.F5)
                 {
@@ -168,8 +176,9 @@ namespace ROMS
                     }
                 }
                 objdserv.CloseConnection();
-                udfnFilterCount(); 
+                udfnFilterCount();
                 //udfnList(0);
+                udfnDefaultSearchGrid();
                 btnUpdate.Enabled = false;
             }
             catch (Exception ex)

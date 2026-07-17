@@ -1103,7 +1103,7 @@ namespace ROMS
                     varRKID = Convert.ToInt32(selectedItem.SubItems[7].Text);
                     */
                     varProductName = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
-                    lblProductTamil.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
+                    lblProductTamil.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString() + " - " + DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
                     txtStockUnit.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
                     txtReqUnit.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
                     varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
@@ -1757,8 +1757,14 @@ namespace ROMS
                     }
                 }
                 else
-                {  
-                    if (varErrQty == "0") //Location mapped and Rec qry given 
+                {
+                    int rcount = dtStock.AsEnumerable().Count(r => r.Field<decimal>("SRQ_RequestedQty") != 0 );
+                    if (rcount == 0)
+                    {
+                        varErrQty = "1"; 
+                    }
+
+                    if (varErrQty == "0") //Location mapped and Rec qty given 
                     { 
                         var rows = dtStock.AsEnumerable().Where(r => r.Field<decimal>("SRQ_RequestedQty") != 0);
                         dtStock = rows.Any() ? rows.CopyToDataTable() : dtStock.Clone();
