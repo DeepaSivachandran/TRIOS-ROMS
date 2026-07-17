@@ -209,7 +209,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(varViewType, 0, "", 0, dpFromDate.Text, dpToDate.Text, 0, varGroupId, varSubgroupId, varParaFlag, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierCode, varScheduleCode, 0, 0, 0, 0, 0, "", varMonthIds, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbType.SelectedValue), Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), 0, "");
+                objDs = objdserv.udfnPurHsnReport("TRNG_Purchase_Reports_29_35", varViewType, 0, "", 0, dpFromDate.Text, dpToDate.Text, 0, varGroupId, varSubgroupId, varParaFlag, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierCode, varScheduleCode, 0, 0, 0, 0, 0, "", varMonthIds, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbType.SelectedValue), Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), 0, "");
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
