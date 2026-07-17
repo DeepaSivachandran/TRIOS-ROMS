@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -114,30 +115,52 @@ namespace ROMS
             }
              
         }
-        public void udfnTelegramNotification()
+        public void udfnTelegramNotification(int id)
         {
             try
             {
-                string productName = txtProductName.Text;
-                string productCode = lblPICode.Text;
-                decimal oldRate = Convert.ToDecimal(txtRRateLast.Text);
-                decimal newRate = Convert.ToDecimal(txtRRateLive.Text);
-                string userName = txtTeller.Text;
-                string message = $@"⚡ *Rate Change Alert* ⚡
+                string varMessage = "";
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                TRN_RateChange objRateChange = new TRN_RateChange();
+                objRateChange.paraViewType = 5;
+                objRateChange.paraID = id;
+                objRateChange.paraProductID = Convert.ToInt16(lblProductcode.Text);
+                objDs = objdserv.udfnRateChangeList(objRateChange);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        varMessage = objDs.Tables[0].Rows[0]["Message"].ToString();
+                    }
+                }
+                if (varMessage != "")
+                {
+                    objMainForm.udfnTelegramRCNotification(varMessage);
+                }
 
- *Product :* {productName}
- *P.I Code:* {productCode}
+                //                string productName = txtProductName.Text;
+                //                string productCode = lblPICode.Text;
+                //                decimal oldRate = Convert.ToDecimal(txtRRateLast.Text);
+                //                decimal newRate = Convert.ToDecimal(txtRRateLive.Text);
+                //                string userName = txtTeller.Text;
+                //                string message = $@"⚡ *Rate Change Alert* ⚡
 
- *Rate Updated*
-    • Previous Rate : ₹{oldRate:N2}
-    • New Rate        : ₹{newRate:N2}
+                // *Product :* {productName}
+                // *P.I Code:* {productCode}
 
-*Difference* : ₹{Math.Abs(newRate - oldRate):N2} 
+                // *Rate Updated*
+                //    • Previous Rate : ₹{oldRate:N2}
+                //    • New Rate        : ₹{newRate:N2}
 
-*Updated By :* {userName} 
+                //*Difference* : ₹{Math.Abs(newRate - oldRate):N2} 
 
- ⚠️ This notification was generated because the rate change exceeded ₹{MainForm.pbRateTolerance}.";
-                 objMainForm.udfnTelegramRCNotification(message);
+                //*Updated By :* {userName} 
+
+                // ⚠️ This notification was generated because the rate change exceeded ₹{MainForm.pbRateTolerance}.";
+
             }
             catch (Exception ex)
             {
@@ -189,7 +212,8 @@ namespace ROMS
                     {
                         if (varvalue[2] == "1")
                         {
-                            udfnTelegramNotification();
+                            int id = Convert.ToInt32(varvalue[3]);
+                            udfnTelegramNotification(id);
                         }
                     }
                     udfnclear();
