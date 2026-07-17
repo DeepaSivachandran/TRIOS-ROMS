@@ -4109,13 +4109,66 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate, int paraProductId, int paraGroupId, int paraSubgroupId, int paraFlag, int paraBrandID, int paraCompanyId, int paraSupplierID, int paraScheduleID, int paraInvioceType, int paraPaymentType, int paraPurchaseType, int paraConditionType, int paraProductNameType, string paraAlpha, string paraMonth,int paraCityID,int paraProductCategory,int paraType,int paraSubgroupType,int paraDayFilter,int paraLocationId,string paraPicode)
+        public DataSet udfnPurHsnReport(string pbSPName,int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate, int paraProductId, int paraGroupId, int paraSubgroupId, int paraFlag, int paraBrandID, int paraCompanyId, int paraSupplierID, int paraScheduleID, int paraInvioceType, int paraPaymentType, int paraPurchaseType, int paraConditionType, int paraProductNameType, string paraAlpha, string paraMonth,int paraCityID,int paraProductCategory,int paraType,int paraSubgroupType,int paraDayFilter,int paraLocationId,string paraPicode)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Purchase_Reports]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand(pbSPName, tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierType", paraSupplierType);
+                varSqlCommand.Parameters.AddWithValue("@paraHSNCode", paraHSNCode);
+                varSqlCommand.Parameters.AddWithValue("@paraGST", paraGST);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupId", paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupId", paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraInvioceType", paraInvioceType);
+                varSqlCommand.Parameters.AddWithValue("@paraPaymentType", paraPaymentType);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseType", paraPurchaseType);
+                varSqlCommand.Parameters.AddWithValue("@paraConditionType", paraConditionType);
+                varSqlCommand.Parameters.AddWithValue("@paraProductNameType", paraProductNameType);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraMonth", paraMonth);
+                varSqlCommand.Parameters.AddWithValue("@paraCityID", paraCityID);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraType", paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", paraSubgroupType);
+                varSqlCommand.Parameters.AddWithValue("@paraDayFilter", paraDayFilter);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationId", paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraPicode", paraPicode);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public DataSet udfnStockReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate, int paraProductId, int paraGroupId, int paraSubgroupId, int paraFlag, int paraBrandID, int paraCompanyId, int paraSupplierID, int paraScheduleID, int paraInvioceType, int paraPaymentType, int paraPurchaseType, int paraConditionType, int paraProductNameType, string paraAlpha, string paraMonth,int paraCityID,int paraProductCategory,int paraType,int paraSubgroupType,int paraDayFilter,int paraLocationId,string paraPicode)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Stock_Reports]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType", paraSupplierType);
