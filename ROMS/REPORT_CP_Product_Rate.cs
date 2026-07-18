@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.Math;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -182,41 +183,47 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 572)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 633)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_LocationWise.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_MultipleRate.rpt");
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 573)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 634)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_GodownWise.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_MultipleRate_Offset_PICode.rpt");
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 574)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 635)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_RackDetails.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_BulkRate.rpt");
                     }
-                    else
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 636)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_RackSummary.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_BulkRateOffset.rpt");
                     }
-                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
-                    objBillreport.SetParameterValue("paraGroup", varGroupCode);
-                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode);
-                    objBillreport.SetParameterValue("paraBrandID", varBrandCode);
-                    objBillreport.SetParameterValue("paraLocationId", varLocationCode);
-                    objBillreport.SetParameterValue("ParaScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("ParaProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
-
-                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
-                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
-                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+
+                    objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(varLocationCode));
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    objBillreport.SetParameterValue("paraBrandID", Convert.ToInt32(varBrandCode));
+                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraSubgroup", Convert.ToInt32(varSubgroupCode));
+                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                    objBillreport.SetParameterValue("paraGroup", varGroupCode);
+                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductType", Convert.ToInt32(cmbSalesType.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                    objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(varProductCode));
+                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
+                    objBillreport.SetParameterValue("paraCategoryName", cmbCategory.Text);
+                    objBillreport.SetParameterValue("paraTypeName", cmbType.Text);
+                    objBillreport.SetParameterValue("paraSalesTypeName", cmbSalesType.Text);
+                    objBillreport.SetParameterValue("paraStatusName", cmbStatus.Text);
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductName", varProductName);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
