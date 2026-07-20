@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_CP_Pro_BulkRate : ReportClass {
+    public class RPT_CP_Pro_MultipleRate_Offset : ReportClass {
         
-        public RPT_CP_Pro_BulkRate() {
+        public RPT_CP_Pro_MultipleRate_Offset() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_CP_Pro_BulkRate.rpt";
+                return "RPT_CP_Pro_MultipleRate_Offset.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_CP_Pro_BulkRate.rpt";
+                return "ROMS.Reports.RPT_CP_Pro_MultipleRate_Offset.rpt";
             }
             set {
                 // Do nothing
@@ -314,9 +314,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_CP_Pro_BulkRate : Component, ICachedReport {
+    public class CachedRPT_CP_Pro_MultipleRate_Offset : Component, ICachedReport {
         
-        public CachedRPT_CP_Pro_BulkRate() {
+        public CachedRPT_CP_Pro_MultipleRate_Offset() {
         }
         
         [Browsable(false)]
@@ -353,7 +353,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_CP_Pro_BulkRate rpt = new RPT_CP_Pro_BulkRate();
+            RPT_CP_Pro_MultipleRate_Offset rpt = new RPT_CP_Pro_MultipleRate_Offset();
             rpt.Site = this.Site;
             return rpt;
         }

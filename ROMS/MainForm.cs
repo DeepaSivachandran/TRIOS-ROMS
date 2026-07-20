@@ -426,6 +426,7 @@ namespace ROMS
         public static REPORT_ZeroVsPOGenerated objREPORT_ZeroVsPOGenerated;
         public static PrintFormat objReportFormat;
         public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
+        public static REPORT_CP_Product_Rate objREPORT_CP_Product_Rate;
         public static REPORT_PUR_Product_Consolidated objREPORT_PUR_Product_Consolidated;
         public static REPORT_Stock_Taking objREPORT_Stock_Taking;
         public static REPORT_PUR_Productwise_Batch objREPORT_PUR_Productwise_Batch;
@@ -5270,6 +5271,19 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Rate_Change_Confirmation, "CP_Rate_Change_Confirmation", 51306);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductRateOffset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_Rate, "REPORT_CP_Product_Rate", 80126);
             }
             catch (Exception ex)
             {

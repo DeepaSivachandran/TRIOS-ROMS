@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,7 +12,13 @@ namespace ROMS
         private Timer idleTimer;
         private DateTime lastActivityTime;
         private readonly int idleTimeoutMinutes;
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
 
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool IsWindowVisible(IntPtr hWnd); 
+        private bool idlePopupPending = false;
         public IdleManager(int idleTimeoutMinutes)
         {
             this.idleTimeoutMinutes = idleTimeoutMinutes;
@@ -40,62 +47,64 @@ namespace ROMS
 
             return false; // allow normal processing
         }
+        private bool IsMyApplicationActive()
+        {
+            IntPtr foreground = GetForegroundWindow();
 
+            if (foreground == IntPtr.Zero)
+                return false;
+
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm.IsHandleCreated &&
+                    frm.Visible &&
+                    IsWindowVisible(frm.Handle) &&
+                    frm.Handle == foreground)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         private void IdleTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan idleTime = DateTime.Now - lastActivityTime;
 
-            if (idleTime.TotalMinutes >= idleTimeoutMinutes)
+            if (idleTime.TotalMinutes >= 1)
             {
+                idlePopupPending = true;
+            }
+
+            // Wait until the user comes back to our application
+            if (idlePopupPending && IsMyApplicationActive())
+            {
+                idlePopupPending = false;
 
                 idleTimer.Stop();
 
-                bool isAlreadyOpen = Application.OpenForms.OfType<DEF_IdleLogin>().Any();
-                if (isAlreadyOpen)
+                if (Application.OpenForms.OfType<DEF_IdleLogin>().Any())
                     return;
 
-                // Get the correct owner window
-                Form ownerForm = Form.ActiveForm
-                                 ?? Application.OpenForms.Cast<Form>().FirstOrDefault()
-                                 ?? null;
+                Form owner =
+                    Form.ActiveForm ??
+                    Application.OpenForms.Cast<Form>().FirstOrDefault();
 
-                DEF_IdleLogin obj = new DEF_IdleLogin();
-                obj.StartPosition = FormStartPosition.CenterParent;
-
-                if (ownerForm != null)
-                    obj.ShowDialog(ownerForm);   //   Correct way
-                else
-                    obj.ShowDialog();            // Fallback
-
-                if (obj.IsPasswordCorrect)
+                using (DEF_IdleLogin login = new DEF_IdleLogin())
                 {
-                    lastActivityTime = DateTime.Now;
-                    idleTimer.Start();
-                }
+                    login.StartPosition = FormStartPosition.CenterParent;
 
-                //obj.FormClosed += (s, args) =>
-                //{
-                //    if (obj.IsPasswordCorrect)
-                //    {
-                //        lastActivityTime = DateTime.Now; // reset idle time
-                //        idleTimer.Start(); // resume idle check
-                //    }
-                //    else
-                //    { 
-                //        //Application.Exit();
-                //    }
-                //};
-                //if (activeForm != null)
-                //{
-                //    obj.Owner = activeForm; // ensures it stays on top of the same form window
-                //    obj.Show(activeForm);
-                //}
-                //else
-                //{
-                //    //obj.Show(); // fallback if no active form found
-                //}
-                //lastActivityTime = DateTime.Now; // reset after message
-                //idleTimer.Start();
+                    if (owner != null)
+                        login.ShowDialog(owner);
+                    else
+                        login.ShowDialog();
+
+                    if (login.IsPasswordCorrect)
+                    {
+                        lastActivityTime = DateTime.Now;
+                        idleTimer.Start();
+                    }
+                }
             }
         }
     }
