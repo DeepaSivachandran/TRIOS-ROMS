@@ -813,6 +813,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_MultipleRate_Offset.cs">
+      <DependentUpon>RPT_CP_Pro_MultipleRate_Offset.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Pro_MultipleRate_Offset_PICode.cs">
       <DependentUpon>RPT_CP_Pro_MultipleRate_Offset_PICode.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5787,6 +5794,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <LastGenOutput>RPT_CP_Pro_MultipleRate_Offset_PICode1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reports\RPT_CP_Pro_MultipleRate_Offset.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Pro_MultipleRate_Offset.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

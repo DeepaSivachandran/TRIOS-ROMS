@@ -96,6 +96,11 @@ namespace ROMS
         {
             try
             {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    cmbReportType.Focus();
+                    return;
+                }
                 udfnProductRate(varFlag);
             }
             catch (Exception ex)
@@ -195,7 +200,14 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 634)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_MultipleRate_Offset_PICode.rpt");
+                        if(Convert.ToInt32(cmbReportFormat.SelectedValue) == 405)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_MultipleRate_Offset_PICode.rpt");
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_MultipleRate_Offset.rpt");
+                        }
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 635)
                     {
@@ -327,6 +339,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (0,453,454) ORDER BY MSTID", "MST_ShortName,MSTID", cmbStatus, "", "MST_ShortName", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,4) AND MSTID<>-1 ORDER BY MSTID", "MST_ShortName,MSTID", cmbSalesType, "", "MST_ShortName", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (124)  ", "MST_DisplayText,MSTID", cmbReportFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -2203,10 +2216,17 @@ namespace ROMS
         {
             try
             {
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
-                }   
+                    if(cmbReportFormat.Enabled == true)
+                    {
+                        cmbReportFormat.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -2233,6 +2253,81 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportFormat.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportFormat.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(cmbReportType.SelectedValue) == 634)
+                {
+                    cmbReportFormat.Enabled = true;
+                }
+                else
+                {
+                    cmbReportFormat.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
