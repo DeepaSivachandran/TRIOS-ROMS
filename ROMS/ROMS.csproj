@@ -792,12 +792,47 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_BulkRate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_Pro_BulkRate.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_BulkRateOffset.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_Pro_BulkRateOffset.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Pro_Count_GodownWise.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Pro_Count_GodownWise.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_MultipleRate_Offset.cs">
+      <DependentUpon>RPT_CP_Pro_MultipleRate_Offset.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_MultipleRate_Offset_PICode.cs">
+      <DependentUpon>RPT_CP_Pro_MultipleRate_Offset_PICode.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_MultipleRate.cs">
+      <DependentUpon>RPT_CP_Pro_MultipleRate.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_CP_Pro_Count_RGWise_RackSummary.cs">
       <DependentUpon>RPT_CP_Pro_Count_RGWise_RackSummary.rpt</DependentUpon>
@@ -1630,6 +1665,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Rate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Rate.designer.cs">
+      <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_PUR_ReturnDC.cs">
       <SubType>Form</SubType>
@@ -5719,6 +5760,16 @@
       <LastGenOutput>RPT_CP_Rackgroup_Product_RackMin_Qty_Location.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_CP_Pro_BulkRate.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Pro_BulkRate.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_CP_Pro_BulkRateOffset.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Pro_BulkRateOffset.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Pro_Count_GodownWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Pro_Count_GodownWise.cs</LastGenOutput>
@@ -5732,6 +5783,21 @@
     <Content Include="Reports\RPT_CP_Pro_Count_RGWise_RackSummary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Pro_Count_RGWise_RackSummary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Pro_MultipleRate.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Pro_MultipleRate.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Pro_MultipleRate_Offset_PICode.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_CP_Pro_MultipleRate_Offset_PICode1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reports\RPT_CP_Pro_MultipleRate_Offset.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Pro_MultipleRate_Offset.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt">
@@ -7154,6 +7220,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_CP_Product_Rate.resx">
+      <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_ReturnDC.resx">
       <DependentUpon>REPORT_PUR_ReturnDC.cs</DependentUpon>
     </EmbeddedResource>
