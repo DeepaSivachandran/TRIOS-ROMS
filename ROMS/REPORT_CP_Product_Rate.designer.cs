@@ -411,7 +411,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(859, 75);
+            this.label11.Location = new System.Drawing.Point(840, 75);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(87, 20);
             this.label11.TabIndex = 111111238;
@@ -420,9 +420,9 @@
             // cmbReportFormat
             // 
             this.cmbReportFormat.FormattingEnabled = true;
-            this.cmbReportFormat.Location = new System.Drawing.Point(859, 96);
+            this.cmbReportFormat.Location = new System.Drawing.Point(840, 96);
             this.cmbReportFormat.Name = "cmbReportFormat";
-            this.cmbReportFormat.Size = new System.Drawing.Size(96, 27);
+            this.cmbReportFormat.Size = new System.Drawing.Size(115, 27);
             this.cmbReportFormat.TabIndex = 12;
             this.cmbReportFormat.Enter += new System.EventHandler(this.cmbReportFormat_Enter);
             this.cmbReportFormat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReportFormat_KeyDown);
@@ -454,7 +454,7 @@
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Location = new System.Drawing.Point(754, 96);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(99, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(80, 27);
             this.cmbStatus.TabIndex = 11;
             this.cmbStatus.Enter += new System.EventHandler(this.cmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStatus_KeyDown);
