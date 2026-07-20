@@ -1595,8 +1595,7 @@ namespace ROMS
                 cmbStatus.SelectedValue = 0;
                 cmbRateCategory.SelectedValue = 0;
                 cmbRetailRate.SelectedValue = 0;
-                cmbOthers.SelectedValue = 0;
-                cmbOthers.SelectedValue = 542;
+                cmbOthers.SelectedValue = 0; 
             }
             catch (Exception ex)
             {
