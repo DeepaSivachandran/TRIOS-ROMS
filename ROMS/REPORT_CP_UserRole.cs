@@ -513,7 +513,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDUserList.Focus();
+                    if (txtDUserList.Enabled == true)
+                    {
+                        txtDUserList.Focus();
+                    }
+                    else { btnListPrint.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -587,7 +591,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnGrdeventUserRole();
-                    txtDUserList.Focus();
+                    if (txtDUserList.Enabled == true)
+                    {
+                        txtDUserList.Focus();
+                    }
+                    else { btnListPrint.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -602,7 +610,11 @@ namespace ROMS
             try
             {
                 udfnGrdeventUserRole();
-                txtDUserList.Focus();
+                if (txtDUserList.Enabled == true)
+                {
+                    txtDUserList.Focus();
+                }
+                else { btnListPrint.Focus(); }
             }
             catch (Exception ex)
             {
@@ -710,7 +722,11 @@ namespace ROMS
                 {
                     if (lvUserList.Items.Count == 0 || txtDUserList.Text == "")
                     {
-                        txtDUserList.Focus();
+                        if (txtDUserList.Enabled == true)
+                        {
+                            txtDUserList.Focus();
+                        }
+                        else { btnListPrint.Focus(); }
                         lvUserList.Visible = false;
                     }
                     else
