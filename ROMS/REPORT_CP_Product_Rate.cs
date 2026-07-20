@@ -96,7 +96,7 @@ namespace ROMS
         {
             try
             {
-                udfnProductsCount(varFlag);
+                udfnProductRate(varFlag);
             }
             catch (Exception ex)
             {
@@ -116,14 +116,14 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnProductsCount(int varFlag)
+        public void udfnProductRate(int varFlag)
         {
             try
             {
                 string varProductName = "-All-",varLocationName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-";
-                int varProductCode = 0, varScheduleCode = 0, varLocationCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+                int varProductCode = 0, varLocationCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0, varSalesType = 0;
 
-                if(txtProductName.Text.Trim()!="")
+                if (txtProductName.Text.Trim()!="")
                 {
                     varProductName = txtProductName.Text.Trim();
                     varProductCode = Convert.ToInt32(lblProductcode.Text);
@@ -138,17 +138,20 @@ namespace ROMS
                     varSubgroupName = txtSubGroup.Text.Trim();
                     varSubgroupCode = Convert.ToInt32(lblSubGroupCode.Text);
                 }
-                if(txtBrand.Text.Trim()!="")
+                if (txtBrand.Text.Trim() != "")
                 {
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
-                if(txtLocation.Text.Trim()!="")
+                if (txtLocation.Text.Trim() != "")
                 {
                     varLocationName = txtLocation.Text.Trim();
                     varLocationCode = Convert.ToInt32(lblLocationCode.Text);
                 }
-
+                if (Convert.ToInt32(cmbSalesType.SelectedValue) == 11)
+                {
+                    varSalesType = 1;
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -160,14 +163,17 @@ namespace ROMS
                 //**** To call the function from SP ***************
 
                 MR_Product objMR_ProductReport = new MR_Product();
-                objMR_ProductReport.paraViewType = 5;
+                objMR_ProductReport.paraViewType = 9;
                 objMR_ProductReport.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_ProductReport.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
+                objMR_ProductReport.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
+                objMR_ProductReport.paraType = Convert.ToInt32(cmbType.SelectedValue);
+                objMR_ProductReport.paraProductType = Convert.ToInt32(cmbSalesType.SelectedValue);
+                objMR_ProductReport.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_ProductReport.paraGroup = varGroupCode;
                 objMR_ProductReport.paraSubgroup = varSubgroupCode;
                 objMR_ProductReport.paraBrandID = varBrandCode;
                 objMR_ProductReport.paraLocationId = varLocationCode;
-                objMR_ProductReport.ParaScheduleid = Convert.ToString(varScheduleCode);
                 objMR_ProductReport.ParaProductCode = varProductCode;
                 objMR_ProductReport.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 SPDataService objspservice = new SPDataService();
@@ -214,7 +220,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGroup", varGroupCode);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
-                    objBillreport.SetParameterValue("paraProductType", Convert.ToInt32(cmbSalesType.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductType", varSalesType);
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
                     objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(varProductCode));
                     objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
@@ -286,7 +292,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80125;
+                int currentMUCode = 80126;
 
                 string ReportTypeIDs = string.Join(",",
                MainForm.objDtMenuDetailsUser?.AsEnumerable()
@@ -296,7 +302,6 @@ namespace ROMS
                    .Select(q => q.Value.ToString())
                    ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
-                chkboxRatelist.DrawMode = DrawMode.Normal;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
 
@@ -321,6 +326,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (0,453,454) ORDER BY MSTID", "MST_ShortName,MSTID", cmbStatus, "", "MST_ShortName", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,4) AND MSTID<>-1 ORDER BY MSTID", "MST_ShortName,MSTID", cmbSalesType, "", "MST_ShortName", "MSTID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -2180,11 +2186,11 @@ namespace ROMS
             }
         }
 
-        private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void cmbStatus_Enter(object sender, EventArgs e)
         {
             try
             {
-                BeginInvoke((MethodInvoker)UpdateSelectedValues);
+                cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -2193,48 +2199,14 @@ namespace ROMS
             }
         }
 
-        private void chkboxRatelist_KeyDown(object sender, KeyEventArgs e)
+        private void cmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                if(e.KeyCode==Keys.Enter)
                 {
                     btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void UpdateSelectedValues()
-        {
-            try
-            {
-                List<string> texts = new List<string>();
-                List<string> ids = new List<string>();
-
-                foreach (DataRowView row in chkboxRatelist.CheckedItems)
-                {
-                    int id = Convert.ToInt32(row["MSTID"]);
-
-                    // ignore -All- in textbox
-                    if (id == 0) continue;
-
-                    texts.Add(row["MST_DisplayText"].ToString());
-                    ids.Add(id.ToString());
-                }
-
-                // TextBox (RR, WR)
-                txtRateCategory.Text = texts.Count > 0
-                    ? string.Join(", ", texts)
-                    : "";
-
-                // Label (447,448)
-                lblRateId.Text = ids.Count > 0
-                    ? string.Join(",", ids)
-                    : "0";
+                }   
             }
             catch (Exception ex)
             {
@@ -2243,16 +2215,11 @@ namespace ROMS
             }
         }
 
-        private void btnConditionClear_Click(object sender, EventArgs e)
+        private void cmbStatus_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
-                {
-                    chkboxRatelist.SetItemChecked(i, false);
-                }
-                txtRateCategory.Text = "";
-                lblRateId.Text = "0";
+                e.Handled = true;
             }
             catch (Exception ex)
             {
@@ -2261,41 +2228,11 @@ namespace ROMS
             }
         }
 
-        private void txtRateCategory_Enter(object sender, EventArgs e)
+        private void cmbStatus_Leave(object sender, EventArgs e)
         {
             try
             {
-                udfnGridNull((Control)sender);
-                pnlRateCategory.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtRateCategory_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtRateCategory_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //pnlRateCategory.Visible = false;
+                cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
