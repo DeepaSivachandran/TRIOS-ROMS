@@ -3104,24 +3104,29 @@ namespace ROMS
                         }
                         else
                         {
+                            grdLockItems.Columns["clmCheck"].Visible = false;
                             lblNoRecordsFoundLock.Visible = true;
                             lblNoRecordsFoundLock.BringToFront();
                         }
                     }
                     else
                     {
+                        grdLockItems.Columns["clmCheck"].Visible = false;
                         lblNoRecordsFoundLock.Visible = true;
                         lblNoRecordsFoundLock.BringToFront();
                     }
                 }
                 udfnLockSearchGridHead();
-                grdLockItems.Columns["Sales P.I Code"].ReadOnly = true;
-                grdLockItems.Columns["Product Name in Tamil"].ReadOnly = true;
-                grdLockItems.Columns["Teller"].ReadOnly = true;
-                grdLockItems.Columns["Unit"].ReadOnly = true;
-                grdLockItems.Columns["Location"].ReadOnly = true;
-                grdLockItems.Columns["R.Rate"].ReadOnly = true;
-                grdLockItems.Columns["W.Rate"].ReadOnly = true;
+                if (lblNoRecordsFoundLock.Visible != true)
+                {
+                    grdLockItems.Columns["Sales P.I Code"].ReadOnly = true;
+                    grdLockItems.Columns["Product Name in Tamil"].ReadOnly = true;
+                    grdLockItems.Columns["Teller"].ReadOnly = true;
+                    grdLockItems.Columns["Unit"].ReadOnly = true;
+                    grdLockItems.Columns["Location"].ReadOnly = true;
+                    grdLockItems.Columns["R.Rate"].ReadOnly = true;
+                    grdLockItems.Columns["W.Rate"].ReadOnly = true;
+                }
                 if (lblNoRecordsFoundLock.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -3149,6 +3154,7 @@ namespace ROMS
             {
                 DGV_LockSearchGrid.DataSource = dtDefaultGrid;
                 DGV_LockSearchGrid.Columns["PRID"].Visible = false;
+                DGV_LockSearchGrid.Columns["Product Name"].Visible = false;
                 DGV_LockSearchGrid.Columns["S.No."].Width = 50;
                 DGV_LockSearchGrid.Columns["Product Name in Tamil"].Width = 350;
                 DGV_LockSearchGrid.Columns["Sales P.I Code"].Width = 110;

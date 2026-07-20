@@ -2505,7 +2505,10 @@ namespace ROMS
         {
             try
             {
-                udfnPrint();
+                if (grdProducts.Rows.Count > 0)
+                {
+                    udfnPrint();
+                }
             }
             catch (Exception ex)
             {
