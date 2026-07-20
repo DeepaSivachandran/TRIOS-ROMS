@@ -341,6 +341,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
