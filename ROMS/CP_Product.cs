@@ -109,6 +109,8 @@ namespace ROMS
             SalesHSNViewAcess = false, SalesHSNEditAcess = false,
             PurHSNViewAcess = false, PurHSNEditAcess = false;
         string Subgroupprivilege = "", Groupprivilege = "", Brandprivilege = "", Unitprivilege = "";
+        public int pbSG_ProductScheme = 0, pbSG_BillScheme = 0;
+
         public CP_Product()
         {
             InitializeComponent();
@@ -1541,7 +1543,21 @@ namespace ROMS
                         txtPICode.Text = txtPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                         txtSalesPICode.Text = txtSalesPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                     }
+                    int pbschemeFlag = 0;
+                    if(pbSG_BillScheme == 1 && BillSchemeApplicable == 0)
+                    {
+                        pbschemeFlag = 1;
+                    }
+                    if(pbSG_ProductScheme==1 && BillSchemeApplicable==0)
+                    { pbschemeFlag = 1; }
 
+                    if(pbschemeFlag==1)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(238);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
@@ -1549,8 +1565,8 @@ namespace ROMS
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
-                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "",
-                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable,BillSchemeApplicable
+                        , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "",
+                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable
                     );
 
                     objspdservice.CloseConnection();
@@ -3387,6 +3403,11 @@ namespace ROMS
                     txtProductionMSQ.Text = "";
                     cmbIntermediateUnit.SelectedValue = -1;
                 }
+                if(Convert.ToInt16(cmbProductCategory.SelectedValue) == 15) //Free
+                {
+                    chkProductScheme.Checked = true;
+                    chkBillScheme.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -4153,7 +4174,8 @@ namespace ROMS
                 dtSalesHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
                 dtSalesHSN.Columns.Add("PRHSN_MakerID", typeof(int));
 
-
+                chkProductScheme.Checked = true;
+                chkBillScheme.Checked = true;
 
 
                 if (varMasterType == "0")
@@ -4764,6 +4786,8 @@ namespace ROMS
                     string varbatchenable = selectedItem.SubItems[3].Text;
                     txtRackDescription.Text = selectedItem.SubItems[10].Text;
                     txtSubgroupType.Text = selectedItem.SubItems[11].Text;
+                    pbSG_BillScheme=Convert.ToInt16(selectedItem.SubItems[12].Text);
+                    pbSG_ProductScheme = Convert.ToInt16(selectedItem.SubItems[13].Text);
                     txtBrand.Text = "";
                     lblBrand.Text = "0";
                     txtGroup.Focus();
@@ -5114,7 +5138,8 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), objDs.Tables[0].Rows[i]["Description"].ToString(), objDs.Tables[0].Rows[i]["SubgroupType"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), objDs.Tables[0].Rows[i]["Description"].ToString(), 
+                                        objDs.Tables[0].Rows[i]["SubgroupType"].ToString(), objDs.Tables[0].Rows[i]["BillScheme"].ToString(), objDs.Tables[0].Rows[i]["ProductScheme"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);

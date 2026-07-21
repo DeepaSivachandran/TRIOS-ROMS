@@ -47,7 +47,7 @@ namespace ROMS
         public string varRackCodes = "";
         public int varSortFlag = 0;
         public int varSubgroupType = 0;
-        public int varMarginTypeId = 0;
+        public int varMarginTypeId = 0,pbBillScheme=0,pbProductScheme=0;
 
         public string VarRackCreation = "0";
         public string GroupPrivilege = "", LocationPrivilege="",RackPrivilege="";
@@ -283,6 +283,10 @@ namespace ROMS
                 {
                     rbInactive.Checked = true;
                 }
+                if(pbBillScheme==1)
+                { chkBillScheme.Checked = true; }
+                if (pbProductScheme == 1)
+                { chkProductScheme.Checked = true; }
                 if (varStatus == 2)
                 {
                     udfnDisable();
@@ -361,7 +365,13 @@ namespace ROMS
                     varViewType = 1;
                 }
                 string varRackId = "", varRackName = "", varRackDescription = "";
-                int varcheckedcount = 0;
+                int varcheckedcount = 0; 
+                if(chkBillScheme.Checked == true)
+                {  pbBillScheme = 1; }
+                else { pbBillScheme = 0; }
+                if (chkProductScheme.Checked == true)
+                {   pbProductScheme = 1;  }
+                else { pbProductScheme = 0; }
                 for (int i = 0; i < grdRackList.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdRackList.Rows[i].Cells[0].Value) == true)
@@ -386,7 +396,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbMarginCalc.SelectedValue), "", "");
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbMarginCalc.SelectedValue), "", "",pbProductScheme,pbBillScheme);
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
