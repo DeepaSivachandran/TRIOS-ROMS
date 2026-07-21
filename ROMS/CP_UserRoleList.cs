@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.ViewerObjectModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
-        public string varUserID="";
+        public string varUserID = "";
         public int MenuCode = 0;
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
@@ -90,7 +91,7 @@ namespace ROMS
                   ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 MenuCode = 51401;
-                grdUserList.AllowUserToResizeColumns = false; 
+                grdUserList.AllowUserToResizeColumns = false;
                 txtDUserList.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -119,8 +120,8 @@ namespace ROMS
                 tssNew.Visible = privilege.Contains("2");
                 tsbEdit.Visible = privilege.Contains("3");
                 tssEdit.Visible = privilege.Contains("3");
-                tsbDelete.Visible = privilege.Contains("4");  
-                btnExport.Visible = privilege.Contains("6"); 
+                tsbDelete.Visible = privilege.Contains("4");
+                btnExport.Visible = privilege.Contains("6");
             }
             catch (Exception ex)
             {
@@ -144,10 +145,11 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 int varUserList = 0;
 
-                if (lblUserId.Text != "") {
+                if (lblUserId.Text != "")
+                {
                     varUserList = Convert.ToInt32(lblUserId.Text);
                 }
-                objDs = objspservice.udfnUserRoleList(0, varUserList, Convert.ToInt32(cmbStatus.SelectedValue),0,"",0,0);
+                objDs = objspservice.udfnUserRoleList(0, varUserList, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -156,12 +158,17 @@ namespace ROMS
                         lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            RPTViewer.Visible = false;
+                            DGV_SearchGrid.Visible = true;
+                            grdUserList.Visible = true;
+                            DGV_SearchGrid.BringToFront();
+                            grdUserList.BringToFront();
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdUserList.DataSource = objDs.Tables[0]; 
-                            grdUserList.Columns["UserRoleID"].Visible = false; 
+                            grdUserList.DataSource = objDs.Tables[0];
+                            grdUserList.Columns["UserRoleID"].Visible = false;
                             grdUserList.Columns["StatusID"].Visible = false;
-                            grdUserList.Columns["S.No."].Width = 50; 
+                            grdUserList.Columns["S.No."].Width = 50;
                             grdUserList.Columns["Status"].Width = 80;
                             grdUserList.Columns["Created By"].Width = 220;
                             grdUserList.Columns["Updated By"].Width = 220;
@@ -341,7 +348,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }  
+        }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -436,7 +443,7 @@ namespace ROMS
                             if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
                             {
                                 if (filter != "") filter += "And ";
-                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                                filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
                             }
                         }
                         bs.Filter = filter;
@@ -673,8 +680,11 @@ namespace ROMS
         {
             try
             {
+                RPTViewer.Visible = false;
+                DGV_SearchGrid.Visible = true;
+                grdUserList.Visible = true;
                 lvUserList.Visible = false;
-                btnView.Enabled = false; 
+                btnView.Enabled = false;
                 lblStatus.Focus();
                 udfnList();
             }
@@ -762,7 +772,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "User Role" )
+                            else if (col.Name == "User Role")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -842,7 +852,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserRoleList(4, 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, txtDUserList.Text,0,0); 
+                    objDs = objspdservice.udfnUserRoleList(4, 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, txtDUserList.Text, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -852,7 +862,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["UR_Name"].ToString(),objDs.Tables[0].Rows[i]["URID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["UR_Name"].ToString(), objDs.Tables[0].Rows[i]["URID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvUserList.Items.Add(objList);
                                 }
@@ -920,7 +930,7 @@ namespace ROMS
                         lvUserList.Items[0].Selected = true;
                     }
                 }
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     cmbStatus.Focus();
                 }
@@ -1012,7 +1022,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
+
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -1119,7 +1129,7 @@ namespace ROMS
                     switch (grdUserList.Columns[e.ColumnIndex].Name)
                     {
                         //Added by Sathish on 07/07/2025 for clone option for Product
-                        case "clmClone": 
+                        case "clmClone":
                             picLoader.Visible = true;
                             picLoader.BringToFront();
                             Application.DoEvents();
@@ -1127,7 +1137,7 @@ namespace ROMS
                             MainForm.objCP_UserRole.btnSave.Text = "Save";
                             MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
                             MainForm.objCP_UserRole.varUsersCount = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["Total User"].Value);
-                            MainForm.objCP_UserRole.varCLone = 1; 
+                            MainForm.objCP_UserRole.varCLone = 1;
                             MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
                             //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
                             objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
@@ -1144,6 +1154,50 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+            }
+        }
+
+        private void tspEmpty_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                grdUserList.Visible = false;
+                DGV_SearchGrid.SendToBack();
+                grdUserList.SendToBack();
+                RPTViewer.BringToFront();
+                udfnPrint();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPrint()
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                RPTViewer.ReuseParameterValuesOnRefresh = true;
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Empty.rpt");
+                objBillreport.SetParameterValue("paraUserRoleId", 0);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
