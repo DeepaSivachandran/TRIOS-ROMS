@@ -329,7 +329,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(217, 475);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(200, 27);
-            this.pnlStatus.TabIndex = 7;
+            this.pnlStatus.TabIndex = 8;
             // 
             // rbActive
             // 
@@ -610,7 +610,7 @@
             this.groupBox4.Location = new System.Drawing.Point(7, 410);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(443, 57);
-            this.groupBox4.TabIndex = 111111174;
+            this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Scheme Eligibility";
             // 
@@ -620,9 +620,12 @@
             this.chkBillScheme.Location = new System.Drawing.Point(170, 23);
             this.chkBillScheme.Name = "chkBillScheme";
             this.chkBillScheme.Size = new System.Drawing.Size(90, 24);
-            this.chkBillScheme.TabIndex = 38;
+            this.chkBillScheme.TabIndex = 2;
             this.chkBillScheme.Text = "Bill Scheme";
             this.chkBillScheme.UseVisualStyleBackColor = true;
+            this.chkBillScheme.Enter += new System.EventHandler(this.chkBillScheme_Enter);
+            this.chkBillScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkBillScheme_KeyDown);
+            this.chkBillScheme.Leave += new System.EventHandler(this.chkBillScheme_Leave);
             // 
             // chkProductScheme
             // 
@@ -630,9 +633,12 @@
             this.chkProductScheme.Location = new System.Drawing.Point(17, 23);
             this.chkProductScheme.Name = "chkProductScheme";
             this.chkProductScheme.Size = new System.Drawing.Size(116, 24);
-            this.chkProductScheme.TabIndex = 38;
+            this.chkProductScheme.TabIndex = 1;
             this.chkProductScheme.Text = "Product Scheme";
             this.chkProductScheme.UseVisualStyleBackColor = true;
+            this.chkProductScheme.Enter += new System.EventHandler(this.chkProductScheme_Enter);
+            this.chkProductScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkProductScheme_KeyDown);
+            this.chkProductScheme.Leave += new System.EventHandler(this.chkProductScheme_Leave);
             // 
             // CP_SubGroup
             // 

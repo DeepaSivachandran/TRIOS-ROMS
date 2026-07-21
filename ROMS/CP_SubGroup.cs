@@ -1261,14 +1261,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (pnlStatus.Enabled == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            btnSave.Focus();
-                        }
+                        chkProductScheme.Focus();
                     }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
@@ -1348,14 +1341,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (pnlStatus.Enabled == true)
-                            {
-                                rbActive.Focus();
-                            }
-                            else
-                            {
-                                btnSave.Focus();
-                            }
+                            chkProductScheme.Focus();
                         }
                     }
                 }
@@ -1474,14 +1460,7 @@ namespace ROMS
                 }
                 else
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        rbActive.Focus();
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    chkProductScheme.Focus();
                 }
             }
             catch (Exception ex)
@@ -1504,14 +1483,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (pnlStatus.Enabled == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            btnSave.Focus();
-                        }
+                        chkProductScheme.Focus();
                     }
                 }
             }
@@ -1634,14 +1606,7 @@ namespace ROMS
                 {
                     if (pnlStatus.Enabled == true)
                     {
-                        if (rbActive.Checked == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInactive.Focus();
-                        }
+                        chkProductScheme.Focus();
                     }
                     else
                     {
@@ -1788,14 +1753,7 @@ namespace ROMS
                 }
                 else
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        rbActive.Focus();
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    chkProductScheme.Focus();
                 }
             }
             catch (Exception ex)
@@ -1872,19 +1830,104 @@ namespace ROMS
                         }
                         else
                         {
-                            if (pnlStatus.Enabled == true)
-                            {
-                                rbActive.Focus();
-                            }
-                            else
-                            {
-                                btnSave.Focus();
-                            }
+                            chkProductScheme.Focus();
                         }
                     }
                 }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkBillScheme_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (pnlStatus.Enabled == true)
+                {
+                    rbActive.Focus();
+                }
+                else
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkProductScheme_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkProductScheme.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkProductScheme_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkProductScheme.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkProductScheme_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    chkBillScheme.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkBillScheme_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkBillScheme.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkBillScheme_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkBillScheme.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
