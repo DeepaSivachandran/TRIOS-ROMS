@@ -15,12 +15,14 @@ namespace ROMS
     {
         DataError objError;
         private ToolTip tpCityName = new ToolTip();
+        private ToolTip tpPincode = new ToolTip();
         private ToolTip tpState = new ToolTip();
         private ToolTip tpDistrict = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
         public int varstatus;
         public string PbCityName="";
+        public string pbPincode = "";
         public int varCityCode= 0;
         public string varCityName = "";
         public string PbStateName="";
@@ -92,6 +94,7 @@ namespace ROMS
             try
             {
                 txtCityName.Text = PbCityName;
+                txtPincode.Text = pbPincode;
                 cmbDistrict.SelectedValue = pbDistrictID;
                 cmbState.SelectedValue = PbStateId;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
@@ -121,7 +124,7 @@ namespace ROMS
                     varoriginator = "City Updation";
                     varType = 1;    
                 }
-                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator,MainForm.pbUserID,0,Convert.ToInt32(cmbDistrict.SelectedValue));
+                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbDistrict.SelectedValue), Convert.ToInt32(txtPincode.Text));
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -198,6 +201,14 @@ namespace ROMS
                     txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCityName.ShowAlways = true;
                     tpCityName.Show("Please enter city name", txtCityName, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtPincode.Text).Trim() == "")
+                {
+                    epCity.SetError(txtPincode, "Please enter pincode");
+                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPincode.ShowAlways = true;
+                    tpPincode.Show("Please enter pincode", txtPincode, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
@@ -382,7 +393,7 @@ namespace ROMS
                     //    rbActive.Focus();
                     //}
                     //else { btnSave.Focus(); }
-                    btnSave.Focus();
+                    txtPincode.Focus();
                 }
             }
             catch (Exception ex)
@@ -590,6 +601,64 @@ namespace ROMS
                     epCity.Clear();
                     cmbDistrict.BackColor = Color.White;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPincode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPincode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPincode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPincode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPincode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPincode.BackColor = Color.White;
             }
             catch (Exception ex)
             {

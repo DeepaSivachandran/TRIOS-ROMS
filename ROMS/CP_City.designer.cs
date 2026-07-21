@@ -33,6 +33,7 @@
             this.txtDCityName = new System.Windows.Forms.TextBox();
             this.txtDStateName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.cmbDistrict = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtCityName = new System.Windows.Forms.TextBox();
             this.cmbState = new System.Windows.Forms.ComboBox();
@@ -43,7 +44,8 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbDistrict = new System.Windows.Forms.ComboBox();
+            this.txtDPincode = new System.Windows.Forms.TextBox();
+            this.txtPincode = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
@@ -77,6 +79,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.txtDPincode);
+            this.grbform.Controls.Add(this.txtPincode);
             this.grbform.Controls.Add(this.cmbDistrict);
             this.grbform.Controls.Add(this.textBox2);
             this.grbform.Controls.Add(this.txtCityName);
@@ -92,9 +96,22 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(437, 216);
+            this.grbform.Size = new System.Drawing.Size(437, 248);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            // 
+            // cmbDistrict
+            // 
+            this.cmbDistrict.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDistrict.FormattingEnabled = true;
+            this.cmbDistrict.Location = new System.Drawing.Point(159, 74);
+            this.cmbDistrict.Name = "cmbDistrict";
+            this.cmbDistrict.Size = new System.Drawing.Size(240, 28);
+            this.cmbDistrict.TabIndex = 1;
+            this.cmbDistrict.Enter += new System.EventHandler(this.cmbDistrict_Enter);
+            this.cmbDistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDistrict_KeyDown);
+            this.cmbDistrict.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDistrict_KeyPress);
+            this.cmbDistrict.Leave += new System.EventHandler(this.cmbDistrict_Leave);
             // 
             // textBox2
             // 
@@ -140,11 +157,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(319, 170);
+            this.btnClose.Location = new System.Drawing.Point(319, 193);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -157,11 +174,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(234, 170);
+            this.btnSave.Location = new System.Drawing.Point(234, 193);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 5;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -174,7 +191,7 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(37, 130);
+            this.txtStatus.Location = new System.Drawing.Point(37, 157);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -188,10 +205,10 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(159, 130);
+            this.pnlStatus.Location = new System.Drawing.Point(159, 157);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(240, 28);
-            this.pnlStatus.TabIndex = 3;
+            this.pnlStatus.TabIndex = 4;
             this.pnlStatus.Visible = false;
             // 
             // rbActive
@@ -202,7 +219,7 @@
             this.rbActive.Location = new System.Drawing.Point(44, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 3;
+            this.rbActive.TabIndex = 4;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -216,7 +233,7 @@
             this.rbInActive.Location = new System.Drawing.Point(122, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 4;
+            this.rbInActive.TabIndex = 5;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
@@ -226,25 +243,37 @@
             // 
             this.epCity.ContainerControl = this;
             // 
-            // cmbDistrict
+            // txtDPincode
             // 
-            this.cmbDistrict.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDistrict.FormattingEnabled = true;
-            this.cmbDistrict.Location = new System.Drawing.Point(159, 74);
-            this.cmbDistrict.Name = "cmbDistrict";
-            this.cmbDistrict.Size = new System.Drawing.Size(240, 28);
-            this.cmbDistrict.TabIndex = 1;
-            this.cmbDistrict.Enter += new System.EventHandler(this.cmbDistrict_Enter);
-            this.cmbDistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDistrict_KeyDown);
-            this.cmbDistrict.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDistrict_KeyPress);
-            this.cmbDistrict.Leave += new System.EventHandler(this.cmbDistrict_Leave);
+            this.txtDPincode.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPincode.Enabled = false;
+            this.txtDPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPincode.Location = new System.Drawing.Point(37, 130);
+            this.txtDPincode.Name = "txtDPincode";
+            this.txtDPincode.ReadOnly = true;
+            this.txtDPincode.Size = new System.Drawing.Size(122, 27);
+            this.txtDPincode.TabIndex = 48;
+            this.txtDPincode.Text = "Pincode";
+            // 
+            // txtPincode
+            // 
+            this.txtPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPincode.Location = new System.Drawing.Point(159, 130);
+            this.txtPincode.MaxLength = 6;
+            this.txtPincode.Name = "txtPincode";
+            this.txtPincode.Size = new System.Drawing.Size(240, 27);
+            this.txtPincode.TabIndex = 3;
+            this.txtPincode.Enter += new System.EventHandler(this.txtPincode_Enter);
+            this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPincode_KeyDown);
+            this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPincode_KeyPress);
+            this.txtPincode.Leave += new System.EventHandler(this.txtPincode_Leave);
             // 
             // CP_City
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(469, 242);
+            this.ClientSize = new System.Drawing.Size(469, 276);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -285,5 +314,7 @@
         private System.Windows.Forms.TextBox txtCityName;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ComboBox cmbDistrict;
+        private System.Windows.Forms.TextBox txtDPincode;
+        private System.Windows.Forms.TextBox txtPincode;
     }
 }
