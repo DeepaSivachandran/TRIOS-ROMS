@@ -73,16 +73,21 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblLocation = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkBillScheme = new System.Windows.Forms.CheckBox();
+            this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.grpPurchaseStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRackList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epSubGroup)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.groupBox4);
             this.grbform.Controls.Add(this.DGV_FilterLocation);
             this.grbform.Controls.Add(this.cmbMarginCalc);
             this.grbform.Controls.Add(this.lvGroupName);
@@ -104,7 +109,7 @@
             this.grbform.Controls.Add(this.grpPurchaseStockLocation);
             this.grbform.Location = new System.Drawing.Point(11, 1);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(453, 488);
+            this.grbform.Size = new System.Drawing.Size(455, 550);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -147,7 +152,7 @@
             this.DGV_FilterLocation.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterLocation.RowTemplate.Height = 25;
             this.DGV_FilterLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterLocation.Size = new System.Drawing.Size(200, 226);
+            this.DGV_FilterLocation.Size = new System.Drawing.Size(200, 185);
             this.DGV_FilterLocation.TabIndex = 111111173;
             this.DGV_FilterLocation.Visible = false;
             this.DGV_FilterLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterLocation_CellDoubleClick);
@@ -308,7 +313,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(26, 408);
+            this.txtDStatus.Location = new System.Drawing.Point(17, 475);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(200, 27);
@@ -321,9 +326,9 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(226, 408);
+            this.pnlStatus.Location = new System.Drawing.Point(217, 475);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(199, 27);
+            this.pnlStatus.Size = new System.Drawing.Size(200, 27);
             this.pnlStatus.TabIndex = 7;
             // 
             // rbActive
@@ -373,7 +378,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(345, 445);
+            this.btnClose.Location = new System.Drawing.Point(345, 512);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(79, 29);
             this.btnClose.TabIndex = 10;
@@ -390,7 +395,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(263, 445);
+            this.btnSave.Location = new System.Drawing.Point(263, 512);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
             this.btnSave.TabIndex = 9;
@@ -427,7 +432,7 @@
             this.grpPurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.grpPurchaseStockLocation.Location = new System.Drawing.Point(7, 158);
             this.grpPurchaseStockLocation.Name = "grpPurchaseStockLocation";
-            this.grpPurchaseStockLocation.Size = new System.Drawing.Size(440, 247);
+            this.grpPurchaseStockLocation.Size = new System.Drawing.Size(443, 247);
             this.grpPurchaseStockLocation.TabIndex = 4;
             this.grpPurchaseStockLocation.TabStop = false;
             this.grpPurchaseStockLocation.Text = "Default Stock Location for Purchase";
@@ -560,7 +565,7 @@
             // 
             this.cmbBatchNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNo.FormattingEnabled = true;
-            this.cmbBatchNo.Location = new System.Drawing.Point(222, 546);
+            this.cmbBatchNo.Location = new System.Drawing.Point(222, 566);
             this.cmbBatchNo.Name = "cmbBatchNo";
             this.cmbBatchNo.Size = new System.Drawing.Size(200, 27);
             this.cmbBatchNo.TabIndex = 3;
@@ -576,7 +581,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(22, 546);
+            this.textBox1.Location = new System.Drawing.Point(22, 566);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(200, 27);
@@ -597,12 +602,44 @@
             this.lblLocation.TabIndex = 1;
             this.lblLocation.Visible = false;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkBillScheme);
+            this.groupBox4.Controls.Add(this.chkProductScheme);
+            this.groupBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.groupBox4.Location = new System.Drawing.Point(7, 410);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(443, 57);
+            this.groupBox4.TabIndex = 111111174;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Scheme Eligibility";
+            // 
+            // chkBillScheme
+            // 
+            this.chkBillScheme.AutoSize = true;
+            this.chkBillScheme.Location = new System.Drawing.Point(170, 23);
+            this.chkBillScheme.Name = "chkBillScheme";
+            this.chkBillScheme.Size = new System.Drawing.Size(90, 24);
+            this.chkBillScheme.TabIndex = 38;
+            this.chkBillScheme.Text = "Bill Scheme";
+            this.chkBillScheme.UseVisualStyleBackColor = true;
+            // 
+            // chkProductScheme
+            // 
+            this.chkProductScheme.AutoSize = true;
+            this.chkProductScheme.Location = new System.Drawing.Point(17, 23);
+            this.chkProductScheme.Name = "chkProductScheme";
+            this.chkProductScheme.Size = new System.Drawing.Size(116, 24);
+            this.chkProductScheme.TabIndex = 38;
+            this.chkProductScheme.Text = "Product Scheme";
+            this.chkProductScheme.UseVisualStyleBackColor = true;
+            // 
             // CP_SubGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(475, 505);
+            this.ClientSize = new System.Drawing.Size(478, 561);
             this.Controls.Add(this.lblLocation);
             this.Controls.Add(this.grbform);
             this.Controls.Add(this.cmbBatchNo);
@@ -630,6 +667,8 @@
             this.grpPurchaseStockLocation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRackList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epSubGroup)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -673,5 +712,8 @@
         public System.Windows.Forms.DataGridView DGV_FilterLocation;
         private System.Windows.Forms.ComboBox cmbMarginCalc;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkBillScheme;
+        private System.Windows.Forms.CheckBox chkProductScheme;
     }
 }

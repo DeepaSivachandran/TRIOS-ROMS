@@ -260,7 +260,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(3, 0, 0, "", "", 0, 0, 0, 0, varOriginator, "", MainForm.pbUserID, 0, 0, 0, "", "");
+                    varResult = objDser.udfnSubGroup(3, 0, 0, "", "", 0, 0, 0, 0, varOriginator, "", MainForm.pbUserID, 0, 0, 0, "", "",0,0);
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
