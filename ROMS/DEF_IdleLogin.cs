@@ -30,6 +30,7 @@ namespace ROMS
             objValidation.resolutionsettingsForm(this);
             _security = new SecurityController();
             lbluserName.Text = MainForm.pbUserName;
+            lbluserName.Left = (this.ClientSize.Width - lbluserName.Width) / 2;
             timerClock.Start();
             this.StartPosition = FormStartPosition.Manual;
 

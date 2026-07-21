@@ -71,7 +71,7 @@ namespace ROMS
         {
             TimeSpan idleTime = DateTime.Now - lastActivityTime;
 
-            if (idleTime.TotalMinutes >= 1)
+            if (idleTime.TotalMinutes >= idleTimeoutMinutes)
             {
                 idlePopupPending = true;
             }
