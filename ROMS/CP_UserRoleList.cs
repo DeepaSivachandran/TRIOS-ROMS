@@ -336,7 +336,16 @@ namespace ROMS
                     //MainForm.objStart.MdiParent = this.ParentForm;
                     //MainForm.objStart.Show();
                     //this.Close();
-                    windowControl?.TriggerClose();
+                    if (RPTViewer.Visible == true)
+                    {
+                        btnView.Enabled = true;
+                        RPTViewer.Visible = false;
+                        udfnList();
+                    }
+                    else
+                    {
+                        windowControl?.TriggerClose();
+                    }
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
