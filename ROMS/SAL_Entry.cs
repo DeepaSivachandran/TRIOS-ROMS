@@ -308,8 +308,15 @@ namespace ROMS
                 if (txtGroup.Text.Trim() == "")
                 {
                     lblGroupCode.Text = "0";
+                    lblSubGroupCode.Text = "0";
+                    lblBrandCode.Text = "0";
+                    lblSupplierCode.Text = "0";
+                    txtSubGroup.Text = "";
+                    txtBrand.Text = "";
+                    txtSupplier.Text = "";
                     udfnSubgroupFilter();
                     udfnBrandFilter();
+                    udfnSupplierFilter();
                     udfnFilterCount();
                 }
                 if (varUpDownKeyGroup == 0)
@@ -564,7 +571,12 @@ namespace ROMS
                 if (txtSubGroup.Text.Trim() == "")
                 {
                     lblSubGroupCode.Text = "0";
+                    lblBrandCode.Text = "0";
+                    lblSupplierCode.Text = "0";
+                    txtBrand.Text = "";
+                    txtSupplier.Text = "";
                     udfnBrandFilter();
+                    udfnSupplierFilter();
                 }
 
                 if (varUpDownKeySubgroup == 0)
@@ -764,9 +776,12 @@ namespace ROMS
         {
             try
             {
-                if(txtBrand.Text.Trim() == "")
+                if (txtBrand.Text.Trim() == "")
                 {
                     lblBrandCode.Text = "0";
+                    lblSupplierCode.Text = "0";
+                    txtBrand.Text = "";
+                    txtSupplier.Text = "";
                     udfnSupplierFilter();
                 }
                 if (varUpDownKeyBrand == 0)

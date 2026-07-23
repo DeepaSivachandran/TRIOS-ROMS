@@ -509,6 +509,19 @@ namespace ROMS
         {
             try
             {
+                if (txtGroup.Text.Trim() == "")
+                {
+                    lblGroupCode.Text = "0";
+                    lblSubGroupCode.Text = "0";
+                    lblBrandCode.Text = "0";
+                    lblSupplierCode.Text = "0";
+                    txtSubGroup.Text = "";
+                    txtBrand.Text = "";
+                    txtSupplier.Text = "";
+                    udfnSubgroupFilter();
+                    udfnBrandFilter();
+                    udfnSupplierFilter(); 
+                }
                 if (varUpDownKeyGroup == 0)
                 {
                     DGV_FilterGroup.ScrollToMatchingRow("PRG_EName", txtGroup.Text);
@@ -785,6 +798,16 @@ namespace ROMS
         {
             try
             {
+                if (txtSubGroup.Text.Trim() == "")
+                {
+                    lblSubGroupCode.Text = "0";
+                    lblBrandCode.Text = "0";
+                    lblSupplierCode.Text = "0";
+                    txtBrand.Text = "";
+                    txtSupplier.Text = "";
+                    udfnBrandFilter();
+                    udfnSupplierFilter();
+                }
                 if (varUpDownKeySubgroup == 0)
                 {
                     DGV_FilterSubgroup.ScrollToMatchingRow("PRSG_EName", txtSubGroup.Text);
@@ -961,6 +984,14 @@ namespace ROMS
         {
             try
             {
+                if (txtBrand.Text.Trim() == "")
+                {
+                    lblBrandCode.Text = "0";
+                    lblSupplierCode.Text = "0";
+                    txtBrand.Text = "";
+                    txtSupplier.Text = "";
+                    udfnSupplierFilter();
+                }
                 if (varUpDownKeyBrand == 0)
                 {
                     DGV_FilterBrand.ScrollToMatchingRow("BD_EName", txtBrand.Text);
