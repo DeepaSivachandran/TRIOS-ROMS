@@ -170,6 +170,11 @@ namespace ROMS
                 }
                 objdserv.CloseConnection();
                 udfnFilterCount();
+                udfnGroupFilter();
+                udfnSubgroupFilter();
+                udfnBrandFilter();
+                udfnSupplierFilter();
+                udfnDefaultSearchGrid(1);
                 //udfnList(0);
                 btnUpdate.Enabled = false;
             }
@@ -300,6 +305,13 @@ namespace ROMS
         {
             try
             {
+                if (txtGroup.Text.Trim() == "")
+                {
+                    lblGroupCode.Text = "0";
+                    udfnSubgroupFilter();
+                    udfnBrandFilter();
+                    udfnFilterCount();
+                }
                 if (varUpDownKeyGroup == 0)
                 {
                     DGV_FilterGroup.ScrollToMatchingRow("PRG_EName", txtGroup.Text);
@@ -357,23 +369,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void DGV_FilterGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                varUpDownKeyGroup = 1;
-                udfnGroupAutocomplete();
-                txtSubGroup.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
         private void DGV_FilterGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -564,7 +560,13 @@ namespace ROMS
         private void TxtSubGroup_TextChanged(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                if (txtSubGroup.Text.Trim() == "")
+                {
+                    lblSubGroupCode.Text = "0";
+                    udfnBrandFilter();
+                }
+
                 if (varUpDownKeySubgroup == 0)
                 {
                     DGV_FilterSubgroup.ScrollToMatchingRow("PRSG_EName", txtSubGroup.Text);
@@ -720,11 +722,11 @@ namespace ROMS
                 if (txtGroup.Text.Trim() != "")
                 {
                     lblGroupCode.Text = DGV_FilterGroup.SelectedRows[0].Cells["PRGID"].Value.ToString();
-                    txtGroup.Text = DGV_FilterGroup.SelectedRows[0].Cells["PRG_EName"].Value.ToString();
-                    udfnSubgroupFilter();
-                    udfnBrandFilter();
-                    udfnSupplierFilter();
+                    txtGroup.Text = DGV_FilterGroup.SelectedRows[0].Cells["PRG_EName"].Value.ToString(); 
                 }
+                udfnSubgroupFilter();
+                udfnBrandFilter();
+                udfnSupplierFilter();
             }
             catch (Exception ex)
             {
@@ -743,10 +745,10 @@ namespace ROMS
                 if (txtSubGroup.Text.Trim() != "")
                 {
                     lblSubGroupCode.Text = DGV_FilterSubgroup.SelectedRows[0].Cells["PRSGID"].Value.ToString();
-                    txtSubGroup.Text = DGV_FilterSubgroup.SelectedRows[0].Cells["PRSG_EName"].Value.ToString();
-                    udfnBrandFilter();
-                    udfnSupplierFilter();
+                    txtSubGroup.Text = DGV_FilterSubgroup.SelectedRows[0].Cells["PRSG_EName"].Value.ToString(); 
                 }
+                udfnBrandFilter();
+                udfnSupplierFilter();
             }
             catch (Exception ex)
             {
@@ -762,6 +764,11 @@ namespace ROMS
         {
             try
             {
+                if(txtBrand.Text.Trim() == "")
+                {
+                    lblBrandCode.Text = "0";
+                    udfnSupplierFilter();
+                }
                 if (varUpDownKeyBrand == 0)
                 {
                     DGV_FilterBrand.ScrollToMatchingRow("BD_EName", txtBrand.Text);
@@ -1787,11 +1794,7 @@ namespace ROMS
                     lblBrandCount.Text = objDs.Tables[2].Rows[0]["BrandCount"].ToString().Trim();
                     tsbOriginalProducts.Text = objDs.Tables[3].Rows[0]["OriginalProCount"].ToString().Trim();
                     tsbTotalProducts.Text = objDs.Tables[4].Rows[0]["TotalProCount"].ToString().Trim();
-                }
-                udfnGroupFilter();
-                udfnSubgroupFilter();
-                udfnBrandFilter();
-                udfnSupplierFilter();
+                } 
             }
             catch (Exception ex)
             {
@@ -1803,6 +1806,7 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterGroup.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 objDs = objspdservice.udfnGroupList(13, 0, 0, txtGroup.Text, 0);
@@ -1817,8 +1821,8 @@ namespace ROMS
                             DGV_FilterGroup.Columns["PRGID"].Visible = false;
                             DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
                             DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
-                            DGV_FilterGroup.Columns["PRG_TName"].Visible = true;
-                            DGV_FilterGroup.Columns["PRG_EName"].Width = 200;
+                            DGV_FilterGroup.Columns["PRG_TName"].Visible = false;
+                            DGV_FilterGroup.Columns["PRG_EName"].Width = 250;
                             DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
                             DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
                             DGV_FilterGroup.Columns["PRG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1836,6 +1840,7 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterSubgroup.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 objDs = objspdservice.udfnSubGroupList(18, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0);
@@ -1846,12 +1851,13 @@ namespace ROMS
                     DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
                     DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
                     DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
-                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = true;
-                    DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 200;
-                    DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
+                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = false;
+                    DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 250;
+                    DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 250;
                     DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
                     DGV_FilterSubgroup.Columns["PRSG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
+                lblSubGroupCount.Text = Convert.ToString(objDs.Tables[0].Rows.Count);
             }
             catch (Exception ex)
             {
@@ -1863,6 +1869,7 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterBrand.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 objDs = objspdservice.udfnBrandList(14, "0", Convert.ToInt16(lblGroupCode.Text), Convert.ToInt16(lblSubGroupCode.Text), 0, txtBrand.Text.Trim(), 0);
@@ -1878,14 +1885,15 @@ namespace ROMS
                             DGV_FilterBrand.Columns["BDID"].Visible = false;
                             DGV_FilterBrand.Columns["BD_EName"].HeaderText = "Brand English Name";
                             DGV_FilterBrand.Columns["BD_TName"].HeaderText = "Brand Tamil Name";
-                            DGV_FilterBrand.Columns["BD_TName"].Visible = true;
-                            DGV_FilterBrand.Columns["BD_EName"].Width = 200;
-                            DGV_FilterBrand.Columns["BD_TName"].Width = 200;
+                            DGV_FilterBrand.Columns["BD_TName"].Visible = false;
+                            DGV_FilterBrand.Columns["BD_EName"].Width = 250;
+                            DGV_FilterBrand.Columns["BD_TName"].Width = 250;
                             DGV_FilterBrand.Columns["BD_EName"].DisplayIndex = 0;
                             DGV_FilterBrand.Columns["BD_TName"].DisplayIndex = 1;
                             DGV_FilterBrand.Columns["BD_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                     }
+                    lblBrandCount.Text = Convert.ToString(objDs.Tables[0].Rows.Count);
                 }
             }
             catch (Exception ex)
@@ -1898,6 +1906,7 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterSupplier.DataSource = null;
                 MR_Supplier objMR_Supplier = new MR_Supplier();
                 objMR_Supplier.ViewType = 52;
                 objMR_Supplier.paraGroupCode = Convert.ToInt16(lblGroupCode.Text);
@@ -2113,7 +2122,7 @@ namespace ROMS
                     if (lblNoRecordsFound.Visible == true)
                     {
                         dtDefaultGrid = objDs.Tables[0];
-                        udfnDefaultSearchGrid();
+                        udfnDefaultSearchGrid(0);
                     }
                     else
                     {
@@ -2203,10 +2212,34 @@ namespace ROMS
             }
         }
 
-        public void udfnDefaultSearchGrid()
+        public void udfnDefaultSearchGrid(int flag)
         {
             try
             {
+                if (flag == 1)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ProuctID");
+                    dt.Columns.Add("EProduct");
+                    dt.Columns.Add("UnitCode");
+                    dt.Columns.Add("BrandCode");
+                    dt.Columns.Add("EBrnad");
+                    dt.Columns.Add("SubGroupCode");
+                    dt.Columns.Add("ESubGroup");
+                    dt.Columns.Add("GroupCode");
+                    dt.Columns.Add("EGroup");
+                    dt.Columns.Add("FilterType");
+                    dt.Columns.Add("S.No.");
+                    dt.Columns.Add("PI Code");
+                    dt.Columns.Add("Product");
+                    dt.Columns.Add("Unit");
+                    dt.Columns.Add("S.Rate");
+                    dt.Columns.Add("S.Qty");
+                    dt.Columns.Add("Brand");
+                    dt.Columns.Add("Sub Group");
+                    dt.Columns.Add("Group");
+                    dtDefaultGrid = dt;
+                }
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ProuctID"].Visible = false;
                 DGV_SearchGrid.Columns["EProduct"].Visible = false;
@@ -2796,11 +2829,11 @@ namespace ROMS
                             Convert.ToInt16(grdSalesList.Rows[i].Cells["RCYID"].Value));
                     }
                 }
-                MainForm.objCP_Verify = new CP_Verify();
-                MainForm.objCP_Verify.ShowDialog();
-                varUserID =Convert.ToInt16(MainForm.objCP_Verify.varUserId);
-                if (MainForm.objCP_Verify.flag == 1)
-                {
+                //MainForm.objCP_Verify = new CP_Verify();
+                //MainForm.objCP_Verify.ShowDialog();
+                //varUserID =Convert.ToInt16(MainForm.objCP_Verify.varUserId);
+                //if (MainForm.objCP_Verify.flag == 1)
+                //{
                     Model.MR_SalesEntry objSalesEntry = new Model.MR_SalesEntry();
                     objSalesEntry.paraViewType = 1;
                     objSalesEntry.ParaSalesEntry = objSalesEntries;
@@ -2818,7 +2851,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                }
+               // }
                 lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
             }
             catch (Exception ex)
@@ -3198,26 +3231,36 @@ namespace ROMS
         private void btnClear_Click(object sender, EventArgs e)
         {
             try
-            { 
-                DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+            {
+                if (grdSalesList.Rows.Count != 0)
                 {
-                    string varResult = "";
-                    SPDataService objspservice = new SPDataService();
-                    Model.MR_SalesEntry objSalesEntry = new Model.MR_SalesEntry();
-                    objSalesEntry.paraViewType = 2;  
-                    varResult = objspservice.udfnSalesEntry(objSalesEntry);
-                    objspservice.CloseConnection();
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "1")
+                    DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.ActiveControl = cmbConcern;
-                        udfnList(0);
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = Convert.ToInt16(MainForm.objCP_Verify.varUserId);
+                        if (MainForm.objCP_Verify.flag == 1)
+                        {
+                            string varResult = "";
+                            SPDataService objspservice = new SPDataService();
+                            Model.MR_SalesEntry objSalesEntry = new Model.MR_SalesEntry();
+                            objSalesEntry.paraViewType = 2;
+                            objSalesEntry.paraUserID = varUserID;
+                            varResult = objspservice.udfnSalesEntry(objSalesEntry);
+                            objspservice.CloseConnection();
+                            string[] varvalue = varResult.Split('~');
+                            if (varvalue[0] == "1")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.ActiveControl = cmbConcern;
+                                udfnList(0);
+                            }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
                     }
                 }
                 lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
@@ -3273,6 +3316,21 @@ namespace ROMS
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             udfnSelectAll();
+        }
+
+        private void DGV_FilterGroup_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyGroup = 1;
+                udfnGroupAutocomplete();
+                txtSubGroup.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnclose()

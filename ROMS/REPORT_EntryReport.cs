@@ -252,6 +252,7 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterGroup.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 objDs = objspdservice.udfnGroupList(13, 0, 0, txtGroup.Text, 0);
@@ -266,8 +267,8 @@ namespace ROMS
                             DGV_FilterGroup.Columns["PRGID"].Visible = false;
                             DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
                             DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
-                            DGV_FilterGroup.Columns["PRG_TName"].Visible = true;
-                            DGV_FilterGroup.Columns["PRG_EName"].Width = 200;
+                            DGV_FilterGroup.Columns["PRG_TName"].Visible = false;
+                            DGV_FilterGroup.Columns["PRG_EName"].Width = 250;
                             DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
                             DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
                             DGV_FilterGroup.Columns["PRG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -285,6 +286,7 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterBrand.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 objDs = objspdservice.udfnBrandList(14, "0", Convert.ToInt16(lblGroupCode.Text), Convert.ToInt16(lblSubGroupCode.Text), 0, txtBrand.Text.Trim(), 0);
@@ -300,8 +302,8 @@ namespace ROMS
                             DGV_FilterBrand.Columns["BDID"].Visible = false;
                             DGV_FilterBrand.Columns["BD_EName"].HeaderText = "Brand English Name";
                             DGV_FilterBrand.Columns["BD_TName"].HeaderText = "Brand Tamil Name";
-                            DGV_FilterBrand.Columns["BD_TName"].Visible = true;
-                            DGV_FilterBrand.Columns["BD_EName"].Width = 200;
+                            DGV_FilterBrand.Columns["BD_TName"].Visible = false;
+                            DGV_FilterBrand.Columns["BD_EName"].Width = 250;
                             DGV_FilterBrand.Columns["BD_TName"].Width = 200;
                             DGV_FilterBrand.Columns["BD_EName"].DisplayIndex = 0;
                             DGV_FilterBrand.Columns["BD_TName"].DisplayIndex = 1;
@@ -320,6 +322,7 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterSubgroup.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 objDs = objspdservice.udfnSubGroupList(18, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0);
@@ -330,8 +333,8 @@ namespace ROMS
                     DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
                     DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
                     DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
-                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = true;
-                    DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 200;
+                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = false;
+                    DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 250;
                     DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
                     DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
                     DGV_FilterSubgroup.Columns["PRSG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -370,7 +373,7 @@ namespace ROMS
                             DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
                             DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
                             DGV_FilterSupplier.Columns["SP_Name"].HeaderText = "Supplier";
-                            DGV_FilterSupplier.Columns["SP_Name"].Width = 260;
+                            DGV_FilterSupplier.Columns["SP_Name"].Width = 300;
                             DGV_FilterSupplier.Columns["SP_Name"].DisplayIndex = 0;
                         }
                     }
@@ -845,7 +848,7 @@ namespace ROMS
         }
 
         private void DGV_FilterSubgroup_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+        { 
             try
             {
                 varUpDownKeySubgroup = 1;

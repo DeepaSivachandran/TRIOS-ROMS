@@ -11,7 +11,7 @@ namespace ROMS.Service_Class
     { 
        public static void ScrollToMatchingRow(this DataGridView dgv, string columnName, string searchText)
        {
-            if (dgv == null || dgv.DataSource == null)
+            if (dgv == null || dgv.DataSource == null || searchText=="")
             {
                 dgv.Visible = false;
                 return;

@@ -10877,6 +10877,8 @@ namespace ROMS
                             pbProHSNID = Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"]);
                             pbSalesHSNID = Convert.ToInt32(objDS.Tables[0].Rows[0]["SalesHSN"]);
                             varMarginType = Convert.ToInt32(objDS.Tables[0].Rows[0]["Margintype"]);
+                            pbSG_BillScheme = Convert.ToInt32(objDS.Tables[0].Rows[0]["SG_BillSchemeFlag"]);
+                            pbSG_ProductScheme = Convert.ToInt32(objDS.Tables[0].Rows[0]["SG_ProScheme"]);
                             lvVerified1.Visible = false;
                             if (pbCloneFlag == 0)
                             {
