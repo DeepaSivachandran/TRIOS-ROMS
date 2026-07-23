@@ -264,7 +264,7 @@ namespace ROMS
                             DGV_FilterGroup.Columns["PRGID"].Visible = false;
                             DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
                             DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
-                            DGV_FilterGroup.Columns["PRG_TName"].Visible = true;
+                            DGV_FilterGroup.Columns["PRG_TName"].Visible = false;
                             DGV_FilterGroup.Columns["PRG_EName"].Width = 250;
                             DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
                             DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
@@ -371,7 +371,7 @@ namespace ROMS
                             DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
                             DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
                             DGV_FilterSupplier.Columns["SP_Name"].HeaderText = "Supplier";
-                            DGV_FilterSupplier.Columns["SP_Name"].Width = 260;
+                            DGV_FilterSupplier.Columns["SP_Name"].Width = 300;
                             DGV_FilterSupplier.Columns["SP_Name"].DisplayIndex = 0;
                         }
                     }
