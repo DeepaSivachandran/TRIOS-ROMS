@@ -2125,15 +2125,7 @@ namespace ROMS
                         }
                         objspservice.CloseConnection();
                     }
-                    udfnSearchGridHead();
-                    grdSalesList.Columns["S.No."].ReadOnly = true;
-                    grdSalesList.Columns["PI Code"].ReadOnly = true;
-                    grdSalesList.Columns["Product"].ReadOnly = true;
-                    grdSalesList.Columns["Unit"].ReadOnly = true;
-                    grdSalesList.Columns["S.Rate"].ReadOnly = true;
-                    grdSalesList.Columns["Brand"].ReadOnly = true;
-                    grdSalesList.Columns["Sub Group"].ReadOnly = true;
-                    grdSalesList.Columns["Group"].ReadOnly = true;
+                    udfnSearchGridHead(); 
                     if (lblNoRecordsFound.Visible == true)
                     {
                         dtDefaultGrid = objDs.Tables[0];
@@ -2143,6 +2135,14 @@ namespace ROMS
                     {
                         DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                     }
+                    grdSalesList.Columns["S.No."].ReadOnly = true;
+                    grdSalesList.Columns["PI Code"].ReadOnly = true;
+                    grdSalesList.Columns["Product"].ReadOnly = true;
+                    grdSalesList.Columns["Unit"].ReadOnly = true;
+                    grdSalesList.Columns["S.Rate"].ReadOnly = true;
+                    grdSalesList.Columns["Brand"].ReadOnly = true;
+                    grdSalesList.Columns["Sub Group"].ReadOnly = true;
+                    grdSalesList.Columns["Group"].ReadOnly = true;
                     tsbTotal.Visible = true; tsbTotal.Enabled = true;
                     tsbMapped.Visible = true; tsbMapped.Enabled = true;
                     tsbUnmapped.Visible = true; tsbUnmapped.Enabled = true;

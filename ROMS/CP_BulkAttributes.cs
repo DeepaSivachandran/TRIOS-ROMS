@@ -267,7 +267,7 @@ namespace ROMS
         {
             try
             { 
-                txtProductName.Text = "";
+                txtProductName.Text = ""; 
                 Varupdateflag = 0; string varOriginator = "";
                 int varHsnId = 0, varUnitId = 0; int varUpdateViewType = 0;
                 int varGroupId = 0, varSubGroupId = 0, varBrandId = 0;
@@ -624,6 +624,7 @@ namespace ROMS
                 }
                 else if (grdStock.Visible == true)
                 {
+                    string ErrPicode = "";
                     varUpdateViewType = 8; varViewType = 6; varOriginator = "Product Bulk Update-Stock";
                     for (int i = 0; i < grdStock.Rows.Count; i++)
                     {
@@ -650,6 +651,11 @@ namespace ROMS
                         if (varCheckMinStock > varCheckMaxStock)
                         {
                             varErrorflag = 1;
+                            if(ErrPicode=="")
+                            {
+                                ErrPicode =Convert.ToString(grdStock.Rows[i].Cells["Min Stock-Current"].Value);
+                            }
+
                         }
 
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdStock.Rows[i].Cells["PRID"].Value),
