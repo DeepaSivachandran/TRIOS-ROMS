@@ -181,6 +181,9 @@ namespace ROMS
             try
             {
                 txtCityName.Text = "";
+                txtPincode.Text = "";
+                cmbState.SelectedValue = -1;
+                cmbDistrict.SelectedValue = -1;
                 txtCityName.Focus(); 
                 this.ActiveControl = txtCityName;
             }

@@ -1548,7 +1548,7 @@ namespace ROMS
                     {
                         pbschemeFlag = 1;
                     }
-                    if(pbSG_ProductScheme==1 && BillSchemeApplicable==0)
+                    if(pbSG_ProductScheme==1 && ProductSchemeApplicable == 0)
                     { pbschemeFlag = 1; }
 
                     if(pbschemeFlag==1)
@@ -3403,10 +3403,17 @@ namespace ROMS
                     txtProductionMSQ.Text = "";
                     cmbIntermediateUnit.SelectedValue = -1;
                 }
-                if(Convert.ToInt16(cmbProductCategory.SelectedValue) == 15) //Free
+                if (Convert.ToInt16(cmbProductCategory.SelectedValue) == 15) //Free
                 {
                     chkProductScheme.Checked = true;
                     chkBillScheme.Checked = true;
+                    chkProductScheme.Enabled = false;
+                    chkBillScheme.Enabled = false;
+                }
+                else
+                {
+                    chkProductScheme.Enabled = true;
+                    chkBillScheme.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -4174,10 +4181,7 @@ namespace ROMS
                 dtSalesHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
                 dtSalesHSN.Columns.Add("PRHSN_MakerID", typeof(int));
 
-                chkProductScheme.Checked = true;
-                chkBillScheme.Checked = true;
-
-
+                 
                 if (varMasterType == "0")
                 {
                     MainForm.objCP_Itemlist.picLoader.Visible = false;
@@ -4228,6 +4232,11 @@ namespace ROMS
                 {
                     txtPurLocation.Enabled = false;
                     txtPurRack.Enabled = false;
+                }
+                if(varproductcode==0)
+                {
+                    chkProductScheme.Checked = true;
+                    chkBillScheme.Checked = true;
                 }
                 udfnEdit();
                 txtHSNCode.Enabled = false;
