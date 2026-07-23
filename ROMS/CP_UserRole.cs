@@ -1,5 +1,4 @@
 ﻿
-using DocumentFormat.OpenXml.EMMA;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,11 +56,6 @@ namespace ROMS
 
                 base.WndProc(ref m);
             }
-        }
-        public class MenuTag
-        {
-            public string MenuCode { get; set; }
-            public string Number { get; set; }
         }
         public CP_UserRole()
         {
@@ -194,7 +188,7 @@ namespace ROMS
                 foreach (DataRow row in rootRows)
                 {
                     //TreeNode root = CreateMappedNode(row);
-                    TreeNode root = CreateCheckedTree(row,"");
+                    TreeNode root = CreateCheckedTree(row);
                     if (root != null)
                         tvMappedMenus.Nodes.Add(root);
 
@@ -221,60 +215,10 @@ namespace ROMS
             }
         }
 
-        //private TreeNode CreateCheckedTree(DataRow row)
-        //{
-        //    TreeNode node = new TreeNode();
-        //    node.Text = row["MU_Name"].ToString();
-        //    node.Tag = row["MU_Code"];
-
-        //    bool isChecked =
-        //        row["Menuflag"] != DBNull.Value &&
-        //        Convert.ToInt32(row["Menuflag"]) == 1;
-
-        //    DataRow[] childRows = objDtUserMenuDetails.Select(
-        //        "MU_ParentMenuCode=" + row["MU_Code"]);
-
-        //    foreach (DataRow childRow in childRows)
-        //    {
-        //        TreeNode childNode = CreateCheckedTree(childRow);
-
-        //        if (childNode != null)
-        //            node.Nodes.Add(childNode);
-        //    }
-
-        //    // Return this node if:
-        //    // 1. It is checked
-        //    // 2. OR it has checked descendants
-        //    if (isChecked || node.Nodes.Count > 0)
-        //        return node;
-
-        //    return null;
-        //}
-
-        private TreeNode CreateCheckedTree(DataRow row, string parentNumber)
+        private TreeNode CreateCheckedTree(DataRow row)
         {
-            // Find this row's position among its siblings
-            DataRow[] siblings = objDtUserMenuDetails.Select(
-                row["MU_ParentMenuCode"] == DBNull.Value
-                    ? "MU_ParentMenuCode IS NULL"
-                    : "MU_ParentMenuCode=" + row["MU_ParentMenuCode"],
-                "MU_Code ASC");   // Use MU_OrderID ASC if that's your display order
-
-            int index = 1;
-
-            foreach (DataRow r in siblings)
-            {
-                if (Convert.ToInt32(r["MU_Code"]) == Convert.ToInt32(row["MU_Code"]))
-                    break;
-
-                index++;
-            }
-
-            string currentNumber = string.IsNullOrEmpty(parentNumber)
-                ? index.ToString()
-                : parentNumber + "." + index;
-
-            TreeNode node = new TreeNode(currentNumber + " " + row["MU_Name"].ToString());
+            TreeNode node = new TreeNode();
+            node.Text = row["MU_Name"].ToString();
             node.Tag = row["MU_Code"];
 
             bool isChecked =
@@ -282,21 +226,25 @@ namespace ROMS
                 Convert.ToInt32(row["Menuflag"]) == 1;
 
             DataRow[] childRows = objDtUserMenuDetails.Select(
-                "MU_ParentMenuCode=" + row["MU_Code"], "MU_Code ASC"); // or MU_OrderID ASC
+                "MU_ParentMenuCode=" + row["MU_Code"]);
 
             foreach (DataRow childRow in childRows)
             {
-                TreeNode childNode = CreateCheckedTree(childRow, currentNumber);
+                TreeNode childNode = CreateCheckedTree(childRow);
 
                 if (childNode != null)
                     node.Nodes.Add(childNode);
             }
 
+            // Return this node if:
+            // 1. It is checked
+            // 2. OR it has checked descendants
             if (isChecked || node.Nodes.Count > 0)
                 return node;
 
             return null;
         }
+
         //  Incase of the future the client wants to show the All menus with the checked menus in the treeview then we can command it the below code and uncomment the above code and call the LoadMappedMenus() function
         /*
         private void LoadMappedChildren(TreeNode parentNode,
@@ -391,8 +339,8 @@ namespace ROMS
                 });
                 if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
 
-                //string menuCode = e.Node.Tag.ToString();
-                string menuCode = ((MenuTag)e.Node.Tag).MenuCode;
+                string menuCode = e.Node.Tag.ToString();
+
                 if (menuCode == "")
                 {
                     menuCode = "0";
@@ -687,28 +635,18 @@ namespace ROMS
             try
             {
                 tv.Nodes.Clear();
-                int i = 1;
                 foreach (DataRow row in dt.Rows)
                 {
                     string nodeText = row["MU_Name"].ToString();   // Text to display
                     string nodeValue = row["MU_Code"].ToString(); //  id for menus
 
                     // Create TreeNode
-                    //TreeNode node = new TreeNode(nodeText)
-                    //{
-                    //    Tag = nodeValue   // Store value in Tag (can retrieve later)
-                    //};
-                    TreeNode node = new TreeNode($"{i}. {row["MU_Name"]}")
+                    TreeNode node = new TreeNode(nodeText)
                     {
-                        Tag = new MenuTag
-                        {
-                            MenuCode = row["MU_Code"].ToString(),
-                            Number = i.ToString()
-                        }
+                        Tag = nodeValue   // Store value in Tag (can retrieve later)
                     };
 
                     tv.Nodes.Add(node);
-                    i++;
                 }
             }
             catch (Exception ex)
@@ -722,58 +660,16 @@ namespace ROMS
         {
             try
             {
+
                 submenu.Nodes.Clear(); // clear previous second tree
 
                 // Create root node for this parent
                 DataRow parentRow = objDtUserMenuDetails.Select($"MU_Code = {parentMenuCode}").FirstOrDefault();
                 if (parentRow != null)
                 {
-                    //TreeNode rootNode = new TreeNode(parentRow["MU_Name"].ToString())
-                    //{
-                    //    Tag = parentRow["MU_Code"]
-                    //};
-
-                    string parentNumber = "";
-
-                    if (submenu.Name == "tvSubmenu")
+                    TreeNode rootNode = new TreeNode(parentRow["MU_Name"].ToString())
                     {
-                        // Called from Main Menu
-                        if (tvMainmenu.SelectedNode != null)
-                        {
-                            MenuTag tag = (MenuTag)tvMainmenu.SelectedNode.Tag;
-                            parentNumber = tag.Number;
-                        }
-                    }
-                    else if (submenu.Name == "tvLevl2Submenu")
-                    {
-                        // Called from Sub Menu
-                        if (tvSubmenu.SelectedNode != null)
-                        {
-                            MenuTag tag = (MenuTag)tvSubmenu.SelectedNode.Tag;
-                            parentNumber = tag.Number;
-                        }
-                    }
-
-                    //TreeNode rootNode = new TreeNode(parentRow["MU_Name"].ToString())
-                    //{
-                    //    Tag = new MenuTag
-                    //    {
-                    //        MenuCode = parentMenuCode,
-                    //        Number = parentNumber
-                    //    }
-                    //};
-
-                    TreeNode rootNode = new TreeNode(
-    string.IsNullOrEmpty(parentNumber)
-    ? parentRow["MU_Name"].ToString()
-    : $"{parentNumber} {parentRow["MU_Name"]}"
-)
-                    {
-                        Tag = new MenuTag
-                        {
-                            MenuCode = parentMenuCode,
-                            Number = parentNumber
-                        }
+                        Tag = parentRow["MU_Code"]
                     };
                     int parenttype = 0;
 
@@ -810,27 +706,15 @@ namespace ROMS
                 {
                     objDtSubMenu = dv.ToTable();
                 }
-                int index = 1;
+
                 foreach (DataRow row in objDtSubMenuClone.Rows)
                 {
-                    //string nodeText = row["MU_Name"].ToString();
-                    //string nodeValue = row["MU_Code"].ToString();
-                    //string parentNo = parentNode.Text.Split(' ')[0];
-                    //string nodeText = $"{parentNo}.{index} {row["MU_Name"]}";
-
+                    string nodeText = row["MU_Name"].ToString();
                     string nodeValue = row["MU_Code"].ToString();
-                    MenuTag parentTag = (MenuTag)parentNode.Tag;
-                    string parentNo = parentTag.Number;
-                    string currentNumber = $"{parentNo}.{index}";
-                    string nodeText = $"{currentNumber} {row["MU_Name"]}";
 
                     TreeNode childNode = new TreeNode(nodeText)
                     {
-                        Tag = new MenuTag
-                        {
-                            MenuCode = nodeValue,
-                            Number = currentNumber
-                        },
+                        Tag = nodeValue,
                         Checked = row["Menuflag"] != DBNull.Value && Convert.ToInt32(row["Menuflag"]) == 1
                     };
                     parentNode.Nodes.Add(childNode);
@@ -851,7 +735,6 @@ namespace ROMS
                     {
                         LoadSubMenu(childNode, nodeValue, 1);
                     }
-                    index++;
                 }
 
 
@@ -1702,9 +1585,8 @@ namespace ROMS
                     {
                         if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
 
-                        //string menuCode = e.Node.Tag.ToString();
-                        MenuTag tag = (MenuTag)e.Node.Tag;
-                        string menuCode = tag.MenuCode;
+                        string menuCode = e.Node.Tag.ToString();
+
                         if (menuCode == "")
                         {
                             menuCode = "0";
@@ -1719,7 +1601,7 @@ namespace ROMS
 
 
                         e.Node.EnsureVisible();
-                       // tvMainmenu.SelectedNode = e.Node;
+                        tvMainmenu.SelectedNode = e.Node;
                         e.Node.BackColor = Color.LightBlue;
                     }
                     else
