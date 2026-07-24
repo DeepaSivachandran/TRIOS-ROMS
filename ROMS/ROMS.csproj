@@ -5866,8 +5866,8 @@
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_User_Role_Empty_SplPermission.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_CP_User_Role_Empty_SplPermission.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_CP_User_Role_Empty_SplPermission1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_User_Role_Empty.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
