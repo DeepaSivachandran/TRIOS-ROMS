@@ -944,6 +944,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_User_Role_Empty_SplPermission.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_Godown_Valuation_Summary.cs">
       <AutoGen>True</AutoGen>
@@ -5871,6 +5872,7 @@
     <EmbeddedResource Include="Reports\RPT_CP_User_Role_Empty_SplPermission.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_User_Role_Empty_SplPermission.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Godown_Valuation_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
