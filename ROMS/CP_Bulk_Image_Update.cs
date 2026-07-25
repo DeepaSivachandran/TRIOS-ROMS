@@ -82,9 +82,28 @@ namespace ROMS
         {
             try
             {
+                int varGroupID = 0, varSubgroupID = 0;
+                if (txtGroup.Text.Trim() == "")
+                {
+                    MessageBox.Show("Please enter a group.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else
+                {
+                    if (lblGroup.Text == "0" || lblGroup.Text == "")
+                    {
+                        MessageBox.Show("Please enter a valid group.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    varGroupID = Convert.ToInt32(lblGroupCode.Text);
+                }
+                if (txtSubGroup.Text.Trim() != "")
+                {
+                    varSubgroupID = Convert.ToInt32(lblSubGroupCode.Text);
+                }
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspdservice.udfnSubGroupList(19, 0, "", 0, 0, "", 0, 0, 0, 0, 0);
+                objDs = objspdservice.udfnSubGroupList(19, varSubgroupID, "", varGroupID, 0, "", 0, 0, 0, 0, 0);
                 objspdservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -284,6 +303,19 @@ namespace ROMS
                 objDServ.CloseConnection();
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
+            }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
