@@ -624,7 +624,7 @@ namespace ROMS
                 }
                 else if (grdStock.Visible == true)
                 {
-                    string ErrPicode = "";
+                    string ErrPicode = ""; 
                     varUpdateViewType = 8; varViewType = 6; varOriginator = "Product Bulk Update-Stock";
                     for (int i = 0; i < grdStock.Rows.Count; i++)
                     {
@@ -653,9 +653,11 @@ namespace ROMS
                             varErrorflag = 1;
                             if(ErrPicode=="")
                             {
-                                ErrPicode =Convert.ToString(grdStock.Rows[i].Cells["Min Stock-Current"].Value);
+                                ErrPicode =Convert.ToString(grdStock.Rows[i].Cells["P.I Code"].Value);
                             }
-
+                            else {                        
+                                ErrPicode = ErrPicode + "," + Convert.ToString(grdStock.Rows[i].Cells["P.I Code"].Value);
+                            }
                         }
 
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdStock.Rows[i].Cells["PRID"].Value),
@@ -668,6 +670,10 @@ namespace ROMS
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
                                                varErrorflag);
+                    }
+                    if(varErrorflag==1)
+                    {
+                        MessageBox.Show(ErrPicode, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else if (grdShelfLife.Visible == true)
@@ -819,7 +825,7 @@ namespace ROMS
                                                varErrorflag);
                     }
                 }
-
+                int errcount = 0;
                 for (int i = 0; i < objBulkUpdate.Rows.Count; i++)
                 {
                     if (Convert.ToInt32(objBulkUpdate.Rows[i]["ErrorFlag"]) != 0)
@@ -828,41 +834,49 @@ namespace ROMS
                         {
                             grdShelfLife.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                         else if (grdWeight.Visible == true)
                         {
                             grdWeight.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                         else if (grdHSN.Visible == true)
                         {
                             grdHSN.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                         else if (grdBulkAttributes.Visible == true)
                         {
                             grdBulkAttributes.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                         else if (grdBatch.Visible == true)
                         {
                             grdBatch.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                         else if (grdBrand.Visible == true)
                         {
                             grdBrand.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                         else if (grdLoction.Visible == true)
                         {
                             grdLoction.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                         else if (grdStock.Visible == true)
                         {
                             grdStock.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
+                            errcount++;
                         }
                     }
                     else
@@ -959,6 +973,11 @@ namespace ROMS
                             grdStock.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                     }
+                }
+                if (errcount != 0)
+                { 
+                    string varErrmessage = "Product details are invalid for " + errcount +" product(s). Please correct the highlighted products and try again.";
+                    MessageBox.Show(varErrmessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 if (Varupdateflag == 0)
                 {

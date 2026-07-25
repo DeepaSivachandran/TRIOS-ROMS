@@ -161,6 +161,7 @@ namespace ROMS
             this.tsmProductReportRateCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductWeight = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProductRateOffset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroVsPo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -261,7 +262,7 @@ namespace ROMS
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmProductRateOffset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSubgroupImage = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -702,7 +703,7 @@ namespace ROMS
             // tsmLocation
             // 
             this.tsmLocation.Name = "tsmLocation";
-            this.tsmLocation.Size = new System.Drawing.Size(180, 22);
+            this.tsmLocation.Size = new System.Drawing.Size(172, 22);
             this.tsmLocation.Text = "Stock Location";
             this.tsmLocation.Visible = false;
             this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
@@ -710,7 +711,7 @@ namespace ROMS
             // tsmRack
             // 
             this.tsmRack.Name = "tsmRack";
-            this.tsmRack.Size = new System.Drawing.Size(180, 22);
+            this.tsmRack.Size = new System.Drawing.Size(172, 22);
             this.tsmRack.Text = "Rack";
             this.tsmRack.Visible = false;
             this.tsmRack.Click += new System.EventHandler(this.TsmRack_Click);
@@ -718,7 +719,7 @@ namespace ROMS
             // tsmRackGroup
             // 
             this.tsmRackGroup.Name = "tsmRackGroup";
-            this.tsmRackGroup.Size = new System.Drawing.Size(180, 22);
+            this.tsmRackGroup.Size = new System.Drawing.Size(172, 22);
             this.tsmRackGroup.Text = "Rack Group";
             this.tsmRackGroup.Visible = false;
             this.tsmRackGroup.Click += new System.EventHandler(this.TsmRackGroup_Click);
@@ -726,7 +727,7 @@ namespace ROMS
             // tsmRackgroupProduct
             // 
             this.tsmRackgroupProduct.Name = "tsmRackgroupProduct";
-            this.tsmRackgroupProduct.Size = new System.Drawing.Size(180, 22);
+            this.tsmRackgroupProduct.Size = new System.Drawing.Size(172, 22);
             this.tsmRackgroupProduct.Text = "Rack Group Product";
             this.tsmRackgroupProduct.Click += new System.EventHandler(this.tsmRackgroupProduct_Click);
             // 
@@ -736,6 +737,7 @@ namespace ROMS
             this.tsmHSN,
             this.tsmGroup,
             this.tsmSubGroup,
+            this.tsmSubgroupImage,
             this.tsmBrand,
             this.tsmUnit,
             this.tsmProduct,
@@ -860,7 +862,7 @@ namespace ROMS
             // tsmCategory
             // 
             this.tsmCategory.Name = "tsmCategory";
-            this.tsmCategory.Size = new System.Drawing.Size(180, 22);
+            this.tsmCategory.Size = new System.Drawing.Size(166, 22);
             this.tsmCategory.Text = "Employee Category";
             this.tsmCategory.Visible = false;
             this.tsmCategory.Click += new System.EventHandler(this.tsmCategory_Click);
@@ -868,7 +870,7 @@ namespace ROMS
             // tsmEmployeee
             // 
             this.tsmEmployeee.Name = "tsmEmployeee";
-            this.tsmEmployeee.Size = new System.Drawing.Size(180, 22);
+            this.tsmEmployeee.Size = new System.Drawing.Size(166, 22);
             this.tsmEmployeee.Text = "Employee";
             this.tsmEmployeee.Visible = false;
             this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
@@ -1450,6 +1452,13 @@ namespace ROMS
             this.tsmProductWeight.Size = new System.Drawing.Size(225, 22);
             this.tsmProductWeight.Text = "Product Weight ";
             this.tsmProductWeight.Click += new System.EventHandler(this.tsmProductWeight_Click);
+            // 
+            // tsmProductRateOffset
+            // 
+            this.tsmProductRateOffset.Name = "tsmProductRateOffset";
+            this.tsmProductRateOffset.Size = new System.Drawing.Size(225, 22);
+            this.tsmProductRateOffset.Text = "Product Rate && Offset";
+            this.tsmProductRateOffset.Click += new System.EventHandler(this.tsmProductRateOffset_Click);
             // 
             // tsmZeroVsPo
             // 
@@ -2147,7 +2156,7 @@ namespace ROMS
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
-            this.tsmMarginEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
@@ -2155,7 +2164,7 @@ namespace ROMS
             // tsmSalesEntry
             // 
             this.tsmSalesEntry.Name = "tsmSalesEntry";
-            this.tsmSalesEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmSalesEntry.Text = "S. Entry";
             this.tsmSalesEntry.Visible = false;
             this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
@@ -2344,12 +2353,13 @@ namespace ROMS
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // tsmProductRateOffset
+            // tsmSubgroupImage
             // 
-            this.tsmProductRateOffset.Name = "tsmProductRateOffset";
-            this.tsmProductRateOffset.Size = new System.Drawing.Size(225, 22);
-            this.tsmProductRateOffset.Text = "Product Rate && Offset";
-            this.tsmProductRateOffset.Click += new System.EventHandler(this.tsmProductRateOffset_Click);
+            this.tsmSubgroupImage.Name = "tsmSubgroupImage";
+            this.tsmSubgroupImage.Size = new System.Drawing.Size(264, 22);
+            this.tsmSubgroupImage.Text = "Product Sub Group Image";
+            this.tsmSubgroupImage.Visible = false;
+            this.tsmSubgroupImage.Click += new System.EventHandler(this.tsmSubgroupImage_Click);
             // 
             // MainForm
             // 
@@ -2615,5 +2625,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmRateChangeConfirmation;
         private System.Windows.Forms.ToolStripMenuItem tsmInvcount;
         private System.Windows.Forms.ToolStripMenuItem tsmProductRateOffset;
+        private System.Windows.Forms.ToolStripMenuItem tsmSubgroupImage;
     }
 }

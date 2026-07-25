@@ -1195,7 +1195,7 @@ namespace ROMS
                 RPTViewer.ReuseParameterValuesOnRefresh = true;
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Empty.rpt");
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Empty_SplPermission.rpt");
                 objBillreport.SetParameterValue("paraUserRoleId", 0);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                 objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
