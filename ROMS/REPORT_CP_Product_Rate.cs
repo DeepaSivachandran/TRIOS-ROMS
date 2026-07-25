@@ -157,6 +157,10 @@ namespace ROMS
                 {
                     varSalesType = 1;
                 }
+                else if (Convert.ToInt32(cmbSalesType.SelectedValue) == 0)
+                {
+                    varSalesType = -1;
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -173,7 +177,7 @@ namespace ROMS
                 objMR_ProductReport.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
                 objMR_ProductReport.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 objMR_ProductReport.paraType = Convert.ToInt32(cmbType.SelectedValue);
-                objMR_ProductReport.paraProductType = Convert.ToInt32(cmbSalesType.SelectedValue);
+                objMR_ProductReport.paraProductType = varSalesType;
                 objMR_ProductReport.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_ProductReport.paraGroup = varGroupCode;
                 objMR_ProductReport.paraSubgroup = varSubgroupCode;
@@ -338,7 +342,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (0,453,454) ORDER BY MSTID", "MST_ShortName,MSTID", cmbStatus, "", "MST_ShortName", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,4) AND MSTID<>-1 ORDER BY MSTID", "MST_ShortName,MSTID", cmbSalesType, "", "MST_ShortName", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,4) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSalesType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (124)  ", "MST_DisplayText,MSTID", cmbReportFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
@@ -2203,6 +2207,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2265,6 +2270,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbReportFormat.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
