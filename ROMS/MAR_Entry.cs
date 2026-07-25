@@ -2088,7 +2088,7 @@ namespace ROMS
                         if (objDs.Tables.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables[0].Rows.Count != 0)  
                             {
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();

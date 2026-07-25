@@ -862,7 +862,7 @@ namespace ROMS
             // tsmCategory
             // 
             this.tsmCategory.Name = "tsmCategory";
-            this.tsmCategory.Size = new System.Drawing.Size(180, 22);
+            this.tsmCategory.Size = new System.Drawing.Size(166, 22);
             this.tsmCategory.Text = "Employee Category";
             this.tsmCategory.Visible = false;
             this.tsmCategory.Click += new System.EventHandler(this.tsmCategory_Click);
@@ -870,7 +870,7 @@ namespace ROMS
             // tsmEmployeee
             // 
             this.tsmEmployeee.Name = "tsmEmployeee";
-            this.tsmEmployeee.Size = new System.Drawing.Size(180, 22);
+            this.tsmEmployeee.Size = new System.Drawing.Size(166, 22);
             this.tsmEmployeee.Text = "Employee";
             this.tsmEmployeee.Visible = false;
             this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
@@ -2156,7 +2156,7 @@ namespace ROMS
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
-            this.tsmMarginEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
@@ -2164,7 +2164,7 @@ namespace ROMS
             // tsmSalesEntry
             // 
             this.tsmSalesEntry.Name = "tsmSalesEntry";
-            this.tsmSalesEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmSalesEntry.Text = "S. Entry";
             this.tsmSalesEntry.Visible = false;
             this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
