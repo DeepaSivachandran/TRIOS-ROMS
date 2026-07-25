@@ -36,6 +36,7 @@
             this.pnlGoodsOutward = new System.Windows.Forms.Panel();
             this.tcProductApproval = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.btnImgClose = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
             this.pnlImageContainer = new System.Windows.Forms.Panel();
@@ -66,7 +67,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColour = new System.Windows.Forms.ToolStripButton();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
-            this.lblProductName = new System.Windows.Forms.Label();
+            this.btnReject = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -130,6 +131,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnReject);
             this.tabPage3.Controls.Add(this.lblProductName);
             this.tabPage3.Controls.Add(this.btnImgClose);
             this.tabPage3.Controls.Add(this.btnImageUpdate);
@@ -144,14 +146,23 @@
             this.tabPage3.Text = "Product Image";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Location = new System.Drawing.Point(213, 9);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(41, 20);
+            this.lblProductName.TabIndex = 43;
+            this.lblProductName.Text = "label1";
+            // 
             // btnImgClose
             // 
             this.btnImgClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnImgClose.Image = global::ROMS.Properties.Resources.close;
             this.btnImgClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImgClose.Location = new System.Drawing.Point(1251, 576);
+            this.btnImgClose.Location = new System.Drawing.Point(1244, 576);
             this.btnImgClose.Name = "btnImgClose";
-            this.btnImgClose.Size = new System.Drawing.Size(74, 29);
+            this.btnImgClose.Size = new System.Drawing.Size(86, 29);
             this.btnImgClose.TabIndex = 42;
             this.btnImgClose.Text = "Close";
             this.btnImgClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -163,11 +174,11 @@
             this.btnImageUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnImageUpdate.Image = global::ROMS.Properties.Resources.save;
             this.btnImageUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImageUpdate.Location = new System.Drawing.Point(1132, 576);
+            this.btnImageUpdate.Location = new System.Drawing.Point(1153, 576);
             this.btnImageUpdate.Name = "btnImageUpdate";
-            this.btnImageUpdate.Size = new System.Drawing.Size(113, 29);
+            this.btnImageUpdate.Size = new System.Drawing.Size(86, 29);
             this.btnImageUpdate.TabIndex = 19;
-            this.btnImageUpdate.Text = "Update";
+            this.btnImageUpdate.Text = "Approve";
             this.btnImageUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
@@ -468,14 +479,19 @@
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
             // 
-            // lblProductName
+            // btnReject
             // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(213, 9);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(41, 20);
-            this.lblProductName.TabIndex = 43;
-            this.lblProductName.Text = "label1";
+            this.btnReject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnReject.Image = global::ROMS.Properties.Resources.Blocked;
+            this.btnReject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReject.Location = new System.Drawing.Point(1062, 576);
+            this.btnReject.Name = "btnReject";
+            this.btnReject.Size = new System.Drawing.Size(86, 29);
+            this.btnReject.TabIndex = 44;
+            this.btnReject.Text = "Reject";
+            this.btnReject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
             // CP_ProductImageApproval
             // 
@@ -556,5 +572,6 @@
         private System.Windows.Forms.Button btnImageUpdate;
         private System.Windows.Forms.Button btnImgClose;
         private System.Windows.Forms.Label lblProductName;
+        private System.Windows.Forms.Button btnReject;
     }
 }

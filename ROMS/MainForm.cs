@@ -30,7 +30,7 @@ namespace ROMS
         // Entry/List control flags
         public bool IsEntryFormOpen = false;
         public Form CurrentEntryForm = null;
-        public Form CurrentParentListForm = null; 
+        public Form CurrentParentListForm = null;
         public class MinimizedFormInfo
         {
             public int Index { get; set; }
@@ -57,7 +57,7 @@ namespace ROMS
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbLoginId = "";
-        public static string pbUserRoleId ="0";
+        public static string pbUserRoleId = "0";
         public static string pbView;
         public static string pbSelectedMenu;
         public static string pbIpAddress = "";
@@ -80,14 +80,14 @@ namespace ROMS
         public static string varToken = "";
         public static string varcurrentdate = "";
         public static string pbUserMappedLocationIds = "0";
-        public static  int pbMenucode = 0;
+        public static int pbMenucode = 0;
         public static string varratechangecount = "0";
         public static string pbRateTolerance = "0";
 
-         
+
         //------- Form object declaration
         public static MainForm objMainForm;
-        public static DEF_Start objStart; 
+        public static DEF_Start objStart;
         public static CP_ChangePassword objCP_ChangePassword;
         public static CP_ChangePasswordConfirmation objCP_ChangePasswordConfirmation;
         public static CP_BrandList objCP_BrandList;
@@ -143,7 +143,7 @@ namespace ROMS
         public static CP_BulkAttributes objCP_BulkAttributes;
         public static CP_HSNBulkUpdate objCP_HSNBulkUpdate;
         public static CP_Spl_Products_Bulk objCP_Spl_Products_Bulk;
-        public static CP_BulkAttributeVerify objCP_BulkAttributeVerify; 
+        public static CP_BulkAttributeVerify objCP_BulkAttributeVerify;
         public static CP_CostPrice_Update_Bulk objCP_CostPrice_Update_Bulk;
         public static CP_CostPrice_Update_Bulk_List objCP_CostPrice_Update_Bulk_List;
         public static CP_CostPrice_Update_Bulk_Approval_List objCP_CostPrice_Update_Bulk_Approval_List;
@@ -177,7 +177,7 @@ namespace ROMS
         public static CP_Printer_Setting objCP_PrinterSetting;
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
-        public static CP_Bank  objCP_Bank;
+        public static CP_Bank objCP_Bank;
         public static PAY_ChequeTransactionList objPAY_ChequeTransactionList;
         public static PAY_ChequeTransaction objPAY_ChequeTransaction;
         public static CP_ChequePrint_Setting objCP_ChequePrint_Setting;
@@ -197,7 +197,7 @@ namespace ROMS
         public static CP_Route objCP_Route;
         public static CP_Routelist objCP_Routelist;
         public static CP_CustomerType objCP_CustomerType;
-        public static CP_CustomerTypelist objCP_CustomerTypelist; 
+        public static CP_CustomerTypelist objCP_CustomerTypelist;
         public static CP_ContactGrouplist objCP_ContactGrouplist;
         public static CP_AddressBookList objCP_AddressBookList;
         public static CP_AddressBook objCP_AddressBook;
@@ -259,7 +259,7 @@ namespace ROMS
         public static INV_InwardQueueList objINV_InwardQueueList;
         public static INV_InwardlistQueue objINV_InwardlistQueue;
         public static INV_ReconciliationList objINV_StockAdjustmentList;
-        public static INV_Reconciliation objINV_StockAdjustment; 
+        public static INV_Reconciliation objINV_StockAdjustment;
         public static INV_StockJournalList objINV_StockJournalList;
         public static INV_StockJournal objINV_StockJournal;
         public static INV_StockJournal_ConversionList objINV_StockJournalConversionList;
@@ -269,10 +269,10 @@ namespace ROMS
 
 
         public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
-        public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval; 
+        public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval;
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
-        public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
-        public static PUR_PurchaseEntryRejectedList objPUR_PurchaseEntryRejectedList;  
+        public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;
+        public static PUR_PurchaseEntryRejectedList objPUR_PurchaseEntryRejectedList;
         public static PUR_PurchaseOrder objPUR_PurchaseOrder;
         public static PUR_PODamaged objPUR_PODamaged;
         public static PUR_SupplierScheduleList objPUR_SupplierScheduleList;
@@ -864,7 +864,7 @@ namespace ROMS
                 //udfnCloseChildForms();
 
                 //if (!isClose) return;
-                
+
                 // If entry form is open, hide it before opening new list form
                 if (IsEntryFormOpen && CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
                 {
@@ -885,7 +885,7 @@ namespace ROMS
                     this.CenterChildForm(formInstance);
                     formInstance.Show();
                 }
-                else if (objDtMenuDetailsUser != null )
+                else if (objDtMenuDetailsUser != null)
                 {
                     var hasPrivilege = objDtMenuDetailsUser.AsEnumerable()
                         .Any(r => r.Field<int>("MU_Code") == menuCode);
@@ -1200,14 +1200,17 @@ namespace ROMS
             }
             return isFound;
         }
-        public void udfnGetDefaultCompany() {
+        public void udfnGetDefaultCompany()
+        {
             try
             {
                 SPDataService objSPDataService = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objSPDataService.udfnCompanyList(11,0,MainForm.pbUserID,MainForm.pbIpAddress,0);
-                if (objDs != null) {
-                    if (objDs.Tables.Count > 0) {
+                objDs = objSPDataService.udfnCompanyList(11, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
                         if (objDs.Tables[0].Rows.Count > 0) { pbDefaultComId = Convert.ToInt32(objDs.Tables[0].Rows[0]["COMID"]); }
                     }
                 }
@@ -1230,7 +1233,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             pbShelflifeLevel1 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level1"]);
-                            pbShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level2"]); 
+                            pbShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level2"]);
                         }
                     }
                 }
@@ -1280,7 +1283,7 @@ namespace ROMS
             }
             catch (Exception ex)
             {
-                objError = new DataError(); 
+                objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
@@ -1490,7 +1493,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public string udfnUserLoginProcess(int varUserID,int varType)
+        public string udfnUserLoginProcess(int varUserID, int varType)
         {
             string varResult = "";
             try
@@ -1696,11 +1699,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnClose() {
+        public void udfnClose()
+        {
             try
             {
                 if (pbForceLogoff == 1)
-                {  
+                {
                     udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
                     System.Environment.Exit(1);
                     Close();
@@ -1752,7 +1756,7 @@ namespace ROMS
             try
             {
                 MR_Menu objMR_Menu = new MR_Menu();
-                objMR_Menu.ViewType = 0; 
+                objMR_Menu.ViewType = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnMenu(objMR_Menu);
@@ -1763,7 +1767,7 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            objDtMenuDetails = objDs.Tables[0]; 
+                            objDtMenuDetails = objDs.Tables[0];
                         }
                     }
                 }
@@ -1780,7 +1784,7 @@ namespace ROMS
             try
             {
                 DataSet objds = new DataSet();
-                DataService objdser = new DataService(); 
+                DataService objdser = new DataService();
                 pbTelegramPath = objdser.displaydata(" SELECT SF_Path FROM DEF_SharedFolderPath");
                 objds = objdser.GetDataset("SELECT ChatID, Token  FROM DEF_TELEGRAM_BOT_DETAILS A INNER JOIN DEF_TELEGRAM_GROUP_DETAILS B ON A.BOTID = B.BOTID");
                 if (objds != null)
@@ -1794,14 +1798,14 @@ namespace ROMS
                         }
                     }
                 }
-                pbTelegramPath = pbTelegramPath + "\\Telegram Reports\\"; 
+                pbTelegramPath = pbTelegramPath + "\\Telegram Reports\\";
                 // Ensure the folder exists — creates it if not
                 if (!Directory.Exists(pbTelegramPath))
                 {
                     Directory.CreateDirectory(pbTelegramPath);
                 }
                 objdser.CloseConnection();
-               
+
             }
             catch (Exception ex)
             {
@@ -1816,15 +1820,15 @@ namespace ROMS
                 using (var httpClient = new HttpClient())
                 {
                     using (var form = new MultipartFormDataContent())
-                    { 
+                    {
                         // Add file content
                         var fileContent = new ByteArrayContent(System.IO.File.ReadAllBytes(varPath));
                         fileContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("multipart/form-data");
                         form.Add(fileContent, "document", System.IO.Path.GetFileName(varPath));
-                        if (varChatID!="")
+                        if (varChatID != "")
                         {
                             // Telegram API endpoint for sending documents
-                            var apiUrl = $"https://api.telegram.org/bot" + varToken  + "/sendDocument?chat_id=" + varChatID ;
+                            var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendDocument?chat_id=" + varChatID;
                             // Send request
                             var response = await httpClient.PostAsync(apiUrl, form);
                         }
@@ -1843,7 +1847,7 @@ namespace ROMS
                 {
                     var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendMessage?chat_id=" + varChatID;
                     var data = new Dictionary<string, string>
-                    { 
+                    {
                         { "text", varMessage },
                         { "parse_mode", "Markdown" } // Enables *bold* formatting
                     };
@@ -1908,7 +1912,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
         //take a particular user 
         public void udfnGetMenuDetailsForUser()
         {
@@ -1948,7 +1952,7 @@ namespace ROMS
         {
             try
             {
-                 
+
                 List<ToolStripItem> objAllItems = new List<ToolStripItem>();
                 List<ToolStripMenuItem> objMenuItems = new List<ToolStripMenuItem>();
                 foreach (ToolStripItem objToolItem in ms.Items)
@@ -2018,7 +2022,7 @@ namespace ROMS
                     }
                 }
                 else
-                { 
+                {
                     for (int i = 0; i <= objDtMenuDetailsUser.Rows.Count - 1; i++)
                     {
                         if (MainForm.pbUserRoleId != "0")
@@ -2194,7 +2198,7 @@ namespace ROMS
         }
         private void TsmSupplierOrder_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 udfnCloseChildForms();
@@ -2209,7 +2213,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
         private void TsmBulkAttr_Click(object sender, EventArgs e)
         {
             try
@@ -2226,7 +2230,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void tsmCityReport_Click(object sender, EventArgs e)
         {
             try
@@ -2876,7 +2880,7 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "7.1.11")
                 {
-                    MainForm.objREPORT_CP_Rackgroup.udfnRG(0,0);
+                    MainForm.objREPORT_CP_Rackgroup.udfnRG(0, 0);
                 }
                 if (PbCurrentForm == "7.1.12")
                 {
@@ -2909,7 +2913,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
 
         private void tsmItemMovementReport_Click(object sender, EventArgs e)
         {
@@ -2925,7 +2929,7 @@ namespace ROMS
             }
         }
 
-         
+
 
         public void Ms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -2945,7 +2949,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void PurchaseOrderSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -3164,7 +3168,7 @@ namespace ROMS
         }
 
         private void tsmPriceList_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_PriceList, "REPORT_PriceList", 80315);
@@ -3434,7 +3438,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void tsmHSNTaxDetailsSummary_Click(object sender, EventArgs e)
         {
             try
@@ -4035,7 +4039,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
                 pbMenucode = 50901;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50901);
-                objCP_BulkAttributes.Text = "Stock location, Rack & MSQ"; 
+                objCP_BulkAttributes.Text = "Stock location, Rack & MSQ";
                 //objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ"; 
                 PbCurrentForm = "5.18";
             }
@@ -4074,7 +4078,7 @@ namespace ROMS
                 pbMenucode = 50903;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50903);
                 objCP_BulkAttributes.Text = "Min, Max stock & Reorder Qty";
-               // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
+                // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4112,7 +4116,7 @@ namespace ROMS
                 pbMenucode = 50905;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50905);
                 objCP_BulkAttributes.Text = "Barcode, RM Flag & Batch";
-               // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
+                // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4150,7 +4154,7 @@ namespace ROMS
                 pbMenucode = 50907;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50907);
                 objCP_BulkAttributes.Text = "Group, Subgroup & Brand";
-               // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
+                // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4169,7 +4173,7 @@ namespace ROMS
                 pbMenucode = 50908;
                 OpenReportForm(ref MainForm.objCP_HSNBulkUpdate, "CP_HSNBulkUpdate", 50908);
                 objCP_HSNBulkUpdate.Text = "HSN Name";
-               // objCP_HSNBulkUpdate.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
+                // objCP_HSNBulkUpdate.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4238,7 +4242,7 @@ namespace ROMS
 
         private void tsmDirectLabelPrint_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void tsmUserRole_Click(object sender, EventArgs e)
@@ -4433,7 +4437,7 @@ namespace ROMS
             }
         }
 
-         
+
         private void tsmPurPOBlockedProducts_Click(object sender, EventArgs e)
         {
             try
@@ -4580,7 +4584,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
         private void tsmProductClassification_Click(object sender, EventArgs e)
         {
             try
@@ -4825,7 +4829,7 @@ namespace ROMS
         private void tsmCPBulkUpdate_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_List, "CP_CostPrice_Update_Bulk_List", 51302);
                 PbCurrentForm = "5.18";
             }
@@ -4837,7 +4841,7 @@ namespace ROMS
         }
 
         private void tsmCPApproval_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_Approval_List, "CP_CostPrice_Update_Bulk_Approval_List", 51303);
@@ -4851,7 +4855,7 @@ namespace ROMS
         }
 
         private void tsmRcPriceList_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_RC_PriceList, "REPORT_RC_PriceList", 80315);
@@ -4879,7 +4883,7 @@ namespace ROMS
         }
 
         private void tsmBulkRateCategory_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 OpenReportForm(ref MainForm.objCP_BulkUpdate_RateCategory, "CP_BulkUpdate_RateCategory", 50509);
@@ -4903,7 +4907,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void tsmBulkOffsetUpdate_Click(object sender, EventArgs e)
@@ -4918,7 +4922,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            
+
         }
 
         private void tsmZeroVsPOGenerated_Click(object sender, EventArgs e)
@@ -4999,7 +5003,7 @@ namespace ROMS
             {
                 OpenReportForm(ref MainForm.objCP_Sales_GeneralSettings, "CP_Sales_GeneralSettings", 606);
                 PbCurrentForm = "7";
-                 
+
             }
             catch (Exception ex)
             {
@@ -5220,17 +5224,17 @@ namespace ROMS
 
         private void tsmF9_Click(object sender, EventArgs e)
         {
-              
-                MainForm.objCP_Product_Supplier = new CP_Product_Supplier();
-                MainForm.objCP_Product_Supplier.MdiParent = this.ParentForm;
-                MainForm.objCP_Product_Supplier.ShowDialog(); 
+
+            MainForm.objCP_Product_Supplier = new CP_Product_Supplier();
+            MainForm.objCP_Product_Supplier.MdiParent = this.ParentForm;
+            MainForm.objCP_Product_Supplier.ShowDialog();
         }
 
         private void tsmF10_Click(object sender, EventArgs e)
-        { 
-                MainForm.objCP_Product_Popup = new CP_Product_Popup();
-                MainForm.objCP_Product_Popup.MdiParent = this.ParentForm;
-                MainForm.objCP_Product_Popup.ShowDialog(); 
+        {
+            MainForm.objCP_Product_Popup = new CP_Product_Popup();
+            MainForm.objCP_Product_Popup.MdiParent = this.ParentForm;
+            MainForm.objCP_Product_Popup.ShowDialog();
         }
 
         private void tsmPurchaseReturnDCReport_Click(object sender, EventArgs e)
@@ -5301,7 +5305,7 @@ namespace ROMS
                 DEF_IdleLogin obj = new DEF_IdleLogin();
                 obj.ShowDialog();
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -5318,6 +5322,6 @@ namespace ROMS
                     ((MainForm)c).Enabled = status;
                 //c.Enabled = status;
             }
-        } 
-    } 
+        }
+    }
 }

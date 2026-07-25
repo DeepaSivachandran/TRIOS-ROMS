@@ -1172,6 +1172,180 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnReject();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        /// <summary>
+        /// by venkat on 25/07/2026 for reject process
+        /// </summary>
+        public void udfnReject()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                List<string> imageNameList = new List<string>();
+
+                DataService objdser = new DataService();
+                string destinationPath = objdser.displaydata("SELECT TOP 1 image_path FROM DEF_SharedFolderPath ORDER BY SFID DESC");
+                objdser.CloseConnection();
+
+                string destinationFolder = Path.GetDirectoryName(destinationPath);
+                if (!Directory.Exists(destinationPath))
+                {
+                    Directory.CreateDirectory(destinationPath);
+                }
+
+                int varFileCount = 1;
+                string varImagePath = "";
+
+                string[] existingFiles = Directory.GetFiles(destinationPath, varproductcode + "_*");
+
+                HashSet<string> updatedImages = new HashSet<string>(
+                    editableImages.Select(ei =>
+                        ei.EditedImage != null
+                            ? $"{varproductcode}_{editableImages.IndexOf(ei) + 1}{Path.GetExtension(ei.FilePath)}"
+                            : Path.GetFileName(ei.FilePath)
+                    )
+                );
+
+                foreach (string file in existingFiles)
+                {
+                    string fileName = Path.GetFileName(file);
+                    if (!updatedImages.Contains(fileName))
+                    {
+                        if (File.Exists(file))
+                        {
+                            File.SetAttributes(file, FileAttributes.Normal);
+                            pictureBox1.Image?.Dispose();
+                            pictureBox1.Image = null;
+
+                            originalImage?.Dispose();
+                            originalImage = null;
+                            GC.Collect();
+                            GC.WaitForPendingFinalizers();
+                            File.Delete(file);
+                        }
+                    }
+                }
+
+                foreach (var ei in editableImages)
+                {
+                    string extensionName = Path.GetExtension(ei.FilePath);
+                    string imageName = $"{varproductcode}_{varFileCount}{extensionName}";
+                    string destinationFile = Path.Combine(destinationPath, imageName);
+
+                    if (ei.EditedImage != null)
+                    {
+                        if (File.Exists(destinationFile))
+                        {
+                            File.SetAttributes(destinationFile, FileAttributes.Normal);
+                            pictureBox1.Image?.Dispose();
+                            pictureBox1.Image = null;
+
+                            originalImage?.Dispose();
+                            originalImage = null;
+                            GC.Collect();
+                            GC.WaitForPendingFinalizers();
+                            File.Delete(destinationFile);
+                        }
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            ei.EditedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            File.WriteAllBytes(destinationFile, ms.ToArray());
+                        }
+                    }
+                    else
+                    {
+                        if (ei.FilePath != destinationFile)
+                        {
+                            if (File.Exists(destinationFile))
+                            {
+                                File.SetAttributes(destinationFile, FileAttributes.Normal);
+                                pictureBox1.Image?.Dispose();
+                                pictureBox1.Image = null;
+
+                                originalImage?.Dispose();
+                                originalImage = null;
+                                GC.Collect();
+                                GC.WaitForPendingFinalizers();
+                                File.Delete(destinationFile);
+                            }
+
+                            using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
+                            using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
+                            {
+                                sourceStream.CopyTo(destStream);
+                            }
+                        }
+                    }
+
+
+                    imageNameList.Add(imageName);
+                    varFileCount++;
+
+                    if (string.IsNullOrEmpty(varImagePath))
+                        varImagePath = imageName;
+                    else
+                        varImagePath += "," + imageName;
+                }
+                string result = "";
+                result = objspdservice.udfnProductMaster(21, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
+
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3" && varvalue[1] == "1")
+                {
+                Verify:
+                    MainForm.objCP_Verify = new CP_Verify();
+                    MainForm.objCP_Verify.ShowDialog();
+
+                    if (MainForm.objCP_Verify.flag == 1)
+                    {
+                        string ApproverID = MainForm.objCP_Verify.varUserId;
+
+                        result = objspdservice.udfnProductMaster(21, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", ApproverID, MainForm.pbIpAddress, "", 0, null, 1, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
+
+                        string[] value = result.Split('~');
+
+                        if (value[0] == "3")
+                        {
+                            MessageBox.Show(value[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            MainForm.objCP_ProductImageApprovalList.udfnList();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(value[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            if (value[0] == "5")
+                                goto Verify;
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
 
