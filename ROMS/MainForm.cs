@@ -5292,6 +5292,19 @@ namespace ROMS
             }
         }
 
+        private void tsmSubgroupImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Bulk_Image_Update, "CP_Bulk_Image_Update", 50513);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 
