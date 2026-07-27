@@ -1194,6 +1194,7 @@ namespace ROMS
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
                 objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
+                objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -1218,6 +1219,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -1510,6 +1512,7 @@ namespace ROMS
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
                 objMR_Product.paraPicode = "";
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -1544,8 +1547,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraBrandID", 0);
                     objBillreport.SetParameterValue("paraLocationId", 0);
                     objBillreport.SetParameterValue("paraPicode", "");
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName); 
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
