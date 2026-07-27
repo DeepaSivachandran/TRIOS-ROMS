@@ -139,6 +139,9 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
+                cmbLocationType.SelectedValue = 466;
+                chkLocBreakup.Checked = false;
+                cmbShopLocType.SelectedValue = 0;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbConcern.SelectedValue = 0;
@@ -152,8 +155,10 @@ namespace ROMS
                     txtRack.Enabled = false;
                     cmbProductCategory.SelectedValue = 0;
                     cmbSubgroupType.SelectedValue = 0;
+                    
                     cmbProductCategory.Enabled = false;
                     cmbSubgroupType.Enabled = false;
+                    
                 }
                 else
                 {
@@ -662,6 +667,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraWithCode", itemType);
+                    objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
                     objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -995,7 +1001,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue), objBillreport.Subreports[0].Name.ToString());
-                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbShopLocType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -1089,6 +1095,7 @@ namespace ROMS
                 objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
                 objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
+                objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -1127,6 +1134,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraWithCode", itemType);
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -1293,6 +1301,7 @@ namespace ROMS
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
                 objMR_Product.paraPicode = "";
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -1330,6 +1339,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraPicode", "");
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue));
+
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -1403,6 +1414,7 @@ namespace ROMS
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
                 objMR_Product.paraPicode = "";
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -1440,6 +1452,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraPicode", "");
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -2821,7 +2834,7 @@ namespace ROMS
                     }
                     else
                     {
-                        btnListPrint.Focus();
+                        cmbShopLocType.Focus();
                     }
                 }
             }
