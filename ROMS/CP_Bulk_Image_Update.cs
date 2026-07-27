@@ -1919,6 +1919,52 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void grdSubgroups_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdSubgroups.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmView":
+                            try
+                            {
+                                if (grdSubgroups.SelectedRows.Count > 0)
+                                {
+                                    string result = "";
+                                    int varPRID = Convert.ToInt32(grdSubgroups.SelectedRows[0].Cells["clmPRID"].Value.ToString());
+                                    try
+                                    {
+                                        MainForm.objProductDetails = new ProductDetails();
+                                        MainForm.objProductDetails.varProductCode = varPRID;
+                                        MainForm.objProductDetails.ShowDialog();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        objError = new DataError();
+                                        objError.WriteFile(ex);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnGridNull(Control skipControl)
         {
             try

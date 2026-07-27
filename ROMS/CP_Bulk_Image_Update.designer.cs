@@ -725,6 +725,7 @@
             this.grdSubgroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSubgroups.Size = new System.Drawing.Size(562, 387);
             this.grdSubgroups.TabIndex = 1111143;
+            this.grdSubgroups.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSubgroups_CellContentClick);
             this.grdSubgroups.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdSubgroups_CellFormatting);
             // 
             // flpSubGroups

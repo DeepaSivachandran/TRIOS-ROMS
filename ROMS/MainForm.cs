@@ -461,6 +461,7 @@ namespace ROMS
         public static CP_Basket objCP_Basket;
         public static CP_Product_Supplier objCP_Product_Supplier;
         public static CP_ProductDetails objCP_ProductDetails;
+        public static ProductDetails objProductDetails;
 
         public MainForm()
         {
