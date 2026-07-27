@@ -92,18 +92,6 @@ namespace ROMS
         {
             btnNext_Click(null, null); // Auto-slide to next image
         }
-        private void udfnclear()
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             try

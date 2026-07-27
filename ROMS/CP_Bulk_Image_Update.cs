@@ -165,6 +165,20 @@ namespace ROMS
                                 string imageApprovedFlag = Convert.ToString(gridRow.Cells["clmImageApproved"].Value);
 
                                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)gridRow.Cells["clmCheck"];
+                                DataGridViewCell viewCell = gridRow.Cells["clmView"];
+
+                                if (imageFlag == "Yes")
+                                {
+                                    viewCell.ReadOnly = false;
+                                    viewCell.Style.BackColor = Color.White;
+                                    viewCell.Style.SelectionBackColor = grdSubgroups.DefaultCellStyle.SelectionBackColor;
+                                }
+                                else
+                                {
+                                    viewCell.ReadOnly = true;
+                                    viewCell.Style.BackColor = Color.LightGray;
+                                    viewCell.Style.SelectionBackColor = Color.LightGray;
+                                }
 
                                 if (imageFlag == "Yes" && imageApprovedFlag == "No")
                                 {
@@ -179,6 +193,11 @@ namespace ROMS
                                     chk.ReadOnly = false;
                                 }
                             }
+                            lblActiveProCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ActiveProCount"].ToString());
+                            lblImageUploadedCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ImageUploadCount"].ToString());
+                            lblImageApprovedCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ImageApprovedCount"].ToString());
+                            lblImageUnapprovedCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ImageUnapprovedCount"].ToString());
+
                             grdSubgroups.ClearSelection();
                             grdSubgroups.Columns["clmImageUpload"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubgroups.Columns["clmImageApproved"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1933,18 +1952,25 @@ namespace ROMS
                             {
                                 if (grdSubgroups.SelectedRows.Count > 0)
                                 {
-                                    string result = "";
-                                    int varPRID = Convert.ToInt32(grdSubgroups.SelectedRows[0].Cells["clmPRID"].Value.ToString());
-                                    try
+                                    if (grdSubgroups.Columns[e.ColumnIndex].Name == "clmView")
                                     {
-                                        MainForm.objProductDetails = new ProductDetails();
-                                        MainForm.objProductDetails.varProductCode = varPRID;
-                                        MainForm.objProductDetails.ShowDialog();
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        objError = new DataError();
-                                        objError.WriteFile(ex);
+                                        string imageFlag = Convert.ToString(grdSubgroups.Rows[e.RowIndex].Cells["clmImageUpload"].Value);
+
+                                        if (imageFlag != "Yes")
+                                            return;
+
+                                        int varPRID = Convert.ToInt32(grdSubgroups.SelectedRows[0].Cells["clmPRID"].Value.ToString());
+                                        try
+                                        {
+                                            MainForm.objProductDetails = new ProductDetails();
+                                            MainForm.objProductDetails.varProductCode = varPRID;
+                                            MainForm.objProductDetails.ShowDialog();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            objError = new DataError();
+                                            objError.WriteFile(ex);
+                                        }
                                     }
                                 }
                             }
