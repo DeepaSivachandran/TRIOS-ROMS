@@ -80,17 +80,20 @@ namespace ROMS
                 int varGroupID = 0, varSubgroupID = 0;
                 if (txtGroup.Text.Trim() == "")
                 {
-                    //epBulkImage.SetError(txtGroup, "Please enter group name");
-                    //txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //tpGroup.ShowAlways = true;
-                    //tpGroup.Show("Please enter group name", txtGroup, 5000);
+                    epBulkImage.SetError(txtGroup, "Please enter group name");
+                    txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGroup.ShowAlways = true;
+                    tpGroup.Show("Please enter group name", txtGroup, 5000);
                     return;
                 }
                 else
                 {
                     if (lblGroup.Text == "0" || lblGroup.Text == "")
                     {
-                        MessageBox.Show("Please enter a valid group.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        epBulkImage.SetError(txtGroup, "Please enter valid group name");
+                        txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpGroup.ShowAlways = true;
+                        tpGroup.Show("Please enter valid group name", txtGroup, 5000);
                         return;
                     }
                     varGroupID = Convert.ToInt32(lblGroupCode.Text);
@@ -111,7 +114,7 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdSubgroups.Rows.Add(false, objDs.Tables[0].Rows[i]["SubGroup"].ToString(), objDs.Tables[0].Rows[i]["ProductCount"].ToString(), objDs.Tables[0].Rows[i]["ImageName"].ToString(), objDs.Tables[0].Rows[i]["SGID"].ToString());
+                                grdSubgroups.Rows.Add(false, objDs.Tables[0].Rows[i]["PI Code"].ToString(), objDs.Tables[0].Rows[i]["PI Code"].ToString(), objDs.Tables[0].Rows[i]["ProductCount"].ToString(), objDs.Tables[0].Rows[i]["ImageName"].ToString(), objDs.Tables[0].Rows[i]["SGID"].ToString());
                             }
                             grdSubgroups.ClearSelection();
                         }
