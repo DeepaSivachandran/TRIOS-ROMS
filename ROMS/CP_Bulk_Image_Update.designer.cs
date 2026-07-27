@@ -94,7 +94,6 @@
             this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmImageUpload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmImageApproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSGID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMapped = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -159,9 +158,9 @@
             this.grbImageUpload.Controls.Add(this.btnSave);
             this.grbImageUpload.Controls.Add(this.flowLayoutPanel1);
             this.grbImageUpload.Controls.Add(this.tsMenu);
-            this.grbImageUpload.Location = new System.Drawing.Point(574, 3);
+            this.grbImageUpload.Location = new System.Drawing.Point(612, 3);
             this.grbImageUpload.Name = "grbImageUpload";
-            this.grbImageUpload.Size = new System.Drawing.Size(768, 629);
+            this.grbImageUpload.Size = new System.Drawing.Size(730, 629);
             this.grbImageUpload.TabIndex = 1;
             this.grbImageUpload.TabStop = false;
             // 
@@ -177,15 +176,16 @@
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pnlImageContainer
             // 
             this.pnlImageContainer.AutoScroll = true;
             this.pnlImageContainer.Controls.Add(this.pnlControls);
             this.pnlImageContainer.Controls.Add(this.pictureBox1);
-            this.pnlImageContainer.Location = new System.Drawing.Point(214, 57);
+            this.pnlImageContainer.Location = new System.Drawing.Point(203, 57);
             this.pnlImageContainer.Name = "pnlImageContainer";
-            this.pnlImageContainer.Size = new System.Drawing.Size(548, 531);
+            this.pnlImageContainer.Size = new System.Drawing.Size(521, 531);
             this.pnlImageContainer.TabIndex = 18;
             // 
             // pnlControls
@@ -198,14 +198,14 @@
             this.pnlControls.Controls.Add(this.tbContrast);
             this.pnlControls.Location = new System.Drawing.Point(3, 3);
             this.pnlControls.Name = "pnlControls";
-            this.pnlControls.Size = new System.Drawing.Size(545, 74);
+            this.pnlControls.Size = new System.Drawing.Size(516, 74);
             this.pnlControls.TabIndex = 5;
             this.pnlControls.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(404, 48);
+            this.label5.Location = new System.Drawing.Point(394, 48);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 20);
             this.label5.TabIndex = 7;
@@ -214,7 +214,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(238, 48);
+            this.label6.Location = new System.Drawing.Point(228, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 20);
             this.label6.TabIndex = 6;
@@ -223,7 +223,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(69, 48);
+            this.label7.Location = new System.Drawing.Point(51, 48);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 20);
             this.label7.TabIndex = 5;
@@ -231,7 +231,7 @@
             // 
             // tbSaturation
             // 
-            this.tbSaturation.Location = new System.Drawing.Point(355, 3);
+            this.tbSaturation.Location = new System.Drawing.Point(345, 3);
             this.tbSaturation.Maximum = 50;
             this.tbSaturation.Minimum = -50;
             this.tbSaturation.Name = "tbSaturation";
@@ -241,7 +241,7 @@
             // 
             // tbBrightness
             // 
-            this.tbBrightness.Location = new System.Drawing.Point(13, 3);
+            this.tbBrightness.Location = new System.Drawing.Point(3, 3);
             this.tbBrightness.Maximum = 50;
             this.tbBrightness.Minimum = -50;
             this.tbBrightness.Name = "tbBrightness";
@@ -251,7 +251,7 @@
             // 
             // tbContrast
             // 
-            this.tbContrast.Location = new System.Drawing.Point(184, 3);
+            this.tbContrast.Location = new System.Drawing.Point(174, 3);
             this.tbContrast.Maximum = 50;
             this.tbContrast.Minimum = -50;
             this.tbContrast.Name = "tbContrast";
@@ -263,7 +263,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(545, 528);
+            this.pictureBox1.Size = new System.Drawing.Size(516, 525);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -313,7 +313,7 @@
             this.tsbColour});
             this.tsMenu.Location = new System.Drawing.Point(3, 23);
             this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Size = new System.Drawing.Size(762, 31);
+            this.tsMenu.Size = new System.Drawing.Size(724, 31);
             this.tsMenu.TabIndex = 14;
             this.tsMenu.Text = "toolStrip1";
             // 
@@ -490,7 +490,7 @@
             this.grbSubgroups.Controls.Add(this.flpSubGroups);
             this.grbSubgroups.Location = new System.Drawing.Point(12, 3);
             this.grbSubgroups.Name = "grbSubgroups";
-            this.grbSubgroups.Size = new System.Drawing.Size(556, 629);
+            this.grbSubgroups.Size = new System.Drawing.Size(594, 629);
             this.grbSubgroups.TabIndex = 0;
             this.grbSubgroups.TabStop = false;
             this.grbSubgroups.Text = "Subgroups";
@@ -566,7 +566,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(16, 168);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(20, 168);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
@@ -646,7 +646,7 @@
             this.groupBox1.Controls.Add(this.grdSubgroups);
             this.groupBox1.Location = new System.Drawing.Point(10, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(540, 411);
+            this.groupBox1.Size = new System.Drawing.Size(578, 463);
             this.groupBox1.TabIndex = 1111146;
             this.groupBox1.TabStop = false;
             // 
@@ -699,7 +699,6 @@
             this.clmProduct,
             this.clmImageUpload,
             this.clmImageApproved,
-            this.clmImage,
             this.clmSGID,
             this.clmPRID,
             this.clmMapped,
@@ -724,7 +723,7 @@
             this.grdSubgroups.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdSubgroups.RowTemplate.Height = 25;
             this.grdSubgroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSubgroups.Size = new System.Drawing.Size(522, 326);
+            this.grdSubgroups.Size = new System.Drawing.Size(562, 387);
             this.grdSubgroups.TabIndex = 1111143;
             this.grdSubgroups.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdSubgroups_CellFormatting);
             // 
@@ -789,7 +788,7 @@
             this.clmProduct.ReadOnly = true;
             this.clmProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmProduct.Width = 220;
+            this.clmProduct.Width = 250;
             // 
             // clmImageUpload
             // 
@@ -804,15 +803,6 @@
             this.clmImageApproved.Name = "clmImageApproved";
             this.clmImageApproved.ReadOnly = true;
             this.clmImageApproved.Width = 70;
-            // 
-            // clmImage
-            // 
-            this.clmImage.HeaderText = "Image Name";
-            this.clmImage.Name = "clmImage";
-            this.clmImage.ReadOnly = true;
-            this.clmImage.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmImage.Width = 120;
             // 
             // clmSGID
             // 
@@ -953,7 +943,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmImageUpload;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmImageApproved;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSGID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMapped;

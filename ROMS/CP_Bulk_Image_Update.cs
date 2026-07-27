@@ -157,10 +157,29 @@ namespace ROMS
                             grdSubgroups.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdSubgroups.Rows.Add(false, objDs.Tables[0].Rows[i]["PI Code"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["ImageFlag"].ToString(), objDs.Tables[0].Rows[i]["ImageApprovedFlag"].ToString(), objDs.Tables[0].Rows[i]["ImageName"].ToString(),  objDs.Tables[0].Rows[i]["SGID"].ToString(),  objDs.Tables[0].Rows[i]["PRID"].ToString(),  objDs.Tables[0].Rows[i]["IsMapped"].ToString());
+                                grdSubgroups.Rows.Add(false, objDs.Tables[0].Rows[i]["PI Code"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["ImageFlag"].ToString(), objDs.Tables[0].Rows[i]["ImageApprovedFlag"].ToString(),  objDs.Tables[0].Rows[i]["SGID"].ToString(),  objDs.Tables[0].Rows[i]["PRID"].ToString(),  objDs.Tables[0].Rows[i]["IsMapped"].ToString());
+
+                                DataGridViewRow gridRow = grdSubgroups.Rows[grdSubgroups.Rows.Count - 1];
+
+                                string imageFlag = Convert.ToString(gridRow.Cells["clmImageUpload"].Value);
+                                string imageApprovedFlag = Convert.ToString(gridRow.Cells["clmImageApproved"].Value);
+
+                                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)gridRow.Cells["clmCheck"];
+
+                                if (imageFlag == "Yes" && imageApprovedFlag == "No")
+                                {
+                                    chk.Value = false;
+                                    chk.ReadOnly = true;
+
+                                    chk.Style.BackColor = Color.LightGray;
+                                    chk.Style.SelectionBackColor = Color.LightGray;
+                                }
+                                else
+                                {
+                                    chk.ReadOnly = false;
+                                }
                             }
                             grdSubgroups.ClearSelection();
-
                             grdSubgroups.Columns["clmImageUpload"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubgroups.Columns["clmImageApproved"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -349,60 +368,118 @@ namespace ROMS
                         );
                     }
                 }
-
-                // Save images for every selected product
-                foreach (var product in selectedProducts)
+                if (selectedProducts.Count == 0)
                 {
-                    int imageNo = 1;
+                    MessageBox.Show("Please select atleast  one product!", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                // Save images for every selected product
+                //foreach (var product in selectedProducts)
+                //{
+                //    int imageNo = 1;
 
-                    // Delete existing images of this product
-                    string[] existingFiles = Directory.GetFiles(destinationPath, product.ProductCode + "_*");
+                //    // Delete existing images of this product
+                //    string[] existingFiles = Directory.GetFiles(destinationPath, product.ProductCode + "_*");
 
-                    foreach (string file in existingFiles)
+                //    foreach (string file in existingFiles)
+                //    {
+                //        if (File.Exists(file))
+                //        {
+                //            File.SetAttributes(file, FileAttributes.Normal);
+
+                //            pictureBox1.Image?.Dispose();
+                //            pictureBox1.Image = null;
+
+                //            originalImage?.Dispose();
+                //            originalImage = null;
+
+                //            GC.Collect();
+                //            GC.WaitForPendingFinalizers();
+
+                //            File.Delete(file);
+                //        }
+                //    }
+
+                //    foreach (var ei in editableImages)
+                //    {
+                //        string extensionName = Path.GetExtension(ei.FilePath);
+
+                //        string imageName = $"{product.ProductCode}_{imageNo}{extensionName}";
+
+                //        string destinationFile = Path.Combine(destinationPath, imageName);
+
+                //        if (ei.EditedImage != null)
+                //        {
+                //            if (File.Exists(destinationFile))
+                //            {
+                //                File.SetAttributes(destinationFile, FileAttributes.Normal);
+
+                //                pictureBox1.Image?.Dispose();
+                //                pictureBox1.Image = null;
+
+                //                originalImage?.Dispose();
+                //                originalImage = null;
+
+                //                GC.Collect();
+                //                GC.WaitForPendingFinalizers();
+
+                //                File.Delete(destinationFile);
+                //            }
+
+                //            using (MemoryStream ms = new MemoryStream())
+                //            {
+                //                ei.EditedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //                File.WriteAllBytes(destinationFile, ms.ToArray());
+                //            }
+                //        }
+                //        else
+                //        {
+                //            if (ei.FilePath != destinationFile)
+                //            {
+                //                if (File.Exists(destinationFile))
+                //                {
+                //                    File.SetAttributes(destinationFile, FileAttributes.Normal);
+
+                //                    pictureBox1.Image?.Dispose();
+                //                    pictureBox1.Image = null;
+
+                //                    originalImage?.Dispose();
+                //                    originalImage = null;
+
+                //                    GC.Collect();
+                //                    GC.WaitForPendingFinalizers();
+
+                //                    File.Delete(destinationFile);
+                //                }
+
+                //                using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
+                //                using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
+                //                {
+                //                    sourceStream.CopyTo(destStream);
+                //                }
+                //            }
+                //        }
+
+                //        // Add one record to UDTT
+                //        dtSubgroupImages.Rows.Add(product.ProductID, imageName);
+
+                //        imageNo++;
+                //    }
+                //}
+
+                foreach (var ei in editableImages)
+                {
+                    // Keep the original file name
+                    string imageName = Path.GetFileName(ei.FilePath);
+
+                    string destinationFile = Path.Combine(destinationPath, imageName);
+
+                    // Save only if it doesn't already exist
+                    if (!File.Exists(destinationFile))
                     {
-                        if (File.Exists(file))
-                        {
-                            File.SetAttributes(file, FileAttributes.Normal);
-
-                            pictureBox1.Image?.Dispose();
-                            pictureBox1.Image = null;
-
-                            originalImage?.Dispose();
-                            originalImage = null;
-
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-
-                            File.Delete(file);
-                        }
-                    }
-
-                    foreach (var ei in editableImages)
-                    {
-                        string extensionName = Path.GetExtension(ei.FilePath);
-
-                        string imageName = $"{product.ProductCode}_{imageNo}{extensionName}";
-
-                        string destinationFile = Path.Combine(destinationPath, imageName);
-
                         if (ei.EditedImage != null)
                         {
-                            if (File.Exists(destinationFile))
-                            {
-                                File.SetAttributes(destinationFile, FileAttributes.Normal);
-
-                                pictureBox1.Image?.Dispose();
-                                pictureBox1.Image = null;
-
-                                originalImage?.Dispose();
-                                originalImage = null;
-
-                                GC.Collect();
-                                GC.WaitForPendingFinalizers();
-
-                                File.Delete(destinationFile);
-                            }
-
                             using (MemoryStream ms = new MemoryStream())
                             {
                                 ei.EditedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -411,36 +488,26 @@ namespace ROMS
                         }
                         else
                         {
-                            if (ei.FilePath != destinationFile)
+                            using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
+                            using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
                             {
-                                if (File.Exists(destinationFile))
-                                {
-                                    File.SetAttributes(destinationFile, FileAttributes.Normal);
-
-                                    pictureBox1.Image?.Dispose();
-                                    pictureBox1.Image = null;
-
-                                    originalImage?.Dispose();
-                                    originalImage = null;
-
-                                    GC.Collect();
-                                    GC.WaitForPendingFinalizers();
-
-                                    File.Delete(destinationFile);
-                                }
-
-                                using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
-                                using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
-                                {
-                                    sourceStream.CopyTo(destStream);
-                                }
+                                sourceStream.CopyTo(destStream);
                             }
                         }
+                    }
 
-                        // Add one record to UDTT
+                    // Store the image name
+                    imageNameList.Add(imageName);
+                }
+
+                //============================
+                // Map every image to every selected product
+                //============================
+                foreach (var product in selectedProducts)
+                {
+                    foreach (string imageName in imageNameList)
+                    {
                         dtSubgroupImages.Rows.Add(product.ProductID, imageName);
-
-                        imageNo++;
                     }
                 }
                 SPDataService objDser = new SPDataService();
@@ -452,7 +519,7 @@ namespace ROMS
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnList();
+                        windowControl?.TriggerClose();
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -473,13 +540,112 @@ namespace ROMS
                 btnSave.Enabled = true;
             }
         }
+        private void ClearAllImages()
+        {
+            try
+            {
+                // Remove thumbnail images
+                foreach (Control ctrl in flowLayoutPanel1.Controls)
+                {
+                    if (ctrl is Panel pnl)
+                    {
+                        foreach (Control c in pnl.Controls)
+                        {
+                            if (c is PictureBox pb)
+                            {
+                                pb.Image?.Dispose();
+                                pb.Image = null;
+                            }
+                        }
 
+                        pnl.Dispose();
+                    }
+                }
+
+                flowLayoutPanel1.Controls.Clear();
+
+                // Clear collections
+                imagePaths.Clear();
+
+                foreach (var img in editableImages)
+                {
+                    img.EditedImage?.Dispose();
+                    img.EditedImage = null;
+                }
+
+                editableImages.Clear();
+
+                // Clear editor image
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image.Dispose();
+                    pictureBox1.Image = null;
+                }
+
+                if (originalImage != null)
+                {
+                    originalImage.Dispose();
+                    originalImage = null;
+                }
+
+                currentImage = null;
+
+                // Reset variables
+                zoom = 1.0f;
+                cropMode = false;
+                cropRect = Rectangle.Empty;
+
+                // Reset TrackBars
+                tbBrightness.Value = 0;
+                tbContrast.Value = 0;
+                tbSaturation.Value = 0;
+
+                // Hide colour panel
+                pnlControls.Visible = false;
+
+                // Reset PictureBox
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox1.Size = pnlImageContainer.ClientSize;
+                pictureBox1.Location = new Point(0, 0);
+
+                // Hide editing buttons
+                UpdateZoomButtonsVisibility();
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnView_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnGridNull((Control)sender);
-                udfnList();
+                if (flowLayoutPanel1.Controls.Count != 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(234);
+                    objDServ.CloseConnection();
+                    //DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        ClearAllImages();
+                        udfnList();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    udfnList();
+                }
             }
             catch (Exception ex)
             {
@@ -617,6 +783,8 @@ namespace ROMS
             {
                 if (varUpDownKeyGroup == 0)
                 {
+                    txtSubGroup.Text = "";
+                    lblSubGroupCode.Text = "0";
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtGroup.Text.Length > 0)
@@ -1718,6 +1886,39 @@ namespace ROMS
             }
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnClose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnClose()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnGridNull(Control skipControl)
         {
             try
