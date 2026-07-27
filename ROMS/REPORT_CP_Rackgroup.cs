@@ -390,6 +390,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraWithCode", itemType);
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt16(cmbShopLocType.SelectedValue));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -482,6 +483,7 @@ namespace ROMS
                 objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
                 objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
+                objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -529,6 +531,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraWithCode", itemType);
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue));
 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -899,6 +902,7 @@ namespace ROMS
                 objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
                 objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
+                objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -935,6 +939,7 @@ namespace ROMS
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
                         }
                     }
+                    objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt16(cmbShopLocType.SelectedValue));
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
@@ -973,6 +978,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraWithCode", itemType);
+
                     /*Subreport parameter pass*/
                     objBillreport.SetParameterValue("paraEMPID", EMPCode, objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("paraRKGID", RKGCode, objBillreport.Subreports[0].Name.ToString());
@@ -986,6 +992,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbShopLocType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -1807,6 +1814,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,120) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbRetailRate, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,143) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbStockTakken, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=144", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (3,0) AND MSTID<>-1 ", "MST_ShortName,MSTID", cmbShopLocType, "", "MST_ShortName", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = 0;
@@ -2961,7 +2969,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkLocBreakup.Focus();
+                    cmbShopLocType.Focus();
                 }
             }
             catch (Exception ex)
@@ -2989,6 +2997,61 @@ namespace ROMS
             try
             {
                 cmbLocationType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShopLocType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShopLocType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShopLocType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    chkLocBreakup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShopLocType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShopLocType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShopLocType.BackColor = Color.White;
             }
             catch (Exception ex)
             {
