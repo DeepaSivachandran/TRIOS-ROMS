@@ -142,6 +142,7 @@ namespace ROMS
                 cmbLocationType.SelectedValue = 466;
                 chkLocBreakup.Checked = false;
                 cmbShopLocType.SelectedValue = 0;
+                cmbShopLocType.Enabled = true;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbConcern.SelectedValue = 0;
@@ -197,6 +198,7 @@ namespace ROMS
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 117)
                 {
                     cmbType.Enabled = false;
+                    cmbShopLocType.Enabled = false;
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 465 || Convert.ToInt32(cmbReportType.SelectedValue) == 473 || Convert.ToInt32(cmbReportType.SelectedValue) == 474 || Convert.ToInt32(cmbReportType.SelectedValue) == 475)
                 {
@@ -213,6 +215,7 @@ namespace ROMS
                     {
                         cmbLocationType.Enabled = false;
                         chkLocBreakup.Enabled = false;
+                        cmbLocationType.SelectedValue = 467;
                     }
                 }
             }
@@ -3044,7 +3047,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkLocBreakup.Focus();
+                    if (chkLocBreakup.Enabled == true)
+                    {
+                        chkLocBreakup.Focus();
+                    }
+                    else { btnListPrint.Focus(); }
                 }
             }
             catch (Exception ex)
