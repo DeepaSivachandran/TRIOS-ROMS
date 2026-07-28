@@ -1509,7 +1509,7 @@ namespace ROMS
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group  Sp
         public string udfnSubGroup(int ViewType, int paraPRSGID, int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId, int paraSG_BatchNo, int paraPRSG_SLID, int paraPRSG_RKID, string paraOriginator, string varRackId, string paraUserID, int paraDeleteFlag, int paraSubgroupType, int paraMarginTypeId,string paraImageNames,string paraSubgroupIds,
-            int paraProductScheme,int paraBillScheme)
+            int paraProductScheme,int paraBillScheme,DataTable paraSubgroupImages)
         {
 
             string varResult = "";
@@ -1539,6 +1539,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupIds", paraSubgroupIds);
                 varSqlCommand.Parameters.AddWithValue("@paraProductScheme", paraProductScheme);
                 varSqlCommand.Parameters.AddWithValue("@paraBillScheme", paraBillScheme);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupImages", paraSubgroupImages);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -1638,7 +1639,7 @@ namespace ROMS
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
               int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames,int paraIntermediateUPP,int paraIntermediateUnit,decimal paraProductionMSQ, DataTable paraMR_SPl_Bulk,
              int FocusFlag , int Priority_Flag  , int Spl_Flag  , int OwnFlag ,DataTable ParaPrice_Markup,int parastockTaken,string  paraEffectiveFrom,string paraSalesPICode,string paraLockTeller,string paraUnLockTeller,
-             string paraProductUsage,int paraProductSchemeEligible, int paraProductBillSchemeEligible)
+             string paraProductUsage,int paraProductSchemeEligible, int paraProductBillSchemeEligible,string paraRemarks ="")
         {
             string result = "";  
             try
@@ -1720,8 +1721,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductUsage", paraProductUsage);
                 varSqlCommand.Parameters.AddWithValue("@paraProductSchemeEligible", paraProductSchemeEligible);
                 varSqlCommand.Parameters.AddWithValue("@paraProductBillSchemeEligible", paraProductBillSchemeEligible);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks);
 
-                
 
 
                 varSqlCommand.CommandTimeout = 0;

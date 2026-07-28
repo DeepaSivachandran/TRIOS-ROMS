@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Bulk_Image_Update));
             this.tsImageList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
@@ -73,6 +73,19 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColour = new System.Windows.Forms.ToolStripButton();
             this.grbSubgroups = new System.Windows.Forms.GroupBox();
+            this.tlpSummaryCards = new System.Windows.Forms.TableLayoutPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblImageApprovedCount = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblImageUnapprovedCount = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.pnlCardFG = new System.Windows.Forms.Panel();
+            this.lblImageUploadedCount = new System.Windows.Forms.Label();
+            this.lblCardFGTitle = new System.Windows.Forms.Label();
+            this.pnlCardRM = new System.Windows.Forms.Panel();
+            this.lblActiveProCount = new System.Windows.Forms.Label();
+            this.lblCardRMTitle = new System.Windows.Forms.Label();
             this.lblGroupCode = new System.Windows.Forms.Label();
             this.txtGroup = new System.Windows.Forms.TextBox();
             this.lblGroup = new System.Windows.Forms.Label();
@@ -84,22 +97,20 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lblSubGroupCode = new System.Windows.Forms.Label();
             this.grdSubgroups = new System.Windows.Forms.DataGridView();
+            this.flpSubGroups = new System.Windows.Forms.FlowLayoutPanel();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.epBulkImage = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmImageUpload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmImageApproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSGID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMapped = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmClear = new System.Windows.Forms.DataGridViewImageColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.flpSubGroups = new System.Windows.Forms.FlowLayoutPanel();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.epBulkImage = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsImageList.SuspendLayout();
             this.pnlImage.SuspendLayout();
             this.grbImageUpload.SuspendLayout();
@@ -111,6 +122,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tsMenu.SuspendLayout();
             this.grbSubgroups.SuspendLayout();
+            this.tlpSummaryCards.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.pnlCardFG.SuspendLayout();
+            this.pnlCardRM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -159,9 +175,9 @@
             this.grbImageUpload.Controls.Add(this.btnSave);
             this.grbImageUpload.Controls.Add(this.flowLayoutPanel1);
             this.grbImageUpload.Controls.Add(this.tsMenu);
-            this.grbImageUpload.Location = new System.Drawing.Point(574, 3);
+            this.grbImageUpload.Location = new System.Drawing.Point(612, 3);
             this.grbImageUpload.Name = "grbImageUpload";
-            this.grbImageUpload.Size = new System.Drawing.Size(768, 629);
+            this.grbImageUpload.Size = new System.Drawing.Size(730, 629);
             this.grbImageUpload.TabIndex = 1;
             this.grbImageUpload.TabStop = false;
             // 
@@ -170,22 +186,23 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(688, 594);
+            this.btnClose.Location = new System.Drawing.Point(650, 594);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
             this.btnClose.TabIndex = 48;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pnlImageContainer
             // 
             this.pnlImageContainer.AutoScroll = true;
             this.pnlImageContainer.Controls.Add(this.pnlControls);
             this.pnlImageContainer.Controls.Add(this.pictureBox1);
-            this.pnlImageContainer.Location = new System.Drawing.Point(214, 57);
+            this.pnlImageContainer.Location = new System.Drawing.Point(203, 57);
             this.pnlImageContainer.Name = "pnlImageContainer";
-            this.pnlImageContainer.Size = new System.Drawing.Size(548, 531);
+            this.pnlImageContainer.Size = new System.Drawing.Size(521, 531);
             this.pnlImageContainer.TabIndex = 18;
             // 
             // pnlControls
@@ -198,14 +215,14 @@
             this.pnlControls.Controls.Add(this.tbContrast);
             this.pnlControls.Location = new System.Drawing.Point(3, 3);
             this.pnlControls.Name = "pnlControls";
-            this.pnlControls.Size = new System.Drawing.Size(545, 74);
+            this.pnlControls.Size = new System.Drawing.Size(516, 74);
             this.pnlControls.TabIndex = 5;
             this.pnlControls.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(404, 48);
+            this.label5.Location = new System.Drawing.Point(394, 48);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 20);
             this.label5.TabIndex = 7;
@@ -214,7 +231,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(238, 48);
+            this.label6.Location = new System.Drawing.Point(228, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 20);
             this.label6.TabIndex = 6;
@@ -223,7 +240,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(69, 48);
+            this.label7.Location = new System.Drawing.Point(51, 48);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 20);
             this.label7.TabIndex = 5;
@@ -231,36 +248,39 @@
             // 
             // tbSaturation
             // 
-            this.tbSaturation.Location = new System.Drawing.Point(355, 3);
+            this.tbSaturation.Location = new System.Drawing.Point(345, 3);
             this.tbSaturation.Maximum = 50;
             this.tbSaturation.Minimum = -50;
             this.tbSaturation.Name = "tbSaturation";
             this.tbSaturation.Size = new System.Drawing.Size(165, 45);
             this.tbSaturation.TabIndex = 4;
+            this.tbSaturation.Scroll += new System.EventHandler(this.tbSaturation_Scroll);
             // 
             // tbBrightness
             // 
-            this.tbBrightness.Location = new System.Drawing.Point(13, 3);
+            this.tbBrightness.Location = new System.Drawing.Point(3, 3);
             this.tbBrightness.Maximum = 50;
             this.tbBrightness.Minimum = -50;
             this.tbBrightness.Name = "tbBrightness";
             this.tbBrightness.Size = new System.Drawing.Size(165, 45);
             this.tbBrightness.TabIndex = 2;
+            this.tbBrightness.Scroll += new System.EventHandler(this.tbBrightness_Scroll);
             // 
             // tbContrast
             // 
-            this.tbContrast.Location = new System.Drawing.Point(184, 3);
+            this.tbContrast.Location = new System.Drawing.Point(174, 3);
             this.tbContrast.Maximum = 50;
             this.tbContrast.Minimum = -50;
             this.tbContrast.Name = "tbContrast";
             this.tbContrast.Size = new System.Drawing.Size(165, 45);
             this.tbContrast.TabIndex = 3;
+            this.tbContrast.Scroll += new System.EventHandler(this.tbContrast_Scroll);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(545, 528);
+            this.pictureBox1.Size = new System.Drawing.Size(516, 525);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -270,7 +290,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.up_arrow;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(606, 594);
+            this.btnSave.Location = new System.Drawing.Point(568, 594);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(76, 29);
             this.btnSave.TabIndex = 47;
@@ -310,7 +330,7 @@
             this.tsbColour});
             this.tsMenu.Location = new System.Drawing.Point(3, 23);
             this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Size = new System.Drawing.Size(762, 31);
+            this.tsMenu.Size = new System.Drawing.Size(724, 31);
             this.tsMenu.TabIndex = 14;
             this.tsMenu.Text = "toolStrip1";
             // 
@@ -326,6 +346,7 @@
             this.tsbReset.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbReset.Size = new System.Drawing.Size(68, 28);
             this.tsbReset.Text = "&Reset";
+            this.tsbReset.Click += new System.EventHandler(this.tsbReset_Click);
             // 
             // tssEdit
             // 
@@ -344,6 +365,7 @@
             this.tsbRotateR.Name = "tsbRotateR";
             this.tsbRotateR.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbRotateR.Size = new System.Drawing.Size(23, 28);
+            this.tsbRotateR.Click += new System.EventHandler(this.tsbRotateR_Click);
             // 
             // toolStripSeparator1
             // 
@@ -362,6 +384,7 @@
             this.tsbRotateL.Name = "tsbRotateL";
             this.tsbRotateL.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbRotateL.Size = new System.Drawing.Size(23, 28);
+            this.tsbRotateL.Click += new System.EventHandler(this.tsbRotateL_Click);
             // 
             // toolStripSeparator2
             // 
@@ -380,6 +403,7 @@
             this.tsbZoomOut.Name = "tsbZoomOut";
             this.tsbZoomOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbZoomOut.Size = new System.Drawing.Size(23, 28);
+            this.tsbZoomOut.Click += new System.EventHandler(this.tsbZoomOut_Click);
             // 
             // toolStripSeparator3
             // 
@@ -398,6 +422,7 @@
             this.tsbZoomIn.Name = "tsbZoomIn";
             this.tsbZoomIn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbZoomIn.Size = new System.Drawing.Size(23, 28);
+            this.tsbZoomIn.Click += new System.EventHandler(this.tsbZoomIn_Click);
             // 
             // toolStripSeparator4
             // 
@@ -416,6 +441,7 @@
             this.tsbCropImage.Name = "tsbCropImage";
             this.tsbCropImage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbCropImage.Size = new System.Drawing.Size(23, 28);
+            this.tsbCropImage.Click += new System.EventHandler(this.tsbCropImage_Click);
             // 
             // toolStripSeparator5
             // 
@@ -434,6 +460,7 @@
             this.tsbCrop.Name = "tsbCrop";
             this.tsbCrop.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbCrop.Size = new System.Drawing.Size(23, 28);
+            this.tsbCrop.Click += new System.EventHandler(this.tsbCrop_Click);
             // 
             // tsbBrowse
             // 
@@ -446,6 +473,7 @@
             this.tsbBrowse.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbBrowse.Size = new System.Drawing.Size(69, 28);
             this.tsbBrowse.Text = "Browse";
+            this.tsbBrowse.Click += new System.EventHandler(this.tsbBrowse_Click);
             // 
             // toolStripSeparator6
             // 
@@ -464,9 +492,11 @@
             this.tsbColour.Name = "tsbColour";
             this.tsbColour.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbColour.Size = new System.Drawing.Size(24, 28);
+            this.tsbColour.Click += new System.EventHandler(this.tsbColour_Click);
             // 
             // grbSubgroups
             // 
+            this.grbSubgroups.Controls.Add(this.tlpSummaryCards);
             this.grbSubgroups.Controls.Add(this.lblGroupCode);
             this.grbSubgroups.Controls.Add(this.txtGroup);
             this.grbSubgroups.Controls.Add(this.lblGroup);
@@ -478,10 +508,166 @@
             this.grbSubgroups.Controls.Add(this.flpSubGroups);
             this.grbSubgroups.Location = new System.Drawing.Point(12, 3);
             this.grbSubgroups.Name = "grbSubgroups";
-            this.grbSubgroups.Size = new System.Drawing.Size(556, 629);
+            this.grbSubgroups.Size = new System.Drawing.Size(594, 629);
             this.grbSubgroups.TabIndex = 0;
             this.grbSubgroups.TabStop = false;
             this.grbSubgroups.Text = "Subgroups";
+            // 
+            // tlpSummaryCards
+            // 
+            this.tlpSummaryCards.ColumnCount = 4;
+            this.tlpSummaryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSummaryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSummaryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSummaryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSummaryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSummaryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSummaryCards.Controls.Add(this.panel6, 2, 0);
+            this.tlpSummaryCards.Controls.Add(this.panel5, 3, 0);
+            this.tlpSummaryCards.Controls.Add(this.pnlCardFG, 1, 0);
+            this.tlpSummaryCards.Controls.Add(this.pnlCardRM, 0, 0);
+            this.tlpSummaryCards.Location = new System.Drawing.Point(3, 543);
+            this.tlpSummaryCards.Name = "tlpSummaryCards";
+            this.tlpSummaryCards.RowCount = 1;
+            this.tlpSummaryCards.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpSummaryCards.Size = new System.Drawing.Size(588, 80);
+            this.tlpSummaryCards.TabIndex = 111111229;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.lblImageApprovedCount);
+            this.panel6.Controls.Add(this.label22);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(297, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(141, 74);
+            this.panel6.TabIndex = 12;
+            // 
+            // lblImageApprovedCount
+            // 
+            this.lblImageApprovedCount.AutoSize = true;
+            this.lblImageApprovedCount.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.lblImageApprovedCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.lblImageApprovedCount.Location = new System.Drawing.Point(10, 25);
+            this.lblImageApprovedCount.Name = "lblImageApprovedCount";
+            this.lblImageApprovedCount.Size = new System.Drawing.Size(33, 37);
+            this.lblImageApprovedCount.TabIndex = 0;
+            this.lblImageApprovedCount.Text = "0";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.label22.Location = new System.Drawing.Point(10, 8);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(100, 15);
+            this.label22.TabIndex = 1;
+            this.label22.Text = "Image Approved";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.lblImageUnapprovedCount);
+            this.panel5.Controls.Add(this.label20);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(444, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(141, 74);
+            this.panel5.TabIndex = 11;
+            // 
+            // lblImageUnapprovedCount
+            // 
+            this.lblImageUnapprovedCount.AutoSize = true;
+            this.lblImageUnapprovedCount.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.lblImageUnapprovedCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(33)))), ((int)(((byte)(168)))));
+            this.lblImageUnapprovedCount.Location = new System.Drawing.Point(10, 25);
+            this.lblImageUnapprovedCount.Name = "lblImageUnapprovedCount";
+            this.lblImageUnapprovedCount.Size = new System.Drawing.Size(33, 37);
+            this.lblImageUnapprovedCount.TabIndex = 0;
+            this.lblImageUnapprovedCount.Text = "0";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(33)))), ((int)(((byte)(168)))));
+            this.label20.Location = new System.Drawing.Point(10, 8);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(114, 15);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Image Unapproved";
+            // 
+            // pnlCardFG
+            // 
+            this.pnlCardFG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(253)))), ((int)(((byte)(244)))));
+            this.pnlCardFG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlCardFG.Controls.Add(this.lblImageUploadedCount);
+            this.pnlCardFG.Controls.Add(this.lblCardFGTitle);
+            this.pnlCardFG.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCardFG.Location = new System.Drawing.Point(150, 3);
+            this.pnlCardFG.Name = "pnlCardFG";
+            this.pnlCardFG.Size = new System.Drawing.Size(141, 74);
+            this.pnlCardFG.TabIndex = 6;
+            // 
+            // lblImageUploadedCount
+            // 
+            this.lblImageUploadedCount.AutoSize = true;
+            this.lblImageUploadedCount.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.lblImageUploadedCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(101)))), ((int)(((byte)(52)))));
+            this.lblImageUploadedCount.Location = new System.Drawing.Point(10, 25);
+            this.lblImageUploadedCount.Name = "lblImageUploadedCount";
+            this.lblImageUploadedCount.Size = new System.Drawing.Size(33, 37);
+            this.lblImageUploadedCount.TabIndex = 0;
+            this.lblImageUploadedCount.Text = "0";
+            // 
+            // lblCardFGTitle
+            // 
+            this.lblCardFGTitle.AutoSize = true;
+            this.lblCardFGTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblCardFGTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(101)))), ((int)(((byte)(52)))));
+            this.lblCardFGTitle.Location = new System.Drawing.Point(10, 8);
+            this.lblCardFGTitle.Name = "lblCardFGTitle";
+            this.lblCardFGTitle.Size = new System.Drawing.Size(98, 15);
+            this.lblCardFGTitle.TabIndex = 1;
+            this.lblCardFGTitle.Text = "Image Uploaded";
+            // 
+            // pnlCardRM
+            // 
+            this.pnlCardRM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.pnlCardRM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlCardRM.Controls.Add(this.lblActiveProCount);
+            this.pnlCardRM.Controls.Add(this.lblCardRMTitle);
+            this.pnlCardRM.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCardRM.Location = new System.Drawing.Point(3, 3);
+            this.pnlCardRM.Name = "pnlCardRM";
+            this.pnlCardRM.Size = new System.Drawing.Size(141, 74);
+            this.pnlCardRM.TabIndex = 0;
+            // 
+            // lblActiveProCount
+            // 
+            this.lblActiveProCount.AutoSize = true;
+            this.lblActiveProCount.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.lblActiveProCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.lblActiveProCount.Location = new System.Drawing.Point(10, 25);
+            this.lblActiveProCount.Name = "lblActiveProCount";
+            this.lblActiveProCount.Size = new System.Drawing.Size(33, 37);
+            this.lblActiveProCount.TabIndex = 0;
+            this.lblActiveProCount.Text = "0";
+            // 
+            // lblCardRMTitle
+            // 
+            this.lblCardRMTitle.AutoSize = true;
+            this.lblCardRMTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblCardRMTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.lblCardRMTitle.Location = new System.Drawing.Point(10, 8);
+            this.lblCardRMTitle.Name = "lblCardRMTitle";
+            this.lblCardRMTitle.Size = new System.Drawing.Size(95, 15);
+            this.lblCardRMTitle.TabIndex = 1;
+            this.lblCardRMTitle.Text = "Active Products";
             // 
             // lblGroupCode
             // 
@@ -534,34 +720,34 @@
             this.DGV_FilterGroup.AllowUserToResizeRows = false;
             this.DGV_FilterGroup.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_FilterGroup.ColumnHeadersHeight = 30;
             this.DGV_FilterGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(16, 168);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(20, 87);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
             this.DGV_FilterGroup.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterGroup.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterGroup.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterGroup.RowTemplate.Height = 25;
             this.DGV_FilterGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterGroup.Size = new System.Drawing.Size(273, 226);
@@ -578,34 +764,34 @@
             this.DGV_FilterSubgroup.AllowUserToResizeRows = false;
             this.DGV_FilterSubgroup.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterSubgroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterSubgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterSubgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_FilterSubgroup.ColumnHeadersHeight = 30;
             this.DGV_FilterSubgroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(193, 168);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(193, 87);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
             this.DGV_FilterSubgroup.RowHeadersWidth = 51;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterSubgroup.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterSubgroup.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_FilterSubgroup.RowTemplate.Height = 25;
             this.DGV_FilterSubgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterSubgroup.Size = new System.Drawing.Size(357, 226);
@@ -634,7 +820,7 @@
             this.groupBox1.Controls.Add(this.grdSubgroups);
             this.groupBox1.Location = new System.Drawing.Point(10, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(540, 411);
+            this.groupBox1.Size = new System.Drawing.Size(578, 514);
             this.groupBox1.TabIndex = 1111146;
             this.groupBox1.TabStop = false;
             // 
@@ -671,14 +857,14 @@
             this.grdSubgroups.AllowUserToResizeRows = false;
             this.grdSubgroups.BackgroundColor = System.Drawing.Color.White;
             this.grdSubgroups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSubgroups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSubgroups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdSubgroups.ColumnHeadersHeight = 50;
             this.grdSubgroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSubgroups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -687,41 +873,77 @@
             this.clmProduct,
             this.clmImageUpload,
             this.clmImageApproved,
-            this.clmImage,
             this.clmSGID,
             this.clmPRID,
             this.clmMapped,
-            this.clmView,
-            this.clmClear});
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSubgroups.DefaultCellStyle = dataGridViewCellStyle17;
+            this.clmView});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSubgroups.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdSubgroups.EnableHeadersVisualStyles = false;
             this.grdSubgroups.GridColor = System.Drawing.Color.White;
             this.grdSubgroups.Location = new System.Drawing.Point(10, 70);
             this.grdSubgroups.Name = "grdSubgroups";
-            this.grdSubgroups.ReadOnly = true;
             this.grdSubgroups.RowHeadersVisible = false;
             this.grdSubgroups.RowHeadersWidth = 51;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSubgroups.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSubgroups.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdSubgroups.RowTemplate.Height = 25;
             this.grdSubgroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSubgroups.Size = new System.Drawing.Size(522, 326);
+            this.grdSubgroups.Size = new System.Drawing.Size(562, 438);
             this.grdSubgroups.TabIndex = 1111143;
+            this.grdSubgroups.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSubgroups_CellContentClick);
             this.grdSubgroups.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdSubgroups_CellFormatting);
+            // 
+            // flpSubGroups
+            // 
+            this.flpSubGroups.AutoScroll = true;
+            this.flpSubGroups.AutoSize = true;
+            this.flpSubGroups.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flpSubGroups.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSubGroups.Location = new System.Drawing.Point(3, 23);
+            this.flpSubGroups.Name = "flpSubGroups";
+            this.flpSubGroups.Size = new System.Drawing.Size(0, 603);
+            this.flpSubGroups.TabIndex = 1111144;
+            this.flpSubGroups.WrapContents = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Folder.png");
+            this.imageList1.Images.SetKeyName(1, "Product.png");
+            // 
+            // epBulkImage
+            // 
+            this.epBulkImage.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "View";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.view_eye;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 40;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Clear";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.Width = 40;
             // 
             // clmCheck
             // 
             this.clmCheck.HeaderText = "";
             this.clmCheck.Name = "clmCheck";
-            this.clmCheck.ReadOnly = true;
             this.clmCheck.Width = 40;
             // 
             // clmPICode
@@ -731,6 +953,7 @@
             this.clmPICode.ReadOnly = true;
             this.clmPICode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmPICode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPICode.Width = 120;
             // 
             // clmProduct
             // 
@@ -739,28 +962,21 @@
             this.clmProduct.ReadOnly = true;
             this.clmProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmProduct.Width = 140;
+            this.clmProduct.Width = 250;
             // 
             // clmImageUpload
             // 
             this.clmImageUpload.HeaderText = "Image Uploaded";
             this.clmImageUpload.Name = "clmImageUpload";
             this.clmImageUpload.ReadOnly = true;
+            this.clmImageUpload.Width = 70;
             // 
             // clmImageApproved
             // 
             this.clmImageApproved.HeaderText = "Image Approved";
             this.clmImageApproved.Name = "clmImageApproved";
             this.clmImageApproved.ReadOnly = true;
-            // 
-            // clmImage
-            // 
-            this.clmImage.HeaderText = "Image Name";
-            this.clmImage.Name = "clmImage";
-            this.clmImage.ReadOnly = true;
-            this.clmImage.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmImage.Width = 120;
+            this.clmImageApproved.Width = 70;
             // 
             // clmSGID
             // 
@@ -789,57 +1005,8 @@
             this.clmView.HeaderText = "View";
             this.clmView.Image = global::ROMS.Properties.Resources.view_eye;
             this.clmView.Name = "clmView";
-            this.clmView.ReadOnly = true;
             this.clmView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmView.Width = 40;
-            // 
-            // clmClear
-            // 
-            this.clmClear.HeaderText = "Clear";
-            this.clmClear.Image = global::ROMS.Properties.Resources.remove;
-            this.clmClear.Name = "clmClear";
-            this.clmClear.ReadOnly = true;
-            this.clmClear.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmClear.Width = 40;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Folder.png");
-            this.imageList1.Images.SetKeyName(1, "Product.png");
-            // 
-            // flpSubGroups
-            // 
-            this.flpSubGroups.AutoScroll = true;
-            this.flpSubGroups.AutoSize = true;
-            this.flpSubGroups.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flpSubGroups.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpSubGroups.Location = new System.Drawing.Point(3, 23);
-            this.flpSubGroups.Name = "flpSubGroups";
-            this.flpSubGroups.Size = new System.Drawing.Size(0, 603);
-            this.flpSubGroups.TabIndex = 1111144;
-            this.flpSubGroups.WrapContents = false;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "View";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.view_eye;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.Width = 40;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Clear";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn2.Width = 40;
-            // 
-            // epBulkImage
-            // 
-            this.epBulkImage.ContainerControl = this;
             // 
             // CP_Bulk_Image_Update
             // 
@@ -874,6 +1041,15 @@
             this.tsMenu.PerformLayout();
             this.grbSubgroups.ResumeLayout(false);
             this.grbSubgroups.PerformLayout();
+            this.tlpSummaryCards.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.pnlCardFG.ResumeLayout(false);
+            this.pnlCardFG.PerformLayout();
+            this.pnlCardRM.ResumeLayout(false);
+            this.pnlCardRM.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -936,17 +1112,28 @@
         private System.Windows.Forms.TextBox txtSubGroup;
         private System.Windows.Forms.Label lblSubGroupCode;
         private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.ErrorProvider epBulkImage;
+        private System.Windows.Forms.TableLayoutPanel tlpSummaryCards;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label lblImageApprovedCount;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Panel pnlCardFG;
+        private System.Windows.Forms.Label lblImageUploadedCount;
+        private System.Windows.Forms.Label lblCardFGTitle;
+        private System.Windows.Forms.Panel pnlCardRM;
+        private System.Windows.Forms.Label lblActiveProCount;
+        private System.Windows.Forms.Label lblCardRMTitle;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label lblImageUnapprovedCount;
+        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmImageUpload;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmImageApproved;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSGID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMapped;
         private System.Windows.Forms.DataGridViewImageColumn clmView;
-        private System.Windows.Forms.DataGridViewImageColumn clmClear;
-        private System.Windows.Forms.ErrorProvider epBulkImage;
     }
 }

@@ -661,6 +661,12 @@
     <Compile Include="INV_StockRequestQueueList.designer.cs">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDetails.designer.cs">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrintDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4994,6 +5000,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockRequestQueueList.resx">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDetails.resx">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintDetails.resx">
       <DependentUpon>PrintDetails.cs</DependentUpon>

@@ -28,6 +28,7 @@ namespace ROMS
         private Point dragStartPoint;
         private const int HANDLE_SIZE = 8;
         private Rectangle cropRect;
+        private ToolTip tpTransactionType = new ToolTip();
         private enum CropHandle
         {
             None, TopLeft, TopRight, BottomLeft, BottomRight,
@@ -973,86 +974,87 @@ namespace ROMS
                     )
                 );
 
-                foreach (string file in existingFiles)
-                {
-                    string fileName = Path.GetFileName(file);
-                    if (!updatedImages.Contains(fileName))
-                    {
-                        if (File.Exists(file))
-                        {
-                            File.SetAttributes(file, FileAttributes.Normal);
-                            pictureBox1.Image?.Dispose();
-                            pictureBox1.Image = null;
+                //foreach (string file in existingFiles)
+                //{
+                //    string fileName = Path.GetFileName(file);
+                //    if (!updatedImages.Contains(fileName))
+                //    {
+                //        if (File.Exists(file))
+                //        {
+                //            File.SetAttributes(file, FileAttributes.Normal);
+                //            pictureBox1.Image?.Dispose();
+                //            pictureBox1.Image = null;
 
-                            originalImage?.Dispose();
-                            originalImage = null;
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                            File.Delete(file);
-                        }
-                    }
-                }
+                //            originalImage?.Dispose();
+                //            originalImage = null;
+                //            GC.Collect();
+                //            GC.WaitForPendingFinalizers();
+                //            File.Delete(file);
+                //        }
+                //    }
+                //}
 
-                foreach (var ei in editableImages)
-                {
-                    string extensionName = Path.GetExtension(ei.FilePath);
-                    string imageName = $"{varproductcode}_{varFileCount}{extensionName}";
-                    string destinationFile = Path.Combine(destinationPath, imageName);
+                //foreach (var ei in editableImages)
+                //{
+                //    string extensionName = Path.GetExtension(ei.FilePath);
+                //    string imageName = $"{varproductcode}_{varFileCount}{extensionName}";
+                //    string destinationFile = Path.Combine(destinationPath, imageName);
 
-                    if (ei.EditedImage != null)
-                    {
-                        if (File.Exists(destinationFile))
-                        {
-                            File.SetAttributes(destinationFile, FileAttributes.Normal);
-                            pictureBox1.Image?.Dispose();
-                            pictureBox1.Image = null;
+                //    if (ei.EditedImage != null)
+                //    {
+                //        if (File.Exists(destinationFile))
+                //        {
+                //            File.SetAttributes(destinationFile, FileAttributes.Normal);
+                //            pictureBox1.Image?.Dispose();
+                //            pictureBox1.Image = null;
 
-                            originalImage?.Dispose();
-                            originalImage = null;
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                            File.Delete(destinationFile);
-                        }
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            ei.EditedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            File.WriteAllBytes(destinationFile, ms.ToArray());
-                        }
-                    }
-                    else
-                    {
-                        if (ei.FilePath != destinationFile)
-                        {
-                            if (File.Exists(destinationFile))
-                            {
-                                File.SetAttributes(destinationFile, FileAttributes.Normal);
-                                pictureBox1.Image?.Dispose();
-                                pictureBox1.Image = null;
+                //            originalImage?.Dispose();
+                //            originalImage = null;
+                //            GC.Collect();
+                //            GC.WaitForPendingFinalizers();
+                //            File.Delete(destinationFile);
+                //        }
+                //        using (MemoryStream ms = new MemoryStream())
+                //        {
+                //            ei.EditedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //            File.WriteAllBytes(destinationFile, ms.ToArray());
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if (ei.FilePath != destinationFile)
+                //        {
+                //            if (File.Exists(destinationFile))
+                //            {
+                //                File.SetAttributes(destinationFile, FileAttributes.Normal);
+                //                pictureBox1.Image?.Dispose();
+                //                pictureBox1.Image = null;
 
-                                originalImage?.Dispose();
-                                originalImage = null;
-                                GC.Collect();
-                                GC.WaitForPendingFinalizers();
-                                File.Delete(destinationFile);
-                            }
+                //                originalImage?.Dispose();
+                //                originalImage = null;
+                //                GC.Collect();
+                //                GC.WaitForPendingFinalizers();
+                //                File.Delete(destinationFile);
+                //            }
 
-                            using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
-                            using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
-                            {
-                                sourceStream.CopyTo(destStream);
-                            }
-                        }
-                    }
+                //            using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
+                //            using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
+                //            {
+                //                sourceStream.CopyTo(destStream);
+                //            }
+                //        }
+                //    }
 
 
-                    imageNameList.Add(imageName);
-                    varFileCount++;
+                //    imageNameList.Add(imageName);
+                //    varFileCount++;
 
-                    if (string.IsNullOrEmpty(varImagePath))
-                        varImagePath = imageName;
-                    else
-                        varImagePath += "," + imageName;
-                }
+                //    if (string.IsNullOrEmpty(varImagePath))
+                //        varImagePath = imageName;
+                //    else
+                //        varImagePath += "," + imageName;
+                //}
+
                 string result = "";
                 result = objspdservice.udfnProductMaster(20, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
 
@@ -1084,6 +1086,21 @@ namespace ROMS
 
                             if (value[0] == "5")
                                 goto Verify;
+                        }
+                        if (value[2] == "0")
+                        {
+                            if (!string.IsNullOrWhiteSpace(value[3]))
+                            {
+                                foreach (string fileName in value[3].Split(','))
+                                {
+                                    string file = Path.Combine(destinationPath, fileName.Trim());  
+                                    if (File.Exists(file))
+                                    {
+                                        File.SetAttributes(file, FileAttributes.Normal);
+                                        File.Delete(file);
+                                    }
+                                }
+                            }
                         }
 
                     }
@@ -1135,7 +1152,7 @@ namespace ROMS
                         if (objDS.Tables[2].Rows.Count > 0)
                         {
                             udfnBindImages(objDS.Tables[2]);
-                        }
+                        } 
                     }
                 }
             }
@@ -1177,7 +1194,26 @@ namespace ROMS
         {
             try
             {
-                udfnReject();
+                if (txtRemark.Text == "")
+                {
+                    epProductApproval.SetError(txtRemark, "Please enter remarks");
+                    txtRemark.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTransactionType.ShowAlways = true;
+                    tpTransactionType.Show("Please enter remarks", txtRemark, 5000);
+                    return;
+                }
+                else
+                {
+                    epProductApproval.Clear();
+                    epProductApproval.SetError(txtRemark, "");
+                    txtRemark.BackColor = Color.White;
+                }
+                DialogResult dialogResult = MessageBox.Show("Are you sure want to reject product image ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    udfnReject();
+                    txtRemark.Text = "";
+                }
             }
             catch (Exception ex)
             {
@@ -1219,88 +1255,88 @@ namespace ROMS
                     )
                 );
 
-                foreach (string file in existingFiles)
-                {
-                    string fileName = Path.GetFileName(file);
-                    if (!updatedImages.Contains(fileName))
-                    {
-                        if (File.Exists(file))
-                        {
-                            File.SetAttributes(file, FileAttributes.Normal);
-                            pictureBox1.Image?.Dispose();
-                            pictureBox1.Image = null;
+                //foreach (string file in existingFiles)
+                //{
+                //    string fileName = Path.GetFileName(file);
+                //    if (!updatedImages.Contains(fileName))
+                //    {
+                //        if (File.Exists(file))
+                //        {
+                //            File.SetAttributes(file, FileAttributes.Normal);
+                //            pictureBox1.Image?.Dispose();
+                //            pictureBox1.Image = null;
 
-                            originalImage?.Dispose();
-                            originalImage = null;
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                            File.Delete(file);
-                        }
-                    }
-                }
+                //            originalImage?.Dispose();
+                //            originalImage = null;
+                //            GC.Collect();
+                //            GC.WaitForPendingFinalizers();
+                //            File.Delete(file);
+                //        }
+                //    }
+                //}
 
-                foreach (var ei in editableImages)
-                {
-                    string extensionName = Path.GetExtension(ei.FilePath);
-                    string imageName = $"{varproductcode}_{varFileCount}{extensionName}";
-                    string destinationFile = Path.Combine(destinationPath, imageName);
+                //foreach (var ei in editableImages)
+                //{
+                //    string extensionName = Path.GetExtension(ei.FilePath);
+                //    string imageName = $"{varproductcode}_{varFileCount}{extensionName}";
+                //    string destinationFile = Path.Combine(destinationPath, imageName);
 
-                    if (ei.EditedImage != null)
-                    {
-                        if (File.Exists(destinationFile))
-                        {
-                            File.SetAttributes(destinationFile, FileAttributes.Normal);
-                            pictureBox1.Image?.Dispose();
-                            pictureBox1.Image = null;
+                //    if (ei.EditedImage != null)
+                //    {
+                //        if (File.Exists(destinationFile))
+                //        {
+                //            File.SetAttributes(destinationFile, FileAttributes.Normal);
+                //            pictureBox1.Image?.Dispose();
+                //            pictureBox1.Image = null;
 
-                            originalImage?.Dispose();
-                            originalImage = null;
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                            File.Delete(destinationFile);
-                        }
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            ei.EditedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            File.WriteAllBytes(destinationFile, ms.ToArray());
-                        }
-                    }
-                    else
-                    {
-                        if (ei.FilePath != destinationFile)
-                        {
-                            if (File.Exists(destinationFile))
-                            {
-                                File.SetAttributes(destinationFile, FileAttributes.Normal);
-                                pictureBox1.Image?.Dispose();
-                                pictureBox1.Image = null;
+                //            originalImage?.Dispose();
+                //            originalImage = null;
+                //            GC.Collect();
+                //            GC.WaitForPendingFinalizers();
+                //            File.Delete(destinationFile);
+                //        }
+                //        using (MemoryStream ms = new MemoryStream())
+                //        {
+                //            ei.EditedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //            File.WriteAllBytes(destinationFile, ms.ToArray());
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if (ei.FilePath != destinationFile)
+                //        {
+                //            if (File.Exists(destinationFile))
+                //            {
+                //                File.SetAttributes(destinationFile, FileAttributes.Normal);
+                //                pictureBox1.Image?.Dispose();
+                //                pictureBox1.Image = null;
 
-                                originalImage?.Dispose();
-                                originalImage = null;
-                                GC.Collect();
-                                GC.WaitForPendingFinalizers();
-                                File.Delete(destinationFile);
-                            }
+                //                originalImage?.Dispose();
+                //                originalImage = null;
+                //                GC.Collect();
+                //                GC.WaitForPendingFinalizers();
+                //                File.Delete(destinationFile);
+                //            }
 
-                            using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
-                            using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
-                            {
-                                sourceStream.CopyTo(destStream);
-                            }
-                        }
-                    }
+                //            using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
+                //            using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
+                //            {
+                //                sourceStream.CopyTo(destStream);
+                //            }
+                //        }
+                //    }
 
 
-                    imageNameList.Add(imageName);
-                    varFileCount++;
+                //    imageNameList.Add(imageName);
+                //    varFileCount++;
 
-                    if (string.IsNullOrEmpty(varImagePath))
-                        varImagePath = imageName;
-                    else
-                        varImagePath += "," + imageName;
-                }
+                //    if (string.IsNullOrEmpty(varImagePath))
+                //        varImagePath = imageName;
+                //    else
+                //        varImagePath += "," + imageName;
+                //}
                 string result = "";
-                result = objspdservice.udfnProductMaster(21, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
+                result = objspdservice.udfnProductMaster(21, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0,txtRemark.Text);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3" && varvalue[1] == "1")
@@ -1313,7 +1349,7 @@ namespace ROMS
                     {
                         string ApproverID = MainForm.objCP_Verify.varUserId;
 
-                        result = objspdservice.udfnProductMaster(21, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", ApproverID, MainForm.pbIpAddress, "", 0, null, 1, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
+                        result = objspdservice.udfnProductMaster(21, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", ApproverID, MainForm.pbIpAddress, "", 0, null, 1, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0, txtRemark.Text);
 
                         string[] value = result.Split('~');
 
@@ -1330,6 +1366,21 @@ namespace ROMS
 
                             if (value[0] == "5")
                                 goto Verify;
+                        }
+                        if (value[2] == "0")
+                        {
+                            if (!string.IsNullOrWhiteSpace(value[3]))
+                            {
+                                foreach (string fileName in value[3].Split(','))
+                                {
+                                    string file = Path.Combine(destinationPath, fileName.Trim());
+                                    if (File.Exists(file))
+                                    {
+                                        File.SetAttributes(file, FileAttributes.Normal);
+                                        File.Delete(file);
+                                    }
+                                }
+                            }
                         }
 
                     }

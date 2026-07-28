@@ -36,6 +36,7 @@
             this.pnlGoodsOutward = new System.Windows.Forms.Panel();
             this.tcProductApproval = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnReject = new System.Windows.Forms.Button();
             this.lblProductName = new System.Windows.Forms.Label();
             this.btnImgClose = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
@@ -67,7 +68,8 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColour = new System.Windows.Forms.ToolStripButton();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
-            this.btnReject = new System.Windows.Forms.Button();
+            this.txtRemark = new System.Windows.Forms.TextBox();
+            this.lblnarration = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -131,6 +133,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.txtRemark);
+            this.tabPage3.Controls.Add(this.lblnarration);
             this.tabPage3.Controls.Add(this.btnReject);
             this.tabPage3.Controls.Add(this.lblProductName);
             this.tabPage3.Controls.Add(this.btnImgClose);
@@ -145,6 +149,20 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Product Image";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnReject
+            // 
+            this.btnReject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnReject.Image = global::ROMS.Properties.Resources.Blocked;
+            this.btnReject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReject.Location = new System.Drawing.Point(1062, 576);
+            this.btnReject.Name = "btnReject";
+            this.btnReject.Size = new System.Drawing.Size(86, 29);
+            this.btnReject.TabIndex = 44;
+            this.btnReject.Text = "Reject";
+            this.btnReject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
             // lblProductName
             // 
@@ -190,7 +208,7 @@
             this.pnlImageContainer.Controls.Add(this.pictureBox1);
             this.pnlImageContainer.Location = new System.Drawing.Point(442, 33);
             this.pnlImageContainer.Name = "pnlImageContainer";
-            this.pnlImageContainer.Size = new System.Drawing.Size(756, 540);
+            this.pnlImageContainer.Size = new System.Drawing.Size(756, 512);
             this.pnlImageContainer.TabIndex = 18;
             // 
             // pnlControls
@@ -268,7 +286,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(750, 534);
+            this.pictureBox1.Size = new System.Drawing.Size(750, 507);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -281,7 +299,7 @@
             // 
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 37);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 540);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 506);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // tsMenu
@@ -479,19 +497,23 @@
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
             // 
-            // btnReject
+            // txtRemark
             // 
-            this.btnReject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnReject.Image = global::ROMS.Properties.Resources.Blocked;
-            this.btnReject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReject.Location = new System.Drawing.Point(1062, 576);
-            this.btnReject.Name = "btnReject";
-            this.btnReject.Size = new System.Drawing.Size(86, 29);
-            this.btnReject.TabIndex = 44;
-            this.btnReject.Text = "Reject";
-            this.btnReject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReject.UseVisualStyleBackColor = true;
-            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
+            this.txtRemark.Location = new System.Drawing.Point(71, 551);
+            this.txtRemark.MaxLength = 200;
+            this.txtRemark.Multiline = true;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(371, 51);
+            this.txtRemark.TabIndex = 111111189;
+            // 
+            // lblnarration
+            // 
+            this.lblnarration.AutoSize = true;
+            this.lblnarration.Location = new System.Drawing.Point(15, 551);
+            this.lblnarration.Name = "lblnarration";
+            this.lblnarration.Size = new System.Drawing.Size(56, 20);
+            this.lblnarration.TabIndex = 111111190;
+            this.lblnarration.Text = "Remarks";
             // 
             // CP_ProductImageApproval
             // 
@@ -573,5 +595,7 @@
         private System.Windows.Forms.Button btnImgClose;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Button btnReject;
+        private System.Windows.Forms.TextBox txtRemark;
+        private System.Windows.Forms.Label lblnarration;
     }
 }
