@@ -102,6 +102,11 @@ namespace ROMS
         {
             try
             {
+                epBulkImage.Clear();
+                lblActiveProCount.Text = "0";
+                lblImageUploadedCount.Text = "0";
+                lblImageApprovedCount.Text = "0";
+                lblImageUnapprovedCount.Text = "0";
                 int varGroupID = 0, varSubgroupID = 0;
                 if (txtGroup.Text.Trim() == "")
                 {
@@ -644,27 +649,28 @@ namespace ROMS
             try
             {
                 udfnGridNull((Control)sender);
-                if (flowLayoutPanel1.Controls.Count != 0)
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(234);
-                    objDServ.CloseConnection();
-                    //DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
-                    {
-                        ClearAllImages();
-                        udfnList();
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    udfnList();
-                }
+                udfnList();
+                //if (flowLayoutPanel1.Controls.Count != 0)
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(234);
+                //    objDServ.CloseConnection();
+                //    //DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    if (dialogResult == DialogResult.OK)
+                //    {
+                //        ClearAllImages();
+                //        udfnList();
+                //    }
+                //    else
+                //    {
+                //        return;
+                //    }
+                //}
+                //else
+                //{
+                //    udfnList();
+                //}
             }
             catch (Exception ex)
             {

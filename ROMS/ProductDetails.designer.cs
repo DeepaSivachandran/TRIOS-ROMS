@@ -83,7 +83,7 @@
             this.grbForm.Controls.Add(this.btnNext);
             this.grbForm.Location = new System.Drawing.Point(17, 10);
             this.grbForm.Name = "grbForm";
-            this.grbForm.Size = new System.Drawing.Size(427, 451);
+            this.grbForm.Size = new System.Drawing.Size(448, 451);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
@@ -93,7 +93,7 @@
             this.grbTools.Controls.Add(this.btnClkRotate);
             this.grbTools.Controls.Add(this.btnAnticlkRotation);
             this.grbTools.Controls.Add(this.btnMinus);
-            this.grbTools.Location = new System.Drawing.Point(37, 14);
+            this.grbTools.Location = new System.Drawing.Point(42, 14);
             this.grbTools.Name = "grbTools";
             this.grbTools.Size = new System.Drawing.Size(354, 45);
             this.grbTools.TabIndex = 1111262;
@@ -154,7 +154,7 @@
             // pnlImageContainer
             // 
             this.pnlImageContainer.Controls.Add(this.pictureBox1);
-            this.pnlImageContainer.Location = new System.Drawing.Point(37, 61);
+            this.pnlImageContainer.Location = new System.Drawing.Point(42, 61);
             this.pnlImageContainer.Name = "pnlImageContainer";
             this.pnlImageContainer.Size = new System.Drawing.Size(354, 384);
             this.pnlImageContainer.TabIndex = 1111261;
@@ -164,7 +164,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(348, 375);
+            this.pictureBox1.Size = new System.Drawing.Size(348, 378);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -178,13 +178,12 @@
             // btnPrev
             // 
             this.btnPrev.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnPrev.Image = global::ROMS.Properties.Resources.arrow;
+            this.btnPrev.Image = global::ROMS.Properties.Resources.add___left;
             this.btnPrev.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrev.Location = new System.Drawing.Point(6, 240);
+            this.btnPrev.Location = new System.Drawing.Point(6, 222);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(25, 27);
+            this.btnPrev.Size = new System.Drawing.Size(30, 27);
             this.btnPrev.TabIndex = 1111259;
-            this.btnPrev.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
@@ -204,7 +203,7 @@
             this.grbSpecification.Controls.Add(this.label1);
             this.grbSpecification.Controls.Add(this.grdSpecification);
             this.grbSpecification.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.grbSpecification.Location = new System.Drawing.Point(425, 52);
+            this.grbSpecification.Location = new System.Drawing.Point(454, 52);
             this.grbSpecification.Name = "grbSpecification";
             this.grbSpecification.Size = new System.Drawing.Size(357, 393);
             this.grbSpecification.TabIndex = 1111258;
@@ -381,13 +380,12 @@
             // btnNext
             // 
             this.btnNext.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnNext.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.btnNext.Image = global::ROMS.Properties.Resources.add;
             this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNext.Location = new System.Drawing.Point(397, 240);
+            this.btnNext.Location = new System.Drawing.Point(402, 222);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(22, 27);
+            this.btnNext.Size = new System.Drawing.Size(30, 27);
             this.btnNext.TabIndex = 1111257;
-            this.btnNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
@@ -400,7 +398,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(369, 467);
+            this.btnClose.Location = new System.Drawing.Point(390, 467);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 5;
@@ -416,7 +414,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(460, 508);
+            this.ClientSize = new System.Drawing.Size(477, 508);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
