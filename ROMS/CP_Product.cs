@@ -1098,7 +1098,7 @@ namespace ROMS
                 //    objDServ.CloseConnection();
                 //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //}
-                if (tbProduct.SelectedIndex == 3)
+                if (tbProduct.SelectedIndex == 4)
                 {
                     bool isChecked = Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value);
                     if (isChecked)
@@ -1382,7 +1382,7 @@ namespace ROMS
                         BillSchemeApplicable = 1;
                     }
                     dtPrice_Markup = null;
-                    if (tbProduct.SelectedIndex == 3)
+                    if (tbProduct.SelectedIndex == 4)
                     {
 
                         decimal varRAteValue = 0, varMarginRAteValue = 0, varNewRateValue = 0;
@@ -1601,7 +1601,7 @@ namespace ROMS
                                     varupdate = "1";
                                     this.Close();
                                 }
-                                else if (tbProduct.SelectedIndex == 3)
+                                else if (tbProduct.SelectedIndex == 4)
                                 {
                                     MainForm.objCP_Itemlist.udfnDropdownbind();
                                     //MainForm.objCP_Itemlist.udfnList();
@@ -1624,7 +1624,7 @@ namespace ROMS
                                     varupdate = "1";
                                     this.Close();
                                 }
-                                else if (tbProduct.SelectedIndex == 3)
+                                else if (tbProduct.SelectedIndex == 4)
                                 {
                                     MainForm.objCP_Itemlist.udfnDropdownbind();
                                     //MainForm.objCP_Itemlist.udfnList();
@@ -7133,7 +7133,7 @@ namespace ROMS
                     lblProductEName.MaximumSize = new Size(500, 0);
                     lblProductEName.Text = txtItemNameTamil.Text.Trim();
                 }
-                if (tbProduct.SelectedIndex == 2)
+                if (tbProduct.SelectedIndex == 3)
                 {
                     btnImageUpdate.Visible = true;
                     btnSave.Visible = false;
@@ -7146,7 +7146,7 @@ namespace ROMS
                 }
 
                 btnSave.Enabled = true;
-                if (Convert.ToInt32(tbProduct.SelectedIndex) == 3)
+                if (Convert.ToInt32(tbProduct.SelectedIndex) == 4)
                 {
                     //btnSave.Enabled = false;
                     grdPrice.Rows.Clear();
@@ -8953,20 +8953,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnImageClose_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnclose();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void ChkSalesProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
