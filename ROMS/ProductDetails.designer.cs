@@ -426,7 +426,7 @@
             this.MinimizeBox = false;
             this.Name = "ProductDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Product Details";
+            this.Text = "Product Image Details";
             this.Load += new System.EventHandler(this.PM_ProductDetails_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PM_ProductDetails_KeyDown);
             this.grbForm.ResumeLayout(false);
