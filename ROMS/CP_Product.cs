@@ -8800,43 +8800,44 @@ namespace ROMS
                     Directory.CreateDirectory(destinationPath);
                 }
 
-                int varFileCount = 1;
+                int varFileCount = 1,randomValue=0;
                 string varImagePath = "";
-
+                Random random = new Random();
+                randomValue = random.Next(100, 1000);
                 string[] existingFiles = Directory.GetFiles(destinationPath, varproductcode + "_*");
 
                 HashSet<string> updatedImages = new HashSet<string>(
                     editableImages.Select(ei =>
                         ei.EditedImage != null
-                            ? $"{varproductcode}_{editableImages.IndexOf(ei) + 1}{Path.GetExtension(ei.FilePath)}"
+                            ? $"{varproductcode}_{editableImages.IndexOf(ei) + 1}_{randomValue}{Path.GetExtension(ei.FilePath)}"
                             : Path.GetFileName(ei.FilePath)
                     )
                 );
 
-                foreach (string file in existingFiles)
-                {
-                    string fileName = Path.GetFileName(file);
-                    if (!updatedImages.Contains(fileName))
-                    {
-                        if (File.Exists(file))
-                        {
-                            File.SetAttributes(file, FileAttributes.Normal);
-                            pictureBox1.Image?.Dispose();
-                            pictureBox1.Image = null;
+                //foreach (string file in existingFiles)
+                //{
+                //    string fileName = Path.GetFileName(file);
+                //    if (!updatedImages.Contains(fileName))
+                //    {
+                //        if (File.Exists(file))
+                //        {
+                //            File.SetAttributes(file, FileAttributes.Normal);
+                //            pictureBox1.Image?.Dispose();
+                //            pictureBox1.Image = null;
 
-                            originalImage?.Dispose();
-                            originalImage = null;
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                            File.Delete(file);
-                        }
-                    }
-                }
+                //            originalImage?.Dispose();
+                //            originalImage = null;
+                //            GC.Collect();
+                //            GC.WaitForPendingFinalizers();
+                //            File.Delete(file);
+                //        }
+                //    }
+                //}
 
                 foreach (var ei in editableImages)
                 {
                     string extensionName = Path.GetExtension(ei.FilePath);
-                    string imageName = $"{varproductcode}_{varFileCount}{extensionName}";
+                    string imageName = $"{varproductcode}_{varFileCount}_{randomValue}{extensionName}";
                     string destinationFile = Path.Combine(destinationPath, imageName);
 
                     if (ei.EditedImage != null)
