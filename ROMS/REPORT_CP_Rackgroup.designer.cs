@@ -51,6 +51,10 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbShopLocType = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmbLocationType = new System.Windows.Forms.ComboBox();
             this.chkLocBreakup = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbStockTakken = new System.Windows.Forms.ComboBox();
@@ -85,8 +89,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.cmbLocationType = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.tsRackGroupReport.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -305,6 +307,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.cmbShopLocType);
+            this.grpfilter.Controls.Add(this.label11);
             this.grpfilter.Controls.Add(this.label10);
             this.grpfilter.Controls.Add(this.cmbLocationType);
             this.grpfilter.Controls.Add(this.chkLocBreakup);
@@ -344,13 +348,58 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // cmbShopLocType
+            // 
+            this.cmbShopLocType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShopLocType.FormattingEnabled = true;
+            this.cmbShopLocType.Location = new System.Drawing.Point(972, 80);
+            this.cmbShopLocType.Name = "cmbShopLocType";
+            this.cmbShopLocType.Size = new System.Drawing.Size(124, 27);
+            this.cmbShopLocType.TabIndex = 13;
+            this.cmbShopLocType.Enter += new System.EventHandler(this.cmbShopLocType_Enter);
+            this.cmbShopLocType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbShopLocType_KeyDown);
+            this.cmbShopLocType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbShopLocType_KeyPress);
+            this.cmbShopLocType.Leave += new System.EventHandler(this.cmbShopLocType_Leave);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(889, 83);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 20);
+            this.label11.TabIndex = 1111256;
+            this.label11.Text = "Location Type";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(638, 83);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(82, 20);
+            this.label10.TabIndex = 1111255;
+            this.label10.Text = "Location Type";
+            // 
+            // cmbLocationType
+            // 
+            this.cmbLocationType.FormattingEnabled = true;
+            this.cmbLocationType.Location = new System.Drawing.Point(723, 80);
+            this.cmbLocationType.Name = "cmbLocationType";
+            this.cmbLocationType.Size = new System.Drawing.Size(163, 27);
+            this.cmbLocationType.TabIndex = 12;
+            this.cmbLocationType.Enter += new System.EventHandler(this.cmbLocationType_Enter);
+            this.cmbLocationType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbLocationType_KeyDown);
+            this.cmbLocationType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbLocationType_KeyPress);
+            this.cmbLocationType.Leave += new System.EventHandler(this.cmbLocationType_Leave);
+            // 
             // chkLocBreakup
             // 
             this.chkLocBreakup.AutoSize = true;
             this.chkLocBreakup.Location = new System.Drawing.Point(1104, 81);
             this.chkLocBreakup.Name = "chkLocBreakup";
             this.chkLocBreakup.Size = new System.Drawing.Size(150, 24);
-            this.chkLocBreakup.TabIndex = 12;
+            this.chkLocBreakup.TabIndex = 14;
             this.chkLocBreakup.Text = "Location Wise Breakup";
             this.chkLocBreakup.UseVisualStyleBackColor = true;
             this.chkLocBreakup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkLocBreakup_KeyDown);
@@ -467,7 +516,7 @@
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 14;
+            this.btnTelegram.TabIndex = 16;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -552,7 +601,7 @@
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(36, 29);
-            this.btnListPrint.TabIndex = 13;
+            this.btnListPrint.TabIndex = 15;
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -738,28 +787,6 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // cmbLocationType
-            // 
-            this.cmbLocationType.FormattingEnabled = true;
-            this.cmbLocationType.Location = new System.Drawing.Point(889, 80);
-            this.cmbLocationType.Name = "cmbLocationType";
-            this.cmbLocationType.Size = new System.Drawing.Size(209, 27);
-            this.cmbLocationType.TabIndex = 1111254;
-            this.cmbLocationType.Enter += new System.EventHandler(this.cmbLocationType_Enter);
-            this.cmbLocationType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbLocationType_KeyDown);
-            this.cmbLocationType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbLocationType_KeyPress);
-            this.cmbLocationType.Leave += new System.EventHandler(this.cmbLocationType_Leave);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(804, 85);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 20);
-            this.label10.TabIndex = 1111255;
-            this.label10.Text = "Location Type";
-            // 
             // REPORT_CP_Rackgroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -849,5 +876,7 @@
         private System.Windows.Forms.CheckBox chkLocBreakup;
         private System.Windows.Forms.ComboBox cmbLocationType;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cmbShopLocType;
+        private System.Windows.Forms.Label label11;
     }
 }
