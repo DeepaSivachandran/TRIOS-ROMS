@@ -42,6 +42,7 @@ namespace ROMS
         private CropHandle currentHandle = CropHandle.None;
         private List<string> images = new List<string>();
         private int currentIndex = 0;
+        private Image originalSubgroupImage;
 
 
 
@@ -7127,6 +7128,7 @@ namespace ROMS
             {
                 btnSave.Visible = true;
                 btnImageUpdate.Visible = false;
+                btnFetch.Visible = false;
                 if (tbProduct.SelectedIndex == 1)
                 {
                     txtPURHSNName.Focus();
@@ -7136,7 +7138,8 @@ namespace ROMS
                 }
                 if (tbProduct.SelectedIndex == 2)
                 {
-                    btnImageUpdate.Visible = true;
+                    btnFetch.Visible = true;
+                    btnImageUpdate.Visible = false;
                     btnSave.Visible = false;
                     cbCompleted.Visible = false;
                     if (txtSubGroup.Text.Trim() != "")
@@ -7191,7 +7194,12 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            images = null;
+                            pbSubgroupImages.Image?.Dispose();
+                            btnPrev.Visible = false;
+                            btnNext.Visible = false;
                             grdSubgroups.Rows.Clear();
+
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdSubgroups.Rows.Add(false, objDs.Tables[0].Rows[i]["PI Code"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["Image Count"].ToString(), objDs.Tables[0].Rows[i]["ImageApprovedFlag"].ToString(), objDs.Tables[0].Rows[i]["Image_name"].ToString());
@@ -7215,8 +7223,8 @@ namespace ROMS
                                     chk.ReadOnly = false;
                                 }
                             }
-                            //lblActiveProCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ActiveProCount"].ToString());
-                            //lblImageUploadedCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ImageUploadCount"].ToString());
+                            lblActiveProCount.Text = objDs.Tables[0].Rows.Count.ToString();
+                            lblImageUploadedCount.Text = objDs.Tables[0].AsEnumerable().Sum(r => r.Field<int>("Image Count")).ToString();
 
                             grdSubgroups.ClearSelection();
                             grdSubgroups.Columns["clmImageCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -7297,22 +7305,30 @@ namespace ROMS
                     if (currentIndex == 0) { btnPrev.Visible = false; } else { btnPrev.Visible = true; }
                     if (currentIndex == images.Count - 1) { btnNext.Visible = false; } else { btnNext.Visible = true; }
 
-                    pictureBox1.Image?.Dispose();
-                    originalImage?.Dispose();
+                    pbSubgroupImages.Image?.Dispose();
+                    originalSubgroupImage?.Dispose();
 
                     string imagePath = images[currentIndex];
 
                     if (!File.Exists(imagePath))
                     {
+                        MessageBox.Show("File not found:\n" + imagePath);
                         return;
                     }
 
-                    originalImage = Image.FromFile(images[currentIndex]);
-
+                    //originalSubgroupImage = Image.FromFile(images[currentIndex]);
+                    using (FileStream fs = new FileStream(images[currentIndex], FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    {
+                        using (Image temp = Image.FromStream(fs))
+                        {
+                            originalSubgroupImage = new Bitmap(temp);
+                        }
+                    }
                     udfnApplyZoom(1);
                 }
                 else
                 {
+                    pbSubgroupImages.Image?.Dispose();
                     btnPrev.Visible = false;
                     btnNext.Visible = false;
                 }
@@ -7327,7 +7343,7 @@ namespace ROMS
         {
             try
             {
-                if (originalImage == null) return;
+                if (originalSubgroupImage == null) return;
 
                 int newWidth = 0;
                 int newHeight = 0;
@@ -7343,7 +7359,7 @@ namespace ROMS
                 }
 
                 pbSubgroupImages.Size = new Size(newWidth, newHeight);
-                pbSubgroupImages.Image = new Bitmap(originalImage, new Size(newWidth, newHeight));
+                pbSubgroupImages.Image = new Bitmap(originalSubgroupImage, new Size(newWidth, newHeight));
 
                 pnlSubgroupImages.AutoScroll = false;
 
@@ -8299,6 +8315,7 @@ namespace ROMS
                 panel.Controls.Add(pictureBox);
                 panel.Controls.Add(btnRemove);
                 btnRemove.Location = new Point(100, 0);
+                btnRemove.BringToFront();
                 flowLayoutPanel1.Controls.Add(panel);
 
                 EditableImage ei = new EditableImage
@@ -10383,6 +10400,51 @@ namespace ROMS
             ShowImage();
         }
 
+        private void btnFetch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> selectedImages = GetCheckedRowImages();
+
+                if (selectedImages.Count == 0)
+                {
+                    MessageBox.Show("Please select a product.");
+                    return;
+                }
+                tbProduct.SelectedIndex = 3;
+                AddFetchedImagesToUploadPanel(selectedImages);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void AddFetchedImagesToUploadPanel(List<string> fetchedImages)
+        {
+            try
+            {
+                foreach (string imagePath in fetchedImages)
+                {
+                    if (!File.Exists(imagePath))
+                        continue;
+                    if (!imagePaths.Contains(imagePath))
+                    {
+                        imagePaths.Add(imagePath);
+                        AddImageToPanel(imagePath);
+                        if (currentImage == null)
+                        {
+                            ZoomImage(imagePath);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void txtDStatus_TextChanged(object sender, EventArgs e)
         {
 

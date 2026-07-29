@@ -371,6 +371,7 @@
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnViewImages = new System.Windows.Forms.Button();
+            this.btnFetch = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -3397,6 +3398,7 @@
             this.btnUnselectAll.Text = "Unselect All";
             this.btnUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnUnselectAll.UseVisualStyleBackColor = true;
+            this.btnUnselectAll.Visible = false;
             // 
             // btnSelectAll
             // 
@@ -3409,6 +3411,7 @@
             this.btnSelectAll.Text = "Select All";
             this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Visible = false;
             // 
             // grdSubgroups
             // 
@@ -4192,16 +4195,29 @@
             // btnViewImages
             // 
             this.btnViewImages.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnViewImages.Image = global::ROMS.Properties.Resources.view_eye;
             this.btnViewImages.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnViewImages.Location = new System.Drawing.Point(584, 6);
             this.btnViewImages.Name = "btnViewImages";
-            this.btnViewImages.Size = new System.Drawing.Size(104, 29);
+            this.btnViewImages.Size = new System.Drawing.Size(86, 29);
             this.btnViewImages.TabIndex = 111111232;
             this.btnViewImages.Text = "View Images";
             this.btnViewImages.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnViewImages.UseVisualStyleBackColor = true;
             this.btnViewImages.Click += new System.EventHandler(this.btnViewImages_Click);
+            // 
+            // btnFetch
+            // 
+            this.btnFetch.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnFetch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFetch.Location = new System.Drawing.Point(967, 658);
+            this.btnFetch.Name = "btnFetch";
+            this.btnFetch.Size = new System.Drawing.Size(113, 29);
+            this.btnFetch.TabIndex = 111111233;
+            this.btnFetch.Text = "Fetch Images";
+            this.btnFetch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFetch.UseVisualStyleBackColor = true;
+            this.btnFetch.Visible = false;
+            this.btnFetch.Click += new System.EventHandler(this.btnFetch_Click);
             // 
             // CP_Product
             // 
@@ -4209,6 +4225,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1194, 692);
+            this.Controls.Add(this.btnFetch);
             this.Controls.Add(this.pnlProductDetails);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -4612,5 +4629,6 @@
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnNext;
         public System.Windows.Forms.Button btnViewImages;
+        public System.Windows.Forms.Button btnFetch;
     }
 }
