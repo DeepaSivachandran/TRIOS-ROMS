@@ -7144,6 +7144,7 @@ namespace ROMS
                     cbCompleted.Visible = false;
                     if (txtSubGroup.Text.Trim() != "")
                     {
+                        lblSubgroupName.Text = txtSubGroup.Text.Trim();
                         int varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
                         udfnImageFetch(varSubgroupId);
                     }
@@ -7305,14 +7306,24 @@ namespace ROMS
                     if (currentIndex == 0) { btnPrev.Visible = false; } else { btnPrev.Visible = true; }
                     if (currentIndex == images.Count - 1) { btnNext.Visible = false; } else { btnNext.Visible = true; }
 
-                    pbSubgroupImages.Image?.Dispose();
-                    originalSubgroupImage?.Dispose();
+                    if (pbSubgroupImages.Image != null)
+                    {
+                        pbSubgroupImages.Image.Dispose();
+                        pbSubgroupImages.Image = null;
+                    }
+
+                    if (originalSubgroupImage != null)
+                    {
+                        originalSubgroupImage.Dispose();
+                        originalSubgroupImage = null;
+                    }
 
                     string imagePath = images[currentIndex];
 
                     if (!File.Exists(imagePath))
                     {
-                        MessageBox.Show("File not found:\n" + imagePath);
+                        MessageBox.Show("File not found");
+                        //MessageBox.Show("File not found:\n" + imagePath);
                         return;
                     }
 
@@ -7328,7 +7339,17 @@ namespace ROMS
                 }
                 else
                 {
-                    pbSubgroupImages.Image?.Dispose();
+                    if (pbSubgroupImages.Image != null)
+                    {
+                        pbSubgroupImages.Image.Dispose();
+                        pbSubgroupImages.Image = null;
+                    }
+
+                    if (originalSubgroupImage != null)
+                    {
+                        originalSubgroupImage.Dispose();
+                        originalSubgroupImage = null;
+                    }
                     btnPrev.Visible = false;
                     btnNext.Visible = false;
                 }
@@ -7359,7 +7380,14 @@ namespace ROMS
                 }
 
                 pbSubgroupImages.Size = new Size(newWidth, newHeight);
-                pbSubgroupImages.Image = new Bitmap(originalSubgroupImage, new Size(newWidth, newHeight));
+                if (pbSubgroupImages.Image != null)
+                {
+                    pbSubgroupImages.Image.Dispose();
+                    pbSubgroupImages.Image = null;
+                }
+
+                pbSubgroupImages.Image = new Bitmap(originalSubgroupImage,
+                                                    new Size(newWidth, newHeight));
 
                 pnlSubgroupImages.AutoScroll = false;
 
@@ -8369,8 +8397,19 @@ namespace ROMS
         }
         private void LoadImageToEditor(EditableImage ei)
         {
-            currentImage = ei;
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+                pictureBox1.Image = null;
+            }
 
+            if (originalImage != null)
+            {
+                originalImage.Dispose();
+                originalImage = null;
+            }
+
+            currentImage = ei;
             if (ei.EditedImage != null)
             {
                 originalImage = new Bitmap(ei.EditedImage);
@@ -8386,9 +8425,9 @@ namespace ROMS
                 }
             }
 
+            pictureBox1.Image = new Bitmap(originalImage);
             zoom = 1.0f;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.Image = new Bitmap(originalImage);
             pictureBox1.Size = pnlImageContainer.ClientSize;
             pictureBox1.Location = new Point(0, 0);
             UpdateZoomButtonsVisibility();
@@ -8425,6 +8464,10 @@ namespace ROMS
                 if (toRemove != null)
                 {
                     editableImages.Remove(toRemove);
+                }
+                if (imagePaths.Contains(imagePath))
+                {
+                    imagePaths.Remove(imagePath);
                 }
                 flowLayoutPanel1.Controls.Remove(panel);
                 panel.Dispose();
@@ -10330,7 +10373,9 @@ namespace ROMS
             {
                 if (row.IsNewRow)
                     continue;
-
+                bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
+                if (!isApproved)
+                    continue;
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
 
                 bool isChecked = chk.Value != null && Convert.ToBoolean(chk.Value);
@@ -10349,6 +10394,16 @@ namespace ROMS
                     continue;
 
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
+
+                bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
+                if (!isApproved)
+                {
+                    chk.Value = false;
+                    chk.ReadOnly = true;
+                    chk.Style.BackColor = Color.LightGray;
+                    chk.Style.SelectionBackColor = Color.LightGray;
+                    continue;
+                }
 
                 if (checkedCell == null)
                 {
@@ -10411,6 +10466,23 @@ namespace ROMS
                     MessageBox.Show("Please select a product.");
                     return;
                 }
+                if (imagePaths.Count > 0)
+                {
+                    DialogResult result = MessageBox.Show(
+                        "Existing product images are already available.\n\n" +
+                        "Do you want to replace them with the selected images?",
+                        "Confirm",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    ClearUploadedImages();
+                    //ClearFourthTabImages();
+                }
                 tbProduct.SelectedIndex = 3;
                 AddFetchedImagesToUploadPanel(selectedImages);
             }
@@ -10419,6 +10491,106 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        private void ClearUploadedImages()
+        {
+            // Dispose editor image
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+                pictureBox1.Image = null;
+            }
+
+            if (originalImage != null)
+            {
+                originalImage.Dispose();
+                originalImage = null;
+            }
+            if (pbSubgroupImages.Image != null)
+            {
+                pbSubgroupImages.Image.Dispose();
+                pbSubgroupImages.Image = null;
+            }
+
+            if (originalSubgroupImage != null)
+            {
+                originalSubgroupImage.Dispose();
+                originalSubgroupImage = null;
+            }
+            currentImage = null;
+
+            // Dispose every thumbnail
+            foreach (EditableImage img in editableImages)
+            {
+                if (img.EditedImage != null)
+                {
+                    img.EditedImage.Dispose();
+                    img.EditedImage = null;
+                }
+
+                if (img.Thumbnail != null)
+                {
+                    if (img.Thumbnail.Image != null)
+                    {
+                        img.Thumbnail.Image.Dispose();
+                        img.Thumbnail.Image = null;
+                    }
+                }
+
+                if (img.ContainerPanel != null)
+                {
+                    img.ContainerPanel.Dispose();
+                }
+            }
+
+            editableImages.Clear();
+            imagePaths.Clear();
+            flowLayoutPanel1.Controls.Clear();
+
+            zoom = 1f;
+
+            UpdateZoomButtonsVisibility();
+        }
+        private void ClearFourthTabImages()
+        {
+            foreach (EditableImage ei in editableImages)
+            {
+                if (ei.EditedImage != null)
+                {
+                    ei.EditedImage.Dispose();
+                    ei.EditedImage = null;
+                }
+
+                if (ei.Thumbnail.Image != null)
+                {
+                    ei.Thumbnail.Image.Dispose();
+                    ei.Thumbnail.Image = null;
+                }
+
+                ei.ContainerPanel.Dispose();
+            }
+
+            editableImages.Clear();
+            imagePaths.Clear();
+
+            flowLayoutPanel1.Controls.Clear();
+
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+                pictureBox1.Image = null;
+            }
+
+            if (originalImage != null)
+            {
+                originalImage.Dispose();
+                originalImage = null;
+            }
+
+            currentImage = null;
+            zoom = 1.0f;
+
+            UpdateZoomButtonsVisibility();
         }
         private void AddFetchedImagesToUploadPanel(List<string> fetchedImages)
         {

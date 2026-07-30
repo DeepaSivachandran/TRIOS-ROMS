@@ -293,6 +293,11 @@
             this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnViewImages = new System.Windows.Forms.Button();
+            this.pnlSubgroupImages = new System.Windows.Forms.Panel();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.pbSubgroupImages = new System.Windows.Forms.PictureBox();
             this.tlpSummaryCards = new System.Windows.Forms.TableLayoutPanel();
             this.pnlCardFG = new System.Windows.Forms.Panel();
             this.lblImageUploadedCount = new System.Windows.Forms.Label();
@@ -303,6 +308,12 @@
             this.btnUnselectAll = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.grdSubgroups = new System.Windows.Forms.DataGridView();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmImageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmImageApproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmImageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblSubgroupName = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pnlImageContainer = new System.Windows.Forms.Panel();
@@ -360,17 +371,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmImageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmImageApproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmImageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlSubgroupImages = new System.Windows.Forms.Panel();
-            this.pbSubgroupImages = new System.Windows.Forms.PictureBox();
-            this.btnPrev = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnViewImages = new System.Windows.Forms.Button();
             this.btnFetch = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -398,6 +398,8 @@
             this.groupBox4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.pnlSubgroupImages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSubgroupImages)).BeginInit();
             this.tlpSummaryCards.SuspendLayout();
             this.pnlCardFG.SuspendLayout();
             this.pnlCardRM.SuspendLayout();
@@ -413,8 +415,6 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
-            this.pnlSubgroupImages.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSubgroupImages)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -3301,6 +3301,63 @@
             this.tabPage5.Text = "Image Fetch";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // btnViewImages
+            // 
+            this.btnViewImages.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnViewImages.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewImages.Location = new System.Drawing.Point(584, 6);
+            this.btnViewImages.Name = "btnViewImages";
+            this.btnViewImages.Size = new System.Drawing.Size(86, 29);
+            this.btnViewImages.TabIndex = 111111232;
+            this.btnViewImages.Text = "View Images";
+            this.btnViewImages.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewImages.UseVisualStyleBackColor = true;
+            this.btnViewImages.Click += new System.EventHandler(this.btnViewImages_Click);
+            // 
+            // pnlSubgroupImages
+            // 
+            this.pnlSubgroupImages.AutoScroll = true;
+            this.pnlSubgroupImages.Controls.Add(this.btnPrev);
+            this.pnlSubgroupImages.Controls.Add(this.btnNext);
+            this.pnlSubgroupImages.Controls.Add(this.pbSubgroupImages);
+            this.pnlSubgroupImages.Location = new System.Drawing.Point(584, 37);
+            this.pnlSubgroupImages.Name = "pnlSubgroupImages";
+            this.pnlSubgroupImages.Size = new System.Drawing.Size(558, 578);
+            this.pnlSubgroupImages.TabIndex = 111111231;
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPrev.Image = global::ROMS.Properties.Resources.add___left;
+            this.btnPrev.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrev.Location = new System.Drawing.Point(3, 276);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(30, 27);
+            this.btnPrev.TabIndex = 1111261;
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnNext.Image = global::ROMS.Properties.Resources.add;
+            this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNext.Location = new System.Drawing.Point(525, 276);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 27);
+            this.btnNext.TabIndex = 1111260;
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // pbSubgroupImages
+            // 
+            this.pbSubgroupImages.Location = new System.Drawing.Point(36, 3);
+            this.pbSubgroupImages.Name = "pbSubgroupImages";
+            this.pbSubgroupImages.Size = new System.Drawing.Size(488, 572);
+            this.pbSubgroupImages.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSubgroupImages.TabIndex = 1;
+            this.pbSubgroupImages.TabStop = false;
+            // 
             // tlpSummaryCards
             // 
             this.tlpSummaryCards.ColumnCount = 2;
@@ -3462,6 +3519,48 @@
             this.grdSubgroups.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSubgroups_CellContentClick);
             this.grdSubgroups.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSubgroups_CellValueChanged);
             this.grdSubgroups.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdSubgroups_CurrentCellDirtyStateChanged);
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.Width = 40;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "PI Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.Width = 120;
+            // 
+            // clmProduct
+            // 
+            this.clmProduct.HeaderText = "Product";
+            this.clmProduct.Name = "clmProduct";
+            this.clmProduct.ReadOnly = true;
+            this.clmProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmProduct.Width = 250;
+            // 
+            // clmImageCount
+            // 
+            this.clmImageCount.HeaderText = "Image Count";
+            this.clmImageCount.Name = "clmImageCount";
+            this.clmImageCount.ReadOnly = true;
+            this.clmImageCount.Width = 50;
+            // 
+            // clmImageApproved
+            // 
+            this.clmImageApproved.HeaderText = "Image Approved";
+            this.clmImageApproved.Name = "clmImageApproved";
+            this.clmImageApproved.ReadOnly = true;
+            this.clmImageApproved.Width = 70;
+            // 
+            // clmImageName
+            // 
+            this.clmImageName.HeaderText = "Image Name";
+            this.clmImageName.Name = "clmImageName";
+            this.clmImageName.Visible = false;
+            this.clmImageName.Width = 10;
             // 
             // lblSubgroupName
             // 
@@ -4106,115 +4205,15 @@
             this.pnlProductDetails.Size = new System.Drawing.Size(1178, 655);
             this.pnlProductDetails.TabIndex = 1111144;
             // 
-            // clmCheck
-            // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
-            this.clmCheck.Width = 40;
-            // 
-            // clmPICode
-            // 
-            this.clmPICode.HeaderText = "PI Code";
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.Width = 120;
-            // 
-            // clmProduct
-            // 
-            this.clmProduct.HeaderText = "Product";
-            this.clmProduct.Name = "clmProduct";
-            this.clmProduct.ReadOnly = true;
-            this.clmProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmProduct.Width = 250;
-            // 
-            // clmImageCount
-            // 
-            this.clmImageCount.HeaderText = "Image Count";
-            this.clmImageCount.Name = "clmImageCount";
-            this.clmImageCount.ReadOnly = true;
-            this.clmImageCount.Width = 50;
-            // 
-            // clmImageApproved
-            // 
-            this.clmImageApproved.HeaderText = "Image Approved";
-            this.clmImageApproved.Name = "clmImageApproved";
-            this.clmImageApproved.ReadOnly = true;
-            this.clmImageApproved.Width = 70;
-            // 
-            // clmImageName
-            // 
-            this.clmImageName.HeaderText = "Image Name";
-            this.clmImageName.Name = "clmImageName";
-            this.clmImageName.Visible = false;
-            this.clmImageName.Width = 10;
-            // 
-            // pnlSubgroupImages
-            // 
-            this.pnlSubgroupImages.AutoScroll = true;
-            this.pnlSubgroupImages.Controls.Add(this.btnPrev);
-            this.pnlSubgroupImages.Controls.Add(this.btnNext);
-            this.pnlSubgroupImages.Controls.Add(this.pbSubgroupImages);
-            this.pnlSubgroupImages.Location = new System.Drawing.Point(584, 37);
-            this.pnlSubgroupImages.Name = "pnlSubgroupImages";
-            this.pnlSubgroupImages.Size = new System.Drawing.Size(558, 578);
-            this.pnlSubgroupImages.TabIndex = 111111231;
-            // 
-            // pbSubgroupImages
-            // 
-            this.pbSubgroupImages.Location = new System.Drawing.Point(36, 3);
-            this.pbSubgroupImages.Name = "pbSubgroupImages";
-            this.pbSubgroupImages.Size = new System.Drawing.Size(488, 572);
-            this.pbSubgroupImages.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSubgroupImages.TabIndex = 1;
-            this.pbSubgroupImages.TabStop = false;
-            // 
-            // btnPrev
-            // 
-            this.btnPrev.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnPrev.Image = global::ROMS.Properties.Resources.add___left;
-            this.btnPrev.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrev.Location = new System.Drawing.Point(3, 276);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(30, 27);
-            this.btnPrev.TabIndex = 1111261;
-            this.btnPrev.UseVisualStyleBackColor = true;
-            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnNext.Image = global::ROMS.Properties.Resources.add;
-            this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNext.Location = new System.Drawing.Point(525, 276);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(30, 27);
-            this.btnNext.TabIndex = 1111260;
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnViewImages
-            // 
-            this.btnViewImages.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnViewImages.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewImages.Location = new System.Drawing.Point(584, 6);
-            this.btnViewImages.Name = "btnViewImages";
-            this.btnViewImages.Size = new System.Drawing.Size(86, 29);
-            this.btnViewImages.TabIndex = 111111232;
-            this.btnViewImages.Text = "View Images";
-            this.btnViewImages.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewImages.UseVisualStyleBackColor = true;
-            this.btnViewImages.Click += new System.EventHandler(this.btnViewImages_Click);
-            // 
             // btnFetch
             // 
             this.btnFetch.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnFetch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFetch.Location = new System.Drawing.Point(967, 658);
+            this.btnFetch.Location = new System.Drawing.Point(988, 658);
             this.btnFetch.Name = "btnFetch";
-            this.btnFetch.Size = new System.Drawing.Size(113, 29);
+            this.btnFetch.Size = new System.Drawing.Size(92, 29);
             this.btnFetch.TabIndex = 111111233;
             this.btnFetch.Text = "Fetch Images";
-            this.btnFetch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFetch.UseVisualStyleBackColor = true;
             this.btnFetch.Visible = false;
             this.btnFetch.Click += new System.EventHandler(this.btnFetch_Click);
@@ -4287,6 +4286,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.pnlSubgroupImages.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbSubgroupImages)).EndInit();
             this.tlpSummaryCards.ResumeLayout(false);
             this.pnlCardFG.ResumeLayout(false);
             this.pnlCardFG.PerformLayout();
@@ -4308,8 +4309,6 @@
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).EndInit();
             this.pnlProductDetails.ResumeLayout(false);
-            this.pnlSubgroupImages.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbSubgroupImages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
