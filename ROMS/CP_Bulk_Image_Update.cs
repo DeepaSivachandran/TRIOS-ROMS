@@ -80,6 +80,7 @@ namespace ROMS
                 dtSubgroupImages.Columns.Add("SGI_PRID", typeof(int));
                 dtSubgroupImages.Columns.Add("SGI_ImageName", typeof(string));
                 LoadProducts();
+                this.ActiveControl = txtGroup;
             }
             catch (Exception ex)
             {
@@ -1379,8 +1380,9 @@ namespace ROMS
                 panel.Controls.Add(pictureBox);
                 panel.Controls.Add(btnRemove);
                 btnRemove.Location = new Point(100, 0);
+                btnRemove.BringToFront();
                 flowLayoutPanel1.Controls.Add(panel);
-
+                flowLayoutPanel1.AutoScroll = true;
                 EditableImage ei = new EditableImage
                 {
                     FilePath = filePath,
