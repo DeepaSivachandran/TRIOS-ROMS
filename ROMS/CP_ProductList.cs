@@ -184,7 +184,14 @@ namespace ROMS
                         MainForm.objCP_Items.PurHSNViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("9"));
                         MainForm.objCP_Items.PurHSNEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("10")); 
                         MainForm.objCP_Items.btnSave.Text = "Update";
-                        MainForm.objCP_Items.ShowDialog();
+                        try
+                        {
+                            MainForm.objCP_Items.ShowDialog();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
                     }
 
                 }

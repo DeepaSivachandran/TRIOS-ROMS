@@ -66,10 +66,21 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 50513;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 dtSubgroupImages.TableName = "MR_Subgroup_Images";
                 dtSubgroupImages.Columns.Add("SGI_PRID", typeof(int));
                 dtSubgroupImages.Columns.Add("SGI_ImageName", typeof(string));
                 LoadProducts();
+                this.ActiveControl = txtGroup;
             }
             catch (Exception ex)
             {
@@ -1369,8 +1380,9 @@ namespace ROMS
                 panel.Controls.Add(pictureBox);
                 panel.Controls.Add(btnRemove);
                 btnRemove.Location = new Point(100, 0);
+                btnRemove.BringToFront();
                 flowLayoutPanel1.Controls.Add(panel);
-
+                flowLayoutPanel1.AutoScroll = true;
                 EditableImage ei = new EditableImage
                 {
                     FilePath = filePath,
