@@ -221,7 +221,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSubGroupList(15,0,"", Convert.ToInt32(lblGroupCode.Text),0,"", Convert.ToInt32(cmbStatus.SelectedValue),0,0,0, 0);
+                objDs = objspservice.udfnSubGroupList(15,0,"", Convert.ToInt32(lblGroupCode.Text),0,"", Convert.ToInt32(cmbStatus.SelectedValue),0,0,0, 0,0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -324,7 +324,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSubGroupList(12,0,"", Convert.ToInt32(lblGroupCode.Text),0,"", Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0, 0);
+                objDs = objspservice.udfnSubGroupList(12,0,"", Convert.ToInt32(lblGroupCode.Text),0,"", Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0, 0,0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -402,7 +402,7 @@ namespace ROMS
                 {
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0,0);
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -862,7 +862,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtSubGroup.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0);
+                        objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0,0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

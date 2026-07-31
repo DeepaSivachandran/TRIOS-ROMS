@@ -37,6 +37,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_SubGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkBillScheme = new System.Windows.Forms.CheckBox();
+            this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.DGV_FilterLocation = new System.Windows.Forms.DataGridView();
             this.cmbMarginCalc = new System.Windows.Forms.ComboBox();
             this.lvGroupName = new System.Windows.Forms.ListView();
@@ -73,16 +76,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblLocation = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.chkBillScheme = new System.Windows.Forms.CheckBox();
-            this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.grpPurchaseStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRackList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epSubGroup)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbform
@@ -112,6 +112,45 @@
             this.grbform.Size = new System.Drawing.Size(455, 550);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkBillScheme);
+            this.groupBox4.Controls.Add(this.chkProductScheme);
+            this.groupBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.groupBox4.Location = new System.Drawing.Point(7, 410);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(443, 57);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Scheme Eligibility";
+            // 
+            // chkBillScheme
+            // 
+            this.chkBillScheme.AutoSize = true;
+            this.chkBillScheme.Location = new System.Drawing.Point(17, 23);
+            this.chkBillScheme.Name = "chkBillScheme";
+            this.chkBillScheme.Size = new System.Drawing.Size(90, 24);
+            this.chkBillScheme.TabIndex = 2;
+            this.chkBillScheme.Text = "Bill Scheme";
+            this.chkBillScheme.UseVisualStyleBackColor = true;
+            this.chkBillScheme.Enter += new System.EventHandler(this.chkBillScheme_Enter);
+            this.chkBillScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkBillScheme_KeyDown);
+            this.chkBillScheme.Leave += new System.EventHandler(this.chkBillScheme_Leave);
+            // 
+            // chkProductScheme
+            // 
+            this.chkProductScheme.AutoSize = true;
+            this.chkProductScheme.Location = new System.Drawing.Point(126, 23);
+            this.chkProductScheme.Name = "chkProductScheme";
+            this.chkProductScheme.Size = new System.Drawing.Size(116, 24);
+            this.chkProductScheme.TabIndex = 1;
+            this.chkProductScheme.Text = "Product Scheme";
+            this.chkProductScheme.UseVisualStyleBackColor = true;
+            this.chkProductScheme.Visible = false;
+            this.chkProductScheme.Enter += new System.EventHandler(this.chkProductScheme_Enter);
+            this.chkProductScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkProductScheme_KeyDown);
+            this.chkProductScheme.Leave += new System.EventHandler(this.chkProductScheme_Leave);
             // 
             // DGV_FilterLocation
             // 
@@ -602,44 +641,6 @@
             this.lblLocation.TabIndex = 1;
             this.lblLocation.Visible = false;
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.chkBillScheme);
-            this.groupBox4.Controls.Add(this.chkProductScheme);
-            this.groupBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.groupBox4.Location = new System.Drawing.Point(7, 410);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(443, 57);
-            this.groupBox4.TabIndex = 7;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Scheme Eligibility";
-            // 
-            // chkBillScheme
-            // 
-            this.chkBillScheme.AutoSize = true;
-            this.chkBillScheme.Location = new System.Drawing.Point(170, 23);
-            this.chkBillScheme.Name = "chkBillScheme";
-            this.chkBillScheme.Size = new System.Drawing.Size(90, 24);
-            this.chkBillScheme.TabIndex = 2;
-            this.chkBillScheme.Text = "Bill Scheme";
-            this.chkBillScheme.UseVisualStyleBackColor = true;
-            this.chkBillScheme.Enter += new System.EventHandler(this.chkBillScheme_Enter);
-            this.chkBillScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkBillScheme_KeyDown);
-            this.chkBillScheme.Leave += new System.EventHandler(this.chkBillScheme_Leave);
-            // 
-            // chkProductScheme
-            // 
-            this.chkProductScheme.AutoSize = true;
-            this.chkProductScheme.Location = new System.Drawing.Point(17, 23);
-            this.chkProductScheme.Name = "chkProductScheme";
-            this.chkProductScheme.Size = new System.Drawing.Size(116, 24);
-            this.chkProductScheme.TabIndex = 1;
-            this.chkProductScheme.Text = "Product Scheme";
-            this.chkProductScheme.UseVisualStyleBackColor = true;
-            this.chkProductScheme.Enter += new System.EventHandler(this.chkProductScheme_Enter);
-            this.chkProductScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkProductScheme_KeyDown);
-            this.chkProductScheme.Leave += new System.EventHandler(this.chkProductScheme_Leave);
-            // 
             // CP_SubGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -666,6 +667,8 @@
             this.Leave += new System.EventHandler(this.CP_SubGroup_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).EndInit();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
@@ -673,8 +676,6 @@
             this.grpPurchaseStockLocation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRackList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epSubGroup)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

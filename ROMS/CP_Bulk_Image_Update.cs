@@ -92,7 +92,7 @@ namespace ROMS
                             0,
                             0,
                             0,
-                            0);
+                            0,0);
 
             objspdservice.CloseConnection();
 
@@ -151,7 +151,7 @@ namespace ROMS
                 grdSubgroups.Rows.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspdservice.udfnSubGroupList(19, varSubgroupID, "", varGroupID, 0, "", 0, 0, 0, 0, 0);
+                objDs = objspdservice.udfnSubGroupList(19, varSubgroupID, "", varGroupID, 0, "", 0, 0, 0, 0, 0,0);
                 objspdservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1112,7 +1112,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtSubGroup.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0);
+                        objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0,0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

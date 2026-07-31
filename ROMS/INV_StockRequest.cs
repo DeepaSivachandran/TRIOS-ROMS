@@ -278,6 +278,13 @@ namespace ROMS
                             txtRequestNo.Text = objDS.Tables[1].Rows[0]["Request No."].ToString().Replace("''", "'");
                             txtRemarks.Text = objDS.Tables[1].Rows[0]["Remarks"].ToString().Replace("''", "'");
                             cmbConcern.SelectedValue =Convert.ToInt16(objDS.Tables[1].Rows[0]["ConcernID"]);
+                            if (Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_LoadByRackGroup"]) == 0)
+                            {
+                                chkRackGroup.Checked = false;
+                            }
+                            else { chkRackGroup.Checked = true; chkRackGroup.Enabled = false; }
+                            lvVerified.Visible = false;
+
                             cmbRequestType.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_RequestTypeID"]);
                             cmbRackGroup.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_RKGID"]);
                             cmbProductType.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_ProductTypeID"]);
@@ -285,12 +292,7 @@ namespace ROMS
                             varTellerID = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_TellerID"]);
                             txtTeller.Text = Convert.ToString(objDS.Tables[1].Rows[0]["Teller"]);
 
-                            if (Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_LoadByRackGroup"]) == 0)
-                            {
-                                chkRackGroup.Checked = false;
-                            }
-                            else { chkRackGroup.Checked = true; chkRackGroup.Enabled = false; }
-                            lvVerified.Visible = false;
+                           
                         }
                         if (varStatus == 28 && pbDeleteFlag == 0)
                         {
@@ -1727,12 +1729,12 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
-                }
+               
 
                 //Any one of the location should be mapped
-                int count = dtStock.AsEnumerable() .Count(r =>
-                        (r.Field<int>("SRQ_SLID") == 0 ||
-                        r.Field<int>("SRQ_SLID") == -1) && r.Field<decimal>("SRQ_RequestedQty") != 0
+                 }int count = dtStock.AsEnumerable() .Count(r =>
+                        ((r.Field<int>("SRQ_SLID") == 0 ||
+                        r.Field<int>("SRQ_SLID") == -1)) && r.Field<decimal>("SRQ_RequestedQty") != 0
                         );
                 if (count!=0)
                 {
@@ -3329,7 +3331,13 @@ namespace ROMS
                                     cmb.DisplayMember = "Location";
                                     cmb.ValueMember = "LocationID";
                                     cmb.DataSource = dtStockLocation;
-                                    grdStockRequest.Rows[rowindex].Cells["clmLoc"].Value = -1;
+                                    if (dtStockLocation.Rows.Count > 2)
+                                    {
+                                        int id = Convert.ToInt16(dtStockLocation.Rows[1]["LocationID"]);
+                                        grdStockRequest.Rows[rowindex].Cells["clmLoc"].Value = id;
+                                        dtStock.Rows[rowindex]["SRQ_SLID"] = id;
+                                    }
+                                    else { grdStockRequest.Rows[rowindex].Cells["clmLoc"].Value = -1; }
                                 }
                             }
                             else

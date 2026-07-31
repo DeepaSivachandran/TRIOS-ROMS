@@ -151,7 +151,7 @@ namespace ROMS
                 {
                     objTRNG_Stock.paraReportType = 1;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 416)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 416 || Convert.ToInt32(cmbReportType.SelectedValue) == 639 || Convert.ToInt32(cmbReportType.SelectedValue) == 640)
                 {
                     objTRNG_Stock.paraReportType = 2;
                 }
@@ -211,6 +211,16 @@ namespace ROMS
                         varReportName = "Stock_Detail";
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 416)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Summary_Category.rpt");
+                        varReportName = "Stock_Summary_Category";
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 640)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_SummaryWithMSQ.rpt");
+                        varReportName = "Stock_Summary";
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 639)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Summary.rpt");
                         varReportName = "Stock_Summary";
@@ -1296,7 +1306,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtSubGroup.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0);
+                        objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0,0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

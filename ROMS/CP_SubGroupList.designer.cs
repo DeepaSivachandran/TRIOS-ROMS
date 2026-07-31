@@ -46,6 +46,10 @@
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblNoOfPrSubGroup = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlSubgroup = new System.Windows.Forms.Panel();
             this.lvSaleRack = new System.Windows.Forms.ListView();
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,9 +69,9 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grpSearch = new System.Windows.Forms.GroupBox();
             this.txtSearchProduct = new System.Windows.Forms.TextBox();
-            this.lblNoOfPrSubGroup = new System.Windows.Forms.Label();
-            this.lblNoPrSubGroup = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbSchemeApplicable = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbSubgroupType = new System.Windows.Forms.ComboBox();
             this.lblRkCode = new System.Windows.Forms.Label();
@@ -90,7 +94,6 @@
             this.grdSubGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsSubgroupList.SuspendLayout();
             this.pnlSubgroup.SuspendLayout();
@@ -114,12 +117,16 @@
             this.tsbEdit,
             this.tssNew,
             this.tsbNew,
-            this.tsLabelPlaceholder});
+            this.tsLabelPlaceholder,
+            this.toolStripSeparator1,
+            this.lblNoOfPrSubGroup,
+            this.toolStripButton1});
             this.tsSubgroupList.Location = new System.Drawing.Point(0, 0);
             this.tsSubgroupList.Name = "tsSubgroupList";
             this.tsSubgroupList.Size = new System.Drawing.Size(1354, 27);
             this.tsSubgroupList.TabIndex = 35;
             this.tsSubgroupList.Text = "Group";
+            this.tsSubgroupList.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsSubgroupList_ItemClicked);
             // 
             // tsbDelete
             // 
@@ -174,6 +181,40 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(42, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // lblNoOfPrSubGroup
+            // 
+            this.lblNoOfPrSubGroup.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblNoOfPrSubGroup.ForeColor = System.Drawing.Color.Crimson;
+            this.lblNoOfPrSubGroup.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.lblNoOfPrSubGroup.Name = "lblNoOfPrSubGroup";
+            this.lblNoOfPrSubGroup.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblNoOfPrSubGroup.Size = new System.Drawing.Size(23, 24);
+            this.lblNoOfPrSubGroup.Text = "0";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton1.Size = new System.Drawing.Size(154, 24);
+            this.toolStripButton1.Text = "No.of Product Subgroups :";
+            // 
             // pnlSubgroup
             // 
             this.pnlSubgroup.BackColor = System.Drawing.Color.White;
@@ -185,8 +226,6 @@
             this.pnlSubgroup.Controls.Add(this.lvGroup);
             this.pnlSubgroup.Controls.Add(this.DGV_SearchGrid);
             this.pnlSubgroup.Controls.Add(this.grpSearch);
-            this.pnlSubgroup.Controls.Add(this.lblNoOfPrSubGroup);
-            this.pnlSubgroup.Controls.Add(this.lblNoPrSubGroup);
             this.pnlSubgroup.Controls.Add(this.grbFilterBy);
             this.pnlSubgroup.Controls.Add(this.lblNoRecordsFound);
             this.pnlSubgroup.Controls.Add(this.grdSubGroupList);
@@ -427,30 +466,10 @@
             this.txtSearchProduct.Enter += new System.EventHandler(this.TxtSearchProduct_Enter);
             this.txtSearchProduct.Leave += new System.EventHandler(this.TxtSearchProduct_Leave);
             // 
-            // lblNoOfPrSubGroup
-            // 
-            this.lblNoOfPrSubGroup.AutoSize = true;
-            this.lblNoOfPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblNoOfPrSubGroup.ForeColor = System.Drawing.Color.Crimson;
-            this.lblNoOfPrSubGroup.Location = new System.Drawing.Point(1076, 44);
-            this.lblNoOfPrSubGroup.Name = "lblNoOfPrSubGroup";
-            this.lblNoOfPrSubGroup.Size = new System.Drawing.Size(17, 20);
-            this.lblNoOfPrSubGroup.TabIndex = 958797;
-            this.lblNoOfPrSubGroup.Text = "0";
-            // 
-            // lblNoPrSubGroup
-            // 
-            this.lblNoPrSubGroup.AutoSize = true;
-            this.lblNoPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblNoPrSubGroup.ForeColor = System.Drawing.Color.Black;
-            this.lblNoPrSubGroup.Location = new System.Drawing.Point(964, 18);
-            this.lblNoPrSubGroup.Name = "lblNoPrSubGroup";
-            this.lblNoPrSubGroup.Size = new System.Drawing.Size(150, 20);
-            this.lblNoPrSubGroup.TabIndex = 958796;
-            this.lblNoPrSubGroup.Text = "No.of Product Subgroups :";
-            // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.label5);
+            this.grbFilterBy.Controls.Add(this.cmbSchemeApplicable);
             this.grbFilterBy.Controls.Add(this.label4);
             this.grbFilterBy.Controls.Add(this.cmbSubgroupType);
             this.grbFilterBy.Controls.Add(this.lblRkCode);
@@ -477,6 +496,29 @@
             this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(809, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(123, 20);
+            this.label5.TabIndex = 958826;
+            this.label5.Text = "Bill Scheme Eligibility";
+            // 
+            // cmbSchemeApplicable
+            // 
+            this.cmbSchemeApplicable.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSchemeApplicable.FormattingEnabled = true;
+            this.cmbSchemeApplicable.Location = new System.Drawing.Point(809, 41);
+            this.cmbSchemeApplicable.Name = "cmbSchemeApplicable";
+            this.cmbSchemeApplicable.Size = new System.Drawing.Size(118, 27);
+            this.cmbSchemeApplicable.TabIndex = 5;
+            this.cmbSchemeApplicable.Enter += new System.EventHandler(this.cmbSchemeApplicable_Enter);
+            this.cmbSchemeApplicable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeApplicable_KeyDown);
+            this.cmbSchemeApplicable.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSchemeApplicable_KeyPress);
+            this.cmbSchemeApplicable.Leave += new System.EventHandler(this.cmbSchemeApplicable_Leave);
             // 
             // label4
             // 
@@ -535,7 +577,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(805, 18);
+            this.label3.Location = new System.Drawing.Point(937, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 958819;
@@ -545,10 +587,10 @@
             // 
             this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(805, 41);
+            this.cmbStatus.Location = new System.Drawing.Point(937, 41);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(79, 27);
-            this.cmbStatus.TabIndex = 5;
+            this.cmbStatus.TabIndex = 6;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
@@ -658,10 +700,10 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(928, 40);
+            this.btnExport.Location = new System.Drawing.Point(1060, 40);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(31, 29);
-            this.btnExport.TabIndex = 7;
+            this.btnExport.TabIndex = 8;
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
@@ -673,10 +715,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(890, 40);
+            this.btnView.Location = new System.Drawing.Point(1022, 40);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 29);
-            this.btnView.TabIndex = 6;
+            this.btnView.TabIndex = 7;
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -795,12 +837,6 @@
             this.grdGroupList.Size = new System.Drawing.Size(1348, 570);
             this.grdGroupList.TabIndex = 958793;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(42, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
@@ -850,8 +886,6 @@
         public System.Windows.Forms.ToolStripSeparator tssNew;
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlSubgroup;
-        private System.Windows.Forms.Label lblNoOfPrSubGroup;
-        private System.Windows.Forms.Label lblNoPrSubGroup;
         private System.Windows.Forms.GroupBox grbFilterBy;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
@@ -895,5 +929,10 @@
         public System.Windows.Forms.DataGridView DGV_FilterLocation;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton lblNoOfPrSubGroup;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbSchemeApplicable;
     }
 }

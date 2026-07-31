@@ -7354,7 +7354,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtMappingSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(10, 0, "", varGroupId, 0, txtMappingSubGroup.Text, 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(10, 0, "", varGroupId, 0, txtMappingSubGroup.Text, 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -11457,7 +11457,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtPurSubgroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(10, 0, "", varPurGroupId, 0, txtPurSubgroup.Text, 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(10, 0, "", varPurGroupId, 0, txtPurSubgroup.Text, 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

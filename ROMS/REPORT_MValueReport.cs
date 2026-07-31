@@ -286,7 +286,7 @@ namespace ROMS
                 DGV_FilterSubgroup.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspdservice.udfnSubGroupList(18, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0);
+                objDs = objspdservice.udfnSubGroupList(18, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0, 0);
                 objspdservice.CloseConnection();
                 if (objDs.Tables[0].Rows.Count != 0)
                 {

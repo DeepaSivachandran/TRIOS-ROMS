@@ -91,7 +91,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 MenuCode = 50503;
                 udfnBindCombobox();
-                udfnList();
+                 udfnList();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     udfnFieldAccess();
@@ -130,7 +130,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID=0 OR STS_ModuleID = 1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,193) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSchemeApplicable, "", "MST_DisplayText", "MSTID");
             }
             catch (Exception ex)
             {
@@ -166,7 +166,7 @@ namespace ROMS
                     string varId_SubGroup = "0";
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(), 0, 0, 0, 0,0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(), 0, 0, 0, 0,0,0);
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -253,7 +253,7 @@ namespace ROMS
                     }
                     varRackId = Convert.ToInt32(varId_PurRack);
                 }
-                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "", varGroupId, 0, "", Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(cmbBatchNoEntry.SelectedValue), varLocationId, varRackId, Convert.ToInt32(cmbSubgroupType.SelectedValue));
+                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "", varGroupId, 0, "", Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(cmbBatchNoEntry.SelectedValue), varLocationId, varRackId, Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbSchemeApplicable.SelectedValue));
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -269,14 +269,16 @@ namespace ROMS
                             grdSubGroupList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSubGroupList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSubGroupList.Columns["Bill Scheme Eligibility"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                             grdSubGroupList.Columns["S.No."].Width = 50;
-                            grdSubGroupList.Columns["Product Group Name"].Width = 200;
-                            grdSubGroupList.Columns["Product Sub Group Name in English"].Width = 250;
-                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].Width = 250;
+                            grdSubGroupList.Columns["Bill Scheme Eligibility"].Width = 130;
+                            grdSubGroupList.Columns["Product Group Name"].Width = 150;
+                            grdSubGroupList.Columns["Product Sub Group Name in English"].Width = 230;
+                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].Width = 230;
                             grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdSubGroupList.Columns["Stock Location"].Width = 150;
-                            grdSubGroupList.Columns["Rack"].Width = 100;
+                            grdSubGroupList.Columns["Stock Location"].Width = 130;
+                            grdSubGroupList.Columns["Rack"].Width = 80;
                             grdSubGroupList.Columns["Batch No."].Width = 100;
                             grdSubGroupList.Columns["Total Products"].Width = 100;
                             grdSubGroupList.Columns["Product Subgroup Type"].Width = 150;
@@ -293,7 +295,7 @@ namespace ROMS
                             grdSubGroupList.Columns["PRSG_Type"].Visible = false;
                             grdSubGroupList.Columns["PRSG_Margin_Type"].Visible = false;
                             grdSubGroupList.Columns["BillScheme"].Visible = false;
-                            grdSubGroupList.Columns["ProductScheme"].Visible = false;
+                            grdSubGroupList.Columns["ProductScheme"].Visible = false; 
                         }
                         else
                         {
@@ -1027,7 +1029,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtProductSubGroup.Text, 0, 0, 0, 0,0);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtProductSubGroup.Text, 0, 0, 0, 0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1467,7 +1469,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    cmbSchemeApplicable.Focus();
                 }
             }
             catch (Exception ex)
@@ -1784,7 +1786,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnBindRack();
-                    cmbStatus.Focus();
+                    cmbSchemeApplicable.Focus();
                 }
             }
             catch (Exception ex)
@@ -1799,7 +1801,7 @@ namespace ROMS
             try
             {
                 udfnBindRack();
-                cmbStatus.Focus();
+                cmbSchemeApplicable.Focus();
             }
             catch (Exception ex)
             {
@@ -2204,6 +2206,68 @@ namespace ROMS
                         txtSaleRack.Focus();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsSubgroupList_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void cmbSchemeApplicable_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvHide();
+                cmbSchemeApplicable.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSchemeApplicable_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSchemeApplicable_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSchemeApplicable_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSchemeApplicable.BackColor = Color.White;
             }
             catch (Exception ex)
             {

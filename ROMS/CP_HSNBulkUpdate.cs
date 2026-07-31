@@ -925,7 +925,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtSubgroup.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnSubGroupList(9, 0, "", 0, 0, txtSubgroup.Text, 0, 0, 0, 0, 0);
+                        objDs = objspdservice.udfnSubGroupList(9, 0, "", 0, 0, txtSubgroup.Text, 0, 0, 0, 0, 0,0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
