@@ -91,6 +91,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (194,0) AND MSTID<>-1 Order by MSTID", "MST_DisplayText,MSTID", cmbBillSeparation, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 udfnList();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
@@ -141,7 +142,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0,"", 0,Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,Convert.ToInt32(cmbBillSeparation.SelectedValue),"", 0,Convert.ToInt32(cmbStatus.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -935,7 +936,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbBillSeparation.Focus();
                 }
             }
             catch (Exception ex)
@@ -976,6 +977,61 @@ namespace ROMS
             try
             {
                 e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBillSeparation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBillSeparation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBillSeparation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBillSeparation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBillSeparation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBillSeparation.BackColor = Color.White;
             }
             catch (Exception ex)
             {
