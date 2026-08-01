@@ -7183,6 +7183,7 @@ namespace ROMS
             {
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 106;
+                objMR_Product.ParaProductCode = varproductcode;
                 objMR_Product.paraSubgroup = varSubgroupID;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -7228,6 +7229,7 @@ namespace ROMS
                             lblImageUploadedCount.Text = objDs.Tables[0].AsEnumerable().Sum(r => r.Field<int>("Image Count")).ToString();
 
                             grdSubgroups.ClearSelection();
+                            grdSubgroups.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSubgroups.Columns["clmImageCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubgroups.Columns["clmImageApproved"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }

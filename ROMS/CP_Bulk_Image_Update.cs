@@ -80,6 +80,7 @@ namespace ROMS
                 dtSubgroupImages.Columns.Add("SGI_PRID", typeof(int));
                 dtSubgroupImages.Columns.Add("SGI_ImageName", typeof(string));
                 LoadProducts();
+                UpdateZoomButtonsVisibility();
                 this.ActiveControl = txtGroup;
             }
             catch (Exception ex)
@@ -113,6 +114,7 @@ namespace ROMS
         {
             try
             {
+                grdSubgroups.Rows.Clear();
                 epBulkImage.Clear();
                 lblActiveProCount.Text = "0";
                 lblImageUploadedCount.Text = "0";
@@ -215,6 +217,7 @@ namespace ROMS
                             lblImageUnapprovedCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ImageUnapprovedCount"].ToString());
 
                             grdSubgroups.ClearSelection();
+                            grdSubgroups.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSubgroups.Columns["clmImageUpload"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubgroups.Columns["clmImageApproved"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -545,8 +548,9 @@ namespace ROMS
                         dtSubgroupImages.Rows.Add(product.ProductID, imageName);
                     }
                 }
+
                 SPDataService objDser = new SPDataService();
-                if (grdSubgroups.Rows.Count > 0)
+                if (dtSubgroupImages.Rows.Count > 0)
                 {
                     varResult = objDser.udfnSubGroup(3, Convert.ToInt32(lblSubGroupCode.Text), 0, "", "", 0, 0, 0, 0, varOriginator, "", MainForm.pbUserID, 0, 0, 0, "", "", 0, 0, dtSubgroupImages);
                     objDser.CloseConnection();
@@ -554,13 +558,18 @@ namespace ROMS
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        windowControl?.TriggerClose();
+                        ClearAllImages();
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         btnSave.Focus();
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Please upload atleast one image", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -579,6 +588,16 @@ namespace ROMS
         {
             try
             {
+                txtGroup.Text = "";
+                txtSubGroup.Text = "";
+                lblGroupCode.Text = "0";
+                lblSubGroupCode.Text = "0";
+                lblActiveProCount.Text = "0";
+                lblImageUploadedCount.Text = "0";
+                lblImageApprovedCount.Text = "0";
+                lblImageUnapprovedCount.Text = "0";
+                txtGroup.Focus();
+                grdSubgroups.Rows.Clear();
                 // Remove thumbnail images
                 foreach (Control ctrl in flowLayoutPanel1.Controls)
                 {
@@ -2001,6 +2020,33 @@ namespace ROMS
                     }
 
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
