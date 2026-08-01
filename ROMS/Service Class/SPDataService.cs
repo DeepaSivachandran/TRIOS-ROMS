@@ -1851,6 +1851,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", objMR_ProductReport.paraSubgroupType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objMR_ProductReport.paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@paraType", objMR_ProductReport.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_ProductReport.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);  
                 varSqlCommand.CommandTimeout = 0;
