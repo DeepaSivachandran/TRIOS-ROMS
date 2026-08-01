@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Service_Class;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -82,6 +83,71 @@ namespace ROMS
                 LoadProducts();
                 UpdateZoomButtonsVisibility();
                 this.ActiveControl = txtGroup;
+                udfnGroupFilter();
+                udfnSubgroupFilter();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGroupFilter()
+        {
+            try
+            {
+                DGV_FilterGroup.DataSource = null;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnGroupList(13, 0, 0, txtGroup.Text, 0);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            DGV_FilterGroup.DataSource = objDs.Tables[0];
+                            DGV_FilterGroup.Columns["PRGID"].Visible = false;
+                            DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
+                            DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
+                            DGV_FilterGroup.Columns["PRG_TName"].Visible = false;
+                            DGV_FilterGroup.Columns["PRG_EName"].Width = 250;
+                            DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
+                            DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
+                            DGV_FilterGroup.Columns["PRG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSubgroupFilter()
+        {
+            try
+            {
+                DGV_FilterSubgroup.DataSource = null;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnSubGroupList(18, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0, 0, 0);
+                objspdservice.CloseConnection();
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    DGV_FilterSubgroup.DataSource = objDs.Tables[0];
+                    DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
+                    DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
+                    DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
+                    DGV_FilterSubgroup.Columns["PRSG_TName"].Visible = false;
+                    DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 250;
+                    DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
+                    DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
+                    DGV_FilterSubgroup.Columns["PRSG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                }
+                lblSubGroupCode.Text = Convert.ToString(objDs.Tables[0].Rows.Count);
             }
             catch (Exception ex)
             {
@@ -714,7 +780,6 @@ namespace ROMS
             try
             {
                 DGV_FilterSubgroup.Visible = false;
-                DGV_FilterSubgroup.DataSource = null;
                 txtGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -761,6 +826,10 @@ namespace ROMS
                     switch (e.KeyCode)
                     {
                         case Keys.Up:
+                            if (DGV_FilterGroup.Visible == false)
+                            {
+                                return;
+                            }
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterGroup.CurrentCell = DGV_FilterGroup.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
@@ -772,6 +841,10 @@ namespace ROMS
                             e.Handled = true;
                             break;
                         case Keys.Down:
+                            if (DGV_FilterGroup.Visible == false)
+                            {
+                                return;
+                            }
                             RowIndex++;
                             if (RowIndex < DGV_FilterGroup.Rows.Count) DGV_FilterGroup.CurrentCell = DGV_FilterGroup.Rows[RowIndex].Cells[ClmIndex];
 
@@ -834,6 +907,7 @@ namespace ROMS
 
         private void txtGroup_TextChanged(object sender, EventArgs e)
         {
+            /*
             try
             {
                 if (varUpDownKeyGroup == 0)
@@ -886,6 +960,27 @@ namespace ROMS
                         DGV_FilterGroup.Visible = false;
                         DGV_FilterGroup.DataSource = null;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            */
+
+            try
+            {
+                if (txtGroup.Text.Trim() == "")
+                {
+                    lblGroupCode.Text = "0";
+                    lblSubGroupCode.Text = "0";
+                    txtSubGroup.Text = "";
+                    udfnSubgroupFilter();
+                }
+                if (varUpDownKeyGroup == 0)
+                {
+                    DGV_FilterGroup.ScrollToMatchingRow("PRG_EName", txtGroup.Text);
                 }
             }
             catch (Exception ex)
@@ -990,6 +1085,7 @@ namespace ROMS
                 {
                     lblGroupCode.Text = DGV_FilterGroup.SelectedRows[0].Cells["PRGID"].Value.ToString();
                     txtGroup.Text = DGV_FilterGroup.SelectedRows[0].Cells["PRG_EName"].Value.ToString();
+                    udfnSubgroupFilter();
                 }
             }
             catch (Exception ex)
@@ -1055,6 +1151,10 @@ namespace ROMS
                     switch (e.KeyCode)
                     {
                         case Keys.Up:
+                            if (DGV_FilterSubgroup.Visible == false)
+                            {
+                                return;
+                            }
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterSubgroup.CurrentCell = DGV_FilterSubgroup.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
@@ -1066,6 +1166,10 @@ namespace ROMS
                             e.Handled = true;
                             break;
                         case Keys.Down:
+                            if (DGV_FilterSubgroup.Visible == false)
+                            {
+                                return;
+                            }
                             RowIndex++;
                             if (RowIndex < DGV_FilterSubgroup.Rows.Count) DGV_FilterSubgroup.CurrentCell = DGV_FilterSubgroup.Rows[RowIndex].Cells[ClmIndex];
 
@@ -1128,6 +1232,7 @@ namespace ROMS
 
         private void txtSubGroup_TextChanged(object sender, EventArgs e)
         {
+            /*
             try
             {
                 if (varUpDownKeySubGroup == 0)
@@ -1184,6 +1289,24 @@ namespace ROMS
                         DGV_FilterSubgroup.Visible = false;
                         DGV_FilterSubgroup.DataSource = null;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            */
+
+            try
+            {
+                if (txtSubGroup.Text.Trim() == "")
+                {
+                    lblSubGroupCode.Text = "0";
+                }
+                if (varUpDownKeySubGroup == 0)
+                {
+                    DGV_FilterSubgroup.ScrollToMatchingRow("PRSG_EName", txtSubGroup.Text);
                 }
             }
             catch (Exception ex)
@@ -2062,13 +2185,13 @@ namespace ROMS
                 if (skipControl != txtGroup)
                 {
                     varUpDownKeyGroup = 0;
-                    DGV_FilterGroup.DataSource = null;
+                    //DGV_FilterGroup.DataSource = null;
                     DGV_FilterGroup.Visible = false;
                 }
                 if (skipControl != txtSubGroup)
                 {
                     varUpDownKeySubGroup = 0;
-                    DGV_FilterSubgroup.DataSource = null;
+                    //DGV_FilterSubgroup.DataSource = null;
                     DGV_FilterSubgroup.Visible = false;
                 }
             }
