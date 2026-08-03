@@ -10454,6 +10454,14 @@ namespace ROMS
         private void btnViewImages_Click(object sender, EventArgs e)
         {
             images = GetCheckedRowImages();
+            if (images.Count == 0)
+            {
+                SPDataService objDataService = new SPDataService();
+                string varMessage = objDataService.udfnGetMessages(80);
+                objDataService.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             ShowImage();
         }
 
@@ -10465,7 +10473,10 @@ namespace ROMS
 
                 if (selectedImages.Count == 0)
                 {
-                    MessageBox.Show("Please select a product.");
+                    SPDataService objDataService = new SPDataService();
+                    string varMessage = objDataService.udfnGetMessages(80);
+                    objDataService.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (imagePaths.Count > 0)
