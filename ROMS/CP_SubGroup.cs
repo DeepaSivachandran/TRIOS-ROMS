@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 
 namespace ROMS
@@ -334,6 +335,7 @@ namespace ROMS
                 txtProductGroupName.Focus();
                 tpShopLocation.Active = false;
                 tpRack.Active = false;
+                chkBillScheme.Enabled = false;
                 epSubGroup.Clear();
             }
             catch (Exception ex)
@@ -586,6 +588,33 @@ namespace ROMS
                     txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     blnErrorFlag = true;
                 }
+                if (varId != 0)
+                {
+                    string message = "";
+                    DataSet objDSSceheme = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    int schemeApplicable = 0;
+                    if (chkBillScheme.Checked = true) { schemeApplicable = 1; }
+                    else { schemeApplicable = 0; }
+                        objDSSceheme = objDserv.udfnSubGroupList(21, varId, "", 0, 0, "", 0, 0, 0, 0, 0, schemeApplicable);
+                    objDserv.CloseConnection();
+                    if (objDSSceheme != null)
+                    {
+                        if (objDSSceheme.Tables.Count > 0)
+                        {
+                            if (objDSSceheme.Tables[0].Rows.Count > 0)
+                            {
+                                message = Convert.ToString(objDSSceheme.Tables[0].Rows[0]["MS_Text"]);
+                                DialogResult dialogResult = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.No)
+                                {
+                                    blnErrorFlag = false;
+                                    return;
+                                }
+                            }
+                        }  
+                    }
+                } 
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
