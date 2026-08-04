@@ -852,6 +852,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Pro_MultipleRate_Offset_PICode.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Product_Barcode_PICode.cs">
       <DependentUpon>RPT_CP_Rackgroup_Product_Barcode_PICode.rpt</DependentUpon>
@@ -5834,6 +5835,7 @@
     <EmbeddedResource Include="Reports\RPT_CP_Pro_MultipleRate_Offset_PICode.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Pro_MultipleRate_Offset_PICode.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
