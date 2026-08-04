@@ -134,6 +134,7 @@
             this.chkBillScheme.TabIndex = 2;
             this.chkBillScheme.Text = "Bill Scheme";
             this.chkBillScheme.UseVisualStyleBackColor = true;
+            this.chkBillScheme.CheckedChanged += new System.EventHandler(this.chkBillScheme_CheckedChanged);
             this.chkBillScheme.Enter += new System.EventHandler(this.chkBillScheme_Enter);
             this.chkBillScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkBillScheme_KeyDown);
             this.chkBillScheme.Leave += new System.EventHandler(this.chkBillScheme_Leave);

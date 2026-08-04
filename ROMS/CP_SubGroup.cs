@@ -48,7 +48,7 @@ namespace ROMS
         public string varRackCodes = "";
         public int varSortFlag = 0;
         public int varSubgroupType = 0;
-        public int varMarginTypeId = 0,pbBillScheme=0,pbProductScheme=0;
+        public int varMarginTypeId = 0,pbBillScheme=0,pbProductScheme=0,pbSchApplicableUpdateFlag=0;
 
         public string VarRackCreation = "0";
         public string GroupPrivilege = "", LocationPrivilege="",RackPrivilege="";
@@ -398,7 +398,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbMarginCalc.SelectedValue), "", "", pbProductScheme, pbBillScheme, null);
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbMarginCalc.SelectedValue), "", "", pbSchApplicableUpdateFlag,pbBillScheme,  null);
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
@@ -593,10 +593,10 @@ namespace ROMS
                     string message = "";
                     DataSet objDSSceheme = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    int schemeApplicable = 0;
-                    if (chkBillScheme.Checked = true) { schemeApplicable = 1; }
-                    else { schemeApplicable = 0; }
-                        objDSSceheme = objDserv.udfnSubGroupList(21, varId, "", 0, 0, "", 0, 0, 0, 0, 0, schemeApplicable);
+                    int schemeEligible = 0;
+                    if (chkBillScheme.Checked == true) { schemeEligible = 1; }
+                    else { schemeEligible = 0; }
+                        objDSSceheme = objDserv.udfnSubGroupList(21, varId, "", 0, 0, "", 0, 0, 0, 0, 0, schemeEligible);
                     objDserv.CloseConnection();
                     if (objDSSceheme != null)
                     {
@@ -608,8 +608,11 @@ namespace ROMS
                                 DialogResult dialogResult = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (dialogResult == DialogResult.No)
                                 {
-                                    blnErrorFlag = false;
-                                    return;
+                                    pbSchApplicableUpdateFlag = 0;
+                                }
+                                else if (dialogResult == DialogResult.Yes)
+                                {
+                                    pbSchApplicableUpdateFlag = 1;
                                 }
                             }
                         }  
@@ -1947,6 +1950,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void chkBillScheme_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void chkBillScheme_Leave(object sender, EventArgs e)
