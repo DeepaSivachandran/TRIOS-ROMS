@@ -183,6 +183,55 @@ namespace ROMS
                         MainForm.objCP_Items.SalesHSNEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("10"));
                         MainForm.objCP_Items.PurHSNViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("9"));
                         MainForm.objCP_Items.PurHSNEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("10")); 
+
+                        MainForm.objCP_Items.PICodeViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("10")); 
+                        MainForm.objCP_Items.PICodeEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("10")); 
+
+                        MainForm.objCP_Items.ProENameViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("10")); 
+                        MainForm.objCP_Items.ProENameEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("10")); 
+
+                        MainForm.objCP_Items.ProTNameViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("10")); 
+                        MainForm.objCP_Items.ProTNameEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProTLabelNameViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProTLabelNameEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProELabelNameEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProELabelNameEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProSubgroupViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProSubgroupEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProGroupViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProGroupEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProBrandViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProBrandEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProUnitViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProUnitEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProUPPViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProUPPEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProNetQuantityViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProNetQuantityEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProGrossQuantityViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProGrossQuantityEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("10"));
+                          
+                        MainForm.objCP_Items.ProProductClassificationViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProProductClassificationEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProSchemeEligibilityViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProSchemeEligibilityEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProductUsageViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProductUsageEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("10"));
+
+                        MainForm.objCP_Items.ProductStatusViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.ProductStatusEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("10"));
+
                         MainForm.objCP_Items.btnSave.Text = "Update";
                         try
                         {

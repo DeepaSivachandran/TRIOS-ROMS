@@ -109,9 +109,31 @@ namespace ROMS
             RetailRateViewAcess = false, RetailRateEditAcess = false,
             WholeSaleRateViewAcess = false, WholeSaleRateEditAcess = false,
             SalesHSNViewAcess = false, SalesHSNEditAcess = false,
-            PurHSNViewAcess = false, PurHSNEditAcess = false;
+            PurHSNViewAcess = false, PurHSNEditAcess = false,
+            PICodeViewAcess = false, PICodeEditAcess = false,
+            ProENameViewAcess = false, ProENameEditAccess = false,
+            ProTNameViewAccess = false, ProTNameEditAccess = false,
+            ProTLabelNameViewAccess = false, ProTLabelNameEditAccess = false,
+            ProELabelNameViewAccess = false, ProELabelNameEditAccess = false,
+            ProSubgroupViewAccess = false, ProSubgroupEditAccess = false,
+            ProGroupViewAccess = false, ProGroupEditAccess = false,
+            ProBrandViewAccess = false, ProBrandEditAccess = false,
+            ProUnitViewAccess = false, ProUnitEditAccess = false,
+            ProUPPViewAccess = false, ProUPPEditAccess = false,
+            ProNetQuantityViewAccess = false, ProNetQuantityEditAccess = false,
+            ProGrossQuantityViewAccess = false, ProGrossQuantityEditAccess = false,
+            ProProductClassificationViewAccess = false, ProProductClassificationEditAccess = false,
+            ProSchemeEligibilityViewAccess = false, ProSchemeEligibilityEditAccess = false,
+            ProductUsageViewAccess = false, ProductUsageEditAccess = false,
+            ProductStatusViewAccess = false, ProductStatusEditAccess = false;
+
+
         string Subgroupprivilege = "", Groupprivilege = "", Brandprivilege = "", Unitprivilege = "";
         public int pbSG_ProductScheme = 0, pbSG_BillScheme = 0;
+
+        string privilege = "", MismatachApprovalPrivilege = "";
+        public List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+         
 
         public CP_Product()
         {
@@ -1931,13 +1953,35 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     if (txtSalesPICode.Enabled == true)
-                    {
-                        txtSalesPICode.Focus();
-                    }
-                    else
-                    {
-                        txtItemNameEnglish.Focus();
-                    }
+                    {  txtSalesPICode.Focus();  }
+                    else if(txtItemNameEnglish.Enabled==true)
+                    { txtItemNameEnglish.Focus();  }
+                    else if(txtItemNameTamil.Enabled==true)
+                    { txtItemNameTamil.Focus();  }
+                    else if(txtLabelNameEnglish.Enabled==true)
+                    { txtLabelNameEnglish.Focus();  }
+                    else if(txtLabelNameTamil.Enabled==true)
+                    { txtLabelNameTamil.Focus();  }
+                    else if(txtSubGroup.Enabled==true)
+                    { txtSubGroup.Focus();  }
+                    else if(txtGroup.Enabled==true)
+                    { txtGroup.Focus();  }
+                    else if(txtBrand.Enabled==true)
+                    { txtBrand.Focus();  }
+                    else if(cmbUnit.Enabled==true)
+                    { cmbUnit.Focus();  }
+                    else if(txtUpp.Enabled==true)
+                    { txtUpp.Focus();  }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); } 
+                    else if(txtMinStock.Enabled==true)
+                    { txtMinStock.Focus();  }
+                    else if(txtMaxStock.Enabled==true)
+                    { txtMaxStock.Focus();  }
+                    else if(txtReOrderQty.Enabled==true)
+                    { txtReOrderQty.Focus();  }
                 }
             }
             catch (Exception ex)
@@ -1953,7 +1997,28 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtItemNameTamil.Focus();
+                    if (txtItemNameTamil.Enabled == true)
+                    { txtItemNameTamil.Focus(); }
+                    else if (txtLabelNameEnglish.Enabled == true)
+                    { txtLabelNameEnglish.Focus(); }
+                    else if (txtLabelNameTamil.Enabled == true)
+                    { txtLabelNameTamil.Focus(); }
+                    else if (txtSubGroup.Enabled == true)
+                    { txtSubGroup.Focus(); }
+                    else if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -1969,7 +2034,26 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtLabelNameEnglish.Focus();
+                    if (txtLabelNameEnglish.Enabled == true)
+                    { txtLabelNameEnglish.Focus(); }
+                    else if (txtLabelNameTamil.Enabled == true)
+                    { txtLabelNameTamil.Focus(); }
+                    else if (txtSubGroup.Enabled == true)
+                    { txtSubGroup.Focus(); }
+                    else if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -2032,31 +2116,19 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
+                { 
                     if (txtUpp.Enabled == true)
-                    {
-                        txtUpp.Focus();
-                    }
-                    else if (cmbChildUnit.Enabled == true)
-                    {
-                        cmbChildUnit.Focus();
-                    }
-                    else
-                    {
-                        txtWeight.Focus();
-                        //if (txtPurLocation.Enabled == true)
-                        //{
-                        //    txtPurLocation.Focus();
-                        //}
-                        //else if (txtPurRack.Enabled == true)
-                        //{
-                        //    txtPurRack.Focus();
-                        //}
-                        //else
-                        //{
-                        //    txtSaleLocation.Focus();
-                        //}
-                    }
+                    { txtUpp.Focus(); }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -2120,7 +2192,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtReOrderQty.Focus();
+                     if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -2136,7 +2209,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMaxStock.Focus();
+                    if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -3513,19 +3589,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtWeight.Focus();
-                    //if (txtPurLocation.Enabled == true)
-                    //{
-                    //    txtPurLocation.Focus();
-                    //}
-                    //else if (txtPurRack.Enabled == true)
-                    //{
-                    //    txtPurRack.Focus();
-                    //}
-                    //else
-                    //{
-                    //    txtSaleLocation.Focus();
-                    //}
+                    if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -3579,26 +3652,17 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    if (cmbChildUnit.Enabled == true)
-                    {
-                        cmbChildUnit.Focus();
-                    }
-                    else
-                    {
-                        if (txtPurLocation.Enabled == true)
-                        {
-                            txtPurLocation.Focus();
-                        }
-                        else if (txtPurRack.Enabled == true)
-                        {
-                            txtPurRack.Focus();
-                        }
-                        else
-                        {
-                            txtSaleLocation.Focus();
-                        }
-                    }
+                { 
+                    if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -4272,7 +4336,37 @@ namespace ROMS
                 //txtUpp.Enabled = true;
                 btnSave.Visible = true;
                 btnImageUpdate.Visible = false;
-                UpdateSalesProductUI();
+                UpdateSalesProductUI(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(505);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;    
+                txtPICode.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("10"));
+                txtItemNameEnglish.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("10"));
+                txtItemNameTamil.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("10"));
+                txtLabelNameEnglish.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("10"));
+                txtLabelNameTamil.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("10"));
+                txtSubGroup.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("10"));
+                txtGroup.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("10"));
+                txtBrand.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("10"));
+                cmbUnit.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("10"));
+                txtUpp.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("10"));
+                txtWeight.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("10"));
+                txtGrossWeight.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("10"));
+                gpClassification.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("10"));
+                grpSchemeEligibilty.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("10"));
+                txtProductUsage.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("10"));
+                pnlStatus.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("10")); 
             }
             catch (Exception ex)
             {
@@ -4303,6 +4397,55 @@ namespace ROMS
 
                     PurHSNViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 6 && sp.EditAccess.Split(',').Contains("9"));
                     PurHSNEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 6 && sp.EditAccess.Split(',').Contains("10"));
+
+                    PICodeViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("9"));
+                    PICodeEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProENameViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("9"));
+                    ProENameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("10"));
+
+
+                    ProTNameViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("9"));
+                    ProTNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProTLabelNameViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("9"));
+                    ProTLabelNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProELabelNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("9"));
+                    ProELabelNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProSubgroupViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("9"));
+                    ProSubgroupEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProGroupViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("9"));
+                    ProGroupEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProBrandViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("9"));
+                    ProBrandEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProUnitViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("9"));
+                    ProUnitEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProUPPViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("9"));
+                    ProUPPEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProNetQuantityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("9"));
+                    ProNetQuantityEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProGrossQuantityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("9"));
+                    ProGrossQuantityEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProProductClassificationViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("9"));
+                    ProProductClassificationEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProSchemeEligibilityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("9"));
+                    ProSchemeEligibilityEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProductUsageViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("9"));
+                    ProductUsageEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("10"));
+
+                    ProductStatusViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("9"));
+                    ProductStatusEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("10"));
 
                     if (!PurStkLocViewAcess)
                     { txtPurLocation.UseSystemPasswordChar = true; txtPurLocation.Enabled = false; }
@@ -4360,22 +4503,183 @@ namespace ROMS
                         grbPurchaseHSN.Enabled = SalesHSNEditAcess;
                     }
 
-                    //Subgroup
-                    var Subgroupresult = UserAccessHelper.LoadUserAccess(50503);
-                    Subgroupprivilege = Subgroupresult.PrivilegeCode;
-                    btnSubgroup.Visible = Subgroupprivilege.Contains("2");
-                    //Group
-                    var groupresult = UserAccessHelper.LoadUserAccess(50502);
-                    Groupprivilege = groupresult.PrivilegeCode;
-                    btnGroup.Visible = Groupprivilege.Contains("2");
-                    //Brand
-                    var Brandresult = UserAccessHelper.LoadUserAccess(50504);
-                    Brandprivilege = Brandresult.PrivilegeCode;
-                    btnBrand.Visible = Brandprivilege.Contains("2");
-                    //Unit
-                    var Unitresult = UserAccessHelper.LoadUserAccess(50505);
-                    Unitprivilege = Unitresult.PrivilegeCode;
-                    btnUnit.Visible = Unitprivilege.Contains("2");
+
+                    if (!PICodeViewAcess)
+                    { txtPICode.UseSystemPasswordChar = true; txtPICode.Enabled = false; }
+                    if (!ProENameViewAcess)
+                    { txtItemNameEnglish.UseSystemPasswordChar = true; txtItemNameEnglish.Enabled = false; }
+                    if (!ProTNameViewAccess)
+                    { txtItemNameTamil.UseSystemPasswordChar = true; txtItemNameTamil.Enabled = false; }
+                    if (!ProTLabelNameViewAccess)
+                    { txtLabelNameEnglish.UseSystemPasswordChar = true; txtLabelNameEnglish.Enabled = false; }
+                    if (!ProELabelNameViewAccess)
+                    { txtLabelNameTamil.UseSystemPasswordChar = true; txtLabelNameTamil.Enabled = false; }
+                    if (!ProSubgroupViewAccess)
+                    { txtSubGroup.UseSystemPasswordChar = true; txtSubGroup.Enabled = false; }
+                    if (!ProGroupViewAccess)
+                    { txtGroup.UseSystemPasswordChar = true; txtGroup.Enabled = false; }
+                    if (!ProBrandViewAccess)
+                    {
+                        txtBrand.UseSystemPasswordChar = true; txtBrand.Enabled = false;
+                        if (!ProUnitViewAccess)
+                        { cmbUnit.Enabled = false; }
+                        if (!ProUPPViewAccess)
+                        { txtUpp.UseSystemPasswordChar = true; txtUpp.Enabled = false; }
+                        if (!ProNetQuantityViewAccess)
+                        { txtWeight.UseSystemPasswordChar = true; txtWeight.Enabled = false; }
+                        if (!ProGrossQuantityViewAccess)
+                        { txtGrossWeight.UseSystemPasswordChar = true; txtGrossWeight.Enabled = false; }
+                        if (!ProProductClassificationViewAccess)
+                        { gpClassification.Enabled = false; }
+                        if (!ProSchemeEligibilityViewAccess)
+                        { grpSchemeEligibilty.Enabled = false; }
+                        if (!ProductUsageViewAccess)
+                        { txtProductUsage.Enabled = false; txtProductUsage.UseSystemPasswordChar = true; }
+                        if (!ProductStatusViewAccess)
+                        { pnlStatus.Enabled = false; }
+
+                        if (PICodeEditAcess)
+                        {
+                            if (!txtPICode.ReadOnly)
+                            { txtPICode.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtPICode.ReadOnly = true; }
+
+                        if (ProENameEditAccess)
+                        {
+                            if (!txtItemNameEnglish.ReadOnly)
+                            { txtItemNameEnglish.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtItemNameEnglish.ReadOnly = true; }
+
+                        if (ProTNameEditAccess)
+                        {
+                            if (!txtItemNameTamil.ReadOnly)
+                            { txtItemNameTamil.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtItemNameTamil.ReadOnly = true; }
+
+                        if (ProTLabelNameEditAccess)
+                        {
+                            if (!txtLabelNameEnglish.ReadOnly)
+                            { txtLabelNameEnglish.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtLabelNameEnglish.ReadOnly = true; }
+
+                        if (ProELabelNameEditAccess)
+                        {
+                            if (!txtLabelNameTamil.ReadOnly)
+                            { txtLabelNameTamil.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtLabelNameTamil.ReadOnly = true; }
+
+                        if (ProSubgroupEditAccess)
+                        {
+                            if (!txtSubGroup.ReadOnly)
+                            { txtSubGroup.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtSubGroup.ReadOnly = true; }
+
+                        if (ProGroupEditAccess)
+                        {
+                            if (!txtGroup.ReadOnly)
+                            { txtGroup.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtGroup.ReadOnly = true; }
+
+                        if (ProBrandEditAccess)
+                        {
+                            if (!txtBrand.ReadOnly)
+                            { txtBrand.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtBrand.ReadOnly = true; }
+
+                        if (ProUnitEditAccess)
+                        {
+                            if (!cmbUnit.Enabled)
+                            { cmbUnit.Enabled = false; }
+                        }
+                        else // disable editing 
+                        { cmbUnit.Enabled = true; }
+
+                        if (ProUPPEditAccess)
+                        {
+                            if (!txtUpp.Enabled)
+                            { txtUpp.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtUpp.ReadOnly = true; }
+
+                        if (ProNetQuantityEditAccess)
+                        {
+                            if (!txtWeight.Enabled)
+                            { txtWeight.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtWeight.ReadOnly = true; }
+
+                        if (ProGrossQuantityEditAccess)
+                        {
+                            if (!txtGrossWeight.Enabled)
+                            { txtGrossWeight.ReadOnly = false; }
+                        }
+                        else // disable editing 
+                        { txtGrossWeight.ReadOnly = true; }
+
+                        if (!ProProductClassificationEditAccess)
+                        {
+                            gpClassification.Enabled = false;
+                        }
+                        else // disable editing 
+                        { gpClassification.Enabled = true; }
+
+                        if (!ProSchemeEligibilityEditAccess)
+                        {
+                            grpSchemeEligibilty.Enabled = false;
+                        }
+                        else // disable editing 
+                        { grpSchemeEligibilty.Enabled = true; }
+
+                        if (ProductUsageEditAccess)
+                        {
+                            txtProductUsage.Enabled = false;
+                        }
+                        else // disable editing 
+                        { txtProductUsage.Enabled = true; }
+
+                        if (ProductStatusEditAccess)
+                        {
+                            pnlStatus.Enabled = false;
+                        }
+                        else // disable editing 
+                        { pnlStatus.Enabled = true; }
+
+
+                        //Subgroup
+                        var Subgroupresult = UserAccessHelper.LoadUserAccess(50503);
+                        Subgroupprivilege = Subgroupresult.PrivilegeCode;
+                        btnSubgroup.Visible = Subgroupprivilege.Contains("2");
+                        //Group
+                        var groupresult = UserAccessHelper.LoadUserAccess(50502);
+                        Groupprivilege = groupresult.PrivilegeCode;
+                        btnGroup.Visible = Groupprivilege.Contains("2");
+                        //Brand
+                        var Brandresult = UserAccessHelper.LoadUserAccess(50504);
+                        Brandprivilege = Brandresult.PrivilegeCode;
+                        btnBrand.Visible = Brandprivilege.Contains("2");
+                        //Unit
+                        var Unitresult = UserAccessHelper.LoadUserAccess(50505);
+                        Unitprivilege = Unitresult.PrivilegeCode;
+                        btnUnit.Visible = Unitprivilege.Contains("2");
+                    }
                 }
             }
             catch (Exception ex)
@@ -4618,7 +4922,20 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbUnit.Focus();
+                     if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -5080,8 +5397,7 @@ namespace ROMS
                 {
                     if (lvSubGroup.Items.Count == 0 || txtSubGroup.Text == "")
                     {
-                        txtSubGroup.Focus();
-                        lvSubGroup.Visible = false;
+                        txtGroup.Focus();
                     }
                     else
                     {
@@ -5094,7 +5410,24 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtGroup.Focus();
+                     if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -5181,7 +5514,20 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSubGroupAutocomplete();
-                    txtBrand.Focus();
+                    if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                     lvGroup.Visible = false;
                 }
             }
@@ -5228,7 +5574,22 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBrand.Focus();
+                    if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -7183,7 +7544,6 @@ namespace ROMS
             {
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 106;
-                objMR_Product.ParaProductCode = varproductcode;
                 objMR_Product.paraSubgroup = varSubgroupID;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -7229,7 +7589,6 @@ namespace ROMS
                             lblImageUploadedCount.Text = objDs.Tables[0].AsEnumerable().Sum(r => r.Field<int>("Image Count")).ToString();
 
                             grdSubgroups.ClearSelection();
-                            grdSubgroups.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSubgroups.Columns["clmImageCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubgroups.Columns["clmImageApproved"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -7678,7 +8037,28 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtLabelNameTamil.Focus();
+                    if (txtLabelNameTamil.Enabled == true)
+                    { txtLabelNameTamil.Focus(); }
+                    else if (txtSubGroup.Enabled == true)
+                    { txtSubGroup.Focus(); }
+                    else if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -7720,11 +8100,26 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtSubGroup.Enabled == false)
-                    {
-                        cmbUnit.Focus();
-                    }
-                    else { txtSubGroup.Focus(); }
+                    if (txtSubGroup.Enabled == true)
+                    { txtSubGroup.Focus(); }
+                    else if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -9770,8 +10165,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -10228,7 +10622,34 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtItemNameEnglish.Focus();
+                    if (txtItemNameEnglish.Enabled == true)
+                    { txtItemNameEnglish.Focus(); }
+                    else if (txtItemNameTamil.Enabled == true)
+                    { txtItemNameTamil.Focus(); }
+                    else if (txtLabelNameEnglish.Enabled == true)
+                    { txtLabelNameEnglish.Focus(); }
+                    else if (txtLabelNameTamil.Enabled == true)
+                    { txtLabelNameTamil.Focus(); }
+                    else if (txtSubGroup.Enabled == true)
+                    { txtSubGroup.Focus(); }
+                    else if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
+                    else if (txtWeight.Enabled == true)
+                    { txtWeight.Focus(); }
+                    else if (txtGrossWeight.Enabled == true)
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -10454,14 +10875,6 @@ namespace ROMS
         private void btnViewImages_Click(object sender, EventArgs e)
         {
             images = GetCheckedRowImages();
-            if (images.Count == 0)
-            {
-                SPDataService objDataService = new SPDataService();
-                string varMessage = objDataService.udfnGetMessages(80);
-                objDataService.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             ShowImage();
         }
 
@@ -10473,10 +10886,7 @@ namespace ROMS
 
                 if (selectedImages.Count == 0)
                 {
-                    SPDataService objDataService = new SPDataService();
-                    string varMessage = objDataService.udfnGetMessages(80);
-                    objDataService.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please select a product.");
                     return;
                 }
                 if (imagePaths.Count > 0)
