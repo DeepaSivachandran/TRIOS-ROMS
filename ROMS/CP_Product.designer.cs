@@ -288,7 +288,7 @@
             this.chkSpl = new System.Windows.Forms.CheckBox();
             this.chkPrioirty = new System.Windows.Forms.CheckBox();
             this.chkFocus = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.grpSchemeEligibilty = new System.Windows.Forms.GroupBox();
             this.chkBillScheme = new System.Windows.Forms.CheckBox();
             this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -395,7 +395,7 @@
             this.grbIntermediateDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).BeginInit();
             this.gpClassification.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.grpSchemeEligibilty.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.pnlSubgroupImages.SuspendLayout();
@@ -1127,13 +1127,13 @@
             this.columnHeader42});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(167, 285);
+            this.lvSubGroup.Location = new System.Drawing.Point(168, 284);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(337, 78);
             this.lvSubGroup.TabIndex = 122;
             this.lvSubGroup.UseCompatibleStateImageBehavior = false;
             this.lvSubGroup.View = System.Windows.Forms.View.Details;
-            this.lvSubGroup.Visible = false;
+            this.lvSubGroup.Visible = false; 
             this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
             this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
             // 
@@ -1181,13 +1181,13 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(168, 313);
+            this.lvGroup.Location = new System.Drawing.Point(168, 312);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(337, 78);
             this.lvGroup.TabIndex = 123;
             this.lvGroup.UseCompatibleStateImageBehavior = false;
             this.lvGroup.View = System.Windows.Forms.View.Details;
-            this.lvGroup.Visible = false;
+            this.lvGroup.Visible = false; 
             this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
             this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
             // 
@@ -1211,7 +1211,7 @@
             this.columnHeader3});
             this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(168, 340);
+            this.lvBrand.Location = new System.Drawing.Point(168, 339);
             this.lvBrand.Name = "lvBrand";
             this.lvBrand.Size = new System.Drawing.Size(337, 78);
             this.lvBrand.TabIndex = 1111147;
@@ -2865,7 +2865,7 @@
             this.tabPage1.Controls.Add(this.DGV_FilterProduct);
             this.tabPage1.Controls.Add(this.DGV_FilterSalesLocation);
             this.tabPage1.Controls.Add(this.gpClassification);
-            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.grpSchemeEligibilty);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -3241,16 +3241,16 @@
             this.chkFocus.Text = "Focus";
             this.chkFocus.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // grpSchemeEligibilty
             // 
-            this.groupBox4.Controls.Add(this.chkBillScheme);
-            this.groupBox4.Controls.Add(this.chkProductScheme);
-            this.groupBox4.Location = new System.Drawing.Point(924, 448);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(219, 65);
-            this.groupBox4.TabIndex = 111111169;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Scheme Eligibility";
+            this.grpSchemeEligibilty.Controls.Add(this.chkBillScheme);
+            this.grpSchemeEligibilty.Controls.Add(this.chkProductScheme);
+            this.grpSchemeEligibilty.Location = new System.Drawing.Point(924, 448);
+            this.grpSchemeEligibilty.Name = "grpSchemeEligibilty";
+            this.grpSchemeEligibilty.Size = new System.Drawing.Size(219, 65);
+            this.grpSchemeEligibilty.TabIndex = 111111169;
+            this.grpSchemeEligibilty.TabStop = false;
+            this.grpSchemeEligibilty.Text = "Scheme Eligibility";
             // 
             // chkBillScheme
             // 
@@ -4281,8 +4281,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).EndInit();
             this.gpClassification.ResumeLayout(false);
             this.gpClassification.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.grpSchemeEligibilty.ResumeLayout(false);
+            this.grpSchemeEligibilty.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -4585,7 +4585,7 @@
         private System.Windows.Forms.TextBox txtDSalesPICode;
         private System.Windows.Forms.TextBox txtProductUsage;
         private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox grpSchemeEligibilty;
         private System.Windows.Forms.CheckBox chkBillScheme;
         private System.Windows.Forms.CheckBox chkProductScheme;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkColumn;
