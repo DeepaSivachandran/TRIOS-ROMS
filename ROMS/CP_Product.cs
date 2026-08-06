@@ -7181,8 +7181,9 @@ namespace ROMS
         {
             try
             {
+                int varViewType = 106;
                 MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 106;
+                objMR_Product.paraViewType = varViewType;
                 objMR_Product.ParaProductCode = varproductcode;
                 objMR_Product.paraSubgroup = varSubgroupID;
                 SPDataService objspdservice = new SPDataService();
@@ -7229,7 +7230,9 @@ namespace ROMS
                             lblImageUploadedCount.Text = objDs.Tables[0].AsEnumerable().Sum(r => r.Field<int>("Image Count")).ToString();
 
                             grdSubgroups.ClearSelection();
+                            // Product column font style for tamil language
                             grdSubgroups.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            // Center align the Image Count and Image Approved columns
                             grdSubgroups.Columns["clmImageCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubgroups.Columns["clmImageApproved"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -10368,68 +10371,76 @@ namespace ROMS
         }
         private void HandleSingleCheckSelection(DataGridView dgv, string checkBoxColumnName)
         {
-            DataGridViewCheckBoxCell checkedCell = null;
-
-            // Find the checked row
-            foreach (DataGridViewRow row in dgv.Rows)
+            try
             {
-                if (row.IsNewRow)
-                    continue;
-                bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
-                if (!isApproved)
-                    continue;
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
+                DataGridViewCheckBoxCell checkedCell = null;
 
-                bool isChecked = chk.Value != null && Convert.ToBoolean(chk.Value);
-
-                if (isChecked)
+                // Find the checked row
+                foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    checkedCell = chk;
-                    break;
-                }
-            }
+                    if (row.IsNewRow)
+                        continue;
+                    bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
+                    if (!isApproved)
+                        continue;
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
 
-            // Enable/Disable checkboxes
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                if (row.IsNewRow)
-                    continue;
+                    bool isChecked = chk.Value != null && Convert.ToBoolean(chk.Value);
 
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
-
-                bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
-                if (!isApproved)
-                {
-                    chk.Value = false;
-                    chk.ReadOnly = true;
-                    chk.Style.BackColor = Color.LightGray;
-                    chk.Style.SelectionBackColor = Color.LightGray;
-                    continue;
-                }
-
-                if (checkedCell == null)
-                {
-                    // No row selected -> enable all
-                    chk.ReadOnly = false;
-                    chk.Style.BackColor = Color.White;
-                    chk.Style.SelectionBackColor = Color.White;
-                }
-                else
-                {
-                    if (chk == checkedCell)
+                    if (isChecked)
                     {
+                        checkedCell = chk;
+                        break;
+                    }
+                }
+
+                // Enable/Disable checkboxes
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.IsNewRow)
+                        continue;
+
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
+
+                    bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
+                    if (!isApproved)
+                    {
+                        chk.Value = false;
+                        chk.ReadOnly = true;
+                        chk.Style.BackColor = Color.LightGray;
+                        chk.Style.SelectionBackColor = Color.LightGray;
+                        continue;
+                    }
+
+                    if (checkedCell == null)
+                    {
+                        // No row selected -> enable all
                         chk.ReadOnly = false;
                         chk.Style.BackColor = Color.White;
                         chk.Style.SelectionBackColor = Color.White;
                     }
                     else
                     {
-                        chk.Value = false;
-                        chk.ReadOnly = true;
-                        chk.Style.BackColor = Color.LightGray;
-                        chk.Style.SelectionBackColor = Color.LightGray;
+                        if (chk == checkedCell)
+                        {
+                            chk.ReadOnly = false;
+                            chk.Style.BackColor = Color.White;
+                            chk.Style.SelectionBackColor = Color.White;
+                        }
+                        else
+                        {
+                            chk.Value = false;
+                            chk.ReadOnly = true;
+                            chk.Style.BackColor = Color.LightGray;
+                            chk.Style.SelectionBackColor = Color.LightGray;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void grdSubgroups_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -10453,16 +10464,25 @@ namespace ROMS
 
         private void btnViewImages_Click(object sender, EventArgs e)
         {
-            images = GetCheckedRowImages();
-            if (images.Count == 0)
+            try
             {
-                SPDataService objDataService = new SPDataService();
-                string varMessage = objDataService.udfnGetMessages(80);
-                objDataService.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                images = GetCheckedRowImages();
+                // Check if any images are selected
+                if (images.Count == 0)
+                {
+                    SPDataService objDataService = new SPDataService();
+                    string varMessage = objDataService.udfnGetMessages(80);
+                    objDataService.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                ShowImage();
             }
-            ShowImage();
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void btnFetch_Click(object sender, EventArgs e)
@@ -10479,6 +10499,7 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                // Check if any images are selected
                 if (imagePaths.Count > 0)
                 {
                     DialogResult result = MessageBox.Show(
