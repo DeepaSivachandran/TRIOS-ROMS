@@ -1405,36 +1405,51 @@ namespace ROMS
                         dtPrice_Markup.Columns.Add("PRPM_AUTO_STSID", typeof(int));
                         for (int i = 0; i < grdPrice.Rows.Count; i++)
                         {
-                            dtPrice_Markup.Rows.Add(Convert.ToInt32(varproductcode),
-                                Convert.ToInt32(grdPrice.Rows[i].Cells["clmTypeId"].Value),
-                                //Convert.ToDecimal(grdPrice.Rows[i].Cells["clmMinQty"].Value), 
-                                //Convert.ToDecimal(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value) 
-                                //Convert.ToInt32(grdPrice.Rows[i].Cells["clmOffset"].Value),
-                                Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmStatus"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmStatus"].Value.ToString()),
+                            //dtPrice_Markup.Rows.Add(Convert.ToInt32(varproductcode),
+                            //    Convert.ToInt32(grdPrice.Rows[i].Cells["clmTypeId"].Value),
+                            //    //Convert.ToDecimal(grdPrice.Rows[i].Cells["clmMinQty"].Value), 
+                            //    //Convert.ToDecimal(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value) 
+                            //    //Convert.ToInt32(grdPrice.Rows[i].Cells["clmOffset"].Value),
+                            //    Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmStatus"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmStatus"].Value.ToString()),
 
-                                Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmRate"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmRate"].Value.ToString()),
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmRate"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmRate"].Value.ToString()),
 
-                                Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmMinQty"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmMinQty"].Value.ToString()),
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmMinQty"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmMinQty"].Value.ToString()),
 
-                                 Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffset"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmOffset"].Value.ToString()),
+                            //     Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffset"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmOffset"].Value.ToString()),
 
-                                Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value.ToString()),
-                                Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValue"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmOffsetValue"].Value.ToString()),
-                                Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmBulkRate"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmBulkRate"].Value.ToString()),
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value.ToString()),
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValue"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmOffsetValue"].Value.ToString()),
+                            //    Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmBulkRate"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmBulkRate"].Value.ToString()),
+                            //    0,
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmNewRate"].Value?.ToString())
+                            //    ? "0" : grdPrice.Rows[i].Cells["clmNewRate"].Value.ToString()),
+                            //     Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmAutoSts"].Value?.ToString())
+                            //    ? "454" : grdPrice.Rows[i].Cells["clmAutoSts"].Value.ToString())
+
+                            //    );
+
+                            dtPrice_Markup.Rows.Add(
+                                GetInt(varproductcode),
+                                GetInt(grdPrice.Rows[i].Cells["clmTypeId"].Value),
+                                GetInt(grdPrice.Rows[i].Cells["clmStatus"].Value),
+                                GetDecimal(grdPrice.Rows[i].Cells["clmRate"].Value),
+                                GetDecimal(grdPrice.Rows[i].Cells["clmMinQty"].Value),
+                                GetInt(grdPrice.Rows[i].Cells["clmOffset"].Value),
+                                GetDecimal(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value),
+                                GetDecimal(grdPrice.Rows[i].Cells["clmOffsetValue"].Value),
+                                GetInt(grdPrice.Rows[i].Cells["clmBulkRate"].Value),
                                 0,
-                                Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmNewRate"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmNewRate"].Value.ToString()),
-                                 Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmAutoSts"].Value?.ToString())
-                                ? "454" : grdPrice.Rows[i].Cells["clmAutoSts"].Value.ToString())
-
-                                );
+                                GetDecimal(grdPrice.Rows[i].Cells["clmNewRate"].Value),
+                                GetInt(grdPrice.Rows[i].Cells["clmAutoSts"].Value, 454)
+                            );
 
 
 
@@ -1682,7 +1697,25 @@ namespace ROMS
                 //cmbConcern.Focus();
             }
         }
+        private static int GetInt(object value, int defaultValue = 0)
+        {
+            if (value == null)
+                return defaultValue;
 
+            return int.TryParse(value.ToString().Trim(), out int result)
+                ? result
+                : defaultValue;
+        }
+
+        private static decimal GetDecimal(object value, decimal defaultValue = 0)
+        {
+            if (value == null)
+                return defaultValue;
+
+            return decimal.TryParse(value.ToString().Trim(), out decimal result)
+                ? result
+                : defaultValue;
+        }
         public void udfnclear()
         {
             try
