@@ -134,6 +134,7 @@
             this.chkBillScheme.TabIndex = 2;
             this.chkBillScheme.Text = "Bill Scheme";
             this.chkBillScheme.UseVisualStyleBackColor = true;
+            this.chkBillScheme.CheckedChanged += new System.EventHandler(this.chkBillScheme_CheckedChanged);
             this.chkBillScheme.Enter += new System.EventHandler(this.chkBillScheme_Enter);
             this.chkBillScheme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkBillScheme_KeyDown);
             this.chkBillScheme.Leave += new System.EventHandler(this.chkBillScheme_Leave);
@@ -367,7 +368,7 @@
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlStatus.Location = new System.Drawing.Point(217, 475);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(200, 27);
+            this.pnlStatus.Size = new System.Drawing.Size(231, 27);
             this.pnlStatus.TabIndex = 8;
             // 
             // rbActive
@@ -390,7 +391,7 @@
             // 
             this.rbInactive.AutoSize = true;
             this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(112, 1);
+            this.rbInactive.Location = new System.Drawing.Point(122, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
             this.rbInactive.TabIndex = 8;

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 
 namespace ROMS
@@ -47,7 +48,7 @@ namespace ROMS
         public string varRackCodes = "";
         public int varSortFlag = 0;
         public int varSubgroupType = 0;
-        public int varMarginTypeId = 0,pbBillScheme=0,pbProductScheme=0;
+        public int varMarginTypeId = 0,pbBillScheme=0,pbProductScheme=0,pbSchApplicableUpdateFlag=0;
 
         public string VarRackCreation = "0";
         public string GroupPrivilege = "", LocationPrivilege="",RackPrivilege="";
@@ -334,6 +335,7 @@ namespace ROMS
                 txtProductGroupName.Focus();
                 tpShopLocation.Active = false;
                 tpRack.Active = false;
+                chkBillScheme.Enabled = false;
                 epSubGroup.Clear();
             }
             catch (Exception ex)
@@ -396,7 +398,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbMarginCalc.SelectedValue), "", "", pbProductScheme, pbBillScheme, null);
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbMarginCalc.SelectedValue), "", "", pbSchApplicableUpdateFlag,pbBillScheme,  null);
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
@@ -586,6 +588,36 @@ namespace ROMS
                     txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     blnErrorFlag = true;
                 }
+                if (varId != 0)
+                {
+                    string message = "";
+                    DataSet objDSSceheme = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    int schemeEligible = 0;
+                    if (chkBillScheme.Checked == true) { schemeEligible = 1; }
+                    else { schemeEligible = 0; }
+                        objDSSceheme = objDserv.udfnSubGroupList(21, varId, "", 0, 0, "", 0, 0, 0, 0, 0, schemeEligible);
+                    objDserv.CloseConnection();
+                    if (objDSSceheme != null)
+                    {
+                        if (objDSSceheme.Tables.Count > 0)
+                        {
+                            if (objDSSceheme.Tables[0].Rows.Count > 0)
+                            {
+                                message = Convert.ToString(objDSSceheme.Tables[0].Rows[0]["MS_Text"]);
+                                DialogResult dialogResult = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.No)
+                                {
+                                    pbSchApplicableUpdateFlag = 0;
+                                }
+                                else if (dialogResult == DialogResult.Yes)
+                                {
+                                    pbSchApplicableUpdateFlag = 1;
+                                }
+                            }
+                        }  
+                    }
+                } 
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -1918,6 +1950,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void chkBillScheme_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void chkBillScheme_Leave(object sender, EventArgs e)

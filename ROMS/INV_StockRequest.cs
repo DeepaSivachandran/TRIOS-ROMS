@@ -278,21 +278,18 @@ namespace ROMS
                             txtRequestNo.Text = objDS.Tables[1].Rows[0]["Request No."].ToString().Replace("''", "'");
                             txtRemarks.Text = objDS.Tables[1].Rows[0]["Remarks"].ToString().Replace("''", "'");
                             cmbConcern.SelectedValue =Convert.ToInt16(objDS.Tables[1].Rows[0]["ConcernID"]);
+                            cmbRequestType.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_RequestTypeID"]);
                             if (Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_LoadByRackGroup"]) == 0)
                             {
                                 chkRackGroup.Checked = false;
                             }
-                            else { chkRackGroup.Checked = true; chkRackGroup.Enabled = false; }
-                            lvVerified.Visible = false;
-
-                            cmbRequestType.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_RequestTypeID"]);
+                            else { chkRackGroup.Checked = true; chkRackGroup.Enabled = false; } 
                             cmbRackGroup.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_RKGID"]);
                             cmbProductType.SelectedValue = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_ProductTypeID"]);
                             txtGeneralBillNo.Text = Convert.ToString(objDS.Tables[1].Rows[0]["BillNo"]);
                             varTellerID = Convert.ToInt16(objDS.Tables[1].Rows[0]["SR_TellerID"]);
                             txtTeller.Text = Convert.ToString(objDS.Tables[1].Rows[0]["Teller"]);
-
-                           
+                            lvVerified.Visible = false;
                         }
                         if (varStatus == 28 && pbDeleteFlag == 0)
                         {

@@ -1509,7 +1509,7 @@ namespace ROMS
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group  Sp
         public string udfnSubGroup(int ViewType, int paraPRSGID, int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId, int paraSG_BatchNo, int paraPRSG_SLID, int paraPRSG_RKID, string paraOriginator, string varRackId, string paraUserID, int paraDeleteFlag, int paraSubgroupType, int paraMarginTypeId,string paraImageNames,string paraSubgroupIds,
-            int paraProductScheme,int paraBillScheme,DataTable paraSubgroupImages)
+            int paraSchEligibleUpdate, int paraBillScheme,DataTable paraSubgroupImages)
         {
 
             string varResult = "";
@@ -1537,7 +1537,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraImageNames", paraImageNames);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupIds", paraSubgroupIds);
-                varSqlCommand.Parameters.AddWithValue("@paraProductScheme", paraProductScheme);
+                varSqlCommand.Parameters.AddWithValue("@paraSchEligibleUpdate", paraSchEligibleUpdate);
                 varSqlCommand.Parameters.AddWithValue("@paraBillScheme", paraBillScheme);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupImages", paraSubgroupImages);
                 varSqlCommand.CommandTimeout = 0;
@@ -1851,6 +1851,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", objMR_ProductReport.paraSubgroupType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objMR_ProductReport.paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@paraType", objMR_ProductReport.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_ProductReport.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);  
                 varSqlCommand.CommandTimeout = 0;

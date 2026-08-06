@@ -169,10 +169,20 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
+                int varViewType = 9;
                 //**** To call the function from SP ***************
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 635)
+                {
+                    varViewType = 10;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 636)
+                {
+                    varViewType = 10;
+                }
+
 
                 MR_Product objMR_ProductReport = new MR_Product();
-                objMR_ProductReport.paraViewType = 9;
+                objMR_ProductReport.paraViewType = varViewType;
                 objMR_ProductReport.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_ProductReport.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
                 objMR_ProductReport.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
