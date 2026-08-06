@@ -26,11 +26,16 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.pnlQuickSearch = new System.Windows.Forms.Panel();
             this.lblQuickSearch = new System.Windows.Forms.Label();
             this.lblSearchBy = new System.Windows.Forms.Label();
@@ -39,97 +44,125 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.pnlProductHeader = new System.Windows.Forms.Panel();
             this.picProduct = new System.Windows.Forms.PictureBox();
-            this.lblProductNo = new System.Windows.Forms.Label();
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblPICode = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.lblParentProduct = new System.Windows.Forms.Label();
+            this.lblRetailRateValue = new System.Windows.Forms.Label();
             this.pnlActiveItems = new System.Windows.Forms.Panel();
             this.lblActiveItemsTitle = new System.Windows.Forms.Label();
-            this.lblActiveItemsValue = new System.Windows.Forms.Label();
+            this.lblActiveProduct = new System.Windows.Forms.Label();
             this.pnlInactiveItems = new System.Windows.Forms.Panel();
             this.lblInactiveItemsTitle = new System.Windows.Forms.Label();
-            this.lblInactiveItemsValue = new System.Windows.Forms.Label();
+            this.lblInactiveIProduct = new System.Windows.Forms.Label();
             this.pnlTotalItems = new System.Windows.Forms.Panel();
             this.lblTotalItemsTitle = new System.Windows.Forms.Label();
-            this.lblTotalItemsValue = new System.Windows.Forms.Label();
+            this.lblTotalProduct = new System.Windows.Forms.Label();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblProductDetailsTitle = new System.Windows.Forms.Label();
             this.lblPICodeCaption = new System.Windows.Forms.Label();
             this.lblPICodeValue = new System.Windows.Forms.Label();
             this.lblUnitCaption = new System.Windows.Forms.Label();
-            this.lblUnitValue = new System.Windows.Forms.Label();
+            this.lblUnit = new System.Windows.Forms.Label();
             this.lblGroupCaption = new System.Windows.Forms.Label();
-            this.lblGroupValue = new System.Windows.Forms.Label();
+            this.lblGroup = new System.Windows.Forms.Label();
             this.lblSubGroupCaption = new System.Windows.Forms.Label();
-            this.lblSubGroupValue = new System.Windows.Forms.Label();
+            this.lblSubGroup = new System.Windows.Forms.Label();
             this.lblCategoryCaption = new System.Windows.Forms.Label();
-            this.lblCategoryValue = new System.Windows.Forms.Label();
+            this.lblCategory = new System.Windows.Forms.Label();
             this.lblProductTypeCaption = new System.Windows.Forms.Label();
-            this.lblProductTypeValue = new System.Windows.Forms.Label();
+            this.lblProductType = new System.Windows.Forms.Label();
             this.lblUPPCaption = new System.Windows.Forms.Label();
-            this.lblUPPValue = new System.Windows.Forms.Label();
+            this.lblUpp = new System.Windows.Forms.Label();
             this.lblHSNCaption = new System.Windows.Forms.Label();
-            this.lblHSNValue = new System.Windows.Forms.Label();
+            this.lblHSN = new System.Windows.Forms.Label();
             this.lblTaxCaption = new System.Windows.Forms.Label();
-            this.lblTaxValue = new System.Windows.Forms.Label();
+            this.lblTax = new System.Windows.Forms.Label();
             this.lblBulkUnitCaption = new System.Windows.Forms.Label();
-            this.lblBulkUnitValue = new System.Windows.Forms.Label();
+            this.lblBulk = new System.Windows.Forms.Label();
             this.lblShelfLifeCaption = new System.Windows.Forms.Label();
-            this.lblShelfLifeValue = new System.Windows.Forms.Label();
+            this.lblShelflife = new System.Windows.Forms.Label();
             this.lblProductSchemeCaption = new System.Windows.Forms.Label();
-            this.lblProductSchemeValue = new System.Windows.Forms.Label();
+            this.lblProductScheme = new System.Windows.Forms.Label();
             this.lblBillSchemeCaption = new System.Windows.Forms.Label();
-            this.lblBillSchemeValue = new System.Windows.Forms.Label();
+            this.lblBillScheme = new System.Windows.Forms.Label();
             this.lblFocusCaption = new System.Windows.Forms.Label();
-            this.lblFocusValue = new System.Windows.Forms.Label();
+            this.lblFocus = new System.Windows.Forms.Label();
             this.lblPriorityCaption = new System.Windows.Forms.Label();
-            this.lblPriorityValue = new System.Windows.Forms.Label();
+            this.lblPriority = new System.Windows.Forms.Label();
             this.lblSpecialCaption = new System.Windows.Forms.Label();
-            this.lblSpecialValue = new System.Windows.Forms.Label();
+            this.lblSpecial = new System.Windows.Forms.Label();
             this.lblOwnCaption = new System.Windows.Forms.Label();
-            this.lblOwnValue = new System.Windows.Forms.Label();
+            this.lblOwn = new System.Windows.Forms.Label();
             this.pnlInfoDetails = new System.Windows.Forms.Panel();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.lblInfoDetailsTitle = new System.Windows.Forms.Label();
             this.lblStockCaption = new System.Windows.Forms.Label();
-            this.lblStockValue = new System.Windows.Forms.Label();
+            this.lblStock = new System.Windows.Forms.Label();
             this.lblBarcodeCaption = new System.Windows.Forms.Label();
-            this.lblBarcodeValue = new System.Windows.Forms.Label();
+            this.lblBarcode = new System.Windows.Forms.Label();
             this.lblInfoStatusCaption = new System.Windows.Forms.Label();
-            this.lblInfoStatusValue = new System.Windows.Forms.Label();
+            this.lblInfoStatus = new System.Windows.Forms.Label();
             this.lblPurLocationCaption = new System.Windows.Forms.Label();
-            this.lblPurLocationValue = new System.Windows.Forms.Label();
+            this.lblPurLocation = new System.Windows.Forms.Label();
             this.lblRackCaption = new System.Windows.Forms.Label();
-            this.lblRackValue = new System.Windows.Forms.Label();
+            this.lblPurRack = new System.Windows.Forms.Label();
             this.lblSalesLocationCaption = new System.Windows.Forms.Label();
-            this.lblSalesLocationValue = new System.Windows.Forms.Label();
+            this.lblSalesLocation = new System.Windows.Forms.Label();
             this.lblSalesRackCaption = new System.Windows.Forms.Label();
-            this.lblSalesRackValue = new System.Windows.Forms.Label();
+            this.lblSalesRack = new System.Windows.Forms.Label();
             this.lblRackGroupCaption = new System.Windows.Forms.Label();
-            this.lblRackGroupValue = new System.Windows.Forms.Label();
+            this.lblRackGroup = new System.Windows.Forms.Label();
             this.pnlPricingDetails = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.lblPricingDetailsTitle = new System.Windows.Forms.Label();
             this.lblRetailRateCaption = new System.Windows.Forms.Label();
-            this.lblRetailRateValue = new System.Windows.Forms.Label();
+            this.lblRetailRate = new System.Windows.Forms.Label();
             this.lblWholesaleRateCaption = new System.Windows.Forms.Label();
-            this.lblWholesaleRateValue = new System.Windows.Forms.Label();
+            this.lblWholesaleRate = new System.Windows.Forms.Label();
             this.lblRetailMinQtyCaption = new System.Windows.Forms.Label();
-            this.lblRetailMinQtyValue = new System.Windows.Forms.Label();
+            this.lblRetailMinQty = new System.Windows.Forms.Label();
             this.lblWholesaleMinQtyCaption = new System.Windows.Forms.Label();
-            this.lblWholesaleMinQtyValue = new System.Windows.Forms.Label();
+            this.lblWholesaleMinQty = new System.Windows.Forms.Label();
             this.pnlProductUnits = new System.Windows.Forms.Panel();
-            this.lblProductUnitsTitle = new System.Windows.Forms.Label();
-            this.dgvProductUnits = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoProductUnits = new System.Windows.Forms.Label();
+            this.lblProductUnitsTitle = new System.Windows.Forms.Label();
+            this.grdItemList = new System.Windows.Forms.DataGridView();
             this.pnlSuppliers = new System.Windows.Forms.Panel();
             this.lblSuppliersTitle = new System.Windows.Forms.Label();
-            this.dgvSuppliers = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.errItems = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.pnlQuickSearch.SuspendLayout();
             this.pnlProductHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picProduct)).BeginInit();
@@ -140,13 +173,17 @@
             this.pnlInfoDetails.SuspendLayout();
             this.pnlPricingDetails.SuspendLayout();
             this.pnlProductUnits.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductUnits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).BeginInit();
             this.pnlSuppliers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Controls.Add(this.DGV_FilterProduct);
             this.groupBox1.Controls.Add(this.pnlQuickSearch);
             this.groupBox1.Controls.Add(this.pnlProductHeader);
             this.groupBox1.Controls.Add(this.pnlActiveItems);
@@ -163,6 +200,50 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // DGV_FilterProduct
+            // 
+            this.DGV_FilterProduct.AllowUserToAddRows = false;
+            this.DGV_FilterProduct.AllowUserToDeleteRows = false;
+            this.DGV_FilterProduct.AllowUserToResizeColumns = false;
+            this.DGV_FilterProduct.AllowUserToResizeRows = false;
+            this.DGV_FilterProduct.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_FilterProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            this.DGV_FilterProduct.ColumnHeadersHeight = 30;
+            this.DGV_FilterProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle30;
+            this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
+            this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(194, 88);
+            this.DGV_FilterProduct.Name = "DGV_FilterProduct";
+            this.DGV_FilterProduct.ReadOnly = true;
+            this.DGV_FilterProduct.RowHeadersVisible = false;
+            this.DGV_FilterProduct.RowHeadersWidth = 51;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle31;
+            this.DGV_FilterProduct.RowTemplate.Height = 25;
+            this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(528, 25);
+            this.DGV_FilterProduct.TabIndex = 111111151;
+            this.DGV_FilterProduct.Visible = false;
+            this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
+            this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
+            // 
             // pnlQuickSearch
             // 
             this.pnlQuickSearch.BackColor = System.Drawing.Color.White;
@@ -174,7 +255,7 @@
             this.pnlQuickSearch.Controls.Add(this.btnClear);
             this.pnlQuickSearch.Location = new System.Drawing.Point(10, 26);
             this.pnlQuickSearch.Name = "pnlQuickSearch";
-            this.pnlQuickSearch.Size = new System.Drawing.Size(1236, 71);
+            this.pnlQuickSearch.Size = new System.Drawing.Size(712, 71);
             this.pnlQuickSearch.TabIndex = 11;
             // 
             // lblQuickSearch
@@ -182,7 +263,7 @@
             this.lblQuickSearch.AutoSize = true;
             this.lblQuickSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lblQuickSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))));
-            this.lblQuickSearch.Location = new System.Drawing.Point(18, 7);
+            this.lblQuickSearch.Location = new System.Drawing.Point(3, 7);
             this.lblQuickSearch.Name = "lblQuickSearch";
             this.lblQuickSearch.Size = new System.Drawing.Size(116, 19);
             this.lblQuickSearch.TabIndex = 0;
@@ -193,7 +274,7 @@
             this.lblSearchBy.AutoSize = true;
             this.lblSearchBy.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lblSearchBy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(60)))), ((int)(((byte)(85)))));
-            this.lblSearchBy.Location = new System.Drawing.Point(45, 35);
+            this.lblSearchBy.Location = new System.Drawing.Point(18, 35);
             this.lblSearchBy.Name = "lblSearchBy";
             this.lblSearchBy.Size = new System.Drawing.Size(161, 19);
             this.lblSearchBy.TabIndex = 1;
@@ -202,11 +283,15 @@
             // txtSearch
             // 
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(210, 33);
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtSearch.Location = new System.Drawing.Point(183, 33);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(322, 23);
+            this.txtSearch.Size = new System.Drawing.Size(302, 25);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // btnSearch
             // 
@@ -215,12 +300,13 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(546, 31);
+            this.btnSearch.Location = new System.Drawing.Point(496, 31);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(122, 26);
+            this.btnSearch.Size = new System.Drawing.Size(89, 26);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "🔎 Search";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClear
             // 
@@ -229,25 +315,25 @@
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(60)))), ((int)(((byte)(75)))));
-            this.btnClear.Location = new System.Drawing.Point(678, 31);
+            this.btnClear.Location = new System.Drawing.Point(598, 31);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(100, 26);
+            this.btnClear.Size = new System.Drawing.Size(89, 26);
             this.btnClear.TabIndex = 2;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // pnlProductHeader
             // 
             this.pnlProductHeader.BackColor = System.Drawing.Color.White;
             this.pnlProductHeader.Controls.Add(this.picProduct);
-            this.pnlProductHeader.Controls.Add(this.lblProductNo);
             this.pnlProductHeader.Controls.Add(this.lblProductName);
             this.pnlProductHeader.Controls.Add(this.lblPICode);
             this.pnlProductHeader.Controls.Add(this.lblStatus);
-            this.pnlProductHeader.Controls.Add(this.lblParentProduct);
+            this.pnlProductHeader.Controls.Add(this.lblRetailRateValue);
             this.pnlProductHeader.Location = new System.Drawing.Point(10, 106);
             this.pnlProductHeader.Name = "pnlProductHeader";
-            this.pnlProductHeader.Size = new System.Drawing.Size(711, 105);
+            this.pnlProductHeader.Size = new System.Drawing.Size(711, 108);
             this.pnlProductHeader.TabIndex = 12;
             // 
             // picProduct
@@ -256,30 +342,19 @@
             this.picProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picProduct.Location = new System.Drawing.Point(10, 8);
             this.picProduct.Name = "picProduct";
-            this.picProduct.Size = new System.Drawing.Size(80, 80);
+            this.picProduct.Size = new System.Drawing.Size(118, 94);
             this.picProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picProduct.TabIndex = 0;
             this.picProduct.TabStop = false;
             // 
-            // lblProductNo
-            // 
-            this.lblProductNo.AutoSize = true;
-            this.lblProductNo.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
-            this.lblProductNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(45)))), ((int)(((byte)(70)))));
-            this.lblProductNo.Location = new System.Drawing.Point(105, 10);
-            this.lblProductNo.Name = "lblProductNo";
-            this.lblProductNo.Size = new System.Drawing.Size(54, 32);
-            this.lblProductNo.TabIndex = 1;
-            this.lblProductNo.Text = "304";
-            // 
             // lblProductName
             // 
             this.lblProductName.AutoSize = true;
-            this.lblProductName.Font = new System.Drawing.Font("Nirmala UI", 13F);
+            this.lblProductName.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
             this.lblProductName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(45)))), ((int)(((byte)(70)))));
-            this.lblProductName.Location = new System.Drawing.Point(155, 14);
+            this.lblProductName.Location = new System.Drawing.Point(134, 10);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(214, 25);
+            this.lblProductName.Size = new System.Drawing.Size(308, 32);
             this.lblProductName.TabIndex = 2;
             this.lblProductName.Text = "பால்(சிலை)-சிப்பட்டி";
             // 
@@ -287,14 +362,14 @@
             // 
             this.lblPICode.AutoSize = true;
             this.lblPICode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
-            this.lblPICode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblPICode.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPICode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(90)))), ((int)(((byte)(175)))));
-            this.lblPICode.Location = new System.Drawing.Point(105, 54);
+            this.lblPICode.Location = new System.Drawing.Point(134, 59);
             this.lblPICode.Name = "lblPICode";
             this.lblPICode.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblPICode.Size = new System.Drawing.Size(142, 21);
+            this.lblPICode.Size = new System.Drawing.Size(82, 23);
             this.lblPICode.TabIndex = 3;
-            this.lblPICode.Text = "PI Code: NWMCPUR30";
+            this.lblPICode.Text = "PI Code : -";
             // 
             // lblStatus
             // 
@@ -302,168 +377,338 @@
             this.lblStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(247)))), ((int)(((byte)(240)))));
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(125)))), ((int)(((byte)(85)))));
-            this.lblStatus.Location = new System.Drawing.Point(260, 54);
+            this.lblStatus.Location = new System.Drawing.Point(302, 59);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblStatus.Size = new System.Drawing.Size(102, 23);
+            this.lblStatus.Size = new System.Drawing.Size(116, 23);
             this.lblStatus.TabIndex = 4;
-            this.lblStatus.Text = "Status: Active";
+            this.lblStatus.Text = "Status:  Inactive";
             // 
-            // lblParentProduct
+            // lblRetailRateValue
             // 
-            this.lblParentProduct.AutoSize = true;
-            this.lblParentProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.lblParentProduct.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-            this.lblParentProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblParentProduct.Location = new System.Drawing.Point(366, 54);
-            this.lblParentProduct.Name = "lblParentProduct";
-            this.lblParentProduct.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblParentProduct.Size = new System.Drawing.Size(123, 23);
-            this.lblParentProduct.TabIndex = 5;
-            this.lblParentProduct.Text = "Parent Product: -";
+            this.lblRetailRateValue.AutoSize = true;
+            this.lblRetailRateValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
+            this.lblRetailRateValue.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblRetailRateValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.lblRetailRateValue.Location = new System.Drawing.Point(429, 59);
+            this.lblRetailRateValue.Name = "lblRetailRateValue";
+            this.lblRetailRateValue.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.lblRetailRateValue.Size = new System.Drawing.Size(135, 23);
+            this.lblRetailRateValue.TabIndex = 5;
+            this.lblRetailRateValue.Text = "Parent Product :  - ";
             // 
             // pnlActiveItems
             // 
-            this.pnlActiveItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(249)))), ((int)(((byte)(245)))));
+            this.pnlActiveItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(242)))), ((int)(((byte)(253)))));
             this.pnlActiveItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlActiveItems.Controls.Add(this.lblActiveItemsTitle);
-            this.pnlActiveItems.Controls.Add(this.lblActiveItemsValue);
-            this.pnlActiveItems.Location = new System.Drawing.Point(727, 111);
+            this.pnlActiveItems.Controls.Add(this.lblActiveProduct);
+            this.pnlActiveItems.Location = new System.Drawing.Point(737, 26);
             this.pnlActiveItems.Name = "pnlActiveItems";
-            this.pnlActiveItems.Size = new System.Drawing.Size(164, 95);
+            this.pnlActiveItems.Size = new System.Drawing.Size(123, 71);
             this.pnlActiveItems.TabIndex = 13;
             // 
             // lblActiveItemsTitle
             // 
             this.lblActiveItemsTitle.AutoSize = true;
             this.lblActiveItemsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Bold);
-            this.lblActiveItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(60)))), ((int)(((byte)(95)))));
-            this.lblActiveItemsTitle.Location = new System.Drawing.Point(15, 13);
+            this.lblActiveItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.lblActiveItemsTitle.Location = new System.Drawing.Point(7, 5);
             this.lblActiveItemsTitle.Name = "lblActiveItemsTitle";
             this.lblActiveItemsTitle.Size = new System.Drawing.Size(103, 17);
             this.lblActiveItemsTitle.TabIndex = 0;
             this.lblActiveItemsTitle.Text = "Active Products";
             // 
-            // lblActiveItemsValue
+            // lblActiveProduct
             // 
-            this.lblActiveItemsValue.AutoSize = true;
-            this.lblActiveItemsValue.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Bold);
-            this.lblActiveItemsValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(125)))), ((int)(((byte)(85)))));
-            this.lblActiveItemsValue.Location = new System.Drawing.Point(15, 34);
-            this.lblActiveItemsValue.Name = "lblActiveItemsValue";
-            this.lblActiveItemsValue.Size = new System.Drawing.Size(58, 36);
-            this.lblActiveItemsValue.TabIndex = 1;
-            this.lblActiveItemsValue.Text = "972";
+            this.lblActiveProduct.AutoSize = true;
+            this.lblActiveProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Bold);
+            this.lblActiveProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.lblActiveProduct.Location = new System.Drawing.Point(15, 28);
+            this.lblActiveProduct.Name = "lblActiveProduct";
+            this.lblActiveProduct.Size = new System.Drawing.Size(58, 36);
+            this.lblActiveProduct.TabIndex = 1;
+            this.lblActiveProduct.Text = "972";
             // 
             // pnlInactiveItems
             // 
-            this.pnlInactiveItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.pnlInactiveItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(229)))), ((int)(((byte)(245)))));
             this.pnlInactiveItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlInactiveItems.Controls.Add(this.lblInactiveItemsTitle);
-            this.pnlInactiveItems.Controls.Add(this.lblInactiveItemsValue);
-            this.pnlInactiveItems.Location = new System.Drawing.Point(907, 111);
+            this.pnlInactiveItems.Controls.Add(this.lblInactiveIProduct);
+            this.pnlInactiveItems.Location = new System.Drawing.Point(866, 26);
             this.pnlInactiveItems.Name = "pnlInactiveItems";
-            this.pnlInactiveItems.Size = new System.Drawing.Size(164, 95);
+            this.pnlInactiveItems.Size = new System.Drawing.Size(123, 71);
             this.pnlInactiveItems.TabIndex = 14;
             // 
             // lblInactiveItemsTitle
             // 
             this.lblInactiveItemsTitle.AutoSize = true;
             this.lblInactiveItemsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Bold);
-            this.lblInactiveItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(60)))), ((int)(((byte)(95)))));
-            this.lblInactiveItemsTitle.Location = new System.Drawing.Point(15, 13);
+            this.lblInactiveItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(31)))), ((int)(((byte)(162)))));
+            this.lblInactiveItemsTitle.Location = new System.Drawing.Point(7, 5);
             this.lblInactiveItemsTitle.Name = "lblInactiveItemsTitle";
             this.lblInactiveItemsTitle.Size = new System.Drawing.Size(113, 17);
             this.lblInactiveItemsTitle.TabIndex = 0;
             this.lblInactiveItemsTitle.Text = "Inactive Products";
             // 
-            // lblInactiveItemsValue
+            // lblInactiveIProduct
             // 
-            this.lblInactiveItemsValue.AutoSize = true;
-            this.lblInactiveItemsValue.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Bold);
-            this.lblInactiveItemsValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
-            this.lblInactiveItemsValue.Location = new System.Drawing.Point(15, 34);
-            this.lblInactiveItemsValue.Name = "lblInactiveItemsValue";
-            this.lblInactiveItemsValue.Size = new System.Drawing.Size(44, 36);
-            this.lblInactiveItemsValue.TabIndex = 1;
-            this.lblInactiveItemsValue.Text = "84";
+            this.lblInactiveIProduct.AutoSize = true;
+            this.lblInactiveIProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Bold);
+            this.lblInactiveIProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(39)))), ((int)(((byte)(160)))));
+            this.lblInactiveIProduct.Location = new System.Drawing.Point(23, 28);
+            this.lblInactiveIProduct.Name = "lblInactiveIProduct";
+            this.lblInactiveIProduct.Size = new System.Drawing.Size(44, 36);
+            this.lblInactiveIProduct.TabIndex = 1;
+            this.lblInactiveIProduct.Text = "84";
             // 
             // pnlTotalItems
             // 
-            this.pnlTotalItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            this.pnlTotalItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(229)))), ((int)(((byte)(245)))));
             this.pnlTotalItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTotalItems.Controls.Add(this.lblTotalItemsTitle);
-            this.pnlTotalItems.Controls.Add(this.lblTotalItemsValue);
-            this.pnlTotalItems.Location = new System.Drawing.Point(1087, 111);
+            this.pnlTotalItems.Controls.Add(this.lblTotalProduct);
+            this.pnlTotalItems.Location = new System.Drawing.Point(1123, 26);
             this.pnlTotalItems.Name = "pnlTotalItems";
-            this.pnlTotalItems.Size = new System.Drawing.Size(159, 95);
+            this.pnlTotalItems.Size = new System.Drawing.Size(123, 71);
             this.pnlTotalItems.TabIndex = 15;
             // 
             // lblTotalItemsTitle
             // 
             this.lblTotalItemsTitle.AutoSize = true;
-            this.lblTotalItemsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Bold);
-            this.lblTotalItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(60)))), ((int)(((byte)(95)))));
-            this.lblTotalItemsTitle.Location = new System.Drawing.Point(15, 13);
+            this.lblTotalItemsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTotalItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(31)))), ((int)(((byte)(162)))));
+            this.lblTotalItemsTitle.Location = new System.Drawing.Point(13, 5);
             this.lblTotalItemsTitle.Name = "lblTotalItemsTitle";
-            this.lblTotalItemsTitle.Size = new System.Drawing.Size(95, 17);
+            this.lblTotalItemsTitle.Size = new System.Drawing.Size(99, 19);
             this.lblTotalItemsTitle.TabIndex = 0;
             this.lblTotalItemsTitle.Text = "Total Products";
             // 
-            // lblTotalItemsValue
+            // lblTotalProduct
             // 
-            this.lblTotalItemsValue.AutoSize = true;
-            this.lblTotalItemsValue.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Bold);
-            this.lblTotalItemsValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(35)))), ((int)(((byte)(170)))));
-            this.lblTotalItemsValue.Location = new System.Drawing.Point(15, 34);
-            this.lblTotalItemsValue.Name = "lblTotalItemsValue";
-            this.lblTotalItemsValue.Size = new System.Drawing.Size(74, 36);
-            this.lblTotalItemsValue.TabIndex = 1;
-            this.lblTotalItemsValue.Text = "1,056";
+            this.lblTotalProduct.AutoSize = true;
+            this.lblTotalProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Bold);
+            this.lblTotalProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(39)))), ((int)(((byte)(160)))));
+            this.lblTotalProduct.Location = new System.Drawing.Point(13, 28);
+            this.lblTotalProduct.Name = "lblTotalProduct";
+            this.lblTotalProduct.Size = new System.Drawing.Size(74, 36);
+            this.lblTotalProduct.TabIndex = 1;
+            this.lblTotalProduct.Text = "1,056";
             // 
             // pnlProductDetails
             // 
             this.pnlProductDetails.BackColor = System.Drawing.Color.White;
             this.pnlProductDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlProductDetails.Controls.Add(this.label17);
+            this.pnlProductDetails.Controls.Add(this.label16);
+            this.pnlProductDetails.Controls.Add(this.label15);
+            this.pnlProductDetails.Controls.Add(this.label14);
+            this.pnlProductDetails.Controls.Add(this.label13);
+            this.pnlProductDetails.Controls.Add(this.label12);
+            this.pnlProductDetails.Controls.Add(this.label11);
+            this.pnlProductDetails.Controls.Add(this.label10);
+            this.pnlProductDetails.Controls.Add(this.label9);
+            this.pnlProductDetails.Controls.Add(this.label8);
+            this.pnlProductDetails.Controls.Add(this.label7);
+            this.pnlProductDetails.Controls.Add(this.label6);
+            this.pnlProductDetails.Controls.Add(this.label5);
+            this.pnlProductDetails.Controls.Add(this.label4);
+            this.pnlProductDetails.Controls.Add(this.label3);
+            this.pnlProductDetails.Controls.Add(this.label2);
+            this.pnlProductDetails.Controls.Add(this.label1);
             this.pnlProductDetails.Controls.Add(this.lblProductDetailsTitle);
             this.pnlProductDetails.Controls.Add(this.lblPICodeCaption);
             this.pnlProductDetails.Controls.Add(this.lblPICodeValue);
             this.pnlProductDetails.Controls.Add(this.lblUnitCaption);
-            this.pnlProductDetails.Controls.Add(this.lblUnitValue);
+            this.pnlProductDetails.Controls.Add(this.lblUnit);
             this.pnlProductDetails.Controls.Add(this.lblGroupCaption);
-            this.pnlProductDetails.Controls.Add(this.lblGroupValue);
+            this.pnlProductDetails.Controls.Add(this.lblGroup);
             this.pnlProductDetails.Controls.Add(this.lblSubGroupCaption);
-            this.pnlProductDetails.Controls.Add(this.lblSubGroupValue);
+            this.pnlProductDetails.Controls.Add(this.lblSubGroup);
             this.pnlProductDetails.Controls.Add(this.lblCategoryCaption);
-            this.pnlProductDetails.Controls.Add(this.lblCategoryValue);
+            this.pnlProductDetails.Controls.Add(this.lblCategory);
             this.pnlProductDetails.Controls.Add(this.lblProductTypeCaption);
-            this.pnlProductDetails.Controls.Add(this.lblProductTypeValue);
+            this.pnlProductDetails.Controls.Add(this.lblProductType);
             this.pnlProductDetails.Controls.Add(this.lblUPPCaption);
-            this.pnlProductDetails.Controls.Add(this.lblUPPValue);
+            this.pnlProductDetails.Controls.Add(this.lblUpp);
             this.pnlProductDetails.Controls.Add(this.lblHSNCaption);
-            this.pnlProductDetails.Controls.Add(this.lblHSNValue);
+            this.pnlProductDetails.Controls.Add(this.lblHSN);
             this.pnlProductDetails.Controls.Add(this.lblTaxCaption);
-            this.pnlProductDetails.Controls.Add(this.lblTaxValue);
+            this.pnlProductDetails.Controls.Add(this.lblTax);
             this.pnlProductDetails.Controls.Add(this.lblBulkUnitCaption);
-            this.pnlProductDetails.Controls.Add(this.lblBulkUnitValue);
+            this.pnlProductDetails.Controls.Add(this.lblBulk);
             this.pnlProductDetails.Controls.Add(this.lblShelfLifeCaption);
-            this.pnlProductDetails.Controls.Add(this.lblShelfLifeValue);
+            this.pnlProductDetails.Controls.Add(this.lblShelflife);
             this.pnlProductDetails.Controls.Add(this.lblProductSchemeCaption);
-            this.pnlProductDetails.Controls.Add(this.lblProductSchemeValue);
+            this.pnlProductDetails.Controls.Add(this.lblProductScheme);
             this.pnlProductDetails.Controls.Add(this.lblBillSchemeCaption);
-            this.pnlProductDetails.Controls.Add(this.lblBillSchemeValue);
+            this.pnlProductDetails.Controls.Add(this.lblBillScheme);
             this.pnlProductDetails.Controls.Add(this.lblFocusCaption);
-            this.pnlProductDetails.Controls.Add(this.lblFocusValue);
+            this.pnlProductDetails.Controls.Add(this.lblFocus);
             this.pnlProductDetails.Controls.Add(this.lblPriorityCaption);
-            this.pnlProductDetails.Controls.Add(this.lblPriorityValue);
+            this.pnlProductDetails.Controls.Add(this.lblPriority);
             this.pnlProductDetails.Controls.Add(this.lblSpecialCaption);
-            this.pnlProductDetails.Controls.Add(this.lblSpecialValue);
+            this.pnlProductDetails.Controls.Add(this.lblSpecial);
             this.pnlProductDetails.Controls.Add(this.lblOwnCaption);
-            this.pnlProductDetails.Controls.Add(this.lblOwnValue);
+            this.pnlProductDetails.Controls.Add(this.lblOwn);
             this.pnlProductDetails.Location = new System.Drawing.Point(10, 220);
             this.pnlProductDetails.Name = "pnlProductDetails";
             this.pnlProductDetails.Size = new System.Drawing.Size(570, 258);
             this.pnlProductDetails.TabIndex = 16;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(394, 48);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(13, 13);
+            this.label17.TabIndex = 51;
+            this.label17.Text = ": ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(394, 71);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(13, 13);
+            this.label16.TabIndex = 50;
+            this.label16.Text = ": ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(394, 94);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(13, 13);
+            this.label15.TabIndex = 49;
+            this.label15.Text = ": ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(394, 117);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(13, 13);
+            this.label14.TabIndex = 48;
+            this.label14.Text = ": ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(394, 140);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(13, 13);
+            this.label13.TabIndex = 47;
+            this.label13.Text = ": ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(394, 163);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(13, 13);
+            this.label12.TabIndex = 46;
+            this.label12.Text = ": ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(394, 186);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(13, 13);
+            this.label11.TabIndex = 45;
+            this.label11.Text = ": ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(394, 209);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(13, 13);
+            this.label10.TabIndex = 44;
+            this.label10.Text = ": ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(107, 232);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.TabIndex = 43;
+            this.label9.Text = ": ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(107, 209);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 42;
+            this.label8.Text = ": ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(107, 186);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 41;
+            this.label7.Text = ": ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(107, 163);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.TabIndex = 40;
+            this.label6.Text = ": ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(107, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(13, 13);
+            this.label5.TabIndex = 39;
+            this.label5.Text = ": ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(107, 117);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 38;
+            this.label4.Text = ": ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(107, 94);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(13, 13);
+            this.label3.TabIndex = 37;
+            this.label3.Text = ": ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(107, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 13);
+            this.label2.TabIndex = 36;
+            this.label2.Text = ": ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(107, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 35;
+            this.label1.Text = ": ";
             // 
             // lblProductDetailsTitle
             // 
@@ -492,11 +737,11 @@
             // lblPICodeValue
             // 
             this.lblPICodeValue.AutoSize = true;
-            this.lblPICodeValue.Location = new System.Drawing.Point(109, 48);
+            this.lblPICodeValue.Location = new System.Drawing.Point(126, 48);
             this.lblPICodeValue.Name = "lblPICodeValue";
-            this.lblPICodeValue.Size = new System.Drawing.Size(89, 13);
+            this.lblPICodeValue.Size = new System.Drawing.Size(10, 13);
             this.lblPICodeValue.TabIndex = 2;
-            this.lblPICodeValue.Text = ":   NWMCPUR30";
+            this.lblPICodeValue.Text = "-";
             // 
             // lblUnitCaption
             // 
@@ -508,14 +753,14 @@
             this.lblUnitCaption.TabIndex = 3;
             this.lblUnitCaption.Text = "Unit";
             // 
-            // lblUnitValue
+            // lblUnit
             // 
-            this.lblUnitValue.AutoSize = true;
-            this.lblUnitValue.Location = new System.Drawing.Point(109, 71);
-            this.lblUnitValue.Name = "lblUnitValue";
-            this.lblUnitValue.Size = new System.Drawing.Size(38, 13);
-            this.lblUnitValue.TabIndex = 4;
-            this.lblUnitValue.Text = ":   Chp";
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Location = new System.Drawing.Point(126, 71);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(10, 13);
+            this.lblUnit.TabIndex = 4;
+            this.lblUnit.Text = "-";
             // 
             // lblGroupCaption
             // 
@@ -527,14 +772,14 @@
             this.lblGroupCaption.TabIndex = 5;
             this.lblGroupCaption.Text = "Group";
             // 
-            // lblGroupValue
+            // lblGroup
             // 
-            this.lblGroupValue.AutoSize = true;
-            this.lblGroupValue.Location = new System.Drawing.Point(109, 94);
-            this.lblGroupValue.Name = "lblGroupValue";
-            this.lblGroupValue.Size = new System.Drawing.Size(43, 13);
-            this.lblGroupValue.TabIndex = 6;
-            this.lblGroupValue.Text = ":   Food";
+            this.lblGroup.AutoSize = true;
+            this.lblGroup.Location = new System.Drawing.Point(126, 94);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(10, 13);
+            this.lblGroup.TabIndex = 6;
+            this.lblGroup.Text = "-";
             // 
             // lblSubGroupCaption
             // 
@@ -546,14 +791,14 @@
             this.lblSubGroupCaption.TabIndex = 7;
             this.lblSubGroupCaption.Text = "Sub Group";
             // 
-            // lblSubGroupValue
+            // lblSubGroup
             // 
-            this.lblSubGroupValue.AutoSize = true;
-            this.lblSubGroupValue.Location = new System.Drawing.Point(109, 117);
-            this.lblSubGroupValue.Name = "lblSubGroupValue";
-            this.lblSubGroupValue.Size = new System.Drawing.Size(58, 13);
-            this.lblSubGroupValue.TabIndex = 8;
-            this.lblSubGroupValue.Text = ":   Malaigai";
+            this.lblSubGroup.AutoSize = true;
+            this.lblSubGroup.Location = new System.Drawing.Point(126, 117);
+            this.lblSubGroup.Name = "lblSubGroup";
+            this.lblSubGroup.Size = new System.Drawing.Size(10, 13);
+            this.lblSubGroup.TabIndex = 8;
+            this.lblSubGroup.Text = "-";
             // 
             // lblCategoryCaption
             // 
@@ -565,14 +810,14 @@
             this.lblCategoryCaption.TabIndex = 9;
             this.lblCategoryCaption.Text = "Category";
             // 
-            // lblCategoryValue
+            // lblCategory
             // 
-            this.lblCategoryValue.AutoSize = true;
-            this.lblCategoryValue.Location = new System.Drawing.Point(109, 140);
-            this.lblCategoryValue.Name = "lblCategoryValue";
-            this.lblCategoryValue.Size = new System.Drawing.Size(55, 13);
-            this.lblCategoryValue.TabIndex = 10;
-            this.lblCategoryValue.Text = ":   Trading";
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(126, 140);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(10, 13);
+            this.lblCategory.TabIndex = 10;
+            this.lblCategory.Text = "-";
             // 
             // lblProductTypeCaption
             // 
@@ -584,14 +829,14 @@
             this.lblProductTypeCaption.TabIndex = 11;
             this.lblProductTypeCaption.Text = "Product Type";
             // 
-            // lblProductTypeValue
+            // lblProductType
             // 
-            this.lblProductTypeValue.AutoSize = true;
-            this.lblProductTypeValue.Location = new System.Drawing.Point(109, 163);
-            this.lblProductTypeValue.Name = "lblProductTypeValue";
-            this.lblProductTypeValue.Size = new System.Drawing.Size(22, 13);
-            this.lblProductTypeValue.TabIndex = 12;
-            this.lblProductTypeValue.Text = ":   -";
+            this.lblProductType.AutoSize = true;
+            this.lblProductType.Location = new System.Drawing.Point(126, 163);
+            this.lblProductType.Name = "lblProductType";
+            this.lblProductType.Size = new System.Drawing.Size(10, 13);
+            this.lblProductType.TabIndex = 12;
+            this.lblProductType.Text = "-";
             // 
             // lblUPPCaption
             // 
@@ -603,14 +848,14 @@
             this.lblUPPCaption.TabIndex = 13;
             this.lblUPPCaption.Text = "UPP";
             // 
-            // lblUPPValue
+            // lblUpp
             // 
-            this.lblUPPValue.AutoSize = true;
-            this.lblUPPValue.Location = new System.Drawing.Point(109, 186);
-            this.lblUPPValue.Name = "lblUPPValue";
-            this.lblUPPValue.Size = new System.Drawing.Size(22, 13);
-            this.lblUPPValue.TabIndex = 14;
-            this.lblUPPValue.Text = ":   -";
+            this.lblUpp.AutoSize = true;
+            this.lblUpp.Location = new System.Drawing.Point(126, 186);
+            this.lblUpp.Name = "lblUpp";
+            this.lblUpp.Size = new System.Drawing.Size(10, 13);
+            this.lblUpp.TabIndex = 14;
+            this.lblUpp.Text = "-";
             // 
             // lblHSNCaption
             // 
@@ -622,14 +867,14 @@
             this.lblHSNCaption.TabIndex = 15;
             this.lblHSNCaption.Text = "HSN";
             // 
-            // lblHSNValue
+            // lblHSN
             // 
-            this.lblHSNValue.AutoSize = true;
-            this.lblHSNValue.Location = new System.Drawing.Point(109, 209);
-            this.lblHSNValue.Name = "lblHSNValue";
-            this.lblHSNValue.Size = new System.Drawing.Size(130, 13);
-            this.lblHSNValue.TabIndex = 16;
-            this.lblHSNValue.Text = ":   HSN 21039090 @ 12%";
+            this.lblHSN.AutoSize = true;
+            this.lblHSN.Location = new System.Drawing.Point(126, 209);
+            this.lblHSN.Name = "lblHSN";
+            this.lblHSN.Size = new System.Drawing.Size(10, 13);
+            this.lblHSN.TabIndex = 16;
+            this.lblHSN.Text = "-";
             // 
             // lblTaxCaption
             // 
@@ -641,14 +886,14 @@
             this.lblTaxCaption.TabIndex = 17;
             this.lblTaxCaption.Text = "Tax";
             // 
-            // lblTaxValue
+            // lblTax
             // 
-            this.lblTaxValue.AutoSize = true;
-            this.lblTaxValue.Location = new System.Drawing.Point(109, 232);
-            this.lblTaxValue.Name = "lblTaxValue";
-            this.lblTaxValue.Size = new System.Drawing.Size(39, 13);
-            this.lblTaxValue.TabIndex = 18;
-            this.lblTaxValue.Text = ":   12%";
+            this.lblTax.AutoSize = true;
+            this.lblTax.Location = new System.Drawing.Point(126, 232);
+            this.lblTax.Name = "lblTax";
+            this.lblTax.Size = new System.Drawing.Size(10, 13);
+            this.lblTax.TabIndex = 18;
+            this.lblTax.Text = "-";
             // 
             // lblBulkUnitCaption
             // 
@@ -660,14 +905,14 @@
             this.lblBulkUnitCaption.TabIndex = 19;
             this.lblBulkUnitCaption.Text = "Bulk Unit";
             // 
-            // lblBulkUnitValue
+            // lblBulk
             // 
-            this.lblBulkUnitValue.AutoSize = true;
-            this.lblBulkUnitValue.Location = new System.Drawing.Point(395, 48);
-            this.lblBulkUnitValue.Name = "lblBulkUnitValue";
-            this.lblBulkUnitValue.Size = new System.Drawing.Size(22, 13);
-            this.lblBulkUnitValue.TabIndex = 20;
-            this.lblBulkUnitValue.Text = ":   -";
+            this.lblBulk.AutoSize = true;
+            this.lblBulk.Location = new System.Drawing.Point(416, 48);
+            this.lblBulk.Name = "lblBulk";
+            this.lblBulk.Size = new System.Drawing.Size(10, 13);
+            this.lblBulk.TabIndex = 20;
+            this.lblBulk.Text = "-";
             // 
             // lblShelfLifeCaption
             // 
@@ -679,14 +924,14 @@
             this.lblShelfLifeCaption.TabIndex = 21;
             this.lblShelfLifeCaption.Text = "Shelf Life";
             // 
-            // lblShelfLifeValue
+            // lblShelflife
             // 
-            this.lblShelfLifeValue.AutoSize = true;
-            this.lblShelfLifeValue.Location = new System.Drawing.Point(395, 71);
-            this.lblShelfLifeValue.Name = "lblShelfLifeValue";
-            this.lblShelfLifeValue.Size = new System.Drawing.Size(81, 13);
-            this.lblShelfLifeValue.TabIndex = 22;
-            this.lblShelfLifeValue.Text = ":   8 MONTH(S)";
+            this.lblShelflife.AutoSize = true;
+            this.lblShelflife.Location = new System.Drawing.Point(416, 71);
+            this.lblShelflife.Name = "lblShelflife";
+            this.lblShelflife.Size = new System.Drawing.Size(10, 13);
+            this.lblShelflife.TabIndex = 22;
+            this.lblShelflife.Text = "-";
             // 
             // lblProductSchemeCaption
             // 
@@ -698,14 +943,14 @@
             this.lblProductSchemeCaption.TabIndex = 23;
             this.lblProductSchemeCaption.Text = "Product Scheme";
             // 
-            // lblProductSchemeValue
+            // lblProductScheme
             // 
-            this.lblProductSchemeValue.AutoSize = true;
-            this.lblProductSchemeValue.Location = new System.Drawing.Point(395, 94);
-            this.lblProductSchemeValue.Name = "lblProductSchemeValue";
-            this.lblProductSchemeValue.Size = new System.Drawing.Size(37, 13);
-            this.lblProductSchemeValue.TabIndex = 24;
-            this.lblProductSchemeValue.Text = ":   Yes";
+            this.lblProductScheme.AutoSize = true;
+            this.lblProductScheme.Location = new System.Drawing.Point(416, 94);
+            this.lblProductScheme.Name = "lblProductScheme";
+            this.lblProductScheme.Size = new System.Drawing.Size(10, 13);
+            this.lblProductScheme.TabIndex = 24;
+            this.lblProductScheme.Text = "-";
             // 
             // lblBillSchemeCaption
             // 
@@ -717,14 +962,14 @@
             this.lblBillSchemeCaption.TabIndex = 25;
             this.lblBillSchemeCaption.Text = "Bill Scheme";
             // 
-            // lblBillSchemeValue
+            // lblBillScheme
             // 
-            this.lblBillSchemeValue.AutoSize = true;
-            this.lblBillSchemeValue.Location = new System.Drawing.Point(395, 117);
-            this.lblBillSchemeValue.Name = "lblBillSchemeValue";
-            this.lblBillSchemeValue.Size = new System.Drawing.Size(37, 13);
-            this.lblBillSchemeValue.TabIndex = 26;
-            this.lblBillSchemeValue.Text = ":   Yes";
+            this.lblBillScheme.AutoSize = true;
+            this.lblBillScheme.Location = new System.Drawing.Point(416, 117);
+            this.lblBillScheme.Name = "lblBillScheme";
+            this.lblBillScheme.Size = new System.Drawing.Size(10, 13);
+            this.lblBillScheme.TabIndex = 26;
+            this.lblBillScheme.Text = "-";
             // 
             // lblFocusCaption
             // 
@@ -736,14 +981,14 @@
             this.lblFocusCaption.TabIndex = 27;
             this.lblFocusCaption.Text = "Focus";
             // 
-            // lblFocusValue
+            // lblFocus
             // 
-            this.lblFocusValue.AutoSize = true;
-            this.lblFocusValue.Location = new System.Drawing.Point(395, 140);
-            this.lblFocusValue.Name = "lblFocusValue";
-            this.lblFocusValue.Size = new System.Drawing.Size(33, 13);
-            this.lblFocusValue.TabIndex = 28;
-            this.lblFocusValue.Text = ":   No";
+            this.lblFocus.AutoSize = true;
+            this.lblFocus.Location = new System.Drawing.Point(416, 140);
+            this.lblFocus.Name = "lblFocus";
+            this.lblFocus.Size = new System.Drawing.Size(10, 13);
+            this.lblFocus.TabIndex = 28;
+            this.lblFocus.Text = "-";
             // 
             // lblPriorityCaption
             // 
@@ -755,14 +1000,14 @@
             this.lblPriorityCaption.TabIndex = 29;
             this.lblPriorityCaption.Text = "Priority";
             // 
-            // lblPriorityValue
+            // lblPriority
             // 
-            this.lblPriorityValue.AutoSize = true;
-            this.lblPriorityValue.Location = new System.Drawing.Point(395, 163);
-            this.lblPriorityValue.Name = "lblPriorityValue";
-            this.lblPriorityValue.Size = new System.Drawing.Size(33, 13);
-            this.lblPriorityValue.TabIndex = 30;
-            this.lblPriorityValue.Text = ":   No";
+            this.lblPriority.AutoSize = true;
+            this.lblPriority.Location = new System.Drawing.Point(416, 163);
+            this.lblPriority.Name = "lblPriority";
+            this.lblPriority.Size = new System.Drawing.Size(10, 13);
+            this.lblPriority.TabIndex = 30;
+            this.lblPriority.Text = "-";
             // 
             // lblSpecialCaption
             // 
@@ -774,14 +1019,14 @@
             this.lblSpecialCaption.TabIndex = 31;
             this.lblSpecialCaption.Text = "Special";
             // 
-            // lblSpecialValue
+            // lblSpecial
             // 
-            this.lblSpecialValue.AutoSize = true;
-            this.lblSpecialValue.Location = new System.Drawing.Point(395, 186);
-            this.lblSpecialValue.Name = "lblSpecialValue";
-            this.lblSpecialValue.Size = new System.Drawing.Size(33, 13);
-            this.lblSpecialValue.TabIndex = 32;
-            this.lblSpecialValue.Text = ":   No";
+            this.lblSpecial.AutoSize = true;
+            this.lblSpecial.Location = new System.Drawing.Point(416, 186);
+            this.lblSpecial.Name = "lblSpecial";
+            this.lblSpecial.Size = new System.Drawing.Size(10, 13);
+            this.lblSpecial.TabIndex = 32;
+            this.lblSpecial.Text = "-";
             // 
             // lblOwnCaption
             // 
@@ -793,40 +1038,120 @@
             this.lblOwnCaption.TabIndex = 33;
             this.lblOwnCaption.Text = "Own";
             // 
-            // lblOwnValue
+            // lblOwn
             // 
-            this.lblOwnValue.AutoSize = true;
-            this.lblOwnValue.Location = new System.Drawing.Point(395, 209);
-            this.lblOwnValue.Name = "lblOwnValue";
-            this.lblOwnValue.Size = new System.Drawing.Size(33, 13);
-            this.lblOwnValue.TabIndex = 34;
-            this.lblOwnValue.Text = ":   No";
+            this.lblOwn.AutoSize = true;
+            this.lblOwn.Location = new System.Drawing.Point(416, 209);
+            this.lblOwn.Name = "lblOwn";
+            this.lblOwn.Size = new System.Drawing.Size(10, 13);
+            this.lblOwn.TabIndex = 34;
+            this.lblOwn.Text = "-";
             // 
             // pnlInfoDetails
             // 
             this.pnlInfoDetails.BackColor = System.Drawing.Color.White;
             this.pnlInfoDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlInfoDetails.Controls.Add(this.label25);
+            this.pnlInfoDetails.Controls.Add(this.label24);
+            this.pnlInfoDetails.Controls.Add(this.label23);
+            this.pnlInfoDetails.Controls.Add(this.label22);
+            this.pnlInfoDetails.Controls.Add(this.label21);
+            this.pnlInfoDetails.Controls.Add(this.label20);
+            this.pnlInfoDetails.Controls.Add(this.label19);
+            this.pnlInfoDetails.Controls.Add(this.label18);
             this.pnlInfoDetails.Controls.Add(this.lblInfoDetailsTitle);
             this.pnlInfoDetails.Controls.Add(this.lblStockCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblStockValue);
+            this.pnlInfoDetails.Controls.Add(this.lblStock);
             this.pnlInfoDetails.Controls.Add(this.lblBarcodeCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblBarcodeValue);
+            this.pnlInfoDetails.Controls.Add(this.lblBarcode);
             this.pnlInfoDetails.Controls.Add(this.lblInfoStatusCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblInfoStatusValue);
+            this.pnlInfoDetails.Controls.Add(this.lblInfoStatus);
             this.pnlInfoDetails.Controls.Add(this.lblPurLocationCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblPurLocationValue);
+            this.pnlInfoDetails.Controls.Add(this.lblPurLocation);
             this.pnlInfoDetails.Controls.Add(this.lblRackCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblRackValue);
+            this.pnlInfoDetails.Controls.Add(this.lblPurRack);
             this.pnlInfoDetails.Controls.Add(this.lblSalesLocationCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblSalesLocationValue);
+            this.pnlInfoDetails.Controls.Add(this.lblSalesLocation);
             this.pnlInfoDetails.Controls.Add(this.lblSalesRackCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblSalesRackValue);
+            this.pnlInfoDetails.Controls.Add(this.lblSalesRack);
             this.pnlInfoDetails.Controls.Add(this.lblRackGroupCaption);
-            this.pnlInfoDetails.Controls.Add(this.lblRackGroupValue);
+            this.pnlInfoDetails.Controls.Add(this.lblRackGroup);
             this.pnlInfoDetails.Location = new System.Drawing.Point(593, 220);
             this.pnlInfoDetails.Name = "pnlInfoDetails";
             this.pnlInfoDetails.Size = new System.Drawing.Size(307, 258);
             this.pnlInfoDetails.TabIndex = 17;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(109, 48);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(13, 13);
+            this.label25.TabIndex = 59;
+            this.label25.Text = ": ";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(109, 71);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(13, 13);
+            this.label24.TabIndex = 58;
+            this.label24.Text = ": ";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(109, 94);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(13, 13);
+            this.label23.TabIndex = 57;
+            this.label23.Text = ": ";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(109, 117);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(13, 13);
+            this.label22.TabIndex = 56;
+            this.label22.Text = ": ";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(109, 140);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(13, 13);
+            this.label21.TabIndex = 55;
+            this.label21.Text = ": ";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(109, 163);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(13, 13);
+            this.label20.TabIndex = 54;
+            this.label20.Text = ": ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(109, 186);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(13, 13);
+            this.label19.TabIndex = 53;
+            this.label19.Text = ": ";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(109, 209);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(13, 13);
+            this.label18.TabIndex = 52;
+            this.label18.Text = ": ";
             // 
             // lblInfoDetailsTitle
             // 
@@ -851,14 +1176,14 @@
             this.lblStockCaption.TabIndex = 1;
             this.lblStockCaption.Text = "Stock";
             // 
-            // lblStockValue
+            // lblStock
             // 
-            this.lblStockValue.AutoSize = true;
-            this.lblStockValue.Location = new System.Drawing.Point(116, 48);
-            this.lblStockValue.Name = "lblStockValue";
-            this.lblStockValue.Size = new System.Drawing.Size(25, 13);
-            this.lblStockValue.TabIndex = 2;
-            this.lblStockValue.Text = ":   0";
+            this.lblStock.AutoSize = true;
+            this.lblStock.Location = new System.Drawing.Point(132, 48);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(10, 13);
+            this.lblStock.TabIndex = 2;
+            this.lblStock.Text = "-";
             // 
             // lblBarcodeCaption
             // 
@@ -870,14 +1195,14 @@
             this.lblBarcodeCaption.TabIndex = 3;
             this.lblBarcodeCaption.Text = "Barcode";
             // 
-            // lblBarcodeValue
+            // lblBarcode
             // 
-            this.lblBarcodeValue.AutoSize = true;
-            this.lblBarcodeValue.Location = new System.Drawing.Point(116, 71);
-            this.lblBarcodeValue.Name = "lblBarcodeValue";
-            this.lblBarcodeValue.Size = new System.Drawing.Size(22, 13);
-            this.lblBarcodeValue.TabIndex = 4;
-            this.lblBarcodeValue.Text = ":   -";
+            this.lblBarcode.AutoSize = true;
+            this.lblBarcode.Location = new System.Drawing.Point(132, 71);
+            this.lblBarcode.Name = "lblBarcode";
+            this.lblBarcode.Size = new System.Drawing.Size(10, 13);
+            this.lblBarcode.TabIndex = 4;
+            this.lblBarcode.Text = "-";
             // 
             // lblInfoStatusCaption
             // 
@@ -889,15 +1214,15 @@
             this.lblInfoStatusCaption.TabIndex = 5;
             this.lblInfoStatusCaption.Text = "Status";
             // 
-            // lblInfoStatusValue
+            // lblInfoStatus
             // 
-            this.lblInfoStatusValue.AutoSize = true;
-            this.lblInfoStatusValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(125)))), ((int)(((byte)(85)))));
-            this.lblInfoStatusValue.Location = new System.Drawing.Point(116, 94);
-            this.lblInfoStatusValue.Name = "lblInfoStatusValue";
-            this.lblInfoStatusValue.Size = new System.Drawing.Size(49, 13);
-            this.lblInfoStatusValue.TabIndex = 6;
-            this.lblInfoStatusValue.Text = ":   Active";
+            this.lblInfoStatus.AutoSize = true;
+            this.lblInfoStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(125)))), ((int)(((byte)(85)))));
+            this.lblInfoStatus.Location = new System.Drawing.Point(132, 94);
+            this.lblInfoStatus.Name = "lblInfoStatus";
+            this.lblInfoStatus.Size = new System.Drawing.Size(10, 13);
+            this.lblInfoStatus.TabIndex = 6;
+            this.lblInfoStatus.Text = "-";
             // 
             // lblPurLocationCaption
             // 
@@ -909,14 +1234,14 @@
             this.lblPurLocationCaption.TabIndex = 7;
             this.lblPurLocationCaption.Text = "Pur Location";
             // 
-            // lblPurLocationValue
+            // lblPurLocation
             // 
-            this.lblPurLocationValue.AutoSize = true;
-            this.lblPurLocationValue.Location = new System.Drawing.Point(116, 117);
-            this.lblPurLocationValue.Name = "lblPurLocationValue";
-            this.lblPurLocationValue.Size = new System.Drawing.Size(64, 13);
-            this.lblPurLocationValue.TabIndex = 8;
-            this.lblPurLocationValue.Text = ":   First Floor";
+            this.lblPurLocation.AutoSize = true;
+            this.lblPurLocation.Location = new System.Drawing.Point(132, 117);
+            this.lblPurLocation.Name = "lblPurLocation";
+            this.lblPurLocation.Size = new System.Drawing.Size(10, 13);
+            this.lblPurLocation.TabIndex = 8;
+            this.lblPurLocation.Text = "-";
             // 
             // lblRackCaption
             // 
@@ -928,14 +1253,14 @@
             this.lblRackCaption.TabIndex = 9;
             this.lblRackCaption.Text = "Rack";
             // 
-            // lblRackValue
+            // lblPurRack
             // 
-            this.lblRackValue.AutoSize = true;
-            this.lblRackValue.Location = new System.Drawing.Point(116, 140);
-            this.lblRackValue.Name = "lblRackValue";
-            this.lblRackValue.Size = new System.Drawing.Size(45, 13);
-            this.lblRackValue.TabIndex = 10;
-            this.lblRackValue.Text = ":   None";
+            this.lblPurRack.AutoSize = true;
+            this.lblPurRack.Location = new System.Drawing.Point(132, 140);
+            this.lblPurRack.Name = "lblPurRack";
+            this.lblPurRack.Size = new System.Drawing.Size(10, 13);
+            this.lblPurRack.TabIndex = 10;
+            this.lblPurRack.Text = "-";
             // 
             // lblSalesLocationCaption
             // 
@@ -947,14 +1272,14 @@
             this.lblSalesLocationCaption.TabIndex = 11;
             this.lblSalesLocationCaption.Text = "Sales Location";
             // 
-            // lblSalesLocationValue
+            // lblSalesLocation
             // 
-            this.lblSalesLocationValue.AutoSize = true;
-            this.lblSalesLocationValue.Location = new System.Drawing.Point(116, 163);
-            this.lblSalesLocationValue.Name = "lblSalesLocationValue";
-            this.lblSalesLocationValue.Size = new System.Drawing.Size(64, 13);
-            this.lblSalesLocationValue.TabIndex = 12;
-            this.lblSalesLocationValue.Text = ":   First Floor";
+            this.lblSalesLocation.AutoSize = true;
+            this.lblSalesLocation.Location = new System.Drawing.Point(132, 163);
+            this.lblSalesLocation.Name = "lblSalesLocation";
+            this.lblSalesLocation.Size = new System.Drawing.Size(10, 13);
+            this.lblSalesLocation.TabIndex = 12;
+            this.lblSalesLocation.Text = "-";
             // 
             // lblSalesRackCaption
             // 
@@ -966,14 +1291,14 @@
             this.lblSalesRackCaption.TabIndex = 13;
             this.lblSalesRackCaption.Text = "Rack";
             // 
-            // lblSalesRackValue
+            // lblSalesRack
             // 
-            this.lblSalesRackValue.AutoSize = true;
-            this.lblSalesRackValue.Location = new System.Drawing.Point(116, 186);
-            this.lblSalesRackValue.Name = "lblSalesRackValue";
-            this.lblSalesRackValue.Size = new System.Drawing.Size(22, 13);
-            this.lblSalesRackValue.TabIndex = 14;
-            this.lblSalesRackValue.Text = ":   -";
+            this.lblSalesRack.AutoSize = true;
+            this.lblSalesRack.Location = new System.Drawing.Point(132, 186);
+            this.lblSalesRack.Name = "lblSalesRack";
+            this.lblSalesRack.Size = new System.Drawing.Size(10, 13);
+            this.lblSalesRack.TabIndex = 14;
+            this.lblSalesRack.Text = "-";
             // 
             // lblRackGroupCaption
             // 
@@ -985,32 +1310,72 @@
             this.lblRackGroupCaption.TabIndex = 15;
             this.lblRackGroupCaption.Text = "Rack Group";
             // 
-            // lblRackGroupValue
+            // lblRackGroup
             // 
-            this.lblRackGroupValue.AutoSize = true;
-            this.lblRackGroupValue.Location = new System.Drawing.Point(116, 209);
-            this.lblRackGroupValue.Name = "lblRackGroupValue";
-            this.lblRackGroupValue.Size = new System.Drawing.Size(22, 13);
-            this.lblRackGroupValue.TabIndex = 16;
-            this.lblRackGroupValue.Text = ":   -";
+            this.lblRackGroup.AutoSize = true;
+            this.lblRackGroup.Location = new System.Drawing.Point(132, 209);
+            this.lblRackGroup.Name = "lblRackGroup";
+            this.lblRackGroup.Size = new System.Drawing.Size(10, 13);
+            this.lblRackGroup.TabIndex = 16;
+            this.lblRackGroup.Text = "-";
             // 
             // pnlPricingDetails
             // 
             this.pnlPricingDetails.BackColor = System.Drawing.Color.White;
             this.pnlPricingDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPricingDetails.Controls.Add(this.label26);
+            this.pnlPricingDetails.Controls.Add(this.label27);
+            this.pnlPricingDetails.Controls.Add(this.label28);
+            this.pnlPricingDetails.Controls.Add(this.label29);
             this.pnlPricingDetails.Controls.Add(this.lblPricingDetailsTitle);
             this.pnlPricingDetails.Controls.Add(this.lblRetailRateCaption);
-            this.pnlPricingDetails.Controls.Add(this.lblRetailRateValue);
+            this.pnlPricingDetails.Controls.Add(this.lblRetailRate);
             this.pnlPricingDetails.Controls.Add(this.lblWholesaleRateCaption);
-            this.pnlPricingDetails.Controls.Add(this.lblWholesaleRateValue);
+            this.pnlPricingDetails.Controls.Add(this.lblWholesaleRate);
             this.pnlPricingDetails.Controls.Add(this.lblRetailMinQtyCaption);
-            this.pnlPricingDetails.Controls.Add(this.lblRetailMinQtyValue);
+            this.pnlPricingDetails.Controls.Add(this.lblRetailMinQty);
             this.pnlPricingDetails.Controls.Add(this.lblWholesaleMinQtyCaption);
-            this.pnlPricingDetails.Controls.Add(this.lblWholesaleMinQtyValue);
+            this.pnlPricingDetails.Controls.Add(this.lblWholesaleMinQty);
             this.pnlPricingDetails.Location = new System.Drawing.Point(915, 220);
             this.pnlPricingDetails.Name = "pnlPricingDetails";
             this.pnlPricingDetails.Size = new System.Drawing.Size(331, 258);
             this.pnlPricingDetails.TabIndex = 18;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(131, 48);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(13, 13);
+            this.label26.TabIndex = 63;
+            this.label26.Text = ": ";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(131, 71);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(13, 13);
+            this.label27.TabIndex = 62;
+            this.label27.Text = ": ";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(131, 94);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(13, 13);
+            this.label28.TabIndex = 61;
+            this.label28.Text = ": ";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(131, 117);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(13, 13);
+            this.label29.TabIndex = 60;
+            this.label29.Text = ": ";
             // 
             // lblPricingDetailsTitle
             // 
@@ -1035,14 +1400,14 @@
             this.lblRetailRateCaption.TabIndex = 1;
             this.lblRetailRateCaption.Text = "Retail Rate";
             // 
-            // lblRetailRateValue
+            // lblRetailRate
             // 
-            this.lblRetailRateValue.AutoSize = true;
-            this.lblRetailRateValue.Location = new System.Drawing.Point(150, 48);
-            this.lblRetailRateValue.Name = "lblRetailRateValue";
-            this.lblRetailRateValue.Size = new System.Drawing.Size(49, 13);
-            this.lblRetailRateValue.TabIndex = 2;
-            this.lblRetailRateValue.Text = ":   ₹ 0.00";
+            this.lblRetailRate.AutoSize = true;
+            this.lblRetailRate.Location = new System.Drawing.Point(150, 48);
+            this.lblRetailRate.Name = "lblRetailRate";
+            this.lblRetailRate.Size = new System.Drawing.Size(10, 13);
+            this.lblRetailRate.TabIndex = 2;
+            this.lblRetailRate.Text = "-";
             // 
             // lblWholesaleRateCaption
             // 
@@ -1054,14 +1419,14 @@
             this.lblWholesaleRateCaption.TabIndex = 3;
             this.lblWholesaleRateCaption.Text = "Wholesale Rate";
             // 
-            // lblWholesaleRateValue
+            // lblWholesaleRate
             // 
-            this.lblWholesaleRateValue.AutoSize = true;
-            this.lblWholesaleRateValue.Location = new System.Drawing.Point(150, 71);
-            this.lblWholesaleRateValue.Name = "lblWholesaleRateValue";
-            this.lblWholesaleRateValue.Size = new System.Drawing.Size(49, 13);
-            this.lblWholesaleRateValue.TabIndex = 4;
-            this.lblWholesaleRateValue.Text = ":   ₹ 0.00";
+            this.lblWholesaleRate.AutoSize = true;
+            this.lblWholesaleRate.Location = new System.Drawing.Point(150, 71);
+            this.lblWholesaleRate.Name = "lblWholesaleRate";
+            this.lblWholesaleRate.Size = new System.Drawing.Size(10, 13);
+            this.lblWholesaleRate.TabIndex = 4;
+            this.lblWholesaleRate.Text = "-";
             // 
             // lblRetailMinQtyCaption
             // 
@@ -1073,14 +1438,14 @@
             this.lblRetailMinQtyCaption.TabIndex = 5;
             this.lblRetailMinQtyCaption.Text = "Retail Min Qty";
             // 
-            // lblRetailMinQtyValue
+            // lblRetailMinQty
             // 
-            this.lblRetailMinQtyValue.AutoSize = true;
-            this.lblRetailMinQtyValue.Location = new System.Drawing.Point(150, 94);
-            this.lblRetailMinQtyValue.Name = "lblRetailMinQtyValue";
-            this.lblRetailMinQtyValue.Size = new System.Drawing.Size(25, 13);
-            this.lblRetailMinQtyValue.TabIndex = 6;
-            this.lblRetailMinQtyValue.Text = ":   0";
+            this.lblRetailMinQty.AutoSize = true;
+            this.lblRetailMinQty.Location = new System.Drawing.Point(150, 94);
+            this.lblRetailMinQty.Name = "lblRetailMinQty";
+            this.lblRetailMinQty.Size = new System.Drawing.Size(10, 13);
+            this.lblRetailMinQty.TabIndex = 6;
+            this.lblRetailMinQty.Text = "-";
             // 
             // lblWholesaleMinQtyCaption
             // 
@@ -1092,116 +1457,94 @@
             this.lblWholesaleMinQtyCaption.TabIndex = 7;
             this.lblWholesaleMinQtyCaption.Text = "Wholesale Min Qty";
             // 
-            // lblWholesaleMinQtyValue
+            // lblWholesaleMinQty
             // 
-            this.lblWholesaleMinQtyValue.AutoSize = true;
-            this.lblWholesaleMinQtyValue.Location = new System.Drawing.Point(150, 117);
-            this.lblWholesaleMinQtyValue.Name = "lblWholesaleMinQtyValue";
-            this.lblWholesaleMinQtyValue.Size = new System.Drawing.Size(25, 13);
-            this.lblWholesaleMinQtyValue.TabIndex = 8;
-            this.lblWholesaleMinQtyValue.Text = ":   0";
+            this.lblWholesaleMinQty.AutoSize = true;
+            this.lblWholesaleMinQty.Location = new System.Drawing.Point(150, 117);
+            this.lblWholesaleMinQty.Name = "lblWholesaleMinQty";
+            this.lblWholesaleMinQty.Size = new System.Drawing.Size(10, 13);
+            this.lblWholesaleMinQty.TabIndex = 8;
+            this.lblWholesaleMinQty.Text = "-";
             // 
             // pnlProductUnits
             // 
             this.pnlProductUnits.BackColor = System.Drawing.Color.White;
             this.pnlProductUnits.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlProductUnits.Controls.Add(this.lblProductUnitsTitle);
-            this.pnlProductUnits.Controls.Add(this.dgvProductUnits);
             this.pnlProductUnits.Controls.Add(this.lblNoProductUnits);
+            this.pnlProductUnits.Controls.Add(this.lblProductUnitsTitle);
+            this.pnlProductUnits.Controls.Add(this.grdItemList);
             this.pnlProductUnits.Location = new System.Drawing.Point(10, 491);
             this.pnlProductUnits.Name = "pnlProductUnits";
             this.pnlProductUnits.Size = new System.Drawing.Size(570, 211);
             this.pnlProductUnits.TabIndex = 19;
-            // 
-            // lblProductUnitsTitle
-            // 
-            this.lblProductUnitsTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.lblProductUnitsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblProductUnitsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 8.5F, System.Drawing.FontStyle.Bold);
-            this.lblProductUnitsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(85)))), ((int)(((byte)(180)))));
-            this.lblProductUnitsTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblProductUnitsTitle.Name = "lblProductUnitsTitle";
-            this.lblProductUnitsTitle.Size = new System.Drawing.Size(568, 36);
-            this.lblProductUnitsTitle.TabIndex = 0;
-            this.lblProductUnitsTitle.Text = "  PRODUCT UNITS";
-            this.lblProductUnitsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dgvProductUnits
-            // 
-            this.dgvProductUnits.AllowUserToAddRows = false;
-            this.dgvProductUnits.AllowUserToDeleteRows = false;
-            this.dgvProductUnits.AllowUserToResizeRows = false;
-            this.dgvProductUnits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvProductUnits.BackgroundColor = System.Drawing.Color.White;
-            this.dgvProductUnits.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(85)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductUnits.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvProductUnits.ColumnHeadersHeight = 27;
-            this.dgvProductUnits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvProductUnits.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductUnits.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dgvProductUnits.EnableHeadersVisualStyles = false;
-            this.dgvProductUnits.Location = new System.Drawing.Point(1, 36);
-            this.dgvProductUnits.MultiSelect = false;
-            this.dgvProductUnits.Name = "dgvProductUnits";
-            this.dgvProductUnits.ReadOnly = true;
-            this.dgvProductUnits.RowHeadersVisible = false;
-            this.dgvProductUnits.RowTemplate.Height = 24;
-            this.dgvProductUnits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductUnits.Size = new System.Drawing.Size(566, 100);
-            this.dgvProductUnits.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Product";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Unit";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // lblNoProductUnits
             // 
             this.lblNoProductUnits.AutoSize = true;
             this.lblNoProductUnits.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblNoProductUnits.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblNoProductUnits.Location = new System.Drawing.Point(198, 145);
+            this.lblNoProductUnits.Location = new System.Drawing.Point(218, 115);
             this.lblNoProductUnits.Name = "lblNoProductUnits";
             this.lblNoProductUnits.Size = new System.Drawing.Size(132, 15);
             this.lblNoProductUnits.TabIndex = 2;
             this.lblNoProductUnits.Text = "No product units found";
+            // 
+            // lblProductUnitsTitle
+            // 
+            this.lblProductUnitsTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.lblProductUnitsTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblProductUnitsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblProductUnitsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(85)))), ((int)(((byte)(180)))));
+            this.lblProductUnitsTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblProductUnitsTitle.Name = "lblProductUnitsTitle";
+            this.lblProductUnitsTitle.Size = new System.Drawing.Size(568, 36);
+            this.lblProductUnitsTitle.TabIndex = 0;
+            this.lblProductUnitsTitle.Text = "PRODUCTS";
+            this.lblProductUnitsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // grdItemList
+            // 
+            this.grdItemList.AllowUserToAddRows = false;
+            this.grdItemList.AllowUserToDeleteRows = false;
+            this.grdItemList.AllowUserToResizeRows = false;
+            this.grdItemList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdItemList.BackgroundColor = System.Drawing.Color.White;
+            this.grdItemList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(85)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdItemList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            this.grdItemList.ColumnHeadersHeight = 27;
+            this.grdItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdItemList.DefaultCellStyle = dataGridViewCellStyle33;
+            this.grdItemList.EnableHeadersVisualStyles = false;
+            this.grdItemList.Location = new System.Drawing.Point(1, 36);
+            this.grdItemList.MultiSelect = false;
+            this.grdItemList.Name = "grdItemList";
+            this.grdItemList.ReadOnly = true;
+            this.grdItemList.RowHeadersVisible = false;
+            this.grdItemList.RowTemplate.Height = 24;
+            this.grdItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdItemList.Size = new System.Drawing.Size(566, 173);
+            this.grdItemList.TabIndex = 1;
             // 
             // pnlSuppliers
             // 
             this.pnlSuppliers.BackColor = System.Drawing.Color.White;
             this.pnlSuppliers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlSuppliers.Controls.Add(this.lblSuppliersTitle);
-            this.pnlSuppliers.Controls.Add(this.dgvSuppliers);
+            this.pnlSuppliers.Controls.Add(this.grdSupplierList);
             this.pnlSuppliers.Location = new System.Drawing.Point(593, 491);
             this.pnlSuppliers.Name = "pnlSuppliers";
             this.pnlSuppliers.Size = new System.Drawing.Size(653, 211);
@@ -1220,57 +1563,80 @@
             this.lblSuppliersTitle.Text = "  SUPPLIERS";
             this.lblSuppliersTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dgvSuppliers
+            // grdSupplierList
             // 
-            this.dgvSuppliers.AllowUserToAddRows = false;
-            this.dgvSuppliers.AllowUserToDeleteRows = false;
-            this.dgvSuppliers.AllowUserToResizeRows = false;
-            this.dgvSuppliers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSuppliers.BackgroundColor = System.Drawing.Color.White;
-            this.dgvSuppliers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(95)))), ((int)(((byte)(10)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSuppliers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dgvSuppliers.ColumnHeadersHeight = 27;
-            this.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvSuppliers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSuppliers.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvSuppliers.EnableHeadersVisualStyles = false;
-            this.dgvSuppliers.Location = new System.Drawing.Point(1, 36);
-            this.dgvSuppliers.MultiSelect = false;
-            this.dgvSuppliers.Name = "dgvSuppliers";
-            this.dgvSuppliers.ReadOnly = true;
-            this.dgvSuppliers.RowHeadersVisible = false;
-            this.dgvSuppliers.RowTemplate.Height = 23;
-            this.dgvSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSuppliers.Size = new System.Drawing.Size(649, 143);
-            this.dgvSuppliers.TabIndex = 1;
+            this.grdSupplierList.AllowUserToAddRows = false;
+            this.grdSupplierList.AllowUserToDeleteRows = false;
+            this.grdSupplierList.AllowUserToResizeRows = false;
+            this.grdSupplierList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
+            this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(95)))), ((int)(((byte)(10)))));
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            this.grdSupplierList.ColumnHeadersHeight = 27;
+            this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSupplierList.DefaultCellStyle = dataGridViewCellStyle35;
+            this.grdSupplierList.EnableHeadersVisualStyles = false;
+            this.grdSupplierList.Location = new System.Drawing.Point(1, 36);
+            this.grdSupplierList.MultiSelect = false;
+            this.grdSupplierList.Name = "grdSupplierList";
+            this.grdSupplierList.ReadOnly = true;
+            this.grdSupplierList.RowHeadersVisible = false;
+            this.grdSupplierList.RowTemplate.Height = 23;
+            this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSupplierList.Size = new System.Drawing.Size(649, 173);
+            this.grdSupplierList.TabIndex = 1;
             // 
-            // dataGridViewTextBoxColumn4
+            // errItems
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.errItems.ContainerControl = this;
             // 
-            // dataGridViewTextBoxColumn5
+            // panel1
             // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Supplier";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(128)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label30);
+            this.panel1.Controls.Add(this.label31);
+            this.panel1.Location = new System.Drawing.Point(994, 26);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(123, 71);
+            this.panel1.TabIndex = 111111152;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(128)))));
+            this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Bold);
+            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(0)))));
+            this.label30.Location = new System.Drawing.Point(15, 5);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(96, 17);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Draft Products";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Bold);
+            this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(67)))), ((int)(((byte)(21)))));
+            this.label31.Location = new System.Drawing.Point(15, 28);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(58, 36);
+            this.label31.TabIndex = 1;
+            this.label31.Text = "972";
             // 
             // CP_ProductDetailsCopy
             // 
@@ -1284,6 +1650,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Details";
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
             this.pnlQuickSearch.ResumeLayout(false);
             this.pnlQuickSearch.PerformLayout();
             this.pnlProductHeader.ResumeLayout(false);
@@ -1303,9 +1670,12 @@
             this.pnlPricingDetails.PerformLayout();
             this.pnlProductUnits.ResumeLayout(false);
             this.pnlProductUnits.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductUnits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).EndInit();
             this.pnlSuppliers.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errItems)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1319,95 +1689,123 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel pnlProductHeader;
         private System.Windows.Forms.PictureBox picProduct;
-        private System.Windows.Forms.Label lblProductNo;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Label lblPICode;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblParentProduct;
+        private System.Windows.Forms.Label lblRetailRateValue;
         private System.Windows.Forms.Panel pnlActiveItems;
         private System.Windows.Forms.Label lblActiveItemsTitle;
-        private System.Windows.Forms.Label lblActiveItemsValue;
+        private System.Windows.Forms.Label lblActiveProduct;
         private System.Windows.Forms.Panel pnlInactiveItems;
         private System.Windows.Forms.Label lblInactiveItemsTitle;
-        private System.Windows.Forms.Label lblInactiveItemsValue;
+        private System.Windows.Forms.Label lblInactiveIProduct;
         private System.Windows.Forms.Panel pnlTotalItems;
         private System.Windows.Forms.Label lblTotalItemsTitle;
-        private System.Windows.Forms.Label lblTotalItemsValue;
+        private System.Windows.Forms.Label lblTotalProduct;
         private System.Windows.Forms.Panel pnlProductDetails;
         private System.Windows.Forms.Label lblProductDetailsTitle;
         private System.Windows.Forms.Label lblPICodeCaption;
         private System.Windows.Forms.Label lblPICodeValue;
         private System.Windows.Forms.Label lblUnitCaption;
-        private System.Windows.Forms.Label lblUnitValue;
+        private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.Label lblGroupCaption;
-        private System.Windows.Forms.Label lblGroupValue;
+        private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.Label lblSubGroupCaption;
-        private System.Windows.Forms.Label lblSubGroupValue;
+        private System.Windows.Forms.Label lblSubGroup;
         private System.Windows.Forms.Label lblCategoryCaption;
-        private System.Windows.Forms.Label lblCategoryValue;
+        private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Label lblProductTypeCaption;
-        private System.Windows.Forms.Label lblProductTypeValue;
+        private System.Windows.Forms.Label lblProductType;
         private System.Windows.Forms.Label lblUPPCaption;
-        private System.Windows.Forms.Label lblUPPValue;
+        private System.Windows.Forms.Label lblUpp;
         private System.Windows.Forms.Label lblHSNCaption;
-        private System.Windows.Forms.Label lblHSNValue;
+        private System.Windows.Forms.Label lblHSN;
         private System.Windows.Forms.Label lblTaxCaption;
-        private System.Windows.Forms.Label lblTaxValue;
+        private System.Windows.Forms.Label lblTax;
         private System.Windows.Forms.Label lblBulkUnitCaption;
-        private System.Windows.Forms.Label lblBulkUnitValue;
+        private System.Windows.Forms.Label lblBulk;
         private System.Windows.Forms.Label lblShelfLifeCaption;
-        private System.Windows.Forms.Label lblShelfLifeValue;
+        private System.Windows.Forms.Label lblShelflife;
         private System.Windows.Forms.Label lblProductSchemeCaption;
-        private System.Windows.Forms.Label lblProductSchemeValue;
+        private System.Windows.Forms.Label lblProductScheme;
         private System.Windows.Forms.Label lblBillSchemeCaption;
-        private System.Windows.Forms.Label lblBillSchemeValue;
+        private System.Windows.Forms.Label lblBillScheme;
         private System.Windows.Forms.Label lblFocusCaption;
-        private System.Windows.Forms.Label lblFocusValue;
+        private System.Windows.Forms.Label lblFocus;
         private System.Windows.Forms.Label lblPriorityCaption;
-        private System.Windows.Forms.Label lblPriorityValue;
+        private System.Windows.Forms.Label lblPriority;
         private System.Windows.Forms.Label lblSpecialCaption;
-        private System.Windows.Forms.Label lblSpecialValue;
+        private System.Windows.Forms.Label lblSpecial;
         private System.Windows.Forms.Label lblOwnCaption;
-        private System.Windows.Forms.Label lblOwnValue;
+        private System.Windows.Forms.Label lblOwn;
         private System.Windows.Forms.Panel pnlInfoDetails;
         private System.Windows.Forms.Label lblInfoDetailsTitle;
         private System.Windows.Forms.Label lblStockCaption;
-        private System.Windows.Forms.Label lblStockValue;
+        private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.Label lblBarcodeCaption;
-        private System.Windows.Forms.Label lblBarcodeValue;
+        private System.Windows.Forms.Label lblBarcode;
         private System.Windows.Forms.Label lblInfoStatusCaption;
-        private System.Windows.Forms.Label lblInfoStatusValue;
+        private System.Windows.Forms.Label lblInfoStatus;
         private System.Windows.Forms.Label lblPurLocationCaption;
-        private System.Windows.Forms.Label lblPurLocationValue;
+        private System.Windows.Forms.Label lblPurLocation;
         private System.Windows.Forms.Label lblRackCaption;
-        private System.Windows.Forms.Label lblRackValue;
+        private System.Windows.Forms.Label lblPurRack;
         private System.Windows.Forms.Label lblSalesLocationCaption;
-        private System.Windows.Forms.Label lblSalesLocationValue;
+        private System.Windows.Forms.Label lblSalesLocation;
         private System.Windows.Forms.Label lblSalesRackCaption;
-        private System.Windows.Forms.Label lblSalesRackValue;
+        private System.Windows.Forms.Label lblSalesRack;
         private System.Windows.Forms.Label lblRackGroupCaption;
-        private System.Windows.Forms.Label lblRackGroupValue;
+        private System.Windows.Forms.Label lblRackGroup;
         private System.Windows.Forms.Panel pnlPricingDetails;
         private System.Windows.Forms.Label lblPricingDetailsTitle;
         private System.Windows.Forms.Label lblRetailRateCaption;
-        private System.Windows.Forms.Label lblRetailRateValue;
+        private System.Windows.Forms.Label lblRetailRate;
         private System.Windows.Forms.Label lblWholesaleRateCaption;
-        private System.Windows.Forms.Label lblWholesaleRateValue;
+        private System.Windows.Forms.Label lblWholesaleRate;
         private System.Windows.Forms.Label lblRetailMinQtyCaption;
-        private System.Windows.Forms.Label lblRetailMinQtyValue;
+        private System.Windows.Forms.Label lblRetailMinQty;
         private System.Windows.Forms.Label lblWholesaleMinQtyCaption;
-        private System.Windows.Forms.Label lblWholesaleMinQtyValue;
+        private System.Windows.Forms.Label lblWholesaleMinQty;
         private System.Windows.Forms.Panel pnlProductUnits;
         private System.Windows.Forms.Label lblProductUnitsTitle;
-        private System.Windows.Forms.DataGridView dgvProductUnits;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridView grdItemList;
         private System.Windows.Forms.Label lblNoProductUnits;
         private System.Windows.Forms.Panel pnlSuppliers;
         private System.Windows.Forms.Label lblSuppliersTitle;
-        private System.Windows.Forms.DataGridView dgvSuppliers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridView grdSupplierList;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        public System.Windows.Forms.DataGridView DGV_FilterProduct;
+        private System.Windows.Forms.ErrorProvider errItems;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
     }
 }

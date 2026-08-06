@@ -377,20 +377,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1; 
-                                    DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-
-
-
-                                    //DGV_FilterProduct.Columns["PREV R.Rate"].Visible = false;
-                                    //DGV_FilterProduct.Columns["PREV W.Rate"].Visible = false;
-                                    //DGV_FilterProduct.Columns["PRPM_TYPE"].Visible = false;
-                                    //DGV_FilterProduct.Columns["PRPM_RATE"].Visible = false;
-                                    //DGV_FilterProduct.Columns["PRPR_RATE_PREV"].Visible = false;
-                                    //DGV_FilterProduct.Columns["R.Rate"].Visible = true;
-                                    //DGV_FilterProduct.Columns["W.Rate"].Visible = false;
-                                     
-
-
+                                    DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F); 
                                     DGV_FilterProduct.BringToFront();
                                 }
                                 else

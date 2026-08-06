@@ -1133,7 +1133,7 @@
             this.lvSubGroup.TabIndex = 122;
             this.lvSubGroup.UseCompatibleStateImageBehavior = false;
             this.lvSubGroup.View = System.Windows.Forms.View.Details;
-            this.lvSubGroup.Visible = false; 
+            this.lvSubGroup.Visible = false;
             this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
             this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
             // 
@@ -1187,7 +1187,7 @@
             this.lvGroup.TabIndex = 123;
             this.lvGroup.UseCompatibleStateImageBehavior = false;
             this.lvGroup.View = System.Windows.Forms.View.Details;
-            this.lvGroup.Visible = false; 
+            this.lvGroup.Visible = false;
             this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
             this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
             // 
