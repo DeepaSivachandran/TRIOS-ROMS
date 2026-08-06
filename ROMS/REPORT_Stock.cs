@@ -2849,6 +2849,10 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,130) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
+                cmbReportFormat.SelectedValue = 356;
+                if (Convert.ToInt16(cmbReportType.SelectedValue)== 601)
+                { cmbReportFormat.Enabled = true; }
+                else { cmbReportFormat.Enabled = false; }
             }
             catch (Exception ex)
             {
@@ -2877,7 +2881,12 @@ namespace ROMS
             {
                 if(e.KeyCode == Keys.Enter)
                 {
-                    cmbReportFormat.Focus();
+                    if(cmbReportFormat.Enabled == true)
+                    {
+                        cmbReportFormat.Focus();
+                    }
+                    else 
+                    { btnListPrint.Focus(); }
                 }
             }
             catch (Exception ex)
