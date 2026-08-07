@@ -172,8 +172,70 @@ namespace ROMS
             finally
             {
             }
-        }        
+        }
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            _imageTimer.Stop();
+            if (imagePaths.Count == 0)
+                return;
 
+            currentImageIndex++;
+
+            if (currentImageIndex >= imagePaths.Count)
+                currentImageIndex = 0;
+
+            ShowCurrentImage(); 
+        }
+        private void ShowCurrentImage()
+        {
+            if (imagePaths.Count == 0)
+            {
+                picProduct.Image = null;
+                return;
+            }
+
+            string imagePath = imagePaths[currentImageIndex];
+
+            if (!File.Exists(imagePath))
+                return;
+
+            Image newImage;
+
+            using (FileStream fs = new FileStream(
+                imagePath,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read))
+            {
+                using (Image tempImage = Image.FromStream(fs))
+                {
+                    newImage = new Bitmap(tempImage);
+                }
+            }
+
+            // Dispose previous image
+            Image oldImage = picProduct.Image;
+
+            picProduct.Image = newImage;
+            picProduct.SizeMode = PictureBoxSizeMode.Zoom;
+
+            oldImage?.Dispose();
+        }
+        
+        
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            _imageTimer.Stop();
+            if (imagePaths.Count == 0)
+                return;
+
+            currentImageIndex--;
+
+            if (currentImageIndex < 0)
+                currentImageIndex = imagePaths.Count - 1;
+
+            ShowCurrentImage();
+        }
         private void CP_Product_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -210,7 +272,7 @@ namespace ROMS
                         {
                             lblPICode.Text = "P.I Code : " + (Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]));
                             lblStatus.Text = "Status : "+ Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
-                            lblRetailRateValue.Text = "Parent Product : "+ Convert.ToString(objDs.Tables[0].Rows[0]["ParentTname"]);
+                            lblRetailRateValue.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ParentTname"]);
 
                             lblPICodeValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]);
                             lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]);
@@ -230,12 +292,9 @@ namespace ROMS
                             lblSpecial.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Special"]);
                             lblOwn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Own"]);
                              
-                            lblStock.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Stock"]);
+                            lblStock.Text = Convert.ToString(objDs.Tables[0].Rows[0]["StockValue"]);
                             lblBarcode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Barcode"]);
-                            lblRetailRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate"]);
-                            lblWholesaleRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholesaleRate"]);
-                            lblRetailMinQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate_MinQty"]);
-                            lblWholesaleMinQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholesaleRate_MinQty"]);
+                            lblRetailRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate"]);  
                             lblPurLocation.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Pur_Location"]);
                             lblPurRack.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Pur_Rack"]);
                             lblSalesLocation.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Sales_Location"]);
@@ -243,16 +302,20 @@ namespace ROMS
                             lblUpp.Text = Convert.ToString(objDs.Tables[0].Rows[0]["UPP"]);
                              
                             lblInfoStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
+                            lblProductUnitsTitle.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ChildProdutType"]);
                         }
                         if (objDs.Tables.Count > 1)
                         {
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
                                 grdSupplierList.DataSource = objDs.Tables[1];
-                                grdSupplierList.Columns["S.No."].Width = 50;
-                                grdSupplierList.Columns["Supplier"].Width = 450;
+                                grdSupplierList.Columns["S.No."].Width = 50; 
                                 grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierList.ClearSelection();
+                                if (grdStock.Rows.Count != 0)
+                                { lblSupplierNorecord.Visible = false; }
+                                else
+                                { lblSupplierNorecord.Visible = true; }
                             }
                         }
                         if (objDs.Tables.Count > 2)
@@ -261,7 +324,7 @@ namespace ROMS
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product"].Width = 400;
                             grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.ClearSelection(); 
                             if(grdItemList.Rows.Count!=0)
                             { lblNoProductUnits.Visible = false; }
@@ -282,15 +345,44 @@ namespace ROMS
                         }
                         if (objDs.Tables.Count > 6)
                         {
-                            DataTable dt = objDs.Tables[6];
+                            grdStock.DataSource = objDs.Tables[6];
+                            grdStock.Columns["S.No."].Width = 50;
+                            grdStock.Columns["Stock"].Width = 70;
+                            grdStock.Columns["Location"].Width = 150; 
+                            grdStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdStock.ClearSelection();
+                            if (grdStock.Rows.Count != 0)
+                            { lblstkNorecord.Visible = false; }
+                            else
+                            { lblstkNorecord.Visible = true; }
+                        }
+                        if (objDs.Tables.Count > 7)
+                        {
+                            grdRateTypeList.DataSource = objDs.Tables[7];
+                            grdRateTypeList.Columns["S.No."].Width = 50;
+                            grdRateTypeList.Columns["Rate Type"].Width = 100; 
+                            grdRateTypeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdRateTypeList.ClearSelection();
+                            if (grdRateTypeList.Rows.Count != 0)
+                            { lblRateNoRecord.Visible = false; }
+                            else
+                            { lblRateNoRecord.Visible = true; }
+                        }   
+                        if (objDs.Tables.Count > 9)
+                        {
+                            DataTable dt = objDs.Tables[9];
                             if (dt.Rows.Count != 0)
                             {
-                                LoadProductImages(dt);
+                                LoadProductImages(dt); 
                                 InitializeImageSlider(); 
                                
                             }
                         }
-                       
+                        if (objDs.Tables.Count > 10)
+                        {
+                            label31.Text = Convert.ToString(objDs.Tables[10].Rows[0]["DraftProCount"]);
+                        }
+
 
                     }
                 }
@@ -333,10 +425,7 @@ namespace ROMS
                 lblBulk.Text = "";
                 lblBarcode.Text = "";
                 lblStatus.Text = "";
-                lblRetailRate.Text = "";
-                lblWholesaleRate.Text = "";
-                lblRetailMinQty.Text = "";
-                lblWholesaleMinQty.Text = "";
+                lblRetailRate.Text = ""; 
                 lblProductScheme.Text = "";
                 lblBillScheme.Text = "";
                 lblRetailRateValue.Text = "";
@@ -344,6 +433,25 @@ namespace ROMS
                 lblPriority.Text = "";
                 lblSpecial.Text = "";
                 lblOwn.Text = "";
+                lblPICodeValue.Text = "";
+                lblProductName.Text = "";
+                txtSearch.Text = "";
+                pbPrid = 0;
+                grdStock.DataSource = null;
+                grdItemList.DataSource = null;
+                grdRateTypeList.DataSource = null;
+                grdSupplierList.DataSource = null;
+                _imageTimer.Stop(); 
+                // Clear image list
+                imagePaths.Clear(); 
+                // Reset index
+                currentImageIndex = 0; 
+                // Clear PictureBox
+                if (picProduct.Image != null)
+                {
+                    picProduct.Image.Dispose();
+                    picProduct.Image = null;
+                }
             }
             catch (Exception ex)
             {
@@ -578,10 +686,14 @@ namespace ROMS
                     DGV_FilterProduct.Focus();
 
                 }
+                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
+                {
+                    btnSearch.Focus();
+                }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up  )
                 {
                     DGV_FilterProduct.Focus();
-                }
+                } 
                 if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
                 {
                     return;
@@ -663,6 +775,12 @@ namespace ROMS
         {
             udfnProductClear();
         }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+         
 
         private void CP_Product_FormClosing(object sender, FormClosingEventArgs e)
         {
