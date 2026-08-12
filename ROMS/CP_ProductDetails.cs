@@ -311,10 +311,12 @@ namespace ROMS
                             {
                                 grdSupplierList.DataSource = objDs.Tables[1];
                                 grdSupplierList.Columns["S.No."].Width = 50; 
-                                grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierList.ClearSelection();
                                 if (grdStock.Rows.Count != 0)
-                                { lblSupplierNorecord.Visible = false; }
+                                { lblSupplierNorecord.Visible = false;
+
+                                    grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                }
                                 else
                                 { lblSupplierNorecord.Visible = true; }
                             }
@@ -325,10 +327,12 @@ namespace ROMS
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product"].Width = 400;
                             grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            
                             grdItemList.ClearSelection(); 
                             if(grdItemList.Rows.Count!=0)
-                            { lblNoProductUnits.Visible = false; }
+                            { lblNoProductUnits.Visible = false;
+                                grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            }
                             else
                             { lblNoProductUnits.Visible = true; }
                         }
@@ -350,10 +354,12 @@ namespace ROMS
                             grdStock.Columns["S.No."].Width = 50;
                             grdStock.Columns["Stock"].Width = 70;
                             grdStock.Columns["Location"].Width = 150; 
-                            grdStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                           
                             grdStock.ClearSelection();
                             if (grdStock.Rows.Count != 0)
-                            { lblstkNorecord.Visible = false; }
+                            { lblstkNorecord.Visible = false;
+                                grdStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            }
                             else
                             { lblstkNorecord.Visible = true; }
                         }
@@ -362,10 +368,12 @@ namespace ROMS
                             grdRateTypeList.DataSource = objDs.Tables[7];
                             grdRateTypeList.Columns["S.No."].Width = 50;
                             grdRateTypeList.Columns["Rate Type"].Width = 100; 
-                            grdRateTypeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            
                             grdRateTypeList.ClearSelection();
                             if (grdRateTypeList.Rows.Count != 0)
-                            { lblRateNoRecord.Visible = false; }
+                            { lblRateNoRecord.Visible = false;
+                                grdRateTypeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            }
                             else
                             { lblRateNoRecord.Visible = true; }
                         }   
@@ -376,8 +384,11 @@ namespace ROMS
                             {
                                 LoadProductImages(dt);
                                 InitializeImageSlider();
-                                btnNext.Visible = true;
-                                btnPrevious.Visible = true; 
+                                if (dt.Rows.Count > 1)
+                                {
+                                    btnNext.Visible = true;
+                                    btnPrevious.Visible = true;
+                                }
                             }
                             else 
                             {
@@ -454,6 +465,8 @@ namespace ROMS
                 grdItemList.DataSource = null;
                 grdRateTypeList.DataSource = null;
                 grdSupplierList.DataSource = null;
+                btnNext.Visible = false;
+                btnPrevious.Visible = false;
                 _imageTimer.Stop(); 
                 // Clear image list
                 imagePaths.Clear(); 
@@ -507,7 +520,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_EName"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
-                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
+                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 100;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 350;
                                     DGV_FilterProduct.Columns["UNIT"].Width = 50;
                                     DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
