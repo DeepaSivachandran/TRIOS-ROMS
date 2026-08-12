@@ -460,7 +460,7 @@ namespace ROMS
         public static CP_Basketlist objCP_Basketlist;
         public static CP_Basket objCP_Basket;
         public static CP_Product_Supplier objCP_Product_Supplier;
-        public static CP_ProductDetails objCP_ProductDetails;
+        public static CP_ProductDetailsCopy objCP_ProductDetails;
         public static ProductDetails objProductDetails;
 
         public MainForm()
@@ -4518,7 +4518,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F4) //Supplier products
                 {
-                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                    MainForm.objCP_ProductDetails = new CP_ProductDetailsCopy();
                     MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
                     MainForm.objCP_ProductDetails.ShowDialog();
                 }
@@ -5218,7 +5218,7 @@ namespace ROMS
 
         private void tsmF4_Click(object sender, EventArgs e)
         {
-            MainForm.objCP_ProductDetails = new CP_ProductDetails();
+            MainForm.objCP_ProductDetails = new CP_ProductDetailsCopy();
             MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
             MainForm.objCP_ProductDetails.ShowDialog();
         }
