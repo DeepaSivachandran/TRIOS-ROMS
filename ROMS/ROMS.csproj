@@ -240,11 +240,11 @@
     <Compile Include="CP_CostPrice_Update_Bulk_Approval_List.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_ProductDetailsCopy.cs">
+    <Compile Include="CP_ProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_ProductDetailsCopy.designer.cs">
-      <DependentUpon>CP_ProductDetailsCopy.cs</DependentUpon>
+    <Compile Include="CP_ProductDetails.designer.cs">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_ProductImageApproval.cs">
       <SubType>Form</SubType>
@@ -294,11 +294,11 @@
     <Compile Include="CP_CostPrice_Update_Bulk.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_ProductDetails.cs">
+    <Compile Include="CP_ProductDetailsCopy1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_ProductDetails.designer.cs">
-      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    <Compile Include="CP_ProductDetailsCopy1.designer.cs">
+      <DependentUpon>CP_ProductDetailsCopy1.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_Rate_Change_Confirmation.cs">
       <SubType>Form</SubType>
@@ -4811,8 +4811,8 @@
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk_Approval_List.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_ProductDetailsCopy.resx">
-      <DependentUpon>CP_ProductDetailsCopy.cs</DependentUpon>
+    <EmbeddedResource Include="CP_ProductDetails.resx">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductImageApproval.resx">
       <DependentUpon>CP_ProductImageApproval.cs</DependentUpon>
@@ -4838,8 +4838,8 @@
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_ProductDetails.resx">
-      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    <EmbeddedResource Include="CP_ProductDetailsCopy1.resx">
+      <DependentUpon>CP_ProductDetailsCopy1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_Change_Confirmation.resx">
       <DependentUpon>CP_Rate_Change_Confirmation.cs</DependentUpon>
