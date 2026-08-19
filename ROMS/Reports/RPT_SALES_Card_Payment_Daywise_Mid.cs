@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_SALES_Card_Payment_Daywise : ReportClass {
+    public class RPT_SALES_Card_Payment_Daywise_Mid : ReportClass {
         
-        public RPT_SALES_Card_Payment_Daywise() {
+        public RPT_SALES_Card_Payment_Daywise_Mid() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_SALES_Card_Payment_Daywise.rpt";
+                return "RPT_SALES_Card_Payment_Daywise_Mid.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_SALES_Card_Payment_Daywise.rpt";
+                return "ROMS.Reports.RPT_SALES_Card_Payment_Daywise_Mid.rpt";
             }
             set {
                 // Do nothing
@@ -82,7 +82,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section PageHeaderSection5 {
+        public CrystalDecisions.CrystalReports.Engine.Section PageHeaderSection3 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section PageHeaderSection3 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -98,7 +98,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[6];
             }
@@ -106,25 +106,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
-            get {
-                return this.ReportDefinition.Sections[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[8];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[9];
+                return this.ReportDefinition.Sections[7];
             }
         }
         
@@ -242,9 +226,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_SALES_Card_Payment_Daywise : Component, ICachedReport {
+    public class CachedRPT_SALES_Card_Payment_Daywise_Mid : Component, ICachedReport {
         
-        public CachedRPT_SALES_Card_Payment_Daywise() {
+        public CachedRPT_SALES_Card_Payment_Daywise_Mid() {
         }
         
         [Browsable(false)]
@@ -281,7 +265,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_SALES_Card_Payment_Daywise rpt = new RPT_SALES_Card_Payment_Daywise();
+            RPT_SALES_Card_Payment_Daywise_Mid rpt = new RPT_SALES_Card_Payment_Daywise_Mid();
             rpt.Site = this.Site;
             return rpt;
         }
