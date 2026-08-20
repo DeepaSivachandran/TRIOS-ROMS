@@ -1097,6 +1097,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Detail.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Detail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SAL_Summary.cs">
       <DependentUpon>RPT_SAL_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6278,6 +6285,11 @@
     <Content Include="Reports\RPT_SALES_Card_Payment_Monthwise_Vendor.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_Card_Payment_Monthwise_Vendor.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Detail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
