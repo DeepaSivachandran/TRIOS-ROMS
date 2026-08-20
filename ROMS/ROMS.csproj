@@ -240,6 +240,12 @@
     <Compile Include="CP_CostPrice_Update_Bulk_Approval_List.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductDetails.designer.cs">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_ProductImageApproval.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,11 +294,11 @@
     <Compile Include="CP_CostPrice_Update_Bulk.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_ProductDetails.cs">
+    <Compile Include="CP_ProductDetailsCopy1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_ProductDetails.designer.cs">
-      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    <Compile Include="CP_ProductDetailsCopy1.designer.cs">
+      <DependentUpon>CP_ProductDetailsCopy1.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_Rate_Change_Confirmation.cs">
       <SubType>Form</SubType>
@@ -1049,6 +1055,55 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Monthwise_Vendor.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Monthwise_Vendor.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Monthwise_Mid.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Monthwise_Mid.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Daywise_Vendor.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Daywise_Vendor.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Daywise_Mid.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Daywise_Mid.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Monthwise.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Monthwise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Daywise.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Daywise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Detail.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Detail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SAL_Summary.cs">
       <DependentUpon>RPT_SAL_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1079,6 +1134,13 @@
     </Compile>
     <Compile Include="Reports\RPT_ProductClassification_Mapped.cs">
       <DependentUpon>RPT_ProductClassification_Mapped.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Summary.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -4811,6 +4873,9 @@
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk_Approval_List.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductDetails.resx">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductImageApproval.resx">
       <DependentUpon>CP_ProductImageApproval.cs</DependentUpon>
     </EmbeddedResource>
@@ -4835,8 +4900,8 @@
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_ProductDetails.resx">
-      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    <EmbeddedResource Include="CP_ProductDetailsCopy1.resx">
+      <DependentUpon>CP_ProductDetailsCopy1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_Change_Confirmation.resx">
       <DependentUpon>CP_Rate_Change_Confirmation.cs</DependentUpon>
@@ -6198,6 +6263,41 @@
       <LastGenOutput>RPT_SalesEntryReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Daywise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Daywise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Monthwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Monthwise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Daywise_Mid.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Daywise_Mid.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Daywise_Vendor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Daywise_Vendor.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Monthwise_Mid.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Monthwise_Mid.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Monthwise_Vendor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Monthwise_Vendor.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SAL_Summary.cs</LastGenOutput>
@@ -6281,6 +6381,11 @@
     <Content Include="Reports\RPT_ProductClassification_Mapped.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_ProductClassification_Mapped.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_Stock_SummaryWithMSQ.rpt">

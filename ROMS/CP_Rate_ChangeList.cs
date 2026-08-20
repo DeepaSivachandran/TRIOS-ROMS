@@ -651,6 +651,7 @@ namespace ROMS
         {
             try
             {
+                tbRateChangeLockItem.TabPages.Remove(tpLockItems);
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 51304;
                 string ReportTypeIDs = string.Join(",",
