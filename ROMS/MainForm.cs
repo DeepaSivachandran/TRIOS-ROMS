@@ -158,6 +158,7 @@ namespace ROMS
         public static CP_ProductImageApprovalList objCP_ProductImageApprovalList;
         public static CP_ProductImageApproval objCP_ProductImageApproval;
         public static CP_Bulk_Image_Update objCP_Bulk_Image_Update;
+        public static REPORT_CardPayment objREPORT_CardPayment;
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
@@ -5302,6 +5303,19 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Bulk_Image_Update, "CP_Bulk_Image_Update", 50513);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCardPayment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_CardPayment, "REPORT_CardPayment", 50513);
             }
             catch (Exception ex)
             {
