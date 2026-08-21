@@ -20,6 +20,7 @@ namespace ROMS
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
         private List<ComboItem> months;
+        private List<ComboItem> days;
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -34,6 +35,21 @@ namespace ROMS
         {
             try
             {
+                string varMonthIds = "", varMonthName = "";
+                var selIds = cmbMultiMonths.CheckedIds;
+                var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
+                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                var selDayIds = cmbMultiSelectDays.CheckedIds;
+                var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
+                lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+                //if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
+                //{
+                //    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                //}
+                //else
+                //{
+                //    lblMonths.Text = "";
+                //}
                 udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
@@ -362,9 +378,12 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN(169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,141) AND MSTID<>-1 ORDER BY MSTID  ASC", "MST_DisplayText,MSTID", cmbVendor, "", "MST_DisplayText", "MSTID");
-                udfnLoadMonths();
 
+                objDataBind.BindComboBoxListSelected("(SELECT 0 AS MachineID, '- All -' AS MachineName " + "UNION ALL " + "SELECT CRDMHID AS MachineID, CRDMH_Name AS MachineName FROM MR_CardMachine WHERE CRDMHID<>-2) AS M", "1=1 ORDER BY MachineID", "MachineName,MachineID", cmbMachineId, "", "CRDMH_Name", "CRDMHID");
                 objDataBind = null;
+                udfnLoadMonths();
+                udfnLoadDays();
+
                  
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
@@ -380,6 +399,38 @@ namespace ROMS
                     var result = UserAccessHelper.LoadUserAccess(currentMUCode);
                     privilege = result.PrivilegeCode;
                     btnTelegram.Visible = privilege.Contains("7");
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLoadDays()
+        {
+            try
+            {
+                lblDays.Text = "";
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 41;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnMaster(objMR_Master);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs != null && objDs.Tables.Count > 0 && objDs.Tables[0].Rows.Count > 0)
+                    {
+                        days = objDs.Tables[0].AsEnumerable()
+                            .Select(r => new ComboItem
+                            {
+                                Id = r.Field<int>("DYID"),
+                                Text = r.Field<string>("DayName")
+                            })
+                            .ToList();
+                        cmbMultiSelectDays.LoadItems(days, "Select Day");
+                    }
                 }
             }
             catch (Exception ex)
@@ -914,7 +965,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMultiMonths.Focus();
+                    btnListPrint.Focus();
                 }
             }
             catch (Exception ex)
