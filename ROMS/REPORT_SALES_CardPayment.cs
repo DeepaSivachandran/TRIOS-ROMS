@@ -116,10 +116,6 @@ namespace ROMS
                     {
                         udfnReportLoad(294, varFlag);
                     }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 295)
-                    {
-                        udfnReportLoad(295, varFlag);
-                    }
                 }
             }
             catch (Exception ex)
@@ -140,7 +136,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnReportLoad(int varReportId, int varFlag)
+        public void udfnReportLoad(int varReportTypeID, int varFlag)
         {
             try
             {
@@ -159,7 +155,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 TRN_RateChange objRateChange = new TRN_RateChange();
-                if (varReportId == 294)
+                if (varReportTypeID == 294)
                 {
                     objRateChange.paraViewType = 1;
                 }
@@ -187,31 +183,18 @@ namespace ROMS
                     /* Rate Changing Report - 294
                      Live Rate Change Report- 295*/
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (varReportId == 294)
+                    if (varReportTypeID == 294)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rate_Change.rpt");
-                        objBillreport.SetParameterValue("paraViewType", 1);
                         objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                         objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
-                        varReportName = "Rate_Change";
                     }
                     else {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rate_Change_Live.rpt");
-                        objBillreport.SetParameterValue("paraViewType", 0);
                         objBillreport.SetParameterValue("paraFromDate", "");
                         objBillreport.SetParameterValue("paraToDate", "");
-                        varReportName = "Rate_Change_Live";
                     }
-                    objBillreport.SetParameterValue("paraGroupID", varGroupId);
-                    objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);
-                    objBillreport.SetParameterValue("paraBrandID",varBrandId);
-                    objBillreport.SetParameterValue("paraProductID",varProductId);
-                    objBillreport.SetParameterValue("paraBrandName", varBrand);
-                    objBillreport.SetParameterValue("paraGroupName", varGroup);
-                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroup);
                     objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -373,7 +356,8 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 //Transaction id 	87
                 udfnCmbConcern();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MST_TransactionID IN (195,0) AND MSTID<>-1", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                  
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN(169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
 
@@ -865,7 +849,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtbillamtt.Focus();
+                    txtBillAmt.Focus();
                 }
             }
             catch (Exception ex)
@@ -906,7 +890,7 @@ namespace ROMS
         {
             try
             {
-                txtbillamtt.BackColor = Color.White;
+                txtBillAmt.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -936,7 +920,7 @@ namespace ROMS
         {
             try
             {
-                txtbillamtt.BackColor = Color.LemonChiffon;
+                txtBillAmt.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
