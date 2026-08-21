@@ -1768,11 +1768,11 @@
     <Compile Include="REPORT_CP_Product_Rate.designer.cs">
       <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
     </Compile>
-    <Compile Include="REPORT_CardPayment.cs">
+    <Compile Include="REPORT_SALES_CardPayment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="REPORT_CardPayment.designer.cs">
-      <DependentUpon>REPORT_CardPayment.cs</DependentUpon>
+    <Compile Include="REPORT_SALES_CardPayment.designer.cs">
+      <DependentUpon>REPORT_SALES_CardPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_PUR_ReturnDC.cs">
       <SubType>Form</SubType>
@@ -7391,8 +7391,8 @@
     <EmbeddedResource Include="REPORT_CP_Product_Rate.resx">
       <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="REPORT_CardPayment.resx">
-      <DependentUpon>REPORT_CardPayment.cs</DependentUpon>
+    <EmbeddedResource Include="REPORT_SALES_CardPayment.resx">
+      <DependentUpon>REPORT_SALES_CardPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_ReturnDC.resx">
       <DependentUpon>REPORT_PUR_ReturnDC.cs</DependentUpon>

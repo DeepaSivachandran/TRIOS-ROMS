@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_CardPayment : Form
+    public partial class REPORT_SALES_CardPayment : Form
     {
         MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
@@ -25,7 +25,7 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0, varUpDownKeyProduct = 0;
-        public REPORT_CardPayment()
+        public REPORT_SALES_CardPayment()
         {
             InitializeComponent();
             windowControl.Initialize(tsRateChangeReport, this);

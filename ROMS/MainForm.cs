@@ -158,7 +158,7 @@ namespace ROMS
         public static CP_ProductImageApprovalList objCP_ProductImageApprovalList;
         public static CP_ProductImageApproval objCP_ProductImageApproval;
         public static CP_Bulk_Image_Update objCP_Bulk_Image_Update;
-        public static REPORT_CardPayment objREPORT_CardPayment;
+        public static REPORT_SALES_CardPayment objREPORT_CardPayment;
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
