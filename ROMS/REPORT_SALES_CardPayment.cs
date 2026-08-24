@@ -110,12 +110,7 @@ namespace ROMS
                 }
                 else
                 {
-                    /* Rate Changing Report - 294
-                     Live Rate Change Report- 295*/
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 294)
-                    {
-                        udfnReportLoad(294, varFlag);
-                    }
+                    udfnReportLoad(Convert.ToInt32(cmbReportType.SelectedValue), varFlag);
                 }
             }
             catch (Exception ex)
@@ -146,57 +141,266 @@ namespace ROMS
                 RPTViewer.Visible = false;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                string varBrand = "--All--", varGroup = "--All--", varSubgroup = "--All--", varProductName = "--All--";
-                int varBrandId = 0, varGroupId = 0, varSubgroupId = 0, varProductId = 0;
-                
 
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                TRN_RateChange objRateChange = new TRN_RateChange();
-                if (varReportTypeID == 294)
+                string varCustomerName = "-All-";
+                string varBillNoName = "-All-";
+                string varBillAmtName = "-All-";
+                string varDayNames = "-All-";
+                string varMonthNames = "-All-";
+
+                int varCustomerId = 0;
+
+                // Concern
+                int varConcernId = Convert.ToInt32(cmbConcern.SelectedValue);
+                string varConcernName = cmbConcern.Text;
+
+                // Machine
+                int varMachineId = Convert.ToInt32(cmbMachineId.SelectedValue);
+                string varMachineName = cmbMachineId.Text;
+
+                // Vendor / Provider
+                int varProviderId = Convert.ToInt32(cmbVendor.SelectedValue);
+                string varVendorName = cmbVendor.Text;
+
+                // Bill Type
+                int varTypeId = Convert.ToInt32(cmbBillType.SelectedValue);
+                string varTypeName = cmbBillType.Text;
+
+                // Customer
+                if (string.IsNullOrWhiteSpace(txtCustomer.Text))
                 {
-                    objRateChange.paraViewType = 1;
+                    varCustomerId = 0;
+                    varCustomerName = "-All-";
                 }
                 else
                 {
-                    objRateChange.paraViewType = 0;
+                    varCustomerId = Convert.ToInt32(lblCustomerId.Text);
+                    varCustomerName = txtCustomer.Text.Trim();
                 }
-                objRateChange.paraGroupID = varGroupId;
-                objRateChange.paraSubGroupID = varSubgroupId;
-                objRateChange.paraBrandID = varBrandId;
-                objRateChange.paraProductID = varProductId;
-                objRateChange.paraFromDate = dpFromDate.Text;
-                objRateChange.paraToDate = dpToDate.Text;
-                objDs = objdserv.udfnRateChangeList(objRateChange);
+
+                // Bill No
+                string varBillNo = txtBillno.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(varBillNo))
+                {
+                    varBillNoName = "-All-";
+                }
+                else
+                {
+                    varBillNoName = varBillNo;
+                }
+
+                // Bill Amount
+                string varBillAmt = txtBillAmt.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(varBillAmt))
+                {
+                    varBillAmtName = "-All-";
+                }
+                else
+                {
+                    varBillAmtName = varBillAmt;
+                }
+                string varDays = "0";
+
+                var selDayIds = cmbMultiSelectDays.CheckedIds;
+
+                var selDayItems = days
+                    .Where(d => selDayIds.Contains(d.Id))
+                    .ToList();
+
+                lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+
+                if (string.IsNullOrWhiteSpace(lblDays.Text))
+                {
+                    varDayNames = "-All-";
+                    varDays = "0";
+                }
+                else
+                {
+                    varDayNames = lblDays.Text;
+                    varDays = string.Join(",", selDayIds);
+                }
+                string varMonths = "0";
+
+                var selIds = cmbMultiMonths.CheckedIds;
+
+                var selItems = months
+                    .Where(m => selIds.Contains(m.Id))
+                    .ToList();
+
+                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+
+                if (string.IsNullOrWhiteSpace(lblMonths.Text))
+                {
+                    varMonthNames = "-All-";
+                    varMonths = "0";
+                }
+                else
+                {
+                    varMonthNames = lblMonths.Text;
+                    varMonths = string.Join(",", selIds);
+                }
+
+
+
+
+
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+
+                SPDataService objdserv = new SPDataService();
+
+                MR_Sales objCardPayment = new MR_Sales();
+                if (varReportTypeID == 643)
+                {
+                    objCardPayment.paraViewType = 0;
+                }
+                else if (varReportTypeID == 644)
+                {
+                    objCardPayment.paraViewType = 1;
+                }
+                else if (varReportTypeID == 645)
+                {
+                    objCardPayment.paraViewType = 2;
+                }
+                else if (varReportTypeID == 646)
+                {
+                    objCardPayment.paraViewType = 3;
+                }
+                else if (varReportTypeID == 647)
+                {
+                    objCardPayment.paraViewType = 4;
+                }
+                else if (varReportTypeID == 648)
+                {
+                    objCardPayment.paraViewType = 5;
+                }
+                else if (varReportTypeID == 649)
+                {
+                    objCardPayment.paraViewType = 6;
+                }
+                else if (varReportTypeID == 650)
+                {
+                    objCardPayment.paraViewType = 7;
+                }
+                objCardPayment.paraConcernId = varConcernId;
+                objCardPayment.paraFromDate = dpFromDate.Text;
+                objCardPayment.paraToDate = dpToDate.Text;
+                objCardPayment.paraMachineId = varMachineId;
+                objCardPayment.paraProviderId = varProviderId;
+                objCardPayment.paraTypeId = varTypeId;
+                objCardPayment.paraCustomerId = varCustomerId;
+                objCardPayment.paraBillNo = varBillNo;
+                objCardPayment.paraBillAmt = varBillAmt;
+                objCardPayment.paraDays = varDays;
+                objCardPayment.paraMonths = varMonths;
+                objDs = objdserv.udfnCardPaymentReports(objCardPayment);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                string varReportName = "REPORT_Company";
                 if (varPrint == 1)
                 {
+                    string varReportName = Convert.ToString(cmbReportType.Text);
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    /* Rate Changing Report - 294
-                     Live Rate Change Report- 295*/
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (varReportTypeID == 294)
+                    if (varReportTypeID == 643)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rate_Change.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Detail.rpt");
+
+                        // Detail Report Only
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraBillNoName", varBillNoName);
+                        objBillreport.SetParameterValue("paraBillAmountName", varBillAmtName);
+
+                        objBillreport.SetParameterValue("paraBillAmt", varBillAmt);
+                        objBillreport.SetParameterValue("paraBillNo", varBillNo);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
+                    }
+                    else if (varReportTypeID == 644)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Summary.rpt");
+
+                        // Summary Report
                         objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                         objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
                     }
-                    else {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rate_Change_Live.rpt");
-                        objBillreport.SetParameterValue("paraFromDate", "");
-                        objBillreport.SetParameterValue("paraToDate", "");
+                    else if (varReportTypeID == 645)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Daywise.rpt");
+
+                        // Daywise Report
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraDayName", varDayNames);
                     }
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    else if (varReportTypeID == 646)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Monthwise.rpt");
+
+                        // Monthwise Report
+                        objBillreport.SetParameterValue("paraMonths", varMonths);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthNames);
+                    }
+                    else if (varReportTypeID == 647)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Daywise_Mid.rpt");
+
+                        // Daywise MID Report
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraDayName", varDayNames);
+                    }
+                    else if (varReportTypeID == 648)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Monthwise_Mid.rpt");
+
+                        // Monthwise MID Report
+                        objBillreport.SetParameterValue("paraMonths", varMonths);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthNames);
+                    }
+                    else if (varReportTypeID == 649)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Daywise_Vendor.rpt");
+
+                        // Daywise Vendor Report
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraDayName", varDayNames);
+                    }
+                    else if (varReportTypeID == 650)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Monthwise_Vendor.rpt");
+
+                        // Monthwise Vendor Report
+                        objBillreport.SetParameterValue("paraMonths", varMonths);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthNames);
+                    }
+                    // ============================================================
+                    // COMMON PARAMETERS - ALL 8 REPORTS
+                    // ============================================================
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraConcernId", varConcernId);
+                    objBillreport.SetParameterValue("paraMachineId", varMachineId);
+                    objBillreport.SetParameterValue("paraProviderId", varProviderId);
+                    objBillreport.SetParameterValue("paraTypeId", varTypeId);
+                    objBillreport.SetParameterValue("paraConcernName", varConcernName);
+                    objBillreport.SetParameterValue("paraMachineName", varMachineName);
+                    objBillreport.SetParameterValue("paraVendorName", varVendorName);
+                    objBillreport.SetParameterValue("paraTypeName", varTypeName);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -357,7 +561,7 @@ namespace ROMS
                 //Transaction id 	87
                 udfnCmbConcern();
                 //objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MST_TransactionID IN (195,0) AND MSTID<>-1", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MST_TransactionID IN (195,0) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                  
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN(169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
 
@@ -1080,7 +1284,7 @@ namespace ROMS
                 //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDT = objdserv.udfnCompanyList(2, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)

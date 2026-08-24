@@ -6694,6 +6694,51 @@ namespace ROMS
             }
             return varResult;
         }
+        public DataSet udfnCardPaymentReports(MR_Sales obj)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                tmpspcall = new SPCall();
+
+                SqlCommand cmd = new SqlCommand("TRNG_Card_Payment_Reports", tmpspcall.objConn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                cmd.Parameters.AddWithValue("@paraConcernId", obj.paraConcernId);
+                cmd.Parameters.AddWithValue("@paraFromDate", obj.paraFromDate);
+                cmd.Parameters.AddWithValue("@paraToDate", obj.paraToDate);
+                cmd.Parameters.AddWithValue("@paraMachineId", obj.paraMachineId);
+                cmd.Parameters.AddWithValue("@paraProviderId", obj.paraProviderId);
+                cmd.Parameters.AddWithValue("@paraTypeId", obj.paraTypeId);
+                cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
+                cmd.Parameters.AddWithValue("@paraBillNo", obj.paraBillNo);
+                cmd.Parameters.AddWithValue("@paraBillAmt", obj.paraBillAmt);
+                cmd.Parameters.AddWithValue("@paraFlag", obj.paraFlag);
+                cmd.Parameters.AddWithValue("@paraDays", obj.paraDays);
+                cmd.Parameters.AddWithValue("@paraMonths", obj.paraMonths);
+
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(cmd);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+
+            return ds;
+        }
+
     }
 
 }
