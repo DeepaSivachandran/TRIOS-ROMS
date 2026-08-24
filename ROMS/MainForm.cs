@@ -5315,7 +5315,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_CardPayment, "REPORT_CardPayment", 50513);
+                OpenReportForm(ref MainForm.objREPORT_CardPayment, "REPORT_CardPayment", 1401);
             }
             catch (Exception ex)
             {
