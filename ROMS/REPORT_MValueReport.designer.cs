@@ -894,7 +894,7 @@
             this.btnView.TabIndex = 16;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.UseVisualStyleBackColor = true; 
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             this.btnView.Enter += new System.EventHandler(this.btnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.btnView_Leave);

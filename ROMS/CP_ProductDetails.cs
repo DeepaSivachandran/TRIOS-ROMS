@@ -457,7 +457,7 @@ namespace ROMS
                 lblOwn.Text = "";
                 lblPICodeValue.Text = "";
                 lblProductName.Text = "";
-                txtSearch.Text = "";
+                txtProductName.Text = "";
                 lblRackIncharge.Text = "";
                 lblInfoStatus.Text = "";
                 pbPrid = 0;
@@ -489,7 +489,7 @@ namespace ROMS
         {
             try
             {
-                if (txtSearch.Text.Trim() == "")
+                if (txtProductName.Text.Trim() == "")
                 {
                     pbPrid = 0;
                     grdItemList.DataSource = null;
@@ -500,11 +500,11 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    if (txtSearch.Text.Length > 0)
+                    if (txtProductName.Text.Length > 0)
                     {
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 49;
-                        objMR_Product.paraProductName = txtSearch.Text;
+                        objMR_Product.paraProductName = txtProductName.Text;
                         objMR_Product.paraFlag = 1;                         //Load Only Eligible for Sales Products
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
@@ -520,14 +520,13 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_EName"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
-                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 100;
+                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 350;
                                     DGV_FilterProduct.Columns["UNIT"].Width = 50;
                                     DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                     
                                     DGV_FilterProduct.BringToFront();
                                 }
                                 else
@@ -603,10 +602,10 @@ namespace ROMS
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
 
-                            txtSearch.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
 
-                            txtSearch.Focus();
-                            txtSearch.SelectionStart = txtSearch.Text.Length;
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
@@ -615,11 +614,11 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtSearch.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                             }
 
-                            txtSearch.Focus();
-                            txtSearch.SelectionStart = txtSearch.Text.Length;
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Enter:
@@ -629,7 +628,6 @@ namespace ROMS
                                     varUpDownKeyProduct = 1;
                                     udfnListviewProduct();
                                     DGV_FilterProduct.Visible = false;
-                                    btnSearch.Focus();
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
                                 break;
@@ -637,9 +635,13 @@ namespace ROMS
                     }
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
-                        TextBox txtProductName = sender as TextBox; 
+                        TextBox txtProductName = sender as TextBox;
                         txtProductName.SelectAll();
                         e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        btnSearch.Focus();
                     }
                 }
             }
@@ -653,10 +655,10 @@ namespace ROMS
         {
             try
             {
-                if (txtSearch.Text.Trim() != "")
+                if (txtProductName.Text.Trim() != "")
                 {
                     pbPrid = Convert.ToInt16(DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value);
-                    txtSearch.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
+                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
                     DGV_FilterProduct.Visible = false;
                     btnSearch.Focus();
                 }
@@ -672,7 +674,7 @@ namespace ROMS
         {
             try
             {
-                txtSearch.BackColor = Color.LemonChiffon;
+                txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -685,16 +687,16 @@ namespace ROMS
         {
             try
             {
-                if (txtSearch.Text == "")
+                if (txtProductName.Text == "")
                 {
-                    errItems.SetError(txtSearch, "Please enter valid product");
-                    txtSearch.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtProductName, "Please enter valid product");
+                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProduct.ShowAlways = true;
-                    tpProduct.Show("Please enter valid product", txtSearch, 5000);
+                    tpProduct.Show("Please enter valid product", txtProductName, 5000);
                 }
                 else
                 {
-                    txtSearch.BackColor = Color.White;
+                    txtProductName.BackColor = Color.White;
                     errItems.Clear();
                 }
             }
@@ -715,14 +717,10 @@ namespace ROMS
                     DGV_FilterProduct.Focus();
 
                 }
-                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
-                {
-                    btnSearch.Focus();
-                }
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up  )
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterProduct.Focus();
-                } 
+                }
                 if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
                 {
                     return;
@@ -740,10 +738,6 @@ namespace ROMS
                     {
                         varUpDownKey = 0;
                     }
-                    if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
-                    {
-                        btnSearch.Focus();
-                    }
                     switch (e.KeyCode)
                     {
                         case Keys.Up:
@@ -751,10 +745,10 @@ namespace ROMS
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
                             {
-                                txtSearch.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                             }
-                            txtSearch.Focus();
-                            txtSearch.SelectionStart = txtSearch.Text.Length;
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
@@ -763,10 +757,11 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtSearch.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
-                            } 
-                            txtSearch.Focus(); 
-                            txtSearch.SelectionStart = txtSearch.Text.Length;
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                            }
+
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Enter:
@@ -781,7 +776,7 @@ namespace ROMS
                                 break;
                             }
                     }
-                    txtSearch.Focus();
+                    txtProductName.Focus();
                     //txtProductName.SelectionStart = txtProductName.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
@@ -790,6 +785,10 @@ namespace ROMS
                         TextBox txtProductName = sender as TextBox;
                         txtProductName.SelectAll();
                         e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        btnSearch.Focus();
                     }
                 }
             }
