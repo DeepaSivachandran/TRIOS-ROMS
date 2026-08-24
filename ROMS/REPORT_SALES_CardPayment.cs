@@ -113,7 +113,7 @@ namespace ROMS
             {
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
-                    //epReport.SetError(cmbReportType, "Please select report type.");
+                    epReport.SetError(cmbReportType, "Please select report type.");
                     cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpReportType.ShowAlways = true;
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
@@ -129,7 +129,7 @@ namespace ROMS
 
                         if (selDayIds == null || selDayIds.Count == 0)
                         {
-                            //epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
+                            epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
                             cmbMultiSelectDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
 
                             tpDays.ShowAlways = true;
@@ -145,7 +145,7 @@ namespace ROMS
 
                         if (selMonthIds == null || selMonthIds.Count == 0)
                         {
-                            //epReport.SetError(cmbMultiMonths, "Please select at least one month.");
+                            epReport.SetError(cmbMultiMonths, "Please select at least one month.");
                             cmbMultiMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
 
                             tpMonths.ShowAlways = true;
