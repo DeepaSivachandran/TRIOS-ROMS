@@ -6073,7 +6073,7 @@ namespace ROMS
                 SqlCommand cmd = new SqlCommand("MRG_Customer", tmpspcall.objConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
                 cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
                 cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
                 cmd.Parameters.AddWithValue("@paraCUS_TypeID", obj.paraCUS_TypeID);

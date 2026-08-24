@@ -181,6 +181,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -521,9 +522,8 @@ namespace ROMS
                 cmbMultiMonths.Enabled = false;
                 lblDays.Text = "";
                 lblMonths.Text = "";
-                dpFromDate.MinDate = MainForm.pbFYStartDate;
-                dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                dpFromDate.Value = MainForm.pbCurrentDate;
+                dpToDate.Value = MainForm.pbCurrentDate;
 
                 cmbMachineId.SelectedValue = 0;
                 cmbVendor.SelectedValue = 0;
@@ -1606,8 +1606,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
 
                     MR_Sales obj = new MR_Sales();
-                    obj.paraViewType = 3;
-                    obj.paraCUS_TypeID = 2;
+                    obj.paraViewType = 6;
                     if (txtCustomer.Text.Length > 0)
                     {
                         obj.paraCUS_Name = txtCustomer.Text;
@@ -1622,7 +1621,7 @@ namespace ROMS
                                     DGV_Customer.DataSource = objDs.Tables[0];
                                     DGV_Customer.Columns["TEMPCUSID"].Visible = false;
                                     DGV_Customer.Columns["Mobileno"].Visible = false;
-                                    DGV_Customer.Columns["Customer"].Width = 150;
+                                    DGV_Customer.Columns["Customer"].Width = 170;
                                     DGV_Customer.BringToFront();
                                 }
                                 else

@@ -148,13 +148,13 @@
         9Y8/Z/aiU0LqmWvJnsXWu79haPtrB7QFXInj5p8hSlKmZMdnPF53rsPrFcCCxlrAYYH42Tvv1x//2Q==
 </value>
   </data>
-  <metadata name="dynamicLabelControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>171, 26</value>
-  </metadata>
   <metadata name="epReport.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>339, 26</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
+  </metadata>
+  <metadata name="dynamicLabelControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>171, 26</value>
   </metadata>
 </root>
