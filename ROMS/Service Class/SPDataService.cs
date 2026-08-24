@@ -6076,6 +6076,11 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
                 cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
                 cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraCUS_TypeID", obj.paraCUS_TypeID);
+                cmd.Parameters.AddWithValue("@paraCUS_CategoryID", obj.paraCUS_CategoryTypeID);
+                cmd.Parameters.AddWithValue("@paraCUS_DeliPreferenceID", obj.paraDeliveryPersonId);
+                cmd.Parameters.AddWithValue("@paraCustomer", obj.paraCUS_Name);
+                cmd.Parameters.AddWithValue("@paraBillId", obj.paraBillId);
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 

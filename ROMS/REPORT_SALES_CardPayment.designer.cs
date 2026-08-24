@@ -39,6 +39,7 @@
             this.pnlReportBrand = new System.Windows.Forms.Panel();
             this.DGV_Customer = new System.Windows.Forms.DataGridView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblCustomerId = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblConcern = new System.Windows.Forms.Label();
             this.lblDays = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
             this.lblProductcode = new System.Windows.Forms.Label();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.lblSubGroupCode = new System.Windows.Forms.Label();
-            this.lblCustomerId = new System.Windows.Forms.Label();
             this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.cmbMultiMonths = new MultiSelectComboBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
@@ -191,6 +191,8 @@
             this.DGV_Customer.Size = new System.Drawing.Size(281, 226);
             this.DGV_Customer.TabIndex = 111111176;
             this.DGV_Customer.Visible = false;
+            this.DGV_Customer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Customer_CellDoubleClick);
+            this.DGV_Customer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_Customer_KeyDown);
             // 
             // grpfilter
             // 
@@ -231,6 +233,16 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblCustomerId
+            // 
+            this.lblCustomerId.AutoSize = true;
+            this.lblCustomerId.Location = new System.Drawing.Point(253, 75);
+            this.lblCustomerId.Name = "lblCustomerId";
+            this.lblCustomerId.Size = new System.Drawing.Size(16, 20);
+            this.lblCustomerId.TabIndex = 111111206;
+            this.lblCustomerId.Text = "0";
+            this.lblCustomerId.Visible = false;
             // 
             // cmbConcern
             // 
@@ -370,6 +382,7 @@
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.Size = new System.Drawing.Size(212, 27);
             this.txtCustomer.TabIndex = 7;
+            this.txtCustomer.TextChanged += new System.EventHandler(this.txtCustomer_TextChanged);
             this.txtCustomer.Enter += new System.EventHandler(this.txtCustomer_Enter);
             this.txtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomer_KeyDown);
             this.txtCustomer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCustomer_KeyPress);
@@ -613,16 +626,6 @@
             this.lblSubGroupCode.Text = "0";
             this.lblSubGroupCode.Visible = false;
             // 
-            // lblCustomerId
-            // 
-            this.lblCustomerId.AutoSize = true;
-            this.lblCustomerId.Location = new System.Drawing.Point(253, 75);
-            this.lblCustomerId.Name = "lblCustomerId";
-            this.lblCustomerId.Size = new System.Drawing.Size(16, 20);
-            this.lblCustomerId.TabIndex = 111111206;
-            this.lblCustomerId.Text = "0";
-            this.lblCustomerId.Visible = false;
-            // 
             // cmbMultiSelectDays
             // 
             this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
@@ -650,6 +653,7 @@
             this.cmbMultiMonths.TabIndex = 11;
             this.cmbMultiMonths.Enter += new System.EventHandler(this.cmbMultiMonths_Enter);
             this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiMonths_KeyDown);
+            this.cmbMultiMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiMonths_KeyPress);
             this.cmbMultiMonths.Leave += new System.EventHandler(this.cmbMultiMonths_Leave);
             // 
             // dynamicLabelControl

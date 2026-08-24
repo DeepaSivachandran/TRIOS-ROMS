@@ -21,7 +21,9 @@ namespace ROMS
 
         private List<ComboItem> months;
         private List<ComboItem> days;
-        ToolTip tpSupplier = new ToolTip();
+        private ToolTip tpMonths = new ToolTip();
+        private ToolTip tpDays = new ToolTip();
+        private ToolTip tpReportType = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -35,21 +37,26 @@ namespace ROMS
         {
             try
             {
-                string varMonthIds = "", varMonthName = "";
                 var selIds = cmbMultiMonths.CheckedIds;
                 var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
-                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+
                 var selDayIds = cmbMultiSelectDays.CheckedIds;
                 var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
-                lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
-                //if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
-                //{
-                //    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
-                //}
-                //else
-                //{
-                //    lblMonths.Text = "";
-                //}
+
+                int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
+
+                lblDays.Text = "";
+                lblMonths.Text = "";
+
+                if (varReportType == 645 || varReportType == 647 || varReportType == 649)
+                {
+                    lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+                }
+                else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
+                {
+                    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                }
+
                 udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
@@ -75,11 +82,11 @@ namespace ROMS
         {
             try
             {
-                //if (skipControl != txtGroup)
+                //if (skipControl != txtCustomer)
                 //{
                 //    varUpDownKeyGroup = 0;
-                //    DGV_FilterGroup.DataSource = null;
-                //    DGV_FilterGroup.Visible = false;
+                //    DGV_Customer.DataSource = null;
+                //    DGV_Customer.Visible = false;
                 //}
                 //if (skipControl != txtSubGroup)
                 //{
@@ -106,10 +113,49 @@ namespace ROMS
             {
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
+                    //epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
                 }
                 else
                 {
+                    int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
+
+                    if (varReportType == 645 || varReportType == 647 || varReportType == 649)
+                    {
+                        var selDayIds = cmbMultiSelectDays.CheckedIds;
+
+                        if (selDayIds == null || selDayIds.Count == 0)
+                        {
+                            //epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
+                            cmbMultiSelectDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                            tpDays.ShowAlways = true;
+                            tpDays.Show("Please select at least one day.", cmbMultiSelectDays, 5000);
+
+                            cmbMultiSelectDays.Focus();
+                            return;
+                        }
+                    }
+                    else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
+                    {
+                        var selMonthIds = cmbMultiMonths.CheckedIds;
+
+                        if (selMonthIds == null || selMonthIds.Count == 0)
+                        {
+                            //epReport.SetError(cmbMultiMonths, "Please select at least one month.");
+                            cmbMultiMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                            tpMonths.ShowAlways = true;
+                            tpMonths.Show("Please select at least one month.", cmbMultiMonths, 5000);
+
+                            cmbMultiMonths.Focus();
+                            return;
+                        }
+                    }
+
                     udfnReportLoad(Convert.ToInt32(cmbReportType.SelectedValue), varFlag);
                 }
             }
@@ -202,45 +248,62 @@ namespace ROMS
                     varBillAmtName = varBillAmt;
                 }
                 string varDays = "0";
-
-                var selDayIds = cmbMultiSelectDays.CheckedIds;
-
-                var selDayItems = days
-                    .Where(d => selDayIds.Contains(d.Id))
-                    .ToList();
-
-                lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
-
-                if (string.IsNullOrWhiteSpace(lblDays.Text))
-                {
-                    varDayNames = "-All-";
-                    varDays = "0";
-                }
-                else
-                {
-                    varDayNames = lblDays.Text;
-                    varDays = string.Join(",", selDayIds);
-                }
                 string varMonths = "0";
 
                 var selIds = cmbMultiMonths.CheckedIds;
+                var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
 
-                var selItems = months
-                    .Where(m => selIds.Contains(m.Id))
-                    .ToList();
+                var selDayIds = cmbMultiSelectDays.CheckedIds;
+                var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
 
-                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
 
-                if (string.IsNullOrWhiteSpace(lblMonths.Text))
+                lblDays.Text = "";
+                lblMonths.Text = "";
+
+                if (varReportType == 645 || varReportType == 647 || varReportType == 649)
                 {
-                    varMonthNames = "-All-";
-                    varMonths = "0";
+                    lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+
+                    if (string.IsNullOrWhiteSpace(lblDays.Text))
+                    {
+                        varDayNames = "-All-";
+                        varDays = "0";
+                    }
+                    else
+                    {
+                        varDayNames = lblDays.Text;
+                        varDays = string.Join(",", selDayIds);
+                    }
+                }
+                else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
+                {
+                    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+
+                    if (string.IsNullOrWhiteSpace(lblMonths.Text))
+                    {
+                        varMonthNames = "-All-";
+                        varMonths = "0";
+                    }
+                    else
+                    {
+                        varMonthNames = lblMonths.Text;
+                        varMonths = string.Join(",", selIds);
+                    }
                 }
                 else
                 {
-                    varMonthNames = lblMonths.Text;
-                    varMonths = string.Join(",", selIds);
+                    // Reports 643 and 644 don't use Day/Month filters
+                    lblDays.Text = "";
+                    lblMonths.Text = "";
+
+                    varDays = "0";
+                    varMonths = "0";
+
+                    varDayNames = "-All-";
+                    varMonthNames = "-All-";
                 }
+
 
 
 
@@ -445,17 +508,78 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 udfnClear();
-                /* 294 - Rate Changing Report
-                 295 - Live Rate Change Report */
-                if (Convert.ToString(cmbReportType.SelectedValue) == "294")
+                int varReportTypeID = Convert.ToInt32(cmbReportType.SelectedValue);
+                dpFromDate.Enabled = false;
+                dpToDate.Enabled = false;
+                cmbMachineId.Enabled = false;
+                cmbVendor.Enabled = false;
+                cmbBillType.Enabled = false;
+                txtCustomer.Enabled = false;
+                txtBillno.Enabled = false;
+                txtBillAmt.Enabled = false;
+                cmbMultiSelectDays.Enabled = false;
+                cmbMultiMonths.Enabled = false;
+                lblDays.Text = "";
+                lblMonths.Text = "";
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+
+                cmbMachineId.SelectedValue = 0;
+                cmbVendor.SelectedValue = 0;
+                cmbBillType.SelectedValue = 0;
+                txtCustomer.Text = "";
+                txtBillno.Text = "";
+                txtBillAmt.Text = "";
+                cmbMachineId.Enabled = true;
+                cmbVendor.Enabled = true;
+                cmbBillType.Enabled = true;
+                if (varReportTypeID == 643)
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    txtCustomer.Enabled = true;
+                    txtBillno.Enabled = true;
+                    txtBillAmt.Enabled = true;
+                }
+                else if (varReportTypeID == 644)
                 {
                     dpFromDate.Enabled = true;
                     dpToDate.Enabled = true;
                 }
-                if (Convert.ToString(cmbReportType.SelectedValue) == "295")
+                else if (varReportTypeID == 645)
                 {
-                    dpFromDate.Enabled = false;
-                    dpToDate.Enabled = false;
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    cmbMultiSelectDays.Enabled = true;
+                }
+                else if (varReportTypeID == 646)
+                {
+                    cmbMultiMonths.Enabled = true;
+                }
+                else if (varReportTypeID == 647)
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    cmbMultiSelectDays.Enabled = true;
+                }
+                else if (varReportTypeID == 648)
+                {
+                    cmbMultiMonths.Enabled = true;
+                }
+                else if (varReportTypeID == 649)
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    cmbMultiSelectDays.Enabled = true;
+                }
+                else if (varReportTypeID == 650)
+                {
+                    cmbMultiMonths.Enabled = true;
                 }
                 if (cmbReportType.SelectedItem is DataRowView drv)
                 {
@@ -492,8 +616,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbConcern.Focus();
-                   
+                    FocusNextEnabledControl(cmbReportType);
                 }
             }
             catch (Exception ex)
@@ -527,6 +650,142 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void FocusNextEnabledControl(Control currentControl)
+        {
+            try
+            {
+                if (currentControl == cmbReportType)
+                {
+                    cmbConcern.Focus();
+                }
+                else if (currentControl == cmbConcern)
+                {
+                    if (dpFromDate.Enabled)
+                        dpFromDate.Focus();
+                    else if (cmbMachineId.Enabled)
+                        cmbMachineId.Focus();
+                    else if (cmbVendor.Enabled)
+                        cmbVendor.Focus();
+                    else if (cmbBillType.Enabled)
+                        cmbBillType.Focus();
+                }
+                else if (currentControl == dpFromDate)
+                {
+                    if (dpToDate.Enabled)
+                        dpToDate.Focus();
+                    else if (cmbMachineId.Enabled)
+                        cmbMachineId.Focus();
+                }
+                else if (currentControl == dpToDate)
+                {
+                    if (cmbMachineId.Enabled)
+                        cmbMachineId.Focus();
+                    else if (cmbVendor.Enabled)
+                        cmbVendor.Focus();
+                }
+                else if (currentControl == cmbMachineId)
+                {
+                    if (cmbVendor.Enabled)
+                        cmbVendor.Focus();
+                    else if (cmbBillType.Enabled)
+                        cmbBillType.Focus();
+                    else if (txtCustomer.Enabled)
+                        txtCustomer.Focus();
+                    else if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbVendor)
+                {
+                    if (cmbBillType.Enabled)
+                        cmbBillType.Focus();
+                    else if (txtCustomer.Enabled)
+                        txtCustomer.Focus();
+                    else if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbBillType)
+                {
+                    if (txtCustomer.Enabled)
+                        txtCustomer.Focus();
+                    else if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == txtCustomer)
+                {
+                    if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == txtBillno)
+                {
+                    if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == txtBillAmt)
+                {
+                    if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbMultiSelectDays)
+                {
+                    if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbMultiMonths)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbReportType_Enter(object sender, EventArgs e)
         {
             try
@@ -567,7 +826,8 @@ namespace ROMS
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,141) AND MSTID<>-1 ORDER BY MSTID  ASC", "MST_DisplayText,MSTID", cmbVendor, "", "MST_DisplayText", "MSTID");
 
-                objDataBind.BindComboBoxListSelected("(SELECT 0 AS MachineID, '- All -' AS MachineName " + "UNION ALL " + "SELECT CRDMHID AS MachineID, CRDMH_Name AS MachineName FROM MR_CardMachine WHERE CRDMHID<>-2) AS M", "1=1 ORDER BY MachineID", "MachineName,MachineID", cmbMachineId, "", "CRDMH_Name", "CRDMHID");
+                objDataBind.BindComboBoxListSelected("(SELECT 0 AS MachineID, '-All-' AS MachineName " + "UNION ALL " + "SELECT CRDMHID AS MachineID, CRDMH_Name AS MachineName FROM MR_CardMachine WHERE CRDMHID<>-2) AS M", "1=1 ORDER BY MachineID","MachineName,MachineID",cmbMachineId,"","MachineName","MachineID");
+
                 objDataBind = null;
                 udfnLoadMonths();
                 udfnLoadDays();
@@ -679,7 +939,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpToDate.Focus();
+                    FocusNextEnabledControl(dpFromDate);
                 }
             }
             catch (Exception ex)
@@ -735,7 +995,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMachineId.Focus();
+                    FocusNextEnabledControl(dpToDate);
                 }
             }
             catch (Exception ex)
@@ -792,16 +1052,12 @@ namespace ROMS
 
         private void cmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
-                if (dpFromDate.Enabled == true)
+            try 
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    FocusNextEnabledControl(cmbConcern);
                 }
-                else
-                {
-                    cmbMachineId.Focus();
-                }
-
             }
             catch (Exception ex)
             {
@@ -867,7 +1123,7 @@ namespace ROMS
             try
             {   if (e.KeyCode == Keys.Enter)
                 {
-                    cmbVendor.Focus();
+                    FocusNextEnabledControl(cmbMachineId);
                 }
             }
             catch (Exception ex)
@@ -909,7 +1165,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBillType.Focus();
+                    FocusNextEnabledControl(cmbVendor);
                 }
             }
             catch (Exception ex)
@@ -951,7 +1207,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCustomer.Focus();
+                    FocusNextEnabledControl(cmbBillType);
                 }
             }
             catch (Exception ex)
@@ -1017,9 +1273,104 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                varUpDownKeyGroup = 0;
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
-                    txtBillno.Focus();
+                    DGV_Customer.Focus();
+                }
+                if (e.KeyCode == Keys.Enter && DGV_Customer.Visible == false)
+                {
+                    FocusNextEnabledControl(txtCustomer);
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_Customer.Focus();
+                }
+                if (DGV_Customer.CurrentCell == null && DGV_Customer.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_Customer.Focus();
+                    int RowIndex = DGV_Customer.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_Customer.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyGroup = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyGroup = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
+                            }
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_Customer.Rows.Count) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_Customer.Rows.Count))
+                            {
+                                txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
+                            }
+
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_Customer.Rows.Count > 0)
+                                {
+                                    varUpDownKeyGroup = 1;
+                                    udfnCustomerAutocomplete();
+                                    DGV_Customer.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtCustomer.Focus();
+                    //txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        FocusNextEnabledControl(txtCustomer);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCustomerAutocomplete()
+        {
+            try
+            {
+                if (txtCustomer.Text.Trim() != "")
+                {
+                    lblCustomerId.Text = DGV_Customer.SelectedRows[0].Cells["TEMPCUSID"].Value.ToString();
+                    txtCustomer.Text = DGV_Customer.SelectedRows[0].Cells["Customer"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -1053,7 +1404,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBillAmt.Focus();
+                    FocusNextEnabledControl(txtBillno);
                 }
             }
             catch (Exception ex)
@@ -1110,7 +1461,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMultiSelectDays.Focus();
+                    FocusNextEnabledControl(txtBillAmt);
                 }
             }
             catch (Exception ex)
@@ -1153,7 +1504,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    FocusNextEnabledControl(cmbMultiSelectDays);
                 }
             }
             catch (Exception ex)
@@ -1208,7 +1559,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    FocusNextEnabledControl(cmbMultiMonths);
                 }
             }
             catch (Exception ex)
@@ -1236,6 +1587,168 @@ namespace ROMS
             try
             {
                 btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCustomer_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varUpDownKeyGroup == 0)
+                {
+                    //lvGroup.Items.Clear();
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 3;
+                    obj.paraCUS_TypeID = 2;
+                    if (txtCustomer.Text.Length > 0)
+                    {
+                        obj.paraCUS_Name = txtCustomer.Text;
+                        objDs = objspservice.udfnCustomerList(obj);
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_Customer.Visible = true;
+                                    DGV_Customer.DataSource = objDs.Tables[0];
+                                    DGV_Customer.Columns["TEMPCUSID"].Visible = false;
+                                    DGV_Customer.Columns["Mobileno"].Visible = false;
+                                    DGV_Customer.Columns["Customer"].Width = 150;
+                                    DGV_Customer.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_Customer.Visible = false;
+                                    DGV_Customer.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_Customer.Visible = false;
+                                DGV_Customer.DataSource = null;
+                            }
+                        }
+                        else
+                        {
+                            DGV_Customer.Visible = false;
+                            DGV_Customer.DataSource = null;
+                        }
+                    }
+                    else
+                    {
+                        DGV_Customer.Visible = false;
+                        DGV_Customer.DataSource = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_Customer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyGroup = 1;
+                udfnCustomerAutocomplete();
+                FocusNextEnabledControl(txtCustomer);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_Customer_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_Customer.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_Customer.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyGroup = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyGroup = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtCustomer.Text = DGV_Customer.SelectedRows[0].Cells["Customer"].Value.ToString();
+
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_Customer.Rows.Count) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_Customer.Rows.Count))
+                            {
+                                txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
+                            }
+
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_Customer.Rows.Count > 0)
+                                {
+                                    varUpDownKeyGroup = 1;
+                                    udfnCustomerAutocomplete();
+                                    DGV_Customer.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        FocusNextEnabledControl(txtCustomer);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiMonths_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

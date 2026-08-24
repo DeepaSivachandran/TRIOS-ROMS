@@ -103,6 +103,7 @@ namespace ROMS.Model
         public int paraABID { get; set; } = 0;
         public int paraType { get; set; } = 0;
         public int paraCTYID { get; set; } = 0;
+        public int paraBillId { get; set; } = 0;
 
         // -------------------- Customer Group --------------------
         public int paraContactGroupId { get; set; } = 0;
