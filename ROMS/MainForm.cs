@@ -435,6 +435,7 @@ namespace ROMS
         public static SAL_Entry objSAL_Entry;
         public static REPORT_EntryReport objREPORT_EntryReport;
         public static REPORT_MValueReport objREPORT_MValueReport;
+        public static REPORT_S_EntryReport objREPORT_S_EntryReport;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -461,7 +462,7 @@ namespace ROMS
         public static CP_Basketlist objCP_Basketlist;
         public static CP_Basket objCP_Basket;
         public static CP_Product_Supplier objCP_Product_Supplier;
-        public static CP_ProductDetails objCP_ProductDetails;
+        public static CP_ProductDetails objCP_ProductDetails; 
         public static ProductDetails objProductDetails;
 
         public MainForm()
@@ -4519,7 +4520,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F4) //Supplier products
                 {
-                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                    MainForm.objCP_ProductDetails = new CP_ProductDetails(); 
                     MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
                     MainForm.objCP_ProductDetails.ShowDialog();
                 }
@@ -5303,6 +5304,19 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Bulk_Image_Update, "CP_Bulk_Image_Update", 50513);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSReports_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_S_EntryReport, "REPORT_S_EntryReport", 809);
             }
             catch (Exception ex)
             {

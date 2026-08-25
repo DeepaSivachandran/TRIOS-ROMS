@@ -370,7 +370,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraEMPID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraRackType {
             get {
                 return this.DataDefinition.ParameterFields[24];
             }
@@ -378,7 +378,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKGID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraShopLocType {
             get {
                 return this.DataDefinition.ParameterFields[25];
             }
@@ -386,7 +386,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKID {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraEMPID {
             get {
                 return this.DataDefinition.ParameterFields[26];
             }
@@ -394,7 +394,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaCompanycode {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKGID {
             get {
                 return this.DataDefinition.ParameterFields[27];
             }
@@ -402,7 +402,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraProductCategory {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKID {
             get {
                 return this.DataDefinition.ParameterFields[28];
             }
@@ -410,7 +410,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraSubgroupType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaCompanycode {
             get {
                 return this.DataDefinition.ParameterFields[29];
             }
@@ -418,7 +418,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraStatusId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraProductCategory {
             get {
                 return this.DataDefinition.ParameterFields[30];
             }
@@ -426,7 +426,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRackStatusID {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraSubgroupType {
             get {
                 return this.DataDefinition.ParameterFields[31];
             }
@@ -434,7 +434,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaOrderby {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraStatusId {
             get {
                 return this.DataDefinition.ParameterFields[32];
             }
@@ -442,7 +442,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaRate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRackStatusID {
             get {
                 return this.DataDefinition.ParameterFields[33];
             }
@@ -450,7 +450,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaStockType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaOrderby {
             get {
                 return this.DataDefinition.ParameterFields[34];
             }
@@ -458,9 +458,41 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraLocationType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaRate {
             get {
                 return this.DataDefinition.ParameterFields[35];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaStockType {
+            get {
+                return this.DataDefinition.ParameterFields[36];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraLocationType {
+            get {
+                return this.DataDefinition.ParameterFields[37];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRackType {
+            get {
+                return this.DataDefinition.ParameterFields[38];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraShopLocType {
+            get {
+                return this.DataDefinition.ParameterFields[39];
             }
         }
     }

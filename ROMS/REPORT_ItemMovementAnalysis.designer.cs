@@ -69,6 +69,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpShow = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.chkExpirydate = new System.Windows.Forms.CheckBox();
             this.chkBatchno = new System.Windows.Forms.CheckBox();
             this.chkMrp = new System.Windows.Forms.CheckBox();
@@ -87,13 +88,12 @@
             this.lblInvoicedate = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epItemAnalysis = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.btnTelegram = new System.Windows.Forms.Button(); 
             this.tsItemMovementReport.SuspendLayout();
             this.pnlReportProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterGroup)).BeginInit();
@@ -117,7 +117,7 @@
             this.tsLabelPlaceholder});
             this.tsItemMovementReport.Location = new System.Drawing.Point(0, 0);
             this.tsItemMovementReport.Name = "tsItemMovementReport";
-            this.tsItemMovementReport.Size = new System.Drawing.Size(1354, 32);
+            this.tsItemMovementReport.Size = new System.Drawing.Size(1354, 27);
             this.tsItemMovementReport.TabIndex = 35;
             this.tsItemMovementReport.Text = "Stock Report";
             // 
@@ -131,7 +131,7 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(93, 29);
+            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
             this.tsbPrintFormat.Text = "A4-Portrait";
             this.tsbPrintFormat.ToolTipText = "A4-Portrait";
             // 
@@ -143,7 +143,7 @@
             this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(112, 29);
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
             // 
@@ -154,7 +154,7 @@
             this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(69, 29);
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
             this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportProduct
@@ -468,12 +468,26 @@
             this.grpShow.Visible = false;
             this.grpShow.Enter += new System.EventHandler(this.GrpShow_Enter);
             // 
+            // btnTelegram
+            // 
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(114, 27);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 9;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
+            // 
             // chkExpirydate
             // 
             this.chkExpirydate.AutoSize = true;
             this.chkExpirydate.Location = new System.Drawing.Point(323, 25);
             this.chkExpirydate.Name = "chkExpirydate";
-            this.chkExpirydate.Size = new System.Drawing.Size(108, 29);
+            this.chkExpirydate.Size = new System.Drawing.Size(89, 24);
             this.chkExpirydate.TabIndex = 4;
             this.chkExpirydate.Text = "Expiry Date";
             this.chkExpirydate.UseVisualStyleBackColor = true;
@@ -484,7 +498,7 @@
             this.chkBatchno.AutoSize = true;
             this.chkBatchno.Location = new System.Drawing.Point(237, 26);
             this.chkBatchno.Name = "chkBatchno";
-            this.chkBatchno.Size = new System.Drawing.Size(97, 29);
+            this.chkBatchno.Size = new System.Drawing.Size(80, 24);
             this.chkBatchno.TabIndex = 3;
             this.chkBatchno.Text = "Batch No.";
             this.chkBatchno.UseVisualStyleBackColor = true;
@@ -494,7 +508,7 @@
             this.chkMrp.AutoSize = true;
             this.chkMrp.Location = new System.Drawing.Point(179, 26);
             this.chkMrp.Name = "chkMrp";
-            this.chkMrp.Size = new System.Drawing.Size(64, 29);
+            this.chkMrp.Size = new System.Drawing.Size(53, 24);
             this.chkMrp.TabIndex = 2;
             this.chkMrp.Text = "MRP";
             this.chkMrp.UseVisualStyleBackColor = true;
@@ -504,7 +518,7 @@
             this.chkRack.AutoSize = true;
             this.chkRack.Location = new System.Drawing.Point(117, 26);
             this.chkRack.Name = "chkRack";
-            this.chkRack.Size = new System.Drawing.Size(66, 29);
+            this.chkRack.Size = new System.Drawing.Size(54, 24);
             this.chkRack.TabIndex = 1;
             this.chkRack.Text = "Rack";
             this.chkRack.UseVisualStyleBackColor = true;
@@ -514,7 +528,7 @@
             this.chkLocation.AutoSize = true;
             this.chkLocation.Location = new System.Drawing.Point(7, 26);
             this.chkLocation.Name = "chkLocation";
-            this.chkLocation.Size = new System.Drawing.Size(132, 29);
+            this.chkLocation.Size = new System.Drawing.Size(106, 24);
             this.chkLocation.TabIndex = 0;
             this.chkLocation.Text = "Stock Location";
             this.chkLocation.UseVisualStyleBackColor = true;
@@ -526,7 +540,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(541, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 26);
+            this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 111111149;
             this.label2.Text = "Stock Location";
             // 
@@ -543,7 +557,7 @@
             this.grpfilter.Controls.Add(this.lblInvoicedate);
             this.grpfilter.Controls.Add(this.cmbConcern);
             this.grpfilter.Controls.Add(this.txtProductName);
-            this.grpfilter.Controls.Add(this.label1);
+            this.grpfilter.Controls.Add(this.lblProductName);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
             this.grpfilter.Size = new System.Drawing.Size(1348, 91);
@@ -556,7 +570,7 @@
             this.lblRackCode.AutoSize = true;
             this.lblRackCode.Location = new System.Drawing.Point(738, 49);
             this.lblRackCode.Name = "lblRackCode";
-            this.lblRackCode.Size = new System.Drawing.Size(21, 25);
+            this.lblRackCode.Size = new System.Drawing.Size(16, 20);
             this.lblRackCode.TabIndex = 111111154;
             this.lblRackCode.Text = "0";
             this.lblRackCode.Visible = false;
@@ -567,7 +581,7 @@
             this.dptodate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dptodate.Location = new System.Drawing.Point(191, 45);
             this.dptodate.Name = "dptodate";
-            this.dptodate.Size = new System.Drawing.Size(104, 32);
+            this.dptodate.Size = new System.Drawing.Size(104, 27);
             this.dptodate.TabIndex = 2;
             this.dptodate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Dptodate_KeyDown);
             // 
@@ -577,7 +591,7 @@
             this.txtRack.Location = new System.Drawing.Point(687, 45);
             this.txtRack.MaxLength = 50;
             this.txtRack.Name = "txtRack";
-            this.txtRack.Size = new System.Drawing.Size(121, 32);
+            this.txtRack.Size = new System.Drawing.Size(121, 27);
             this.txtRack.TabIndex = 5;
             this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
             this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
@@ -589,7 +603,7 @@
             this.lblProduct.AutoSize = true;
             this.lblProduct.Location = new System.Drawing.Point(335, 15);
             this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(0, 25);
+            this.lblProduct.Size = new System.Drawing.Size(0, 20);
             this.lblProduct.TabIndex = 1111238;
             this.lblProduct.Visible = false;
             // 
@@ -599,7 +613,7 @@
             this.lblRack.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRack.Location = new System.Drawing.Point(685, 22);
             this.lblRack.Name = "lblRack";
-            this.lblRack.Size = new System.Drawing.Size(46, 26);
+            this.lblRack.Size = new System.Drawing.Size(35, 20);
             this.lblRack.TabIndex = 111111152;
             this.lblRack.Text = "Rack";
             // 
@@ -609,7 +623,7 @@
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpFromDate.Location = new System.Drawing.Point(80, 45);
             this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(104, 32);
+            this.dpFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpFromDate.TabIndex = 1;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
@@ -620,7 +634,7 @@
             this.txtLocation.Location = new System.Drawing.Point(542, 45);
             this.txtLocation.MaxLength = 50;
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(137, 32);
+            this.txtLocation.Size = new System.Drawing.Size(137, 27);
             this.txtLocation.TabIndex = 4;
             this.txtLocation.TextChanged += new System.EventHandler(this.TxtLocation_TextChanged);
             this.txtLocation.Enter += new System.EventHandler(this.TxtLocation_Enter);
@@ -633,7 +647,7 @@
             this.lblConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConcern.Location = new System.Drawing.Point(6, 22);
             this.lblConcern.Name = "lblConcern";
-            this.lblConcern.Size = new System.Drawing.Size(68, 26);
+            this.lblConcern.Size = new System.Drawing.Size(54, 20);
             this.lblConcern.TabIndex = 1111237;
             this.lblConcern.Text = "Concern";
             // 
@@ -642,7 +656,7 @@
             this.lblInvoicedate.AutoSize = true;
             this.lblInvoicedate.Location = new System.Drawing.Point(77, 22);
             this.lblInvoicedate.Name = "lblInvoicedate";
-            this.lblInvoicedate.Size = new System.Drawing.Size(80, 25);
+            this.lblInvoicedate.Size = new System.Drawing.Size(64, 20);
             this.lblInvoicedate.TabIndex = 111111147;
             this.lblInvoicedate.Text = "From Date";
             // 
@@ -651,8 +665,9 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(6, 45);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(68, 33);
+            this.cmbConcern.Size = new System.Drawing.Size(68, 27);
             this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.cmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
@@ -664,22 +679,22 @@
             this.txtProductName.Location = new System.Drawing.Point(304, 45);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(230, 32);
+            this.txtProductName.Size = new System.Drawing.Size(230, 27);
             this.txtProductName.TabIndex = 3;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
             this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
             this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
             // 
-            // label1
+            // lblProductName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(299, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 26);
-            this.label1.TabIndex = 1111232;
-            this.label1.Text = "Product Name/PI Code";
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(299, 22);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(139, 20);
+            this.lblProductName.TabIndex = 1111232;
+            this.lblProductName.Text = "Search by P.I Code (F11)";
             // 
             // lblNoRecordsFound
             // 
@@ -688,7 +703,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 344);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -729,24 +744,9 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // btnTelegram
-            // 
-            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
-            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(114, 27);
-            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnTelegram.Name = "btnTelegram";
-            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 9;
-            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTelegram.UseVisualStyleBackColor = true;
-            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
-            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
-            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
-            // 
             // REPORT_ItemMovementAnalysis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
@@ -788,7 +788,7 @@
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblConcern;
         public System.Windows.Forms.ListView lvProduct;

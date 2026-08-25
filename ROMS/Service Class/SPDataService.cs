@@ -1749,7 +1749,7 @@ namespace ROMS
         {
             DataSet ds = new DataSet();
             try
-            {
+            { 
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("MRG_Product", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
@@ -1810,6 +1810,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRateCategory", objMR_Product.paraRateCategory);
                 varSqlCommand.Parameters.AddWithValue("@paraListType", objMR_Product.paraListType);
                 varSqlCommand.Parameters.AddWithValue("@paraShopLocType", objMR_Product.paraShopLocType);
+                varSqlCommand.Parameters.AddWithValue("@paraRackType", objMR_Product.paraRackType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

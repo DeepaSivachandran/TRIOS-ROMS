@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_EntryReport
+    partial class REPORT_S_EntryReport
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_EntryReport));
             this.pnlEntryReport = new System.Windows.Forms.Panel();
             this.DGV_FilterBrand = new System.Windows.Forms.DataGridView();
             this.DGV_FilterSubgroup = new System.Windows.Forms.DataGridView();
@@ -98,7 +97,6 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsEntryReport = new System.Windows.Forms.ToolStrip();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
@@ -924,7 +922,6 @@
             this.tsEntryReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsEntryReport.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsEntryReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsLabelPlaceholder,
             this.tsbPrintFormat,
             this.tsbFormat});
             this.tsEntryReport.Location = new System.Drawing.Point(0, 0);
@@ -932,16 +929,6 @@
             this.tsEntryReport.Size = new System.Drawing.Size(1354, 27);
             this.tsEntryReport.TabIndex = 35;
             this.tsEntryReport.Text = "GRN Summary Report";
-            // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // tsbPrintFormat
             // 
@@ -973,7 +960,7 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // REPORT_EntryReport
+            // REPORT_S_EntryReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -985,7 +972,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_EntryReport";
+            this.Name = "REPORT_S_EntryReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entry Report";
             this.Load += new System.EventHandler(this.REPORT_EntryReport_Load);
@@ -1043,7 +1030,6 @@
         public System.Windows.Forms.DataGridView DGV_FilterBrand;
         private System.Windows.Forms.Button btnTelegram;
         private System.Windows.Forms.ToolStrip tsEntryReport;
-        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         public System.Windows.Forms.DataGridView DGV_FilterSupplier;
         public System.Windows.Forms.DataGridView DGV_FilterGroup;
         public System.Windows.Forms.DataGridView DGV_FilterSubgroup;

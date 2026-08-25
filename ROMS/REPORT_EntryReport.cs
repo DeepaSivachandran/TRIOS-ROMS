@@ -33,8 +33,7 @@ namespace ROMS
             InitializeComponent();
             _escTimer = new System.Windows.Forms.Timer();
             _escTimer.Interval = 1000; // 1 second
-            _escTimer.Tick += EscTimer_Tick;
-            windowControl.Initialize(tsEntryReport, this);
+            _escTimer.Tick += EscTimer_Tick; 
         }
 
         private void EscTimer_Tick(object sender, EventArgs e)
@@ -117,7 +116,7 @@ namespace ROMS
                 lblNoRecordsFound.BringToFront();
                 lblUnits.Text = "";
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
@@ -201,7 +200,7 @@ namespace ROMS
         {
             try
             {
-                cmbReportType.SelectedValue = -1;
+                //cmbReportType.SelectedValue = -1;
                 dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 dpToDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -239,7 +238,7 @@ namespace ROMS
                 udfnSupplierFilter();
                 lblNoRecordsFound.Visible = true;
                 RPTViewer.Visible = false;
-                this.ActiveControl = cmbReportType;
+                //this.ActiveControl = cmbReportType;
             }
             catch (Exception ex)
             {
@@ -1587,56 +1586,7 @@ namespace ROMS
             }
         }
 
-        private void cmbReportType_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnGridNull((Control)sender);
-                cmbReportType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbReportType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbReportType.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbReportType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (cmbType.Enabled == true)
-                    {
-                        dpFromDate.Focus();
-                    }
-                    else
-                    {
-                        cmbConcern.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+         
         private void cmbReportType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1650,44 +1600,44 @@ namespace ROMS
             }
         }
 
-        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbReportType.SelectedItem is DataRowView drv)
-                {
-                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
-                        drv["MST_ShortName"] != DBNull.Value)
-                    {
-                        string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
-                        tsbPrintFormat.Text = varTooltipText;
-                        tsbPrintFormat.ToolTipText = varTooltipText;
-                    }
-                    else
-                    {
-                        tsbPrintFormat.Text = string.Empty;
-                        tsbPrintFormat.ToolTipText = string.Empty;
-                    }
-                }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 583 || Convert.ToInt32(cmbReportType.SelectedValue) == -1)
-                {
-                    dpFromDate.Enabled=false;
-                    dpToDate.Enabled = false;
-                    cmbEntryType.Enabled = false;
-                }
-                else
-                {
-                    dpFromDate.Enabled = true;
-                    dpToDate.Enabled = true;
-                    cmbEntryType.Enabled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (cmbReportType.SelectedItem is DataRowView drv)
+        //        {
+        //            if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+        //                drv["MST_ShortName"] != DBNull.Value)
+        //            {
+        //                string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+        //                tsbPrintFormat.Text = varTooltipText;
+        //                tsbPrintFormat.ToolTipText = varTooltipText;
+        //            }
+        //            else
+        //            {
+        //                tsbPrintFormat.Text = string.Empty;
+        //                tsbPrintFormat.ToolTipText = string.Empty;
+        //            }
+        //        }
+        //        if (Convert.ToInt32(cmbReportType.SelectedValue) == 583 || Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+        //        {
+        //            dpFromDate.Enabled=false;
+        //            dpToDate.Enabled = false;
+        //            cmbEntryType.Enabled = false;
+        //        }
+        //        else
+        //        {
+        //            dpFromDate.Enabled = true;
+        //            dpToDate.Enabled = true;
+        //            cmbEntryType.Enabled = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
         private void dpFromDate_Enter(object sender, EventArgs e)
         {
@@ -2557,6 +2507,7 @@ namespace ROMS
         {
             udfnSelectAll();
         }
+         
 
         public void udfnList(int varFlag)
         {
@@ -2580,16 +2531,16 @@ namespace ROMS
                     cmbPrintType.Focus();
                     return;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
-                {
-                    epReport.SetError(cmbReportType, "Please select report type.");
-                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpReportType.ShowAlways = true;
-                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
-                    cmbReportType.Focus();
-                }
-                else
-                {
+                //if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                //{
+                //    epReport.SetError(cmbReportType, "Please select report type.");
+                //    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpReportType.ShowAlways = true;
+                //    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                //    cmbReportType.Focus();
+                //}
+                //else
+                //{
                     epReport.Clear();
                     dtDefaultGrid = null;
                     picLoader.Visible = true;
@@ -2665,14 +2616,15 @@ namespace ROMS
                     varConcern = cmbConcern.Text;
                     Application.DoEvents();
                     MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 583)
-                    {
-                        objMR_MarginEntry.paraViewType = 1;
-                    }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
-                    {
-                        objMR_MarginEntry.paraViewType = 4;
-                    }
+                    objMR_MarginEntry.paraViewType = 1;
+                    //if (Convert.ToInt32(cmbReportType.SelectedValue) == 583)
+                    //{
+                    //    objMR_MarginEntry.paraViewType = 1;
+                    //}
+                    //else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                    //{
+                    //    objMR_MarginEntry.paraViewType = 4;
+                    //}
                     if (txtRateCategory.Text.Trim() != "")
                     {
                         varRateCategoryType = txtRateCategory.Text;
@@ -2715,24 +2667,24 @@ namespace ROMS
                         string varReportName = "";
                         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                         objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 583)
-                        {
+                        //if (Convert.ToInt32(cmbReportType.SelectedValue) == 583)
+                        //{
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MarginEntryReport.rpt");
                             varReportName = "M.Entry Report";
                             objBillreport.SetParameterValue("varHeader", "M.Entry Report");
-                        }
-                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SalesEntryReport.rpt");
-                            varReportName = "S.Entry Report";
-                            objBillreport.SetParameterValue("VarFromDate", dpFromDate.Text);
-                            objBillreport.SetParameterValue("VarToDate", dpToDate.Text);
-                            objBillreport.SetParameterValue("paraEntryType", Convert.ToInt32(cmbEntryType.SelectedValue));
-                            objBillreport.SetParameterValue("VarEntryType", cmbEntryType.Text);
-                            objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
-                            objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
-                            objBillreport.SetParameterValue("varHeader", "S.Entry Report");
-                        }
+                        //}
+                        //else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        //{
+                        //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SalesEntryReport.rpt");
+                        //    varReportName = "S.Entry Report";
+                        //    objBillreport.SetParameterValue("VarFromDate", dpFromDate.Text);
+                        //    objBillreport.SetParameterValue("VarToDate", dpToDate.Text);
+                        //    objBillreport.SetParameterValue("paraEntryType", Convert.ToInt32(cmbEntryType.SelectedValue));
+                        //    objBillreport.SetParameterValue("VarEntryType", cmbEntryType.Text);
+                        //    objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
+                        //    objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
+                        //    objBillreport.SetParameterValue("varHeader", "S.Entry Report");
+                        //}
                         objBillreport.SetParameterValue("paraProductNameID", Convert.ToInt32(cmbProductName.SelectedValue));
                         objBillreport.SetParameterValue("paraRateCategoryIDs", pbRateCategoryIDs);
                         objBillreport.SetParameterValue("paraRateCategoryType", varRateCategoryType);
@@ -2787,7 +2739,7 @@ namespace ROMS
                     {
                         lblNoRecordsFound.Visible = true;
                     }
-                }                    
+                //}                    
             }
             catch (Exception ex)
             {

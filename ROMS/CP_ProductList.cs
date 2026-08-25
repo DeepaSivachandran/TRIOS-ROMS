@@ -365,6 +365,7 @@ namespace ROMS
                 objMR_Product.paraProductType = Convert.ToInt32(cmbOthers.SelectedValue);
                 objMR_Product.paraCreatedON = dtCreatedOn.Text;
                 objMR_Product.paraListType = Convert.ToInt32(cmbListType.SelectedValue);
+                objMR_Product.paraRackType = Convert.ToInt32(cmbRackType.SelectedValue);
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -1641,6 +1642,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=166", "MST_DisplayText,MSTID", cmbListType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Unit", "UTID<>-1 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1,16) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,196) AND  MSTID<>-1", "MST_DisplayText,MSTID", cmbRackType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbConcern.SelectedValue = varconcern;
                 cmbCategory.SelectedValue = varcategory;
@@ -3373,7 +3375,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbRackType.Focus();
                 }
             }
             catch (Exception ex)
@@ -3654,9 +3656,60 @@ namespace ROMS
             }
         }
 
-        private void DGV_SearchGridPro_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void cmbRackType_Enter(object sender, EventArgs e)
         {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbRackType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void cmbRackType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRackType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void grdProDetails_Scroll(object sender, ScrollEventArgs e)
