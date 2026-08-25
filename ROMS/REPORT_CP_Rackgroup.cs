@@ -2851,7 +2851,7 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbShopLocType.Focus();
+                        cmbLocationType.Focus();
                     }
                 }
             }
