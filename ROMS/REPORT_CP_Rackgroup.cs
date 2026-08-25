@@ -218,6 +218,12 @@ namespace ROMS
                         cmbLocationType.SelectedValue = 467;
                     }
                 }
+                cmbRackType.SelectedValue = 0;
+                if (Convert.ToInt16(cmbReportType.SelectedValue)==122)
+                {
+                    cmbRackType.Enabled = true;
+                }
+                else { cmbRackType.Enabled = false; }
             }
             catch (Exception ex)
             {
@@ -915,6 +921,7 @@ namespace ROMS
                 objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
                 objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
                 objMR_Product.paraShopLocType = Convert.ToInt32(cmbShopLocType.SelectedValue);
+                objMR_Product.paraRackType = Convert.ToInt32(cmbRackType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -965,6 +972,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackType", Convert.ToInt32(cmbRackType.SelectedValue));
                     string varCategoryName = "";
                     if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16)
                     {
@@ -1005,6 +1013,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("paraShopLocType", Convert.ToInt32(cmbShopLocType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraRackType", Convert.ToInt32(cmbRackType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -1831,6 +1840,7 @@ namespace ROMS
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (124)  ", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,196) AND  MSTID<>-1", "MST_DisplayText,MSTID", cmbRackType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1)   Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbproductStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=133 ", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
@@ -2270,7 +2280,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbRackGroup.Enabled == true)
+                    if(cmbRackType.Enabled==true)
+                    {
+                        cmbRackType.Focus();
+                    } 
+                    else if (cmbRackGroup.Enabled == true)
                     {
                         cmbRackGroup.Focus();
                     }
@@ -3079,6 +3093,68 @@ namespace ROMS
             try
             {
                 cmbShopLocType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackType_Enter(object sender, EventArgs e)
+        {
+            try
+            { 
+                cmbRackType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (cmbRackGroup.Enabled == true)
+                    {
+                        cmbRackGroup.Focus();
+                    }
+                    else
+                    {
+                        cmbStatus.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRackType.BackColor = Color.White;
             }
             catch (Exception ex)
             {
