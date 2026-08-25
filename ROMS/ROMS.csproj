@@ -965,6 +965,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_MAR_Entry1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MAR_Entry.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_ProductWise_PurchaseConsolidated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
