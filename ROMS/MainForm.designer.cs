@@ -255,12 +255,13 @@ namespace ROMS
             this.tsmBasket = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomerGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddressBook = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCardPayment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSalesReports = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2210,6 +2211,7 @@ namespace ROMS
             this.tsmRoute.Name = "tsmRoute";
             this.tsmRoute.Size = new System.Drawing.Size(180, 22);
             this.tsmRoute.Text = "Route";
+            this.tsmRoute.Visible = false;
             this.tsmRoute.Click += new System.EventHandler(this.tsmRoute_Click);
             // 
             // tsmArea
@@ -2217,6 +2219,7 @@ namespace ROMS
             this.tsmArea.Name = "tsmArea";
             this.tsmArea.Size = new System.Drawing.Size(180, 22);
             this.tsmArea.Text = "Area";
+            this.tsmArea.Visible = false;
             this.tsmArea.Click += new System.EventHandler(this.tsmArea_Click);
             // 
             // tsmCustomerType
@@ -2224,6 +2227,7 @@ namespace ROMS
             this.tsmCustomerType.Name = "tsmCustomerType";
             this.tsmCustomerType.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomerType.Text = "Customer Type";
+            this.tsmCustomerType.Visible = false;
             this.tsmCustomerType.Click += new System.EventHandler(this.tsmCustomerType_Click);
             // 
             // tsmTemporyCustomer
@@ -2231,6 +2235,7 @@ namespace ROMS
             this.tsmTemporyCustomer.Name = "tsmTemporyCustomer";
             this.tsmTemporyCustomer.Size = new System.Drawing.Size(180, 22);
             this.tsmTemporyCustomer.Text = "Temporary Customer";
+            this.tsmTemporyCustomer.Visible = false;
             this.tsmTemporyCustomer.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
             // 
             // tsmCardMachine
@@ -2238,6 +2243,7 @@ namespace ROMS
             this.tsmCardMachine.Name = "tsmCardMachine";
             this.tsmCardMachine.Size = new System.Drawing.Size(180, 22);
             this.tsmCardMachine.Text = "Card Machine";
+            this.tsmCardMachine.Visible = false;
             this.tsmCardMachine.Click += new System.EventHandler(this.tsmCardMachine_Click);
             // 
             // tsmUPI
@@ -2245,6 +2251,7 @@ namespace ROMS
             this.tsmUPI.Name = "tsmUPI";
             this.tsmUPI.Size = new System.Drawing.Size(180, 22);
             this.tsmUPI.Text = "UPI";
+            this.tsmUPI.Visible = false;
             this.tsmUPI.Click += new System.EventHandler(this.tsmUPI_Click);
             // 
             // tsmVehicle
@@ -2252,6 +2259,7 @@ namespace ROMS
             this.tsmVehicle.Name = "tsmVehicle";
             this.tsmVehicle.Size = new System.Drawing.Size(180, 22);
             this.tsmVehicle.Text = "Vehicle";
+            this.tsmVehicle.Visible = false;
             this.tsmVehicle.Click += new System.EventHandler(this.tsmVehicle_Click);
             // 
             // tsmDeliveryPerson
@@ -2259,6 +2267,7 @@ namespace ROMS
             this.tsmDeliveryPerson.Name = "tsmDeliveryPerson";
             this.tsmDeliveryPerson.Size = new System.Drawing.Size(180, 22);
             this.tsmDeliveryPerson.Text = "Delivery Person";
+            this.tsmDeliveryPerson.Visible = false;
             this.tsmDeliveryPerson.Click += new System.EventHandler(this.tsmDeliveryPerson_Click);
             // 
             // tsmMobile
@@ -2266,6 +2275,7 @@ namespace ROMS
             this.tsmMobile.Name = "tsmMobile";
             this.tsmMobile.Size = new System.Drawing.Size(180, 22);
             this.tsmMobile.Text = "Mobile";
+            this.tsmMobile.Visible = false;
             this.tsmMobile.Click += new System.EventHandler(this.tsmMobile_Click);
             // 
             // tsmTransport
@@ -2273,6 +2283,7 @@ namespace ROMS
             this.tsmTransport.Name = "tsmTransport";
             this.tsmTransport.Size = new System.Drawing.Size(180, 22);
             this.tsmTransport.Text = "Transport";
+            this.tsmTransport.Visible = false;
             this.tsmTransport.Click += new System.EventHandler(this.tsmTransport_Click);
             // 
             // tsmMarriageHall
@@ -2280,6 +2291,7 @@ namespace ROMS
             this.tsmMarriageHall.Name = "tsmMarriageHall";
             this.tsmMarriageHall.Size = new System.Drawing.Size(180, 22);
             this.tsmMarriageHall.Text = "Marriage Hall";
+            this.tsmMarriageHall.Visible = false;
             this.tsmMarriageHall.Click += new System.EventHandler(this.tsmMarriageHall_Click);
             // 
             // tsmBasket
@@ -2287,6 +2299,7 @@ namespace ROMS
             this.tsmBasket.Name = "tsmBasket";
             this.tsmBasket.Size = new System.Drawing.Size(180, 22);
             this.tsmBasket.Text = "Basket";
+            this.tsmBasket.Visible = false;
             this.tsmBasket.Click += new System.EventHandler(this.tsmBasket_Click);
             // 
             // tsmCustomerGroup
@@ -2294,6 +2307,7 @@ namespace ROMS
             this.tsmCustomerGroup.Name = "tsmCustomerGroup";
             this.tsmCustomerGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomerGroup.Text = "Contact Group";
+            this.tsmCustomerGroup.Visible = false;
             this.tsmCustomerGroup.Click += new System.EventHandler(this.tsmCustomerGroup_Click);
             // 
             // tsmAddressBook
@@ -2301,7 +2315,28 @@ namespace ROMS
             this.tsmAddressBook.Name = "tsmAddressBook";
             this.tsmAddressBook.Size = new System.Drawing.Size(180, 22);
             this.tsmAddressBook.Text = "Address Book";
+            this.tsmAddressBook.Visible = false;
             this.tsmAddressBook.Click += new System.EventHandler(this.tsmAddressBook_Click);
+            // 
+            // tsmSalesReports
+            // 
+            this.tsmSalesReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCardPayment});
+            this.tsmSalesReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmSalesReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmSalesReports.Name = "tsmSalesReports";
+            this.tsmSalesReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.tsmSalesReports.Size = new System.Drawing.Size(67, 24);
+            this.tsmSalesReports.Text = "S_Reports";
+            this.tsmSalesReports.Visible = false;
+            // 
+            // tsmCardPayment
+            // 
+            this.tsmCardPayment.Name = "tsmCardPayment";
+            this.tsmCardPayment.Size = new System.Drawing.Size(180, 22);
+            this.tsmCardPayment.Text = "Card Payment";
+            this.tsmCardPayment.Visible = false;
+            this.tsmCardPayment.Click += new System.EventHandler(this.tsmCardPayment_Click);
             // 
             // tsmHelp
             // 
@@ -2345,17 +2380,6 @@ namespace ROMS
             this.tsmGif.Text = "Rate Approval";
             this.tsmGif.Visible = false;
             this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
-            // 
-            // tsmSalesReports
-            // 
-            this.tsmSalesReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCardPayment});
-            this.tsmSalesReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmSalesReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmSalesReports.Name = "tsmSalesReports";
-            this.tsmSalesReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.tsmSalesReports.Size = new System.Drawing.Size(67, 24);
-            this.tsmSalesReports.Text = "S_Reports";
             // 
             // timer2
             // 

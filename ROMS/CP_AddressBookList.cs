@@ -91,7 +91,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 507;
+                MenuCode = 1314;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("(SELECT  CASE WHEN  MSTID=565 THEN -2 ELSE MSTID END  AS ID,MST_DisplayText AS [Value] FROM DEF_Master WHERE  MSTID  IN (565,0) UNION ALL SELECT CONGID AS ID,CONG_EName AS [Value] FROM MR_ContactGroup WHERE CONGID NOT IN (-1,0)) AS DIV"
                    , "1=1", "ID, Value", cmbType, "", "Value", "ID");

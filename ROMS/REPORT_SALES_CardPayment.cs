@@ -21,7 +21,9 @@ namespace ROMS
 
         private List<ComboItem> months;
         private List<ComboItem> days;
-        ToolTip tpSupplier = new ToolTip();
+        private ToolTip tpMonths = new ToolTip();
+        private ToolTip tpDays = new ToolTip();
+        private ToolTip tpReportType = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -35,21 +37,26 @@ namespace ROMS
         {
             try
             {
-                string varMonthIds = "", varMonthName = "";
                 var selIds = cmbMultiMonths.CheckedIds;
                 var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
-                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+
                 var selDayIds = cmbMultiSelectDays.CheckedIds;
                 var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
-                lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
-                //if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
-                //{
-                //    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
-                //}
-                //else
-                //{
-                //    lblMonths.Text = "";
-                //}
+
+                int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
+
+                lblDays.Text = "";
+                lblMonths.Text = "";
+
+                if (varReportType == 645 || varReportType == 647 || varReportType == 649)
+                {
+                    lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+                }
+                else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
+                {
+                    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                }
+
                 udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
@@ -75,11 +82,11 @@ namespace ROMS
         {
             try
             {
-                //if (skipControl != txtGroup)
+                //if (skipControl != txtCustomer)
                 //{
                 //    varUpDownKeyGroup = 0;
-                //    DGV_FilterGroup.DataSource = null;
-                //    DGV_FilterGroup.Visible = false;
+                //    DGV_Customer.DataSource = null;
+                //    DGV_Customer.Visible = false;
                 //}
                 //if (skipControl != txtSubGroup)
                 //{
@@ -106,20 +113,50 @@ namespace ROMS
             {
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
                 }
                 else
                 {
-                    /* Rate Changing Report - 294
-                     Live Rate Change Report- 295*/
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 294)
+                    int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
+
+                    if (varReportType == 645 || varReportType == 647 || varReportType == 649)
                     {
-                        udfnReportLoad(294, varFlag);
+                        var selDayIds = cmbMultiSelectDays.CheckedIds;
+
+                        if (selDayIds == null || selDayIds.Count == 0)
+                        {
+                            epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
+                            cmbMultiSelectDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                            tpDays.ShowAlways = true;
+                            tpDays.Show("Please select at least one day.", cmbMultiSelectDays, 5000);
+
+                            cmbMultiSelectDays.Focus();
+                            return;
+                        }
                     }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 295)
+                    else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
                     {
-                        udfnReportLoad(295, varFlag);
+                        var selMonthIds = cmbMultiMonths.CheckedIds;
+
+                        if (selMonthIds == null || selMonthIds.Count == 0)
+                        {
+                            epReport.SetError(cmbMultiMonths, "Please select at least one month.");
+                            cmbMultiMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                            tpMonths.ShowAlways = true;
+                            tpMonths.Show("Please select at least one month.", cmbMultiMonths, 5000);
+
+                            cmbMultiMonths.Focus();
+                            return;
+                        }
                     }
+
+                    udfnReportLoad(Convert.ToInt32(cmbReportType.SelectedValue), varFlag);
                 }
             }
             catch (Exception ex)
@@ -140,80 +177,294 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnReportLoad(int varReportId, int varFlag)
+        public void udfnReportLoad(int varReportTypeID, int varFlag)
         {
             try
             {
+                epReport.Clear();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                string varBrand = "--All--", varGroup = "--All--", varSubgroup = "--All--", varProductName = "--All--";
-                int varBrandId = 0, varGroupId = 0, varSubgroupId = 0, varProductId = 0;
-                
 
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                TRN_RateChange objRateChange = new TRN_RateChange();
-                if (varReportId == 294)
+                string varCustomerName = "-All-";
+                string varBillNoName = "-All-";
+                string varBillAmtName = "-All-";
+                string varDayNames = "-All-";
+                string varMonthNames = "-All-";
+
+                int varCustomerId = 0;
+
+                // Concern
+                int varConcernId = Convert.ToInt32(cmbConcern.SelectedValue);
+                string varConcernName = cmbConcern.Text;
+
+                // Machine
+                int varMachineId = Convert.ToInt32(cmbMachineId.SelectedValue);
+                string varMachineName = cmbMachineId.Text;
+
+                // Vendor / Provider
+                int varProviderId = Convert.ToInt32(cmbVendor.SelectedValue);
+                string varVendorName = cmbVendor.Text;
+
+                // Bill Type
+                int varTypeId = Convert.ToInt32(cmbBillType.SelectedValue);
+                string varTypeName = cmbBillType.Text;
+
+                // Customer
+                if (string.IsNullOrWhiteSpace(txtCustomer.Text))
                 {
-                    objRateChange.paraViewType = 1;
+                    varCustomerId = 0;
+                    varCustomerName = "-All-";
                 }
                 else
                 {
-                    objRateChange.paraViewType = 0;
+                    varCustomerId = Convert.ToInt32(lblCustomerId.Text);
+                    varCustomerName = txtCustomer.Text.Trim();
                 }
-                objRateChange.paraGroupID = varGroupId;
-                objRateChange.paraSubGroupID = varSubgroupId;
-                objRateChange.paraBrandID = varBrandId;
-                objRateChange.paraProductID = varProductId;
-                objRateChange.paraFromDate = dpFromDate.Text;
-                objRateChange.paraToDate = dpToDate.Text;
-                objDs = objdserv.udfnRateChangeList(objRateChange);
+
+                // Bill No
+                string varBillNo = txtBillno.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(varBillNo))
+                {
+                    varBillNoName = "-All-";
+                }
+                else
+                {
+                    varBillNoName = varBillNo;
+                }
+
+                // Bill Amount
+                string varBillAmt = txtBillAmt.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(varBillAmt))
+                {
+                    varBillAmtName = "-All-";
+                }
+                else
+                {
+                    varBillAmtName = varBillAmt;
+                }
+                string varDays = "0";
+                string varMonths = "0";
+
+                var selIds = cmbMultiMonths.CheckedIds;
+                var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
+
+                var selDayIds = cmbMultiSelectDays.CheckedIds;
+                var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
+
+                int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
+
+                lblDays.Text = "";
+                lblMonths.Text = "";
+
+                if (varReportType == 645 || varReportType == 647 || varReportType == 649)
+                {
+                    lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+
+                    if (string.IsNullOrWhiteSpace(lblDays.Text))
+                    {
+                        varDayNames = "-All-";
+                        varDays = "0";
+                    }
+                    else
+                    {
+                        varDayNames = lblDays.Text;
+                        varDays = string.Join(",", selDayIds);
+                    }
+                }
+                else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
+                {
+                    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+
+                    if (string.IsNullOrWhiteSpace(lblMonths.Text))
+                    {
+                        varMonthNames = "-All-";
+                        varMonths = "0";
+                    }
+                    else
+                    {
+                        varMonthNames = lblMonths.Text;
+                        varMonths = string.Join(",", selIds);
+                    }
+                }
+                else
+                {
+                    // Reports 643 and 644 don't use Day/Month filters
+                    lblDays.Text = "";
+                    lblMonths.Text = "";
+
+                    varDays = "0";
+                    varMonths = "0";
+
+                    varDayNames = "-All-";
+                    varMonthNames = "-All-";
+                }
+
+
+
+
+
+
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+
+                SPDataService objdserv = new SPDataService();
+
+                MR_Sales objCardPayment = new MR_Sales();
+                if (varReportTypeID == 643)
+                {
+                    objCardPayment.paraViewType = 0;
+                }
+                else if (varReportTypeID == 644)
+                {
+                    objCardPayment.paraViewType = 1;
+                }
+                else if (varReportTypeID == 645)
+                {
+                    objCardPayment.paraViewType = 2;
+                }
+                else if (varReportTypeID == 646)
+                {
+                    objCardPayment.paraViewType = 3;
+                }
+                else if (varReportTypeID == 647)
+                {
+                    objCardPayment.paraViewType = 4;
+                }
+                else if (varReportTypeID == 648)
+                {
+                    objCardPayment.paraViewType = 5;
+                }
+                else if (varReportTypeID == 649)
+                {
+                    objCardPayment.paraViewType = 6;
+                }
+                else if (varReportTypeID == 650)
+                {
+                    objCardPayment.paraViewType = 7;
+                }
+                objCardPayment.paraConcernId = varConcernId;
+                objCardPayment.paraFromDate = dpFromDate.Text;
+                objCardPayment.paraToDate = dpToDate.Text;
+                objCardPayment.paraMachineId = varMachineId;
+                objCardPayment.paraProviderId = varProviderId;
+                objCardPayment.paraTypeId = varTypeId;
+                objCardPayment.paraCustomerId = varCustomerId;
+                objCardPayment.paraBillNo = varBillNo;
+                objCardPayment.paraBillAmt = varBillAmt;
+                objCardPayment.paraDays = varDays;
+                objCardPayment.paraMonths = varMonths;
+                objDs = objdserv.udfnCardPaymentReports(objCardPayment);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                string varReportName = "REPORT_Company";
                 if (varPrint == 1)
                 {
+                    string varReportName = Convert.ToString(cmbReportType.Text);
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    /* Rate Changing Report - 294
-                     Live Rate Change Report- 295*/
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (varReportId == 294)
+                    if (varReportTypeID == 643)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rate_Change.rpt");
-                        objBillreport.SetParameterValue("paraViewType", 1);
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Detail.rpt");
+
+                        // Detail Report Only
                         objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                         objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
-                        varReportName = "Rate_Change";
+
+                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraBillNoName", varBillNoName);
+                        objBillreport.SetParameterValue("paraBillAmountName", varBillAmtName);
+
+                        objBillreport.SetParameterValue("paraBillAmt", varBillAmt);
+                        objBillreport.SetParameterValue("paraBillNo", varBillNo);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
                     }
-                    else {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rate_Change_Live.rpt");
-                        objBillreport.SetParameterValue("paraViewType", 0);
-                        objBillreport.SetParameterValue("paraFromDate", "");
-                        objBillreport.SetParameterValue("paraToDate", "");
-                        varReportName = "Rate_Change_Live";
+                    else if (varReportTypeID == 644)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Summary.rpt");
+
+                        // Summary Report
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
                     }
-                    objBillreport.SetParameterValue("paraGroupID", varGroupId);
-                    objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);
-                    objBillreport.SetParameterValue("paraBrandID",varBrandId);
-                    objBillreport.SetParameterValue("paraProductID",varProductId);
-                    objBillreport.SetParameterValue("paraBrandName", varBrand);
-                    objBillreport.SetParameterValue("paraGroupName", varGroup);
-                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroup);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    else if (varReportTypeID == 645)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Daywise.rpt");
+
+                        // Daywise Report
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraDayName", varDayNames);
+                    }
+                    else if (varReportTypeID == 646)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Monthwise.rpt");
+
+                        // Monthwise Report
+                        objBillreport.SetParameterValue("paraMonths", varMonths);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthNames);
+                    }
+                    else if (varReportTypeID == 647)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Daywise_Mid.rpt");
+
+                        // Daywise MID Report
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraDayName", varDayNames);
+                    }
+                    else if (varReportTypeID == 648)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Monthwise_Mid.rpt");
+
+                        // Monthwise MID Report
+                        objBillreport.SetParameterValue("paraMonths", varMonths);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthNames);
+                    }
+                    else if (varReportTypeID == 649)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Daywise_Vendor.rpt");
+
+                        // Daywise Vendor Report
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraDayName", varDayNames);
+                    }
+                    else if (varReportTypeID == 650)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Card_Payment_Monthwise_Vendor.rpt");
+
+                        // Monthwise Vendor Report
+                        objBillreport.SetParameterValue("paraMonths", varMonths);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthNames);
+                    }
+                    // ============================================================
+                    // COMMON PARAMETERS - ALL 8 REPORTS
+                    // ============================================================
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraConcernId", varConcernId);
+                    objBillreport.SetParameterValue("paraMachineId", varMachineId);
+                    objBillreport.SetParameterValue("paraProviderId", varProviderId);
+                    objBillreport.SetParameterValue("paraTypeId", varTypeId);
+                    objBillreport.SetParameterValue("paraConcernName", varConcernName);
+                    objBillreport.SetParameterValue("paraMachineName", varMachineName);
+                    objBillreport.SetParameterValue("paraVendorName", varVendorName);
+                    objBillreport.SetParameterValue("paraTypeName", varTypeName);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -258,17 +509,77 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 udfnClear();
-                /* 294 - Rate Changing Report
-                 295 - Live Rate Change Report */
-                if (Convert.ToString(cmbReportType.SelectedValue) == "294")
+                int varReportTypeID = Convert.ToInt32(cmbReportType.SelectedValue);
+                dpFromDate.Enabled = false;
+                dpToDate.Enabled = false;
+                cmbMachineId.Enabled = false;
+                cmbVendor.Enabled = false;
+                cmbBillType.Enabled = false;
+                txtCustomer.Enabled = false;
+                txtBillno.Enabled = false;
+                txtBillAmt.Enabled = false;
+                cmbMultiSelectDays.Enabled = false;
+                cmbMultiMonths.Enabled = false;
+                lblDays.Text = "";
+                lblMonths.Text = "";
+                dpFromDate.Value = MainForm.pbCurrentDate;
+                dpToDate.Value = MainForm.pbCurrentDate;
+
+                cmbMachineId.SelectedValue = 0;
+                cmbVendor.SelectedValue = 0;
+                cmbBillType.SelectedValue = 0;
+                txtCustomer.Text = "";
+                txtBillno.Text = "";
+                txtBillAmt.Text = "";
+                cmbMachineId.Enabled = true;
+                cmbVendor.Enabled = true;
+                cmbBillType.Enabled = true;
+                if (varReportTypeID == 643)
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    txtCustomer.Enabled = true;
+                    txtBillno.Enabled = true;
+                    txtBillAmt.Enabled = true;
+                }
+                else if (varReportTypeID == 644)
                 {
                     dpFromDate.Enabled = true;
                     dpToDate.Enabled = true;
                 }
-                if (Convert.ToString(cmbReportType.SelectedValue) == "295")
+                else if (varReportTypeID == 645)
                 {
-                    dpFromDate.Enabled = false;
-                    dpToDate.Enabled = false;
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    cmbMultiSelectDays.Enabled = true;
+                }
+                else if (varReportTypeID == 646)
+                {
+                    cmbMultiMonths.Enabled = true;
+                }
+                else if (varReportTypeID == 647)
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    cmbMultiSelectDays.Enabled = true;
+                }
+                else if (varReportTypeID == 648)
+                {
+                    cmbMultiMonths.Enabled = true;
+                }
+                else if (varReportTypeID == 649)
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+
+                    cmbMultiSelectDays.Enabled = true;
+                }
+                else if (varReportTypeID == 650)
+                {
+                    cmbMultiMonths.Enabled = true;
                 }
                 if (cmbReportType.SelectedItem is DataRowView drv)
                 {
@@ -305,8 +616,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbConcern.Focus();
-                   
+                    FocusNextEnabledControl(cmbReportType);
                 }
             }
             catch (Exception ex)
@@ -340,6 +650,142 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void FocusNextEnabledControl(Control currentControl)
+        {
+            try
+            {
+                if (currentControl == cmbReportType)
+                {
+                    cmbConcern.Focus();
+                }
+                else if (currentControl == cmbConcern)
+                {
+                    if (dpFromDate.Enabled)
+                        dpFromDate.Focus();
+                    else if (cmbMachineId.Enabled)
+                        cmbMachineId.Focus();
+                    else if (cmbVendor.Enabled)
+                        cmbVendor.Focus();
+                    else if (cmbBillType.Enabled)
+                        cmbBillType.Focus();
+                }
+                else if (currentControl == dpFromDate)
+                {
+                    if (dpToDate.Enabled)
+                        dpToDate.Focus();
+                    else if (cmbMachineId.Enabled)
+                        cmbMachineId.Focus();
+                }
+                else if (currentControl == dpToDate)
+                {
+                    if (cmbMachineId.Enabled)
+                        cmbMachineId.Focus();
+                    else if (cmbVendor.Enabled)
+                        cmbVendor.Focus();
+                }
+                else if (currentControl == cmbMachineId)
+                {
+                    if (cmbVendor.Enabled)
+                        cmbVendor.Focus();
+                    else if (cmbBillType.Enabled)
+                        cmbBillType.Focus();
+                    else if (txtCustomer.Enabled)
+                        txtCustomer.Focus();
+                    else if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbVendor)
+                {
+                    if (cmbBillType.Enabled)
+                        cmbBillType.Focus();
+                    else if (txtCustomer.Enabled)
+                        txtCustomer.Focus();
+                    else if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbBillType)
+                {
+                    if (txtCustomer.Enabled)
+                        txtCustomer.Focus();
+                    else if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == txtCustomer)
+                {
+                    if (txtBillno.Enabled)
+                        txtBillno.Focus();
+                    else if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == txtBillno)
+                {
+                    if (txtBillAmt.Enabled)
+                        txtBillAmt.Focus();
+                    else if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == txtBillAmt)
+                {
+                    if (cmbMultiSelectDays.Enabled)
+                        cmbMultiSelectDays.Focus();
+                    else if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbMultiSelectDays)
+                {
+                    if (cmbMultiMonths.Enabled)
+                        cmbMultiMonths.Focus();
+                    else
+                        btnListPrint.Focus();
+                }
+                else if (currentControl == cmbMultiMonths)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbReportType_Enter(object sender, EventArgs e)
         {
             try
@@ -359,7 +805,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80312;
+                int currentMUCode = 1401;
 
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
@@ -373,13 +819,15 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 //Transaction id 	87
                 udfnCmbConcern();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                 
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MST_TransactionID IN (195,0) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN(169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,141) AND MSTID<>-1 ORDER BY MSTID  ASC", "MST_DisplayText,MSTID", cmbVendor, "", "MST_DisplayText", "MSTID");
 
-                objDataBind.BindComboBoxListSelected("(SELECT 0 AS MachineID, '- All -' AS MachineName " + "UNION ALL " + "SELECT CRDMHID AS MachineID, CRDMH_Name AS MachineName FROM MR_CardMachine WHERE CRDMHID<>-2) AS M", "1=1 ORDER BY MachineID", "MachineName,MachineID", cmbMachineId, "", "CRDMH_Name", "CRDMHID");
+                objDataBind.BindComboBoxListSelected("(SELECT 0 AS MachineID, '-All-' AS MachineName " + "UNION ALL " + "SELECT CRDMHID AS MachineID, CRDMH_Name AS MachineName FROM MR_CardMachine WHERE CRDMHID<>-2) AS M", "1=1 ORDER BY MachineID","MachineName,MachineID",cmbMachineId,"","MachineName","MachineID");
+
                 objDataBind = null;
                 udfnLoadMonths();
                 udfnLoadDays();
@@ -491,7 +939,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpToDate.Focus();
+                    FocusNextEnabledControl(dpFromDate);
                 }
             }
             catch (Exception ex)
@@ -547,7 +995,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMachineId.Focus();
+                    FocusNextEnabledControl(dpToDate);
                 }
             }
             catch (Exception ex)
@@ -604,16 +1052,12 @@ namespace ROMS
 
         private void cmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
-                if (dpFromDate.Enabled == true)
+            try 
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    FocusNextEnabledControl(cmbConcern);
                 }
-                else
-                {
-                    cmbMachineId.Focus();
-                }
-
             }
             catch (Exception ex)
             {
@@ -679,7 +1123,7 @@ namespace ROMS
             try
             {   if (e.KeyCode == Keys.Enter)
                 {
-                    cmbVendor.Focus();
+                    FocusNextEnabledControl(cmbMachineId);
                 }
             }
             catch (Exception ex)
@@ -721,7 +1165,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBillType.Focus();
+                    FocusNextEnabledControl(cmbVendor);
                 }
             }
             catch (Exception ex)
@@ -763,7 +1207,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCustomer.Focus();
+                    FocusNextEnabledControl(cmbBillType);
                 }
             }
             catch (Exception ex)
@@ -829,9 +1273,104 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                varUpDownKeyGroup = 0;
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
-                    txtBillno.Focus();
+                    DGV_Customer.Focus();
+                }
+                if (e.KeyCode == Keys.Enter && DGV_Customer.Visible == false)
+                {
+                    FocusNextEnabledControl(txtCustomer);
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_Customer.Focus();
+                }
+                if (DGV_Customer.CurrentCell == null && DGV_Customer.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_Customer.Focus();
+                    int RowIndex = DGV_Customer.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_Customer.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyGroup = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyGroup = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
+                            }
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_Customer.Rows.Count) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_Customer.Rows.Count))
+                            {
+                                txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
+                            }
+
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_Customer.Rows.Count > 0)
+                                {
+                                    varUpDownKeyGroup = 1;
+                                    udfnCustomerAutocomplete();
+                                    DGV_Customer.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtCustomer.Focus();
+                    //txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        FocusNextEnabledControl(txtCustomer);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCustomerAutocomplete()
+        {
+            try
+            {
+                if (txtCustomer.Text.Trim() != "")
+                {
+                    lblCustomerId.Text = DGV_Customer.SelectedRows[0].Cells["TEMPCUSID"].Value.ToString();
+                    txtCustomer.Text = DGV_Customer.SelectedRows[0].Cells["Customer"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -865,7 +1404,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtbillamtt.Focus();
+                    FocusNextEnabledControl(txtBillno);
                 }
             }
             catch (Exception ex)
@@ -906,7 +1445,7 @@ namespace ROMS
         {
             try
             {
-                txtbillamtt.BackColor = Color.White;
+                txtBillAmt.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -922,7 +1461,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMultiSelectDays.Focus();
+                    FocusNextEnabledControl(txtBillAmt);
                 }
             }
             catch (Exception ex)
@@ -936,7 +1475,7 @@ namespace ROMS
         {
             try
             {
-                txtbillamtt.BackColor = Color.LemonChiffon;
+                txtBillAmt.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -965,7 +1504,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    FocusNextEnabledControl(cmbMultiSelectDays);
                 }
             }
             catch (Exception ex)
@@ -1020,7 +1559,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    FocusNextEnabledControl(cmbMultiMonths);
                 }
             }
             catch (Exception ex)
@@ -1048,6 +1587,167 @@ namespace ROMS
             try
             {
                 btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCustomer_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varUpDownKeyGroup == 0)
+                {
+                    //lvGroup.Items.Clear();
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 6;
+                    if (txtCustomer.Text.Length > 0)
+                    {
+                        obj.paraCUS_Name = txtCustomer.Text;
+                        objDs = objspservice.udfnCustomerList(obj);
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_Customer.Visible = true;
+                                    DGV_Customer.DataSource = objDs.Tables[0];
+                                    DGV_Customer.Columns["TEMPCUSID"].Visible = false;
+                                    DGV_Customer.Columns["Mobileno"].Visible = false;
+                                    DGV_Customer.Columns["Customer"].Width = 170;
+                                    DGV_Customer.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_Customer.Visible = false;
+                                    DGV_Customer.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_Customer.Visible = false;
+                                DGV_Customer.DataSource = null;
+                            }
+                        }
+                        else
+                        {
+                            DGV_Customer.Visible = false;
+                            DGV_Customer.DataSource = null;
+                        }
+                    }
+                    else
+                    {
+                        DGV_Customer.Visible = false;
+                        DGV_Customer.DataSource = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_Customer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyGroup = 1;
+                udfnCustomerAutocomplete();
+                FocusNextEnabledControl(txtCustomer);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_Customer_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_Customer.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_Customer.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyGroup = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyGroup = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtCustomer.Text = DGV_Customer.SelectedRows[0].Cells["Customer"].Value.ToString();
+
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_Customer.Rows.Count) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_Customer.Rows.Count))
+                            {
+                                txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
+                            }
+
+                            txtCustomer.Focus();
+                            txtCustomer.SelectionStart = txtCustomer.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_Customer.Rows.Count > 0)
+                                {
+                                    varUpDownKeyGroup = 1;
+                                    udfnCustomerAutocomplete();
+                                    DGV_Customer.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        FocusNextEnabledControl(txtCustomer);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiMonths_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {
@@ -1096,7 +1796,7 @@ namespace ROMS
                 //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDT = objdserv.udfnCompanyList(2, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)

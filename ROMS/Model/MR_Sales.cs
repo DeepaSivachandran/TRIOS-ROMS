@@ -13,6 +13,19 @@ namespace ROMS.Model
         public int paraStatusId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
 
+        // -------------------- Card Payment Report --------------------
+        public int paraConcernId { get; set; } = 0;
+        public string paraFromDate { get; set; } = "";
+        public string paraToDate { get; set; } = "";
+        public int paraMachineId { get; set; } = 0;
+        public int paraProviderId { get; set; } = 0;
+        public int paraTypeId { get; set; } = 0;
+        public string paraBillNo { get; set; } = "";
+        public string paraBillAmt { get; set; } = "";
+        public int paraFlag { get; set; } = 0;
+        public string paraDays { get; set; } = "";
+        public string paraMonths { get; set; } = "";
+
         // -------------------- Customer Type --------------------
         public int paraCusTypeId { get; set; } = 0;
         public string paraCusTypeEName { get; set; } = "";
@@ -90,13 +103,12 @@ namespace ROMS.Model
         public int paraABID { get; set; } = 0;
         public int paraType { get; set; } = 0;
         public int paraCTYID { get; set; } = 0;
+        public int paraBillId { get; set; } = 0;
 
         // -------------------- Customer Group --------------------
         public int paraContactGroupId { get; set; } = 0;
         public string paraCONGroupEName { get; set; } = "";
         public string paraCONGroupTName { get; set; } = "";
-
-        // -------------------- Vehicle --------------------
-
     }
+
 }

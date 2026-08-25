@@ -4624,7 +4624,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Routelist, "CP_Routelist", 501);
+                OpenReportForm(ref MainForm.objCP_Routelist, "CP_Routelist", 1301);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4638,7 +4638,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_CustomerTypelist, "CP_CustomerTypelist", 501);
+                OpenReportForm(ref MainForm.objCP_CustomerTypelist, "CP_CustomerTypelist", 1303);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4666,7 +4666,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Vehiclelist, "CP_Vehiclelist", 501);
+                OpenReportForm(ref MainForm.objCP_Vehiclelist, "CP_Vehiclelist", 1307);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4680,7 +4680,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_AreaList, "CP_AreaList", 501);
+                OpenReportForm(ref MainForm.objCP_AreaList, "CP_AreaList", 1302);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4704,7 +4704,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_TempCustomerList, "CP_TempCustomerList", 501);
+                OpenReportForm(ref MainForm.objCP_TempCustomerList, "CP_TempCustomerList", 1304);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4718,7 +4718,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_CardMachineList, "CP_CardMachineList", 501);
+                OpenReportForm(ref MainForm.objCP_CardMachineList, "CP_CardMachineList", 1305);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4732,7 +4732,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_UPIList, "CP_UPIList", 501);
+                OpenReportForm(ref MainForm.objCP_UPIList, "CP_UPIList", 1306);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4746,7 +4746,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_DeliveryPersonlist, "CP_DeliveryPersonlist", 501);
+                OpenReportForm(ref MainForm.objCP_DeliveryPersonlist, "CP_DeliveryPersonlist", 1308);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4760,7 +4760,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Mobilelist, "CP_Mobilelist", 501);
+                OpenReportForm(ref MainForm.objCP_Mobilelist, "CP_Mobilelist", 1309);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4774,7 +4774,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Transportlist, "CP_Transportlist", 501);
+                OpenReportForm(ref MainForm.objCP_Transportlist, "CP_Transportlist", 1310);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -4788,7 +4788,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_MarriageHalllist, "CP_MarriageHalllist", 501);
+                OpenReportForm(ref MainForm.objCP_MarriageHalllist, "CP_MarriageHalllist", 1311);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -5100,7 +5100,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Basketlist, "CP_Basketlist", 501);
+                OpenReportForm(ref MainForm.objCP_Basketlist, "CP_Basketlist", 1312);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -5180,7 +5180,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_ContactGrouplist, "CP_ContactGrouplist", 501);
+                OpenReportForm(ref MainForm.objCP_ContactGrouplist, "CP_ContactGrouplist", 1313);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -5194,7 +5194,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_AddressBookList, "CP_AddressBookList", 501);
+                OpenReportForm(ref MainForm.objCP_AddressBookList, "CP_AddressBookList", 1314);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -5329,7 +5329,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_CardPayment, "REPORT_CardPayment", 50513);
+                OpenReportForm(ref MainForm.objREPORT_CardPayment, "REPORT_CardPayment", 1401);
             }
             catch (Exception ex)
             {
