@@ -437,6 +437,9 @@ namespace ROMS
         public static REPORT_MValueReport objREPORT_MValueReport;
         public static REPORT_S_EntryReport objREPORT_S_EntryReport;
 
+        // Sales Master Report
+        public static REPORT_SALES_Route objREPORT_SALES_Route;
+
 
         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
@@ -5330,6 +5333,19 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_CardPayment, "REPORT_CardPayment", 1401);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRouteReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_SALES_Route, "REPORT_SALES_Route", 140201);
             }
             catch (Exception ex)
             {

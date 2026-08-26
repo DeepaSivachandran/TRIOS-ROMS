@@ -1839,6 +1839,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="REPORT_SALES_Route.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Route.designer.cs">
+      <DependentUpon>REPORT_SALES_Route.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_CP_Product_Rate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7526,6 +7532,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_SALES_Route.resx">
+      <DependentUpon>REPORT_SALES_Route.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product_Rate.resx">
       <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
     </EmbeddedResource>

@@ -6744,6 +6744,45 @@ namespace ROMS
 
             return ds;
         }
+        public DataSet udfnSalesMasterReports(MR_Sales objMR_Sales)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Sales_Masters_Report]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Sales.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_Sales.paraConcernId);
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerId", objMR_Sales.paraCustomerId);
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerTypeId", objMR_Sales.paraCusTypeId);
+                varSqlCommand.Parameters.AddWithValue("@paraCusCategoryId", objMR_Sales.paraCUS_CategoryTypeID);
+                varSqlCommand.Parameters.AddWithValue("@paraGSTTypeId", objMR_Sales.paraGSTTypeId);
+                varSqlCommand.Parameters.AddWithValue("@paraPrintType", objMR_Sales.paraPrintType);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteId", objMR_Sales.paraRouteId);
+                varSqlCommand.Parameters.AddWithValue("@paraAreaId", objMR_Sales.paraAreaId);
+                varSqlCommand.Parameters.AddWithValue("@paraProviderId", objMR_Sales.paraProviderId);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandName", objMR_Sales.paraBrandName);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Sales.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraTypeId", objMR_Sales.paraTypeId);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Sales.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
 
     }
 

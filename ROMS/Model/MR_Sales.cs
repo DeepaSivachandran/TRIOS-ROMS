@@ -107,8 +107,11 @@ namespace ROMS.Model
 
         // -------------------- Customer Group --------------------
         public int paraContactGroupId { get; set; } = 0;
+        public int paraGSTTypeId { get; set; } = 0;
+        public int paraPrintType { get; set; } = 0;
         public string paraCONGroupEName { get; set; } = "";
         public string paraCONGroupTName { get; set; } = "";
+        public string paraBrandName { get; set; } = "";
     }
 
 }
