@@ -135,6 +135,9 @@ namespace ROMS
                             txtRCTolerancePer.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_RC_TolerancePer"]);
                             txtRCToleranceValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_RC_ToleranceValue"]);
 
+                            txtCpPercentage.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CP_TolerancePer"]);
+                            txtCpValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CP_ToleranceValue"]);
+                             
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
                                 rbYes.Checked = true;
@@ -304,7 +307,7 @@ namespace ROMS
                 {
                     varMultiUserSameSystem = 1;
                 }
-                int varRCTolarancePer = 0,varRCTolaranceValue = 0;
+                int varRCTolarancePer = 0,varRCTolaranceValue = 0, varCpValue = 0, varCpPercentage = 0;
                 if (txtRCTolerancePer.Text.Trim() != "")
                 {
                     varRCTolarancePer = Convert.ToInt32(txtRCTolerancePer.Text);
@@ -314,7 +317,16 @@ namespace ROMS
                     varRCTolaranceValue = Convert.ToInt32(txtRCToleranceValue.Text);
                 }
 
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtInactiveuserday.Text), Convert.ToInt32(txtMonths.Text), Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit, varlogoffEnable, Convert.ToInt32(txtLoggofftime.Text), Convert.ToInt32(txtInactiveuserday.Text), varMultiUserSameSystem, varSameUserSameSystem, varSameUserMultipleSystem, Convert.ToString(mtbTime.Text), Convert.ToString(cmbFormat.Text), varRCTolarancePer, varRCTolaranceValue);
+                if (txtCpValue.Text.Trim() != "")
+                {
+                    varCpValue = Convert.ToInt32(txtCpValue.Text);
+                }
+                if (txtCpPercentage.Text.Trim() != "")
+                {
+                    varCpPercentage = Convert.ToInt32(txtCpPercentage.Text);
+                }
+
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtInactiveuserday.Text), Convert.ToInt32(txtMonths.Text), Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit, varlogoffEnable, Convert.ToInt32(txtLoggofftime.Text), Convert.ToInt32(txtInactiveuserday.Text), varMultiUserSameSystem, varSameUserSameSystem, varSameUserMultipleSystem, Convert.ToString(mtbTime.Text), Convert.ToString(cmbFormat.Text), varRCTolarancePer, varRCTolaranceValue, varCpValue, varCpPercentage);
 
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
@@ -2330,7 +2342,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbTransactionType.Focus();
+                    txtCpPercentage.Focus();
                 }
             }
             catch (Exception ex)
@@ -2361,6 +2373,126 @@ namespace ROMS
             try
             {
                 txtRCToleranceValue.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCpPercentage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void txtCpPercentage_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCpPercentage.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCpPercentage_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCpValue.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCpPercentage_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCpPercentage.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCpValue_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCpValue.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void txtCpValue_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbTransactionType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCpValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void txtCpValue_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCpValue.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {

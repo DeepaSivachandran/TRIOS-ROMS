@@ -371,7 +371,7 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 cmbReportType.SelectedIndex = 0;
                 RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
+                RPTViewer.BringToFront();  
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)

@@ -255,16 +255,16 @@ namespace ROMS
             this.tsmBasket = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomerGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddressBook = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCardPayment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSalesReports = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCardPayment = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2301,6 +2301,24 @@ namespace ROMS
             this.tsmAddressBook.Text = "Address Book";
             this.tsmAddressBook.Click += new System.EventHandler(this.tsmAddressBook_Click);
             // 
+            // tsmSalesReports
+            // 
+            this.tsmSalesReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCardPayment});
+            this.tsmSalesReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmSalesReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmSalesReports.Name = "tsmSalesReports";
+            this.tsmSalesReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.tsmSalesReports.Size = new System.Drawing.Size(67, 24);
+            this.tsmSalesReports.Text = "S_Reports";
+            // 
+            // tsmCardPayment
+            // 
+            this.tsmCardPayment.Name = "tsmCardPayment";
+            this.tsmCardPayment.Size = new System.Drawing.Size(180, 22);
+            this.tsmCardPayment.Text = "Card Payment";
+            this.tsmCardPayment.Click += new System.EventHandler(this.tsmCardPayment_Click);
+            // 
             // tsmHelp
             // 
             this.tsmHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2344,17 +2362,6 @@ namespace ROMS
             this.tsmGif.Visible = false;
             this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
             // 
-            // tsmSalesReports
-            // 
-            this.tsmSalesReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCardPayment});
-            this.tsmSalesReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmSalesReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmSalesReports.Name = "tsmSalesReports";
-            this.tsmSalesReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.tsmSalesReports.Size = new System.Drawing.Size(67, 24);
-            this.tsmSalesReports.Text = "S_Reports";
-            // 
             // timer2
             // 
             this.timer2.Interval = 5000;
@@ -2374,13 +2381,6 @@ namespace ROMS
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // tsmCardPayment
-            // 
-            this.tsmCardPayment.Name = "tsmCardPayment";
-            this.tsmCardPayment.Size = new System.Drawing.Size(180, 22);
-            this.tsmCardPayment.Text = "Card Payment";
-            this.tsmCardPayment.Click += new System.EventHandler(this.tsmCardPayment_Click);
             // 
             // MainForm
             // 

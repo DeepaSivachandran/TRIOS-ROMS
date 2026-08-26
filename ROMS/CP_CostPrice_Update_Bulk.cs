@@ -31,6 +31,7 @@ namespace ROMS
         DataTable objdtProductsMapping = new DataTable();
         private ToolTip tpFiledtype = new ToolTip();
 
+        MainForm objMainForm = new MainForm();
         private void CP_Spl_Products_Bulk_Load(object sender, EventArgs e)
         {
             try
@@ -1421,6 +1422,13 @@ namespace ROMS
                     }
                     else
                     {
+
+                        int id = varId;
+                        if (varId == 0)
+                        {
+                            id = Convert.ToInt32(varvalue[2]);
+                        }
+                        udfnTelegramNotification(id);
                         MainForm.objCP_CostPrice_Update_Bulk_List.udfnList();
                     }
                     Varupdateflag = 1;
@@ -1448,6 +1456,40 @@ namespace ROMS
             }
         }
 
+        public void udfnTelegramNotification(int id)
+        {
+            try
+            {
+                string varMessage = "",varProcount ="0";
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                TRN_RateChange objRateChange = new TRN_RateChange();
+                objRateChange.paraViewType = 6;
+                objRateChange.paraID = id; 
+                objDs = objdserv.udfnRateChangeList(objRateChange);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        varMessage = objDs.Tables[0].Rows[0]["Message"].ToString();
+                        varProcount = objDs.Tables[0].Rows[0]["ProCount"].ToString();
+                    }
+                }
+                if (varMessage != "" && (varProcount !="0"))
+                {
+                    objMainForm.udfnTelegramRCNotification(varMessage);
+                }
+                 
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_Spl_Products_Bulk_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
