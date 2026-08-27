@@ -1857,6 +1857,12 @@
     <Compile Include="REPORT_SALES_DeliveryPerson.designer.cs">
       <DependentUpon>REPORT_SALES_DeliveryPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_SALES_Mobile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Mobile.designer.cs">
+      <DependentUpon>REPORT_SALES_Mobile.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_SALES_Vehicle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7564,6 +7570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_DeliveryPerson.resx">
       <DependentUpon>REPORT_SALES_DeliveryPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_Mobile.resx">
+      <DependentUpon>REPORT_SALES_Mobile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_Vehicle.resx">
       <DependentUpon>REPORT_SALES_Vehicle.cs</DependentUpon>

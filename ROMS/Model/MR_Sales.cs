@@ -51,6 +51,7 @@ namespace ROMS.Model
         public int paraMobileId { get; set; } = 0;
         public string paraMobileName { get; set; } = "";
         public int paraVendor { get; set; } = 0;
+        public int paraMobileType { get; set; } = 0;
 
         // -------------------- Transport --------------------
         public int paraTransportId { get; set; } = 0;

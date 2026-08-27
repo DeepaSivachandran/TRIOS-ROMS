@@ -5836,6 +5836,7 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@paraVendor", obj.paraVendor);
                 cmd.Parameters.AddWithValue("@paraMobileNo", obj.paraMobileNo);
                 cmd.Parameters.AddWithValue("@paraStatusId", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraMobileType", obj.paraMobileType);
                 cmd.Parameters.AddWithValue("@paraOriginator", obj.paraOriginator);
 
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
