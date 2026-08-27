@@ -5148,7 +5148,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Area.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraAreaId", objMR_Area.paraAreaId);
                 varSqlCommand.Parameters.AddWithValue("@paraRouteID", objMR_Area.paraRouteID);
-                varSqlCommand.Parameters.AddWithValue("@paraStatus", objMR_Area.paraRouteID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objMR_Area.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraAreaName", objMR_Area.paraAreaEName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
