@@ -440,7 +440,7 @@ namespace ROMS
         // Sales Master Report
         public static REPORT_SALES_Route objREPORT_SALES_Route;
         public static REPORT_SALES_Area objREPORT_SALES_Area;
-        //public static REPORT_SALES_CustomerType objREPORT_SALES_CustomerType;
+        public static REPORT_SALES_CustomerType objREPORT_SALES_CustomerType;
         //public static REPORT_SALES_Vehicle objREPORT_SALES_Vehicle;
         //public static REPORT_SALES_DeliveryPerson objREPORT_SALES_DeliveryPerson;
         //public static REPORT_SALES_Mobile objREPORT_SALES_Mobile;
@@ -5379,7 +5379,7 @@ namespace ROMS
         {
             try
             {
-                //OpenReportForm(ref MainForm.objREPORT_SALES_CustomerType, "REPORT_SALES_CustomerType", 140203);
+                OpenReportForm(ref MainForm.objREPORT_SALES_CustomerType, "REPORT_SALES_CustomerType", 140203);
             }
             catch (Exception ex)
             {

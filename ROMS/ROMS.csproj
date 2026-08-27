@@ -1845,6 +1845,12 @@
     <Compile Include="REPORT_SALES_Area.designer.cs">
       <DependentUpon>REPORT_SALES_Area.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_SALES_CustomerType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_CustomerType.designer.cs">
+      <DependentUpon>REPORT_SALES_CustomerType.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_SALES_Route.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7540,6 +7546,9 @@
     </Content>
     <EmbeddedResource Include="REPORT_SALES_Area.resx">
       <DependentUpon>REPORT_SALES_Area.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_CustomerType.resx">
+      <DependentUpon>REPORT_SALES_CustomerType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_Route.resx">
       <DependentUpon>REPORT_SALES_Route.cs</DependentUpon>

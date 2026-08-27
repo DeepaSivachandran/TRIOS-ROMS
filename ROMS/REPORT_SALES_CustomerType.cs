@@ -11,18 +11,18 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_SALES_Route : Form
+    public partial class REPORT_SALES_CustomerType : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_SALES_Route()
+        public REPORT_SALES_CustomerType()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            windowControl.Initialize(tpRouteReport, this);
+            windowControl.Initialize(tpCustomerTypeReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
@@ -121,9 +121,9 @@ namespace ROMS
         }
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
-            udfnRoute();
+            udfnCustomerType();
         }
-        public void udfnRoute()
+        public void udfnCustomerType()
         {
             try
             {
@@ -137,7 +137,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 MR_Sales objMR_Sales = new MR_Sales();
-                objMR_Sales.paraViewType = 0;
+                objMR_Sales.paraViewType = 2;
                 objMR_Sales.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objDs = objdserv.udfnSalesMasterReports(objMR_Sales);
                 objdserv.CloseConnection();
@@ -149,7 +149,7 @@ namespace ROMS
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Route.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CustomerType.rpt");
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -177,12 +177,12 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        private void REPORT_CP_Route_Load(object sender, EventArgs e)
+        private void REPORT_CP_CustomerType_Load(object sender, EventArgs e)
         {
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 140201;
+                int currentMUCode = 140203;
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -200,7 +200,7 @@ namespace ROMS
             }
         }
 
-        private void REPORT_CP_Route_KeyDown(object sender, KeyEventArgs e)
+        private void REPORT_CP_CustomerType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
