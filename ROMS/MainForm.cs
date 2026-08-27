@@ -439,6 +439,14 @@ namespace ROMS
 
         // Sales Master Report
         public static REPORT_SALES_Route objREPORT_SALES_Route;
+        public static REPORT_SALES_Area objREPORT_SALES_Area;
+        //public static REPORT_SALES_CustomerType objREPORT_SALES_CustomerType;
+        //public static REPORT_SALES_Vehicle objREPORT_SALES_Vehicle;
+        //public static REPORT_SALES_DeliveryPerson objREPORT_SALES_DeliveryPerson;
+        //public static REPORT_SALES_Mobile objREPORT_SALES_Mobile;
+        //public static REPORT_SALES_Transport objREPORT_SALES_Transport;
+        //public static REPORT_SALES_CardMachine objREPORT_SALES_CardMachine;
+        //public static REPORT_SALES_MarriageHall objREPORT_SALES_MarriageHall;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -5346,6 +5354,110 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_SALES_Route, "REPORT_SALES_Route", 140201);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmAreaReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_SALES_Area, "REPORT_SALES_Area", 140202);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCustomerTypeReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_CustomerType, "REPORT_SALES_CustomerType", 140203);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmVehicleReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_Vehicle, "REPORT_SALES_Vehicle", 140204);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDeliveryPersonReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //OpenReportForm(ref MainForm.REPORT_SALES_DeliveryPerson, "REPORT_SALES_DeliveryPerson", 140205);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMobileReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_Mobile, "REPORT_SALES_Mobile", 140206);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmTransportReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_Transport, "REPORT_SALES_Transport", 140207);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCardMachineReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_CardMachine, "REPORT_SALES_CardMachine", 140208);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMarriageHallReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_MarriageHall, "REPORT_SALES_MarriageHall", 140209);
             }
             catch (Exception ex)
             {

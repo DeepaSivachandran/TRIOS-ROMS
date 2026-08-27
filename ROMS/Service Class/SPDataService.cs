@@ -5210,6 +5210,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Route.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRouteId", objMR_Route.paraRouteId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Route.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteName", objMR_Route.paraRouteEName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
