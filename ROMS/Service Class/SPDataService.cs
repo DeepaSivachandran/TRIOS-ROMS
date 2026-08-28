@@ -5342,6 +5342,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_CardMachine.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_CardMachine.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraCardMachineId", objMR_CardMachine.paraCardMachineId);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandName", objMR_CardMachine.paraBrandName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

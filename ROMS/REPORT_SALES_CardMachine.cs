@@ -132,11 +132,11 @@ namespace ROMS
         {
             try
             {
-                int varRouteId = 0;string varRouteName = "-All-";
-                if (txtRoute.Text.Trim() != "")
+                int varRouteId = 0;string varBrandName = "-All-";
+                if (txtBrandName.Text.Trim() != "")
                 {
                     varRouteId = Convert.ToInt32(lblRouteId.Text);
-                    varRouteName = txtRoute.Text.Trim();
+                    varBrandName = txtBrandName.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -164,8 +164,8 @@ namespace ROMS
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CardMachine.rpt");
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraBrandName", txtRoute.Text.Trim());
-                    objBillreport.SetParameterValue("paraBrandNameValue", varRouteName);
+                    objBillreport.SetParameterValue("paraBrandName", txtBrandName.Text.Trim());
+                    objBillreport.SetParameterValue("paraBrandNameValue", varBrandName);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -238,7 +238,7 @@ namespace ROMS
         {
             try
             {
-                txtRoute.BackColor = Color.LemonChiffon;
+                txtBrandName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -289,10 +289,10 @@ namespace ROMS
                             if (RowIndex >= 0) DGV_FilterRoute.CurrentCell = DGV_FilterRoute.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
                             {
-                                txtRoute.Text = DGV_FilterRoute.Rows[RowIndex].Cells["Route"].Value.ToString();
+                                txtBrandName.Text = DGV_FilterRoute.Rows[RowIndex].Cells["BrandName"].Value.ToString();
                             }
-                            txtRoute.Focus();
-                            txtRoute.SelectionStart = txtRoute.Text.Length;
+                            txtBrandName.Focus();
+                            txtBrandName.SelectionStart = txtBrandName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
@@ -301,11 +301,11 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterRoute.Rows.Count))
                             {
-                                txtRoute.Text = DGV_FilterRoute.Rows[RowIndex].Cells["Route"].Value.ToString();
+                                txtBrandName.Text = DGV_FilterRoute.Rows[RowIndex].Cells["BrandName"].Value.ToString();
                             }
 
-                            txtRoute.Focus();
-                            txtRoute.SelectionStart = txtRoute.Text.Length;
+                            txtBrandName.Focus();
+                            txtBrandName.SelectionStart = txtBrandName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Enter:
@@ -313,14 +313,14 @@ namespace ROMS
                                 if (DGV_FilterRoute.Rows.Count > 0)
                                 {
                                     varUpDownKeyRoute = 1;
-                                    udfnRouteEvent();
+                                    udfnBrandNameEvent();
                                     DGV_FilterRoute.Visible = false;
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
                                 break;
                             }
                     }
-                    txtRoute.Focus();
+                    txtBrandName.Focus();
                     //txtRoute.SelectionStart = txtRoute.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
@@ -347,7 +347,7 @@ namespace ROMS
         {
             try
             {
-                 txtRoute.BackColor = Color.White;
+                 txtBrandName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -362,14 +362,14 @@ namespace ROMS
             {
                 if (varUpDownKeyRoute == 0)
                 {
-                    if (txtRoute.Text.Length > 0)
+                    if (txtBrandName.Text.Length > 0)
                     {
-                        MR_Route objMR_Route = new MR_Route();
-                        objMR_Route.ViewType = 3;
-                        objMR_Route.paraRouteEName = txtRoute.Text;
+                        MR_CardMachine objMR_CardMachine = new MR_CardMachine();
+                        objMR_CardMachine.ViewType = 2;
+                        objMR_CardMachine.paraBrandName = txtBrandName.Text;
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnRouteList(objMR_Route);
+                        objDs = objspdservice.udfnCardMachineList(objMR_CardMachine);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -379,8 +379,7 @@ namespace ROMS
                                 {
                                     DGV_FilterRoute.Visible = true;
                                     DGV_FilterRoute.DataSource = objDs.Tables[0];
-                                    DGV_FilterRoute.Columns["RID"].Visible = false;
-                                    DGV_FilterRoute.Columns["Route"].Width = 250;
+                                    DGV_FilterRoute.Columns["BrandName"].Width = 250;
                                     DGV_FilterRoute.BringToFront();
                                 }
                                 else
@@ -424,7 +423,7 @@ namespace ROMS
             try
             {
                 varUpDownKeyRoute = 1;
-                udfnRouteEvent();
+                udfnBrandNameEvent();
                 cmbStatus.Focus();
             }
             catch (Exception ex)
@@ -456,10 +455,10 @@ namespace ROMS
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterRoute.CurrentCell = DGV_FilterRoute.Rows[RowIndex].Cells[ClmIndex];
 
-                            txtRoute.Text = DGV_FilterRoute.SelectedRows[0].Cells["Route"].Value.ToString();
+                            txtBrandName.Text = DGV_FilterRoute.SelectedRows[0].Cells["BrandName"].Value.ToString();
 
-                            txtRoute.Focus();
-                            txtRoute.SelectionStart = txtRoute.Text.Length;
+                            txtBrandName.Focus();
+                            txtBrandName.SelectionStart = txtBrandName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
@@ -468,11 +467,11 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterRoute.Rows.Count))
                             {
-                                txtRoute.Text = DGV_FilterRoute.Rows[RowIndex].Cells["Route"].Value.ToString();
+                                txtBrandName.Text = DGV_FilterRoute.Rows[RowIndex].Cells["BrandName"].Value.ToString();
                             }
 
-                            txtRoute.Focus();
-                            txtRoute.SelectionStart = txtRoute.Text.Length;
+                            txtBrandName.Focus();
+                            txtBrandName.SelectionStart = txtBrandName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Enter:
@@ -480,7 +479,7 @@ namespace ROMS
                                 if (DGV_FilterRoute.Rows.Count > 0)
                                 {
                                     varUpDownKeyRoute = 1;
-                                    udfnRouteEvent();
+                                    udfnBrandNameEvent();
                                     DGV_FilterRoute.Visible = false;
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
@@ -505,14 +504,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnRouteEvent()
+        public void udfnBrandNameEvent()
         {
             try
             {
-                if (txtRoute.Text.Trim() != "")
+                if (txtBrandName.Text.Trim() != "")
                 {
-                    lblRouteId.Text = DGV_FilterRoute.SelectedRows[0].Cells["RID"].Value.ToString();
-                    txtRoute.Text = DGV_FilterRoute.SelectedRows[0].Cells["Route"].Value.ToString();
+                    txtBrandName.Text = DGV_FilterRoute.SelectedRows[0].Cells["BrandName"].Value.ToString();
                 }
             }
             catch (Exception ex)

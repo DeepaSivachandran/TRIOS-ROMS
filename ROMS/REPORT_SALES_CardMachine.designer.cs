@@ -40,7 +40,7 @@
             this.DGV_FilterRoute = new System.Windows.Forms.DataGridView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.lblRouteId = new System.Windows.Forms.Label();
-            this.txtRoute = new System.Windows.Forms.TextBox();
+            this.txtBrandName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -168,7 +168,7 @@
             // grpfilter
             // 
             this.grpfilter.Controls.Add(this.lblRouteId);
-            this.grpfilter.Controls.Add(this.txtRoute);
+            this.grpfilter.Controls.Add(this.txtBrandName);
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbStatus);
@@ -191,18 +191,18 @@
             this.lblRouteId.Text = "0";
             this.lblRouteId.Visible = false;
             // 
-            // txtRoute
+            // txtBrandName
             // 
-            this.txtRoute.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRoute.Location = new System.Drawing.Point(90, 19);
-            this.txtRoute.MaxLength = 100;
-            this.txtRoute.Name = "txtRoute";
-            this.txtRoute.Size = new System.Drawing.Size(249, 27);
-            this.txtRoute.TabIndex = 0;
-            this.txtRoute.TextChanged += new System.EventHandler(this.txtRoute_TextChanged);
-            this.txtRoute.Enter += new System.EventHandler(this.txtRoute_Enter);
-            this.txtRoute.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRoute_KeyDown);
-            this.txtRoute.Leave += new System.EventHandler(this.txtRoute_Leave);
+            this.txtBrandName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBrandName.Location = new System.Drawing.Point(90, 19);
+            this.txtBrandName.MaxLength = 100;
+            this.txtBrandName.Name = "txtBrandName";
+            this.txtBrandName.Size = new System.Drawing.Size(249, 27);
+            this.txtBrandName.TabIndex = 0;
+            this.txtBrandName.TextChanged += new System.EventHandler(this.txtRoute_TextChanged);
+            this.txtBrandName.Enter += new System.EventHandler(this.txtRoute_Enter);
+            this.txtBrandName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRoute_KeyDown);
+            this.txtBrandName.Leave += new System.EventHandler(this.txtRoute_Leave);
             // 
             // label1
             // 
@@ -345,7 +345,7 @@
         private DynamicToolStripLabelControl dynamicLabelControl;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataGridView DGV_FilterRoute;
-        private System.Windows.Forms.TextBox txtRoute;
+        private System.Windows.Forms.TextBox txtBrandName;
         private System.Windows.Forms.Label lblRouteId;
     }
 }
