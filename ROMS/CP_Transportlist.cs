@@ -341,7 +341,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 501;
+                MenuCode = 1310;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1,0) AND STSID<>-1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;

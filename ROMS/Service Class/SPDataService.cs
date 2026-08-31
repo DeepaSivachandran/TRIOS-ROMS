@@ -1752,7 +1752,7 @@ namespace ROMS
         {
             DataSet ds = new DataSet();
             try
-            {
+            { 
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("MRG_Product", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
@@ -1813,6 +1813,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRateCategory", objMR_Product.paraRateCategory);
                 varSqlCommand.Parameters.AddWithValue("@paraListType", objMR_Product.paraListType);
                 varSqlCommand.Parameters.AddWithValue("@paraShopLocType", objMR_Product.paraShopLocType);
+                varSqlCommand.Parameters.AddWithValue("@paraRackType", objMR_Product.paraRackType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -6076,9 +6077,14 @@ namespace ROMS
                 SqlCommand cmd = new SqlCommand("MRG_Customer", tmpspcall.objConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
                 cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
                 cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraCUS_TypeID", obj.paraCUS_TypeID);
+                cmd.Parameters.AddWithValue("@paraCUS_CategoryID", obj.paraCUS_CategoryTypeID);
+                cmd.Parameters.AddWithValue("@paraCUS_DeliPreferenceID", obj.paraDeliveryPersonId);
+                cmd.Parameters.AddWithValue("@paraCustomer", obj.paraCUS_Name);
+                cmd.Parameters.AddWithValue("@paraBillId", obj.paraBillId);
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 
@@ -6697,6 +6703,51 @@ namespace ROMS
             }
             return varResult;
         }
+        public DataSet udfnCardPaymentReports(MR_Sales obj)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                tmpspcall = new SPCall();
+
+                SqlCommand cmd = new SqlCommand("TRNG_Card_Payment_Reports", tmpspcall.objConn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                cmd.Parameters.AddWithValue("@paraConcernId", obj.paraConcernId);
+                cmd.Parameters.AddWithValue("@paraFromDate", obj.paraFromDate);
+                cmd.Parameters.AddWithValue("@paraToDate", obj.paraToDate);
+                cmd.Parameters.AddWithValue("@paraMachineId", obj.paraMachineId);
+                cmd.Parameters.AddWithValue("@paraProviderId", obj.paraProviderId);
+                cmd.Parameters.AddWithValue("@paraTypeId", obj.paraTypeId);
+                cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
+                cmd.Parameters.AddWithValue("@paraBillNo", obj.paraBillNo);
+                cmd.Parameters.AddWithValue("@paraBillAmt", obj.paraBillAmt);
+                cmd.Parameters.AddWithValue("@paraFlag", obj.paraFlag);
+                cmd.Parameters.AddWithValue("@paraDays", obj.paraDays);
+                cmd.Parameters.AddWithValue("@paraMonths", obj.paraMonths);
+
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(cmd);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+
+            return ds;
+        }
+
     }
 
 }

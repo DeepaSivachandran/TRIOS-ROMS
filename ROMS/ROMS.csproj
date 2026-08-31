@@ -1055,6 +1055,55 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_Area.cs">
+      <DependentUpon>RPT_SALES_Area.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CustomerType.cs">
+      <DependentUpon>RPT_SALES_CustomerType.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Mobile.cs">
+      <DependentUpon>RPT_SALES_Mobile.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_DeliveryPerson.cs">
+      <DependentUpon>RPT_SALES_DeliveryPerson.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Transport.cs">
+      <DependentUpon>RPT_SALES_Transport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Vehicle.cs">
+      <DependentUpon>RPT_SALES_Vehicle.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Route.cs">
+      <DependentUpon>RPT_SALES_Route.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_Card_Payment_Monthwise_Vendor.cs">
       <DependentUpon>RPT_SALES_Card_Payment_Monthwise_Vendor.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1768,11 +1817,17 @@
     <Compile Include="REPORT_CP_Product_Rate.designer.cs">
       <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
     </Compile>
-    <Compile Include="REPORT_CardPayment.cs">
+    <Compile Include="REPORT_S_EntryReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="REPORT_CardPayment.designer.cs">
-      <DependentUpon>REPORT_CardPayment.cs</DependentUpon>
+    <Compile Include="REPORT_S_EntryReport.designer.cs">
+      <DependentUpon>REPORT_S_EntryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_CardPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_CardPayment.designer.cs">
+      <DependentUpon>REPORT_SALES_CardPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_PUR_ReturnDC.cs">
       <SubType>Form</SubType>
@@ -6298,6 +6353,41 @@
       <LastGenOutput>RPT_SALES_Card_Payment_Detail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_SALES_Route.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Route.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Area.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Area.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CustomerType.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CustomerType.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Vehicle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Vehicle.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_DeliveryPerson.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_DeliveryPerson.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Mobile.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Mobile.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Transport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Transport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SAL_Summary.cs</LastGenOutput>
@@ -7391,8 +7481,11 @@
     <EmbeddedResource Include="REPORT_CP_Product_Rate.resx">
       <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="REPORT_CardPayment.resx">
-      <DependentUpon>REPORT_CardPayment.cs</DependentUpon>
+    <EmbeddedResource Include="REPORT_SALES_CardPayment.resx">
+      <DependentUpon>REPORT_SALES_CardPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_S_EntryReport.resx">
+      <DependentUpon>REPORT_S_EntryReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_ReturnDC.resx">
       <DependentUpon>REPORT_PUR_ReturnDC.cs</DependentUpon>

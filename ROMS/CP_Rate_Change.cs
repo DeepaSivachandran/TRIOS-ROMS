@@ -6,27 +6,23 @@ using System.Linq;
 using System.Web.Services.Description;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
 namespace ROMS
 {
     public partial class CP_Rate_Change : Form
     {
         DataValidation objvalidation = new DataValidation();
         DataError objError;
-
         public int varUpDownKey = 0;
-        public int varproductcode=0;
+        public int varproductcode = 0;
         public string varcompanycode;
-        public int pbFormStatus=0;
+        public int pbFormStatus = 0;
         public string varstatecode = "";
         public string varSubgroupId = "";
         public string vargroupId = "";
         public string varupdate = "0";
-        public int varProductload = 0, ratetype = 0;
-        public decimal Rrate = 0,prevRrate = 0,Wrate = 0, prevWrate = 0 , rate = 0 , prevrate = 0;
+        public int varProductload = 0, ratetype = 0, autoSts = 0;
+        public decimal Rrate = 0, prevRrate = 0, Wrate = 0, prevWrate = 0, rate = 0, prevrate = 0, autoValue = 0;
         MainForm objMainForm = new MainForm();
-
-
         //tool tip
         private ToolTip tpRRate = new ToolTip();
         private ToolTip tpWRate = new ToolTip();
@@ -36,7 +32,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-         
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -68,7 +63,6 @@ namespace ROMS
                 }
                 if (ratetype == 448)
                 {
-
                     //if ((txtWRateLive.Text.Contains(".") && txtWRateLive.Text.Length < 2) || Convert.ToString(txtWRateLive.Text).Trim() == "")
                     //{
                     //    errItems.SetError(txtWRateLive, "Please enter valid rate");
@@ -77,7 +71,6 @@ namespace ROMS
                     //    tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
                     //    blnErrorFlag = true;
                     //}
-
                     //if (Convert.ToString(txtWRateLive.Text).Trim() != "" && Convert.ToString(txtRRateLive.Text).Trim() != "")
                     //{
                     //    if (Convert.ToDecimal(txtRRateLive.Text) < Convert.ToDecimal(txtWRateLive.Text))
@@ -102,7 +95,6 @@ namespace ROMS
                     //    }
                     //}
                 }
-                
                 if (blnErrorFlag == false)
                 {
                     udfnSave();
@@ -113,7 +105,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-             
         }
         public void udfnTelegramNotification(int id)
         {
@@ -140,27 +131,20 @@ namespace ROMS
                 {
                     objMainForm.udfnTelegramRCNotification(varMessage);
                 }
-
                 //                string productName = txtProductName.Text;
                 //                string productCode = lblPICode.Text;
                 //                decimal oldRate = Convert.ToDecimal(txtRRateLast.Text);
                 //                decimal newRate = Convert.ToDecimal(txtRRateLive.Text);
                 //                string userName = txtTeller.Text;
                 //                string message = $@"⚡ *Rate Change Alert* ⚡
-
                 // *Product :* {productName}
                 // *P.I Code:* {productCode}
-
                 // *Rate Updated*
                 //    • Previous Rate : ₹{oldRate:N2}
                 //    • New Rate        : ₹{newRate:N2}
-
                 //*Difference* : ₹{Math.Abs(newRate - oldRate):N2} 
-
                 //*Updated By :* {userName} 
-
                 // ⚠️ This notification was generated because the rate change exceeded ₹{MainForm.pbRateTolerance}.";
-
             }
             catch (Exception ex)
             {
@@ -178,18 +162,15 @@ namespace ROMS
                 //if (txtWRateLive.Text != "")
                 //{
                 //    varwrate = Convert.ToDouble(txtWRateLive.Text);
-
                 //}
                 if (txtRRatePrev.Text != "")
                 {
-                    prevRrate = Convert.ToDecimal(txtRRatePrev.Text); 
+                    prevRrate = Convert.ToDecimal(txtRRatePrev.Text);
                 }
                 if (txtWRatePrev.Text != "")
                 {
                     prevWrate = Convert.ToDecimal(txtWRatePrev.Text);
                 }
-                
-                 
                 TRN_RateChange objRateChange = new TRN_RateChange();
                 objRateChange.paraViewType = 0;
                 objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text);
@@ -200,9 +181,8 @@ namespace ROMS
                 objRateChange.paraTeller = Convert.ToString(txtTeller.Text).Trim();
                 objRateChange.paraType = ratetype;
                 objRateChange.paraOriginator = "Rate Change";
-
                 SPDataService objspservice = new SPDataService();
-                string varResult  = objspservice.udfnRateChange(objRateChange);
+                string varResult = objspservice.udfnRateChange(objRateChange);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -219,7 +199,7 @@ namespace ROMS
                     udfnclear();
                     varupdate = "1";
                     //udfnclose();
-                    txtProductName.Focus(); 
+                    txtProductName.Focus();
                 }
                 else
                 {
@@ -227,7 +207,6 @@ namespace ROMS
                     btnSave.Enabled = true;
                     btnSave.Focus();
                 }
-
             }
             catch (Exception ex)
             {
@@ -243,7 +222,6 @@ namespace ROMS
                 btnSave.Enabled = true;
             }
         }
-
         public void udfnclear()
         {
             try
@@ -260,9 +238,9 @@ namespace ROMS
                 txtWRateLast.Text = "";
                 //txtWRateLive.Text = "";
                 txtWRatePrev.Text = "";
-                txtTeller.Text = ""; 
+                txtTeller.Text = "";
                 lvVerified1.Visible = false;
-                lblProductcode.Text = ""; 
+                lblProductcode.Text = "";
                 lblPurLocation.Text = "";
                 lblPurRack.Text = "";
                 lblSalesLocation.Text = "";
@@ -273,10 +251,9 @@ namespace ROMS
                 txtLastChanged.Text = "";
                 txtLastTeller.Text = "";
                 txtsystem.Text = "";
-                lblStockQty.Text = ""; 
+                lblStockQty.Text = "";
                 lblCurrentStock.Visible = false;
                 lblStockQty.Visible = false;
-
                 Rrate = 0;
                 prevRrate = 0;
                 Wrate = 0;
@@ -284,6 +261,8 @@ namespace ROMS
                 ratetype = 0;
                 rate = 0;
                 prevrate = 0;
+                autoValue = 0;
+                autoSts = 0;
             }
             catch (Exception ex)
             {
@@ -291,17 +270,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
         public void udfncolorchange()
         {
             try
             {
-                errItems.Clear(); 
+                errItems.Clear();
                 txtRRateLast.BackColor = Color.White;
                 txtWRateLast.BackColor = Color.White;
                 txtRRatePrev.BackColor = Color.White;
                 txtWRatePrev.BackColor = Color.White;
-                txtRRateLive.BackColor = Color.White; 
+                txtRRateLive.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -309,9 +287,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -325,7 +300,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -337,13 +311,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
-
-
+        }
         public void udfnclose()
         {
             try
-            { 
+            {
                 this.Close();
                 MainForm.objCP_Rate_ChangeList.udfnList();
                 MainForm.objCP_Rate_ChangeList.grdItemList.ClearSelection();
@@ -352,7 +324,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
             finally
             {
             }
@@ -361,7 +333,7 @@ namespace ROMS
         {
             try
             {
-                udfnclose(); 
+                udfnclose();
             }
             catch (Exception ex)
             {
@@ -369,7 +341,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -382,8 +353,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -396,11 +365,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-                            
-
         private void CP_Product_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Escape)
@@ -409,9 +375,8 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    btnSave_Click(sender, e); 
+                    btnSave_Click(sender, e);
                 }
-
             }
             catch (Exception ex)
             {
@@ -419,7 +384,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
         private void CP_Product_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -446,11 +410,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtProductName_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 txtProductName.BackColor = Color.LemonChiffon;
                 udfnHideLists();
             }
@@ -460,17 +423,14 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtProductName_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            { 
-                    
+            {
                 varUpDownKey = 0;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterProduct.Focus();
-
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
@@ -513,12 +473,10 @@ namespace ROMS
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
                                 txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                             }
-
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
@@ -547,7 +505,16 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtRRateLive.Focus();
+
+                        if (autoSts == 453)
+                        {
+                            txtTeller.Focus();
+                        }
+                        else
+                        {
+                            txtRRateLive.Focus();
+
+                        }
                     }
                 }
             }
@@ -555,8 +522,8 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
-        } 
+            }
+        }
         private void txtProductName_TextChanged(object sender, EventArgs e)
         {
             try
@@ -596,9 +563,6 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-
-
-
                                     DGV_FilterProduct.Columns["PREV R.Rate"].Visible = false;
                                     DGV_FilterProduct.Columns["PREV W.Rate"].Visible = false;
                                     DGV_FilterProduct.Columns["PRPM_TYPE"].Visible = false;
@@ -606,9 +570,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PRPR_RATE_PREV"].Visible = false;
                                     DGV_FilterProduct.Columns["R.Rate"].Visible = true;
                                     DGV_FilterProduct.Columns["W.Rate"].Visible = false;
-                                     
-
-
+                                    DGV_FilterProduct.Columns["autoSts"].Visible = false;
+                                    DGV_FilterProduct.Columns["CP_AutoValue"].Visible = false;
                                     DGV_FilterProduct.BringToFront();
                                 }
                                 else
@@ -643,10 +606,8 @@ namespace ROMS
             }
             finally
             {
-
             }
         }
-
         private void txtProductName_Leave(object sender, EventArgs e)
         {
             try
@@ -671,9 +632,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-        
-
         private void txtRRateLive_Enter(object sender, EventArgs e)
         {
             try
@@ -689,8 +647,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-
         private void txtTeller_Enter(object sender, EventArgs e)
         {
             try
@@ -704,15 +660,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtRRateLive_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    
-                        txtTeller.Focus(); 
+                    txtTeller.Focus();
                 }
             }
             catch (Exception ex)
@@ -720,8 +674,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
-
+        }
         private void txtRRateLive_Leave(object sender, EventArgs e)
         {
             try
@@ -746,8 +699,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
-
+        }
         private void txtTeller_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -778,7 +730,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtTeller_TextChanged(object sender, EventArgs e)
         {
             try
@@ -833,7 +784,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void lvVerified1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -849,7 +799,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void lvVerified1_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -862,7 +811,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnVerified1()
         {
             try
@@ -884,7 +832,6 @@ namespace ROMS
                 btnSave.Focus();
             }
         }
-
         private void txtTeller_Leave(object sender, EventArgs e)
         {
             try
@@ -908,9 +855,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnHideLists() {
+        public void udfnHideLists()
+        {
             try
-            { 
+            {
                 lvVerified1.Visible = false;
             }
             catch (Exception ex)
@@ -919,7 +867,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Rate_Change_Load(object sender, EventArgs e)
         {
             try
@@ -932,7 +879,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtRRateLive_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -953,7 +899,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtWRateLive_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -981,19 +926,33 @@ namespace ROMS
                 if (txtProductName.Text != "")
                 {
                     lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-
                     Rrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["R.Rate"].Value);
-                    prevRrate = Convert.ToDecimal( DGV_FilterProduct.SelectedRows[0].Cells["PREV R.Rate"].Value); 
+                    prevRrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PREV R.Rate"].Value);
                     Wrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["W.Rate"].Value);
                     prevWrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PREV W.Rate"].Value);
                     ratetype = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PRPM_TYPE"].Value);
                     rate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PRPM_RATE"].Value);
                     prevrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PRPR_RATE_PREV"].Value);
                     lblPICode.Text = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value);
+                    autoSts = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["autoSts"].Value);
+                    autoValue = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["CP_AutoValue"].Value);
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                     udfnListviewProduct();
-
-                } 
+                    if (autoSts == 453)
+                    {
+                        decimal rateValue = rate == 0 ? autoValue : 0;
+                        txtRRateLive.Text = Convert.ToString(rateValue);
+                        txtRRateLive.Enabled = false;
+                        lblAuto.Visible = true;
+                        txtTeller.Focus();
+                    }
+                    else
+                    {
+                        txtRRateLive.Focus();
+                        txtRRateLive.Enabled = true;
+                        lblAuto.Visible = false;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1005,14 +964,11 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
             }
         }
-
-
         private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 udfnProductEvent();
-                txtRRateLive.Focus();
             }
             catch (Exception ex)
             {
@@ -1024,7 +980,6 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
             }
         }
-
         private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1046,9 +1001,7 @@ namespace ROMS
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
                             txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
@@ -1056,12 +1009,10 @@ namespace ROMS
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
                                 txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                             }
-
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
@@ -1085,13 +1036,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnListviewProduct()
         {
             try
             {
                 if (txtProductName.Text != "")
-                { 
+                {
                     if (lblProductcode.Text != "" && lblProductcode.Text != "0")
                     {
                         MR_Product objMR_Product = new MR_Product();
@@ -1116,7 +1066,6 @@ namespace ROMS
                                     txtRRateLast.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate_Prev"]);
                                     txtWRatePrev.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholeSaleRate"]);
                                     txtWRateLast.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholeSaleRate_Prev"]);
-
                                     lblPurLocation.Text = Convert.ToString(objDs.Tables[0].Rows[0]["LOCATION PURCHASE Name"]);
                                     lblPurRack.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RACK LOCATION Name"]);
                                     lblSalesLocation.Text = Convert.ToString(objDs.Tables[0].Rows[0]["LOCATION SALES Name"]);
@@ -1124,7 +1073,6 @@ namespace ROMS
                                     lblShelflife.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PRODUCT EXPIRY"]);
                                     lblWholesale.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WMINSALE QTY"]);
                                     lblBulk.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit Per box"]);
-
                                     txtLastChanged.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Last Changed"]);
                                     txtLastTeller.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Last Teller"]);
                                     txtsystem.Text = Convert.ToString(objDs.Tables[0].Rows[0]["System"]);
@@ -1139,14 +1087,10 @@ namespace ROMS
                                         lblStockQty.Visible = true;
                                         lblStockQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CurrentStock"]) + " " + Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]);
                                     }
-
-
                                     txtWRatePrev.Enabled = false;
                                     txtWRateLast.Enabled = false;
-
                                     if (ratetype == 447)
-                                    { 
-
+                                    {
                                         txtRRatePrev.Text = Convert.ToString(Rrate);
                                         txtRRateLast.Text = Convert.ToString(prevRrate);
                                         txtWRatePrev.Text = Convert.ToString(Wrate);
@@ -1161,8 +1105,6 @@ namespace ROMS
                                         txtWRateLast.Text = "0";
                                         txtDWSaleRate.Text = "Rate";
                                     }
-
-
                                     lblProductName.Text = txtProductName.Text;
                                 }
                                 else { udfnclear(); }
@@ -1181,11 +1123,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { 
+            {
             }
         }
     }
 }
-
-
-    

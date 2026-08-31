@@ -47,6 +47,7 @@
             this.txtDMinSaleQty = new System.Windows.Forms.TextBox();
             this.txtRRatePrev = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblAuto = new System.Windows.Forms.Label();
             this.txtsystem = new System.Windows.Forms.TextBox();
             this.txtLastTeller = new System.Windows.Forms.TextBox();
             this.txtLastChanged = new System.Windows.Forms.TextBox();
@@ -284,6 +285,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblAuto);
             this.groupBox2.Controls.Add(this.txtsystem);
             this.groupBox2.Controls.Add(this.txtLastTeller);
             this.groupBox2.Controls.Add(this.txtLastChanged);
@@ -309,6 +311,20 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rate Details";
+            // 
+            // lblAuto
+            // 
+            this.lblAuto.AutoSize = true;
+            this.lblAuto.BackColor = System.Drawing.Color.Green;
+            this.lblAuto.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuto.ForeColor = System.Drawing.Color.White;
+            this.lblAuto.Location = new System.Drawing.Point(6, 196);
+            this.lblAuto.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblAuto.Name = "lblAuto";
+            this.lblAuto.Size = new System.Drawing.Size(87, 21);
+            this.lblAuto.TabIndex = 111111153;
+            this.lblAuto.Text = "Auto Update ";
+            this.lblAuto.Visible = false;
             // 
             // txtsystem
             // 
@@ -837,7 +853,7 @@
             this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvVerified1.HideSelection = false;
-            this.lvVerified1.Location = new System.Drawing.Point(556, 229);
+            this.lvVerified1.Location = new System.Drawing.Point(556, 232);
             this.lvVerified1.Name = "lvVerified1";
             this.lvVerified1.Size = new System.Drawing.Size(222, 164);
             this.lvVerified1.TabIndex = 111111135;
@@ -893,7 +909,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(645, 220);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(639, 220);
             this.DGV_FilterProduct.TabIndex = 111111150;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -1036,5 +1052,6 @@
         private System.Windows.Forms.TextBox txtLastChanged;
         private System.Windows.Forms.Label lblCurrentStock;
         private System.Windows.Forms.Label lblStockQty;
+        private System.Windows.Forms.Label lblAuto;
     }
 }

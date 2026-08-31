@@ -1,4 +1,4 @@
-﻿ using ROMS.Model;
+﻿using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Windows.Forms;
 //using Color = System.Drawing.Color;
 //using Control = System.Windows.Forms.Control;
 //using Font = System.Drawing.Font;
- namespace ROMS
+namespace ROMS
 {
     public partial class CP_Product : Form
     {
@@ -24,7 +24,7 @@ using System.Windows.Forms;
             public int RotationAngle { get; set; } = 0;
         }
         bool isLoadingGrid = false;
-         private List<EditableImage> editableImages = new List<EditableImage>();
+        private List<EditableImage> editableImages = new List<EditableImage>();
         private Image originalImage;
         private float zoom = 1.0f;
         private bool cropMode = false;
@@ -41,7 +41,7 @@ using System.Windows.Forms;
         private List<string> images = new List<string>();
         private int currentIndex = 0;
         private Image originalSubgroupImage;
-         DataValidation objvalidation = new DataValidation();
+        DataValidation objvalidation = new DataValidation();
         DataError objError;
         DataTable dtProductHSN = new DataTable();
         DataTable dtPurHSN = new DataTable();
@@ -94,7 +94,7 @@ using System.Windows.Forms;
         private ToolTip tpVerifier = new ToolTip();
         private ToolTip tpSalesPICode = new ToolTip();
         private List<string> imagePaths = new List<string>();
-         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0, varMarginType = 0;
+        public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0, varMarginType = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
         int varStatusFlag = 0, varStatusID = 0, varParentEnable = 0;
@@ -120,16 +120,16 @@ using System.Windows.Forms;
             ProSchemeEligibilityViewAccess = false, ProSchemeEligibilityEditAccess = false,
             ProductUsageViewAccess = false, ProductUsageEditAccess = false,
             ProductStatusViewAccess = false, ProductStatusEditAccess = false;
-         string Subgroupprivilege = "", Groupprivilege = "", Brandprivilege = "", Unitprivilege = "";
+        string Subgroupprivilege = "", Groupprivilege = "", Brandprivilege = "", Unitprivilege = "";
         public int pbSG_ProductScheme = 0, pbSG_BillScheme = 0;
-         string privilege = "", MismatachApprovalPrivilege = "";
+        string privilege = "", MismatachApprovalPrivilege = "";
         public List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
-         public CP_Product()
+        public CP_Product()
         {
             InitializeComponent();
             flowLayoutPanel1.AutoScroll = true;
         }
-         private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -205,7 +205,7 @@ using System.Windows.Forms;
                     if (Convert.ToString(cmbUnit.SelectedValue) == Convert.ToString(cmbChildUnit.SelectedValue))
                     {
                         MessageBox.Show("Base unit and upp unit cannot be same!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                         return;
+                        return;
                     }
                 }
                 if (grdPurHSN.Rows.Count < 1 && cbCompleted.Checked == true)
@@ -267,7 +267,7 @@ using System.Windows.Forms;
                     tpplno.Show("Please enter PICode", txtPICode, 5000);
                     blnErrorFlag = true;
                 }
-                 if (Convert.ToString(txtItemNameEnglish.Text).Trim() == "")
+                if (Convert.ToString(txtItemNameEnglish.Text).Trim() == "")
                 {
                     errItems.SetError(txtItemNameEnglish, "Please enter product name in english");
                     txtItemNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -383,7 +383,7 @@ using System.Windows.Forms;
                     //        tpplno.Show("Please enter retail rate", txtRetailRate, 5000);
                     //        // blnErrorFlag = true;
                     //    }
-                     //    if (Convert.ToString(txtWMinSaleQty.Text).Trim() == "")
+                    //    if (Convert.ToString(txtWMinSaleQty.Text).Trim() == "")
                     //    {
                     //        errItems.SetError(txtWMinSaleQty, "Please enter wholesales min qty");
                     //        txtWMinSaleQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -407,7 +407,7 @@ using System.Windows.Forms;
                     //        tpplno.Show("Please enter barcode", txtBarcode, 5000);
                     //        //  blnErrorFlag = true;
                     //    }
-                     if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
+                    if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
                     {
                         errItems.SetError(cmbProductCategory, "Please select product category");
                         cmbProductCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -415,7 +415,7 @@ using System.Windows.Forms;
                         tpprd.Show("Please select product category", cmbProductCategory, 5000);
                         blnErrorFlag = true;
                     }
-                     if (Convert.ToString(lblSubGroupCode.Text) == "" || Convert.ToString(lblSubGroupCode.Text) == "0" || Convert.ToString(txtSubGroup.Text) == "")
+                    if (Convert.ToString(lblSubGroupCode.Text) == "" || Convert.ToString(lblSubGroupCode.Text) == "0" || Convert.ToString(txtSubGroup.Text) == "")
                     {
                         errItems.SetError(txtSubGroup, "Please select subgroup");
                         txtSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -423,7 +423,7 @@ using System.Windows.Forms;
                         tpprdSG.Show("Please select subgroup", txtSubGroup, 5000);
                         blnErrorFlag = true;
                     }
-                     if (Convert.ToString(lblGroupCode.Text) == "" || Convert.ToString(lblGroupCode.Text) == "0" || Convert.ToString(txtGroup.Text) == "")
+                    if (Convert.ToString(lblGroupCode.Text) == "" || Convert.ToString(lblGroupCode.Text) == "0" || Convert.ToString(txtGroup.Text) == "")
                     {
                         errItems.SetError(txtGroup, "Please select group");
                         txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -503,7 +503,7 @@ using System.Windows.Forms;
                         blnErrorFlag = true;
                     }
                     */
-                     //    if (Convert.ToString(cmbPosition.SelectedValue) == "" || Convert.ToString(cmbPosition.SelectedValue) == "-1")
+                    //    if (Convert.ToString(cmbPosition.SelectedValue) == "" || Convert.ToString(cmbPosition.SelectedValue) == "-1")
                     //    {
                     //        errItems.SetError(cmbPosition, "Please select purchase godown");
                     //        cmbPosition.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -511,7 +511,7 @@ using System.Windows.Forms;
                     //        tpcompanyname.Show("Please select purchase godown", cmbPosition, 5000);
                     //        //    blnErrorFlag = true;
                     //    }
-                     //    if (Convert.ToString(cmbPurchaseRack.SelectedValue) == "" || Convert.ToString(cmbPurchaseRack.SelectedValue) == "-1")
+                    //    if (Convert.ToString(cmbPurchaseRack.SelectedValue) == "" || Convert.ToString(cmbPurchaseRack.SelectedValue) == "-1")
                     //    {
                     //        errItems.SetError(cmbPurchaseRack, "Please select purchase rack");
                     //        cmbPurchaseRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -519,7 +519,7 @@ using System.Windows.Forms;
                     //        tpcompanyname.Show("Please select purchase rack", cmbPurchaseRack, 5000);
                     //        blnErrorFlag = true;
                     //    }
-                     //    if (Convert.ToString(cmbSalesGodown.SelectedValue) == "" || Convert.ToString(cmbSalesGodown.SelectedValue) == "-1")
+                    //    if (Convert.ToString(cmbSalesGodown.SelectedValue) == "" || Convert.ToString(cmbSalesGodown.SelectedValue) == "-1")
                     //    {
                     //        errItems.SetError(cmbSalesGodown, "Please select sales godown");
                     //        cmbSalesGodown.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -527,7 +527,7 @@ using System.Windows.Forms;
                     //        tpcompanyname.Show("Please select sales godown", cmbSalesGodown, 5000);
                     //        blnErrorFlag = true;
                     //    }
-                     //    if (Convert.ToString(cmbSalesRack.SelectedValue) == "" || Convert.ToString(cmbSalesRack.SelectedValue) == "-1")
+                    //    if (Convert.ToString(cmbSalesRack.SelectedValue) == "" || Convert.ToString(cmbSalesRack.SelectedValue) == "-1")
                     //    {
                     //        errItems.SetError(cmbSalesRack, "Please select sales rack");
                     //        cmbSalesRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -535,7 +535,7 @@ using System.Windows.Forms;
                     //        tpcompanyname.Show("Please select sales rack", cmbSalesRack, 5000);
                     //        //    blnErrorFlag = true;
                     //    }
-                     if (Convert.ToString(cmbBatchNoEntry.SelectedValue) == "" || Convert.ToString(cmbBatchNoEntry.SelectedValue) == "-1")
+                    if (Convert.ToString(cmbBatchNoEntry.SelectedValue) == "" || Convert.ToString(cmbBatchNoEntry.SelectedValue) == "-1")
                     {
                         errItems.SetError(cmbBatchNoEntry, "Please select Batch No.");
                         cmbBatchNoEntry.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -565,7 +565,7 @@ using System.Windows.Forms;
                             blnErrorFlag = true;
                         }
                     }
-                     //if (Convert.ToString(cmbPeriod.SelectedValue) == "" || Convert.ToString(cmbPeriod.SelectedValue) == "-1")
+                    //if (Convert.ToString(cmbPeriod.SelectedValue) == "" || Convert.ToString(cmbPeriod.SelectedValue) == "-1")
                     //{
                     //    if (cmbPeriod.Visible == true)
                     //    {
@@ -753,7 +753,7 @@ using System.Windows.Forms;
                         string varId_PurLocation = "0";
                         DataSet objDsPurLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
-                         MR_Location objMR_Location = new MR_Location();
+                        MR_Location objMR_Location = new MR_Location();
                         objMR_Location.paraViewType = 14;
                         objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Location.paraLocationName = txtPurLocation.Text.Trim();
@@ -941,7 +941,7 @@ using System.Windows.Forms;
                         txtSaleRack.BackColor = Color.White;
                         lblSaleRackCode.Text = "0";
                     }
-                     //  if (btnSave.Text == "Save" && cbCompleted.Checked == true)
+                    //  if (btnSave.Text == "Save" && cbCompleted.Checked == true)
                     /* Changed by deepa on 29-07-2025 - Location validation for both save and update mode*/
                     //if (cbCompleted.Checked == true)
                     //{
@@ -976,7 +976,7 @@ using System.Windows.Forms;
                     //    /* Check Rack Based on Subgroup or not */
                     //    //if (Convert.ToString(txtPurRack.Text) != "" && Convert.ToString(txtPurRack.Text)!="None")
                     //    //{
-                     //    //Rack Validation No Needed 
+                    //    //Rack Validation No Needed 
                     //    /*
                     //    string varSubRackId = "0";
                     //    DataSet objDsSubGroupRack = new DataSet();
@@ -1015,7 +1015,7 @@ using System.Windows.Forms;
                         tbProduct.TabPages[1].Enabled = true;
                         tbProduct.SelectedIndex = 1;
                     }
-                 }
+                }
                 if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && (Convert.ToString(txtIntermediateUPP.Text.Trim()) != "" || Convert.ToString(txtProductionMSQ.Text.Trim()) != ""))
                 {
                     if (Convert.ToInt32(cmbIntermediateUnit.SelectedValue) == -1)
@@ -1058,7 +1058,7 @@ using System.Windows.Forms;
                         txtProductionMSQ.BackColor = Color.White;
                     }
                 }
-                 if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && Convert.ToInt32(cmbStockTakken.SelectedValue) == -1)
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && Convert.ToInt32(cmbStockTakken.SelectedValue) == -1)
                 {
                     errItems.SetError(cmbStockTakken, "Please select stock taken");
                     cmbStockTakken.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1099,16 +1099,16 @@ using System.Windows.Forms;
                         {
                             varCpValFlag = 1;
                             //MessageBox.Show("CP Value is not empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                             //this.BeginInvoke(new Action(() =>
+                            //this.BeginInvoke(new Action(() =>
                             //{
                             //    grdPrice.CurrentCell = grdPrice.Rows[e.RowIndex].Cells["clmRate"];
                             //    grdPrice.BeginEdit(true);
                             //}));
-                             SPDataService objDServ = new SPDataService();
+                            SPDataService objDServ = new SPDataService();
                             string varMessage = objDServ.udfnGetMessages(202);
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                             return;
+                            return;
                         }
                         else
                         {
@@ -1116,7 +1116,7 @@ using System.Windows.Forms;
                         }
                     }
                 }
-                 if (blnErrorFlag == false)
+                if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
                     string result = "";
@@ -1125,7 +1125,7 @@ using System.Windows.Forms;
                     int shelflife = 0, rackmoq = 0, varshelflife = 0, varrmproduction = 0, varMRPflag = 0;
                     errItems.Clear();
                     udfncolorchange();
-                     if (rbInActive.Checked == true && cbCompleted.Checked == false)
+                    if (rbInActive.Checked == true && cbCompleted.Checked == false)
                     {
                         varStatus = "120";
                     }
@@ -1240,7 +1240,7 @@ using System.Windows.Forms;
                     {
                         wsalesrate = Convert.ToDouble(txtWSaleRate.Text);
                     }
-                     if (txtRackMOQQty.Text == "")
+                    if (txtRackMOQQty.Text == "")
                     {
                         rackmoq = 0;
                     }
@@ -1258,7 +1258,7 @@ using System.Windows.Forms;
                     }
                     int varviewtype = 0, varupdateproductcode = 0;
                     string varorignator = "", varbrandid = "0", varGroupId = "0", varSubgroupId = "0", varPurLocationId = "0", varSalesLocationId = "0", varPurRackId = "0", varSalesRackId = "0";
-                     if (txtBrand.Text.Trim() != "")
+                    if (txtBrand.Text.Trim() != "")
                     {
                         varbrandid = lblBrand.Text;
                     }
@@ -1338,8 +1338,8 @@ using System.Windows.Forms;
                     {
                         varProductionMSQ = Convert.ToDecimal(txtProductionMSQ.Text);
                     }
-                     int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0, ProductSchemeApplicable = 0, BillSchemeApplicable = 0;
-                     if (chkFocus.Checked == true)
+                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0, ProductSchemeApplicable = 0, BillSchemeApplicable = 0;
+                    if (chkFocus.Checked == true)
                     {
                         FocusFlag = 1;
                     }
@@ -1366,8 +1366,8 @@ using System.Windows.Forms;
                     dtPrice_Markup = null;
                     if (tbProduct.SelectedIndex == 4)
                     {
-                         decimal varRAteValue = 0, varMarginRAteValue = 0, varNewRateValue = 0;
-                         dtPrice_Markup = new DataTable();
+                        decimal varRAteValue = 0, varMarginRAteValue = 0, varNewRateValue = 0;
+                        dtPrice_Markup = new DataTable();
                         dtPrice_Markup.Columns.Add("PRPM_PRID", typeof(int));
                         dtPrice_Markup.Columns.Add("PRPM_TYPE", typeof(int));
                         dtPrice_Markup.Columns.Add("PRPM_STSID", typeof(int));
@@ -1389,13 +1389,13 @@ using System.Windows.Forms;
                             //    //Convert.ToInt32(grdPrice.Rows[i].Cells["clmOffset"].Value),
                             //    Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmStatus"].Value?.ToString())
                             //    ? "0" : grdPrice.Rows[i].Cells["clmStatus"].Value.ToString()),
-                             //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmRate"].Value?.ToString())
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmRate"].Value?.ToString())
                             //    ? "0" : grdPrice.Rows[i].Cells["clmRate"].Value.ToString()),
-                             //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmMinQty"].Value?.ToString())
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmMinQty"].Value?.ToString())
                             //    ? "0" : grdPrice.Rows[i].Cells["clmMinQty"].Value.ToString()),
-                             //     Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffset"].Value?.ToString())
+                            //     Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffset"].Value?.ToString())
                             //    ? "0" : grdPrice.Rows[i].Cells["clmOffset"].Value.ToString()),
-                             //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value?.ToString())
+                            //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value?.ToString())
                             //    ? "0" : grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value.ToString()),
                             //    Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValue"].Value?.ToString())
                             //    ? "0" : grdPrice.Rows[i].Cells["clmOffsetValue"].Value.ToString()),
@@ -1406,43 +1406,43 @@ using System.Windows.Forms;
                             //    ? "0" : grdPrice.Rows[i].Cells["clmNewRate"].Value.ToString()),
                             //     Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmAutoSts"].Value?.ToString())
                             //    ? "454" : grdPrice.Rows[i].Cells["clmAutoSts"].Value.ToString())
-                             //    );
-                             dtPrice_Markup.Rows.Add(
-                                GetInt(varproductcode),
-                                GetInt(grdPrice.Rows[i].Cells["clmTypeId"].Value),
-                                GetInt(grdPrice.Rows[i].Cells["clmStatus"].Value),
-                                GetDecimal(grdPrice.Rows[i].Cells["clmRate"].Value),
-                                GetDecimal(grdPrice.Rows[i].Cells["clmMinQty"].Value),
-                                GetInt(grdPrice.Rows[i].Cells["clmOffset"].Value),
-                                GetDecimal(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value),
-                                GetDecimal(grdPrice.Rows[i].Cells["clmOffsetValue"].Value),
-                                GetInt(grdPrice.Rows[i].Cells["clmBulkRate"].Value),
-                                0,
-                                GetDecimal(grdPrice.Rows[i].Cells["clmNewRate"].Value),
-                                GetInt(grdPrice.Rows[i].Cells["clmAutoSts"].Value, 454)
-                            );
-                             ///// flow 1 : cp disable  
+                            //    );
+                            dtPrice_Markup.Rows.Add(
+                               GetInt(varproductcode),
+                               GetInt(grdPrice.Rows[i].Cells["clmTypeId"].Value),
+                               GetInt(grdPrice.Rows[i].Cells["clmStatus"].Value),
+                               GetDecimal(grdPrice.Rows[i].Cells["clmRate"].Value),
+                               GetDecimal(grdPrice.Rows[i].Cells["clmMinQty"].Value),
+                               GetInt(grdPrice.Rows[i].Cells["clmOffset"].Value),
+                               GetDecimal(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value),
+                               GetDecimal(grdPrice.Rows[i].Cells["clmOffsetValue"].Value),
+                               GetInt(grdPrice.Rows[i].Cells["clmBulkRate"].Value),
+                               0,
+                               GetDecimal(grdPrice.Rows[i].Cells["clmNewRate"].Value),
+                               GetInt(grdPrice.Rows[i].Cells["clmAutoSts"].Value, 454)
+                           );
+                            ///// flow 1 : cp disable  
                             /// all columns disable , only new rate column shown and validate its empty or not
-                             if (Convert.ToString(grdPrice.Rows[0].Cells["clmstatus"].Value) == "454")
+                            if (Convert.ToString(grdPrice.Rows[0].Cells["clmstatus"].Value) == "454")
                             {
-                                 if (Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmStatus"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmStatus"].Value.ToString()) == 453
-                                &&
-                                //Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmAutoSts"].Value?.ToString())
-                                //? "453" : grdPrice.Rows[i].Cells["clmAutoSts"].Value.ToString()) == 453
-                                //&&
-                                Convert.ToString(grdPrice.Rows[i].Cells["clmNewRate"].Value) == ""
-                                &&
-                                Convert.ToString(grdPrice.Rows[i].Cells["clmTypeId"].Value) != "446"
-                                )
+                                if (Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmStatus"].Value?.ToString())
+                               ? "0" : grdPrice.Rows[i].Cells["clmStatus"].Value.ToString()) == 453
+                               &&
+                               //Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmAutoSts"].Value?.ToString())
+                               //? "453" : grdPrice.Rows[i].Cells["clmAutoSts"].Value.ToString()) == 453
+                               //&&
+                               Convert.ToString(grdPrice.Rows[i].Cells["clmNewRate"].Value) == ""
+                               &&
+                               Convert.ToString(grdPrice.Rows[i].Cells["clmTypeId"].Value) != "446"
+                               )
                                 {
                                     varNewRateValue = 1;
-                                 }
+                                }
                             }
                             /////flow 2 : cp enable
                             /// automatic  rate update or not
                             /// cp column enable true 
-                             else if (Convert.ToString(grdPrice.Rows[0].Cells["clmstatus"].Value) == "453")
+                            else if (Convert.ToString(grdPrice.Rows[0].Cells["clmstatus"].Value) == "453")
                             {
                                 //// first column true
                                 if (Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmStatus"].Value?.ToString())
@@ -1488,7 +1488,7 @@ using System.Windows.Forms;
                             }
                         }
                         varorignator = "Price Markup Update";
-                         ////margin value empty or zero
+                        ////margin value empty or zero
                         if (varMarginRAteValue == 1)
                         {
                             SPDataService objDServ = new SPDataService();
@@ -1530,7 +1530,7 @@ using System.Windows.Forms;
                     }
                     //if(pbSG_ProductScheme==1 && ProductSchemeApplicable == 0)
                     //{ pbschemeFlag = 1; }
-                     if (pbschemeFlag == 1)
+                    if (pbschemeFlag == 1)
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(238);
@@ -1547,9 +1547,9 @@ using System.Windows.Forms;
                         , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "",
                     Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable
                     );
-                     objspdservice.CloseConnection();
+                    objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
-                     if (varvalue[0] == "3")
+                    if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         btnSave.Enabled = true;
@@ -1573,7 +1573,7 @@ using System.Windows.Forms;
                         }
                         else
                         {
-                            if (varproductcode != 0 && pbCloneFlag != 1)//Reqular Editmode
+                            if (varproductcode != 0 && pbCloneFlag != 1)//Reqular Editmode 
                             {
                                 if (tbProduct.SelectedIndex == 1)
                                 {
@@ -1635,7 +1635,7 @@ using System.Windows.Forms;
                         //{
                         //    this.Close();
                         //} 
-                        
+
                     }
                     else
                     {
@@ -1699,17 +1699,17 @@ using System.Windows.Forms;
         {
             if (value == null)
                 return defaultValue;
-             return int.TryParse(value.ToString().Trim(), out int result)
-                ? result
-                : defaultValue;
+            return int.TryParse(value.ToString().Trim(), out int result)
+               ? result
+               : defaultValue;
         }
-         private static decimal GetDecimal(object value, decimal defaultValue = 0)
+        private static decimal GetDecimal(object value, decimal defaultValue = 0)
         {
             if (value == null)
                 return defaultValue;
-             return decimal.TryParse(value.ToString().Trim(), out decimal result)
-                ? result
-                : defaultValue;
+            return decimal.TryParse(value.ToString().Trim(), out decimal result)
+               ? result
+               : defaultValue;
         }
         public void udfnclear()
         {
@@ -1775,7 +1775,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         public void udfncolorchange()
+        public void udfncolorchange()
         {
             try
             {
@@ -1823,7 +1823,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void btnSave_Enter(object sender, EventArgs e)
+        private void btnSave_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -1840,18 +1840,18 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void btnSave_KeyDown(object sender, KeyEventArgs e)
+        private void btnSave_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void btnSave_Leave(object sender, EventArgs e)
+        private void btnSave_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -1863,7 +1863,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         public void udfnclose()
+        public void udfnclose()
         {
             try
             {
@@ -1910,7 +1910,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void btnClose_Enter(object sender, EventArgs e)
+        private void btnClose_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -1926,7 +1926,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void btnClose_Leave(object sender, EventArgs e)
+        private void btnClose_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -1938,42 +1938,42 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPICode_KeyDown(object sender, KeyEventArgs e)
+        private void TxtPICode_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
                     if (txtSalesPICode.Enabled == true)
-                    {  txtSalesPICode.Focus();  }
-                    else if(txtItemNameEnglish.Enabled==true)
-                    { txtItemNameEnglish.Focus();  }
-                    else if(txtItemNameTamil.Enabled==true)
-                    { txtItemNameTamil.Focus();  }
-                    else if(txtLabelNameEnglish.Enabled==true)
-                    { txtLabelNameEnglish.Focus();  }
-                    else if(txtLabelNameTamil.Enabled==true)
-                    { txtLabelNameTamil.Focus();  }
-                    else if(txtSubGroup.Enabled==true)
-                    { txtSubGroup.Focus();  }
-                    else if(txtGroup.Enabled==true)
-                    { txtGroup.Focus();  }
-                    else if(txtBrand.Enabled==true)
-                    { txtBrand.Focus();  }
-                    else if(cmbUnit.Enabled==true)
-                    { cmbUnit.Focus();  }
-                    else if(txtUpp.Enabled==true)
-                    { txtUpp.Focus();  }
+                    { txtSalesPICode.Focus(); }
+                    else if (txtItemNameEnglish.Enabled == true)
+                    { txtItemNameEnglish.Focus(); }
+                    else if (txtItemNameTamil.Enabled == true)
+                    { txtItemNameTamil.Focus(); }
+                    else if (txtLabelNameEnglish.Enabled == true)
+                    { txtLabelNameEnglish.Focus(); }
+                    else if (txtLabelNameTamil.Enabled == true)
+                    { txtLabelNameTamil.Focus(); }
+                    else if (txtSubGroup.Enabled == true)
+                    { txtSubGroup.Focus(); }
+                    else if (txtGroup.Enabled == true)
+                    { txtGroup.Focus(); }
+                    else if (txtBrand.Enabled == true)
+                    { txtBrand.Focus(); }
+                    else if (cmbUnit.Enabled == true)
+                    { cmbUnit.Focus(); }
+                    else if (txtUpp.Enabled == true)
+                    { txtUpp.Focus(); }
                     else if (txtWeight.Enabled == true)
                     { txtWeight.Focus(); }
                     else if (txtGrossWeight.Enabled == true)
-                    { txtGrossWeight.Focus(); } 
-                    else if(txtMinStock.Enabled==true)
-                    { txtMinStock.Focus();  }
-                    else if(txtMaxStock.Enabled==true)
-                    { txtMaxStock.Focus();  }
-                    else if(txtReOrderQty.Enabled==true)
-                    { txtReOrderQty.Focus();  }
+                    { txtGrossWeight.Focus(); }
+                    else if (txtMinStock.Enabled == true)
+                    { txtMinStock.Focus(); }
+                    else if (txtMaxStock.Enabled == true)
+                    { txtMaxStock.Focus(); }
+                    else if (txtReOrderQty.Enabled == true)
+                    { txtReOrderQty.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -1982,7 +1982,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtItemNameEnglish_KeyDown(object sender, KeyEventArgs e)
+        private void TxtItemNameEnglish_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2018,7 +2018,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtItemNameTamil_KeyDown(object sender, KeyEventArgs e)
+        private void TxtItemNameTamil_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2052,7 +2052,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbGroup_KeyDown(object sender, KeyEventArgs e)
+        private void CmbGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2067,7 +2067,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbSubGroup_KeyDown(object sender, KeyEventArgs e)
+        private void CmbSubGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2082,7 +2082,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbBrand_KeyDown(object sender, KeyEventArgs e)
+        private void CmbBrand_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2097,12 +2097,12 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbUnit_KeyDown(object sender, KeyEventArgs e)
+        private void CmbUnit_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                { 
+                {
                     if (txtUpp.Enabled == true)
                     { txtUpp.Focus(); }
                     else if (txtWeight.Enabled == true)
@@ -2138,7 +2138,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWSaleRate_KeyDown(object sender, KeyEventArgs e)
+        private void TxtWSaleRate_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2153,7 +2153,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWeight_KeyDown(object sender, KeyEventArgs e)
+        private void TxtWeight_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2168,13 +2168,13 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtMaxStock_KeyDown(object sender, KeyEventArgs e)
+        private void TxtMaxStock_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                     if (txtReOrderQty.Enabled == true)
+                    if (txtReOrderQty.Enabled == true)
                     { txtReOrderQty.Focus(); }
                 }
             }
@@ -2184,7 +2184,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtMinStock_KeyDown(object sender, KeyEventArgs e)
+        private void TxtMinStock_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2202,7 +2202,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWMinSaleQty_KeyDown(object sender, KeyEventArgs e)
+        private void TxtWMinSaleQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2217,7 +2217,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtRMinSaleQty_KeyDown(object sender, KeyEventArgs e)
+        private void TxtRMinSaleQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2232,7 +2232,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtBarcode_KeyDown(object sender, KeyEventArgs e)
+        private void TxtBarcode_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2255,7 +2255,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CbExpiry_KeyDown(object sender, KeyEventArgs e)
+        private void CbExpiry_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2278,7 +2278,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGST_KeyDown(object sender, KeyEventArgs e)
+        private void TxtGST_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2292,7 +2292,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtReOrderQty_KeyDown(object sender, KeyEventArgs e)
+        private void TxtReOrderQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2307,7 +2307,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbActive_KeyDown(object sender, KeyEventArgs e)
+        private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2329,7 +2329,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbInActive_KeyDown(object sender, KeyEventArgs e)
+        private void RbInActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2351,7 +2351,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPICode_Enter(object sender, EventArgs e)
+        private void TxtPICode_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2369,7 +2369,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtItemNameEnglish_Enter(object sender, EventArgs e)
+        private void TxtItemNameEnglish_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2381,7 +2381,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtItemNameTamil_Enter(object sender, EventArgs e)
+        private void TxtItemNameTamil_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2393,7 +2393,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtRetailRate_Enter(object sender, EventArgs e)
+        private void TxtRetailRate_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2405,7 +2405,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWSaleRate_Enter(object sender, EventArgs e)
+        private void TxtWSaleRate_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2417,7 +2417,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWeight_Enter(object sender, EventArgs e)
+        private void TxtWeight_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2429,7 +2429,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtMaxStock_Enter(object sender, EventArgs e)
+        private void TxtMaxStock_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2441,7 +2441,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtMinStock_Enter(object sender, EventArgs e)
+        private void TxtMinStock_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2453,7 +2453,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWMinSaleQty_Enter(object sender, EventArgs e)
+        private void TxtWMinSaleQty_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2465,7 +2465,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtRMinSaleQty_Enter(object sender, EventArgs e)
+        private void TxtRMinSaleQty_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2477,7 +2477,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtBarcode_Enter(object sender, EventArgs e)
+        private void TxtBarcode_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2489,7 +2489,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGST_Enter(object sender, EventArgs e)
+        private void TxtGST_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2501,7 +2501,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtReOrderQty_Enter(object sender, EventArgs e)
+        private void TxtReOrderQty_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -2513,7 +2513,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPICode_Leave(object sender, EventArgs e)
+        private void TxtPICode_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2536,7 +2536,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtItemNameEnglish_Leave(object sender, EventArgs e)
+        private void TxtItemNameEnglish_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2561,7 +2561,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtItemNameTamil_Leave(object sender, EventArgs e)
+        private void TxtItemNameTamil_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2586,7 +2586,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtRetailRate_Leave(object sender, EventArgs e)
+        private void TxtRetailRate_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2607,7 +2607,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWSaleRate_Leave(object sender, EventArgs e)
+        private void TxtWSaleRate_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2628,7 +2628,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWeight_Leave(object sender, EventArgs e)
+        private void TxtWeight_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2649,7 +2649,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtMaxStock_Leave(object sender, EventArgs e)
+        private void TxtMaxStock_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2670,7 +2670,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtMinStock_Leave(object sender, EventArgs e)
+        private void TxtMinStock_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2691,7 +2691,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtWMinSaleQty_Leave(object sender, EventArgs e)
+        private void TxtWMinSaleQty_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2712,7 +2712,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtRMinSaleQty_Leave(object sender, EventArgs e)
+        private void TxtRMinSaleQty_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2733,7 +2733,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtBarcode_Leave(object sender, EventArgs e)
+        private void TxtBarcode_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2754,7 +2754,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGST_Leave(object sender, EventArgs e)
+        private void TxtGST_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2775,7 +2775,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtReOrderQty_Leave(object sender, EventArgs e)
+        private void TxtReOrderQty_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -2796,7 +2796,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPICode_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtPICode_KeyPress(object sender, KeyPressEventArgs e)
         {
             //try
             //{
@@ -2817,9 +2817,9 @@ using System.Windows.Forms;
             //}
             //finally
             //{
-             //}
+            //}
         }
-         private void TxtRetailRate_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtRetailRate_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2827,7 +2827,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -2840,9 +2840,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtWSaleRate_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtWSaleRate_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2850,7 +2850,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -2863,9 +2863,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtWeight_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtWeight_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2873,7 +2873,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -2886,9 +2886,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtMaxStock_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtMaxStock_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2896,7 +2896,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -2909,9 +2909,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtMinStock_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtMinStock_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2919,7 +2919,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -2932,9 +2932,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtRMinSaleQty_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtRMinSaleQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2942,7 +2942,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -2955,9 +2955,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtGST_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtGST_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2965,7 +2965,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -2978,9 +2978,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtReOrderQty_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtReOrderQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -2988,7 +2988,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -3001,9 +3001,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void CbExpiry_CheckedChanged(object sender, EventArgs e)
+        private void CbExpiry_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
@@ -3019,7 +3019,7 @@ using System.Windows.Forms;
                     txtSelfLife.Text = "";
                     cmbPeriod.SelectedValue = -1;
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -3035,7 +3035,7 @@ using System.Windows.Forms;
                     BeginInvoke(new Action(() => cmbBatchNoGeneration.Select(int.MaxValue, 0)));
                 }
                 catch (Exception ex)
-                 {
+                {
                     objError = new DataError();
                     objError.WriteFile(ex);
                 }
@@ -3046,31 +3046,31 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3085,19 +3085,19 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbConcern_Enter(object sender, EventArgs e)
+        private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
             {
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbConcern_Leave(object sender, EventArgs e)
+        private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3115,16 +3115,16 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbHSNName_KeyDown(object sender, KeyEventArgs e)
+        private void CmbHSNName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                 if (pnlStatus.Enabled == true)
+                if (pnlStatus.Enabled == true)
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
@@ -3145,24 +3145,24 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbHSNName_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbHSNName_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         //private void CmbHSNName_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        //private void CmbHSNName_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    try
         //    {
         //        BeginInvoke(new Action(() => cmbHSNName.Select(int.MaxValue, 0)));
-         //        DataSet objds;
+        //        DataSet objds;
         //        DataService objdservice = new DataService();
         //        objds = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(cmbHSNName.SelectedValue) + "') AND GSTID  NOT IN (0,-1)");
         //        objdservice.CloseConnection();
@@ -3179,17 +3179,17 @@ using System.Windows.Forms;
         //                {
         //                    txtHSNCode.Text = "";
         //                    txtGST.Text = "";
-         //                }
+        //                }
         //            }
         //        }
         //    }
         //    catch (Exception ex)
-         //    {
+        //    {
         //        objError = new DataError();
         //        objError.WriteFile(ex);
         //    }
         //}
-         //private void CmbHSNName_Leave(object sender, EventArgs e)
+        //private void CmbHSNName_Leave(object sender, EventArgs e)
         //{
         //    try
         //    {
@@ -3205,38 +3205,38 @@ using System.Windows.Forms;
         //            errItems.Clear();
         //            cmbHSNName.BackColor = Color.White;
         //        }
-         //    }
+        //    }
         //    catch (Exception ex)
-         //    {
+        //    {
         //        objError = new DataError();
         //        objError.WriteFile(ex);
         //    }
         //}
-         //private void CmbHSNName_Enter(object sender, EventArgs e)
+        //private void CmbHSNName_Enter(object sender, EventArgs e)
         //{
         //    try
         //    {
         //        cmbHSNName.BackColor = Color.LemonChiffon;
         //    }
         //    catch (Exception ex)
-         //    {
+        //    {
         //        objError = new DataError();
         //        objError.WriteFile(ex);
         //    }
         //}
-         private void CmbProductCategory_Enter(object sender, EventArgs e)
+        private void CmbProductCategory_Enter(object sender, EventArgs e)
         {
             try
             {
                 cmbProductCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbProductCategory_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void CmbProductCategory_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3258,19 +3258,19 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbProductCategory_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbProductCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbProductCategory_Leave(object sender, EventArgs e)
+        }
+        private void CmbProductCategory_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3288,7 +3288,7 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
@@ -3374,30 +3374,30 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbSubGroup_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbSubGroup_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbBrand_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbBrand_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
+        }
         private void cmbChildUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -3407,12 +3407,12 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void cmbChildUnit_Leave(object sender, EventArgs e)
+        private void cmbChildUnit_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3430,12 +3430,12 @@ using System.Windows.Forms;
                 //}
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void cmbChildUnit_KeyPress(object sender, KeyPressEventArgs e)
+        private void cmbChildUnit_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -3447,7 +3447,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbChildUnit_KeyDown(object sender, KeyEventArgs e)
+        private void cmbChildUnit_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3471,19 +3471,19 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbChildUnit_Enter(object sender, EventArgs e)
+        private void cmbChildUnit_Enter(object sender, EventArgs e)
         {
             try
             {
                 cmbChildUnit.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void TxtUpp_Leave(object sender, EventArgs e)
+        private void TxtUpp_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3499,17 +3499,17 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void TxtUpp_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void TxtUpp_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                { 
+                {
                     if (txtWeight.Enabled == true)
                     { txtWeight.Focus(); }
                     else if (txtGrossWeight.Enabled == true)
@@ -3528,19 +3528,19 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtUpp_Enter(object sender, EventArgs e)
+        private void TxtUpp_Enter(object sender, EventArgs e)
         {
             try
             {
                 txtUpp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbBatchNoEntry_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbBatchNoEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -3556,12 +3556,12 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbBatchNoEntry_Leave(object sender, EventArgs e)
+        }
+        private void CmbBatchNoEntry_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3579,24 +3579,24 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbBatchNoEntry_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbBatchNoEntry_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbBatchNoEntry_KeyDown(object sender, KeyEventArgs e)
+        private void CmbBatchNoEntry_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3614,24 +3614,24 @@ using System.Windows.Forms;
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbBatchNoEntry_Enter(object sender, EventArgs e)
+        }
+        private void CmbBatchNoEntry_Enter(object sender, EventArgs e)
         {
             try
             {
                 cmbBatchNoEntry.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbBatchNoGeneration_Leave(object sender, EventArgs e)
+        }
+        private void CmbBatchNoGeneration_Leave(object sender, EventArgs e)
         {
             try
             {
-                 //if (Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "" || Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "-1")
+                //if (Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "" || Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "-1")
                 //{
                 //    errItems.SetError(cmbBatchNoGeneration, "Please select Batch No. generation");
                 //    cmbBatchNoGeneration.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -3639,17 +3639,17 @@ using System.Windows.Forms;
                 //    tpcompanyname.Show("Please select sales Batch No. generation", cmbBatchNoGeneration, 5000);
                 //}
                 //else {
-                 cmbBatchNoGeneration.BackColor = Color.White;
+                cmbBatchNoGeneration.BackColor = Color.White;
                 errItems.Clear();
                 // }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbBatchNoGeneration_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void CmbBatchNoGeneration_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3663,32 +3663,32 @@ using System.Windows.Forms;
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbBatchNoGeneration_KeyPress(object sender, KeyPressEventArgs e)
+        }
+        private void CmbBatchNoGeneration_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbBatchNoGeneration_Enter(object sender, EventArgs e)
+        private void CmbBatchNoGeneration_Enter(object sender, EventArgs e)
         {
             try
             {
                 cmbBatchNoGeneration.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbPeriod_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void CmbPeriod_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3702,20 +3702,20 @@ using System.Windows.Forms;
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbPeriod_KeyPress(object sender, KeyPressEventArgs e)
+        }
+        private void CmbPeriod_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbPeriod_Leave(object sender, EventArgs e)
+        private void CmbPeriod_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3733,36 +3733,36 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbPeriod_Enter(object sender, EventArgs e)
+        }
+        private void CmbPeriod_Enter(object sender, EventArgs e)
         {
             try
             {
                 cmbPeriod.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbPeriod_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        private void CmbPeriod_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 BeginInvoke(new Action(() => cmbPeriod.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CbRMFromProduction_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void CbRMFromProduction_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3776,8 +3776,8 @@ using System.Windows.Forms;
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void TxtGrossWeight_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void TxtGrossWeight_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3791,8 +3791,8 @@ using System.Windows.Forms;
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void TxtGrossWeight_Leave(object sender, EventArgs e)
+        }
+        private void TxtGrossWeight_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3808,24 +3808,24 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void TxtGrossWeight_Enter(object sender, EventArgs e)
+        }
+        private void TxtGrossWeight_Enter(object sender, EventArgs e)
         {
             try
             {
                 txtGrossWeight.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void TxtMaxOrderQty_Leave(object sender, EventArgs e)
+        }
+        private void TxtMaxOrderQty_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3841,12 +3841,12 @@ using System.Windows.Forms;
                 //  }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void TxtMaxOrderQty_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void TxtMaxOrderQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -3861,7 +3861,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtMaxOrderQty_Enter(object sender, EventArgs e)
+        private void TxtMaxOrderQty_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -3869,24 +3869,24 @@ using System.Windows.Forms;
                 txtRackMOQQty.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbUnit_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbUnit_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbUnit_Leave(object sender, EventArgs e)
+        }
+        private void CmbUnit_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -3904,12 +3904,12 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbUnit_Enter(object sender, EventArgs e)
+        private void CmbUnit_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -3917,12 +3917,12 @@ using System.Windows.Forms;
                 cmbUnit.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CmbUnit_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        private void CmbUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -3935,9 +3935,9 @@ using System.Windows.Forms;
                 {
                     txtInterUnit.Text = "";
                 }
-             }
+            }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
@@ -3945,55 +3945,55 @@ using System.Windows.Forms;
             {
             }
         }
-         private void CbExpiry_Enter(object sender, EventArgs e)
+        private void CbExpiry_Enter(object sender, EventArgs e)
         {
             try
             {
                 cbExpiry.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CbExpiry_Leave(object sender, EventArgs e)
+        }
+        private void CbExpiry_Leave(object sender, EventArgs e)
         {
             try
             {
                 cbExpiry.BackColor = Color.White;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CbRMFromProduction_Enter(object sender, EventArgs e)
+        }
+        private void CbRMFromProduction_Enter(object sender, EventArgs e)
         {
             try
             {
                 cbRMFromProduction.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CbRMFromProduction_Leave(object sender, EventArgs e)
+        private void CbRMFromProduction_Leave(object sender, EventArgs e)
         {
             try
             {
                 cbRMFromProduction.BackColor = Color.White;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void CP_Product_Load(object sender, EventArgs e)
+        }
+        private void CP_Product_Load(object sender, EventArgs e)
         {
             try
             {
@@ -4004,19 +4004,19 @@ using System.Windows.Forms;
                 dtProductHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtProductHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
                 dtProductHSN.Columns.Add("PRHSN_MakerID", typeof(int));
-                 dtPurHSN.Columns.Add("HSN_Type", typeof(int));
+                dtPurHSN.Columns.Add("HSN_Type", typeof(int));
                 dtPurHSN.Columns.Add("HSNID", typeof(int));
                 dtPurHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
                 dtPurHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtPurHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
                 dtPurHSN.Columns.Add("PRHSN_MakerID", typeof(int));
-                 dtSalesHSN.Columns.Add("HSN_Type", typeof(int));
+                dtSalesHSN.Columns.Add("HSN_Type", typeof(int));
                 dtSalesHSN.Columns.Add("HSNID", typeof(int));
                 dtSalesHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
                 dtSalesHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtSalesHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
                 dtSalesHSN.Columns.Add("PRHSN_MakerID", typeof(int));
-                 if (varMasterType == "0")
+                if (varMasterType == "0")
                 {
                     MainForm.objCP_Itemlist.picLoader.Visible = false;
                 }
@@ -4098,12 +4098,12 @@ using System.Windows.Forms;
                 //{
                 //    tbProduct.TabPages[1].Enabled = true;
                 //}
-                 cmbUnit.Enabled = true;
+                cmbUnit.Enabled = true;
                 udfnUserAccess();
                 //txtUpp.Enabled = true;
                 btnSave.Visible = true;
                 btnImageUpdate.Visible = false;
-                UpdateSalesProductUI(); 
+                UpdateSalesProductUI();
             }
             catch (Exception ex)
             {
@@ -4117,7 +4117,7 @@ using System.Windows.Forms;
             {
                 var result = UserAccessHelper.LoadUserAccess(505);
                 privilege = result.PrivilegeCode;
-                SpecialPermissions = result.SpecialPermissions;    
+                SpecialPermissions = result.SpecialPermissions;
                 txtPICode.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("10"));
                 txtItemNameEnglish.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("10"));
                 txtItemNameTamil.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("10"));
@@ -4133,7 +4133,7 @@ using System.Windows.Forms;
                 gpClassification.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("10"));
                 grpSchemeEligibilty.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("10"));
                 txtProductUsage.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("10"));
-                pnlStatus.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("10")); 
+                pnlStatus.Enabled = SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("10"));
             }
             catch (Exception ex)
             {
@@ -4149,49 +4149,49 @@ using System.Windows.Forms;
                 {
                     PurStkLocViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 1 && sp.EditAccess.Split(',').Contains("9"));
                     PurStkLocEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 1 && sp.EditAccess.Split(',').Contains("10"));
-                     SalesStkLocViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 2 && sp.EditAccess.Split(',').Contains("9"));
+                    SalesStkLocViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 2 && sp.EditAccess.Split(',').Contains("9"));
                     SalesStkLocEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 2 && sp.EditAccess.Split(',').Contains("10"));
-                     RetailRateViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 3 && sp.EditAccess.Split(',').Contains("9"));
+                    RetailRateViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 3 && sp.EditAccess.Split(',').Contains("9"));
                     RetailRateEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 3 && sp.EditAccess.Split(',').Contains("10"));
-                     WholeSaleRateViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 4 && sp.EditAccess.Split(',').Contains("9"));
+                    WholeSaleRateViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 4 && sp.EditAccess.Split(',').Contains("9"));
                     WholeSaleRateEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 4 && sp.EditAccess.Split(',').Contains("10"));
-                     SalesHSNViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 5 && sp.EditAccess.Split(',').Contains("9"));
+                    SalesHSNViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 5 && sp.EditAccess.Split(',').Contains("9"));
                     SalesHSNEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 5 && sp.EditAccess.Split(',').Contains("10"));
-                     PurHSNViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 6 && sp.EditAccess.Split(',').Contains("9"));
+                    PurHSNViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 6 && sp.EditAccess.Split(',').Contains("9"));
                     PurHSNEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 6 && sp.EditAccess.Split(',').Contains("10"));
-                     PICodeViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("9"));
+                    PICodeViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("9"));
                     PICodeEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 48 && sp.EditAccess.Split(',').Contains("10"));
-                     ProENameViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("9"));
+                    ProENameViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("9"));
                     ProENameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 49 && sp.EditAccess.Split(',').Contains("10"));
-                     ProTNameViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("9"));
+                    ProTNameViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("9"));
                     ProTNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 50 && sp.EditAccess.Split(',').Contains("10"));
-                     ProTLabelNameViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("9"));
+                    ProTLabelNameViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("9"));
                     ProTLabelNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 51 && sp.EditAccess.Split(',').Contains("10"));
-                     ProELabelNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("9"));
+                    ProELabelNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("9"));
                     ProELabelNameEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 52 && sp.EditAccess.Split(',').Contains("10"));
-                     ProSubgroupViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("9"));
+                    ProSubgroupViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("9"));
                     ProSubgroupEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 53 && sp.EditAccess.Split(',').Contains("10"));
-                     ProGroupViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("9"));
+                    ProGroupViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("9"));
                     ProGroupEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 54 && sp.EditAccess.Split(',').Contains("10"));
-                     ProBrandViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("9"));
+                    ProBrandViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("9"));
                     ProBrandEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 55 && sp.EditAccess.Split(',').Contains("10"));
-                     ProUnitViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("9"));
+                    ProUnitViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("9"));
                     ProUnitEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 56 && sp.EditAccess.Split(',').Contains("10"));
-                     ProUPPViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("9"));
+                    ProUPPViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("9"));
                     ProUPPEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 57 && sp.EditAccess.Split(',').Contains("10"));
-                     ProNetQuantityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("9"));
+                    ProNetQuantityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("9"));
                     ProNetQuantityEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 58 && sp.EditAccess.Split(',').Contains("10"));
-                     ProGrossQuantityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("9"));
+                    ProGrossQuantityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("9"));
                     ProGrossQuantityEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 59 && sp.EditAccess.Split(',').Contains("10"));
-                     ProProductClassificationViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("9"));
+                    ProProductClassificationViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("9"));
                     ProProductClassificationEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 60 && sp.EditAccess.Split(',').Contains("10"));
-                     ProSchemeEligibilityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("9"));
+                    ProSchemeEligibilityViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("9"));
                     ProSchemeEligibilityEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 61 && sp.EditAccess.Split(',').Contains("10"));
-                     ProductUsageViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("9"));
+                    ProductUsageViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("9"));
                     ProductUsageEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 62 && sp.EditAccess.Split(',').Contains("10"));
-                     ProductStatusViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("9"));
+                    ProductStatusViewAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("9"));
                     ProductStatusEditAccess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 63 && sp.EditAccess.Split(',').Contains("10"));
-                     if (!PurStkLocViewAcess)
+                    if (!PurStkLocViewAcess)
                     { txtPurLocation.UseSystemPasswordChar = true; txtPurLocation.Enabled = false; }
                     if (!SalesStkLocViewAcess)
                     { txtSaleLocation.UseSystemPasswordChar = true; txtSaleLocation.Enabled = false; }
@@ -4205,35 +4205,35 @@ using System.Windows.Forms;
                     if (!PurHSNViewAcess)
                     { grbPurchaseHSN.Visible = false; }
                     else { grbPurchaseHSN.Enabled = false; }
-                     if (PurStkLocEditAcess)
+                    if (PurStkLocEditAcess)
                     {
                         if (!txtPurLocation.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
                         { txtPurLocation.ReadOnly = false; }
                     }
                     else // disable editing 
                     { txtPurLocation.ReadOnly = true; }
-                     if (SalesStkLocEditAcess)
+                    if (SalesStkLocEditAcess)
                     {
                         if (!txtSaleLocation.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
                         { txtSaleLocation.ReadOnly = false; }
                     }
                     else // disable editing 
                     { txtSaleLocation.ReadOnly = true; }
-                     if (RetailRateEditAcess)
+                    if (RetailRateEditAcess)
                     {
                         if (!txtRetailRate.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
                         { txtRetailRate.ReadOnly = false; }
                     }
                     else // disable editing 
                     { txtRetailRate.ReadOnly = true; }
-                     if (WholeSaleRateEditAcess)
+                    if (WholeSaleRateEditAcess)
                     {
                         if (!txtWSaleRate.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
                         { txtWSaleRate.ReadOnly = false; }
                     }
                     else // disable editing 
                     { txtWSaleRate.ReadOnly = true; }
-                     if (SalesHSNEditAcess)
+                    if (SalesHSNEditAcess)
                     {
                         grbSalesHSN.Enabled = SalesHSNEditAcess;
                     }
@@ -4241,7 +4241,7 @@ using System.Windows.Forms;
                     {
                         grbPurchaseHSN.Enabled = SalesHSNEditAcess;
                     }
-                     if (!PICodeViewAcess)
+                    if (!PICodeViewAcess)
                     { txtPICode.UseSystemPasswordChar = true; txtPICode.Enabled = false; }
                     if (!ProENameViewAcess)
                     { txtItemNameEnglish.UseSystemPasswordChar = true; txtItemNameEnglish.Enabled = false; }
@@ -4274,115 +4274,115 @@ using System.Windows.Forms;
                         { txtProductUsage.Enabled = false; txtProductUsage.UseSystemPasswordChar = true; }
                         if (!ProductStatusViewAccess)
                         { pnlStatus.Enabled = false; }
-                         if (PICodeEditAcess)
+                        if (PICodeEditAcess)
                         {
                             if (!txtPICode.ReadOnly)
                             { txtPICode.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtPICode.ReadOnly = true; }
-                         if (ProENameEditAccess)
+                        if (ProENameEditAccess)
                         {
                             if (!txtItemNameEnglish.ReadOnly)
                             { txtItemNameEnglish.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtItemNameEnglish.ReadOnly = true; }
-                         if (ProTNameEditAccess)
+                        if (ProTNameEditAccess)
                         {
                             if (!txtItemNameTamil.ReadOnly)
                             { txtItemNameTamil.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtItemNameTamil.ReadOnly = true; }
-                         if (ProTLabelNameEditAccess)
+                        if (ProTLabelNameEditAccess)
                         {
                             if (!txtLabelNameEnglish.ReadOnly)
                             { txtLabelNameEnglish.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtLabelNameEnglish.ReadOnly = true; }
-                         if (ProELabelNameEditAccess)
+                        if (ProELabelNameEditAccess)
                         {
                             if (!txtLabelNameTamil.ReadOnly)
                             { txtLabelNameTamil.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtLabelNameTamil.ReadOnly = true; }
-                         if (ProSubgroupEditAccess)
+                        if (ProSubgroupEditAccess)
                         {
                             if (!txtSubGroup.ReadOnly)
                             { txtSubGroup.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtSubGroup.ReadOnly = true; }
-                         if (ProGroupEditAccess)
+                        if (ProGroupEditAccess)
                         {
                             if (!txtGroup.ReadOnly)
                             { txtGroup.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtGroup.ReadOnly = true; }
-                         if (ProBrandEditAccess)
+                        if (ProBrandEditAccess)
                         {
                             if (!txtBrand.ReadOnly)
                             { txtBrand.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtBrand.ReadOnly = true; }
-                         if (ProUnitEditAccess)
+                        if (ProUnitEditAccess)
                         {
                             if (!cmbUnit.Enabled)
                             { cmbUnit.Enabled = false; }
                         }
                         else // disable editing 
                         { cmbUnit.Enabled = true; }
-                         if (ProUPPEditAccess)
+                        if (ProUPPEditAccess)
                         {
                             if (!txtUpp.Enabled)
                             { txtUpp.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtUpp.ReadOnly = true; }
-                         if (ProNetQuantityEditAccess)
+                        if (ProNetQuantityEditAccess)
                         {
                             if (!txtWeight.Enabled)
                             { txtWeight.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtWeight.ReadOnly = true; }
-                         if (ProGrossQuantityEditAccess)
+                        if (ProGrossQuantityEditAccess)
                         {
                             if (!txtGrossWeight.Enabled)
                             { txtGrossWeight.ReadOnly = false; }
                         }
                         else // disable editing 
                         { txtGrossWeight.ReadOnly = true; }
-                         if (!ProProductClassificationEditAccess)
+                        if (!ProProductClassificationEditAccess)
                         {
                             gpClassification.Enabled = false;
                         }
                         else // disable editing 
                         { gpClassification.Enabled = true; }
-                         if (!ProSchemeEligibilityEditAccess)
+                        if (!ProSchemeEligibilityEditAccess)
                         {
                             grpSchemeEligibilty.Enabled = false;
                         }
                         else // disable editing 
                         { grpSchemeEligibilty.Enabled = true; }
-                         if (ProductUsageEditAccess)
+                        if (ProductUsageEditAccess)
                         {
                             txtProductUsage.Enabled = false;
                         }
                         else // disable editing 
                         { txtProductUsage.Enabled = true; }
-                         if (ProductStatusEditAccess)
+                        if (ProductStatusEditAccess)
                         {
                             pnlStatus.Enabled = false;
                         }
                         else // disable editing 
                         { pnlStatus.Enabled = true; }
-                         //Subgroup
+                        //Subgroup
                         var Subgroupresult = UserAccessHelper.LoadUserAccess(50503);
                         Subgroupprivilege = Subgroupresult.PrivilegeCode;
                         btnSubgroup.Visible = Subgroupprivilege.Contains("2");
@@ -4566,7 +4566,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void BtnLabelingDetails_Click(object sender, EventArgs e)
+        private void BtnLabelingDetails_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4603,7 +4603,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtBrand_Enter(object sender, EventArgs e)
+        private void TxtBrand_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -4616,7 +4616,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtBrand_KeyDown(object sender, KeyEventArgs e)
+        private void TxtBrand_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -4638,7 +4638,7 @@ using System.Windows.Forms;
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                     if (cmbUnit.Enabled == true)
+                    if (cmbUnit.Enabled == true)
                     { cmbUnit.Focus(); }
                     else if (txtUpp.Enabled == true)
                     { txtUpp.Focus(); }
@@ -4660,7 +4660,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtBrand_Leave(object sender, EventArgs e)
+        private void TxtBrand_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -4681,7 +4681,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtBrand_TextChanged(object sender, EventArgs e)
+        private void TxtBrand_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -4762,7 +4762,7 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
         public void udfnBrandAutocomplete()
         {
@@ -5028,7 +5028,7 @@ using System.Windows.Forms;
                 lvPurRack.Visible = false;
             }
         }
-         public void udfnSaleLocationAutocomplete()
+        public void udfnSaleLocationAutocomplete()
         {
             try
             {
@@ -5087,7 +5087,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSubGroup_Enter(object sender, EventArgs e)
+        private void TxtSubGroup_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -5099,7 +5099,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSubGroup_KeyDown(object sender, KeyEventArgs e)
+        private void TxtSubGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5120,7 +5120,7 @@ using System.Windows.Forms;
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                     if (txtGroup.Enabled == true)
+                    if (txtGroup.Enabled == true)
                     { txtGroup.Focus(); }
                     else if (txtBrand.Enabled == true)
                     { txtBrand.Focus(); }
@@ -5146,7 +5146,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSubGroup_Leave(object sender, EventArgs e)
+        private void TxtSubGroup_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -5171,7 +5171,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSubGroup_TextChanged(object sender, EventArgs e)
+        private void TxtSubGroup_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -5214,7 +5214,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvSubGroup_KeyDown(object sender, KeyEventArgs e)
+        private void LvSubGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5244,7 +5244,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGroup_Enter(object sender, EventArgs e)
+        private void TxtGroup_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -5257,7 +5257,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGroup_KeyDown(object sender, KeyEventArgs e)
+        private void TxtGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5303,7 +5303,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGroup_Leave(object sender, EventArgs e)
+        private void TxtGroup_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -5328,7 +5328,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGroup_TextChanged(object sender, EventArgs e)
+        private void TxtGroup_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -5390,7 +5390,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvGroup_KeyDown(object sender, KeyEventArgs e)
+        private void LvGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5406,15 +5406,15 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvGroup_DoubleClick(object sender, EventArgs e)
+        private void LvGroup_DoubleClick(object sender, EventArgs e)
         {
             udfnGroupAutocomplete();
         }
-         private void LvBrand_DoubleClick(object sender, EventArgs e)
+        private void LvBrand_DoubleClick(object sender, EventArgs e)
         {
             udfnBrandAutocomplete();
         }
-         private void TxtPurLocation_Enter(object sender, EventArgs e)
+        private void TxtPurLocation_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -5428,7 +5428,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPurLocation_KeyDown(object sender, KeyEventArgs e)
+        private void TxtPurLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5436,7 +5436,7 @@ using System.Windows.Forms;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterPurLocation.Focus();
-                 }
+                }
                 if (e.KeyCode == Keys.Enter && DGV_FilterPurLocation.Visible == false)
                 {
                     if (txtPurRack.Enabled == true)
@@ -5489,11 +5489,11 @@ using System.Windows.Forms;
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterPurLocation.Rows.Count) DGV_FilterPurLocation.CurrentCell = DGV_FilterPurLocation.Rows[RowIndex].Cells[ClmIndex];
-                             if (RowIndex != (DGV_FilterPurLocation.Rows.Count))
+                            if (RowIndex != (DGV_FilterPurLocation.Rows.Count))
                             {
                                 txtPurLocation.Text = DGV_FilterPurLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
-                             txtPurLocation.Focus();
+                            txtPurLocation.Focus();
                             txtPurLocation.SelectionStart = txtPurLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -5542,7 +5542,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPurLocation_Leave(object sender, EventArgs e)
+        private void TxtPurLocation_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -5566,7 +5566,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPurLocation_TextChanged(object sender, EventArgs e)
+        private void TxtPurLocation_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -5588,7 +5588,7 @@ using System.Windows.Forms;
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                         MR_Location objMR_Location = new MR_Location();
+                        MR_Location objMR_Location = new MR_Location();
                         objMR_Location.paraViewType = 10;
                         objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Location.paraLocationName = txtPurLocation.Text.Trim();
@@ -5648,7 +5648,7 @@ using System.Windows.Forms;
                 txtPurLocation.Focus();
             }
         }
-         private void TxtPurRack_Enter(object sender, EventArgs e)
+        private void TxtPurRack_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -5664,7 +5664,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPurRack_KeyDown(object sender, KeyEventArgs e)
+        private void TxtPurRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5695,7 +5695,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvPurRack_KeyDown(object sender, KeyEventArgs e)
+        private void LvPurRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5711,7 +5711,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPurRack_TextChanged(object sender, EventArgs e)
+        private void TxtPurRack_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -5760,7 +5760,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPurRack_Leave(object sender, EventArgs e)
+        private void TxtPurRack_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -5782,7 +5782,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSaleLocation_Enter(object sender, EventArgs e)
+        private void TxtSaleLocation_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -5797,7 +5797,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSaleLocation_KeyDown(object sender, KeyEventArgs e)
+        private void TxtSaleLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -5805,7 +5805,7 @@ using System.Windows.Forms;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterSalesLocation.Focus();
-                 }
+                }
                 if (e.KeyCode == Keys.Enter && DGV_FilterSalesLocation.Visible == false)
                 {
                     if (txtSaleRack.Enabled == true)
@@ -5868,11 +5868,11 @@ using System.Windows.Forms;
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterSalesLocation.Rows.Count) DGV_FilterSalesLocation.CurrentCell = DGV_FilterSalesLocation.Rows[RowIndex].Cells[ClmIndex];
-                             if (RowIndex != (DGV_FilterSalesLocation.Rows.Count))
+                            if (RowIndex != (DGV_FilterSalesLocation.Rows.Count))
                             {
                                 txtSaleLocation.Text = DGV_FilterSalesLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
-                             txtSaleLocation.Focus();
+                            txtSaleLocation.Focus();
                             txtSaleLocation.SelectionStart = txtSaleLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -5931,7 +5931,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSaleLocation_Leave(object sender, EventArgs e)
+        private void TxtSaleLocation_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -5955,7 +5955,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSaleLocation_TextChanged(object sender, EventArgs e)
+        private void TxtSaleLocation_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -5968,7 +5968,7 @@ using System.Windows.Forms;
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                         MR_Location objMR_Location = new MR_Location();
+                        MR_Location objMR_Location = new MR_Location();
                         objMR_Location.paraViewType = 10;
                         objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Location.paraLocationName = txtSaleLocation.Text.Trim();
@@ -6028,11 +6028,11 @@ using System.Windows.Forms;
                 txtSaleLocation.Focus();
             }
         }
-         private void LvPurRack_DoubleClick(object sender, EventArgs e)
+        private void LvPurRack_DoubleClick(object sender, EventArgs e)
         {
             udfnPurRackAutocomplete();
         }
-         private void TxtSaleRack_TextChanged(object sender, EventArgs e)
+        private void TxtSaleRack_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -6072,19 +6072,19 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbGst_Enter(object sender, EventArgs e)
+        private void CmbGst_Enter(object sender, EventArgs e)
         {
             try
             {
                 cmbGst.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbGst_Leave(object sender, EventArgs e)
+        private void CmbGst_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -6102,12 +6102,12 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbGst_KeyDown(object sender, KeyEventArgs e)
+        private void CmbGst_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6143,19 +6143,19 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CmbGst_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbGst_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CmbGst_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbGst_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -6194,15 +6194,15 @@ using System.Windows.Forms;
                         txtHsnName.Text = "";
                         txtHSNCode.Text = "";
                     }
-                 }
+                }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHsnName_Enter(object sender, EventArgs e)
+        private void TxtHsnName_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -6214,7 +6214,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHsnName_KeyDown(object sender, KeyEventArgs e)
+        private void TxtHsnName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6245,7 +6245,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHsnName_TextChanged(object sender, EventArgs e)
+        private void TxtHsnName_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -6289,7 +6289,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHsnName_Leave(object sender, EventArgs e)
+        private void TxtHsnName_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -6308,7 +6308,7 @@ using System.Windows.Forms;
                 txtHsnName.BackColor = Color.White;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
@@ -6346,7 +6346,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvHsnName_KeyDown(object sender, KeyEventArgs e)
+        private void LvHsnName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6376,9 +6376,9 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHSNCode_Leave(object sender, EventArgs e)
+        private void TxtHSNCode_Leave(object sender, EventArgs e)
         {
-             try
+            try
             {
                 txtHSNCode.BackColor = Color.White;
                 errItems.Clear();
@@ -6405,7 +6405,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHSNCode_Enter(object sender, EventArgs e)
+        private void TxtHSNCode_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -6417,7 +6417,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHSNCode_KeyDown(object sender, KeyEventArgs e)
+        private void TxtHSNCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6462,12 +6462,12 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtHSNCode_TextChanged(object sender, EventArgs e)
+        private void TxtHSNCode_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 lvHsnCode.Items.Clear();
-                 if (txtHSNCode.Text.Length > 0)
+                if (txtHSNCode.Text.Length > 0)
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
@@ -6505,7 +6505,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPICode_TextChanged(object sender, EventArgs e)
+        private void TxtPICode_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -6517,7 +6517,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbActive_Enter(object sender, EventArgs e)
+        private void RbActive_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -6529,7 +6529,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CbCompleted_CheckedChanged(object sender, EventArgs e)
+        private void CbCompleted_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
@@ -6558,13 +6558,13 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void ChkSameasPurchase_CheckedChanged(object sender, EventArgs e)
+        private void ChkSameasPurchase_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 if (chkSameasPurchase.Checked == true)
                 {
-                     txtSaleLocation.Text = txtPurLocation.Text;
+                    txtSaleLocation.Text = txtPurLocation.Text;
                     txtSaleRack.Text = txtPurRack.Text;
                     txtRackDescriptionSales.Text = txtRackDescription.Text;
                     lblSaleLocationCode.Text = lblPurLocationCode.Text;
@@ -6578,7 +6578,7 @@ using System.Windows.Forms;
                     txtSaleLocation.ReadOnly = true;
                     txtRackDescriptionSales.Enabled = false;
                     txtRackDescriptionSales.ReadOnly = true;
-                 }
+                }
                 else
                 {
                     txtSaleRack.Enabled = true;
@@ -6593,7 +6593,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void ChkMRP_KeyDown(object sender, KeyEventArgs e)
+        private void ChkMRP_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6619,7 +6619,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void ChkMRP_Enter(object sender, EventArgs e)
+        private void ChkMRP_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -6631,7 +6631,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void ChkMRP_Leave(object sender, EventArgs e)
+        private void ChkMRP_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -6643,7 +6643,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CbCompleted_Enter(object sender, EventArgs e)
+        private void CbCompleted_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -6655,7 +6655,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void CbCompleted_Leave(object sender, EventArgs e)
+        private void CbCompleted_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -6667,7 +6667,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPURHSNName_TextChanged(object sender, EventArgs e)
+        private void TxtPURHSNName_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -6714,7 +6714,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvPURHSNCode_KeyDown(object sender, KeyEventArgs e)
+        private void LvPURHSNCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6808,7 +6808,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DpPurEffectiveFrom_Enter(object sender, EventArgs e)
+        private void DpPurEffectiveFrom_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -6820,7 +6820,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DpSalesEffectiveFrom_Enter(object sender, EventArgs e)
+        private void DpSalesEffectiveFrom_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -6832,7 +6832,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSalesHSNName_KeyDown(object sender, KeyEventArgs e)
+        private void TxtSalesHSNName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6863,7 +6863,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvSalesHSNCode_KeyDown(object sender, KeyEventArgs e)
+        private void LvSalesHSNCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -6878,7 +6878,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvPURHSNCode_DoubleClick(object sender, EventArgs e)
+        private void LvPURHSNCode_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -6890,7 +6890,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void GrdPurHSN_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GrdPurHSN_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -6904,7 +6904,7 @@ using System.Windows.Forms;
                             {
                                 int varProductID = Convert.ToInt32(grdPurHSN.CurrentRow.Cells["clmPurHSNID"].Value);
                                 string varEffectiveFrom = Convert.ToString(grdPurHSN.CurrentRow.Cells["clmPurEffectiveFrom"].Value);
-                                 var rowsToDelete = dtPurHSN.AsEnumerable().Where(row => row.Field<int>("HSNID") == varProductID && row.Field<string>("HSN_EffectiveFrom") == varEffectiveFrom).ToList();
+                                var rowsToDelete = dtPurHSN.AsEnumerable().Where(row => row.Field<int>("HSNID") == varProductID && row.Field<string>("HSN_EffectiveFrom") == varEffectiveFrom).ToList();
                                 foreach (var row in rowsToDelete)
                                 {
                                     dtPurHSN.Rows.Remove(row);
@@ -6964,7 +6964,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void GrdSalesHSN_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GrdSalesHSN_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -6978,13 +6978,13 @@ using System.Windows.Forms;
                             {
                                 int varProductID = Convert.ToInt32(grdSalesHSN.CurrentRow.Cells["clmSalesHSNID"].Value);
                                 string varEffectiveFrom = Convert.ToString(grdSalesHSN.CurrentRow.Cells["clmSalesEffectiveFrom"].Value);
-                                 var rowsToDelete = dtSalesHSN.AsEnumerable().Where(row => row.Field<int>("HSNID") == varProductID && row.Field<string>("HSN_EffectiveFrom") == varEffectiveFrom).ToList();
+                                var rowsToDelete = dtSalesHSN.AsEnumerable().Where(row => row.Field<int>("HSNID") == varProductID && row.Field<string>("HSN_EffectiveFrom") == varEffectiveFrom).ToList();
                                 foreach (var row in rowsToDelete)
                                 {
                                     dtSalesHSN.Rows.Remove(row);
                                 }
                                 grdSalesHSN.Rows.RemoveAt(this.grdSalesHSN.CurrentRow.Index);
-                                 udfnUpdateSalesRemovableFlags();
+                                udfnUpdateSalesRemovableFlags();
                                 udfnSalesHideRemove();
                                 //udfnSetSalesMinDate();
                             }
@@ -6998,7 +6998,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPURHSNName_Enter(object sender, EventArgs e)
+        private void TxtPURHSNName_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -7010,7 +7010,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtPURHSNName_Leave(object sender, EventArgs e)
+        private void TxtPURHSNName_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -7022,7 +7022,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSalesHSNName_Enter(object sender, EventArgs e)
+        private void TxtSalesHSNName_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -7034,7 +7034,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSalesHSNName_Leave(object sender, EventArgs e)
+        private void TxtSalesHSNName_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -7046,7 +7046,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvSalesHSNCode_DoubleClick(object sender, EventArgs e)
+        private void LvSalesHSNCode_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -7058,7 +7058,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSalesHSNName_TextChanged(object sender, EventArgs e)
+        private void TxtSalesHSNName_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -7105,7 +7105,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TbProduct_SelectedIndexChanged(object sender, EventArgs e)
+        private void TbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -7143,7 +7143,7 @@ using System.Windows.Forms;
                     btnImageUpdate.Visible = false;
                     cbCompleted.Visible = true;
                 }
-                 btnSave.Enabled = true;
+                btnSave.Enabled = true;
                 if (Convert.ToInt32(tbProduct.SelectedIndex) == 4)
                 {
                     //btnSave.Enabled = false;
@@ -7184,17 +7184,17 @@ using System.Windows.Forms;
                             btnPrev.Visible = false;
                             btnNext.Visible = false;
                             grdSubgroups.Rows.Clear();
-                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdSubgroups.Rows.Add(false, objDs.Tables[0].Rows[i]["PI Code"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["Image Count"].ToString(), objDs.Tables[0].Rows[i]["ImageApprovedFlag"].ToString(), objDs.Tables[0].Rows[i]["Image_name"].ToString());
-                                 DataGridViewRow gridRow = grdSubgroups.Rows[grdSubgroups.Rows.Count - 1];
-                                 string imageApprovedFlag = Convert.ToString(gridRow.Cells["clmImageApproved"].Value);
-                                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)gridRow.Cells["clmCheck"];
-                                 if (imageApprovedFlag == "No")
+                                DataGridViewRow gridRow = grdSubgroups.Rows[grdSubgroups.Rows.Count - 1];
+                                string imageApprovedFlag = Convert.ToString(gridRow.Cells["clmImageApproved"].Value);
+                                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)gridRow.Cells["clmCheck"];
+                                if (imageApprovedFlag == "No")
                                 {
                                     chk.Value = false;
                                     chk.ReadOnly = true;
-                                     chk.Style.BackColor = Color.LightGray;
+                                    chk.Style.BackColor = Color.LightGray;
                                     chk.Style.SelectionBackColor = Color.LightGray;
                                 }
                                 else
@@ -7204,7 +7204,7 @@ using System.Windows.Forms;
                             }
                             lblActiveProCount.Text = objDs.Tables[0].Rows.Count.ToString();
                             lblImageUploadedCount.Text = objDs.Tables[0].AsEnumerable().Sum(r => r.Field<int>("Image Count")).ToString();
-                             grdSubgroups.ClearSelection();
+                            grdSubgroups.ClearSelection();
                             // Product column font style for tamil language
                             grdSubgroups.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             // Center align the Image Count and Image Approved columns
@@ -7245,23 +7245,23 @@ using System.Windows.Forms;
             */
             // Avoid duplicates by using a HashSet
             HashSet<string> imageSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-             foreach (DataGridViewRow row in grdSubgroups.Rows)
+            foreach (DataGridViewRow row in grdSubgroups.Rows)
             {
                 if (row.IsNewRow)
                     continue;
-                 bool isChecked = Convert.ToBoolean(row.Cells["clmCheck"].Value);
-                 if (!isChecked)
+                bool isChecked = Convert.ToBoolean(row.Cells["clmCheck"].Value);
+                if (!isChecked)
                     continue;
-                 string imageNames = Convert.ToString(row.Cells["clmImageName"].Value);
-                 if (string.IsNullOrWhiteSpace(imageNames))
+                string imageNames = Convert.ToString(row.Cells["clmImageName"].Value);
+                if (string.IsNullOrWhiteSpace(imageNames))
                     continue;
-                 foreach (string image in imageNames.Split('|'))
+                foreach (string image in imageNames.Split('|'))
                 {
                     if (!string.IsNullOrWhiteSpace(image))
                         imageSet.Add(image.Trim());
                 }
             }
-             return imageSet.ToList();
+            return imageSet.ToList();
         }
         private void ShowImage()
         {
@@ -7272,24 +7272,24 @@ using System.Windows.Forms;
                     if (images.Count == 1) { btnPrev.Visible = false; btnNext.Visible = false; }
                     if (currentIndex == 0) { btnPrev.Visible = false; } else { btnPrev.Visible = true; }
                     if (currentIndex == images.Count - 1) { btnNext.Visible = false; } else { btnNext.Visible = true; }
-                     if (pbSubgroupImages.Image != null)
+                    if (pbSubgroupImages.Image != null)
                     {
                         pbSubgroupImages.Image.Dispose();
                         pbSubgroupImages.Image = null;
                     }
-                     if (originalSubgroupImage != null)
+                    if (originalSubgroupImage != null)
                     {
                         originalSubgroupImage.Dispose();
                         originalSubgroupImage = null;
                     }
-                     string imagePath = images[currentIndex];
-                     if (!File.Exists(imagePath))
+                    string imagePath = images[currentIndex];
+                    if (!File.Exists(imagePath))
                     {
                         MessageBox.Show("File not found");
                         //MessageBox.Show("File not found:\n" + imagePath);
                         return;
                     }
-                     //originalSubgroupImage = Image.FromFile(images[currentIndex]);
+                    //originalSubgroupImage = Image.FromFile(images[currentIndex]);
                     using (FileStream fs = new FileStream(images[currentIndex], FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     {
                         using (Image temp = Image.FromStream(fs))
@@ -7306,7 +7306,7 @@ using System.Windows.Forms;
                         pbSubgroupImages.Image.Dispose();
                         pbSubgroupImages.Image = null;
                     }
-                     if (originalSubgroupImage != null)
+                    if (originalSubgroupImage != null)
                     {
                         originalSubgroupImage.Dispose();
                         originalSubgroupImage = null;
@@ -7326,7 +7326,7 @@ using System.Windows.Forms;
             try
             {
                 if (originalSubgroupImage == null) return;
-                 int newWidth = 0;
+                int newWidth = 0;
                 int newHeight = 0;
                 if (varFlag == 1)
                 {
@@ -7338,17 +7338,17 @@ using System.Windows.Forms;
                     newWidth = (int)(340 * zoom);
                     newHeight = (int)(370 * zoom);
                 }
-                 pbSubgroupImages.Size = new Size(newWidth, newHeight);
+                pbSubgroupImages.Size = new Size(newWidth, newHeight);
                 if (pbSubgroupImages.Image != null)
                 {
                     pbSubgroupImages.Image.Dispose();
                     pbSubgroupImages.Image = null;
                 }
-                 pbSubgroupImages.Image = new Bitmap(originalSubgroupImage,
-                                                    new Size(newWidth, newHeight));
-                 pnlSubgroupImages.AutoScroll = false;
-                 if (newWidth <= pnlSubgroupImages.ClientSize.Width &&
-                    newHeight <= pnlSubgroupImages.ClientSize.Height)
+                pbSubgroupImages.Image = new Bitmap(originalSubgroupImage,
+                                                   new Size(newWidth, newHeight));
+                pnlSubgroupImages.AutoScroll = false;
+                if (newWidth <= pnlSubgroupImages.ClientSize.Width &&
+                   newHeight <= pnlSubgroupImages.ClientSize.Height)
                 {
                     pbSubgroupImages.Location = new Point(
                         (pnlSubgroupImages.ClientSize.Width - newWidth) / 2,
@@ -7360,7 +7360,7 @@ using System.Windows.Forms;
                     pnlSubgroupImages.AutoScroll = true;
                     pbSubgroupImages.Location = new Point(0, 0);
                 }
-                 pbSubgroupImages.Invalidate();
+                pbSubgroupImages.Invalidate();
             }
             catch (Exception ex)
             {
@@ -7387,7 +7387,7 @@ using System.Windows.Forms;
                     return;
                 }
                 */
-                 dtProductHSN.Rows.Clear();
+                dtProductHSN.Rows.Clear();
                 foreach (DataRow row in dtPurHSN.Rows)
                 {
                     dtProductHSN.ImportRow(row);
@@ -7494,7 +7494,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void BtnHSNClose_Click(object sender, EventArgs e)
+        private void BtnHSNClose_Click(object sender, EventArgs e)
         {
             try
             {
@@ -7521,7 +7521,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void GrdPurHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void GrdPurHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
             {
@@ -7544,7 +7544,7 @@ using System.Windows.Forms;
                         var addFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurAddFlag"].Value);
                         var editFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurEditFlag"].Value);
                         var removeCell = grdPurHSN.Rows[i].Cells["clmPurRemove"];
-                         if (addFlag == "0" && editFlag == "0")
+                        if (addFlag == "0" && editFlag == "0")
                         {
                             removeCell.Value = global::ROMS.Properties.Resources.remove;
                             removeCell.ReadOnly = false;
@@ -7574,7 +7574,7 @@ using System.Windows.Forms;
                         var addFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesAddFlag"].Value);
                         var editFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesEditFlag"].Value);
                         var removeCell = grdSalesHSN.Rows[i].Cells["clmSalesRemove"];
-                         if (addFlag == "0" && editFlag == "0")
+                        if (addFlag == "0" && editFlag == "0")
                         {
                             removeCell.Value = global::ROMS.Properties.Resources.remove;
                             removeCell.ReadOnly = false;
@@ -7593,7 +7593,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void GrdSalesHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void GrdSalesHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
             {
@@ -7605,7 +7605,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtLabelNameEnglish_Enter(object sender, EventArgs e)
+        private void TxtLabelNameEnglish_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -7617,7 +7617,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtLabelNameEnglish_KeyDown(object sender, KeyEventArgs e)
+        private void TxtLabelNameEnglish_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -7653,7 +7653,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtLabelNameEnglish_Leave(object sender, EventArgs e)
+        private void TxtLabelNameEnglish_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -7665,7 +7665,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtLabelNameTamil_Enter(object sender, EventArgs e)
+        private void TxtLabelNameTamil_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -7677,7 +7677,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtLabelNameTamil_KeyDown(object sender, KeyEventArgs e)
+        private void TxtLabelNameTamil_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -7711,7 +7711,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtLabelNameTamil_Leave(object sender, EventArgs e)
+        private void TxtLabelNameTamil_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -7723,7 +7723,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbProductType_Enter(object sender, EventArgs e)
+        private void cmbProductType_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -7735,7 +7735,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbProductType_Leave(object sender, EventArgs e)
+        private void cmbProductType_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -7747,7 +7747,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbProductType_KeyDown(object sender, KeyEventArgs e)
+        private void cmbProductType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -7759,7 +7759,7 @@ using System.Windows.Forms;
                     }
                     else
                     {
-                         txtPICode.Focus();
+                        txtPICode.Focus();
                     }
                 }
             }
@@ -7769,7 +7769,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductName_TextChanged(object sender, EventArgs e)
+        private void txtProductName_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -7787,7 +7787,7 @@ using System.Windows.Forms;
                         DataSet objDs = new DataSet();
                         objMR_Product.paraProductName = txtProductName.Text.Trim();
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                         objspdservice.CloseConnection();
+                        objspdservice.CloseConnection();
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)
@@ -7797,7 +7797,7 @@ using System.Windows.Forms;
                                     //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                     //{
                                     DGV_FilterProduct.Visible = true;
-                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
+                                    DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 320;
@@ -7823,11 +7823,11 @@ using System.Windows.Forms;
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Columns["PR_RetailRate"].Visible = false;
-                                     DGV_FilterProduct.Columns["PR_EName"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_EName"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_TName"].Visible = true;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 2;
                                     //DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
-                                 }
+                                }
                                 else
                                 {
                                     DGV_FilterProduct.DataSource = null;
@@ -7855,9 +7855,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void txtProductName_Enter(object sender, EventArgs e)
+        private void txtProductName_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -7869,12 +7869,12 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductName_KeyDown(object sender, KeyEventArgs e)
+        private void txtProductName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                 varUpDownKey = 0;
-                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
+                varUpDownKey = 0;
+                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
                     //btnConditions.Focus();
                     txtPICode.Focus();
@@ -7920,11 +7920,11 @@ using System.Windows.Forms;
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
+                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                 txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                             }
-                             txtProductName.Focus();
+                            txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
                             break;
@@ -7962,7 +7962,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductName_Leave(object sender, EventArgs e)
+        private void txtProductName_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -7973,8 +7973,8 @@ using System.Windows.Forms;
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void DpPurEffectiveFrom_KeyDown(object sender, KeyEventArgs e)
+        }
+        private void DpPurEffectiveFrom_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -7989,7 +7989,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DGV_FilterProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DGV_FilterProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -8003,7 +8003,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
+        private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -8024,19 +8024,19 @@ using System.Windows.Forms;
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-                             txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                             txtProductName.Focus();
+                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                            txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
+                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
                                 txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                             }
-                             txtProductName.Focus();
+                            txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
                             break;
@@ -8070,7 +8070,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbProductType_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbProductType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -8082,7 +8082,7 @@ using System.Windows.Forms;
                     txtSubGroup.Enabled = true;
                     txtBrand.Enabled = true;
                     lblParentcode.Text = "0";
-                     txtGroup.ReadOnly = false;
+                    txtGroup.ReadOnly = false;
                     txtSubGroup.ReadOnly = false;
                     txtBrand.ReadOnly = false;
                     txtProductName.ReadOnly = true;
@@ -8095,13 +8095,13 @@ using System.Windows.Forms;
                     txtBrand.Enabled = false;
                     txtProductName.Enabled = true;
                     txtUpp.Enabled = true;
-                     txtGroup.ReadOnly = true;
+                    txtGroup.ReadOnly = true;
                     txtSubGroup.ReadOnly = true;
                     txtBrand.ReadOnly = true;
                     txtProductName.ReadOnly = false;
                     txtUpp.ReadOnly = false;
-                 }
-                 if (Convert.ToInt32(cmbProductType.SelectedValue) != 342)
+                }
+                if (Convert.ToInt32(cmbProductType.SelectedValue) != 342)
                 {
                     txtUpp.Text = "";
                     txtUpp.Enabled = false;
@@ -8112,7 +8112,7 @@ using System.Windows.Forms;
                 {
                     txtProductName.Text = "";
                     lblParentcode.Text = "0";
-                     txtPICode.Text = "";
+                    txtPICode.Text = "";
                     txtItemNameEnglish.Text = "";
                     txtItemNameTamil.Text = "";
                     txtLabelNameEnglish.Text = "";
@@ -8147,7 +8147,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void ChkSalesProduct_Enter(object sender, EventArgs e)
+        private void ChkSalesProduct_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -8159,7 +8159,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void ChkSalesProduct_Leave(object sender, EventArgs e)
+        private void ChkSalesProduct_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -8171,7 +8171,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tsbBrowse_Click(object sender, EventArgs e)
+        private void tsbBrowse_Click(object sender, EventArgs e)
         {
             try
             {
@@ -8179,13 +8179,13 @@ using System.Windows.Forms;
                 {
                     ofd.Multiselect = true;  // Allow multiple selection
                     ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-                     if (ofd.ShowDialog() == DialogResult.OK)
+                    if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         int varUploadFlag = 0;
                         foreach (string file in ofd.FileNames)
                         {
                             FileInfo fileInfo = new FileInfo(file);
-                             if (fileInfo.Length > 512000) // 500KB limit
+                            if (fileInfo.Length > 512000) // 500KB limit
                             {
                                 varUploadFlag++;
                                 continue; // Skip this file
@@ -8196,7 +8196,7 @@ using System.Windows.Forms;
                             foreach (string file in ofd.FileNames)
                             {
                                 FileInfo fileInfo = new FileInfo(file);
-                                 if (fileInfo.Length > 512000) // 500KB limit
+                                if (fileInfo.Length > 512000) // 500KB limit
                                 {
                                     MessageBox.Show($"The file '{fileInfo.Name}' is too large. Please select an image below 500KB.",
                                                     "File Size Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -8240,7 +8240,7 @@ using System.Windows.Forms;
                 }
             }
         }
-         private void AddImageToPanel(string filePath)
+        private void AddImageToPanel(string filePath)
         {
             try
             {
@@ -8250,7 +8250,7 @@ using System.Windows.Forms;
                     BorderStyle = BorderStyle.FixedSingle,
                     Padding = new Padding(10)
                 };
-                 PictureBox pictureBox = new PictureBox
+                PictureBox pictureBox = new PictureBox
                 {
                     Image = LoadImageWithoutLock(filePath),
                     ImageLocation = filePath,
@@ -8259,7 +8259,7 @@ using System.Windows.Forms;
                     Dock = DockStyle.Top,
                     Cursor = Cursors.Hand
                 };
-                 Button btnRemove = new Button
+                Button btnRemove = new Button
                 {
                     Text = "X",
                     ForeColor = Color.White,
@@ -8270,12 +8270,12 @@ using System.Windows.Forms;
                     Cursor = Cursors.Hand
                 };
                 btnRemove.Click += (s, e) => RemoveImage(panel, filePath);
-                 panel.Controls.Add(pictureBox);
+                panel.Controls.Add(pictureBox);
                 panel.Controls.Add(btnRemove);
                 btnRemove.Location = new Point(100, 0);
                 btnRemove.BringToFront();
                 flowLayoutPanel1.Controls.Add(panel);
-                 EditableImage ei = new EditableImage
+                EditableImage ei = new EditableImage
                 {
                     FilePath = filePath,
                     EditedImage = null,
@@ -8306,9 +8306,9 @@ using System.Windows.Forms;
                 tsbCropImage.Enabled = false;
                 if (originalImage != null)
                     originalImage.Dispose();
-                 originalImage = LoadImageWithoutLock(path);
+                originalImage = LoadImageWithoutLock(path);
                 zoom = 1.0f;
-                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox1.Image = new Bitmap(originalImage);
                 pictureBox1.Size = pnlImageContainer.ClientSize;
                 pictureBox1.Location = new Point(
@@ -8329,12 +8329,12 @@ using System.Windows.Forms;
                 pictureBox1.Image.Dispose();
                 pictureBox1.Image = null;
             }
-             if (originalImage != null)
+            if (originalImage != null)
             {
                 originalImage.Dispose();
                 originalImage = null;
             }
-             currentImage = ei;
+            currentImage = ei;
             if (ei.EditedImage != null)
             {
                 originalImage = new Bitmap(ei.EditedImage);
@@ -8349,7 +8349,7 @@ using System.Windows.Forms;
                     }
                 }
             }
-             pictureBox1.Image = new Bitmap(originalImage);
+            pictureBox1.Image = new Bitmap(originalImage);
             zoom = 1.0f;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.Size = pnlImageContainer.ClientSize;
@@ -8395,30 +8395,30 @@ using System.Windows.Forms;
                 }
                 flowLayoutPanel1.Controls.Remove(panel);
                 panel.Dispose();
-                 if (currentImage != null && currentImage.FilePath == imagePath)
+                if (currentImage != null && currentImage.FilePath == imagePath)
                 {
                     if (pictureBox1.Image != null)
                     {
                         pictureBox1.Image.Dispose();
                         pictureBox1.Image = null;
                     }
-                     if (originalImage != null)
+                    if (originalImage != null)
                     {
                         originalImage.Dispose();
                         originalImage = null;
                     }
-                     currentImage = null;
+                    currentImage = null;
                     zoom = 1.0f;
                 }
                 UpdateZoomButtonsVisibility();
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void tbBrightness_Scroll(object sender, EventArgs e)
+        private void tbBrightness_Scroll(object sender, EventArgs e)
         {
             try
             {
@@ -8434,17 +8434,17 @@ using System.Windows.Forms;
         {
             if (originalImage == null)
                 return;
-             float brightness = tbBrightness.Value / 100.0f;
+            float brightness = tbBrightness.Value / 100.0f;
             float contrast = (100.0f + tbContrast.Value) / 100.0f;
             contrast *= contrast;
             float saturation = (100.0f + tbSaturation.Value) / 100.0f;
-             float lumR = 0.3086f;
+            float lumR = 0.3086f;
             float lumG = 0.6094f;
             float lumB = 0.0820f;
-             float sr = (1 - saturation) * lumR;
+            float sr = (1 - saturation) * lumR;
             float sg = (1 - saturation) * lumG;
             float sb = (1 - saturation) * lumB;
-             float[][] colorMatrixElements = {
+            float[][] colorMatrixElements = {
                                             new float[] { sr + saturation * contrast, sg, sb, 0, 0 },
                                             new float[] { sr, sg + saturation * contrast, sb, 0, 0 },
                                             new float[] { sr, sg, sb + saturation * contrast, 0, 0 },
@@ -8456,25 +8456,25 @@ using System.Windows.Forms;
                                                         0, 1
                                                         }
                                             };
-             Bitmap adjustedBitmap = new Bitmap(originalImage.Width, originalImage.Height);
+            Bitmap adjustedBitmap = new Bitmap(originalImage.Width, originalImage.Height);
             using (Graphics g = Graphics.FromImage(adjustedBitmap))
             {
                 ColorMatrix colorMatrix = new ColorMatrix(colorMatrixElements);
                 ImageAttributes attributes = new ImageAttributes();
                 attributes.SetColorMatrix(colorMatrix);
-                 g.DrawImage(originalImage,
-                    new Rectangle(0, 0, originalImage.Width, originalImage.Height),
-                    0, 0, originalImage.Width, originalImage.Height,
-                    GraphicsUnit.Pixel, attributes);
+                g.DrawImage(originalImage,
+                   new Rectangle(0, 0, originalImage.Width, originalImage.Height),
+                   0, 0, originalImage.Width, originalImage.Height,
+                   GraphicsUnit.Pixel, attributes);
             }
-             pictureBox1.Image = adjustedBitmap;
+            pictureBox1.Image = adjustedBitmap;
             if (currentImage != null)
             {
                 currentImage.EditedImage?.Dispose();
                 currentImage.EditedImage = new Bitmap(adjustedBitmap);
             }
         }
-         private void tbContrast_Scroll(object sender, EventArgs e)
+        private void tbContrast_Scroll(object sender, EventArgs e)
         {
             try
             {
@@ -8486,7 +8486,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tbSaturation_Scroll(object sender, EventArgs e)
+        private void tbSaturation_Scroll(object sender, EventArgs e)
         {
             try
             {
@@ -8498,7 +8498,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tsbColour_Click(object sender, EventArgs e)
+        private void tsbColour_Click(object sender, EventArgs e)
         {
             try
             {
@@ -8520,7 +8520,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tsbCrop_Click(object sender, EventArgs e)
+        private void tsbCrop_Click(object sender, EventArgs e)
         {
             try
             {
@@ -8532,7 +8532,7 @@ using System.Windows.Forms;
                     pictureBox1.Width,
                     pictureBox1.Height
                 );
-                 pictureBox1.Invalidate();
+                pictureBox1.Invalidate();
                 UpdateZoomButtonsVisibility();
             }
             catch (Exception ex)
@@ -8541,35 +8541,35 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tsbCropImage_Click(object sender, EventArgs e)
+        private void tsbCropImage_Click(object sender, EventArgs e)
         {
             try
             {
                 if (!cropMode || pictureBox1.Image == null) return;
-                 float scaleX = (float)originalImage.Width / pictureBox1.Width;
+                float scaleX = (float)originalImage.Width / pictureBox1.Width;
                 float scaleY = (float)originalImage.Height / pictureBox1.Height;
-                 Rectangle actualRect = new Rectangle(
-                    (int)(cropRect.X * scaleX),
-                    (int)(cropRect.Y * scaleY),
-                    (int)(cropRect.Width * scaleX),
-                    (int)(cropRect.Height * scaleY)
-                );
-                 if (actualRect.X < 0) actualRect.X = 0;
+                Rectangle actualRect = new Rectangle(
+                   (int)(cropRect.X * scaleX),
+                   (int)(cropRect.Y * scaleY),
+                   (int)(cropRect.Width * scaleX),
+                   (int)(cropRect.Height * scaleY)
+               );
+                if (actualRect.X < 0) actualRect.X = 0;
                 if (actualRect.Y < 0) actualRect.Y = 0;
                 if (actualRect.X + actualRect.Width > originalImage.Width)
                     actualRect.Width = originalImage.Width - actualRect.X;
                 if (actualRect.Y + actualRect.Height > originalImage.Height)
                     actualRect.Height = originalImage.Height - actualRect.Y;
-                 if (actualRect.Width <= 0 || actualRect.Height <= 0)
+                if (actualRect.Width <= 0 || actualRect.Height <= 0)
                 {
                     //MessageBox.Show("Invalid crop area!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                 Bitmap bmp = new Bitmap(originalImage);
+                Bitmap bmp = new Bitmap(originalImage);
                 Bitmap cropped = bmp.Clone(actualRect, bmp.PixelFormat);
-                 pictureBox1.Image = cropped;
+                pictureBox1.Image = cropped;
                 originalImage = cropped;
-                 if (currentImage != null)
+                if (currentImage != null)
                 {
                     currentImage.EditedImage = new Bitmap(cropped);
                 }
@@ -8580,7 +8580,7 @@ using System.Windows.Forms;
                     Math.Max((pnlImageContainer.Width - pictureBox1.Width) / 2, 0),
                     Math.Max((pnlImageContainer.Height - pictureBox1.Height) / 2, 0)
                 );
-                 cropMode = false;
+                cropMode = false;
                 pictureBox1.Invalidate();
                 tsbCropImage.Enabled = false;
             }
@@ -8590,7 +8590,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tsbZoomIn_Click(object sender, EventArgs e)
+        private void tsbZoomIn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -8603,7 +8603,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tsbZoomOut_Click(object sender, EventArgs e)
+        private void tsbZoomOut_Click(object sender, EventArgs e)
         {
             try
             {
@@ -8624,13 +8624,13 @@ using System.Windows.Forms;
             try
             {
                 if (originalImage == null) return;
-                 int newWidth = (int)(originalImage.Width * zoom);
+                int newWidth = (int)(originalImage.Width * zoom);
                 int newHeight = (int)(originalImage.Height * zoom);
-                 pictureBox1.Size = new Size(newWidth, newHeight);
+                pictureBox1.Size = new Size(newWidth, newHeight);
                 pictureBox1.Image = new Bitmap(originalImage, new Size(newWidth, newHeight));
-                 pnlImageContainer.AutoScroll = false;
-                 if (newWidth <= pnlImageContainer.ClientSize.Width &&
-                    newHeight <= pnlImageContainer.ClientSize.Height)
+                pnlImageContainer.AutoScroll = false;
+                if (newWidth <= pnlImageContainer.ClientSize.Width &&
+                   newHeight <= pnlImageContainer.ClientSize.Height)
                 {
                     pictureBox1.Location = new Point(
                         (pnlImageContainer.ClientSize.Width - newWidth) / 2,
@@ -8642,7 +8642,7 @@ using System.Windows.Forms;
                     pnlImageContainer.AutoScroll = true;
                     pictureBox1.Location = new Point(0, 0);
                 }
-                 pictureBox1.Invalidate();
+                pictureBox1.Invalidate();
             }
             catch (Exception ex)
             {
@@ -8655,16 +8655,16 @@ using System.Windows.Forms;
             try
             {
                 if (pictureBox1.Image == null) return;
-                 //Bitmap bmp = new Bitmap(originalImage);
+                //Bitmap bmp = new Bitmap(originalImage);
                 //bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                 //pictureBox1.Image?.Dispose();
+                //pictureBox1.Image?.Dispose();
                 //pictureBox1.Image = new Bitmap(bmp);
                 using (Bitmap bmp = new Bitmap(originalImage))  // safely clone original
                 {
                     bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                     // Dispose previous pictureBox image
+                    // Dispose previous pictureBox image
                     pictureBox1.Image?.Dispose();
-                     // Clone to avoid file lock or GDI+ issues
+                    // Clone to avoid file lock or GDI+ issues
                     pictureBox1.Image = new Bitmap(bmp);
                 }
                 originalImage.Dispose();
@@ -8690,21 +8690,21 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tsbRotateR_Click(object sender, EventArgs e)
+        private void tsbRotateR_Click(object sender, EventArgs e)
         {
             try
             {
                 if (pictureBox1.Image == null) return;
-                 //Bitmap bmp = new Bitmap(originalImage);
+                //Bitmap bmp = new Bitmap(originalImage);
                 //bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                 //pictureBox1.Image?.Dispose();
+                //pictureBox1.Image?.Dispose();
                 //pictureBox1.Image = new Bitmap(bmp);
                 using (Bitmap bmp = new Bitmap(originalImage))  // safely clone original
                 {
                     bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                     // Dispose previous pictureBox image
+                    // Dispose previous pictureBox image
                     pictureBox1.Image?.Dispose();
-                     // Clone to avoid file lock or GDI+ issues
+                    // Clone to avoid file lock or GDI+ issues
                     pictureBox1.Image = new Bitmap(bmp);
                 }
                 originalImage?.Dispose();
@@ -8723,14 +8723,14 @@ using System.Windows.Forms;
                 );
                 currentImage.RotationAngle = (currentImage.RotationAngle + 90) % 360;
                 pictureBox1.Invalidate();
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void tsbReset_Click(object sender, EventArgs e)
+        private void tsbReset_Click(object sender, EventArgs e)
         {
             try
             {
@@ -8751,10 +8751,10 @@ using System.Windows.Forms;
                 zoom = 1.0f;
                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox1.Size = pnlImageContainer.ClientSize;
-                 pictureBox1.Location = new Point(
-                    Math.Max((pnlImageContainer.ClientSize.Width - pictureBox1.Width) / 2, 0),
-                    Math.Max((pnlImageContainer.ClientSize.Height - pictureBox1.Height) / 2, 0)
-                );
+                pictureBox1.Location = new Point(
+                   Math.Max((pnlImageContainer.ClientSize.Width - pictureBox1.Width) / 2, 0),
+                   Math.Max((pnlImageContainer.ClientSize.Height - pictureBox1.Height) / 2, 0)
+               );
                 cropMode = false;
                 cropRect = Rectangle.Empty;
                 if (currentImage.EditedImage != null)
@@ -8775,7 +8775,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             try
             {
@@ -8810,10 +8810,10 @@ using System.Windows.Forms;
         {
             try
             {
-                 if (!cropMode || currentHandle == CropHandle.None || e.Button != MouseButtons.Left) return;
-                 int dx = e.X - dragStartPoint.X;
+                if (!cropMode || currentHandle == CropHandle.None || e.Button != MouseButtons.Left) return;
+                int dx = e.X - dragStartPoint.X;
                 int dy = e.Y - dragStartPoint.Y;
-                 switch (currentHandle)
+                switch (currentHandle)
                 {
                     case CropHandle.TopLeft:
                         cropRect.X += dx;
@@ -8821,43 +8821,43 @@ using System.Windows.Forms;
                         cropRect.Width -= dx;
                         cropRect.Height -= dy;
                         break;
-                     case CropHandle.TopRight:
+                    case CropHandle.TopRight:
                         cropRect.Y += dy;
                         cropRect.Width += dx;
                         cropRect.Height -= dy;
                         break;
-                     case CropHandle.BottomLeft:
+                    case CropHandle.BottomLeft:
                         cropRect.X += dx;
                         cropRect.Width -= dx;
                         cropRect.Height += dy;
                         break;
-                     case CropHandle.BottomRight:
+                    case CropHandle.BottomRight:
                         cropRect.Width += dx;
                         cropRect.Height += dy;
                         break;
-                     // Optional edge handles
+                    // Optional edge handles
                     case CropHandle.Left:
                         cropRect.X += dx;
                         cropRect.Width -= dx;
                         break;
-                     case CropHandle.Right:
+                    case CropHandle.Right:
                         cropRect.Width += dx;
                         break;
-                     case CropHandle.Top:
+                    case CropHandle.Top:
                         cropRect.Y += dy;
                         cropRect.Height -= dy;
                         break;
-                     case CropHandle.Bottom:
+                    case CropHandle.Bottom:
                         cropRect.Height += dy;
                         break;
                 }
-                 dragStartPoint = e.Location;
+                dragStartPoint = e.Location;
                 pictureBox1.Invalidate();
-                 //if (isDragging)
+                //if (isDragging)
                 //{
                 //    int dx = e.X - dragStartPoint.X;
                 //    int dy = e.Y - dragStartPoint.Y;
-                 //    pnlImageContainer.AutoScrollPosition = new Point(
+                //    pnlImageContainer.AutoScrollPosition = new Point(
                 //        -pnlImageContainer.AutoScrollPosition.X - dx,
                 //        -pnlImageContainer.AutoScrollPosition.Y - dy
                 //    );
@@ -8881,7 +8881,7 @@ using System.Windows.Forms;
             {
                 UpdateZoomButtonsVisibility();
                 if (!cropMode) return;
-                 using (Pen pen = new Pen(Color.Red, 2))
+                using (Pen pen = new Pen(Color.Red, 2))
                 {
                     e.Graphics.DrawRectangle(pen, cropRect);
                 }
@@ -8913,33 +8913,33 @@ using System.Windows.Forms;
             };
             return handles;
         }
-         private void btnImageUpdate_Click(object sender, EventArgs e)
+        private void btnImageUpdate_Click(object sender, EventArgs e)
         {
             try
             {
                 SPDataService objspdservice = new SPDataService();
                 List<string> imageNameList = new List<string>();
-                 DataService objdser = new DataService();
+                DataService objdser = new DataService();
                 string destinationPath = objdser.displaydata("SELECT TOP 1 image_path FROM DEF_SharedFolderPath ORDER BY SFID DESC");
                 objdser.CloseConnection();
-                 string destinationFolder = Path.GetDirectoryName(destinationPath);
+                string destinationFolder = Path.GetDirectoryName(destinationPath);
                 if (!Directory.Exists(destinationPath))
                 {
                     Directory.CreateDirectory(destinationPath);
                 }
-                 int varFileCount = 1, randomValue = 0;
+                int varFileCount = 1, randomValue = 0;
                 string varImagePath = "";
                 Random random = new Random();
                 randomValue = random.Next(100, 1000);
                 string[] existingFiles = Directory.GetFiles(destinationPath, varproductcode + "_*");
-                 HashSet<string> updatedImages = new HashSet<string>(
-                    editableImages.Select(ei =>
-                        ei.EditedImage != null
-                            ? $"{varproductcode}_{editableImages.IndexOf(ei) + 1}_{randomValue}{Path.GetExtension(ei.FilePath)}"
-                            : Path.GetFileName(ei.FilePath)
-                    )
-                );
-                 //foreach (string file in existingFiles)
+                HashSet<string> updatedImages = new HashSet<string>(
+                   editableImages.Select(ei =>
+                       ei.EditedImage != null
+                           ? $"{varproductcode}_{editableImages.IndexOf(ei) + 1}_{randomValue}{Path.GetExtension(ei.FilePath)}"
+                           : Path.GetFileName(ei.FilePath)
+                   )
+               );
+                //foreach (string file in existingFiles)
                 //{
                 //    string fileName = Path.GetFileName(file);
                 //    if (!updatedImages.Contains(fileName))
@@ -8949,7 +8949,7 @@ using System.Windows.Forms;
                 //            File.SetAttributes(file, FileAttributes.Normal);
                 //            pictureBox1.Image?.Dispose();
                 //            pictureBox1.Image = null;
-                 //            originalImage?.Dispose();
+                //            originalImage?.Dispose();
                 //            originalImage = null;
                 //            GC.Collect();
                 //            GC.WaitForPendingFinalizers();
@@ -8957,19 +8957,19 @@ using System.Windows.Forms;
                 //        }
                 //    }
                 //}
-                 foreach (var ei in editableImages)
+                foreach (var ei in editableImages)
                 {
                     string extensionName = Path.GetExtension(ei.FilePath);
                     string imageName = $"{varproductcode}_{varFileCount}_{randomValue}{extensionName}";
                     string destinationFile = Path.Combine(destinationPath, imageName);
-                     if (ei.EditedImage != null)
+                    if (ei.EditedImage != null)
                     {
                         if (File.Exists(destinationFile))
                         {
                             File.SetAttributes(destinationFile, FileAttributes.Normal);
                             pictureBox1.Image?.Dispose();
                             pictureBox1.Image = null;
-                             originalImage?.Dispose();
+                            originalImage?.Dispose();
                             originalImage = null;
                             GC.Collect();
                             GC.WaitForPendingFinalizers();
@@ -8990,28 +8990,28 @@ using System.Windows.Forms;
                                 File.SetAttributes(destinationFile, FileAttributes.Normal);
                                 pictureBox1.Image?.Dispose();
                                 pictureBox1.Image = null;
-                                 originalImage?.Dispose();
+                                originalImage?.Dispose();
                                 originalImage = null;
                                 GC.Collect();
                                 GC.WaitForPendingFinalizers();
                                 File.Delete(destinationFile);
                             }
-                             using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
+                            using (FileStream sourceStream = new FileStream(ei.FilePath, FileMode.Open, FileAccess.Read))
                             using (FileStream destStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
                             {
                                 sourceStream.CopyTo(destStream);
                             }
                         }
                     }
-                     imageNameList.Add(imageName);
+                    imageNameList.Add(imageName);
                     varFileCount++;
-                     if (string.IsNullOrEmpty(varImagePath))
+                    if (string.IsNullOrEmpty(varImagePath))
                         varImagePath = imageName;
                     else
                         varImagePath += "," + imageName;
                 }
-                 string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
-                 string[] varvalue = result.Split('~');
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
+                string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -9030,7 +9030,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tbProduct_Selecting(object sender, TabControlCancelEventArgs e)
+        private void tbProduct_Selecting(object sender, TabControlCancelEventArgs e)
         {
             udfnTabEnable(sender, e);
         }
@@ -9082,7 +9082,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtIntermediateUPP_Enter(object sender, EventArgs e)
+        private void txtIntermediateUPP_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -9094,7 +9094,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtIntermediateUPP_KeyDown(object sender, KeyEventArgs e)
+        private void txtIntermediateUPP_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -9109,7 +9109,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtIntermediateUPP_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtIntermediateUPP_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -9124,7 +9124,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtIntermediateUPP_Leave(object sender, EventArgs e)
+        private void txtIntermediateUPP_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -9136,7 +9136,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbIntermediateUnit_Enter(object sender, EventArgs e)
+        private void cmbIntermediateUnit_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -9148,7 +9148,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbIntermediateUnit_KeyDown(object sender, KeyEventArgs e)
+        private void cmbIntermediateUnit_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -9163,7 +9163,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbIntermediateUnit_KeyPress(object sender, KeyPressEventArgs e)
+        private void cmbIntermediateUnit_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -9175,7 +9175,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbIntermediateUnit_Leave(object sender, EventArgs e)
+        private void cmbIntermediateUnit_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -9187,7 +9187,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbIntermediateUnit_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbIntermediateUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -9206,7 +9206,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductionMSQ_Enter(object sender, EventArgs e)
+        private void txtProductionMSQ_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -9218,7 +9218,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductionMSQ_KeyDown(object sender, KeyEventArgs e)
+        private void txtProductionMSQ_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -9240,7 +9240,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductionMSQ_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtProductionMSQ_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -9248,7 +9248,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -9260,7 +9260,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductionMSQ_Leave(object sender, EventArgs e)
+        private void txtProductionMSQ_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -9272,18 +9272,18 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void tbProduct_Click(object sender, EventArgs e)
+        private void tbProduct_Click(object sender, EventArgs e)
         {
             try
             {
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void DGV_FilterProduct_DoubleClick(object sender, EventArgs e)
+        private void DGV_FilterProduct_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -9309,16 +9309,16 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void grdPrice_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void grdPrice_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
         }
-         private void grdPrice_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void grdPrice_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                 if (e.RowIndex < 0) return;
-                 // When clmStatus changes
+                if (e.RowIndex < 0) return;
+                // When clmStatus changes
                 //if (grdPrice.Columns[e.ColumnIndex].Name == "clmStatus")
                 //{
                 //}
@@ -9330,9 +9330,9 @@ using System.Windows.Forms;
                         {
                             UpdateRateWithGST(e.RowIndex); //// value change function
                         }
-                     }
+                    }
                 }
-                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValue")
+                if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValue")
                 {
                     if (Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true) /////CP ENABLE
                     {
@@ -9342,25 +9342,25 @@ using System.Windows.Forms;
                         }
                     }
                 }
-                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffset")
+                if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffset")
                 {
-                     if ((Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true) && Convert.ToString(grdPrice.Rows[e.RowIndex].Cells["clmOffset"].Value) == "453") //yes
+                    if ((Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true) && Convert.ToString(grdPrice.Rows[e.RowIndex].Cells["clmOffset"].Value) == "453") //yes
                     {
-                         grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].ReadOnly = false;
+                        grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].ReadOnly = false;
                         grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].Style.BackColor = Color.White;
                     }
                     else
                     {
-                         grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].ReadOnly = true;
+                        grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].ReadOnly = true;
                         grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].Style.BackColor = Color.LightGray;
                     }
-                     RemoveRateWithGST(e.RowIndex, 1);
+                    RemoveRateWithGST(e.RowIndex, 1);
                 }
-                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmAutoCalc")
+                if (grdPrice.Columns[e.ColumnIndex].Name == "clmAutoCalc")
                 {
                     bool isChecked = Convert.ToBoolean(grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].Value);
                     grdPrice.Rows[e.RowIndex].Cells["clmAutoSts"].Value = isChecked ? 453 : 454;
-                     var typeId = grdPrice.Rows[e.RowIndex].Cells["clmTypeId"].Value?.ToString();
+                    var typeId = grdPrice.Rows[e.RowIndex].Cells["clmTypeId"].Value?.ToString();
                     var mainstatusid = grdPrice.Rows[e.RowIndex].Cells["clmStatus"].Value?.ToString();
                     if (mainstatusid == "453") //-- yes
                     {
@@ -9369,29 +9369,29 @@ using System.Windows.Forms;
                             if (Convert.ToString(grdPrice.Rows[e.RowIndex].Cells["clmAutoSts"].Value) == "454")
                             {
                                 RemoveRateWithGST(e.RowIndex, 2);
-                                 grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = false;
+                                grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = false;
                                 grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
                             }
                             else
                             {
-                                 grdPrice.Rows[e.RowIndex].Cells["clmRate"].Value = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[0].Cells["clmRate"].Value?.ToString()) ? "0" : grdPrice.Rows[0].Cells["clmRate"].Value) +
-                                Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value?.ToString())
-                                        ? "0" : grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value);
+                                grdPrice.Rows[e.RowIndex].Cells["clmRate"].Value = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[0].Cells["clmRate"].Value?.ToString()) ? "0" : grdPrice.Rows[0].Cells["clmRate"].Value) +
+                               Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value?.ToString())
+                                       ? "0" : grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value);
                                 grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = true;
                                 grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
-                                 if (varMarginType == 482)  ////percentage
+                                if (varMarginType == 482)  ////percentage
                                 {
                                     UpdateRateWithGST(e.RowIndex); //// value change function
                                 }
                                 else ////value
                                 {
                                     UpdateRateWithGSTValue(e.RowIndex); ////percentage change function
-                                 }
+                                }
                             }
                         }
                     }
-                 }
-                 if (e.ColumnIndex == grdPrice.Columns["chkColumn"].Index)
+                }
+                if (e.ColumnIndex == grdPrice.Columns["chkColumn"].Index)
                 {
                     bool isChecked = Convert.ToBoolean(grdPrice.Rows[e.RowIndex].Cells["chkColumn"].Value);
                     grdPrice.Rows[e.RowIndex].Cells["clmStatus"].Value = isChecked ? 453 : 454;
@@ -9404,15 +9404,15 @@ using System.Windows.Forms;
                         grdPrice.Rows[0].Cells["clmRate"].ReadOnly = true;
                         grdPrice.Rows[0].Cells["clmRate"].Value = 0;
                         grdPrice.Rows[0].Cells["clmRate"].Style.BackColor = Color.LightGray;
-                         grdPrice.Rows[e.RowIndex].Cells["clmMinQty"].ReadOnly = true;
+                        grdPrice.Rows[e.RowIndex].Cells["clmMinQty"].ReadOnly = true;
                         grdPrice.Rows[e.RowIndex].Cells["clmMinQty"].Style.BackColor = Color.LightGray;
-                         udfnRateDisable();
+                        udfnRateDisable();
                     }
                 }
-                 if (varuppValue != 0)
+                if (varuppValue != 0)
                 {
                     grdPrice.Rows[e.RowIndex].Cells["clmBulkRate"].Value = Convert.ToDecimal(grdPrice.Rows[e.RowIndex].Cells["clmRate"].Value) * varuppValue;
-                 }
+                }
             }
             catch (Exception ex)
             {
@@ -9420,7 +9420,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void grdPrice_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        private void grdPrice_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
             {
@@ -9435,7 +9435,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtTeller_Enter(object sender, EventArgs e)
+        private void TxtTeller_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -9448,28 +9448,28 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void grdPrice_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void grdPrice_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.RowIndex < 0) return;
-                 // When user edits clmRate
+                // When user edits clmRate
                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmRate")
                 {
                     string cp_value = grdPrice.Rows[0].Cells["clmRate"].Value?.ToString();
-                     bool isChecked = Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value);
+                    bool isChecked = Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value);
                     if (isChecked)
                     {
-                         if (cp_value == "" || cp_value == "0" || cp_value.StartsWith("0", StringComparison.OrdinalIgnoreCase))
+                        if (cp_value == "" || cp_value == "0" || cp_value.StartsWith("0", StringComparison.OrdinalIgnoreCase))
                         {
                             varCpValFlag = 1;
                             //MessageBox.Show("CP Value is not empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                             //this.BeginInvoke(new Action(() =>
+                            //this.BeginInvoke(new Action(() =>
                             //{
                             //    grdPrice.CurrentCell = grdPrice.Rows[e.RowIndex].Cells["clmRate"];
                             //    grdPrice.BeginEdit(true);
                             //}));
-                             SPDataService objDServ = new SPDataService();
+                            SPDataService objDServ = new SPDataService();
                             string varMessage = objDServ.udfnGetMessages(202);
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -9482,14 +9482,14 @@ using System.Windows.Forms;
                     }
                     UpdateRate(e.RowIndex);
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void TxtTeller_KeyDown(object sender, KeyEventArgs e)
+        private void TxtTeller_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -9519,7 +9519,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtTeller_Leave(object sender, EventArgs e)
+        private void TxtTeller_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -9542,13 +9542,13 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void grdPrice_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        private void grdPrice_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
             {
                 if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate" || grdPrice.CurrentCell.OwningColumn.Name == "clmNewRate")
                 {
-                     e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -9559,7 +9559,7 @@ using System.Windows.Forms;
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -9568,7 +9568,7 @@ using System.Windows.Forms;
                 int varQty = 3;
                 if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate" || grdPrice.CurrentCell.OwningColumn.Name == "clmNewRate")
                 {
-                     if (grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty")
+                    if (grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty")
                     {
                         //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                         //{
@@ -9702,7 +9702,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void grdPrice_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void grdPrice_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
             {
@@ -9731,46 +9731,46 @@ using System.Windows.Forms;
                             else
                             {
                                 row.Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
-                             }
+                            }
                         }
                     }
-                     if (row.Cells["clmTypeid"].Value != null &&
-                        row.Cells["clmTypeid"].Value.ToString() == "446")
+                    if (row.Cells["clmTypeid"].Value != null &&
+                       row.Cells["clmTypeid"].Value.ToString() == "446")
                     {
                         row.Cells["clmOffset"].ReadOnly = true;
                         row.Cells["clmAutoCalc"].ReadOnly = true;
-                         DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
                         print.Value = "";
                         row.Cells["clmAutoCalc"] = print;
                         print.ReadOnly = true;
-                         DataGridViewTextBoxCell print1 = new DataGridViewTextBoxCell();
+                        DataGridViewTextBoxCell print1 = new DataGridViewTextBoxCell();
                         print1.Value = "";
                         row.Cells["clmOffset"] = print1;
                         print1.ReadOnly = true;
-                         // 1. Clear the ComboBox value
+                        // 1. Clear the ComboBox value
                         row.Cells["clmMinQty"].Value = "";
                         //row.Cells["clmOffsetValuePer"].Value = "";
                         //row.Cells["clmOffsetValue"].Value = "";
-                         // 2. Make ComboBox cell readonly
+                        // 2. Make ComboBox cell readonly
                         row.Cells["clmMinQty"].ReadOnly = true;
                         //row.Cells["clmOffsetValuePer"].ReadOnly = true;
                         //row.Cells["clmOffsetValue"].ReadOnly = true; 
-                         // Optional: give a light gray background to show it's disabled
+                        // Optional: give a light gray background to show it's disabled
                         row.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
                         if (row.Cells["clmStatus"].Value == "454")
                         {
-                             row.Cells["clmRate"].ReadOnly = true;
+                            row.Cells["clmRate"].ReadOnly = true;
                             row.Cells["clmRate"].Style.BackColor = Color.LightGray;
                         }
                         else
                         {
-                         }
+                        }
                         //row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
                         row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
                         row.Cells["clmAutoCalc"].Style.BackColor = Color.LightGray;
-                         if (Convert.ToInt32(cmbProductType.SelectedValue) == 342) //Child
+                        if (Convert.ToInt32(cmbProductType.SelectedValue) == 342) //Child
                         {
                             if (varParentEnable == 453)
                             {
@@ -9784,28 +9784,28 @@ using System.Windows.Forms;
                             row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
                         }
                     }
-                     if (row.Cells["clmTypeid"].Value != null &&
-                        row.Cells["clmTypeid"].Value.ToString() == "447")
+                    if (row.Cells["clmTypeid"].Value != null &&
+                       row.Cells["clmTypeid"].Value.ToString() == "447")
                     {
                         //row.Cells["clmOffset"].ReadOnly = true;
-                         //row.Cells["clmOffset"].Value = 453; 
+                        //row.Cells["clmOffset"].Value = 453; 
                         //row.Cells["clmStatus"].Value = 453;
-                         row.Cells["chkColumn"].ReadOnly = true;
+                        row.Cells["chkColumn"].ReadOnly = true;
                         row.Cells["chkColumn"].Value = true;
                         row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
-                         //// 1. Clear the ComboBox value
+                        //// 1. Clear the ComboBox value
                         //row.Cells["clmMinQty"].Value = "";
                         //row.Cells["clmOffsetValuePer"].Value = "";
-                         //// 2. Make ComboBox cell readonly
+                        //// 2. Make ComboBox cell readonly
                         //row.Cells["clmMinQty"].ReadOnly = true;
                         //row.Cells["clmOffsetValuePer"].ReadOnly = true;
-                         // Optional: give a light gray background to show it's disabled
+                        // Optional: give a light gray background to show it's disabled
                         //row.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffset"].Style.BackColor = Color.LightGray; 
-                     }
-                     if (varMarginType == 482)
+                    }
+                    if (varMarginType == 482)
                     {
                         //gst comes then values disable
                         row.Cells["clmOffsetValue"].ReadOnly = true;
@@ -9817,7 +9817,7 @@ using System.Windows.Forms;
                         row.Cells["clmOffsetValuePer"].ReadOnly = true;
                         row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                     }
-                 }
+                }
             }
             catch (Exception ex)
             {
@@ -9825,7 +9825,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvVerified1_KeyDown(object sender, KeyEventArgs e)
+        private void LvVerified1_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -9840,7 +9840,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbStockTakken_Enter(object sender, EventArgs e)
+        private void cmbStockTakken_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -9852,7 +9852,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbStockTakken_Leave(object sender, EventArgs e)
+        private void cmbStockTakken_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -9864,7 +9864,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbStockTakken_KeyDown(object sender, KeyEventArgs e)
+        private void cmbStockTakken_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -9879,7 +9879,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbStockTakken_KeyPress(object sender, KeyPressEventArgs e)
+        private void cmbStockTakken_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -9891,7 +9891,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         public void udfnVerified1()
+        public void udfnVerified1()
         {
             try
             {
@@ -9912,19 +9912,19 @@ using System.Windows.Forms;
                 btnSave.Focus();
             }
         }
-         private void txtDSubGroup_TextChanged(object sender, EventArgs e)
+        private void txtDSubGroup_TextChanged(object sender, EventArgs e)
         {
-         }
-         private void txtSubgroupType_TextChanged(object sender, EventArgs e)
+        }
+        private void txtSubgroupType_TextChanged(object sender, EventArgs e)
         {
-         }
-         private void txtDGroup_TextChanged(object sender, EventArgs e)
+        }
+        private void txtDGroup_TextChanged(object sender, EventArgs e)
         {
-         }
-         private void txtDBrand_TextChanged(object sender, EventArgs e)
+        }
+        private void txtDBrand_TextChanged(object sender, EventArgs e)
         {
-         }
-         private void txtSalesPICode_Enter(object sender, EventArgs e)
+        }
+        private void txtSalesPICode_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -9942,7 +9942,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void chkSalesProduct_CheckedChanged(object sender, EventArgs e)
+        private void chkSalesProduct_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
@@ -10010,7 +10010,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtSalesPICode_Leave(object sender, EventArgs e)
+        private void txtSalesPICode_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -10022,7 +10022,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductUsage_KeyDown(object sender, KeyEventArgs e)
+        private void txtProductUsage_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -10051,7 +10051,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductUsage_Enter(object sender, EventArgs e)
+        private void txtProductUsage_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -10063,7 +10063,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void txtProductUsage_Leave(object sender, EventArgs e)
+        private void txtProductUsage_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -10088,7 +10088,7 @@ using System.Windows.Forms;
             {
                 if (e.RowIndex < 0)
                     return;
-                 if (grdSubgroups.Columns[e.ColumnIndex].Name == "clmCheck")
+                if (grdSubgroups.Columns[e.ColumnIndex].Name == "clmCheck")
                 {
                     grdSubgroups.CommitEdit(DataGridViewDataErrorContexts.Commit);
                     HandleSingleCheckSelection(grdSubgroups, "clmCheck");
@@ -10100,7 +10100,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void btnPrev_Click(object sender, EventArgs e)
+        private void btnPrev_Click(object sender, EventArgs e)
         {
             try
             {
@@ -10116,7 +10116,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void btnNext_Click(object sender, EventArgs e)
+        private void btnNext_Click(object sender, EventArgs e)
         {
             try
             {
@@ -10137,7 +10137,7 @@ using System.Windows.Forms;
             try
             {
                 DataGridViewCheckBoxCell checkedCell = null;
-                 // Find the checked row
+                // Find the checked row
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
                     if (row.IsNewRow)
@@ -10146,20 +10146,20 @@ using System.Windows.Forms;
                     if (!isApproved)
                         continue;
                     DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
-                     bool isChecked = chk.Value != null && Convert.ToBoolean(chk.Value);
-                     if (isChecked)
+                    bool isChecked = chk.Value != null && Convert.ToBoolean(chk.Value);
+                    if (isChecked)
                     {
                         checkedCell = chk;
                         break;
                     }
                 }
-                 // Enable/Disable checkboxes
+                // Enable/Disable checkboxes
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
                     if (row.IsNewRow)
                         continue;
-                     DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
-                     bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[checkBoxColumnName];
+                    bool isApproved = Convert.ToString(row.Cells["clmImageApproved"].Value) == "Yes";
                     if (!isApproved)
                     {
                         chk.Value = false;
@@ -10168,7 +10168,7 @@ using System.Windows.Forms;
                         chk.Style.SelectionBackColor = Color.LightGray;
                         continue;
                     }
-                     if (checkedCell == null)
+                    if (checkedCell == null)
                     {
                         // No row selected -> enable all
                         chk.ReadOnly = false;
@@ -10203,19 +10203,19 @@ using System.Windows.Forms;
         {
             if (e.RowIndex < 0)
                 return;
-             if (grdSubgroups.Columns[e.ColumnIndex].Name == "clmCheck")
+            if (grdSubgroups.Columns[e.ColumnIndex].Name == "clmCheck")
             {
                 HandleSingleCheckSelection(grdSubgroups, "clmCheck");
             }
         }
-         private void grdSubgroups_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        private void grdSubgroups_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (grdSubgroups.IsCurrentCellDirty)
             {
                 grdSubgroups.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
-         private void btnViewImages_Click(object sender, EventArgs e)
+        private void btnViewImages_Click(object sender, EventArgs e)
         {
             try
             {
@@ -10237,12 +10237,12 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void btnFetch_Click(object sender, EventArgs e)
+        private void btnFetch_Click(object sender, EventArgs e)
         {
             try
             {
                 List<string> selectedImages = GetCheckedRowImages();
-                 if (selectedImages.Count == 0)
+                if (selectedImages.Count == 0)
                 {
                     MessageBox.Show("Please select a product.");
                     return;
@@ -10256,11 +10256,11 @@ using System.Windows.Forms;
                         "Confirm",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
-                     if (result == DialogResult.No)
+                    if (result == DialogResult.No)
                     {
                         return;
                     }
-                     ClearUploadedImages();
+                    ClearUploadedImages();
                     //ClearFourthTabImages();
                 }
                 tbProduct.SelectedIndex = 3;
@@ -10280,7 +10280,7 @@ using System.Windows.Forms;
                 pictureBox1.Image.Dispose();
                 pictureBox1.Image = null;
             }
-             if (originalImage != null)
+            if (originalImage != null)
             {
                 originalImage.Dispose();
                 originalImage = null;
@@ -10290,13 +10290,13 @@ using System.Windows.Forms;
                 pbSubgroupImages.Image.Dispose();
                 pbSubgroupImages.Image = null;
             }
-             if (originalSubgroupImage != null)
+            if (originalSubgroupImage != null)
             {
                 originalSubgroupImage.Dispose();
                 originalSubgroupImage = null;
             }
             currentImage = null;
-             // Dispose every thumbnail
+            // Dispose every thumbnail
             foreach (EditableImage img in editableImages)
             {
                 if (img.EditedImage != null)
@@ -10304,7 +10304,7 @@ using System.Windows.Forms;
                     img.EditedImage.Dispose();
                     img.EditedImage = null;
                 }
-                 if (img.Thumbnail != null)
+                if (img.Thumbnail != null)
                 {
                     if (img.Thumbnail.Image != null)
                     {
@@ -10312,16 +10312,16 @@ using System.Windows.Forms;
                         img.Thumbnail.Image = null;
                     }
                 }
-                 if (img.ContainerPanel != null)
+                if (img.ContainerPanel != null)
                 {
                     img.ContainerPanel.Dispose();
                 }
             }
-             editableImages.Clear();
+            editableImages.Clear();
             imagePaths.Clear();
             flowLayoutPanel1.Controls.Clear();
-             zoom = 1f;
-             UpdateZoomButtonsVisibility();
+            zoom = 1f;
+            UpdateZoomButtonsVisibility();
         }
         private void ClearFourthTabImages()
         {
@@ -10332,29 +10332,29 @@ using System.Windows.Forms;
                     ei.EditedImage.Dispose();
                     ei.EditedImage = null;
                 }
-                 if (ei.Thumbnail.Image != null)
+                if (ei.Thumbnail.Image != null)
                 {
                     ei.Thumbnail.Image.Dispose();
                     ei.Thumbnail.Image = null;
                 }
-                 ei.ContainerPanel.Dispose();
+                ei.ContainerPanel.Dispose();
             }
-             editableImages.Clear();
+            editableImages.Clear();
             imagePaths.Clear();
-             flowLayoutPanel1.Controls.Clear();
-             if (pictureBox1.Image != null)
+            flowLayoutPanel1.Controls.Clear();
+            if (pictureBox1.Image != null)
             {
                 pictureBox1.Image.Dispose();
                 pictureBox1.Image = null;
             }
-             if (originalImage != null)
+            if (originalImage != null)
             {
                 originalImage.Dispose();
                 originalImage = null;
             }
-             currentImage = null;
+            currentImage = null;
             zoom = 1.0f;
-             UpdateZoomButtonsVisibility();
+            UpdateZoomButtonsVisibility();
         }
         private void AddFetchedImagesToUploadPanel(List<string> fetchedImages)
         {
@@ -10383,14 +10383,14 @@ using System.Windows.Forms;
         }
         private void txtDStatus_TextChanged(object sender, EventArgs e)
         {
-         }
-         private void grdPrice_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        }
+        private void grdPrice_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-         }
-         private void textBox16_TextChanged(object sender, EventArgs e)
+        }
+        private void textBox16_TextChanged(object sender, EventArgs e)
         {
-         }
-         private void LvVerified1_DoubleClick(object sender, EventArgs e)
+        }
+        private void LvVerified1_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -10402,7 +10402,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbActive_CheckedChanged(object sender, EventArgs e)
+        private void RbActive_CheckedChanged(object sender, EventArgs e)
         {
             udfnStatusFlag();
         }
@@ -10440,7 +10440,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DGV_FilterSalesLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DGV_FilterSalesLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -10462,7 +10462,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DGV_FilterSalesLocation_KeyDown(object sender, KeyEventArgs e)
+        private void DGV_FilterSalesLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -10483,19 +10483,19 @@ using System.Windows.Forms;
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterSalesLocation.CurrentCell = DGV_FilterSalesLocation.Rows[RowIndex].Cells[ClmIndex];
-                             txtSaleLocation.Text = DGV_FilterSalesLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
-                             txtSaleLocation.Focus();
+                            txtSaleLocation.Text = DGV_FilterSalesLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
+                            txtSaleLocation.Focus();
                             txtSaleLocation.SelectionStart = txtSaleLocation.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterSalesLocation.Rows.Count) DGV_FilterSalesLocation.CurrentCell = DGV_FilterSalesLocation.Rows[RowIndex].Cells[ClmIndex];
-                             if (RowIndex != (DGV_FilterSalesLocation.Rows.Count))
+                            if (RowIndex != (DGV_FilterSalesLocation.Rows.Count))
                             {
                                 txtSaleLocation.Text = DGV_FilterSalesLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
-                             txtSaleLocation.Focus();
+                            txtSaleLocation.Focus();
                             txtSaleLocation.SelectionStart = txtSaleLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -10536,7 +10536,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DGV_FilterPurLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DGV_FilterPurLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -10561,7 +10561,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void DGV_FilterPurLocation_KeyDown(object sender, KeyEventArgs e)
+        private void DGV_FilterPurLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -10582,19 +10582,19 @@ using System.Windows.Forms;
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterPurLocation.CurrentCell = DGV_FilterPurLocation.Rows[RowIndex].Cells[ClmIndex];
-                             txtPurLocation.Text = DGV_FilterPurLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
-                             txtPurLocation.Focus();
+                            txtPurLocation.Text = DGV_FilterPurLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
+                            txtPurLocation.Focus();
                             txtPurLocation.SelectionStart = txtPurLocation.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_FilterPurLocation.Rows.Count) DGV_FilterPurLocation.CurrentCell = DGV_FilterPurLocation.Rows[RowIndex].Cells[ClmIndex];
-                             if (RowIndex != (DGV_FilterPurLocation.Rows.Count))
+                            if (RowIndex != (DGV_FilterPurLocation.Rows.Count))
                             {
                                 txtPurLocation.Text = DGV_FilterPurLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
-                             txtPurLocation.Focus();
+                            txtPurLocation.Focus();
                             txtPurLocation.SelectionStart = txtPurLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -10639,26 +10639,26 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbInActive_CheckedChanged(object sender, EventArgs e)
+        private void RbInActive_CheckedChanged(object sender, EventArgs e)
         {
             udfnStatusFlag();
         }
         private void LvSaleRack_SelectedIndexChanged(object sender, EventArgs e)
         {
-         }
-         private void cmbProductType_KeyPress(object sender, KeyPressEventArgs e)
+        }
+        private void cmbProductType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 e.Handled = true;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void DpSalesEffectiveFrom_KeyDown(object sender, KeyEventArgs e)
+        private void DpSalesEffectiveFrom_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -10673,7 +10673,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void BtnPURHSN_Click(object sender, EventArgs e)
+        private void BtnPURHSN_Click(object sender, EventArgs e)
         {
             try
             {
@@ -10764,7 +10764,7 @@ using System.Windows.Forms;
             try
             {
                 DateTime maxDate = DateTime.MinValue;
-                 foreach (DataGridViewRow row in grdPurHSN.Rows)
+                foreach (DataGridViewRow row in grdPurHSN.Rows)
                 {
                     if (row.IsNewRow) continue;
                     DateTime rowDate;
@@ -10793,7 +10793,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void BtnSalesHSN_Click(object sender, EventArgs e)
+        private void BtnSalesHSN_Click(object sender, EventArgs e)
         {
             try
             {
@@ -10884,7 +10884,7 @@ using System.Windows.Forms;
             try
             {
                 DateTime maxDate = DateTime.MinValue;
-                 foreach (DataGridViewRow row in grdSalesHSN.Rows)
+                foreach (DataGridViewRow row in grdSalesHSN.Rows)
                 {
                     if (row.IsNewRow) continue;
                     DateTime rowDate;
@@ -10925,7 +10925,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbActive_Leave(object sender, EventArgs e)
+        private void RbActive_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -10937,7 +10937,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbInActive_Enter(object sender, EventArgs e)
+        private void RbInActive_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -10949,7 +10949,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void RbInActive_Leave(object sender, EventArgs e)
+        private void RbInActive_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -10961,7 +10961,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtRackDescription_Enter(object sender, EventArgs e)
+        private void TxtRackDescription_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -10973,7 +10973,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSaleRack_Enter(object sender, EventArgs e)
+        private void TxtSaleRack_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -10989,7 +10989,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSaleRack_KeyDown(object sender, KeyEventArgs e)
+        private void TxtSaleRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -11038,7 +11038,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSaleRack_Leave(object sender, EventArgs e)
+        private void TxtSaleRack_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -11066,14 +11066,14 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvSaleRack_KeyDown(object sender, KeyEventArgs e)
+        private void LvSaleRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSaleRackAutocomplete();
-                     if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                    if (Convert.ToString(lblSaleRackCode.Text) != "0")
                     {
                         txtRackMOQQty.Enabled = true;
                     }
@@ -11086,7 +11086,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvSaleRack_DoubleClick(object sender, EventArgs e)
+        private void LvSaleRack_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -11102,7 +11102,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void LvSubGroup_DoubleClick(object sender, EventArgs e)
+        private void LvSubGroup_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -11116,7 +11116,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         public void udfnEdit()
+        public void udfnEdit()
         {
             try
             {
@@ -11224,7 +11224,7 @@ using System.Windows.Forms;
                             varStatusID = Convert.ToInt16(objDS.Tables[0].Rows[0]["STS"]);
                             txtProductUsage.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PR_ProductUsage"]);
                             lvHsnCode.Visible = false;
-                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["PR_MRPflag"]) == "1") { chkMRP.Checked = true; } else { chkMRP.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cmbRM.SelectedValue = 241; } else { cmbRM.SelectedValue = 240; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1")
@@ -11272,9 +11272,9 @@ using System.Windows.Forms;
                                 chkSameasPurchase.Checked = false;
                             }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SalesProduct"]) == "1") { chkSalesProduct.Checked = true; } else { chkSalesProduct.Checked = false; }
-                             udfnDropDownload();
-                             //txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
-                             //objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
+                            udfnDropDownload();
+                            //txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
+                            //objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
                             //objdservice.CloseConnection();
                             //if (objDS != null)
                             //{
@@ -11304,23 +11304,23 @@ using System.Windows.Forms;
                                 DGV_FilterProduct.Visible = false;
                                 DGV_FilterProduct.DataSource = null;
                                 lblParentcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ParentId"]);
-                             }
+                            }
                             cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
                             cmbChildUnit.SelectedValue = objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString();
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
                             cmbConcern.Enabled = false;
-                             txtIntermediateUPP.Text = Convert.ToString(objDS.Tables[0].Rows[0]["IntermediateUPP"].ToString());
+                            txtIntermediateUPP.Text = Convert.ToString(objDS.Tables[0].Rows[0]["IntermediateUPP"].ToString());
                             cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
                             txtProductionMSQ.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductionMSQ"].ToString());
-                             cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
+                            cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
                             cmbStockTakken.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Stk_Type"].ToString());
-                             int FocusFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Focus_Flag"].ToString())
-                                , Priority_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Priority_Flag"].ToString())
-                                , Spl_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Spl_Flag"].ToString())
-                                , OwnFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_OwnFlag"].ToString())
-                                , ProductSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Product_Scheme_Eligible"].ToString())
-                                , BillSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Bill_Scheme_Eligible"].ToString());
-                             if (FocusFlag == 1)
+                            int FocusFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Focus_Flag"].ToString())
+                               , Priority_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Priority_Flag"].ToString())
+                               , Spl_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Spl_Flag"].ToString())
+                               , OwnFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_OwnFlag"].ToString())
+                               , ProductSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Product_Scheme_Eligible"].ToString())
+                               , BillSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Bill_Scheme_Eligible"].ToString());
+                            if (FocusFlag == 1)
                             {
                                 chkFocus.Checked = true;
                             }
@@ -11344,7 +11344,7 @@ using System.Windows.Forms;
                             {
                                 chkBillScheme.Checked = true;
                             }
-                             btnSave.Text = "Update";
+                            btnSave.Text = "Update";
                             //pnlStatus.Enabled = true;
                             if (Convert.ToString(lblSaleRackCode.Text) != "0")
                             {
@@ -11377,8 +11377,8 @@ using System.Windows.Forms;
                                     int varAddFlag = Convert.ToInt32(dr["AddFlag"]);
                                     int varEditFlag = Convert.ToInt32(dr["EditFlag"]);
                                     string changedDate = DateTime.TryParse(dr["PRHSN_ChangedDate"]?.ToString(), out DateTime dt) ? dt.ToString("yyyy-MM-dd HH:mm:ss.fff") : string.Empty;
-                                     int userID = Convert.ToInt32(dr["PRHSN_MakerID"]);
-                                     // Add row to Purchase Grid (Type = 1)
+                                    int userID = Convert.ToInt32(dr["PRHSN_MakerID"]);
+                                    // Add row to Purchase Grid (Type = 1)
                                     if (varHsnType == 1)
                                     {
                                         grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag, changedDate, userID);
@@ -11394,7 +11394,7 @@ using System.Windows.Forms;
                                 }
                                 grdPurHSN.ClearSelection();
                                 grdSalesHSN.ClearSelection();
-                                 grdPurHSN.Columns["clmPurGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurHSN.Columns["clmPurGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSalesHSN.Columns["clmSalesGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 //Reset flag and Hide Remove Icon For Purchase HSN
                                 udfnUpdateRemovableFlags();
@@ -11585,9 +11585,9 @@ using System.Windows.Forms;
                 lvSaleRack.Visible = false;
             }
         }
-         private void BtnGroup_Click(object sender, EventArgs e)
+        private void BtnGroup_Click(object sender, EventArgs e)
         {
-             try
+            try
             {
                 varGroupCode = 0;
                 MainForm.objCP_Group = new CP_Group();
@@ -11609,7 +11609,7 @@ using System.Windows.Forms;
             }
             finally { lvGroup.Visible = false; }
         }
-         private void BtnBrand_Click(object sender, EventArgs e)
+        private void BtnBrand_Click(object sender, EventArgs e)
         {
             try
             {
@@ -11672,7 +11672,7 @@ using System.Windows.Forms;
                     {
                         varSubgroupId = varId_SubGroup;
                     }
-                     // varSubgroupId = lblSubGroupCode.Text;
+                    // varSubgroupId = lblSubGroupCode.Text;
                     MainForm.objCP_Brand.varmastertype = 1;
                     MainForm.objCP_Brand.ShowDialog();
                     if (btnSave.Text == "Save")
@@ -11728,7 +11728,7 @@ using System.Windows.Forms;
             finally
             { varSubgroupId = ""; }
         }
-         private void BtnUnit_Click(object sender, EventArgs e)
+        private void BtnUnit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -11749,7 +11749,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void TxtGrossWeight_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtGrossWeight_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -11757,7 +11757,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -11770,9 +11770,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtWMinSaleQty_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtWMinSaleQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -11780,7 +11780,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -11793,9 +11793,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtSelfLife_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtSelfLife_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -11803,7 +11803,7 @@ using System.Windows.Forms;
                 {
                     e.Handled = true;
                 }
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
@@ -11816,9 +11816,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void TxtSelfLife_Leave(object sender, EventArgs e)
+        private void TxtSelfLife_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -11842,26 +11842,26 @@ using System.Windows.Forms;
                 }
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-         }
-         private void TxtSelfLife_Enter(object sender, EventArgs e)
+        }
+        private void TxtSelfLife_Enter(object sender, EventArgs e)
         {
             try
             {
                 txtSelfLife.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-             {
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void TxtSelfLife_KeyDown(object sender, KeyEventArgs e)
+        private void TxtSelfLife_KeyDown(object sender, KeyEventArgs e)
         {
-             try
+            try
             {
                 if (cmbPeriod.Visible == true)
                 {
@@ -11870,16 +11870,16 @@ using System.Windows.Forms;
                         cmbPeriod.Focus();
                     }
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void CP_Product_KeyDown(object sender, KeyEventArgs e)
+        private void CP_Product_KeyDown(object sender, KeyEventArgs e)
         {
-             try
+            try
             {
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -11890,14 +11890,14 @@ using System.Windows.Forms;
                     btnSave_Click(sender, e);
                     varF5Flag = 1;
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void TxtUpp_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtUpp_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -11909,7 +11909,7 @@ using System.Windows.Forms;
                 //{
                 //    e.Handled = true;
                 //}
-                 // Allow only one decimal point
+                // Allow only one decimal point
                 //if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 //{
                 //    e.Handled = true;
@@ -11922,9 +11922,9 @@ using System.Windows.Forms;
             }
             finally
             {
-             }
+            }
         }
-         private void CP_Product_FormClosing(object sender, FormClosingEventArgs e)
+        private void CP_Product_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
@@ -11939,14 +11939,14 @@ using System.Windows.Forms;
                             {
                                 pictureBox1.Image?.Dispose();
                                 pictureBox1.Image = null;
-                                 originalImage?.Dispose();
+                                originalImage?.Dispose();
                                 originalImage = null;
-                                 foreach (var ei in editableImages)
+                                foreach (var ei in editableImages)
                                 {
                                     ei.Thumbnail.Image?.Dispose();
                                     ei.Thumbnail.Image = null;
                                 }
-                                 GC.Collect();
+                                GC.Collect();
                                 GC.WaitForPendingFinalizers();
                                 e.Cancel = false;
                             }
@@ -11975,9 +11975,9 @@ using System.Windows.Forms;
             {
                 if (txtProductName.Text.Trim() != "")
                 {
-                     lblParentcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                    lblParentcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                     if (lblParentcode.Text == "" || lblParentcode.Text == "")
+                    if (lblParentcode.Text == "" || lblParentcode.Text == "")
                     {
                         MessageBox.Show("Invalid parent name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -12032,7 +12032,7 @@ using System.Windows.Forms;
                 lvPurRack.Visible = false;
             }
         }
-         public void udfnPriceMarkup()
+        public void udfnPriceMarkup()
         {
             try
             {
@@ -12073,11 +12073,11 @@ using System.Windows.Forms;
                                 Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_NEW_RATE"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_NEW_RATE"].ToString();
                                 grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"] == DBNull.Value ||
                                 Convert.ToInt32(objDs.Tables[0].Rows[i]["PRPM_MINQTY"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_MINQTY"].ToString();
-                                 grdPrice.Rows[row].Cells["clmLastRate"].Value = objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"] == DBNull.Value ||
-                                Convert.ToInt32(objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"].ToString();
-                                 grdPrice.Rows[row].Cells["clmRCFrom"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["RC From"]);
-                                 grdPrice.Rows[row].Cells["clmRateStatus"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["STS_Name"]);
-                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_STSID"]) == "453")
+                                grdPrice.Rows[row].Cells["clmLastRate"].Value = objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"] == DBNull.Value ||
+                               Convert.ToInt32(objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"].ToString();
+                                grdPrice.Rows[row].Cells["clmRCFrom"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["RC From"]);
+                                grdPrice.Rows[row].Cells["clmRateStatus"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["STS_Name"]);
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_STSID"]) == "453")
                                 {
                                     grdPrice.Rows[row].Cells["chkColumn"].Value = true;
                                 }
@@ -12085,7 +12085,7 @@ using System.Windows.Forms;
                                 {
                                     grdPrice.Rows[row].Cells["chkColumn"].Value = false;
                                 }
-                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_AUTO_STSID"]) == "453")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_AUTO_STSID"]) == "453")
                                 {
                                     grdPrice.Rows[row].Cells["clmAutoCalc"].Value = true;
                                 }
@@ -12093,19 +12093,19 @@ using System.Windows.Forms;
                                 {
                                     grdPrice.Rows[row].Cells["clmAutoCalc"].Value = false;
                                 }
-                                 //grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"];
+                                //grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"];
                                 grdPrice.Rows[row].Cells["clmOffset"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_STSID"];
                                 //grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"];
                                 //grdPrice.Rows[row].Cells["clmOffsetValue"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"];
                                 //grdPrice.Rows[row].Cells["clmBulkRate"].Value = Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_RATE"]) * varuppValue;
-                                 grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"] == DBNull.Value ||
-                                Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"].ToString();
-                                 grdPrice.Rows[row].Cells["clmOffsetValue"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"] == DBNull.Value ||
-                                Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"].ToString();
-                                 grdPrice.Rows[row].Cells["clmBulkRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"] == DBNull.Value ||
-                                    Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_RATE"]) * varuppValue == 0 ? "" : (Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_RATE"]) * varuppValue).ToString();
-                             }
-                             if (varuppValue == 0)
+                                grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"] == DBNull.Value ||
+                               Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"].ToString();
+                                grdPrice.Rows[row].Cells["clmOffsetValue"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"] == DBNull.Value ||
+                               Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"].ToString();
+                                grdPrice.Rows[row].Cells["clmBulkRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"] == DBNull.Value ||
+                                   Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_RATE"]) * varuppValue == 0 ? "" : (Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_RATE"]) * varuppValue).ToString();
+                            }
+                            if (varuppValue == 0)
                             {
                                 grdPrice.Columns["clmBulkRate"].Visible = false;
                             }
@@ -12115,7 +12115,7 @@ using System.Windows.Forms;
                             }
                             //grdPrice.Columns["clmStatus"].DisplayIndex = 2;
                             //grdPrice.Columns["clmOffset"].DisplayIndex = 4;
-                         }
+                        }
                         ApprovalFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["ApprovalFlag"]);
                         if (objDs.Tables[2].Rows.Count > 0)
                         {
@@ -12134,7 +12134,7 @@ using System.Windows.Forms;
                         //    grdPrice.Enabled = false;
                         //    btnSave.Enabled = false;
                         //}
-                         if (varStatusID == 71)
+                        if (varStatusID == 71)
                         {
                             grdPrice.Enabled = false;
                             btnSave.Enabled = false;
@@ -12170,7 +12170,7 @@ using System.Windows.Forms;
                             //varComboBoxColoumn.ValueMember = "ID";
                             //varComboBoxColoumn.DisplayMember = "Status";
                             //varComboBoxColoumn.DataSource = objDT.Tables[0];
-                             var varComboBoxColoumn2 = (DataGridViewComboBoxColumn)grdPrice.Columns["clmOffset"];
+                            var varComboBoxColoumn2 = (DataGridViewComboBoxColumn)grdPrice.Columns["clmOffset"];
                             DataGridViewComboBoxColumn comboBoxColumn2 = new DataGridViewComboBoxColumn();
                             varComboBoxColoumn2.ValueMember = "ID";
                             varComboBoxColoumn2.DisplayMember = "Status";
@@ -12185,7 +12185,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void udfnRateDisable()
+        private void udfnRateDisable()
         {
             try
             {
@@ -12220,7 +12220,7 @@ using System.Windows.Forms;
                                     rowvalue.Cells["clmOffsetValue"].ReadOnly = false;
                                     rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
                                 }
-                             }
+                            }
                         }
                         else
                         {
@@ -12233,8 +12233,8 @@ using System.Windows.Forms;
                             rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                             rowvalue.Cells["clmOffsetValue"].ReadOnly = true;
                             rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
-                         }
-                         rowvalue.Cells["clmRate"].ReadOnly = true;
+                        }
+                        rowvalue.Cells["clmRate"].ReadOnly = true;
                         rowvalue.Cells["clmRate"].Style.BackColor = Color.LightGray;
                         rowvalue.Cells["clmBulkRate"].ReadOnly = true;
                         rowvalue.Cells["clmBulkRate"].Style.BackColor = Color.LightGray;
@@ -12249,7 +12249,7 @@ using System.Windows.Forms;
                         rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         rowvalue.Cells["clmOffsetValue"].ReadOnly = true;
                         rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
-                     }
+                    }
                 }
             }
             catch (Exception ex)
@@ -12258,7 +12258,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void udfnRateenable(int row)
+        private void udfnRateenable(int row)
         {
             try
             {
@@ -12266,7 +12266,7 @@ using System.Windows.Forms;
                 var marginStatus = grdPrice.Rows[row].Cells["clmOffset"].Value?.ToString();
                 var autoUpdateStatus = grdPrice.Rows[row].Cells["clmAutoSts"].Value?.ToString();
                 var typeId = grdPrice.Rows[row].Cells["clmTypeId"].Value?.ToString();
-                 // If status = 453 → disable clmRate
+                // If status = 453 → disable clmRate
                 if (typeId != "446")
                 {
                     if (status == "453") //sts true
@@ -12274,11 +12274,11 @@ using System.Windows.Forms;
                         grdPrice.Rows[row].Cells["clmOffset"].ReadOnly = false;
                         grdPrice.Rows[row].Cells["clmRate"].ReadOnly = true;
                         grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.LightGray;
-                         if (marginStatus == "453")
+                        if (marginStatus == "453")
                         {
                             grdPrice.Rows[row].Cells["clmAutoCalc"].ReadOnly = false;
                             grdPrice.Rows[row].Cells["clmAutoCalc"].Style.BackColor = Color.White;
-                             if (autoUpdateStatus == "453")
+                            if (autoUpdateStatus == "453")
                             {
                                 grdPrice.Rows[row].Cells["clmNewRate"].ReadOnly = true;
                                 grdPrice.Rows[row].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
@@ -12288,8 +12288,8 @@ using System.Windows.Forms;
                                 grdPrice.Rows[row].Cells["clmNewRate"].ReadOnly = false;
                                 grdPrice.Rows[row].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
                             }
-                             ///// margin percentage and value 
-                             if (varMarginType == 482)
+                            ///// margin percentage and value 
+                            if (varMarginType == 482)
                             {
                                 grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = false;
                                 grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
@@ -12298,16 +12298,16 @@ using System.Windows.Forms;
                             {
                                 grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = false;
                                 grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
-                             }
-                         }
+                            }
+                        }
                         else
                         {
                             grdPrice.Rows[row].Cells["clmNewRate"].ReadOnly = false;
                             grdPrice.Rows[row].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
                         }
-                         grdPrice.Rows[row].Cells["clmMinQty"].ReadOnly = false;
+                        grdPrice.Rows[row].Cells["clmMinQty"].ReadOnly = false;
                         grdPrice.Rows[row].Cells["clmMinQty"].Style.BackColor = Color.PaleGreen;
-                     }
+                    }
                     else
                     {
                         grdPrice.Rows[row].Cells["clmNewRate"].ReadOnly = true;
@@ -12330,7 +12330,7 @@ using System.Windows.Forms;
                     //// cp wise enable bulk enable
                     grdPrice.Rows[row].Cells["clmRate"].ReadOnly = false;
                     grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.PaleGreen;
-                     foreach (DataGridViewRow rowvalue in grdPrice.Rows)
+                    foreach (DataGridViewRow rowvalue in grdPrice.Rows)
                     {
                         if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) != "")
                         {
@@ -12338,9 +12338,9 @@ using System.Windows.Forms;
                             {
                                 rowvalue.Cells["clmRate"].ReadOnly = true;
                                 rowvalue.Cells["clmRate"].Style.BackColor = Color.LightGray;
-                                 if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) == "453")
+                                if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) == "453")
                                 {
-                                     if (varMarginType == 482)
+                                    if (varMarginType == 482)
                                     {
                                         rowvalue.Cells["clmOffsetValuePer"].ReadOnly = false;
                                         rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
@@ -12349,22 +12349,22 @@ using System.Windows.Forms;
                                     {
                                         rowvalue.Cells["clmOffsetValue"].ReadOnly = false;
                                         rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
-                                     }
-                                     rowvalue.Cells["clmAutoCalc"].ReadOnly = false;
+                                    }
+                                    rowvalue.Cells["clmAutoCalc"].ReadOnly = false;
                                     rowvalue.Cells["clmAutoCalc"].Style.BackColor = Color.White;
-                                     if (Convert.ToString(rowvalue.Cells["clmAutoSts"].Value) == "453")
+                                    if (Convert.ToString(rowvalue.Cells["clmAutoSts"].Value) == "453")
                                     {
                                         rowvalue.Cells["clmNewRate"].ReadOnly = true;
                                         rowvalue.Cells["clmNewRate"].Style.BackColor = Color.LightGray;
                                     }
                                 }
-                                 rowvalue.Cells["clmOffset"].ReadOnly = false;
+                                rowvalue.Cells["clmOffset"].ReadOnly = false;
                             }
                             else
                             {
-                                 //rowvalue.Cells["clmRate"].ReadOnly = false;
+                                //rowvalue.Cells["clmRate"].ReadOnly = false;
                                 //rowvalue.Cells["clmRate"].Style.BackColor = Color.PaleGreen;
-                                 //rowvalue.Cells["clmOffset"].Value = 454;
+                                //rowvalue.Cells["clmOffset"].Value = 454;
                                 rowvalue.Cells["clmOffset"].ReadOnly = true;
                                 rowvalue.Cells["clmOffsetValuePer"].ReadOnly = true;
                                 rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
@@ -12400,7 +12400,7 @@ using System.Windows.Forms;
                 // Get status of the row where user typed
                 var status = grdPrice.Rows[rowIndex].Cells["clmStatus"].Value?.ToString();
                 var typeId = grdPrice.Rows[rowIndex].Cells["clmTypeId"].Value?.ToString();
-                 //   453 displayvalue is yes
+                //   453 displayvalue is yes
                 // typeId = 446 is base rate
                 if (status == "453" || typeId == "446")
                 {
@@ -12410,31 +12410,31 @@ using System.Windows.Forms;
                     {
                         if (Convert.ToString(row.Cells["clmStatus"].Value) == "453" && Convert.ToString(row.Cells["clmoffset"].Value) == "453")
                         {
-                             row.Cells["clmRate"].Value = newRate;
-                             if (varMarginType == 482)  ///percentage
+                            row.Cells["clmRate"].Value = newRate;
+                            if (varMarginType == 482)  ///percentage
                             {
                                 UpdateRateWithGST(row.Index); // value change function
                             }
                             else ////value
                             {
                                 UpdateRateWithGSTValue(row.Index); //percentage change function
-                             }
+                            }
                             if (varuppValue != 0)
                             {
                                 row.Cells["clmBulkRate"].Value = Convert.ToDecimal(row.Cells["clmRate"].Value) * varuppValue;
-                             }
+                            }
                         }
                     }
                 }
                 if (varuppValue != 0)
                 {
                     grdPrice.Rows[rowIndex].Cells["clmBulkRate"].Value = Convert.ToDecimal(grdPrice.Rows[rowIndex].Cells["clmRate"].Value) * varuppValue;
-                 }
-                 //var newRate = grdPrice.Rows[rowIndex].Cells["clmRate"].Value;
+                }
+                //var newRate = grdPrice.Rows[rowIndex].Cells["clmRate"].Value;
                 //// Apply new rate to ALL rows
                 //foreach (DataGridViewRow row in grdPrice.Rows)
                 //{
-                 //    // Get status of the row where user typed
+                //    // Get status of the row where user typed
                 //    var status = row.Cells["clmStatus"].Value?.ToString();
                 //    var typeId = row.Cells["clmTypeId"].Value?.ToString();
                 //    if (status == "453" || typeId == "446")
@@ -12458,7 +12458,7 @@ using System.Windows.Forms;
             try
             {
                 // Only update all rows if status == 154
-                 double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
+                double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
                 double newGst = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value?.ToString())
                                 ? "0" : grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value);
                 double NewRate = Rate * (newGst / 100);
@@ -12467,8 +12467,8 @@ using System.Windows.Forms;
                 var mainstatus = grdPrice.Rows[rowIndex].Cells["clmstatus"].Value?.ToString();
                 NewRate = Math.Round(NewRate, 2, MidpointRounding.AwayFromZero);
                 Rate = Math.Round(Rate, 2, MidpointRounding.AwayFromZero);
-                 int vartype = Convert.ToInt32(grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value);
-                 if (mainstatus == "453") //yes
+                int vartype = Convert.ToInt32(grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value);
+                if (mainstatus == "453") //yes
                 {
                     if (status == "453" && statusAutoUpdate == "453") //yes
                     {
@@ -12479,37 +12479,37 @@ using System.Windows.Forms;
                             grdPrice.Columns["clmOffsetValue"].DefaultCellStyle.Format = "0.00";
                             grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value = Convert.ToDouble(NewRate.ToString("0.00"));
                         }
-                     }
+                    }
                     else
                     {
                         grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
-                     }
+                    }
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void UpdateRateWithGSTValue(int rowIndex)
+        private void UpdateRateWithGSTValue(int rowIndex)
         {
             try
             {
                 // Only update all rows if status == 154
-                 double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
-                    double NewRate = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value);
+                double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
+                double NewRate = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value?.ToString())
+                            ? "0" : grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value);
                 var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
                 var mainstatus = grdPrice.Rows[rowIndex].Cells["clmstatus"].Value?.ToString();
                 var statusAutoUpdate = grdPrice.Rows[rowIndex].Cells["clmAutoSts"].Value?.ToString();
-                 double newGst = (NewRate / Rate) * 100;
-                 if (NewRate == 0 && Rate == 0)
+                double newGst = (NewRate / Rate) * 100;
+                if (NewRate == 0 && Rate == 0)
                 {
                     newGst = 0;
                 }
                 newGst = Math.Round(newGst, 2);
-                 if (mainstatus == "453") //yes
+                if (mainstatus == "453") //yes
                 {
                     if (status == "453" && statusAutoUpdate == "453") //yes
                     {
@@ -12521,19 +12521,19 @@ using System.Windows.Forms;
                         grdPrice.Rows[rowIndex].Cells["clmRate"].Value = grdPrice.Rows[rowIndex].Cells["clmRate"].Value;
                     }
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         private void RemoveRateWithGST(int rowIndex, int type)
+        private void RemoveRateWithGST(int rowIndex, int type)
         {
             try
             {
                 // Only update all rows if status == 154
-                 var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
+                var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
                 var mainstatus = grdPrice.Rows[rowIndex].Cells["clmStatus"].Value?.ToString();
                 var statusAutoUpdate = grdPrice.Rows[rowIndex].Cells["clmAutoSts"].Value?.ToString();
                 if (mainstatus == "453") //yes
@@ -12542,25 +12542,25 @@ using System.Windows.Forms;
                     {
                         //double Rate = string.IsNullOrEmpty(grdPrice.Rows[0].Cells["clmRate"].Value.ToString()) ? 0 :
                         //    Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
-                         //grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
-                         ////selected value is yes  
+                        //grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
+                        ////selected value is yes  
                         ///
                         if (type == 2) //from  autocalc
                         {
-                             if (varMarginType == 482)  ///percentage
+                            if (varMarginType == 482)  ///percentage
                             {
                                 UpdateRateWithGST(rowIndex); // value change function
                             }
                             else ////value
                             {
                                 UpdateRateWithGSTValue(rowIndex); //percentage change function
-                             }
-                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = true;
+                            }
+                            grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = true;
                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
                         }
-                         else
+                        else
                         {
-                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = false;
+                            grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = false;
                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
                         }
                         if (varMarginType == 482)
@@ -12572,8 +12572,8 @@ using System.Windows.Forms;
                         {
                             grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = false;
                             grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
-                         }
-                     }
+                        }
+                    }
                     else
                     {
                         if (type == 1) // from offset
@@ -12582,21 +12582,21 @@ using System.Windows.Forms;
                             grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                             grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = true;
                             grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
-                             grdPrice.Rows[rowIndex].Cells["clmAutoCalc"].Style.BackColor = Color.LightGray;
+                            grdPrice.Rows[rowIndex].Cells["clmAutoCalc"].Style.BackColor = Color.LightGray;
                             grdPrice.Rows[rowIndex].Cells["clmAutoCalc"].ReadOnly = true;
-                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = false;
+                            grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = false;
                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
                         }
                     }
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-         public void allowonlynumber(object sender, KeyPressEventArgs e)
+        public void allowonlynumber(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -12620,6 +12620,5 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-     }
+    }
 }
- 

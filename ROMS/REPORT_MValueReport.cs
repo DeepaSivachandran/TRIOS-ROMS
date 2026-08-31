@@ -2437,8 +2437,7 @@ namespace ROMS
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             udfnSelectAll();
-        }
-
+        } 
         public void udfnList(int varFlag)
         {
             try

@@ -214,6 +214,13 @@ namespace ROMS
                     tpPincode.Show("Please enter pincode", txtPincode, 5000);
                     blnErrorFlag = true;
                 }
+                else if (txtPincode.TextLength != 6)
+                {
+                    epCity.SetError(txtPincode, "Please enter valid pincode");
+                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPincode.ShowAlways = true;
+                    tpPincode.Show("Please enter valid pincode", txtPincode, 5000);
+                }
                 if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                 {
                     epCity.SetError(cmbState, "Please select state name.");
