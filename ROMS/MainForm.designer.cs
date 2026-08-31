@@ -266,7 +266,6 @@ namespace ROMS
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSReports = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCardPayment = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
