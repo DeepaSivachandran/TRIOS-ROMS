@@ -292,7 +292,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.label1.Location = new System.Drawing.Point(130, 11);
+            this.label1.Location = new System.Drawing.Point(135, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 20);
             this.label1.TabIndex = 111111229;
@@ -770,7 +770,7 @@
             // 
             this.lblDESubGroup.AutoSize = true;
             this.lblDESubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESubGroup.Location = new System.Drawing.Point(334, 11);
+            this.lblDESubGroup.Location = new System.Drawing.Point(352, 11);
             this.lblDESubGroup.Name = "lblDESubGroup";
             this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
             this.lblDESubGroup.TabIndex = 29;
@@ -827,7 +827,7 @@
             // 
             this.lblDEGroup.AutoSize = true;
             this.lblDEGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEGroup.Location = new System.Drawing.Point(228, 12);
+            this.lblDEGroup.Location = new System.Drawing.Point(233, 12);
             this.lblDEGroup.Name = "lblDEGroup";
             this.lblDEGroup.Size = new System.Drawing.Size(88, 20);
             this.lblDEGroup.TabIndex = 27;
@@ -850,7 +850,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(466, 12);
+            this.label4.Location = new System.Drawing.Point(471, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 20);
             this.label4.TabIndex = 958804;
@@ -860,7 +860,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.label2.Location = new System.Drawing.Point(599, 12);
+            this.label2.Location = new System.Drawing.Point(604, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 20);
             this.label2.TabIndex = 111111231;

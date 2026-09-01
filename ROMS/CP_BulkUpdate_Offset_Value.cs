@@ -56,6 +56,7 @@ namespace ROMS
 
                 pnlRateCategory.Visible = false;
                 this.ActiveControl = cmbOffsetType;
+                cmbOffsetType.Enabled = false;
             }
             catch (Exception ex)
             {
