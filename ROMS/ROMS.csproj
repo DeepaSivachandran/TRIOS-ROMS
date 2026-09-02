@@ -1055,6 +1055,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_CardMachine.cs">
+      <DependentUpon>RPT_SALES_CardMachine.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_Area.cs">
       <DependentUpon>RPT_SALES_Area.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1078,6 +1085,27 @@
     </Compile>
     <Compile Include="Reports\RPT_SALES_DeliveryPerson.cs">
       <DependentUpon>RPT_SALES_DeliveryPerson.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_MarriageHall.cs">
+      <DependentUpon>RPT_SALES_MarriageHall.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Route_Area_Customer.cs">
+      <DependentUpon>RPT_SALES_Route_Area_Customer.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Route_Area_Customer_Count.cs">
+      <DependentUpon>RPT_SALES_Route_Area_Customer_Count.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1817,6 +1845,60 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_SALES_MarriageHall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_MarriageHall.designer.cs">
+      <DependentUpon>REPORT_SALES_MarriageHall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_CardMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_CardMachine.designer.cs">
+      <DependentUpon>REPORT_SALES_CardMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_Area.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Area.designer.cs">
+      <DependentUpon>REPORT_SALES_Area.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_CustomerType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_CustomerType.designer.cs">
+      <DependentUpon>REPORT_SALES_CustomerType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_DeliveryPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_DeliveryPerson.designer.cs">
+      <DependentUpon>REPORT_SALES_DeliveryPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_Mobile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Mobile.designer.cs">
+      <DependentUpon>REPORT_SALES_Mobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_Transport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Transport.designer.cs">
+      <DependentUpon>REPORT_SALES_Transport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_Vehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Vehicle.designer.cs">
+      <DependentUpon>REPORT_SALES_Vehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_Route.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Route.designer.cs">
+      <DependentUpon>REPORT_SALES_Route.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_CP_Product_Rate.cs">
       <SubType>Form</SubType>
@@ -6395,6 +6477,26 @@
       <LastGenOutput>RPT_SALES_Transport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_SALES_CardMachine.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CardMachine.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_MarriageHall.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_MarriageHall.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Route_Area_Customer_Count.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Route_Area_Customer_Count.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Route_Area_Customer.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Route_Area_Customer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SAL_Summary.cs</LastGenOutput>
@@ -7490,6 +7592,33 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_SALES_MarriageHall.resx">
+      <DependentUpon>REPORT_SALES_MarriageHall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_CardMachine.resx">
+      <DependentUpon>REPORT_SALES_CardMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_Area.resx">
+      <DependentUpon>REPORT_SALES_Area.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_CustomerType.resx">
+      <DependentUpon>REPORT_SALES_CustomerType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_DeliveryPerson.resx">
+      <DependentUpon>REPORT_SALES_DeliveryPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_Mobile.resx">
+      <DependentUpon>REPORT_SALES_Mobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_Transport.resx">
+      <DependentUpon>REPORT_SALES_Transport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_Vehicle.resx">
+      <DependentUpon>REPORT_SALES_Vehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_Route.resx">
+      <DependentUpon>REPORT_SALES_Route.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product_Rate.resx">
       <DependentUpon>REPORT_CP_Product_Rate.cs</DependentUpon>
     </EmbeddedResource>

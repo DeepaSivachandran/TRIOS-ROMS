@@ -46,13 +46,12 @@ namespace ROMS
                 obj.paraMobileId = pbMobileId;
                 obj.paraMobileName = txtMobileName.Text.Trim();
                 obj.paraVendor = Convert.ToInt32(cmbVendor.SelectedValue);
+                obj.paraMobileType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                 obj.paraMobileNo = txtMobileNo.Text.Trim();
                 obj.paraStatusId = PbStatus;
                 obj.paraOriginator = varoriginator;
-
                 varResult = objspservice.udfnMobile(obj);
                 objspservice.CloseConnection();
-
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -62,6 +61,7 @@ namespace ROMS
                     {
                         txtMobileName.Text = "";
                         cmbVendor.SelectedValue = -1;
+                        cmbTransactionType.SelectedValue = -1;
                         txtMobileNo.Text = "";
                         this.ActiveControl = txtMobileName;
                     }
@@ -120,6 +120,13 @@ namespace ROMS
                     cmbVendor.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMobile.ShowAlways = true;
                     tpMobile.Show("Please select vendor.", cmbVendor, 5000);
+                }
+                else if (Convert.ToInt32(cmbTransactionType.SelectedValue) == -1)
+                {
+                    epMobile.SetError(cmbTransactionType, "Please select mobile type.");
+                    cmbTransactionType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMobile.ShowAlways = true;
+                    tpMobile.Show("Please select mobile type.", cmbTransactionType, 5000);
                 }
                 else if (txtMobileNo.Text.Trim() == "" || txtMobileNo.TextLength < 10)
                 {
@@ -191,6 +198,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,137) AND MSTID<>0 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbVendor, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,1) AND MSTID !=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 if (pbMobileId == 0)
                 {
@@ -243,6 +251,7 @@ namespace ROMS
                         {
                             txtMobileName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Mobile Name"]);
                             cmbVendor.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Vendor"]);
+                            cmbTransactionType.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Mobile Type"]);
                             txtMobileNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Mobile No."]);
                             txtMobileName.Focus();
                         }
@@ -476,21 +485,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        if (rbActive.Checked == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInActive.Focus();
-                        }
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    cmbTransactionType.Focus();
                 }
             }
             catch (Exception ex)
@@ -576,6 +571,75 @@ namespace ROMS
             try
             {
                 e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTransactionType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTransactionType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTransactionType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTransactionType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTransactionType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTransactionType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

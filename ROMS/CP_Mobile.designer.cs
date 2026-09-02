@@ -45,6 +45,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.epMobile)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
@@ -57,7 +59,7 @@
             this.txtMobileName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMobileName.MaxLength = 50;
             this.txtMobileName.Name = "txtMobileName";
-            this.txtMobileName.Size = new System.Drawing.Size(255, 32);
+            this.txtMobileName.Size = new System.Drawing.Size(255, 27);
             this.txtMobileName.TabIndex = 0;
             this.txtMobileName.Enter += new System.EventHandler(this.txtMobileName_Enter);
             this.txtMobileName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMobileName_KeyDown);
@@ -72,11 +74,11 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtStatus.Location = new System.Drawing.Point(6, 103);
+            this.txtStatus.Location = new System.Drawing.Point(6, 130);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(183, 32);
+            this.txtStatus.Size = new System.Drawing.Size(183, 27);
             this.txtStatus.TabIndex = 11;
             this.txtStatus.Text = "Status";
             // 
@@ -85,11 +87,11 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(189, 103);
+            this.pnlStatus.Location = new System.Drawing.Point(189, 130);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(255, 27);
-            this.pnlStatus.TabIndex = 3;
+            this.pnlStatus.TabIndex = 4;
             // 
             // rbActive
             // 
@@ -99,8 +101,8 @@
             this.rbActive.Location = new System.Drawing.Point(57, 1);
             this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbActive.Name = "rbActive";
-            this.rbActive.Size = new System.Drawing.Size(75, 30);
-            this.rbActive.TabIndex = 3;
+            this.rbActive.Size = new System.Drawing.Size(60, 24);
+            this.rbActive.TabIndex = 4;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -115,8 +117,8 @@
             this.rbInActive.Location = new System.Drawing.Point(125, 1);
             this.rbInActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbInActive.Name = "rbInActive";
-            this.rbInActive.Size = new System.Drawing.Size(87, 30);
-            this.rbInActive.TabIndex = 4;
+            this.rbInActive.Size = new System.Drawing.Size(70, 24);
+            this.rbInActive.TabIndex = 5;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.rbInActive_Enter);
@@ -132,12 +134,14 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(183, 32);
+            this.textBox1.Size = new System.Drawing.Size(183, 27);
             this.textBox1.TabIndex = 12;
             this.textBox1.Text = "Mobile Name";
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.cmbTransactionType);
+            this.grbForm.Controls.Add(this.textBox3);
             this.grbForm.Controls.Add(this.cmbVendor);
             this.grbForm.Controls.Add(this.txtMobileNo);
             this.grbForm.Controls.Add(this.textBox4);
@@ -153,7 +157,7 @@
             this.grbForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbForm.Name = "grbForm";
             this.grbForm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbForm.Size = new System.Drawing.Size(460, 182);
+            this.grbForm.Size = new System.Drawing.Size(460, 209);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
@@ -163,7 +167,7 @@
             this.cmbVendor.FormattingEnabled = true;
             this.cmbVendor.Location = new System.Drawing.Point(189, 49);
             this.cmbVendor.Name = "cmbVendor";
-            this.cmbVendor.Size = new System.Drawing.Size(255, 33);
+            this.cmbVendor.Size = new System.Drawing.Size(255, 27);
             this.cmbVendor.TabIndex = 1;
             this.cmbVendor.Enter += new System.EventHandler(this.cmbVendor_Enter);
             this.cmbVendor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbVendor_KeyDown);
@@ -176,7 +180,7 @@
             this.txtMobileNo.Location = new System.Drawing.Point(189, 76);
             this.txtMobileNo.MaxLength = 15;
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(255, 32);
+            this.txtMobileNo.Size = new System.Drawing.Size(255, 27);
             this.txtMobileNo.TabIndex = 2;
             this.txtMobileNo.Enter += new System.EventHandler(this.txtMobileNo_Enter);
             this.txtMobileNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMobileNo_KeyDown);
@@ -192,17 +196,17 @@
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(183, 32);
+            this.textBox4.Size = new System.Drawing.Size(183, 27);
             this.textBox4.TabIndex = 15;
             this.textBox4.Text = "Mobile Number";
             // 
             // txtVendor
             // 
             this.txtVendor.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtVendor.Location = new System.Drawing.Point(6, 148);
+            this.txtVendor.Location = new System.Drawing.Point(6, 175);
             this.txtVendor.MaxLength = 50;
             this.txtVendor.Name = "txtVendor";
-            this.txtVendor.Size = new System.Drawing.Size(88, 32);
+            this.txtVendor.Size = new System.Drawing.Size(88, 27);
             this.txtVendor.TabIndex = 1;
             this.txtVendor.Visible = false;
             this.txtVendor.Enter += new System.EventHandler(this.txtVendor_Enter);
@@ -218,7 +222,7 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(183, 32);
+            this.textBox2.Size = new System.Drawing.Size(183, 27);
             this.textBox2.TabIndex = 13;
             this.textBox2.Text = "Vendor";
             // 
@@ -227,11 +231,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(370, 138);
+            this.btnClose.Location = new System.Drawing.Point(370, 165);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 34);
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -242,11 +246,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(282, 138);
+            this.btnSave.Location = new System.Drawing.Point(282, 165);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(82, 34);
-            this.btnSave.TabIndex = 5;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -254,12 +258,38 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox3.Location = new System.Drawing.Point(6, 103);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(183, 27);
+            this.textBox3.TabIndex = 16;
+            this.textBox3.Text = "Department";
+            // 
+            // cmbTransactionType
+            // 
+            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTransactionType.FormattingEnabled = true;
+            this.cmbTransactionType.Location = new System.Drawing.Point(189, 103);
+            this.cmbTransactionType.Name = "cmbTransactionType";
+            this.cmbTransactionType.Size = new System.Drawing.Size(255, 27);
+            this.cmbTransactionType.TabIndex = 3;
+            this.cmbTransactionType.Enter += new System.EventHandler(this.cmbTransactionType_Enter);
+            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTransactionType_KeyDown);
+            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbTransactionType_KeyPress);
+            this.cmbTransactionType.Leave += new System.EventHandler(this.cmbTransactionType_Leave);
+            // 
             // CP_Mobile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 26F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(484, 211);
+            this.ClientSize = new System.Drawing.Size(484, 235);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -300,5 +330,7 @@
         private System.Windows.Forms.TextBox txtMobileNo;
         private System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.ComboBox cmbVendor;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox cmbTransactionType;
     }
 }
