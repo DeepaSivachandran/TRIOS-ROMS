@@ -1097,6 +1097,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_NonMovingProSales.cs">
+      <DependentUpon>RPT_SALES_NonMovingProSales.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_Route_Area_Customer.cs">
       <DependentUpon>RPT_SALES_Route_Area_Customer.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6495,6 +6502,11 @@
     <Content Include="Reports\RPT_SALES_Route_Area_Customer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_Route_Area_Customer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_NonMovingProSales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_NonMovingProSales.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
