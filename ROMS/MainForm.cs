@@ -5472,7 +5472,15 @@ namespace ROMS
 
         private void tsmSalesSummaryDetail_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_SummaryDetail, "REPORT_SALES_SummaryDetail", 140301);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void tsmSalesProductWise_Click(object sender, EventArgs e)
@@ -5490,7 +5498,15 @@ namespace ROMS
 
         private void tsmSalesNonMovingProduct_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                //OpenReportForm(ref MainForm.objREPORT_SALES_NonMovingProduct, "REPORT_SALES_NonMovingProduct", 140303);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void tsmLock_Click(object sender, EventArgs e)
