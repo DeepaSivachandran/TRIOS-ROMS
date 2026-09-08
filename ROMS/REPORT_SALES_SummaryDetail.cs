@@ -8,14 +8,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-
 namespace ROMS
 {
     public partial class REPORT_SALES_SummaryDetail : Form
     {
         MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -24,10 +22,8 @@ namespace ROMS
         private ToolTip tpMonths = new ToolTip();
         private ToolTip tpDays = new ToolTip();
         private ToolTip tpReportType = new ToolTip();
-
         private List<ComboItem> months;
         private List<ComboItem> days;
-
         public REPORT_SALES_SummaryDetail()
         {
             InitializeComponent();
@@ -90,19 +86,15 @@ namespace ROMS
                 else
                 {
                     int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
-
                     if (varReportType == 645 || varReportType == 647 || varReportType == 649)
                     {
                         var selDayIds = cmbMultiSelectDays.CheckedIds;
-
                         if (selDayIds == null || selDayIds.Count == 0)
                         {
                             epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
                             cmbMultiSelectDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
                             tpDays.ShowAlways = true;
                             tpDays.Show("Please select at least one day.", cmbMultiSelectDays, 5000);
-
                             cmbMultiSelectDays.Focus();
                             return;
                         }
@@ -110,15 +102,12 @@ namespace ROMS
                     else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
                     {
                         var selMonthIds = cmbMultiMonths.CheckedIds;
-
                         if (selMonthIds == null || selMonthIds.Count == 0)
                         {
                             epReport.SetError(cmbMultiMonths, "Please select at least one month.");
                             cmbMultiMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
                             tpMonths.ShowAlways = true;
                             tpMonths.Show("Please select at least one month.", cmbMultiMonths, 5000);
-
                             cmbMultiMonths.Focus();
                             return;
                         }
@@ -162,7 +151,6 @@ namespace ROMS
                 string varSchemeTypeName = "-All-";
                 string varDayName = "-All-";
                 string varMonthName = "-All-";
-
                 int varBillType = 0;
                 int varSalesType = 0;
                 int varCustomerId = 0;
@@ -172,30 +160,22 @@ namespace ROMS
                 int varSchemeType = 0;
                 int varparaFlag = 0;
                 int varPrintType = 0;
-
                 string varDays = "0";
                 string varMonths = "0";
-
                 var selIds = cmbMultiMonths.CheckedIds;
                 var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
-
                 var selDayIds = cmbMultiSelectDays.CheckedIds;
                 var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
-
-
-
                 int varViewType = 0;
-
                 if (cmbSalesType.SelectedValue != null &&
-                    cmbSalesType.SelectedValue.ToString() != "")
+                   cmbSalesType.SelectedValue.ToString() != "")
                 {
                     int.TryParse(
                         cmbSalesType.SelectedValue.ToString(),
                         out varSalesType);
                 }
-
                 if (cmbBillCategory.SelectedValue != null &&
-                    cmbBillCategory.SelectedValue.ToString() != "")
+                   cmbBillCategory.SelectedValue.ToString() != "")
                 {
                     int.TryParse(
                         cmbBillCategory.SelectedValue.ToString(),
@@ -208,10 +188,8 @@ namespace ROMS
                         cmbBillType.SelectedValue.ToString(),
                         out varBillType);
                 }
-               
                 if (!string.IsNullOrWhiteSpace(cmbSalesType.Text))
                     varSalesTypeName = cmbSalesType.Text.Trim();
-
                 if (!string.IsNullOrWhiteSpace(cmbBillType.Text))
                     varBillTypeName = cmbBillType.Text.Trim();
                 int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
@@ -231,11 +209,9 @@ namespace ROMS
                 {
                     varViewType = 6;
                 }
-
                 if (varReportType == 668)
                 {
                     lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
-
                     if (string.IsNullOrWhiteSpace(lblDays.Text))
                     {
                         varDayName = "-All-";
@@ -250,7 +226,6 @@ namespace ROMS
                 else if (varReportType == 669)
                 {
                     lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
-
                     if (string.IsNullOrWhiteSpace(lblMonths.Text))
                     {
                         varMonthName = "-All-";
@@ -266,10 +241,8 @@ namespace ROMS
                 {
                     lblDays.Text = "";
                     lblMonths.Text = "";
-
                     varDays = "0";
                     varMonths = "0";
-
                     varDayName = "-All-";
                     varMonthName = "-All-";
                 }
@@ -279,19 +252,16 @@ namespace ROMS
                         cmbBillType.SelectedValue.ToString(),
                         out varBillType);
                 }
-
                 if (!string.IsNullOrWhiteSpace(cmbBillType.Text))
                 {
                     varBillTypeName = cmbBillType.Text.Trim();
                 }
-
                 if (cmbSalesType.SelectedValue != null && !string.IsNullOrWhiteSpace(cmbSalesType.SelectedValue.ToString()))
                 {
                     int.TryParse(
                         cmbSalesType.SelectedValue.ToString(),
                         out varSalesType);
                 }
-
                 if (!string.IsNullOrWhiteSpace(cmbSalesType.Text))
                 {
                     varSalesTypeName = cmbSalesType.Text.Trim();
@@ -299,10 +269,9 @@ namespace ROMS
                 if (!string.IsNullOrWhiteSpace(txtCustomer.Text))
                 {
                     varCustomerName = txtCustomer.Text.Trim();
-
                     int.TryParse(
-                        lblCustomerId.Text.Trim(),
-                        out varCustomerId);
+                       lblCustomerId.Text.Trim(),
+                       out varCustomerId);
                 }
                 if (cmbCustomerCategory.SelectedValue != null &&
     !string.IsNullOrWhiteSpace(cmbCustomerCategory.SelectedValue.ToString()))
@@ -311,15 +280,13 @@ namespace ROMS
                         cmbCustomerCategory.SelectedValue.ToString(),
                         out varCusCategoryId);
                 }
-
                 if (cmbSchemeType.SelectedValue != null &&
-    !string.IsNullOrWhiteSpace(cmbSchemeType.SelectedValue.ToString()))
+   !string.IsNullOrWhiteSpace(cmbSchemeType.SelectedValue.ToString()))
                 {
                     int.TryParse(
                         cmbSchemeType.SelectedValue.ToString(),
                         out varSchemeType);
                 }
-
                 if (!string.IsNullOrWhiteSpace(cmbSchemeType.Text))
                 {
                     varSchemeTypeName = cmbSchemeType.Text.Trim();
@@ -327,20 +294,16 @@ namespace ROMS
                 if (!string.IsNullOrWhiteSpace(txtBilledBy.Text))
                 {
                     varBilledByName = txtBilledBy.Text.Trim();
-
                     int.TryParse(
-                        lblBilledByID.Text.Trim(),
-                        out varBilledBy);
+                       lblBilledByID.Text.Trim(),
+                       out varBilledBy);
                 }
-
                 if (cmbPrintType.SelectedValue != null && !string.IsNullOrWhiteSpace(cmbPrintType.SelectedValue.ToString()))
                 {
                     int.TryParse(
                         cmbPrintType.SelectedValue.ToString(),
                         out varFlag);
                 }
-
-
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -357,7 +320,7 @@ namespace ROMS
                 objMR_Sales.paraFromTime = Convert.ToString(dpFromTime.Value.TimeOfDay);
                 objMR_Sales.paraToTime = Convert.ToString(dpToTime.Value.TimeOfDay);
                 objMR_Sales.paraSalesType = varSalesType;
-                objMR_Sales.paraBillType = varBillType; 
+                objMR_Sales.paraBillType = varBillType;
                 objMR_Sales.paraCustomerId = varCustomerId;
                 objMR_Sales.paraCUS_CategoryTypeID = varCusCategoryId;
                 objMR_Sales.paraBilledBy = varBilledBy;
@@ -366,12 +329,11 @@ namespace ROMS
                 objMR_Sales.paraDays = varDays;
                 objMR_Sales.paraMonths = varMonths;
                 objMR_Sales.paraBillCategory = varBillCategoryId;
-
                 objDs = objdserv.udfnSalesReports(objMR_Sales);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
-                {   
+                {
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
@@ -394,96 +356,38 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Monthwise.rpt");
                     }
-                    objBillreport.SetParameterValue(
-                        "paraUserName",
-                        MainForm.pbUserName ?? "");
-
-                    objBillreport.SetParameterValue(
-                        "paraHostName",
-                        MainForm.pbHostName ?? "");
-
-                    objBillreport.SetParameterValue(
-                        "paraFromDate",
-                        dpFromDate.Text.Trim());
-
-                    objBillreport.SetParameterValue(
-                        "paraToDate",
-                        dpToDate.Text.Trim());
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "");
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? "");
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text.Trim());
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text.Trim());
                     if (varReportType == 666)
                     {
-                        // ========================================================
-                        // RPT_SALES_Summary.rpt
-                        // ========================================================
-
-                        objBillreport.SetParameterValue(
-                            "paraCategoryName",
-                            varCategoryName);
-
-                        objBillreport.SetParameterValue(
-                            "paraProductName",
-                            varProductName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBillTypeName",
-                            varBillTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSalesTypeName",
-                            varSalesTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraFromTime",
-                            dpFromTime.Value.TimeOfDay);
-
-                        objBillreport.SetParameterValue(
-                            "paraToTime",
-                            dpToTime.Value.TimeOfDay);
-
-                        objBillreport.SetParameterValue(
-                            "paraBillByName",
-                            varBillByName);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerName",
-                            varCustomerName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSchemeTypeName",
-                            varSchemeTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilledBy",
-                            varBilledBy);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilltype",
-                            varBillType);
-
-                        objBillreport.SetParameterValue(
-                            "paraCusCategoryld",
-                            varCusCategoryId);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerld",
-                            varCustomerId);
-
-                        objBillreport.SetParameterValue(
-                            "paraSchemeType",
-                            varSchemeType);
-
-                        objBillreport.SetParameterValue(
-                            "paraViewType",
-                            varViewType);
-                    }
-                    else if (varReportType == 667)
-                    {
-                        string subReportName = objBillreport.Subreports[0].Name;
                         objBillreport.SetParameterValue("paraCategoryName", varCategoryName);
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
-                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.TimeOfDay);
-                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.TimeOfDay);
+                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm:ss"));
+                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm:ss"));
+                        objBillreport.SetParameterValue("paraBillByName", varBillByName);
+                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
+                        objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
+                        objBillreport.SetParameterValue("paraBilltype", varBillType);
+                        objBillreport.SetParameterValue("paraCusCategoryld", varCusCategoryId);
+                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
+                        objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
+                        objBillreport.SetParameterValue("paraViewType", varViewType);
+                    }
+                    else if (varReportType == 667)
+                    {
+                        string subReportName = objBillreport.Subreports[0].Name;
+
+                        objBillreport.SetParameterValue("paraCategoryName", varCategoryName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                        objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
+                        objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
+                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm:ss"));
+                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm:ss"));
                         objBillreport.SetParameterValue("paraBillByName", varBillByName);
                         objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
                         objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
@@ -495,175 +399,49 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
                         objBillreport.SetParameterValue("paraViewType", varViewType);
 
-                        objBillreport.SetParameterValue(
-                            "paraCategoryName",
-                            varCategoryName,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraProductName",
-                            varProductName,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBillTypeName",
-                            varBillTypeName,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSalesTypeName",
-                            varSalesTypeName,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraFromTime",
-                            dpFromTime.Value.TimeOfDay,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraToTime",
-                            dpToTime.Value.TimeOfDay,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBillByName",
-                            varBillByName,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerName",
-                            varCustomerName,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSchemeTypeName",
-                            varSchemeTypeName,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilledBy",
-                            varBilledBy,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilltype",
-                            varBillType,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraCusCategoryld",
-                            varCusCategoryId,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerld",
-                            varCustomerId,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraFlag",
-                            varFlag,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSchemeType",
-                            varSchemeType,
-                            subReportName);
-
-                        objBillreport.SetParameterValue(
-                            "paraViewType",
-                            varViewType,
-                            subReportName);
+                        objBillreport.SetParameterValue("paraCategoryName", varCategoryName, subReportName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName, subReportName);
+                        objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName, subReportName);
+                        objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName, subReportName);
+                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm:ss"), subReportName);
+                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm:ss"), subReportName);
+                        objBillreport.SetParameterValue("paraBillByName", varBillByName, subReportName);
+                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName, subReportName);
+                        objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName, subReportName);
+                        objBillreport.SetParameterValue("paraBilledBy", varBilledBy, subReportName);
+                        objBillreport.SetParameterValue("paraBilltype", varBillType, subReportName);
+                        objBillreport.SetParameterValue("paraCusCategoryld", varCusCategoryId, subReportName);
+                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId, subReportName);
+                        objBillreport.SetParameterValue("paraFlag", varFlag, subReportName);
+                        objBillreport.SetParameterValue("paraSchemeType", varSchemeType, subReportName);
+                        objBillreport.SetParameterValue("paraViewType", varViewType, subReportName);
                     }
                     else if (varReportType == 668)
                     {
-                        // ========================================================
-                        // RPT_SALES_Daywise.rpt
-                        // ========================================================
-
-                        objBillreport.SetParameterValue(
-                            "paraBillTypeName",
-                            varBillTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSalesTypeName",
-                            varSalesTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerName",
-                            varCustomerName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilledByName",
-                            varBilledByName);
-
-                        objBillreport.SetParameterValue(
-                            "paraDayName",
-                            varDayName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilledBy",
-                            varBilledBy);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilltype",
-                            varBillType);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerld",
-                            varCustomerId);
-
-                        objBillreport.SetParameterValue(
-                            "paraDays",
-                            varDays);
-
-                        objBillreport.SetParameterValue(
-                            "paraViewType",
-                            varViewType);
+                        objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
+                        objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
+                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraBilledByName", varBilledByName);
+                        objBillreport.SetParameterValue("paraDayName", varDayName);
+                        objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
+                        objBillreport.SetParameterValue("paraBilltype", varBillType);
+                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraViewType", varViewType);
                     }
                     else if (varReportType == 669)
                     {
-                        objBillreport.SetParameterValue(
-                            "paraBillTypeName",
-                            varBillTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSalesTypeName",
-                            varSalesTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerName",
-                            varCustomerName);
-
-                        objBillreport.SetParameterValue(
-                            "paraMonthName",
-                            varMonthName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilledByName",
-                            varBilledByName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilledBy",
-                            varBilledBy);
-
-                        objBillreport.SetParameterValue(
-                            "paraBilltype",
-                            varBillType);
-
-                        objBillreport.SetParameterValue(
-                            "paraCustomerld",
-                            varCustomerId);
-
-                        objBillreport.SetParameterValue(
-                            "paraMonths",
-                            varMonths);
-
-                        objBillreport.SetParameterValue(
-                            "paraViewType",
-                            varViewType);
+                        objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
+                        objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
+                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthName);
+                        objBillreport.SetParameterValue("paraBilledByName", varBilledByName);
+                        objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
+                        objBillreport.SetParameterValue("paraBilltype", varBillType);
+                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
+                        objBillreport.SetParameterValue("paraMonths", varMonths);
+                        objBillreport.SetParameterValue("paraViewType", varViewType);
                     }
-
 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -745,7 +523,6 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,157) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCustomerCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,201) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-
                 udfnLoadMonths();
                 udfnLoadDays();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
@@ -824,7 +601,6 @@ namespace ROMS
                             .ToList();
                         cmbMultiMonths.LoadItems(months, "Select Month");
                     }
-
                 }
             }
             catch (Exception ex)
@@ -846,7 +622,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -862,7 +637,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbReportType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -875,7 +649,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbReportType_Leave(object sender, EventArgs e)
         {
             try
@@ -888,7 +661,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpFromDate_Enter(object sender, EventArgs e)
         {
             try
@@ -933,7 +705,6 @@ namespace ROMS
         {
             udfnList(1);
         }
-
         private void btnTelegram_Enter(object sender, EventArgs e)
         {
             try
@@ -946,7 +717,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnTelegram_Leave(object sender, EventArgs e)
         {
             try
@@ -971,7 +741,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbSalesType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -987,7 +756,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbSalesType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1000,7 +768,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbSalesType_Leave(object sender, EventArgs e)
         {
             try
@@ -1013,7 +780,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbBillType_Enter(object sender, EventArgs e)
         {
             try
@@ -1026,7 +792,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbBillType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1042,7 +807,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbBillType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1055,7 +819,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbBillType_Leave(object sender, EventArgs e)
         {
             try
@@ -1080,7 +843,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbPrintType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1096,7 +858,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbPrintType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1109,7 +870,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbPrintType_Leave(object sender, EventArgs e)
         {
             try
@@ -1122,7 +882,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpFromTime_Enter(object sender, EventArgs e)
         {
             try
@@ -1135,12 +894,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpFromTime_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     dpToTime.Focus();
                 }
@@ -1151,7 +909,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpFromTime_Leave(object sender, EventArgs e)
         {
             try
@@ -1164,7 +921,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpToTime_Enter(object sender, EventArgs e)
         {
             try
@@ -1177,12 +933,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpToTime_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     cmbSalesType.Focus();
                 }
@@ -1193,7 +948,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpToTime_Leave(object sender, EventArgs e)
         {
             try
@@ -1206,7 +960,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtCustomer_Enter(object sender, EventArgs e)
         {
             try
@@ -1219,7 +972,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtCustomer_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1270,12 +1022,10 @@ namespace ROMS
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_Customer.Rows.Count) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
-
                             if (RowIndex != (DGV_Customer.Rows.Count))
                             {
                                 txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
                             }
-
                             txtCustomer.Focus();
                             txtCustomer.SelectionStart = txtCustomer.Text.Length;
                             e.Handled = true;
@@ -1342,7 +1092,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtCustomer_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1352,7 +1101,6 @@ namespace ROMS
                     //lvGroup.Items.Clear();
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-
                     MR_Sales obj = new MR_Sales();
                     obj.paraViewType = 6;
                     if (txtCustomer.Text.Length > 0)
@@ -1403,7 +1151,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_Customer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1418,7 +1165,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_Customer_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1440,9 +1186,7 @@ namespace ROMS
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
-
                             txtCustomer.Text = DGV_Customer.SelectedRows[0].Cells["Customer"].Value.ToString();
-
                             txtCustomer.Focus();
                             txtCustomer.SelectionStart = txtCustomer.Text.Length;
                             e.Handled = true;
@@ -1450,12 +1194,10 @@ namespace ROMS
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_Customer.Rows.Count) DGV_Customer.CurrentCell = DGV_Customer.Rows[RowIndex].Cells[ClmIndex];
-
                             if (RowIndex != (DGV_Customer.Rows.Count))
                             {
                                 txtCustomer.Text = DGV_Customer.Rows[RowIndex].Cells["Customer"].Value.ToString();
                             }
-
                             txtCustomer.Focus();
                             txtCustomer.SelectionStart = txtCustomer.Text.Length;
                             e.Handled = true;
@@ -1490,7 +1232,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbSchemeType_Enter(object sender, EventArgs e)
         {
             try
@@ -1503,12 +1244,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbSchemeType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     txtBilledBy.Focus();
                 }
@@ -1519,13 +1259,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbSchemeType_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
-
-
         private void cmbMultiSelectDays_Enter(object sender, EventArgs e)
         {
             try
@@ -1538,7 +1275,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbMultiSelectDays_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1566,7 +1302,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbMultiMonths_Enter(object sender, EventArgs e)
         {
             try
@@ -1579,7 +1314,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbMultiMonths_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1595,7 +1329,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbMultiMonths_Leave(object sender, EventArgs e)
         {
             try
@@ -1608,7 +1341,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbBillCategory_Enter(object sender, EventArgs e)
         {
             try
@@ -1621,12 +1353,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbBillCategory_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     cmbCustomerCategory.Focus();
                 }
@@ -1637,12 +1368,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbBillCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
-
         }
-
         private void cmbBillCategory_Leave(object sender, EventArgs e)
         {
             try
@@ -1655,7 +1383,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbSchemeType_Leave(object sender, EventArgs e)
         {
             try
@@ -1668,7 +1395,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtBilledBy_Enter(object sender, EventArgs e)
         {
             try
@@ -1681,7 +1407,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtBilledBy_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1732,12 +1457,10 @@ namespace ROMS
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_BilledBy.Rows.Count) DGV_BilledBy.CurrentCell = DGV_BilledBy.Rows[RowIndex].Cells[ClmIndex];
-
                             if (RowIndex != (DGV_BilledBy.Rows.Count))
                             {
                                 txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["SU_Name"].Value.ToString();
                             }
-
                             txtBilledBy.Focus();
                             txtBilledBy.SelectionStart = txtBilledBy.Text.Length;
                             e.Handled = true;
@@ -1776,7 +1499,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtBilledBy_Leave(object sender, EventArgs e)
         {
             try
@@ -1789,7 +1511,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtBilledBy_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1848,7 +1569,6 @@ namespace ROMS
             }
             finally
             {
-
             }
         }
         public void udfnListviewBilledBy()
@@ -1868,7 +1588,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_BilledBy_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1883,7 +1602,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpToDate_Enter(object sender, EventArgs e)
         {
             try
@@ -1897,7 +1615,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpToDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1913,7 +1630,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void dpToDate_Leave(object sender, EventArgs e)
         {
             try
@@ -1926,7 +1642,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbCustomerCategory_Enter(object sender, EventArgs e)
         {
             try
@@ -1939,12 +1654,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbCustomerCategory_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     txtCustomer.Focus();
                 }
@@ -1955,7 +1669,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbCustomerCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1968,7 +1681,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbCustomerCategory_Leave(object sender, EventArgs e)
         {
             try
@@ -1981,7 +1693,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_BilledBy_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2003,9 +1714,7 @@ namespace ROMS
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_BilledBy.CurrentCell = DGV_BilledBy.Rows[RowIndex].Cells[ClmIndex];
-
                             txtBilledBy.Text = DGV_BilledBy.SelectedRows[0].Cells["SU_Name"].Value.ToString();
-
                             txtBilledBy.Focus();
                             txtBilledBy.SelectionStart = txtBilledBy.Text.Length;
                             e.Handled = true;
@@ -2013,12 +1722,10 @@ namespace ROMS
                         case Keys.Down:
                             RowIndex++;
                             if (RowIndex < DGV_BilledBy.Rows.Count) DGV_BilledBy.CurrentCell = DGV_BilledBy.Rows[RowIndex].Cells[ClmIndex];
-
                             if (RowIndex != (DGV_BilledBy.Rows.Count))
                             {
                                 txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["SU_Name"].Value.ToString();
                             }
-
                             txtBilledBy.Focus();
                             txtBilledBy.SelectionStart = txtBilledBy.Text.Length;
                             e.Handled = true;

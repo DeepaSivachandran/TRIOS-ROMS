@@ -6871,7 +6871,6 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBilledBy", objMR_Sales.paraBilledBy);
                 varSqlCommand.Parameters.AddWithValue("@paraSchemeType", objMR_Sales.paraSchemeType);
                 varSqlCommand.Parameters.AddWithValue("@paraBillCategory", objMR_Sales.paraBillCategory);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objMR_Sales.paraConcernId);
                 varSqlCommand.Parameters.AddWithValue("@paraDays", objMR_Sales.paraDays);
                 varSqlCommand.CommandTimeout = 0;
 
