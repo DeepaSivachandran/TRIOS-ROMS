@@ -1916,6 +1916,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="REPORT_SALES_NonMovingProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_NonMovingProduct.designer.cs">
+      <DependentUpon>REPORT_SALES_NonMovingProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_SALES_SummaryDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7724,6 +7730,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_SALES_NonMovingProduct.resx">
+      <DependentUpon>REPORT_SALES_NonMovingProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_SummaryDetail.resx">
       <DependentUpon>REPORT_SALES_SummaryDetail.cs</DependentUpon>
     </EmbeddedResource>

@@ -451,7 +451,7 @@ namespace ROMS
         // Sales Report
         public static REPORT_SALES_SummaryDetail objREPORT_SALES_SummaryDetail;
         public static REPORT_SALES_ProductWise objREPORT_SALES_ProductWise;
-       //public static REPORT_SALES_NonMovingProduct objREPORT_SALES_NonMovingProduct;
+        public static REPORT_SALES_NonMovingProduct objREPORT_SALES_NonMovingProduct;
 
         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
@@ -5500,7 +5500,7 @@ namespace ROMS
         {
             try
             {
-                //OpenReportForm(ref MainForm.objREPORT_SALES_NonMovingProduct, "REPORT_SALES_NonMovingProduct", 140303);
+                OpenReportForm(ref MainForm.objREPORT_SALES_NonMovingProduct, "REPORT_SALES_NonMovingProduct", 140303);
             }
             catch (Exception ex)
             {
