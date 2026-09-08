@@ -158,7 +158,6 @@ namespace ROMS
                 int varCusCategoryId = 0;
                 int varBilledBy = 0;
                 int varSchemeType = 0;
-                int varparaFlag = 0;
                 int varPrintType = 0;
                 string varDays = "0";
                 string varMonths = "0";
@@ -298,12 +297,6 @@ namespace ROMS
                        lblBilledByID.Text.Trim(),
                        out varBilledBy);
                 }
-                if (cmbPrintType.SelectedValue != null && !string.IsNullOrWhiteSpace(cmbPrintType.SelectedValue.ToString()))
-                {
-                    int.TryParse(
-                        cmbPrintType.SelectedValue.ToString(),
-                        out varFlag);
-                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -325,7 +318,7 @@ namespace ROMS
                 objMR_Sales.paraCUS_CategoryTypeID = varCusCategoryId;
                 objMR_Sales.paraBilledBy = varBilledBy;
                 objMR_Sales.paraSchemeType = varSchemeType;
-                objMR_Sales.paraFlag = varparaFlag;
+                objMR_Sales.paraFlag = 0;
                 objMR_Sales.paraDays = varDays;
                 objMR_Sales.paraMonths = varMonths;
                 objMR_Sales.paraBillCategory = varBillCategoryId;
@@ -366,15 +359,15 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
-                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm:ss"));
-                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm:ss"));
+                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"));
+                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"));
                         objBillreport.SetParameterValue("paraBillByName", varBillByName);
                         objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
                         objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
                         objBillreport.SetParameterValue("paraBilltype", varBillType);
-                        objBillreport.SetParameterValue("paraCusCategoryld", varCusCategoryId);
-                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
+                        objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
                         objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
                         objBillreport.SetParameterValue("paraViewType", varViewType);
                     }
@@ -393,9 +386,9 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
                         objBillreport.SetParameterValue("paraBilltype", varBillType);
-                        objBillreport.SetParameterValue("paraCusCategoryld", varCusCategoryId);
-                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
-                        objBillreport.SetParameterValue("paraFlag", varFlag);
+                        objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
+                        objBillreport.SetParameterValue("paraFlag", 0);
                         objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
                         objBillreport.SetParameterValue("paraViewType", varViewType);
 
@@ -410,9 +403,9 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName, subReportName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy, subReportName);
                         objBillreport.SetParameterValue("paraBilltype", varBillType, subReportName);
-                        objBillreport.SetParameterValue("paraCusCategoryld", varCusCategoryId, subReportName);
-                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId, subReportName);
-                        objBillreport.SetParameterValue("paraFlag", varFlag, subReportName);
+                        objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId, subReportName);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId, subReportName);
+                        objBillreport.SetParameterValue("paraFlag", 1, subReportName);
                         objBillreport.SetParameterValue("paraSchemeType", varSchemeType, subReportName);
                         objBillreport.SetParameterValue("paraViewType", varViewType, subReportName);
                     }
@@ -425,7 +418,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraDayName", varDayName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
                         objBillreport.SetParameterValue("paraBilltype", varBillType);
-                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
                         objBillreport.SetParameterValue("paraDays", varDays);
                         objBillreport.SetParameterValue("paraViewType", varViewType);
                     }
@@ -438,7 +431,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraBilledByName", varBilledByName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
                         objBillreport.SetParameterValue("paraBilltype", varBillType);
-                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
                         objBillreport.SetParameterValue("paraMonths", varMonths);
                         objBillreport.SetParameterValue("paraViewType", varViewType);
                     }
@@ -454,7 +447,7 @@ namespace ROMS
                     else
                     {
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        string varReportName = "PriceList";
+                        string varReportName = "Sales Summary and Details";
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
