@@ -386,6 +386,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraFlag", varFlag);
                         objBillreport.SetParameterValue("paraSalesType", varSalesType);
                         objBillreport.SetParameterValue("paraSalesValue", varSalesValue);
+                        objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbPrintType.SelectedValue));
 
                         string subReportName = objBillreport.Subreports[0].Name;
                         objBillreport.SetParameterValue("paraGroupName", varGroupName, subReportName);
