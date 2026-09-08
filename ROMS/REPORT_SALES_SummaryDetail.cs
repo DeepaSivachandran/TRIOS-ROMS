@@ -794,7 +794,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbSchemeType.Focus();
+                    if (cmbSchemeType.Enabled == true)
+                    {
+                        cmbSchemeType.Focus();
+                    }
+                    else
+                    {
+                        txtBilledBy.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -983,9 +990,17 @@ namespace ROMS
                     {
                         cmbMultiSelectDays.Focus();
                     }
-                    else
+                    else if (cmbMultiSelectDays.Enabled == true)
                     {
                         cmbMultiSelectDays.Focus();
+                    }
+                    else if (cmbPrintType.Enabled == true)
+                    {
+                        cmbPrintType.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
                     }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
@@ -1061,9 +1076,17 @@ namespace ROMS
                         {
                             cmbMultiSelectDays.Focus();
                         }
-                        else
+                        else if (cmbMultiSelectDays.Enabled == true)
                         {
                             cmbMultiSelectDays.Focus();
+                        }
+                        else if (cmbPrintType.Enabled == true)
+                        {
+                            cmbPrintType.Focus();
+                        }
+                        else
+                        {
+                            btnView.Focus();
                         }
                     }
                 }
@@ -1171,9 +1194,17 @@ namespace ROMS
                 {
                     cmbMultiSelectDays.Focus();
                 }
-                else
+                else if(cmbMultiSelectDays.Enabled == true)
                 {
                     cmbMultiSelectDays.Focus();
+                }
+                else if(cmbPrintType.Enabled == true)
+                {
+                    cmbPrintType.Focus();
+                }
+                else
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -1243,9 +1274,17 @@ namespace ROMS
                         {
                             cmbMultiSelectDays.Focus();
                         }
-                        else
+                        else if (cmbMultiSelectDays.Enabled == true)
                         {
                             cmbMultiSelectDays.Focus();
+                        }
+                        else if (cmbPrintType.Enabled == true)
+                        {
+                            cmbPrintType.Focus();
+                        }
+                        else
+                        {
+                            btnView.Focus();
                         }
                     }
                 }
@@ -1442,7 +1481,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_BilledBy.Visible == false)
                 {
-                    cmbBillCategory.Focus();
+                    if (cmbBillCategory.Enabled == true)
+                    {
+                        cmbBillCategory.Focus();
+                    }
+                    else
+                    {
+                        txtCustomer.Focus();
+                    }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1513,7 +1559,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbBillCategory.Focus();
+                        if (cmbBillCategory.Enabled == true)
+                        {
+                            cmbBillCategory.Focus();
+                        }
+                        else
+                        {
+                            txtCustomer.Focus();
+                        }
                     }
                 }
             }
@@ -1617,8 +1670,15 @@ namespace ROMS
             try
             {
                 varUpDownKeyBilledBy = 1;
-                udfnListviewBilledBy();
-                cmbBillCategory.Focus();
+                udfnListviewBilledBy(); 
+                if (cmbBillCategory.Enabled == true)
+                {
+                    cmbBillCategory.Focus();
+                }
+                else
+                {
+                    txtCustomer.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1645,7 +1705,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromTime.Focus();
+                    if (dpFromTime.Enabled == true)
+                    {
+                        dpFromTime.Focus();
+                    }
+                    else
+                    {
+                        cmbSalesType.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1874,7 +1941,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbBillCategory.Focus();
+                        if (cmbBillCategory.Enabled == true)
+                        {
+                            cmbBillCategory.Focus();
+                        }
+                        else
+                        {
+                            txtCustomer.Focus();
+                        }
                     }
                 }
             }

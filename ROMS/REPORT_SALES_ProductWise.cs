@@ -2187,7 +2187,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbFilterType.Focus();
+                    if (cmbFilterType.Enabled == true)
+                    {
+                        cmbFilterType.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
                 }
             }
             catch (Exception ex)
