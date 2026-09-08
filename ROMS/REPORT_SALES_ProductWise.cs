@@ -2529,6 +2529,78 @@ namespace ROMS
             }
         }
 
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbReportType.SelectedValue == null)
+                    return;
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                        tsbPrintFormat.Text = varTooltipText;
+                        tsbPrintFormat.ToolTipText = varTooltipText;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                        tsbPrintFormat.ToolTipText = string.Empty;
+                    }
+                }
+                if (!int.TryParse(
+                    cmbReportType.SelectedValue.ToString(),
+                    out int varReportType))
+                {
+                    return;
+                }
+
+                txtGroup.Enabled = true;
+                txtSubGroup.Enabled = true;
+                txtBrand.Enabled = true;
+                txtProductName.Enabled = true;
+                txtAlpha.Enabled = true;
+
+                cmbUnit.Enabled = true;
+                cmbCategory.Enabled = true;
+                cmbClassification.Enabled = true;
+                cmbProductType.Enabled = true;
+                cmbSalesType.Enabled = true;
+                cmbBillType.Enabled = true;
+
+                dpFromDate.Enabled = true;
+                dpToDate.Enabled = true;
+                dpFromTime.Enabled = true;
+                dpToTime.Enabled = true;
+
+                cmbFilterType.Enabled = false;
+                cmbOrderType.Enabled = false;
+                cmbPrintType.Enabled = false;
+
+                switch (varReportType)
+                {
+                    case 658:
+                        break;
+
+                    case 659:
+                        cmbFilterType.Enabled = true;
+                        cmbOrderType.Enabled = true;
+                        cmbPrintType.Enabled = true;
+                        break;
+
+                    case 660:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnSubGroupAutocomplete()
         {
             try

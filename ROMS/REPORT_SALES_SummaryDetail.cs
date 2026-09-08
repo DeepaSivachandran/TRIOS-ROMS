@@ -979,7 +979,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_Customer.Visible == false)
                 {
-                    cmbMultiSelectDays.Focus();
+                    if (cmbMultiSelectDays.Enabled == true)
+                    {
+                        cmbMultiSelectDays.Focus();
+                    }
+                    else
+                    {
+                        cmbMultiSelectDays.Focus();
+                    }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1050,7 +1057,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbMultiSelectDays.Focus();
+                        if (cmbMultiSelectDays.Enabled == true)
+                        {
+                            cmbMultiSelectDays.Focus();
+                        }
+                        else
+                        {
+                            cmbMultiSelectDays.Focus();
+                        }
                     }
                 }
             }
@@ -1152,8 +1166,15 @@ namespace ROMS
             try
             {
                 varUpDownKeyCustomer = 1;
-                udfnCustomerAutocomplete();
-                cmbMultiSelectDays.Focus();
+                udfnCustomerAutocomplete(); 
+                if (cmbMultiSelectDays.Enabled == true)
+                {
+                    cmbMultiSelectDays.Focus();
+                }
+                else
+                {
+                    cmbMultiSelectDays.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1218,7 +1239,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbMultiSelectDays.Focus();
+                        if (cmbMultiSelectDays.Enabled == true)
+                        {
+                            cmbMultiSelectDays.Focus();
+                        }
+                        else
+                        {
+                            cmbMultiSelectDays.Focus();
+                        }
                     }
                 }
             }
@@ -1713,30 +1741,58 @@ namespace ROMS
                     }
                 }
 
-                int varReportType = 0;
-                int.TryParse(
+                if (!int.TryParse(
                     cmbReportType.SelectedValue.ToString(),
-                    out varReportType);
+                    out int varReportType))
+                {
+                    return;
+                }
+                dpFromDate.Enabled = true;
+                dpToDate.Enabled = true;
+                cmbBillType.Enabled = true;
+                cmbSalesType.Enabled = true;
+                txtCustomer.Enabled = true;
+                txtBilledBy.Enabled = true;
+                cmbCustomerCategory.Enabled = false;
+                cmbSchemeType.Enabled = false;
+                cmbBillCategory.Enabled = false;
+                cmbPrintType.Enabled = false;
                 cmbMultiSelectDays.Enabled = false;
                 cmbMultiMonths.Enabled = false;
-
-                lblDays.Text = "";
-                lblMonths.Text = "";
-
+                dpFromTime.Enabled = false;
+                dpToTime.Enabled = false;
                 switch (varReportType)
                 {
                     case 666:
+                        cmbCustomerCategory.Enabled = true;
+                        cmbSchemeType.Enabled = true;
+                        cmbBillCategory.Enabled = true;
+                        dpFromTime.Enabled = true;
+                        dpToTime.Enabled = true;
                         break;
 
+
                     case 667:
+                        cmbCustomerCategory.Enabled = true;
+                        cmbSchemeType.Enabled = true;
+                        cmbBillCategory.Enabled = true;
+
+                        cmbPrintType.Enabled = true;
+
+                        dpFromTime.Enabled = true;
+                        dpToTime.Enabled = true;
+
                         break;
 
                     case 668:
                         cmbMultiSelectDays.Enabled = true;
+
                         break;
+
 
                     case 669:
                         cmbMultiMonths.Enabled = true;
+
                         break;
                 }
             }
