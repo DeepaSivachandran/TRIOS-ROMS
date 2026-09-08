@@ -260,17 +260,21 @@ namespace ROMS
                     /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 658)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 666)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Productwise_Summary.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Summary.rpt");
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 659)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 667)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Productwise_Consolidated.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Details.rpt");
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 660)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 668)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Productwise_Details.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Daywise.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 669)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Monthwise.rpt");
                     }
                     objBillreport.SetParameterValue(
     "paraUserName",
@@ -886,7 +890,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    
+                    cmbSchemeType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1084,7 +1088,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_Customer.Visible == false)
                 {
-
+                    cmbMultiSelectDays.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1157,7 +1161,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-
+                        cmbMultiSelectDays.Focus();
                     }
                 }
             }
@@ -1263,6 +1267,7 @@ namespace ROMS
             {
                 varUpDownKeyCustomer = 1;
                 udfnCustomerAutocomplete();
+                cmbMultiSelectDays.Focus();
             }
             catch (Exception ex)
             {
@@ -1332,7 +1337,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        
+                        cmbMultiSelectDays.Focus();
                     }
                 }
             }
@@ -1362,7 +1367,7 @@ namespace ROMS
             {
                 if(e.KeyCode == Keys.Enter)
                 {
-
+                    txtBilledBy.Focus();
                 }
             }
             catch (Exception ex)
@@ -1397,7 +1402,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-
+                    cmbMultiMonths.Focus();
                 }
             }
             catch (Exception ex)
@@ -1438,7 +1443,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-
+                    cmbPrintType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1480,7 +1485,7 @@ namespace ROMS
             {
                 if(e.KeyCode == Keys.Enter)
                 {
-
+                    cmbCustomerCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -1542,7 +1547,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_BilledBy.Focus();
-
                 }
                 if (e.KeyCode == Keys.Enter && DGV_BilledBy.Visible == false)
                 {
@@ -1576,7 +1580,7 @@ namespace ROMS
                             if (RowIndex >= 0) DGV_BilledBy.CurrentCell = DGV_BilledBy.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
                             {
-                                txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["SU_Name"].Value.ToString();
                             }
                             txtBilledBy.Focus();
                             txtBilledBy.SelectionStart = txtBilledBy.Text.Length;
@@ -1588,7 +1592,7 @@ namespace ROMS
 
                             if (RowIndex != (DGV_BilledBy.Rows.Count))
                             {
-                                txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["SU_Name"].Value.ToString();
                             }
 
                             txtBilledBy.Focus();
@@ -1619,6 +1623,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
+                        cmbBillCategory.Focus();
                     }
                 }
             }
@@ -1736,6 +1741,104 @@ namespace ROMS
             }
         }
 
+        private void dpToDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                dpToDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromTime.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpToDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpToDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCustomerCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    txtCustomer.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCustomerCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_BilledBy_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1758,7 +1861,7 @@ namespace ROMS
                             RowIndex--;
                             if (RowIndex >= 0) DGV_BilledBy.CurrentCell = DGV_BilledBy.Rows[RowIndex].Cells[ClmIndex];
 
-                            txtBilledBy.Text = DGV_BilledBy.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                            txtBilledBy.Text = DGV_BilledBy.SelectedRows[0].Cells["SU_Name"].Value.ToString();
 
                             txtBilledBy.Focus();
                             txtBilledBy.SelectionStart = txtBilledBy.Text.Length;
@@ -1770,7 +1873,7 @@ namespace ROMS
 
                             if (RowIndex != (DGV_BilledBy.Rows.Count))
                             {
-                                txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtBilledBy.Text = DGV_BilledBy.Rows[RowIndex].Cells["SU_Name"].Value.ToString();
                             }
 
                             txtBilledBy.Focus();

@@ -298,7 +298,7 @@
             this.txtBilledBy.Location = new System.Drawing.Point(967, 43);
             this.txtBilledBy.Name = "txtBilledBy";
             this.txtBilledBy.Size = new System.Drawing.Size(195, 27);
-            this.txtBilledBy.TabIndex = 111111224;
+            this.txtBilledBy.TabIndex = 8;
             this.txtBilledBy.TextChanged += new System.EventHandler(this.txtBilledBy_TextChanged);
             this.txtBilledBy.Enter += new System.EventHandler(this.txtBilledBy_Enter);
             this.txtBilledBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBilledBy_KeyDown);
@@ -330,7 +330,11 @@
             this.cmbCustomerCategory.Location = new System.Drawing.Point(105, 80);
             this.cmbCustomerCategory.Name = "cmbCustomerCategory";
             this.cmbCustomerCategory.Size = new System.Drawing.Size(162, 27);
-            this.cmbCustomerCategory.TabIndex = 111111221;
+            this.cmbCustomerCategory.TabIndex = 10;
+            this.cmbCustomerCategory.Enter += new System.EventHandler(this.cmbCustomerCategory_Enter);
+            this.cmbCustomerCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCustomerCategory_KeyDown);
+            this.cmbCustomerCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCustomerCategory_KeyPress);
+            this.cmbCustomerCategory.Leave += new System.EventHandler(this.cmbCustomerCategory_Leave);
             // 
             // label4
             // 
@@ -348,7 +352,7 @@
             this.cmbBillCategory.Location = new System.Drawing.Point(1168, 43);
             this.cmbBillCategory.Name = "cmbBillCategory";
             this.cmbBillCategory.Size = new System.Drawing.Size(122, 27);
-            this.cmbBillCategory.TabIndex = 111111219;
+            this.cmbBillCategory.TabIndex = 9;
             this.cmbBillCategory.Enter += new System.EventHandler(this.cmbBillCategory_Enter);
             this.cmbBillCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBillCategory_KeyDown);
             this.cmbBillCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbBillCategory_KeyPress);
@@ -399,7 +403,7 @@
             this.txtCustomer.Location = new System.Drawing.Point(374, 79);
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.Size = new System.Drawing.Size(148, 27);
-            this.txtCustomer.TabIndex = 111111215;
+            this.txtCustomer.TabIndex = 11;
             this.txtCustomer.TextChanged += new System.EventHandler(this.txtCustomer_TextChanged);
             this.txtCustomer.Enter += new System.EventHandler(this.txtCustomer_Enter);
             this.txtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomer_KeyDown);
@@ -414,7 +418,7 @@
             this.cmbMultiSelectDays.Location = new System.Drawing.Point(569, 76);
             this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
             this.cmbMultiSelectDays.Size = new System.Drawing.Size(81, 27);
-            this.cmbMultiSelectDays.TabIndex = 111111209;
+            this.cmbMultiSelectDays.TabIndex = 12;
             this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
             this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
             this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
@@ -448,7 +452,7 @@
             this.cmbMultiMonths.Location = new System.Drawing.Point(711, 76);
             this.cmbMultiMonths.Name = "cmbMultiMonths";
             this.cmbMultiMonths.Size = new System.Drawing.Size(122, 27);
-            this.cmbMultiMonths.TabIndex = 111111210;
+            this.cmbMultiMonths.TabIndex = 13;
             this.cmbMultiMonths.Enter += new System.EventHandler(this.cmbMultiMonths_Enter);
             this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiMonths_KeyDown);
             this.cmbMultiMonths.Leave += new System.EventHandler(this.cmbMultiMonths_Leave);
@@ -469,7 +473,7 @@
             this.cmbSchemeType.Location = new System.Drawing.Point(839, 43);
             this.cmbSchemeType.Name = "cmbSchemeType";
             this.cmbSchemeType.Size = new System.Drawing.Size(122, 27);
-            this.cmbSchemeType.TabIndex = 111111207;
+            this.cmbSchemeType.TabIndex = 7;
             this.cmbSchemeType.Enter += new System.EventHandler(this.cmbSchemeType_Enter);
             this.cmbSchemeType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeType_KeyDown);
             this.cmbSchemeType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSchemeType_KeyPress);
@@ -493,7 +497,7 @@
             this.dpToTime.Name = "dpToTime";
             this.dpToTime.ShowUpDown = true;
             this.dpToTime.Size = new System.Drawing.Size(72, 27);
-            this.dpToTime.TabIndex = 13;
+            this.dpToTime.TabIndex = 4;
             this.dpToTime.Value = new System.DateTime(2026, 9, 4, 17, 59, 22, 0);
             this.dpToTime.Enter += new System.EventHandler(this.dpToTime_Enter);
             this.dpToTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dpToTime_KeyDown);
@@ -507,7 +511,7 @@
             this.dpFromTime.Name = "dpFromTime";
             this.dpFromTime.ShowUpDown = true;
             this.dpFromTime.Size = new System.Drawing.Size(74, 27);
-            this.dpFromTime.TabIndex = 12;
+            this.dpFromTime.TabIndex = 3;
             this.dpFromTime.Value = new System.DateTime(2026, 9, 4, 17, 59, 22, 0);
             this.dpFromTime.Enter += new System.EventHandler(this.dpFromTime_Enter);
             this.dpFromTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dpFromTime_KeyDown);
@@ -539,7 +543,7 @@
             this.cmbPrintType.Location = new System.Drawing.Point(909, 76);
             this.cmbPrintType.Name = "cmbPrintType";
             this.cmbPrintType.Size = new System.Drawing.Size(195, 27);
-            this.cmbPrintType.TabIndex = 18;
+            this.cmbPrintType.TabIndex = 14;
             this.cmbPrintType.Enter += new System.EventHandler(this.cmbPrintType_Enter);
             this.cmbPrintType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbPrintType_KeyDown);
             this.cmbPrintType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPrintType_KeyPress);
@@ -561,7 +565,7 @@
             this.cmbBillType.Location = new System.Drawing.Point(711, 43);
             this.cmbBillType.Name = "cmbBillType";
             this.cmbBillType.Size = new System.Drawing.Size(122, 27);
-            this.cmbBillType.TabIndex = 15;
+            this.cmbBillType.TabIndex = 6;
             this.cmbBillType.Enter += new System.EventHandler(this.cmbBillType_Enter);
             this.cmbBillType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBillType_KeyDown);
             this.cmbBillType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbBillType_KeyPress);
@@ -573,7 +577,7 @@
             this.cmbSalesType.Location = new System.Drawing.Point(606, 43);
             this.cmbSalesType.Name = "cmbSalesType";
             this.cmbSalesType.Size = new System.Drawing.Size(99, 27);
-            this.cmbSalesType.TabIndex = 14;
+            this.cmbSalesType.TabIndex = 5;
             this.cmbSalesType.Enter += new System.EventHandler(this.cmbSalesType_Enter);
             this.cmbSalesType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSalesType_KeyDown);
             this.cmbSalesType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSalesType_KeyPress);
@@ -597,6 +601,9 @@
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(103, 27);
             this.dpToDate.TabIndex = 2;
+            this.dpToDate.Enter += new System.EventHandler(this.dpToDate_Enter);
+            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dpToDate_KeyDown);
+            this.dpToDate.Leave += new System.EventHandler(this.dpToDate_Leave);
             // 
             // btnTelegram
             // 
@@ -606,7 +613,7 @@
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
-            this.btnTelegram.TabIndex = 20;
+            this.btnTelegram.TabIndex = 16;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -676,7 +683,7 @@
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 29);
-            this.btnView.TabIndex = 19;
+            this.btnView.TabIndex = 15;
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnListPrint_Click);
