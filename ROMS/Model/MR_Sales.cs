@@ -113,6 +113,21 @@ namespace ROMS.Model
         public string paraCONGroupEName { get; set; } = "";
         public string paraCONGroupTName { get; set; } = "";
         public string paraBrandName { get; set; } = "";
+        public string paraPicode { get; set; } = "";
+        public string paraFromTime { get; set; } = "";
+        public string paraToTime { get; set; } = "";
+        public int paraProductCode { get; set; } = 0;
+        public int paraGroup { get; set; } = 0;
+        public int paraSubgroup { get; set; } = 0;
+        public int paraBrandID { get; set; } = 0;
+        public int paraProductCategory { get; set; } = 0;
+        public int paraClassification { get; set; } = 0;
+        public int paraUnitID { get; set; } = 0;
+        public int paraOrderby { get; set; } = 0;
+        public int paraSalesValue { get; set; } = 0;
+        public int paraSalesType { get; set; } = 0;
+        public int paraBillType { get; set; } = 0;
+        public int paraSubgroupType { get; set; } = 0;
     }
 
 }
