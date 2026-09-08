@@ -152,46 +152,54 @@ namespace ROMS
             try
             {
                 epReport.Clear();
-                string varGroupName = "-All-";
-                string varSubgroupName = "-All-";
-                string varBrandName = "-All-";
-                string varProductName = "-All-";
-                string varUnitName = "-All-";
-                string varClassificationName = "-All-";
                 string varCategoryName = "-All-";
-                string varSubgroupTypeName = "-All-";
-                string varSalesTypeName = "-All-";
+                string varProductName = "-All-";
                 string varBillTypeName = "-All-";
-                string varProductTypeName = "-All-";
-                string varFilterTypeName = "-All-";
-                string varDaysName = "-All-";
-                string varAlphaName = "-All-";
-                string varRateTypeName = "-All-";
+                string varSalesTypeName = "-All-";
+                string varBillByName = "-All-";
+                string varBilledByName = "-All-";
+                string varCustomerName = "-All-";
+                string varSchemeTypeName = "-All-";
+                string varDayName = "-All-";
+                string varMonthName = "-All-";
 
-                int varGroupCode = 0;
-                int varSubgroupCode = 0;
-                int varBrandCode = 0;
-                int varProductCode = 0;
-                int varUnitCode = 0;
-                int varClassificationCode = 0;
-                int varCategoryCode = 0;
-                int varSubgroupType = 0;
-                int varSalesType = 0;
                 int varBillType = 0;
-                int varProductType = 0;
-                int varFilterType = 0;
-                int varSalesValue = 0;
+                int varSalesType = 0;
+                int varCustomerId = 0;
+                int varBillCategoryId = 0;
+                int varCusCategoryId = 0;
+                int varBilledBy = 0;
+                int varSchemeType = 0;
                 int varparaFlag = 0;
+                int varPrintType = 0;
 
-                string varPicode = "";
+                string varDays = "0";
+                string varMonths = "0";
 
-                
+                var selIds = cmbMultiMonths.CheckedIds;
+                var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
+
+                var selDayIds = cmbMultiSelectDays.CheckedIds;
+                var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
+
+
+
+                int varViewType = 0;
+
                 if (cmbSalesType.SelectedValue != null &&
                     cmbSalesType.SelectedValue.ToString() != "")
                 {
                     int.TryParse(
                         cmbSalesType.SelectedValue.ToString(),
                         out varSalesType);
+                }
+
+                if (cmbBillCategory.SelectedValue != null &&
+                    cmbBillCategory.SelectedValue.ToString() != "")
+                {
+                    int.TryParse(
+                        cmbBillCategory.SelectedValue.ToString(),
+                        out varBillCategoryId);
                 }
                 if (cmbBillType.SelectedValue != null &&
                     cmbBillType.SelectedValue.ToString() != "")
@@ -207,19 +215,132 @@ namespace ROMS
                 if (!string.IsNullOrWhiteSpace(cmbBillType.Text))
                     varBillTypeName = cmbBillType.Text.Trim();
                 int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
-                int varViewType = 0;
-                if (varReportType == 658)
+                if (varReportType == 666)
                 {
-                    varViewType = 8;
+                    varViewType = 0;
                 }
-                else if (varReportType == 659)
+                else if (varReportType == 667)
                 {
-                    varViewType = 12;
+                    varViewType = 2;
                 }
-                else if (varReportType == 660)
+                else if (varReportType == 668)
                 {
-                    varViewType = 10;
+                    varViewType = 4;
                 }
+                else if (varReportType == 669)
+                {
+                    varViewType = 6;
+                }
+
+                if (varReportType == 668)
+                {
+                    lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+
+                    if (string.IsNullOrWhiteSpace(lblDays.Text))
+                    {
+                        varDayName = "-All-";
+                        varDays = "0";
+                    }
+                    else
+                    {
+                        varDayName = lblDays.Text;
+                        varDays = string.Join(",", selDayIds);
+                    }
+                }
+                else if (varReportType == 669)
+                {
+                    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+
+                    if (string.IsNullOrWhiteSpace(lblMonths.Text))
+                    {
+                        varMonthName = "-All-";
+                        varMonths = "0";
+                    }
+                    else
+                    {
+                        varMonthName = lblMonths.Text;
+                        varMonths = string.Join(",", selIds);
+                    }
+                }
+                else
+                {
+                    lblDays.Text = "";
+                    lblMonths.Text = "";
+
+                    varDays = "0";
+                    varMonths = "0";
+
+                    varDayName = "-All-";
+                    varMonthName = "-All-";
+                }
+                if (cmbBillType.SelectedValue != null && !string.IsNullOrWhiteSpace(cmbBillType.SelectedValue.ToString()))
+                {
+                    int.TryParse(
+                        cmbBillType.SelectedValue.ToString(),
+                        out varBillType);
+                }
+
+                if (!string.IsNullOrWhiteSpace(cmbBillType.Text))
+                {
+                    varBillTypeName = cmbBillType.Text.Trim();
+                }
+
+                if (cmbSalesType.SelectedValue != null && !string.IsNullOrWhiteSpace(cmbSalesType.SelectedValue.ToString()))
+                {
+                    int.TryParse(
+                        cmbSalesType.SelectedValue.ToString(),
+                        out varSalesType);
+                }
+
+                if (!string.IsNullOrWhiteSpace(cmbSalesType.Text))
+                {
+                    varSalesTypeName = cmbSalesType.Text.Trim();
+                }
+                if (!string.IsNullOrWhiteSpace(txtCustomer.Text))
+                {
+                    varCustomerName = txtCustomer.Text.Trim();
+
+                    int.TryParse(
+                        lblCustomerId.Text.Trim(),
+                        out varCustomerId);
+                }
+                if (cmbCustomerCategory.SelectedValue != null &&
+    !string.IsNullOrWhiteSpace(cmbCustomerCategory.SelectedValue.ToString()))
+                {
+                    int.TryParse(
+                        cmbCustomerCategory.SelectedValue.ToString(),
+                        out varCusCategoryId);
+                }
+
+                if (cmbSchemeType.SelectedValue != null &&
+    !string.IsNullOrWhiteSpace(cmbSchemeType.SelectedValue.ToString()))
+                {
+                    int.TryParse(
+                        cmbSchemeType.SelectedValue.ToString(),
+                        out varSchemeType);
+                }
+
+                if (!string.IsNullOrWhiteSpace(cmbSchemeType.Text))
+                {
+                    varSchemeTypeName = cmbSchemeType.Text.Trim();
+                }
+                if (!string.IsNullOrWhiteSpace(txtBilledBy.Text))
+                {
+                    varBilledByName = txtBilledBy.Text.Trim();
+
+                    int.TryParse(
+                        lblBilledByID.Text.Trim(),
+                        out varBilledBy);
+                }
+
+                if (cmbPrintType.SelectedValue != null && !string.IsNullOrWhiteSpace(cmbPrintType.SelectedValue.ToString()))
+                {
+                    int.TryParse(
+                        cmbPrintType.SelectedValue.ToString(),
+                        out varFlag);
+                }
+
+
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -233,22 +354,19 @@ namespace ROMS
                 objMR_Sales.paraViewType = varViewType;
                 objMR_Sales.paraFromDate = dpFromDate.Text.Trim();
                 objMR_Sales.paraToDate = dpToDate.Text.Trim();
-                objMR_Sales.paraGroup = varGroupCode;
-                objMR_Sales.paraSubgroup = varSubgroupCode;
-                objMR_Sales.paraBrandID = varBrandCode;
-                objMR_Sales.paraProductCode = varProductCode;
-                objMR_Sales.paraUnitID = varUnitCode;
-                objMR_Sales.paraProductCategory = varCategoryCode;
-                objMR_Sales.paraClassification = varClassificationCode;
-                objMR_Sales.paraType = varProductType;
-                objMR_Sales.paraSubgroupType = varSubgroupType;
-                objMR_Sales.paraPicode = string.IsNullOrWhiteSpace(varPicode)
-                    ? ""
-                    : varPicode;
+                objMR_Sales.paraFromTime = Convert.ToString(dpFromTime.Value.TimeOfDay);
+                objMR_Sales.paraToTime = Convert.ToString(dpToTime.Value.TimeOfDay);
                 objMR_Sales.paraSalesType = varSalesType;
-                objMR_Sales.paraBillType = varBillType;
-                objMR_Sales.paraFlag = varFilterType;
-                objMR_Sales.paraSalesValue = varSalesValue;
+                objMR_Sales.paraBillType = varBillType; 
+                objMR_Sales.paraCustomerId = varCustomerId;
+                objMR_Sales.paraCUS_CategoryTypeID = varCusCategoryId;
+                objMR_Sales.paraBilledBy = varBilledBy;
+                objMR_Sales.paraSchemeType = varSchemeType;
+                objMR_Sales.paraFlag = varparaFlag;
+                objMR_Sales.paraDays = varDays;
+                objMR_Sales.paraMonths = varMonths;
+                objMR_Sales.paraBillCategory = varBillCategoryId;
+
                 objDs = objdserv.udfnSalesReports(objMR_Sales);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -277,8 +395,8 @@ namespace ROMS
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Monthwise.rpt");
                     }
                     objBillreport.SetParameterValue(
-    "paraUserName",
-    MainForm.pbUserName ?? "");
+                        "paraUserName",
+                        MainForm.pbUserName ?? "");
 
                     objBillreport.SetParameterValue(
                         "paraHostName",
@@ -291,237 +409,261 @@ namespace ROMS
                     objBillreport.SetParameterValue(
                         "paraToDate",
                         dpToDate.Text.Trim());
-
-                    objBillreport.SetParameterValue(
-                        "paraBilltype",
-                        varBillType);
-
-                    objBillreport.SetParameterValue(
-                        "paraBrandID",
-                        varBrandCode);
-
-                    objBillreport.SetParameterValue(
-                        "paraClassification",
-                        varClassificationCode);
-
-                    objBillreport.SetParameterValue(
-                        "paraFromTime",
-                        dpFromTime.Value.TimeOfDay);
-
-                    objBillreport.SetParameterValue(
-                        "paraGroup",
-                        varGroupCode);
-
-                    objBillreport.SetParameterValue(
-                        "paraPicode",
-                        varPicode);
-
-                    objBillreport.SetParameterValue(
-                        "paraProductCategory",
-                        varCategoryCode);
-
-                    objBillreport.SetParameterValue(
-                        "ParaProductCode",
-                        varProductCode);
-
-                    objBillreport.SetParameterValue(
-                        "paraSubgroup",
-                        varSubgroupCode);
-
-                    objBillreport.SetParameterValue(
-                        "paraSubgroupType",
-                        varSubgroupType);
-
-                    objBillreport.SetParameterValue(
-                        "paraTotime",
-                        dpToTime.Value.TimeOfDay);
-
-                    objBillreport.SetParameterValue(
-                        "paraType",
-                        varProductType);
-
-                    objBillreport.SetParameterValue(
-                        "paraUnitID",
-                        varUnitCode);
-
-                    objBillreport.SetParameterValue(
-                        "paraViewType",
-                        varViewType);
-
-                    if (varReportType == 658)
+                    if (varReportType == 666)
                     {
                         // ========================================================
-                        // PRODUCTWISE SALES SUMMARY
+                        // RPT_SALES_Summary.rpt
                         // ========================================================
-
-                        objBillreport.SetParameterValue(
-                            "paraSubgroupName",
-                            varSubgroupName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBrandName",
-                            varBrandName);
-
-                        objBillreport.SetParameterValue(
-                            "paraUnitName",
-                            varUnitName);
-
-                        objBillreport.SetParameterValue(
-                            "paraClassificationName",
-                            varClassificationName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSubgroupTypeName",
-                            varSubgroupTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSalesTypeName",
-                            varSalesTypeName);
-
-                        objBillreport.SetParameterValue(
-                            "paraProductName",
-                            varProductName);
-
-                        objBillreport.SetParameterValue(
-                            "paraAlphaName",
-                            varAlphaName);
 
                         objBillreport.SetParameterValue(
                             "paraCategoryName",
                             varCategoryName);
 
                         objBillreport.SetParameterValue(
-                            "paraGroupName",
-                            varGroupName);
-                    }
-                    else if (varReportType == 659)
-                    {
-                        // ========================================================
-                        // PRODUCTWISE CONSOLIDATED
-                        // ========================================================
-
-                        objBillreport.SetParameterValue(
-                            "paraGroupName",
-                            varGroupName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSubgroupName",
-                            varSubgroupName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBrandName",
-                            varBrandName);
-
-                        objBillreport.SetParameterValue(
-                            "paraCategoryName",
-                            varCategoryName);
-
-                        objBillreport.SetParameterValue(
-                            "paraDaysName",
-                            varDaysName);
-
-                        objBillreport.SetParameterValue(
                             "paraProductName",
                             varProductName);
-
-                        objBillreport.SetParameterValue(
-                            "paraUnitName",
-                            varUnitName);
-
-                        objBillreport.SetParameterValue(
-                            "paraClassificationName",
-                            varClassificationName);
 
                         objBillreport.SetParameterValue(
                             "paraBillTypeName",
                             varBillTypeName);
 
                         objBillreport.SetParameterValue(
-                            "paraProductTypeName",
-                            varProductTypeName);
-
-                        objBillreport.SetParameterValue(
                             "paraSalesTypeName",
                             varSalesTypeName);
 
                         objBillreport.SetParameterValue(
-                            "paraFilterTypeName",
-                            varFilterTypeName);
+                            "paraFromTime",
+                            dpFromTime.Value.TimeOfDay);
 
                         objBillreport.SetParameterValue(
-                            "paraFlag",
-                            varFlag);
+                            "paraToTime",
+                            dpToTime.Value.TimeOfDay);
 
                         objBillreport.SetParameterValue(
-                            "paraSalesType",
-                            varSalesType);
+                            "paraBillByName",
+                            varBillByName);
 
                         objBillreport.SetParameterValue(
-                            "paraSalesValue",
-                            varSalesValue);
+                            "paraCustomerName",
+                            varCustomerName);
+
+                        objBillreport.SetParameterValue(
+                            "paraSchemeTypeName",
+                            varSchemeTypeName);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilledBy",
+                            varBilledBy);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilltype",
+                            varBillType);
+
+                        objBillreport.SetParameterValue(
+                            "paraCusCategoryld",
+                            varCusCategoryId);
+
+                        objBillreport.SetParameterValue(
+                            "paraCustomerld",
+                            varCustomerId);
+
+                        objBillreport.SetParameterValue(
+                            "paraSchemeType",
+                            varSchemeType);
+
+                        objBillreport.SetParameterValue(
+                            "paraViewType",
+                            varViewType);
                     }
-                    else if (varReportType == 660)
+                    else if (varReportType == 667)
                     {
-                        objBillreport.SetParameterValue(
-                            "paraGroupName",
-                            varGroupName);
-
-                        objBillreport.SetParameterValue(
-                            "paraSubgroupName",
-                            varSubgroupName);
-
-                        objBillreport.SetParameterValue(
-                            "paraBrandName",
-                            varBrandName);
+                        string subReportName = objBillreport.Subreports[0].Name;
+                        objBillreport.SetParameterValue("paraCategoryName", varCategoryName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                        objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
+                        objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
+                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.TimeOfDay);
+                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.TimeOfDay);
+                        objBillreport.SetParameterValue("paraBillByName", varBillByName);
+                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
+                        objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
+                        objBillreport.SetParameterValue("paraBilltype", varBillType);
+                        objBillreport.SetParameterValue("paraCusCategoryld", varCusCategoryId);
+                        objBillreport.SetParameterValue("paraCustomerld", varCustomerId);
+                        objBillreport.SetParameterValue("paraFlag", varFlag);
+                        objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
+                        objBillreport.SetParameterValue("paraViewType", varViewType);
 
                         objBillreport.SetParameterValue(
                             "paraCategoryName",
-                            varCategoryName);
-
-                        objBillreport.SetParameterValue(
-                            "paraDaysName",
-                            varDaysName);
+                            varCategoryName,
+                            subReportName);
 
                         objBillreport.SetParameterValue(
                             "paraProductName",
-                            varProductName);
+                            varProductName,
+                            subReportName);
 
                         objBillreport.SetParameterValue(
-                            "paraUnitName",
-                            varUnitName);
+                            "paraBillTypeName",
+                            varBillTypeName,
+                            subReportName);
 
                         objBillreport.SetParameterValue(
-                            "paraClassificationName",
-                            varClassificationName);
+                            "paraSalesTypeName",
+                            varSalesTypeName,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraFromTime",
+                            dpFromTime.Value.TimeOfDay,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraToTime",
+                            dpToTime.Value.TimeOfDay,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraBillByName",
+                            varBillByName,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraCustomerName",
+                            varCustomerName,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraSchemeTypeName",
+                            varSchemeTypeName,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilledBy",
+                            varBilledBy,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilltype",
+                            varBillType,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraCusCategoryld",
+                            varCusCategoryId,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraCustomerld",
+                            varCustomerId,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraFlag",
+                            varFlag,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraSchemeType",
+                            varSchemeType,
+                            subReportName);
+
+                        objBillreport.SetParameterValue(
+                            "paraViewType",
+                            varViewType,
+                            subReportName);
+                    }
+                    else if (varReportType == 668)
+                    {
+                        // ========================================================
+                        // RPT_SALES_Daywise.rpt
+                        // ========================================================
 
                         objBillreport.SetParameterValue(
                             "paraBillTypeName",
                             varBillTypeName);
 
                         objBillreport.SetParameterValue(
-                            "paraRateTypeName",
-                            varRateTypeName);
+                            "paraSalesTypeName",
+                            varSalesTypeName);
 
                         objBillreport.SetParameterValue(
-                            "paraProductTypeName",
-                            varProductTypeName);
+                            "paraCustomerName",
+                            varCustomerName);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilledByName",
+                            varBilledByName);
+
+                        objBillreport.SetParameterValue(
+                            "paraDayName",
+                            varDayName);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilledBy",
+                            varBilledBy);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilltype",
+                            varBillType);
+
+                        objBillreport.SetParameterValue(
+                            "paraCustomerld",
+                            varCustomerId);
+
+                        objBillreport.SetParameterValue(
+                            "paraDays",
+                            varDays);
+
+                        objBillreport.SetParameterValue(
+                            "paraViewType",
+                            varViewType);
+                    }
+                    else if (varReportType == 669)
+                    {
+                        objBillreport.SetParameterValue(
+                            "paraBillTypeName",
+                            varBillTypeName);
 
                         objBillreport.SetParameterValue(
                             "paraSalesTypeName",
                             varSalesTypeName);
 
                         objBillreport.SetParameterValue(
-                            "paraFlag",
-                            varFlag);
+                            "paraCustomerName",
+                            varCustomerName);
 
                         objBillreport.SetParameterValue(
-                            "paraSalesType",
-                            varSalesType);
+                            "paraMonthName",
+                            varMonthName);
 
                         objBillreport.SetParameterValue(
-                            "paraSalesValue",
-                            varSalesValue);
+                            "paraBilledByName",
+                            varBilledByName);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilledBy",
+                            varBilledBy);
+
+                        objBillreport.SetParameterValue(
+                            "paraBilltype",
+                            varBillType);
+
+                        objBillreport.SetParameterValue(
+                            "paraCustomerld",
+                            varCustomerId);
+
+                        objBillreport.SetParameterValue(
+                            "paraMonths",
+                            varMonths);
+
+                        objBillreport.SetParameterValue(
+                            "paraViewType",
+                            varViewType);
                     }
+
 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -601,6 +743,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (198)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,190,202) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,157) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCustomerCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,201) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
                 udfnLoadMonths();

@@ -6866,12 +6866,11 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue(
                     "@paraSalesValue",
                     objMR_Sales.paraSalesValue);
-                varSqlCommand.Parameters.AddWithValue(
-                    "@paraFlag",
-                    objMR_Sales.paraFlag);
-                varSqlCommand.Parameters.AddWithValue(
-                    "@paraOrderby",
-                    objMR_Sales.paraOrderby);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Sales.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderby", objMR_Sales.paraOrderby);
+                varSqlCommand.Parameters.AddWithValue("@paraBilledBy", objMR_Sales.paraBilledBy);
+                varSqlCommand.Parameters.AddWithValue("@paraSchemeType", objMR_Sales.paraSchemeType);
+                varSqlCommand.Parameters.AddWithValue("@paraBillCategory", objMR_Sales.paraBillCategory);
                 varSqlCommand.CommandTimeout = 0;
 
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
