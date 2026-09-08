@@ -44,6 +44,7 @@
             this.DGV_BilledBy = new System.Windows.Forms.DataGridView();
             this.DGV_Customer = new System.Windows.Forms.DataGridView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblBilledByID = new System.Windows.Forms.Label();
             this.txtBilledBy = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblBilledByID = new System.Windows.Forms.Label();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_BilledBy)).BeginInit();
@@ -188,7 +188,7 @@
             this.DGV_BilledBy.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_BilledBy.EnableHeadersVisualStyles = false;
             this.DGV_BilledBy.GridColor = System.Drawing.Color.White;
-            this.DGV_BilledBy.Location = new System.Drawing.Point(970, 108);
+            this.DGV_BilledBy.Location = new System.Drawing.Point(972, 72);
             this.DGV_BilledBy.Name = "DGV_BilledBy";
             this.DGV_BilledBy.ReadOnly = true;
             this.DGV_BilledBy.RowHeadersVisible = false;
@@ -292,6 +292,16 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblBilledByID
+            // 
+            this.lblBilledByID.AutoSize = true;
+            this.lblBilledByID.Location = new System.Drawing.Point(1066, 21);
+            this.lblBilledByID.Name = "lblBilledByID";
+            this.lblBilledByID.Size = new System.Drawing.Size(16, 20);
+            this.lblBilledByID.TabIndex = 111111225;
+            this.lblBilledByID.Text = "0";
+            this.lblBilledByID.Visible = false;
             // 
             // txtBilledBy
             // 
@@ -627,6 +637,7 @@
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(215, 27);
             this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.cmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.cmbReportType_Enter);
             this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReportType_KeyDown);
             this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReportType_KeyPress);
@@ -670,6 +681,7 @@
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(103, 27);
             this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.ValueChanged += new System.EventHandler(this.dpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.dpFromDate_Enter);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dpFromDate_KeyDown);
             this.dpFromDate.Leave += new System.EventHandler(this.dpFromDate_Leave);
@@ -737,16 +749,6 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
-            // 
-            // lblBilledByID
-            // 
-            this.lblBilledByID.AutoSize = true;
-            this.lblBilledByID.Location = new System.Drawing.Point(1066, 21);
-            this.lblBilledByID.Name = "lblBilledByID";
-            this.lblBilledByID.Size = new System.Drawing.Size(16, 20);
-            this.lblBilledByID.TabIndex = 111111225;
-            this.lblBilledByID.Text = "0";
-            this.lblBilledByID.Visible = false;
             // 
             // REPORT_SALES_SummaryDetail
             // 

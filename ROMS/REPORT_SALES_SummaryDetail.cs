@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -520,6 +521,8 @@ namespace ROMS
                 udfnLoadDays();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpFromTime.Value = DateTime.Today.AddHours(6);
+                dpToTime.Value = DateTime.Now;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -1686,6 +1689,78 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbReportType.SelectedValue == null)
+                    return;
+
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                        tsbPrintFormat.Text = varTooltipText;
+                        tsbPrintFormat.ToolTipText = varTooltipText;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                        tsbPrintFormat.ToolTipText = string.Empty;
+                    }
+                }
+
+                int varReportType = 0;
+                int.TryParse(
+                    cmbReportType.SelectedValue.ToString(),
+                    out varReportType);
+                cmbMultiSelectDays.Enabled = false;
+                cmbMultiMonths.Enabled = false;
+
+                lblDays.Text = "";
+                lblMonths.Text = "";
+
+                switch (varReportType)
+                {
+                    case 666:
+                        break;
+
+                    case 667:
+                        break;
+
+                    case 668:
+                        cmbMultiSelectDays.Enabled = true;
+                        break;
+
+                    case 669:
+                        cmbMultiMonths.Enabled = true;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_BilledBy_KeyDown(object sender, KeyEventArgs e)
         {
             try

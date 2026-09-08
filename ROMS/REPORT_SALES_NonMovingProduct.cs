@@ -2072,7 +2072,10 @@ namespace ROMS
         {
             try
             {
-                e.Handled=true;
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {
