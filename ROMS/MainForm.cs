@@ -449,7 +449,7 @@ namespace ROMS
         public static REPORT_SALES_MarriageHall objREPORT_SALES_MarriageHall;
 
         // Sales Report
-        //public static REPORT_SALES_SummaryDetail objREPORT_SALES_SummaryDetail;
+        public static REPORT_SALES_SummaryDetail objREPORT_SALES_SummaryDetail;
         public static REPORT_SALES_ProductWise objREPORT_SALES_ProductWise;
        //public static REPORT_SALES_NonMovingProduct objREPORT_SALES_NonMovingProduct;
 
@@ -5474,7 +5474,7 @@ namespace ROMS
         {
             try
             {
-                //OpenReportForm(ref MainForm.objREPORT_SALES_SummaryDetail, "REPORT_SALES_SummaryDetail", 140301);
+                OpenReportForm(ref MainForm.objREPORT_SALES_SummaryDetail, "REPORT_SALES_SummaryDetail", 140301);
             }
             catch (Exception ex)
             {
