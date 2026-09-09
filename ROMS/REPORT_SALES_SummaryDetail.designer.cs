@@ -188,7 +188,7 @@
             this.DGV_BilledBy.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_BilledBy.EnableHeadersVisualStyles = false;
             this.DGV_BilledBy.GridColor = System.Drawing.Color.White;
-            this.DGV_BilledBy.Location = new System.Drawing.Point(972, 72);
+            this.DGV_BilledBy.Location = new System.Drawing.Point(972, 113);
             this.DGV_BilledBy.Name = "DGV_BilledBy";
             this.DGV_BilledBy.ReadOnly = true;
             this.DGV_BilledBy.RowHeadersVisible = false;
@@ -402,7 +402,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(528, 79);
+            this.label11.Location = new System.Drawing.Point(565, 79);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 20);
             this.label11.TabIndex = 111111213;
@@ -412,7 +412,7 @@
             // 
             this.txtCustomer.Location = new System.Drawing.Point(374, 79);
             this.txtCustomer.Name = "txtCustomer";
-            this.txtCustomer.Size = new System.Drawing.Size(148, 27);
+            this.txtCustomer.Size = new System.Drawing.Size(185, 27);
             this.txtCustomer.TabIndex = 11;
             this.txtCustomer.TextChanged += new System.EventHandler(this.txtCustomer_TextChanged);
             this.txtCustomer.Enter += new System.EventHandler(this.txtCustomer_Enter);
@@ -425,9 +425,9 @@
             this.cmbMultiSelectDays.DropDownHeight = 1;
             this.cmbMultiSelectDays.FormattingEnabled = true;
             this.cmbMultiSelectDays.IntegralHeight = false;
-            this.cmbMultiSelectDays.Location = new System.Drawing.Point(569, 76);
+            this.cmbMultiSelectDays.Location = new System.Drawing.Point(610, 76);
             this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
-            this.cmbMultiSelectDays.Size = new System.Drawing.Size(81, 27);
+            this.cmbMultiSelectDays.Size = new System.Drawing.Size(95, 27);
             this.cmbMultiSelectDays.TabIndex = 12;
             this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
             this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
@@ -447,7 +447,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(656, 79);
+            this.label9.Location = new System.Drawing.Point(713, 79);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 20);
             this.label9.TabIndex = 111111211;
@@ -459,7 +459,7 @@
             this.cmbMultiMonths.DropDownHeight = 1;
             this.cmbMultiMonths.FormattingEnabled = true;
             this.cmbMultiMonths.IntegralHeight = false;
-            this.cmbMultiMonths.Location = new System.Drawing.Point(711, 76);
+            this.cmbMultiMonths.Location = new System.Drawing.Point(769, 76);
             this.cmbMultiMonths.Name = "cmbMultiMonths";
             this.cmbMultiMonths.Size = new System.Drawing.Size(122, 27);
             this.cmbMultiMonths.TabIndex = 13;
@@ -493,7 +493,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(839, 80);
+            this.label18.Location = new System.Drawing.Point(897, 80);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(64, 20);
             this.label18.TabIndex = 111111206;
@@ -550,7 +550,7 @@
             // cmbPrintType
             // 
             this.cmbPrintType.FormattingEnabled = true;
-            this.cmbPrintType.Location = new System.Drawing.Point(909, 76);
+            this.cmbPrintType.Location = new System.Drawing.Point(967, 76);
             this.cmbPrintType.Name = "cmbPrintType";
             this.cmbPrintType.Size = new System.Drawing.Size(195, 27);
             this.cmbPrintType.TabIndex = 14;
@@ -619,7 +619,7 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1148, 75);
+            this.btnTelegram.Location = new System.Drawing.Point(1206, 75);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
@@ -691,7 +691,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1110, 75);
+            this.btnView.Location = new System.Drawing.Point(1168, 75);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 29);
