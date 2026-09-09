@@ -64,6 +64,12 @@ namespace ROMS
                     DGV_Customer.DataSource = null;
                     DGV_Customer.Visible = false;
                 }
+                if (skipControl != txtBilledBy)
+                {
+                    varUpDownKeyBilledBy = 0;
+                    DGV_BilledBy.DataSource = null;
+                    DGV_BilledBy.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -718,6 +724,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnTelegram.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -742,6 +749,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbSalesType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -793,6 +801,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbBillType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -851,6 +860,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbPrintType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -902,6 +912,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpFromTime.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -941,6 +952,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpToTime.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -980,6 +992,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtCustomer.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1312,6 +1325,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbSchemeType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1343,6 +1357,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbMultiSelectDays.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1382,6 +1397,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbMultiMonths.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1421,6 +1437,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbBillCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1475,6 +1492,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtBilledBy.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1750,6 +1768,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbCustomerCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
