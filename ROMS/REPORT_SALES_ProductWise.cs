@@ -104,7 +104,7 @@ namespace ROMS
                     if (Convert.ToInt32(cmbSalesType.SelectedValue) == 585)
                     {
                         RPTViewer.ReportSource = null;
-                        RPTViewer.Visible = true;
+                        RPTViewer.Visible = false;
                         RPTViewer.BringToFront();
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
@@ -143,7 +143,6 @@ namespace ROMS
                 string varUnitName = "-All-";
                 string varClassificationName = "-All-";
                 string varCategoryName = "-All-";
-                string varSubgroupTypeName = "-All-";
                 string varSalesTypeName = "-All-";
                 string varBillTypeName = "-All-";
                 string varProductTypeName = "-All-";
@@ -159,7 +158,6 @@ namespace ROMS
                 int varUnitCode = 0;
                 int varClassificationCode = 0;
                 int varCategoryCode = 0;
-                int varSubgroupType = 0;
                 int varSalesType = 0;
                 int varBillType = 0;
                 int varProductType = 0;
@@ -315,8 +313,7 @@ namespace ROMS
                 objMR_Sales.paraUnitID = varUnitCode;
                 objMR_Sales.paraProductCategory = varCategoryCode;
                 objMR_Sales.paraClassification = varClassificationCode;
-                objMR_Sales.paraType = varProductType;
-                objMR_Sales.paraSubgroupType = varSubgroupType;
+                objMR_Sales.paraSubgroupType = varProductType;
                 objMR_Sales.paraPicode = string.IsNullOrWhiteSpace(varPicode)
                     ? ""
                     : varPicode;
@@ -362,8 +359,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraProductCategory", varCategoryCode);
                     objBillreport.SetParameterValue("ParaProductCode", varProductCode);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode);
-                    objBillreport.SetParameterValue("paraSubgroupType", varSubgroupType);
-                    objBillreport.SetParameterValue("paraType", varProductType);
+                    objBillreport.SetParameterValue("paraSubgroupType", varProductType);
+                    objBillreport.SetParameterValue("paraType", 0);
                     objBillreport.SetParameterValue("paraUnitID", varUnitCode);
                     objBillreport.SetParameterValue("paraViewType", varViewType);
 
@@ -373,7 +370,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraBrandName", varBrandName);
                         objBillreport.SetParameterValue("paraUnitName", varUnitName);
                         objBillreport.SetParameterValue("paraClassificationName", varClassificationName);
-                        objBillreport.SetParameterValue("paraSubgroupTypeName", varSubgroupTypeName);
+                        objBillreport.SetParameterValue("paraSubgroupTypeName", varProductTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
@@ -429,8 +426,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductCategory", varCategoryCode, subReportName);
                         objBillreport.SetParameterValue("ParaProductCode", varProductCode, subReportName);
                         objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode, subReportName);
-                        objBillreport.SetParameterValue("paraSubgroupType", varSubgroupType, subReportName);
-                        objBillreport.SetParameterValue("paraType", varProductType, subReportName);
+                        objBillreport.SetParameterValue("paraSubgroupType", varProductTypeName, subReportName);
+                        objBillreport.SetParameterValue("paraType", 0, subReportName);
                         objBillreport.SetParameterValue("paraUnitID", varUnitCode, subReportName);
                         objBillreport.SetParameterValue("paraViewType", varViewType, subReportName);
 
