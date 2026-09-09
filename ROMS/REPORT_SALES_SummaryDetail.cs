@@ -87,7 +87,7 @@ namespace ROMS
                 else
                 {
                     int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
-                    if (varReportType == 645 || varReportType == 647 || varReportType == 649)
+                    if (varReportType == 668)
                     {
                         var selDayIds = cmbMultiSelectDays.CheckedIds;
                         if (selDayIds == null || selDayIds.Count == 0)
@@ -99,8 +99,9 @@ namespace ROMS
                             cmbMultiSelectDays.Focus();
                             return;
                         }
+                        lblMonths.Text = "";
                     }
-                    else if (varReportType == 646 || varReportType == 648 || varReportType == 650)
+                    else if (varReportType == 669)
                     {
                         var selMonthIds = cmbMultiMonths.CheckedIds;
                         if (selMonthIds == null || selMonthIds.Count == 0)
@@ -112,11 +113,9 @@ namespace ROMS
                             cmbMultiMonths.Focus();
                             return;
                         }
+                        lblDays.Text = "";
                     }
-                    else
-                    {
-                        udfnSalesProductwise(varFlag);
-                    }
+                    udfnSalesProductwise(varFlag);
                 }
             }
             catch (Exception ex)
