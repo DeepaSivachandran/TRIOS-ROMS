@@ -95,7 +95,7 @@ namespace ROMS
                     if (Convert.ToInt32(cmbSalesType.SelectedValue) == 585)
                     {
                         RPTViewer.ReportSource = null;
-                        RPTViewer.Visible = true;
+                        RPTViewer.Visible = false;
                         RPTViewer.BringToFront();
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
