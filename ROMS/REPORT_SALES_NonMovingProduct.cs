@@ -286,6 +286,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                         objBillreport.SetParameterValue("paraType", varCategoryType);
                         objBillreport.SetParameterValue("paraCategoryTypeName", varCategoryTypeName);
+                        objBillreport.SetParameterValue("paraReportType", Convert.ToString(cmbOrderType.Text));
                     }
 
                     objValidation.CrySqlConnection(objBillreport);
