@@ -71,6 +71,12 @@ namespace ROMS
                     DGV_FilterBrand.DataSource = null;
                     DGV_FilterBrand.Visible = false;
                 }
+                if (skipControl != txtProductName)
+                {
+                    varUpDownKeyProduct = 0;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1439,6 +1445,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1537,6 +1544,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnTelegram.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1569,6 +1577,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1946,6 +1955,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbOrderType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2044,6 +2054,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtDays.BackColor= Color.LemonChiffon;
             }
             catch (Exception ex)
