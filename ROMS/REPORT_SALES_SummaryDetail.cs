@@ -1852,13 +1852,11 @@ namespace ROMS
 
                     case 668:
                         cmbMultiSelectDays.Enabled = true;
-
                         break;
-
-
                     case 669:
                         cmbMultiMonths.Enabled = true;
-
+                        dpFromDate.Enabled = false;
+                        dpToDate.Enabled = false;
                         break;
                 }
             }

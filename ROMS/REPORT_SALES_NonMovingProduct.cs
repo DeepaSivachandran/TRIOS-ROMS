@@ -201,7 +201,7 @@ namespace ROMS
                 int varViewType = 0;
                 if (varReportType == 670)
                 {
-                    //varViewType = 8;
+                    varViewType = 13;
                 }
                 else if (varReportType == 671)
                 {
@@ -376,7 +376,7 @@ namespace ROMS
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
                 cmbReportType.SelectedValue= 671;
-                cmbReportType.Enabled=false;
+                //cmbReportType.Enabled=false;
                 cmbConcern.Focus();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
