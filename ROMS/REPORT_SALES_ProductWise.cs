@@ -1145,7 +1145,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    txtProductName.Focus();
+                    cmbUnit.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1218,7 +1218,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtProductName.Focus();
+                        cmbUnit.Focus();
                     }
                 }
             }
@@ -1649,7 +1649,7 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                txtProductName.Focus();
+                cmbUnit.Focus();
             }
             catch (Exception ex)
             {
@@ -1719,7 +1719,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtProductName.Focus();
+                        cmbUnit.Focus();
                     }
                 }
             }

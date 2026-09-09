@@ -259,7 +259,6 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraProductCategory", varCategoryCode);
                     objBillreport.SetParameterValue("ParaProductCode", varProductCode);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode);
-                    objBillreport.SetParameterValue("paraSubgroupType", varSubgroupType);
                     objBillreport.SetParameterValue("paraViewType", varViewType);
 
                     if (varReportType == 670)
@@ -285,6 +284,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
                         objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                        objBillreport.SetParameterValue("paraType", varCategoryType);
                         objBillreport.SetParameterValue("paraCategoryTypeName", varCategoryTypeName);
                     }
 
