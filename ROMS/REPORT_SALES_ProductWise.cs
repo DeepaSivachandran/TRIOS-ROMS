@@ -97,9 +97,19 @@ namespace ROMS
                     tpReportType.ShowAlways = true;
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
+                    return;
                 }
                 else
                 {
+                    if (Convert.ToInt32(cmbSalesType.SelectedValue) == 585)
+                    {
+                        RPTViewer.ReportSource = null;
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                        return;
+                    }
                     udfnSalesProductwise(varFlag);
                 }
             }
