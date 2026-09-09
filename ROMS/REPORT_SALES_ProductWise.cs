@@ -391,7 +391,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductTypeName", varProductTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
                         objBillreport.SetParameterValue("paraFilterTypeName", varFilterTypeName);
-                        objBillreport.SetParameterValue("paraFlag", varFlag);
+                        objBillreport.SetParameterValue("paraFlag", 0);
                         objBillreport.SetParameterValue("paraSalesType", varSalesType);
                         objBillreport.SetParameterValue("paraSalesValue", varSalesValue);
                         objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbPrintType.SelectedValue));
@@ -409,7 +409,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductTypeName", varProductTypeName, subReportName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName, subReportName);
                         objBillreport.SetParameterValue("paraFilterTypeName", varFilterTypeName, subReportName);
-                        objBillreport.SetParameterValue("paraFlag", varFlag, subReportName);
+                        objBillreport.SetParameterValue("paraFlag", 1, subReportName);
                         objBillreport.SetParameterValue("paraSalesType", varSalesType, subReportName);
                         objBillreport.SetParameterValue("paraSalesValue", varSalesValue, subReportName);
                         objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "", subReportName);
