@@ -369,7 +369,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"));
                         objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"));
                         objBillreport.SetParameterValue("paraBillByName", varBillByName);
-                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraCustomerName", txtCustomer.Text.Trim());
+                        objBillreport.SetParameterValue("paraCusName", varCustomerName);
                         objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
                         objBillreport.SetParameterValue("paraBilltype", varBillType);
@@ -390,7 +391,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"));
                         objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"));
                         objBillreport.SetParameterValue("paraBillByName", varBillByName);
-                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraCustomerName", txtCustomer.Text.Trim());
+                        objBillreport.SetParameterValue("paraCusName", varCustomerName);
                         objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
                         objBillreport.SetParameterValue("paraBilltype", varBillType);
@@ -422,7 +424,8 @@ namespace ROMS
                     {
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
-                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraCustomerName", txtCustomer.Text.Trim());
+                        objBillreport.SetParameterValue("paraCusName", varCustomerName);
                         objBillreport.SetParameterValue("paraBilledByName", varBilledByName);
                         objBillreport.SetParameterValue("paraDayName", varDayName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
@@ -435,7 +438,8 @@ namespace ROMS
                     {
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
-                        objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                        objBillreport.SetParameterValue("paraCustomerName", txtCustomer.Text.Trim());
+                        objBillreport.SetParameterValue("paraCusName", varCustomerName);
                         objBillreport.SetParameterValue("paraMonthName", varMonthName);
                         objBillreport.SetParameterValue("paraBilledByName", varBilledByName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
@@ -1619,7 +1623,7 @@ namespace ROMS
                                     DGV_BilledBy.DataSource = objDs.Tables[0];
                                     DGV_BilledBy.Columns["SUID"].Visible = false;
                                     DGV_BilledBy.Columns["SU_Name"].HeaderText = "User Name";
-                                    DGV_BilledBy.Columns["SU_Name"].Width = 150;
+                                    DGV_BilledBy.Columns["SU_Name"].Width = 200;
                                     DGV_BilledBy.BringToFront();
                                 }
                                 else
