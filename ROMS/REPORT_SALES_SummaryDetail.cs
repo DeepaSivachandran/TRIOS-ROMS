@@ -83,9 +83,18 @@ namespace ROMS
                     tpReportType.ShowAlways = true;
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
+                    return;
                 }
                 else
                 {
+                    if (Convert.ToInt32(cmbSalesType.SelectedValue) == 585)
+                    {
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                        return;
+                    }
                     int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
                     if (varReportType == 668)
                     {
@@ -158,7 +167,6 @@ namespace ROMS
                 int varCusCategoryId = 0;
                 int varBilledBy = 0;
                 int varSchemeType = 0;
-                int varPrintType = 0;
                 string varDays = "0";
                 string varMonths = "0";
                 var selIds = cmbMultiMonths.CheckedIds;
@@ -355,7 +363,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text.Trim());
                     if (varReportType == 666)
                     {
-                        objBillreport.SetParameterValue("paraCategoryName", varCategoryName);
+                        objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbBillCategory.Text));
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
@@ -366,6 +374,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSchemeTypeName", varSchemeTypeName);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy);
                         objBillreport.SetParameterValue("paraBilltype", varBillType);
+                        objBillreport.SetParameterValue("paraBillCategory", varBillCategoryId);
                         objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId);
                         objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
                         objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
@@ -375,7 +384,7 @@ namespace ROMS
                     {
                         string subReportName = objBillreport.Subreports[0].Name;
 
-                        objBillreport.SetParameterValue("paraCategoryName", varCategoryName);
+                        objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbBillCategory.Text));
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
@@ -391,6 +400,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraFlag", 0);
                         objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
                         objBillreport.SetParameterValue("paraViewType", varViewType);
+                        objBillreport.SetParameterValue("paraBillCategory", varBillCategoryId);
                         objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbPrintType.SelectedValue));
 
                         objBillreport.SetParameterValue("paraCategoryName", varCategoryName, subReportName);
@@ -1598,7 +1608,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtBilledBy.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnSalesUserList(5, txtBilledBy.Text, "", "", 0, 0, "");
+                        objDs = objspdservice.udfnSalesUserList(8, txtBilledBy.Text, "", "", 0, 0, "");
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
