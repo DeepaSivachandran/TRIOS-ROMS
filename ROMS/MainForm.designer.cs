@@ -268,6 +268,10 @@ namespace ROMS
             this.tsmTransportReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCardMachineReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHallReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesSummaryDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesProductWise = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesNonMovingProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
@@ -276,10 +280,6 @@ namespace ROMS
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSalesReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSalesSummaryDetail = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSalesProductWise = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSalesNonMovingProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2449,6 +2449,41 @@ namespace ROMS
             this.tsmMarriageHallReport.Visible = false;
             this.tsmMarriageHallReport.Click += new System.EventHandler(this.tsmMarriageHallReport_Click);
             // 
+            // tsmSalesReport
+            // 
+            this.tsmSalesReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmSalesSummaryDetail,
+            this.tsmSalesProductWise,
+            this.tsmSalesNonMovingProduct});
+            this.tsmSalesReport.Name = "tsmSalesReport";
+            this.tsmSalesReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSalesReport.Text = "Sales Report";
+            this.tsmSalesReport.Visible = false;
+            // 
+            // tsmSalesSummaryDetail
+            // 
+            this.tsmSalesSummaryDetail.Name = "tsmSalesSummaryDetail";
+            this.tsmSalesSummaryDetail.Size = new System.Drawing.Size(201, 22);
+            this.tsmSalesSummaryDetail.Text = "Sales Summary && Detail";
+            this.tsmSalesSummaryDetail.Visible = false;
+            this.tsmSalesSummaryDetail.Click += new System.EventHandler(this.tsmSalesSummaryDetail_Click);
+            // 
+            // tsmSalesProductWise
+            // 
+            this.tsmSalesProductWise.Name = "tsmSalesProductWise";
+            this.tsmSalesProductWise.Size = new System.Drawing.Size(201, 22);
+            this.tsmSalesProductWise.Text = "Sales Productwise";
+            this.tsmSalesProductWise.Visible = false;
+            this.tsmSalesProductWise.Click += new System.EventHandler(this.tsmSalesProductWise_Click);
+            // 
+            // tsmSalesNonMovingProduct
+            // 
+            this.tsmSalesNonMovingProduct.Name = "tsmSalesNonMovingProduct";
+            this.tsmSalesNonMovingProduct.Size = new System.Drawing.Size(201, 22);
+            this.tsmSalesNonMovingProduct.Text = "Sales Non Moving Product";
+            this.tsmSalesNonMovingProduct.Visible = false;
+            this.tsmSalesNonMovingProduct.Click += new System.EventHandler(this.tsmSalesNonMovingProduct_Click);
+            // 
             // tsmHelp
             // 
             this.tsmHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2511,37 +2546,6 @@ namespace ROMS
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // tsmSalesReport
-            // 
-            this.tsmSalesReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmSalesSummaryDetail,
-            this.tsmSalesProductWise,
-            this.tsmSalesNonMovingProduct});
-            this.tsmSalesReport.Name = "tsmSalesReport";
-            this.tsmSalesReport.Size = new System.Drawing.Size(180, 22);
-            this.tsmSalesReport.Text = "Sales Report";
-            // 
-            // tsmSalesSummaryDetail
-            // 
-            this.tsmSalesSummaryDetail.Name = "tsmSalesSummaryDetail";
-            this.tsmSalesSummaryDetail.Size = new System.Drawing.Size(201, 22);
-            this.tsmSalesSummaryDetail.Text = "Sales Summary && Detail";
-            this.tsmSalesSummaryDetail.Click += new System.EventHandler(this.tsmSalesSummaryDetail_Click);
-            // 
-            // tsmSalesProductWise
-            // 
-            this.tsmSalesProductWise.Name = "tsmSalesProductWise";
-            this.tsmSalesProductWise.Size = new System.Drawing.Size(201, 22);
-            this.tsmSalesProductWise.Text = "Sales Productwise";
-            this.tsmSalesProductWise.Click += new System.EventHandler(this.tsmSalesProductWise_Click);
-            // 
-            // tsmSalesNonMovingProduct
-            // 
-            this.tsmSalesNonMovingProduct.Name = "tsmSalesNonMovingProduct";
-            this.tsmSalesNonMovingProduct.Size = new System.Drawing.Size(201, 22);
-            this.tsmSalesNonMovingProduct.Text = "Sales Non Moving Product";
-            this.tsmSalesNonMovingProduct.Click += new System.EventHandler(this.tsmSalesNonMovingProduct_Click);
             // 
             // MainForm
             // 
