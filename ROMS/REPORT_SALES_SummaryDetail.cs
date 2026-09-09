@@ -329,6 +329,7 @@ namespace ROMS
                 objMR_Sales.paraSalesType = varSalesType;
                 objMR_Sales.paraBillType = varBillType;
                 objMR_Sales.paraCustomerId = varCustomerId;
+                objMR_Sales.paraCUS_Name = txtCustomer.Text.Trim();
                 objMR_Sales.paraCUS_CategoryTypeID = varCusCategoryId;
                 objMR_Sales.paraBilledBy = varBilledBy;
                 objMR_Sales.paraSchemeType = varSchemeType;

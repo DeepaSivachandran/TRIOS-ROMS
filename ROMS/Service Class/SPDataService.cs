@@ -6833,6 +6833,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraMonths", objMR_Sales.paraMonths);
                 varSqlCommand.Parameters.AddWithValue("@paraCustomerId", objMR_Sales.paraCustomerId);
                 varSqlCommand.Parameters.AddWithValue("@paraCusCategoryId", objMR_Sales.paraCUS_CategoryTypeID);
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerName", objMR_Sales.paraCUS_Name);
                 varSqlCommand.CommandTimeout = 0;
 
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
