@@ -56,10 +56,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCustomer = new System.Windows.Forms.TextBox();
-            this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.lblMonths = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.cmbMultiMonths = new MultiSelectComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbSchemeType = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -83,8 +81,10 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbMultiSelectDays = new MultiSelectComboBox();
+            this.cmbMultiMonths = new MultiSelectComboBox();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_BilledBy)).BeginInit();
@@ -188,7 +188,7 @@
             this.DGV_BilledBy.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_BilledBy.EnableHeadersVisualStyles = false;
             this.DGV_BilledBy.GridColor = System.Drawing.Color.White;
-            this.DGV_BilledBy.Location = new System.Drawing.Point(972, 113);
+            this.DGV_BilledBy.Location = new System.Drawing.Point(970, 72);
             this.DGV_BilledBy.Name = "DGV_BilledBy";
             this.DGV_BilledBy.ReadOnly = true;
             this.DGV_BilledBy.RowHeadersVisible = false;
@@ -419,20 +419,6 @@
             this.txtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomer_KeyDown);
             this.txtCustomer.Leave += new System.EventHandler(this.txtCustomer_Leave);
             // 
-            // cmbMultiSelectDays
-            // 
-            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbMultiSelectDays.DropDownHeight = 1;
-            this.cmbMultiSelectDays.FormattingEnabled = true;
-            this.cmbMultiSelectDays.IntegralHeight = false;
-            this.cmbMultiSelectDays.Location = new System.Drawing.Point(610, 76);
-            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
-            this.cmbMultiSelectDays.Size = new System.Drawing.Size(95, 27);
-            this.cmbMultiSelectDays.TabIndex = 12;
-            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
-            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
-            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
-            // 
             // lblMonths
             // 
             this.lblMonths.AutoSize = true;
@@ -452,20 +438,6 @@
             this.label9.Size = new System.Drawing.Size(50, 20);
             this.label9.TabIndex = 111111211;
             this.label9.Text = "Months";
-            // 
-            // cmbMultiMonths
-            // 
-            this.cmbMultiMonths.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbMultiMonths.DropDownHeight = 1;
-            this.cmbMultiMonths.FormattingEnabled = true;
-            this.cmbMultiMonths.IntegralHeight = false;
-            this.cmbMultiMonths.Location = new System.Drawing.Point(769, 76);
-            this.cmbMultiMonths.Name = "cmbMultiMonths";
-            this.cmbMultiMonths.Size = new System.Drawing.Size(122, 27);
-            this.cmbMultiMonths.TabIndex = 13;
-            this.cmbMultiMonths.Enter += new System.EventHandler(this.cmbMultiMonths_Enter);
-            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiMonths_KeyDown);
-            this.cmbMultiMonths.Leave += new System.EventHandler(this.cmbMultiMonths_Leave);
             // 
             // label1
             // 
@@ -742,13 +714,41 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // dynamicLabelControl
-            // 
-            this.dynamicLabelControl.PlaceholderLabel = null;
-            // 
             // epReport
             // 
             this.epReport.ContainerControl = this;
+            // 
+            // cmbMultiSelectDays
+            // 
+            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiSelectDays.DropDownHeight = 1;
+            this.cmbMultiSelectDays.FormattingEnabled = true;
+            this.cmbMultiSelectDays.IntegralHeight = false;
+            this.cmbMultiSelectDays.Location = new System.Drawing.Point(610, 76);
+            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
+            this.cmbMultiSelectDays.Size = new System.Drawing.Size(95, 27);
+            this.cmbMultiSelectDays.TabIndex = 12;
+            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
+            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
+            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
+            // 
+            // cmbMultiMonths
+            // 
+            this.cmbMultiMonths.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiMonths.DropDownHeight = 1;
+            this.cmbMultiMonths.FormattingEnabled = true;
+            this.cmbMultiMonths.IntegralHeight = false;
+            this.cmbMultiMonths.Location = new System.Drawing.Point(769, 76);
+            this.cmbMultiMonths.Name = "cmbMultiMonths";
+            this.cmbMultiMonths.Size = new System.Drawing.Size(122, 27);
+            this.cmbMultiMonths.TabIndex = 13;
+            this.cmbMultiMonths.Enter += new System.EventHandler(this.cmbMultiMonths_Enter);
+            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiMonths_KeyDown);
+            this.cmbMultiMonths.Leave += new System.EventHandler(this.cmbMultiMonths_Leave);
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // REPORT_SALES_SummaryDetail
             // 
