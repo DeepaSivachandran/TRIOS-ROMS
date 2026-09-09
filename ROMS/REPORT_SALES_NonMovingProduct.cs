@@ -1702,13 +1702,26 @@ namespace ROMS
                 {
                     if (txtProductName.Text.Length > 0)
                     {
+                        int varGroupCode = 0,varSubgroupCode = 0,varBrandCode = 0;
+                        if(txtGroup.Text.Trim()!="")
+                        {
+                            varGroupCode = Convert.ToInt32(lblGroupCode.Text);
+                        }
+                        if(txtSubGroup.Text.Trim()!="")
+                        {
+                            varSubgroupCode = Convert.ToInt32(lblSubGroupCode.Text);
+                        }
+                        if(txtBrand.Text.Trim()!="")
+                        {
+                            varBrandCode = Convert.ToInt32(lblBrandCode.Text);
+                        }
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 49;
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraProductName = txtProductName.Text;
-                        objMR_Product.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
-                        objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
-                        objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
+                        objMR_Product.paraBrandID = varBrandCode;
+                        objMR_Product.paraGroup = varGroupCode;
+                        objMR_Product.paraSubgroup = varSubgroupCode;
                          
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
