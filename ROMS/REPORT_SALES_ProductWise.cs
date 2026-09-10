@@ -426,7 +426,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductCategory", varCategoryCode, subReportName);
                         objBillreport.SetParameterValue("ParaProductCode", varProductCode, subReportName);
                         objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode, subReportName);
-                        objBillreport.SetParameterValue("paraSubgroupType", varProductTypeName, subReportName);
+                        objBillreport.SetParameterValue("paraSubgroupType", varProductType, subReportName);
                         objBillreport.SetParameterValue("paraType", 0, subReportName);
                         objBillreport.SetParameterValue("paraUnitID", varUnitCode, subReportName);
                         objBillreport.SetParameterValue("paraViewType", varViewType, subReportName);
