@@ -471,7 +471,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(824, 20);
+            this.label1.Location = new System.Drawing.Point(806, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 111111208;
@@ -480,9 +480,9 @@
             // cmbSchemeType
             // 
             this.cmbSchemeType.FormattingEnabled = true;
-            this.cmbSchemeType.Location = new System.Drawing.Point(824, 43);
+            this.cmbSchemeType.Location = new System.Drawing.Point(806, 43);
             this.cmbSchemeType.Name = "cmbSchemeType";
-            this.cmbSchemeType.Size = new System.Drawing.Size(137, 27);
+            this.cmbSchemeType.Size = new System.Drawing.Size(155, 27);
             this.cmbSchemeType.TabIndex = 7;
             this.cmbSchemeType.Enter += new System.EventHandler(this.cmbSchemeType_Enter);
             this.cmbSchemeType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeType_KeyDown);
@@ -574,7 +574,7 @@
             this.cmbBillType.FormattingEnabled = true;
             this.cmbBillType.Location = new System.Drawing.Point(711, 43);
             this.cmbBillType.Name = "cmbBillType";
-            this.cmbBillType.Size = new System.Drawing.Size(107, 27);
+            this.cmbBillType.Size = new System.Drawing.Size(89, 27);
             this.cmbBillType.TabIndex = 6;
             this.cmbBillType.Enter += new System.EventHandler(this.cmbBillType_Enter);
             this.cmbBillType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBillType_KeyDown);
