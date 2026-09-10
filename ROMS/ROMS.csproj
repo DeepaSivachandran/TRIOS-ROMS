@@ -1076,6 +1076,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_Details_Bill_Sum.cs">
+      <DependentUpon>RPT_SALES_Details_Bill_Sum.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_Mobile.cs">
       <DependentUpon>RPT_SALES_Mobile.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6628,6 +6635,11 @@
     <Content Include="Reports\RPT_SALES_Details_Sum.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_Details_Sum.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Details_Bill_Sum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Details_Bill_Sum.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
