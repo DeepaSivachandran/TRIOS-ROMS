@@ -103,7 +103,8 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80801; 
+                int currentMUCode = 80801;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
@@ -111,7 +112,7 @@ namespace ROMS
                   .Where(q => q.HasValue)
                   .Select(q => q.Value.ToString())
                   ?? Enumerable.Empty<string>());
-                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+              
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
                 lblUnits.Text = "";
