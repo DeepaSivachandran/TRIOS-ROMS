@@ -1069,8 +1069,43 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Detail_BillType_Sum.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Detail_BillType_Sum.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Detail_Vendor_Sum.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Detail_Vendor_Sum.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Card_Payment_Detail_Mid_Sum.cs">
+      <DependentUpon>RPT_SALES_Card_Payment_Detail_Mid_Sum.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_CustomerType.cs">
       <DependentUpon>RPT_SALES_CustomerType.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Details_Bill_Sum.cs">
+      <DependentUpon>RPT_SALES_Details_Bill_Sum.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Summary_Sum.cs">
+      <DependentUpon>RPT_SALES_Summary_Sum.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1092,6 +1127,41 @@
     </Compile>
     <Compile Include="Reports\RPT_SALES_MarriageHall.cs">
       <DependentUpon>RPT_SALES_MarriageHall.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Daywise.cs">
+      <DependentUpon>RPT_SALES_Daywise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Monthwise.cs">
+      <DependentUpon>RPT_SALES_Monthwise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Details.cs">
+      <DependentUpon>RPT_SALES_Details.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Details_Sum.cs">
+      <DependentUpon>RPT_SALES_Details_Sum.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_Summary.cs">
+      <DependentUpon>RPT_SALES_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1880,6 +1950,24 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_SALES_NonMovingProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_NonMovingProduct.designer.cs">
+      <DependentUpon>REPORT_SALES_NonMovingProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_SummaryDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_SummaryDetail.designer.cs">
+      <DependentUpon>REPORT_SALES_SummaryDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_SALES_ProductWise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_ProductWise.designer.cs">
+      <DependentUpon>REPORT_SALES_ProductWise.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_SALES_MarriageHall.cs">
       <SubType>Form</SubType>
@@ -6552,6 +6640,56 @@
       <LastGenOutput>RPT_SALES_Productwise_Consolidated_Sum.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_SALES_Monthwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Monthwise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Daywise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Daywise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Details.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Details.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Details_Sum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Details_Sum.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Summary_Sum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Summary_Sum.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Details_Bill_Sum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Details_Bill_Sum.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Detail_Mid_Sum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Detail_Mid_Sum.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Detail_Vendor_Sum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Detail_Vendor_Sum.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_Card_Payment_Detail_BillType_Sum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Card_Payment_Detail_BillType_Sum.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SAL_Summary.cs</LastGenOutput>
@@ -7652,6 +7790,15 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_SALES_NonMovingProduct.resx">
+      <DependentUpon>REPORT_SALES_NonMovingProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_SummaryDetail.resx">
+      <DependentUpon>REPORT_SALES_SummaryDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_SALES_ProductWise.resx">
+      <DependentUpon>REPORT_SALES_ProductWise.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_MarriageHall.resx">
       <DependentUpon>REPORT_SALES_MarriageHall.cs</DependentUpon>
     </EmbeddedResource>

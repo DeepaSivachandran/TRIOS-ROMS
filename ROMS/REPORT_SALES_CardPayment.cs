@@ -118,6 +118,7 @@ namespace ROMS
                     tpReportType.ShowAlways = true;
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
+                    return;
                 }
                 else
                 {
@@ -378,14 +379,29 @@ namespace ROMS
                         // Detail Report Only
                         objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                         objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
-
                         objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
                         objBillreport.SetParameterValue("paraBillNoName", varBillNoName);
                         objBillreport.SetParameterValue("paraBillAmountName", varBillAmtName);
-
                         objBillreport.SetParameterValue("paraBillAmt", varBillAmt);
                         objBillreport.SetParameterValue("paraBillNo", varBillNo);
                         objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
+
+                        string[] subReportNames = new string[3];
+                        for (int i = 0; i < 3; i++)
+                        {
+                            subReportNames[i] = objBillreport.Subreports[i].Name;
+
+                            objBillreport.SetParameterValue("paraConcernId", varConcernId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text), subReportNames[i]);
+                            objBillreport.SetParameterValue("paraMachineId", varMachineId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraProviderId", varProviderId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text), subReportNames[i]);
+                            objBillreport.SetParameterValue("paraTypeId", varTypeId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraBillAmt", varBillAmt, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraBillNo", varBillNo, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraCustomerId", varCustomerId, subReportNames[i]);
+                        }
+
                     }
                     else if (varReportTypeID == 644)
                     {
@@ -822,7 +838,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MST_TransactionID IN (195,0) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
 
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN(169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN(169,0) AND MSTID NOT IN (-1,551)", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,141) AND MSTID<>-1 ORDER BY MSTID  ASC", "MST_DisplayText,MSTID", cmbVendor, "", "MST_DisplayText", "MSTID");
 

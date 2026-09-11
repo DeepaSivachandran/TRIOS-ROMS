@@ -448,6 +448,10 @@ namespace ROMS
         public static REPORT_SALES_CardMachine objREPORT_SALES_CardMachine;
         public static REPORT_SALES_MarriageHall objREPORT_SALES_MarriageHall;
 
+        // Sales Report
+        public static REPORT_SALES_SummaryDetail objREPORT_SALES_SummaryDetail;
+        public static REPORT_SALES_ProductWise objREPORT_SALES_ProductWise;
+        public static REPORT_SALES_NonMovingProduct objREPORT_SALES_NonMovingProduct;
 
         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
@@ -5458,6 +5462,45 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_SALES_MarriageHall, "REPORT_SALES_MarriageHall", 140209);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesSummaryDetail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_SALES_SummaryDetail, "REPORT_SALES_SummaryDetail", 140301);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesProductWise_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_SALES_ProductWise, "REPORT_SALES_ProductWise", 140302);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesNonMovingProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_SALES_NonMovingProduct, "REPORT_SALES_NonMovingProduct", 140303);
             }
             catch (Exception ex)
             {

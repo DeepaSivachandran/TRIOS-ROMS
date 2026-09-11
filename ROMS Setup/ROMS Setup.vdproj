@@ -381,8 +381,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2090A56504F65B5C4EA26CE0C9ECB180"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_1D0999DB94A749C79A4262FF3BF11F47"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -423,14 +423,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2253207B4FA6E9205C0865F299EC5F3E"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_217A1DBB827F4FA592B908CFF43DA341"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_22E5A45103C2D776FC9909DBB56CAEC6"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_21CE704F519F4625BAA826705DB14C38"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -441,7 +441,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_23A3210EB1BF697323706DBD0C965015"
+        "MsmKey" = "8:_2253207B4FA6E9205C0865F299EC5F3E"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -519,8 +519,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_278CFA1BAF869CB309358A8612667346"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_28360895DF474A14955DC32BC007D7DC"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -543,7 +543,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_294AD621A0E45B8D4B67324B1239DCD4"
+        "MsmKey" = "8:_2A91A3D488200AD45850BC6CF8725ADB"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -867,8 +867,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_42B9877B2851EE878E0DFFDB6D46BA83"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_42D25C9A7201469A90AFA2BA39D85542"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1017,14 +1017,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4AA0087E0B3C7E6BD38D2703529B67F7"
-        "OwnerKey" = "8:_A5E4CBFB93C0907BFF831EA06E0C682D"
+        "MsmKey" = "8:_4DBF3311878616C020105FAAB8E5745C"
+        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4AA0087E0B3C7E6BD38D2703529B67F7"
-        "OwnerKey" = "8:_AD9171E3FE42F69E2C7D0DCBEA4484CA"
+        "MsmKey" = "8:_4ECCBC06BFA142ABB9400E595D92AA9F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1059,8 +1059,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4EFB3D0689CA00B4774E2BF68455A1EE"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_4FFE16E09D87466F9FCC491168CFEAF5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1719,7 +1719,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8608BAED8AFC4784EB852285562978B7"
+        "MsmKey" = "8:_852821955F36F7C35F07EEA1996F8717"
+        "OwnerKey" = "8:_162399C11F5BD96CB7B1D6076974C9EF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_852821955F36F7C35F07EEA1996F8717"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1995,8 +2001,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9905827CE4A54DD9830427186F105993"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_95784D693A1FD51C43D9903126124604"
+        "OwnerKey" = "8:_1287ACAF96744B4679A4A711B9BBEAC7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2025,8 +2031,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9C338999619E4B80DC301C8DC81241AA"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_979D6F45ACBC46DEB8FB210F831B7374"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2055,7 +2061,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9E39C2116C80F36A3B29DBA0576DEF43"
+        "MsmKey" = "8:_9923E2598C623529889FD19031F98D30"
+        "OwnerKey" = "8:_1287ACAF96744B4679A4A711B9BBEAC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9923E2598C623529889FD19031F98D30"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2091,8 +2103,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A2FF8CFA968AAD5EAFFADC967427282E"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_9B6E3C5767E84C0BA6000B20906FEA70"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2109,7 +2121,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A5E4CBFB93C0907BFF831EA06E0C682D"
+        "MsmKey" = "8:_9C338999619E4B80DC301C8DC81241AA"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2127,7 +2139,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A6288E9184499018D1CD1B186F8BD721"
+        "MsmKey" = "8:_9D0F8D92F7A52B33241CD33F10E1CC2D"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2199,13 +2211,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AD758DE4E71CB0ACB05190D47F8BC52D"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_A5DE4E6DEBC64959BEE1B0E93BDBEFFA"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AD9171E3FE42F69E2C7D0DCBEA4484CA"
+        "MsmKey" = "8:_A5E4CBFB93C0907BFF831EA06E0C682D"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2229,14 +2241,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AF2235FFF280D4D77C9C61F98A0573B3"
+        "MsmKey" = "8:_A6288E9184499018D1CD1B186F8BD721"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AFA23E44EA6D6E196EB19CCD0B97150F"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_A690F913944642248827D94B85D1C3A6"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2301,7 +2313,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B4AEA380B05B894E96334482322EFCDD"
+        "MsmKey" = "8:_AD758DE4E71CB0ACB05190D47F8BC52D"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2385,8 +2397,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BBF7C2D8B80FBBA863B96EA3A3DF8054"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_B50A9319612A4E7EB7FFCA3F59F94333"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2403,7 +2415,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BCA17C1FC8D2452A52F71D6AB1D92945"
+        "MsmKey" = "8:_B689CCB90C9E3B055BA6A677897D2051"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2487,6 +2499,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C315E5EC99F4427C81ACADDF6B2C8079"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C337A7914EF232050DBA7AF91DA32EF2"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -2513,6 +2531,18 @@
         {
         "MsmKey" = "8:_C3C5042F6C2F9711CAB68D919D252687"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C3E1B0854DF247EF84D17825E7773203"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C3E1DB89A4254FA2B7BB0A0C343BD4B8"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2685,8 +2715,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CF8D52A61738BF8A4007034F9A19CF86"
-        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmKey" = "8:_D1D2FCE9DCC14C7BBEF76D6EB05DA8BE"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2721,7 +2751,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D0C95CF865D5B016C899CB153CA3A302"
+        "MsmKey" = "8:_D39B01D4E334E79BA959399C18D108A2"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2751,7 +2781,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D35FBE54D37240A583DAF1A82ABF9534"
+        "MsmKey" = "8:_D520822878D54A15A43F82F4539ECBC1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3033,6 +3063,30 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
+        "OwnerKey" = "8:_9E365B120DC89449472EA99925022B05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
+        "OwnerKey" = "8:_ADA029EC08676DF6423FA4DEE17C6F09"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ECFA33B1C897EC1CF816A3B4A39884B2"
+        "OwnerKey" = "8:_048BE51C6718C023D64718CEBBBA53A6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ECFA33B1C897EC1CF816A3B4A39884B2"
+        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EDF4074E5F1A4BCCB2B015CB6270ADCC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -3207,6 +3261,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FA73A4F5EFFAA849BD2DAE89C2581E38"
+        "OwnerKey" = "8:_7E0AE69D79A76B9A28BC8CFF6B50A7A8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FB011F3D246814DD9C425097E91E4D06"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -3334,13 +3394,109 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_07064B671F4F2FDEF5D90B7CB83A73D1"
+        "OwnerKey" = "8:_B2DCD99F0CC15D5EF7CB980EAE1FDDE7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EE8DB3F772E6638D7DE02FB82B09E99A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9E365B120DC89449472EA99925022B05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6627060E883DC792F41AB1CAF6DDECFE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1287ACAF96744B4679A4A711B9BBEAC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_07064B671F4F2FDEF5D90B7CB83A73D1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9923E2598C623529889FD19031F98D30"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ADA029EC08676DF6423FA4DEE17C6F09"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9D0F8D92F7A52B33241CD33F10E1CC2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_68A83FA5F4A5772AA001CBDF8352743E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_15782CF4D9B256F4369DEB7F733888BD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_95784D693A1FD51C43D9903126124604"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0B56FC685F1DFF29FCEEEDB31FEDD0BD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_99842ACC4B6A1A3DA5A5A726B496E7F2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F6EA457701C67573C62FB516D1A29DCB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7E0AE69D79A76B9A28BC8CFF6B50A7A8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_162399C11F5BD96CB7B1D6076974C9EF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_852821955F36F7C35F07EEA1996F8717"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4524,7 +4680,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Detail.rpt"
             "TargetName" = "8:RPT_Stock_Detail.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4536,7 +4692,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0846D0DA82C8449FB8CC78FEA2DF2752"
@@ -4564,7 +4720,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Group_100x70.rpt"
             "TargetName" = "8:RPT_Sticker_Print_Group_100x70.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4576,7 +4732,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_098CBFCAD4F649AE8D60FDB0DFD6F807"
@@ -4604,7 +4760,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Broker_Contact.rpt"
             "TargetName" = "8:RPT_CP_Broker_Contact.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4616,7 +4772,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09E2D293A7F1459090478295B97C0A46"
@@ -4715,7 +4871,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Label_Print_Plain_50x25.rpt"
             "TargetName" = "8:RPT_Product_Label_Print_Plain_50x25.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4727,7 +4883,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0AA8CA597E79CB00C48D6BF9308C4157"
@@ -4968,7 +5124,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Label_Print_50x35.rpt"
             "TargetName" = "8:RPT_Product_Label_Print_50x35.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4980,7 +5136,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_109C32B5ED4041B49FC64F48CCD501B4"
@@ -5048,7 +5204,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_TakingSheet.rpt"
             "TargetName" = "8:RPT_Stock_TakingSheet.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5060,7 +5216,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1371CEE28CB24DEBB346C67B365F1D1A"
@@ -5100,7 +5256,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_148E78010100430588739CDC18AA0CAA"
@@ -5179,7 +5335,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_HDFC.rpt"
             "TargetName" = "8:RPT_HDFC.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5191,7 +5347,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16624849DA724E0E82AA485DF655E169"
@@ -5576,21 +5732,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_22E5A45103C2D776FC9909DBB56CAEC6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_22D780ED8DA44032B62262E28ED573D8"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Security.Cryptography.Csp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_22E5A45103C2D776FC9909DBB56CAEC6"
-                    {
-                    "Name" = "8:System.Security.Cryptography.Csp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Security.Cryptography.Csp.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_PUR_GRNDetails.rpt"
+            "TargetName" = "8:RPT_TP_PUR_GRNDetails.rpt"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
@@ -5627,20 +5772,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_23A3210EB1BF697323706DBD0C965015"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_22E5A45103C2D776FC9909DBB56CAEC6"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Runtime.InteropServices.RuntimeInformation, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:System.Security.Cryptography.Csp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_23A3210EB1BF697323706DBD0C965015"
+                    "_22E5A45103C2D776FC9909DBB56CAEC6"
                     {
-                    "Name" = "8:System.Runtime.InteropServices.RuntimeInformation.dll"
+                    "Name" = "8:System.Security.Cryptography.Csp.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Runtime.InteropServices.RuntimeInformation.dll"
+            "SourcePath" = "8:System.Security.Cryptography.Csp.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
@@ -5763,7 +5908,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_StockLocation_Details.rpt"
             "TargetName" = "8:RPT_CP_Product_StockLocation_Details.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5775,7 +5920,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_256C7506078B4F8A86C03E295605A059"
@@ -6487,7 +6632,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Default_Stock.rpt"
             "TargetName" = "8:RPT_CP_Product_Default_Stock.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6499,7 +6644,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_36FDA3771F3431BBE1C87FEA79008CDB"
@@ -6633,23 +6778,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_39AE47653E0B8A58E675B478B500E198"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_39BF99A4C61440BAB988A0BC236E8F08"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.IO.FileSystem.Watcher, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_39AE47653E0B8A58E675B478B500E198"
-                    {
-                    "Name" = "8:System.IO.FileSystem.Watcher.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.IO.FileSystem.Watcher.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Contact.rpt"
+            "TargetName" = "8:RPT_CP_Supplier_Contact.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6661,7 +6795,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3AADF16998AA4C3FB226460E7E4A369B"
@@ -6784,12 +6918,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3D0B8351072B4C3091BF5596E465FE2B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3BD06FD767424F369A5C337462303285"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Products.rpt"
-            "TargetName" = "8:RPT_CP_Supplier_Products1.rpt"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand_Subgroup.rpt"
+            "TargetName" = "8:RPT_CP_Brand_Subgroup.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_A81343728BBF4F01AB27D56DF0FF1B8D"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6804,23 +6938,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3D382627396B6163E77FCC70E96FA43A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3BE59C625E0B470D9E88995A906EA1D0"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_3D382627396B6163E77FCC70E96FA43A"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_Description_100x70.rpt"
+            "TargetName" = "8:RPT_Sticker_Print_Rack_Description_100x70.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6832,7 +6955,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3D7118C52A004E85A3F8F478661EDC8C"
@@ -6860,7 +6983,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList.rpt"
             "TargetName" = "8:RPT_PUR_PO_ProductList.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_A81343728BBF4F01AB27D56DF0FF1B8D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6960,7 +7083,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_ItemMovementAnalysis.rpt"
             "TargetName" = "8:RPT_ItemMovementAnalysis.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6972,7 +7095,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3E8DFA699DE4E95B4CF476DE4BA0FAD8"
@@ -7326,7 +7449,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Plain_Print_A5.rpt"
             "TargetName" = "8:RPT_Product_Landscape_Plain_Print_A5.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7338,7 +7461,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_44F7A249ECFA6AF73F749514A7F4703B"
@@ -7643,23 +7766,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_48F4D623E458EC5D2D1594D026238F1F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4BBF762888B04E5892233A65364500E7"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Security.Cryptography.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_48F4D623E458EC5D2D1594D026238F1F"
-                    {
-                    "Name" = "8:System.Security.Cryptography.Primitives.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Security.Cryptography.Primitives.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PurchaseReturnDC_Supplierwise_Detail.rpt"
+            "TargetName" = "8:RPT_PUR_PurchaseReturnDC_Supplierwise_Detail.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7671,7 +7783,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_495270B859BD40ADB0C02711EF95A363"
@@ -7734,20 +7846,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4AA0087E0B3C7E6BD38D2703529B67F7"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4DBF3311878616C020105FAAB8E5745C"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.NetworkInformation, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_4AA0087E0B3C7E6BD38D2703529B67F7"
+                    "_4DBF3311878616C020105FAAB8E5745C"
                     {
-                    "Name" = "8:System.IO.Compression.FileSystem.dll"
+                    "Name" = "8:System.Net.NetworkInformation.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.IO.Compression.FileSystem.dll"
+            "SourcePath" = "8:System.Net.NetworkInformation.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
@@ -7845,23 +7957,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4DBF3311878616C020105FAAB8E5745C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4FF4114433334BF18AB1A22D16A351A2"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.NetworkInformation, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_4DBF3311878616C020105FAAB8E5745C"
-                    {
-                    "Name" = "8:System.Net.NetworkInformation.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.NetworkInformation.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_StockLocation.rpt"
+            "TargetName" = "8:RPT_CP_Product_Subgroup_StockLocation.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7873,26 +7974,15 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4EFB3D0689CA00B4774E2BF68455A1EE"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4FFE16E09D87466F9FCC491168CFEAF5"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Globalization.Calendars, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_4EFB3D0689CA00B4774E2BF68455A1EE"
-                    {
-                    "Name" = "8:System.Globalization.Calendars.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Globalization.Calendars.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_RoleWise_Menu.rpt"
+            "TargetName" = "8:RPT_CP_User_RoleWise_Menu.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7904,7 +7994,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EFC4AFD73844E34B46945FC309CE237"
@@ -8471,6 +8561,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C45674670F3429A958CA972E2878F0F"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_50x35.rpt"
+            "TargetName" = "8:RPT_Sticker_Print_Rack_50x35.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CA6AA50251CD7829A9E8AC4F9527E48"
             {
             "AssemblyRegister" = "3:1"
@@ -8731,7 +8841,7 @@
             "SourcePath" = "8:System.Resources.Reader.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8743,7 +8853,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_643FD19A3AB5A275C837B82C469DD1D0"
@@ -9072,6 +9182,26 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO-SubReport.rpt"
             "TargetName" = "8:RPT_PUR_PO-SubReport.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_66BD3936171C4BF096E46872E3271067"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Product_50x60_Copy.rpt"
+            "TargetName" = "8:RPT_Sticker_Print_Product_50x60_Copy.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -9501,23 +9631,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_777A5CC747C8036392452F0595B919D5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_74C181B733D2468693A77EEDAFF80533"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Drawing.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_777A5CC747C8036392452F0595B919D5"
-                    {
-                    "Name" = "8:System.Drawing.Primitives.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Drawing.Primitives.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Plain_Print_A5.rpt"
+            "TargetName" = "8:RPT_Product_Landscape_Plain_Print_A5.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9529,7 +9648,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_77A8A15235744192B11F9DC338D4D359"
@@ -9554,8 +9673,8 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_788E2BD488FA495BA53AED44AE343D04"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_StockHold_SubReport.rpt"
-            "TargetName" = "8:RPT_INV_StockHold_SubReport.rpt"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -10085,20 +10204,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8278A33D38E694B193921DC4AA3DA52D"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_813B846304CB2D55FBEF8F744CEC94DF"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8278A33D38E694B193921DC4AA3DA52D"
+                    "_813B846304CB2D55FBEF8F744CEC94DF"
                     {
-                    "Name" = "8:System.ComponentModel.dll"
+                    "Name" = "8:Gma.QrCodeNet.Encoding.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.ComponentModel.dll"
+            "SourcePath" = "8:Gma.QrCodeNet.Encoding.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
@@ -10161,7 +10280,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_Role_Users.rpt"
             "TargetName" = "8:RPT_CP_User_Role_Users.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10173,7 +10292,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83D72468FF274DD192B8F21E7A98089F"
@@ -10362,6 +10481,86 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Valuation_Subgroupwise.rpt"
             "TargetName" = "8:RPT_Stock_Valuation_Subgroupwise.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_863A9FAF7A3244C599AA46999CFABE34"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_DET_Tally.rpt"
+            "TargetName" = "8:RPT_PUR_DET_Tally.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_863E0BFADDB84A1DB4196B41ADE2B69A"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_86B54D9C6D0644BBA04738E27EF28046"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_RoleWise_SubMenu.rpt"
+            "TargetName" = "8:RPT_CP_User_RoleWise_SubMenu.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_87001FD5D2CA44AF9E0A2D0248B09473"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_HSNCodeWiseTaxDetails.rpt"
+            "TargetName" = "8:RPT_PUR_HSNCodeWiseTaxDetails.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -10873,6 +11072,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F777388020C4538A2AA39196FDCC9A3"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_Count_RGWise_RackSummary.rpt"
+            "TargetName" = "8:RPT_CP_Pro_Count_RGWise_RackSummary.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8FF6EAF47CF77D0856F475C190107A4A"
             {
             "AssemblyRegister" = "3:1"
@@ -10984,6 +11203,77 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9195281DB9504E1BA9CBDB54DC8FABE2"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_LP_GRN_QRCode.rpt"
+            "TargetName" = "8:RPT_LP_GRN_QRCode.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_91E92994A35926AAF6B96029C51E25FE"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_91B3922AFEA2E3B5657A9381010B78A7"
+                    {
+                    "Name" = "8:System.Buffers.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Buffers.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_922AAE8F1ED24959B0862674DA0D8F11"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Inward_Consolidated_Grouping.rpt"
+            "TargetName" = "8:RPT_Stock_Inward_Consolidated_Grouping.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_91BD4E22FA01D931C2F009194C810737"
             {
             "AssemblyRegister" = "3:1"
@@ -11015,94 +11305,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_91E92994A35926AAF6B96029C51E25FE"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_91E92994A35926AAF6B96029C51E25FE"
-                    {
-                    "Name" = "8:System.IO.Compression.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.IO.Compression.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_922AAE8F1ED24959B0862674DA0D8F11"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Inward_Consolidated_Grouping.rpt"
-            "TargetName" = "8:RPT_Stock_Inward_Consolidated_Grouping.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_924D79D1547D2B20C786B70D2B31DE72"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Runtime.Extensions, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_924D79D1547D2B20C786B70D2B31DE72"
-                    {
-                    "Name" = "8:System.Runtime.Extensions.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Runtime.Extensions.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9258F350C4794239BDB65A88DFBCEB2B"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PriceList.rpt"
             "TargetName" = "8:RPT_PriceList.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11114,7 +11322,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_926FA47A4B79436487F4733D617BA6F5"
@@ -11122,7 +11330,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_50x60.rpt"
             "TargetName" = "8:RPT_Sticker_Print_Rack_50x60.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11134,7 +11342,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_92D44CCA3394445FBC3790EEBA9B08B2"
@@ -11193,7 +11401,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_GoodsOutward.rpt"
             "TargetName" = "8:RPT_TP_INV_GoodsOutward.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11205,7 +11413,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_942E5896DD154F218817A845DCD45940"
@@ -11228,20 +11436,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_943A324A99E788A5A460BA9BAA1171FC"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_95784D693A1FD51C43D9903126124604"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Globalization, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:CrystalDecisions.ReportAppServer.Controllers, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_943A324A99E788A5A460BA9BAA1171FC"
+                    "_95784D693A1FD51C43D9903126124604"
                     {
-                    "Name" = "8:System.Globalization.dll"
+                    "Name" = "8:CrystalDecisions.ReportAppServer.Controllers.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Globalization.dll"
+            "SourcePath" = "8:CrystalDecisions.ReportAppServer.Controllers.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
@@ -11259,23 +11467,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_94FF3DDD6C709A347F638DE0C4A7C0D0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95B9EB4FBE464A6FBF3077CBA0F93123"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.ComponentModel.Annotations, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_94FF3DDD6C709A347F638DE0C4A7C0D0"
-                    {
-                    "Name" = "8:System.ComponentModel.Annotations.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.ComponentModel.Annotations.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Zero_Rate_AlphaWise.rpt"
+            "TargetName" = "8:RPT_Zero_Rate_AlphaWise.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11287,7 +11484,27 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_961986F7FBE742079FE09A533D039128"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_AdditionalValue_MonthWise.rpt"
+            "TargetName" = "8:RPT_PUR_Tax_AdditionalValue_MonthWise.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_956A5EA0DFB04DDCBCFFB0923F45E09C"
@@ -11375,7 +11592,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_GoodsOutward_Slip.rpt"
             "TargetName" = "8:RPT_TP_INV_GoodsOutward_Slip.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_2497D81FBC1A4BE182A053F46965C94A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11546,7 +11763,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Unapproved_Purchase_Summary.rpt"
             "TargetName" = "8:RPT_Unapproved_Purchase_Summary.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11558,7 +11775,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9E39C2116C80F36A3B29DBA0576DEF43"
@@ -11703,23 +11920,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A2FF8CFA968AAD5EAFFADC967427282E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A43BD2E86E844F9793DE559C1CAE227C"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Diagnostics.Process, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_A2FF8CFA968AAD5EAFFADC967427282E"
-                    {
-                    "Name" = "8:System.Diagnostics.Process.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Diagnostics.Process.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_MultipleRate.rpt"
+            "TargetName" = "8:RPT_CP_Pro_MultipleRate.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11731,7 +11937,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A4DF2D22A6974DD094C0037A77CC8543"
@@ -11803,6 +12009,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A5EF01EE0BAC4B96B6C99B55854A2A0F"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_DET_Cost_Details.rpt"
+            "TargetName" = "8:RPT_PUR_DET_Cost_Details.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A6260BB63A0E40A0A4A70939B178F9E7"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Unassigned_Products.rpt"
+            "TargetName" = "8:RPT_Unassigned_Products.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A6288E9184499018D1CD1B186F8BD721"
@@ -12154,7 +12400,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Report_Product.rpt"
             "TargetName" = "8:RPT_PUR_PO_Report_Product.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -12166,7 +12412,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AEE231CD06F8469D8AC13A18E8D0FAE1"
@@ -12276,7 +12522,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_MValue_GroupWiseReport.rpt"
             "TargetName" = "8:RPT_MValue_GroupWiseReport.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_2497D81FBC1A4BE182A053F46965C94A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -12407,7 +12653,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_DET_Tally.rpt"
             "TargetName" = "8:RPT_PUR_DET_Tally.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -12419,7 +12665,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B4AEA380B05B894E96334482322EFCDD"
@@ -12620,7 +12866,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Issued_Slip.rpt"
             "TargetName" = "8:RPT_TP_INV_Shop_Stock_Issued_Slip.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -12632,7 +12878,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B9DD1EC2901B4B039F563C0D8A2559D4"
@@ -12970,19 +13216,8 @@
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C1314B55238E1B4BCE163A746C1557A9"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
-                "ScatterAssemblies"
-                {
-                    "_C1314B55238E1B4BCE163A746C1557A9"
-                    {
-                    "Name" = "8:System.ValueTuple.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.ValueTuple.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Assigned_Products.rpt"
+            "TargetName" = "8:RPT_Assigned_Products.rpt"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
@@ -13044,7 +13279,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Products.rpt"
             "TargetName" = "8:RPT_CP_Supplier_Products.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13056,7 +13291,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C29977D4D25E4508A74B27499563CC4E"
@@ -13101,26 +13336,6 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C3137FD599F945D39A5483BA9FCC4034"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_GoodsInwardQueue_IndividualPrint.rpt"
-            "TargetName" = "8:RPT_INV_GoodsInwardQueue_IndividualPrint.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C334537C46794C569B6F1D4C85A7B927"
-            {
             "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-06.ttf"
             "TargetName" = "8:Uni Ila.Sundaram-06.ttf"
             "Tag" = "8:"
@@ -13139,20 +13354,51 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C337A7914EF232050DBA7AF91DA32EF2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C334537C46794C569B6F1D4C85A7B927"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Irony, Version=1.0.11.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C337A7914EF232050DBA7AF91DA32EF2"
+                    "_C34645B0D98CBFD0A195ACBCFC6E0C2E"
                     {
-                    "Name" = "8:System.Numerics.Vectors.dll"
+                    "Name" = "8:Irony.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Numerics.Vectors.dll"
+            "SourcePath" = "8:Irony.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C3C5042F6C2F9711CAB68D919D252687"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Linq.Expressions, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_C3C5042F6C2F9711CAB68D919D252687"
+                    {
+                    "Name" = "8:System.Linq.Expressions.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Linq.Expressions.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
@@ -13190,23 +13436,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C3C5042F6C2F9711CAB68D919D252687"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C3E1DB89A4254FA2B7BB0A0C343BD4B8"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Linq.Expressions, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_C3C5042F6C2F9711CAB68D919D252687"
-                    {
-                    "Name" = "8:System.Linq.Expressions.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Linq.Expressions.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rate_Change_Live.rpt"
+            "TargetName" = "8:RPT_CP_Rate_Change_Live.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13218,7 +13453,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C429159C4C80505B38FF9281AA4A2480"
@@ -13276,6 +13511,46 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Product_50x60.rpt"
             "TargetName" = "8:RPT_Sticker_Print_Product_50x60.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5B963EDE2D140FDB71043D44428E7E5"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Plain_Print_A6.rpt"
+            "TargetName" = "8:RPT_Product_Landscape_Plain_Print_A6.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5BD0D146D674EFDA29BE09674A38372"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_Product.rpt"
+            "TargetName" = "8:RPT_CP_Product_Subgroup_Product.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -13552,7 +13827,7 @@
             "SourcePath" = "8:System.Collections.NonGeneric.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13564,7 +13839,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CAC1519DE48B4599BEBE5B1C9C8DC92A"
@@ -13683,7 +13958,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_AllPurchase_MonthWise.rpt"
             "TargetName" = "8:RPT_PUR_Tax_AllPurchase_MonthWise.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13695,23 +13970,23 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CCD99E95F9FC602570BEEFC31908BB2D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Diagnostics.Tools, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_CCD99E95F9FC602570BEEFC31908BB2D"
+                    "_CF8D52A61738BF8A4007034F9A19CF86"
                     {
-                    "Name" = "8:System.Diagnostics.Tools.dll"
+                    "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Diagnostics.Tools.dll"
+            "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
@@ -13734,7 +14009,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SALES_Productwise_Consolidated_Sum.rpt"
             "TargetName" = "8:RPT_SALES_Productwise_Consolidated_Sum.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13746,7 +14021,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE4ADC1F6DB7451D8AEDD06FDFFA26E5"
@@ -13831,21 +14106,10 @@
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CF8D52A61738BF8A4007034F9A19CF86"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_CF8D52A61738BF8A4007034F9A19CF86"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_TCSValue_MonthWise.rpt"
+            "TargetName" = "8:RPT_PUR_Tax_TCSValue_MonthWise.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13857,7 +14121,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D003A940762443D1AF8939A99368A4B5"
@@ -13947,7 +14211,7 @@
             "SourcePath" = "8:System.AppContext.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_A81343728BBF4F01AB27D56DF0FF1B8D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13957,9 +14221,9 @@
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
-            "Register" = "3:1"
+            "Register" = "3:5"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D129272E30104C69A3A7E31C7D51311B"
@@ -14027,7 +14291,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt"
             "TargetName" = "8:RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -14039,7 +14303,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D35FBE54D37240A583DAF1A82ABF9534"
@@ -14082,23 +14346,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D39B01D4E334E79BA959399C18D108A2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D63F269CE6BA4C94A4D1DD0EF4931DC1"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Primitives, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_D39B01D4E334E79BA959399C18D108A2"
-                    {
-                    "Name" = "8:System.Net.Primitives.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Primitives.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt"
+            "TargetName" = "8:RPT_TP_INV_Shop_Stock_Request.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -14110,26 +14363,15 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D404C11E73BAC4A54984E10A1306DE46"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D72C6F2D5BA542C5814CF151B053AD8B"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Threading.Tasks, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_D404C11E73BAC4A54984E10A1306DE46"
-                    {
-                    "Name" = "8:System.Threading.Tasks.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Threading.Tasks.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_GRN_Defect_Product.rpt"
+            "TargetName" = "8:RPT_GRN_Defect_Product.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -14141,7 +14383,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D421688CDF054871BED7CF3B4BB94DC5"
@@ -15112,7 +15354,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_RackGroup_50x35.rpt"
             "TargetName" = "8:RPT_Sticker_Print_Rack_RackGroup_50x35.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -15124,7 +15366,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EE8DB3F772E6638D7DE02FB82B09E99A"
@@ -15702,7 +15944,7 @@
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_StockLocation_Product.rpt"
             "TargetName" = "8:RPT_CP_StockLocation_Product.rpt"
             "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -15714,7 +15956,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9DDC6A7FC744227A919918499E61E6B"
