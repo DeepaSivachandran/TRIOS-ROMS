@@ -207,7 +207,7 @@ namespace ROMS
                 int varViewType = 0;
                 if (varReportType == 670)
                 {
-                    varViewType = 13;
+                    varViewType = 15;
                 }
                 else if (varReportType == 671)
                 {
@@ -271,11 +271,17 @@ namespace ROMS
                     {
                         objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
                         objBillreport.SetParameterValue("paraBrandName", varBrandName);
-                        objBillreport.SetParameterValue("paraSubgroupTypeName", varSubgroupTypeName);
+                        objBillreport.SetParameterValue("paraType", varCategoryType);
+                        objBillreport.SetParameterValue("paraCategoryTypeName", varCategoryTypeName);
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
                         objBillreport.SetParameterValue("paraCategoryName", varCategoryName);
                         objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                        objBillreport.SetParameterValue("paraDays", varDays);
+                        objBillreport.SetParameterValue("paraDaysName", varDaysName);
+                        objBillreport.SetParameterValue("paraOrderby", Convert.ToInt32(cmbOrderType.SelectedValue));
+                        objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
+                        objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     }
                     else if (varReportType == 671)
                     {
@@ -382,7 +388,6 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
-                cmbReportType.SelectedValue= 671;
                 //cmbReportType.Enabled=false;
                 cmbConcern.Focus();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
