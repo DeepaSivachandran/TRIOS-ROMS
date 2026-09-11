@@ -33,12 +33,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_007174AEC14C43A899488081A26BC4B9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_00D383A7D2AE424FA82D6FAEF610AECE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,12 +52,6 @@
         "Entry"
         {
         "MsmKey" = "8:_0120987324004CCEBF9A3ADC3BA88834"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_012F7E37AC3C4884A6535AB8A0575C1F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -107,12 +95,6 @@
         {
         "MsmKey" = "8:_0221780D3E53F61F00DDBCDE78F374DA"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_02587833A6D945B9B47FB451F7BA9653"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -255,12 +237,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_07832E8BCE4A420CB9E66C351ED49932"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_078CDF3059464AA68B4852C7F1E70590"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -315,12 +291,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_098CBFCAD4F649AE8D60FDB0DFD6F807"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_09B95ABADC44425D941EE0752666E114"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -345,12 +315,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0A31B7803F78442187B5F6A745B0E866"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0A5B476FCB94470DBA73758E173DBBB1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -358,12 +322,6 @@
         "Entry"
         {
         "MsmKey" = "8:_0AC21EA927294C00B6100E63B1FC0A5D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0B11C30350094A03B61DD90443E043A5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -436,12 +394,6 @@
         "Entry"
         {
         "MsmKey" = "8:_0CFBBEC86EDA495A84FBC903A7189765"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0D5088FC8FAF4AE693EEE1069C956D0F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -573,12 +525,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1371CEE28CB24DEBB346C67B365F1D1A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_13D94400A8064741B01BF2E7E4944845"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -669,19 +615,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_16624849DA724E0E82AA485DF655E169"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1669586515424C949BA5161AB770761F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_16D8836CE80B4530B586DCAA64A5752B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -694,12 +628,6 @@
         "Entry"
         {
         "MsmKey" = "8:_1747DD437C7741B7975C4C0357F7D34D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_18367C183D3F4D5C96AAF5070DE2F158"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -777,31 +705,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1D12DF25D8BA475EB5BFD87307C17E17"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1F362AAB45784BC29D28548F45639AE5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1F70AF3E471648A7AD8983155F1585EA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1FB91B7B45A941D2A5FBD3AA93CC76D0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_208B419809534268A1E759EAA5D6415D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -809,12 +713,6 @@
         {
         "MsmKey" = "8:_2090A56504F65B5C4EA26CE0C9ECB180"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_20AE437CF4024915B03B6E1F98086D8F"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -837,12 +735,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_21274032142F43069378E9F75F4DF9DB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_217A1DBB827F4FA592B908CFF43DA341"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -856,12 +748,6 @@
         "Entry"
         {
         "MsmKey" = "8:_21CE704F519F4625BAA826705DB14C38"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_21FBC009A75C4F4BB003C1E98E3BBD4C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -903,32 +789,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2351D137748C4225A45002A3D984D3C6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_23A3210EB1BF697323706DBD0C965015"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_23C35B9CE44F46B8BFA2AE02DD4D301A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_23E44F029315446F9F34ADB00DCD5ACC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_23F74108F9BD4CE986569C3EA536A3CA"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -946,12 +808,6 @@
         "Entry"
         {
         "MsmKey" = "8:_243FECB0AB044DB9B6CBDBEBAF7A7F75"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_245A703105C244B69ED0E809E3464BA6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1018,12 +874,6 @@
         "Entry"
         {
         "MsmKey" = "8:_27A54BC3819540A1B2316C1BD1AC576E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_27A6B46766AA4349BC4EF9B0A6990D6B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1155,25 +1005,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2E68782478324C7C8F81A31406C3EDE8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2E9942C07B114E1D8EC3E31F35FB3F26"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2EC2A215C0C14FB9A00BBF7BA5AC5589"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2F3A952ACFFA4CFF9703F90B2B8C09FA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1239,12 +1071,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_31F67DE7765643BEAC827097CE7AF5CC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_320B0059668E4D9D8DD801331B3648AC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1264,12 +1090,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3319027EF6DC4D0683E4D38425B03EEF"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3325FF73A6144323B1595B1A7C0B8CEB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1347,25 +1167,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_37F9EB44B66F4BA59F04566AA7954279"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_38A181EE3B7D4595ACDCCF004FE96D6A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_38A8C2F70D77487CB2ADC40745848332"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_38BC353E6179499AB6047DEE04647BFC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1395,12 +1197,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3AADF16998AA4C3FB226460E7E4A369B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3ADC5048E11F4CDFA08CF313E42C6C3C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1419,12 +1215,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3BD28112F835443AB47A39CAD1293203"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3C32D2AF2BEE447E94240E9EA31ED0DD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1438,12 +1228,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3C98A1DF3796405D8C309C0DB570945F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3CB66B6844954652998668997126D1CC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1473,12 +1257,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3D7118C52A004E85A3F8F478661EDC8C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3DD34D795D8B4F5392B0A48AC1CFD36A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1498,12 +1276,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3E1833F63FA241C6920C016C8E61BBDA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3E4759F17B6E498EAAF836C48BF9FF20"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1534,12 +1306,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3F175B1F81B245FE995152AF5E8F96FC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3F768098B23945D4AA0F475EBBE07060"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1659,18 +1425,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_42DC48A3726943428889E5D8270017A3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_42DF6EC6B04A4A8A8B2A85F2DBA1B4F0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4328A06954E1448F8F4A105917A170DF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1737,12 +1491,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_464C8E41FC08414B8F581A85AC3F5D93"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_46664D34AC0A48E2BC522A173471A5D3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1774,12 +1522,6 @@
         "Entry"
         {
         "MsmKey" = "8:_480C51B22A7E4724B7FADAE27754E5FF"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_48405B43DA9947FF8DDEB162AE5F6929"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1881,12 +1623,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4C6DD8F14A624D748143441802911D30"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4CA189EB1CBF4A16A18B8583B803E954"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1941,12 +1677,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4EFC4AFD73844E34B46945FC309CE237"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4F1100921CC2464A8C572611A9D84622"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1960,18 +1690,6 @@
         "Entry"
         {
         "MsmKey" = "8:_4F65312769544D6490C7C81E4099C362"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4FFE16E09D87466F9FCC491168CFEAF5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_506B648FC3684812B12FA00B8C52514B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2044,12 +1762,6 @@
         "Entry"
         {
         "MsmKey" = "8:_54350051D7824BA19BDD8339E8216277"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5582F05F806B42A481814E642D826941"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2157,12 +1869,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_59F6F8A3F55D4C07BC291D63B74672D2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_59F88C2D64D04DCEAE5CADD3F16E6AE3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2211,12 +1917,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5BBDAEA3197B4E80BFE7B6229AE73D90"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5C239E916DDE4B5ABF70024F9CD1F626"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2241,12 +1941,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5CCD9386A9CF4B4EB0F6F32AAC8856CD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5DB21AAB0B6B664221628FBE691A7B24"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -2254,12 +1948,6 @@
         "Entry"
         {
         "MsmKey" = "8:_5E35913EADF84180BE045344C84833E2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5EF44521BD3644779D0FA2C5680057C8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2349,18 +2037,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_64F1B5575C10466DB7D24ACE56998F7C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_658BB71CF3934761B542BBFA1AA01D41"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_658EFBACAFC2467CA5166E7756663C50"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2380,12 +2056,6 @@
         "Entry"
         {
         "MsmKey" = "8:_65C9A877D1874CEFB6C852F1ADEAF6FD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_65FB75818A2346A4AFD1F68D4F0C0FFC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2475,12 +2145,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_683C7BEE7E6B4187A390248C1D12D685"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6848509A0FC54DABBD7CDFB0355F7550"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2553,12 +2217,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6B07A62C5E484F838BBF08F0245DD0CB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6B149A91EBA1477C8EC8B4687949D1E8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2566,12 +2224,6 @@
         "Entry"
         {
         "MsmKey" = "8:_6B2762B38CA643E9BEACA9B91E04B05D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6B7054B40698400C970F4E32BC10CADC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2608,12 +2260,6 @@
         "Entry"
         {
         "MsmKey" = "8:_6C7EEFE6416D430B805229109C89ACAC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6CAB5FAE4C9240918A86C18386653330"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2667,12 +2313,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6FBDBDF947A844ABBB8BA3845B268F8D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_70251B05539C49C8A852378DA4776244"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2715,12 +2355,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_728AB6A5203F4972B723C83614C8DB0E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_729E2321FC0546088878F2EB435D6229"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2757,12 +2391,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7493FF8DE37E40DF90A4FB82E3BCDBD9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_752E61E51F014A0E88F9EC9B0A04340B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2782,12 +2410,6 @@
         "Entry"
         {
         "MsmKey" = "8:_757B7686D4504C96ACD97374EAB00F99"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_75B89DBB3BE04D2EA47F4C436D40707B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2829,12 +2451,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_788E2BD488FA495BA53AED44AE343D04"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_78B1A49CBB9540CDB538B1FE2948CADA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2854,12 +2470,6 @@
         "Entry"
         {
         "MsmKey" = "8:_78EC1F0981FC4C16BD5C67AA5A136C02"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_795124C62F2B4726A9D9A365613BEE23"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2913,19 +2523,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7B259F208EF3444B8077AF901EA87B2A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7B66F92D1491407AAD51172786C6E125"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7B70B0682C2C4174A27C06101DD77D32"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2962,18 +2560,6 @@
         "Entry"
         {
         "MsmKey" = "8:_7CA6CD2870C44416ADD4EDA79D07C1A9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7D6DF9B4FC5245B79449FCA95667F1DC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7D8604AB3FBF407A98631E80D5E7FCB9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3021,12 +2607,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7EE8166EF8F84D50A4AA5E729E51A407"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7F53129042FE4789AE47E26B07580D0B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -3034,12 +2614,6 @@
         "Entry"
         {
         "MsmKey" = "8:_7F583FD50D4C4E23BDBA729309B3FA79"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7FCEE99185B9440E99C0383A2DB3DF24"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3063,8 +2637,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_81136BA28C83480DA652EB6D832B3E06"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_813B846304CB2D55FBEF8F744CEC94DF"
+        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3106,18 +2680,6 @@
         "Entry"
         {
         "MsmKey" = "8:_82C4C753FCD94644B9118A6F1F8C748D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_82F70672AE1747DDBEE4506CA5470701"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_833513ECBC7240C0B98E233B1CE54505"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3232,12 +2794,6 @@
         "Entry"
         {
         "MsmKey" = "8:_854F0E8AAC624C46ACB05A44F87FCBF0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_85B03CFCC6A44F6F8480F4845A9E9DA2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3375,12 +2931,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8BC44D69AB324332BCEA3D22C2DBEA28"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8BD870818843955A4D1C2D29FF9999C6"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -3394,12 +2944,6 @@
         "Entry"
         {
         "MsmKey" = "8:_8D03C8018A6C422792F61B2103C57A8F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8D1E0DE66FEC4B728ECF9E48A5BB2220"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3465,20 +3009,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8FEDE4D1A78F4C04943F6771E8E24A94"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8FF6EAF47CF77D0856F475C190107A4A"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_903ADB952F904C65B4A05D0DE56AAA26"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3496,12 +3028,6 @@
         "Entry"
         {
         "MsmKey" = "8:_912892E56C704818B0C9E3F4D5B1C5B5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_919D0A7CC0FE4F81A7749AE4E5F10133"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3604,12 +3130,6 @@
         "Entry"
         {
         "MsmKey" = "8:_93F5B5C83B214D038ED2817B5B7FEB78"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_942E5896DD154F218817A845DCD45940"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3831,12 +3351,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9C777EBF934745B6ACD21593389E0333"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9CC3A8A29A7D451A86B8EF1C711E134D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -3945,12 +3459,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9FE95847724E4108A3085AA45BF8F0AA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A023E57BCE3F2D16672A247833A2DD43"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -3976,18 +3484,6 @@
         "Entry"
         {
         "MsmKey" = "8:_A08E744687C3423E8177988FB823851E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A0F27B7899BA4F858E99A5D23A9ED2AB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A214479127C74773852296BDAC09BD2F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4083,19 +3579,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A683330515F54E3795D9EF7CB5566CCE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A690F913944642248827D94B85D1C3A6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A74D29C4401B469A989E1B9160D98A96"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4138,12 +3622,6 @@
         "Entry"
         {
         "MsmKey" = "8:_A9DD490B29EA4317B5838084463DF94E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A9E2110554314484A2627A8DDDF9E94F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4281,12 +3759,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AEE231CD06F8469D8AC13A18E8D0FAE1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AF2235FFF280D4D77C9C61F98A0573B3"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -4323,12 +3795,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B0FE3BC5620A4214842446400709925E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B1F0BA3E5F61492FA18C4A2E5EA2DF68"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -4348,12 +3814,6 @@
         "Entry"
         {
         "MsmKey" = "8:_B35BE956DF1544598C11D11C2BE5C5D6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B3F476D52A054DF3859D6191EFE7F07B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4521,12 +3981,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BAD9EC3E58164F028A2B42AB8948380A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_BB12A64FEF804AD4815088C4998CAE62"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -4569,20 +4023,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BC87A63A8D6A4FF39919357E2B4E0C68"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_BCA17C1FC8D2452A52F71D6AB1D92945"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BD30E91007874DA1859782C13D76190F"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4612,12 +4054,6 @@
         "Entry"
         {
         "MsmKey" = "8:_BF521E110BA34484AFE4F78EC89E5363"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C00F6337038A4F5C9D3A1C39AE2064C8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4737,12 +4173,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C3A6D57D35F146CA8FBB6C88013F5701"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C3C5042F6C2F9711CAB68D919D252687"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -4750,12 +4180,6 @@
         "Entry"
         {
         "MsmKey" = "8:_C3E1B0854DF247EF84D17825E7773203"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C3E1DB89A4254FA2B7BB0A0C343BD4B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4911,19 +4335,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CAC1519DE48B4599BEBE5B1C9C8DC92A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CAC1B6E1302A4EFE819CDF97F5C2563F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CBB517FABB734A9BADDE34DFAC32163D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4971,12 +4383,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CE4ADC1F6DB7451D8AEDD06FDFFA26E5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CE50431828C74737BCF843083A3AC23E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -4989,18 +4395,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CF0C97DAA2AE4FE2A1D9C1D9685DFD87"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CF1F90E0DF9D4ABEA01B536CA84E71E4"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CF8D52A61738BF8A4007034F9A19CF86"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -5008,12 +4402,6 @@
         "Entry"
         {
         "MsmKey" = "8:_CFD7F95AEC7F4BF4B345FB3B6F408FA1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D003A940762443D1AF8939A99368A4B5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5038,12 +4426,6 @@
         "Entry"
         {
         "MsmKey" = "8:_D0E57B37860548FEB996A41DAB5DD874"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D129272E30104C69A3A7E31C7D51311B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5079,12 +4461,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D2B076518A8D4C8898F4740D2ECB2FC9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D2F22483367947C987BBF29066F21C97"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -5098,12 +4474,6 @@
         "Entry"
         {
         "MsmKey" = "8:_D35892071FFB486698E0894BE78FA9D2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D36A553B0AFB41F488F188B53BB36267"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5140,12 +4510,6 @@
         "Entry"
         {
         "MsmKey" = "8:_D449ED632CFD49DCB63A6931B1D5578D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D515F722D8C84E479D905612FB8E8E91"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5235,12 +4599,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DB0930589BA44B26B0415C5761A57651"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DB6BA680187D4664A1944C75A0B570F1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -5283,12 +4641,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DC42A799BFC54CF999CA457DEA3302BC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -5302,18 +4654,6 @@
         "Entry"
         {
         "MsmKey" = "8:_DD90BEC4A57146AE9E70282D1C319BE3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DDFA79D5ED34406AB5767717DDC8E2D1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DEA1108F9994468EA6B2AD646A7B9C87"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5350,12 +4690,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E012B3E93F3B4C398124BAC8BF3894E3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E02493DAB99C47E3BC50AB5466AA685D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5457,12 +4791,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E6CAB738317A41FBBD595F5D3284281D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E6CCC6E5AEF34AE18D6373386E1A3E9F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -5529,19 +4857,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E95574866A454AEB9823896A472F0C7E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E9D3E7048D9243FEAD2A99B5AF2217F6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EA934E6BC96E476A91F3EFD2FCC960AD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5637,18 +4953,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EF3A351DAE0C4611B3CE5CC7875FB009"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EFB46121292C423D8A6CD364E62C14AB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_EFBEA55234924911A231AAF67281813B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -5722,12 +5026,6 @@
         "Entry"
         {
         "MsmKey" = "8:_F262D9CE897C46F3A21AFBA795C268AB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F2C86D1FAD1548B49D130A44A83CEE0B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5967,12 +5265,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FA254169DC9D4E06B5ACB8CFA24ED0D3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FA73A4F5EFFAA849BD2DAE89C2581E38"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -5987,12 +5279,6 @@
         {
         "MsmKey" = "8:_FB011F3D246814DD9C425097E91E4D06"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FB07F81A25644EC7823C1D90D6D49B23"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -6051,12 +5337,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FE34C3FB5647415D927CDC73F362E74F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FE474D23B0044A92ACE1276B7A5F0C78"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -6101,6 +5381,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F3C2DFF5C06F9E6B56CCEB1DC8521E41"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_813B846304CB2D55FBEF8F744CEC94DF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -7092,26 +6384,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_007174AEC14C43A899488081A26BC4B9"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Barcode.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Barcode.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00D383A7D2AE424FA82D6FAEF610AECE"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Print_A7.rpt"
@@ -7187,26 +6459,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_REPORT_Product_RC.rpt"
             "TargetName" = "8:RPT_REPORT_Product_RC.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_012F7E37AC3C4884A6535AB8A0575C1F"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Inward_FPurchase_Sticker_Print_100x70.rpt"
-            "TargetName" = "8:RPT_Inward_FPurchase_Sticker_Print_100x70.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -7352,26 +6604,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_02587833A6D945B9B47FB451F7BA9653"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Portrait_Plain_Print_A6.rpt"
-            "TargetName" = "8:RPT_Product_Portrait_Plain_Print_A6.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_027D2DE97BCD459E80CECF3BCF694509"
@@ -7818,26 +7050,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_07832E8BCE4A420CB9E66C351ED49932"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_ProductWeight_LocationWiseSubgroup.rpt"
-            "TargetName" = "8:RPT_CP_ProductWeight_LocationWiseSubgroup.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_078CDF3059464AA68B4852C7F1E70590"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Adjustment.rpt"
@@ -8018,26 +7230,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_098CBFCAD4F649AE8D60FDB0DFD6F807"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Rack_Product_StockTaking.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Rack_Product_StockTaking.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09B95ABADC44425D941EE0752666E114"
             {
             "SourcePath" = "8:RPT_CP_Broker_Contact.rpt"
@@ -8129,26 +7321,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A31B7803F78442187B5F6A745B0E866"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Supplierwise_Damage_Summary.rpt"
-            "TargetName" = "8:RPT_INV_Supplierwise_Damage_Summary.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A5B476FCB94470DBA73758E173DBBB1"
             {
             "SourcePath" = "8:RPT_Product_Label_Print_Plain_50x25.rpt"
@@ -8175,26 +7347,6 @@
             "TargetName" = "8:RPT_Assigned_Products.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B11C30350094A03B61DD90443E043A5"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_DamageEntry_Wise.rpt"
-            "TargetName" = "8:RPT_INV_Damage_Supplier_DamageEntry_Wise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8377,26 +7529,6 @@
             "TargetName" = "8:RPT_SALES_Card_Payment_Monthwise_Mid.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D5088FC8FAF4AE693EEE1069C956D0F"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Godown_Valuation.rpt"
-            "TargetName" = "8:RPT_Godown_Valuation.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8793,26 +7925,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1371CEE28CB24DEBB346C67B365F1D1A"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Rate.rpt"
-            "TargetName" = "8:RPT_CP_Product_Rate.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_13D94400A8064741B01BF2E7E4944845"
             {
             "SourcePath" = "8:RPT_PUR_Tax_TaxSummary_BillWise.rpt"
@@ -9026,52 +8138,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16624849DA724E0E82AA485DF655E169"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_Role_Empty.rpt"
-            "TargetName" = "8:RPT_CP_User_Role_Empty.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1669586515424C949BA5161AB770761F"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Print_A6.rpt"
             "TargetName" = "8:RPT_Product_Landscape_Print_A6.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16D8836CE80B4530B586DCAA64A5752B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Category.rpt"
-            "TargetName" = "8:RPT_CP_Product_Category.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9112,26 +8184,6 @@
             "TargetName" = "8:RPT_PUR_HSNNameWiseProduct_IGST.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_18367C183D3F4D5C96AAF5070DE2F158"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_RateCategory_Enable.rpt"
-            "TargetName" = "8:RPT_CP_Product_RateCategory_Enable.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9377,92 +8429,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1D12DF25D8BA475EB5BFD87307C17E17"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_Role_Details.rpt"
-            "TargetName" = "8:RPT_CP_User_Role_Details.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1F362AAB45784BC29D28548F45639AE5"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Daywise_Purchase_Summary_Portrait.rpt"
-            "TargetName" = "8:RPT_Daywise_Purchase_Summary_Portrait.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1F70AF3E471648A7AD8983155F1585EA"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_Detail.rpt"
-            "TargetName" = "8:RPT_INV_Damage_Supplier_Detail.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1FB91B7B45A941D2A5FBD3AA93CC76D0"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Zero_Rate_SupplierWise.rpt"
             "TargetName" = "8:RPT_Zero_Rate_SupplierWise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_208B419809534268A1E759EAA5D6415D"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Stock_Shelflife.rpt"
-            "TargetName" = "8:RPT_CP_Product_Stock_Shelflife.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9506,26 +8478,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_20AE437CF4024915B03B6E1F98086D8F"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Label_Print_50x25.rpt"
-            "TargetName" = "8:RPT_Product_Label_Print_50x25.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_20B31D9530C0409ABDF6BB8B24297CC1"
@@ -9588,52 +8540,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21274032142F43069378E9F75F4DF9DB"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_RoleWise_UserPermission.rpt"
-            "TargetName" = "8:RPT_CP_User_RoleWise_UserPermission.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21ADCFB3B67648FDA7F14BA3FA391669"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PAY_Advance_Receipt.rpt"
             "TargetName" = "8:RPT_PAY_Advance_Receipt.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21FBC009A75C4F4BB003C1E98E3BBD4C"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_StockHold_Print.rpt"
-            "TargetName" = "8:RPT_INV_StockHold_Print.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9810,26 +8722,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2351D137748C4225A45002A3D984D3C6"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_ProductWeight_LocationWiseGroup.rpt"
-            "TargetName" = "8:RPT_CP_ProductWeight_LocationWiseGroup.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_23A3210EB1BF697323706DBD0C965015"
             {
             "AssemblyRegister" = "3:1"
@@ -9859,66 +8751,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23C35B9CE44F46B8BFA2AE02DD4D301A"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Print_A4.rpt"
-            "TargetName" = "8:RPT_Product_Landscape_Print_A4.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23E44F029315446F9F34ADB00DCD5ACC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Label_Print_Plain_100x70.rpt"
-            "TargetName" = "8:RPT_Product_Label_Print_Plain_100x70.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23F74108F9BD4CE986569C3EA536A3CA"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_MValue_BrandWiseReport.rpt"
-            "TargetName" = "8:RPT_MValue_BrandWiseReport.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_240EC897677F479C920DA1FEB648EA2C"
@@ -9967,26 +8799,6 @@
             "TargetName" = "8:RPT_Stock_Inward_Consolidated.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_245A703105C244B69ED0E809E3464BA6"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_CreatedUpdated.rpt"
-            "TargetName" = "8:RPT_CP_Product_CreatedUpdated.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10227,26 +9039,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Conversion.rpt"
             "TargetName" = "8:RPT_Stock_Conversion.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_27A6B46766AA4349BC4EF9B0A6990D6B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Address.rpt"
-            "TargetName" = "8:RPT_CP_Supplier_Address.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -10685,72 +9477,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2E68782478324C7C8F81A31406C3EDE8"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Detail.rpt"
-            "TargetName" = "8:RPT_INV_Damage_Detail.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2E9942C07B114E1D8EC3E31F35FB3F26"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SalesEntryReport.rpt"
             "TargetName" = "8:RPT_SalesEntryReport.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2EC2A215C0C14FB9A00BBF7BA5AC5589"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Weight_Loc_Split.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Weight_Loc_Split.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2F3A952ACFFA4CFF9703F90B2B8C09FA"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_Count_RGWise_RackDetails.rpt"
-            "TargetName" = "8:RPT_CP_Pro_Count_RGWise_RackDetails.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10965,26 +9697,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_31F67DE7765643BEAC827097CE7AF5CC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_LP_GRN_QRCode.rpt"
-            "TargetName" = "8:RPT_LP_GRN_QRCode.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_320B0059668E4D9D8DD801331B3648AC"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Zero_Rate_AlphaWise.rpt"
@@ -11049,26 +9761,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_AdditionalValue_MonthWise.rpt"
             "TargetName" = "8:RPT_PUR_Tax_AdditionalValue_MonthWise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3325FF73A6144323B1595B1A7C0B8CEB"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rack.rpt"
-            "TargetName" = "8:RPT_CP_Rack.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -11336,70 +10028,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_37F9EB44B66F4BA59F04566AA7954279"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Plain_Print_A6.rpt"
-            "TargetName" = "8:RPT_Product_Landscape_Plain_Print_A6.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_38A181EE3B7D4595ACDCCF004FE96D6A"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_BulkRate.rpt"
-            "TargetName" = "8:RPT_CP_Pro_BulkRate.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_38A8C2F70D77487CB2ADC40745848332"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_SummaryWithMSQ.rpt"
             "TargetName" = "8:RPT_Stock_SummaryWithMSQ.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_38BC353E6179499AB6047DEE04647BFC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Summary.rpt"
-            "TargetName" = "8:RPT_INV_Damage_Summary.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -11527,26 +10159,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3AADF16998AA4C3FB226460E7E4A369B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_InactiveProduct.rpt"
-            "TargetName" = "8:RPT_CP_InactiveProduct.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3ADC5048E11F4CDFA08CF313E42C6C3C"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_AllPurchase_DayWise_Total.rpt"
@@ -11611,26 +10223,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand_Subgroup.rpt"
             "TargetName" = "8:RPT_CP_Brand_Subgroup.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3BD28112F835443AB47A39CAD1293203"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_ProductWeight_LocationWiseProductDetail.rpt"
-            "TargetName" = "8:RPT_CP_ProductWeight_LocationWiseProductDetail.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -11727,26 +10319,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3CB66B6844954652998668997126D1CC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PAY_SupplierPaymentPending.rpt"
-            "TargetName" = "8:RPT_PAY_SupplierPaymentPending.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3D0C6886DAE9421F9E87A43DF619F258"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_RackGroup_100x70.rpt"
@@ -11818,26 +10390,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3D7118C52A004E85A3F8F478661EDC8C"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_RackMin_Qty.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3DD34D795D8B4F5392B0A48AC1CFD36A"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList.rpt"
@@ -11902,26 +10454,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SALES_Card_Payment_Detail.rpt"
             "TargetName" = "8:RPT_SALES_Card_Payment_Detail.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3E4759F17B6E498EAAF836C48BF9FF20"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_Role_Empty_SplPermission.rpt"
-            "TargetName" = "8:RPT_CP_User_Role_Empty_SplPermission.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -12033,26 +10565,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Summary_Cumulative.rpt"
             "TargetName" = "8:RPT_Stock_Summary_Cumulative.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F768098B23945D4AA0F475EBBE07060"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_ProductWeight_LocationWise.rpt"
-            "TargetName" = "8:RPT_CP_ProductWeight_LocationWise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -12462,46 +10974,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42DC48A3726943428889E5D8270017A3"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_ShelfLife.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_ShelfLife.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42DF6EC6B04A4A8A8B2A85F2DBA1B4F0"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_MAR_Entry.rpt"
-            "TargetName" = "8:RPT_MAR_Entry.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4328A06954E1448F8F4A105917A170DF"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_DamageEntry_Wise.rpt"
@@ -12775,26 +11247,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_464C8E41FC08414B8F581A85AC3F5D93"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Group_Subgroup.rpt"
-            "TargetName" = "8:RPT_CP_Product_Group_Subgroup.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_46664D34AC0A48E2BC522A173471A5D3"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Broker_Contact.rpt"
@@ -12901,26 +11353,6 @@
             "TargetName" = "8:RPT_CP_Company_Details.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_48405B43DA9947FF8DDEB162AE5F6929"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Master.rpt"
-            "TargetName" = "8:RPT_CP_HSN_Master.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13277,26 +11709,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C6DD8F14A624D748143441802911D30"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_MultipleRate_Offset.rpt"
-            "TargetName" = "8:RPT_CP_Pro_MultipleRate_Offset.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4CA189EB1CBF4A16A18B8583B803E954"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_ProductWise_Batch.rpt"
@@ -13479,26 +11891,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EFC4AFD73844E34B46945FC309CE237"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PAY_SupplierPaymentGiven_Summary.rpt"
-            "TargetName" = "8:RPT_PAY_SupplierPaymentGiven_Summary.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F1100921CC2464A8C572611A9D84622"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Valuation_Subgroupwise.rpt"
@@ -13563,46 +11955,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_StockLocation.rpt"
             "TargetName" = "8:RPT_CP_Product_Subgroup_StockLocation.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4FFE16E09D87466F9FCC491168CFEAF5"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_RoleWise_Menu.rpt"
-            "TargetName" = "8:RPT_CP_User_RoleWise_Menu.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_506B648FC3684812B12FA00B8C52514B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_StockLocation.rpt"
-            "TargetName" = "8:RPT_CP_StockLocation.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -13874,26 +12226,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Rate_Changes_Consolidated.rpt"
             "TargetName" = "8:RPT_Rate_Changes_Consolidated.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5582F05F806B42A481814E642D826941"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Group.rpt"
-            "TargetName" = "8:RPT_CP_Product_Group.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -14283,26 +12615,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59F6F8A3F55D4C07BC291D63B74672D2"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_MultipleRate_Offset_PICode.rpt"
-            "TargetName" = "8:RPT_CP_Pro_MultipleRate_Offset_PICode.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59F88C2D64D04DCEAE5CADD3F16E6AE3"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_50x60.rpt"
@@ -14463,26 +12775,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5BBDAEA3197B4E80BFE7B6229AE73D90"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PAY_PayReceipt.rpt"
-            "TargetName" = "8:RPT_PAY_PayReceipt.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C239E916DDE4B5ABF70024F9CD1F626"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierScheduleList.rpt"
@@ -14605,26 +12897,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5CCD9386A9CF4B4EB0F6F32AAC8856CD"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_BulkRateOffset.rpt"
-            "TargetName" = "8:RPT_CP_Pro_BulkRateOffset.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5DB21AAB0B6B664221628FBE691A7B24"
             {
             "AssemblyRegister" = "3:1"
@@ -14662,26 +12934,6 @@
             "TargetName" = "8:RPT_PUR_Tax_TaxDetails_MonthWise_Total.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5EF44521BD3644779D0FA2C5680057C8"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Barcode_PICode.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Barcode_PICode.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -15009,46 +13261,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64F1B5575C10466DB7D24ACE56998F7C"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_RoleWise_SubMenu.rpt"
-            "TargetName" = "8:RPT_CP_User_RoleWise_SubMenu.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_658BB71CF3934761B542BBFA1AA01D41"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Rack_Product_Assigned.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Rack_Product_Assigned.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_658EFBACAFC2467CA5166E7756663C50"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_Description_100x70.rpt"
@@ -15106,26 +13318,6 @@
             "TargetName" = "8:RPT_TP_PUR_PurchaseDC.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_65FB75818A2346A4AFD1F68D4F0C0FFC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_GoodsInwardQueue_Products.rpt"
-            "TargetName" = "8:RPT_INV_GoodsInwardQueue_Products.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -15391,26 +13583,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_683C7BEE7E6B4187A390248C1D12D685"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_Count_GodownWise.rpt"
-            "TargetName" = "8:RPT_CP_Pro_Count_GodownWise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6848509A0FC54DABBD7CDFB0355F7550"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Summary_Report.rpt"
@@ -15622,26 +13794,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B07A62C5E484F838BBF08F0245DD0CB"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Category_Location.rpt"
-            "TargetName" = "8:RPT_CP_Product_Category_Location.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B149A91EBA1477C8EC8B4687949D1E8"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_TaxDetails_DayWise.rpt"
@@ -15668,26 +13820,6 @@
             "TargetName" = "8:RPT_Tax_Changes.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B7054B40698400C970F4E32BC10CADC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Weight.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Weight.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -15819,26 +13951,6 @@
             "TargetName" = "8:RPT_CP_InactiveProduct.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6CAB5FAE4C9240918A86C18386653330"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_UserNamewise.rpt"
-            "TargetName" = "8:RPT_CP_UserNamewise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -16013,26 +14125,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FBDBDF947A844ABBB8BA3845B268F8D"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_MValue_SubgroupWiseReport.rpt"
-            "TargetName" = "8:RPT_MValue_SubgroupWiseReport.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_70251B05539C49C8A852378DA4776244"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Rack_Staff_50x35.rpt"
@@ -16175,26 +14267,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_728AB6A5203F4972B723C83614C8DB0E"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Product.rpt"
-            "TargetName" = "8:RPT_INV_Damage_Product.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_729E2321FC0546088878F2EB435D6229"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_CreatedUpdated.rpt"
@@ -16315,26 +14387,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7493FF8DE37E40DF90A4FB82E3BCDBD9"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_Product.rpt"
-            "TargetName" = "8:RPT_CP_Product_Subgroup_Product.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_74C181B733D2468693A77EEDAFF80533"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Plain_Print_A5.rpt"
@@ -16421,26 +14473,6 @@
             "TargetName" = "8:RPT_CP_User_RoleWise_Menu.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75B89DBB3BE04D2EA47F4C436D40707B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_Count_RGWise_RackSummary.rpt"
-            "TargetName" = "8:RPT_CP_Pro_Count_RGWise_RackSummary.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -16586,26 +14618,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_788E2BD488FA495BA53AED44AE343D04"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_78B1A49CBB9540CDB538B1FE2948CADA"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Mapping.rpt"
@@ -16670,26 +14682,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Detail_Sub-Report.rpt"
             "TargetName" = "8:RPT_PUR_PO_Detail_Sub-Report.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_795124C62F2B4726A9D9A365613BEE23"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rate_Change_Live.rpt"
-            "TargetName" = "8:RPT_CP_Rate_Change_Live.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -16877,50 +14869,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B259F208EF3444B8077AF901EA87B2A"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Plain_Print_A4.rpt"
-            "TargetName" = "8:RPT_Product_Landscape_Plain_Print_A4.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B66F92D1491407AAD51172786C6E125"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SALES_Card_Payment_Daywise_Mid.rpt"
             "TargetName" = "8:RPT_SALES_Card_Payment_Daywise_Mid.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B70B0682C2C4174A27C06101DD77D32"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_GST.rpt"
-            "TargetName" = "8:RPT_CP_Product_GST.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -17068,46 +15020,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7D6DF9B4FC5245B79449FCA95667F1DC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_GRNDetails.rpt"
-            "TargetName" = "8:RPT_GRNDetails.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7D8604AB3FBF407A98631E80D5E7FCB9"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Company.rpt"
-            "TargetName" = "8:RPT_CP_Company.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E0AE69D79A76B9A28BC8CFF6B50A7A8"
             {
             "AssemblyRegister" = "3:1"
@@ -17239,26 +15151,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EE8166EF8F84D50A4AA5E729E51A407"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_Location.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_RackMin_Qty_Location.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F53129042FE4789AE47E26B07580D0B"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Portrait_Print_A7.rpt"
@@ -17285,26 +15177,6 @@
             "TargetName" = "8:RPT_Product_Portrait_Print_A5.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7FCEE99185B9440E99C0383A2DB3DF24"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_GRN_Supplier_Detail.rpt"
-            "TargetName" = "8:RPT_GRN_Supplier_Detail.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -17379,12 +15251,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_81136BA28C83480DA652EB6D832B3E06"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_813B846304CB2D55FBEF8F744CEC94DF"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Stock_Nett_Gross.rpt"
-            "TargetName" = "8:RPT_CP_Product_Stock_Nett_Gross.rpt"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_813B846304CB2D55FBEF8F744CEC94DF"
+                    {
+                    "Name" = "8:Gma.QrCodeNet.Encoding.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Gma.QrCodeNet.Encoding.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
+            "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -17396,7 +15279,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_818827E1A3D34BDFBE7D4E91A9E23AF8"
@@ -17527,46 +15410,6 @@
             "TargetName" = "8:RPT_Sticker_Print_Basket_50x35.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82F70672AE1747DDBEE4506CA5470701"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_833513ECBC7240C0B98E233B1CE54505"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Supplierwise_Damage_Detail.rpt"
-            "TargetName" = "8:RPT_INV_Supplierwise_Damage_Detail.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -17829,26 +15672,6 @@
             "TargetName" = "8:RPT_Stock_Inward_Batch.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_85B03CFCC6A44F6F8480F4845A9E9DA2"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_Role.rpt"
-            "TargetName" = "8:RPT_CP_User_Role.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -18405,26 +16228,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8BC44D69AB324332BCEA3D22C2DBEA28"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_MarginEntryReport.rpt"
-            "TargetName" = "8:RPT_MarginEntryReport.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8BD870818843955A4D1C2D29FF9999C6"
             {
             "AssemblyRegister" = "3:1"
@@ -18480,26 +16283,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList_Supplier_wise.rpt"
             "TargetName" = "8:RPT_PUR_PO_ProductList_Supplier_wise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D1E0DE66FEC4B728ECF9E48A5BB2220"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_RateCategory_Offset.rpt"
-            "TargetName" = "8:RPT_CP_Product_RateCategory_Offset.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -18758,26 +16541,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8FEDE4D1A78F4C04943F6771E8E24A94"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_SupplierWise.rpt"
-            "TargetName" = "8:RPT_INV_Damage_SupplierWise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8FF6EAF47CF77D0856F475C190107A4A"
             {
             "AssemblyRegister" = "3:1"
@@ -18807,26 +16570,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_903ADB952F904C65B4A05D0DE56AAA26"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Alphabetic.rpt"
-            "TargetName" = "8:RPT_CP_Product_Alphabetic.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_90C560A1B8AA4309910FEBE8AB7CDD45"
@@ -18893,26 +16636,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_LP_GRN_QRCode.rpt"
             "TargetName" = "8:RPT_LP_GRN_QRCode.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_919D0A7CC0FE4F81A7749AE4E5F10133"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Company_Details.rpt"
-            "TargetName" = "8:RPT_CP_Company_Details.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -19233,26 +16956,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_942E5896DD154F218817A845DCD45940"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Print_A6.rpt"
-            "TargetName" = "8:RPT_Product_Landscape_Print_A6.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_943A324A99E788A5A460BA9BAA1171FC"
@@ -19841,26 +17544,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C777EBF934745B6ACD21593389E0333"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier.rpt"
-            "TargetName" = "8:RPT_INV_Damage_Supplier.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9CC3A8A29A7D451A86B8EF1C711E134D"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SALES_Productwise_Consolidated.rpt"
@@ -20174,26 +17857,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9FE95847724E4108A3085AA45BF8F0AA"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_MAR_Summary.rpt"
-            "TargetName" = "8:RPT_MAR_Summary.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A023E57BCE3F2D16672A247833A2DD43"
             {
             "AssemblyRegister" = "3:1"
@@ -20291,46 +17954,6 @@
             "TargetName" = "8:RPT_CP_ProductWeight_LocationWiseGroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0F27B7899BA4F858E99A5D23A9ED2AB"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Subgroup.rpt"
-            "TargetName" = "8:RPT_CP_HSN_Subgroup.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A214479127C74773852296BDAC09BD2F"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_RateCategory_MinQty.rpt"
-            "TargetName" = "8:RPT_CP_Product_RateCategory_MinQty.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -20678,46 +18301,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A683330515F54E3795D9EF7CB5566CCE"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Min_Sales_Qty.rpt"
-            "TargetName" = "8:RPT_CP_Product_Min_Sales_Qty.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A74D29C4401B469A989E1B9160D98A96"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Product.rpt"
-            "TargetName" = "8:RPT_CP_HSN_Product.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A799A3C8D35046D4BFE2AF181B0BADE0"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Landscape_Plain_Print_A6.rpt"
@@ -20844,26 +18427,6 @@
             "TargetName" = "8:RPT_CP_ProductWeight_LocationWiseSubgroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A9E2110554314484A2627A8DDDF9E94F"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_List.rpt"
-            "TargetName" = "8:RPT_CP_Supplier_List.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -21242,26 +18805,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AEE231CD06F8469D8AC13A18E8D0FAE1"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_UserWise_User_Role.rpt"
-            "TargetName" = "8:RPT_CP_UserWise_User_Role.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AF2235FFF280D4D77C9C61F98A0573B3"
             {
             "AssemblyRegister" = "3:1"
@@ -21404,26 +18947,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B0FE3BC5620A4214842446400709925E"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Msq.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Msq.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B1F0BA3E5F61492FA18C4A2E5EA2DF68"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_TaxDetails_DayWise_Total.rpt"
@@ -21519,26 +19042,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Outward_ProductWise.rpt"
             "TargetName" = "8:RPT_Stock_Outward_ProductWise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3F476D52A054DF3859D6191EFE7F07B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup.rpt"
-            "TargetName" = "8:RPT_CP_Product_Subgroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -22108,26 +19611,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BAD9EC3E58164F028A2B42AB8948380A"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier.rpt"
-            "TargetName" = "8:RPT_CP_Supplier.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB12A64FEF804AD4815088C4998CAE62"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Outward_Batch.rpt"
@@ -22290,26 +19773,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC87A63A8D6A4FF39919357E2B4E0C68"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_Group_Brand.rpt"
-            "TargetName" = "8:RPT_CP_Product_Subgroup_Group_Brand.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BCA17C1FC8D2452A52F71D6AB1D92945"
             {
             "AssemblyRegister" = "3:1"
@@ -22339,26 +19802,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD30E91007874DA1859782C13D76190F"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Mapping.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Mapping.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD79BE0914184E46BE3377142EEEDA74"
@@ -22458,26 +19901,6 @@
             "TargetName" = "8:RPT_TP_PUR_ReturnDC.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C00F6337038A4F5C9D3A1C39AE2064C8"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_OtherProduct.rpt"
-            "TargetName" = "8:RPT_CP_Supplier_OtherProduct.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -22836,26 +20259,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C3A6D57D35F146CA8FBB6C88013F5701"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Contact.rpt"
-            "TargetName" = "8:RPT_CP_Supplier_Contact.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C3C5042F6C2F9711CAB68D919D252687"
             {
             "AssemblyRegister" = "3:1"
@@ -22885,26 +20288,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C3E1DB89A4254FA2B7BB0A0C343BD4B8"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rate_Change_Live.rpt"
-            "TargetName" = "8:RPT_CP_Rate_Change_Live.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C429159C4C80505B38FF9281AA4A2480"
@@ -23502,26 +20885,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CAC1519DE48B4599BEBE5B1C9C8DC92A"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CAC1B6E1302A4EFE819CDF97F5C2563F"
             {
             "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-08.ttf"
@@ -23538,26 +20901,6 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:5"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CBB517FABB734A9BADDE34DFAC32163D"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_GRNSummary.rpt"
-            "TargetName" = "8:RPT_GRNSummary.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
@@ -23724,26 +21067,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE4ADC1F6DB7451D8AEDD06FDFFA26E5"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Portrait_Plain_Print_A4.rpt"
-            "TargetName" = "8:RPT_Product_Portrait_Plain_Print_A4.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE50431828C74737BCF843083A3AC23E"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_HSNNameWiseProductSumDetails.rpt"
@@ -23768,46 +21091,6 @@
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Journal.rpt"
             "TargetName" = "8:RPT_Stock_Journal.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CF0C97DAA2AE4FE2A1D9C1D9685DFD87"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Godown_Valuation_Summary.rpt"
-            "TargetName" = "8:RPT_Godown_Valuation_Summary.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CF1F90E0DF9D4ABEA01B536CA84E71E4"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_GoodsInward.rpt"
-            "TargetName" = "8:RPT_INV_GoodsInward.rpt"
             "Tag" = "8:"
             "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
@@ -23861,26 +21144,6 @@
             "TargetName" = "8:RPT_PUR_ProductWise_MonthWisePurchaseValue.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D003A940762443D1AF8939A99368A4B5"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Rack_Product_Unassigned.rpt"
-            "TargetName" = "8:RPT_CP_Rackgroup_Rack_Product_Unassigned.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -23986,26 +21249,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D129272E30104C69A3A7E31C7D51311B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_Count_RGWise_LocationWise.rpt"
-            "TargetName" = "8:RPT_CP_Pro_Count_RGWise_LocationWise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D1413343FC60465CA1FAA7BD93083AB3"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_AllPurchase_DayWise.rpt"
@@ -24072,26 +21315,6 @@
             "TargetName" = "8:RPT_Stock_TakingSheet_Portrait.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D2B076518A8D4C8898F4740D2ECB2FC9"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PAY_BillWise_SupplierPaymentPending.rpt"
-            "TargetName" = "8:RPT_PAY_BillWise_SupplierPaymentPending.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -24182,26 +21405,6 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:5"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D36A553B0AFB41F488F188B53BB36267"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PAY_Advance.rpt"
-            "TargetName" = "8:RPT_PAY_Advance.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
@@ -24334,26 +21537,6 @@
             "TargetName" = "8:RPT_SALES_Productwise_Summary.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D515F722D8C84E479D905612FB8E8E91"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_GoodsOutward.rpt"
-            "TargetName" = "8:RPT_INV_GoodsOutward.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -24712,26 +21895,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DB0930589BA44B26B0415C5761A57651"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Inward_Sticker_Print_100x70.rpt"
-            "TargetName" = "8:RPT_Inward_Sticker_Print_100x70.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DB6BA680187D4664A1944C75A0B570F1"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Basket_50x60.rpt"
@@ -24863,26 +22026,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC42A799BFC54CF999CA457DEA3302BC"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rack_Rackgroup.rpt"
-            "TargetName" = "8:RPT_CP_Rack_Rackgroup.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DCD714CA1F0B4578AEDD474E279E57F9"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Outward_Details.rpt"
@@ -24909,46 +22052,6 @@
             "TargetName" = "8:RPT_PAY_SupplierPaymentPending.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DDFA79D5ED34406AB5767717DDC8E2D1"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Label_Print_Plain_50x60.rpt"
-            "TargetName" = "8:RPT_Product_Label_Print_Plain_50x60.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DEA1108F9994468EA6B2AD646A7B9C87"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_Role_Summary.rpt"
-            "TargetName" = "8:RPT_CP_User_Role_Summary.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -25069,26 +22172,6 @@
             "TargetName" = "8:RPT_Unassigned_Products.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E02493DAB99C47E3BC50AB5466AA685D"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_GRN_Batch_Detail.rpt"
-            "TargetName" = "8:RPT_GRN_Batch_Detail.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -25489,26 +22572,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E6CAB738317A41FBBD595F5D3284281D"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_PO_Details.rpt"
-            "TargetName" = "8:RPT_CP_Supplier_PO_Details.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E6CCC6E5AEF34AE18D6373386E1A3E9F"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PurchaseReturnDC.rpt"
@@ -25729,52 +22792,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E95574866A454AEB9823896A472F0C7E"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_State.rpt"
-            "TargetName" = "8:RPT_CP_State.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E9D3E7048D9243FEAD2A99B5AF2217F6"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand.rpt"
             "TargetName" = "8:RPT_CP_Brand.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA934E6BC96E476A91F3EFD2FCC960AD"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_RoleWise_Menu.rpt"
-            "TargetName" = "8:RPT_CP_User_RoleWise_Menu.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -26039,46 +23062,6 @@
             "TargetName" = "8:RPT_Stock_Outward_ProductWise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EF3A351DAE0C4611B3CE5CC7875FB009"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_GRN_Defect_Product.rpt"
-            "TargetName" = "8:RPT_GRN_Defect_Product.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EFB46121292C423D8A6CD364E62C14AB"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rate_Change.rpt"
-            "TargetName" = "8:RPT_CP_Rate_Change.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -26383,26 +23366,6 @@
             "TargetName" = "8:RPT_Purchase_Order_List.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F2C86D1FAD1548B49D130A44A83CEE0B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Pro_MultipleRate.rpt"
-            "TargetName" = "8:RPT_CP_Pro_MultipleRate.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -27103,26 +24066,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FA254169DC9D4E06B5ACB8CFA24ED0D3"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_StockLocation.rpt"
-            "TargetName" = "8:RPT_CP_Product_Subgroup_StockLocation.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FA73A4F5EFFAA849BD2DAE89C2581E38"
             {
             "AssemblyRegister" = "3:1"
@@ -27183,26 +24126,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB07F81A25644EC7823C1D90D6D49B23"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_StockHold.rpt"
-            "TargetName" = "8:RPT_INV_StockHold.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB10CE5627D84B98A635D2B7E3AC720A"
@@ -27371,26 +24294,6 @@
             "TargetName" = "8:RPT_Stock_Valuation.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FE34C3FB5647415D927CDC73F362E74F"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_TCSValue_MonthWise.rpt"
-            "TargetName" = "8:RPT_PUR_Tax_TCSValue_MonthWise.rpt"
-            "Tag" = "8:"
-            "Folder" = "8:_60B3595D38AE406E84B46E6A1C9CCDF7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
