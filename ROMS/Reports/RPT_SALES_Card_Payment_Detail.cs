@@ -274,7 +274,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraUserName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraConcernId {
             get {
                 return this.DataDefinition.ParameterFields[18];
             }
@@ -282,7 +282,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraHostName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[19];
             }
@@ -290,7 +290,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraConcernId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraMachineId {
             get {
                 return this.DataDefinition.ParameterFields[20];
             }
@@ -298,7 +298,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraFromDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraProviderId {
             get {
                 return this.DataDefinition.ParameterFields[21];
             }
@@ -306,7 +306,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraMachineId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraToDate {
             get {
                 return this.DataDefinition.ParameterFields[22];
             }
@@ -314,7 +314,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraProviderId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraTypeId {
             get {
                 return this.DataDefinition.ParameterFields[23];
             }
@@ -322,7 +322,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraToDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraBillAmt {
             get {
                 return this.DataDefinition.ParameterFields[24];
             }
@@ -330,7 +330,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraTypeId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraBillNo {
             get {
                 return this.DataDefinition.ParameterFields[25];
             }
@@ -338,7 +338,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraConcernName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraCustomerId {
             get {
                 return this.DataDefinition.ParameterFields[26];
             }
@@ -346,7 +346,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraMachineName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraConcernId {
             get {
                 return this.DataDefinition.ParameterFields[27];
             }
@@ -354,7 +354,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraVendorName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[28];
             }
@@ -362,7 +362,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraMachineId {
             get {
                 return this.DataDefinition.ParameterFields[29];
             }
@@ -370,7 +370,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraCustomerName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraProviderId {
             get {
                 return this.DataDefinition.ParameterFields[30];
             }
@@ -378,7 +378,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraBillNoName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraToDate {
             get {
                 return this.DataDefinition.ParameterFields[31];
             }
@@ -386,7 +386,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraBillAmountName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraTypeId {
             get {
                 return this.DataDefinition.ParameterFields[32];
             }
@@ -394,7 +394,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraBillAmt {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraBillAmt {
             get {
                 return this.DataDefinition.ParameterFields[33];
             }
@@ -402,7 +402,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraBillNo {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraBillNo {
             get {
                 return this.DataDefinition.ParameterFields[34];
             }
@@ -410,7 +410,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_BillType_Sumrpt_paraCustomerId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraCustomerId {
             get {
                 return this.DataDefinition.ParameterFields[35];
             }
@@ -418,7 +418,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraUserName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraConcernId {
             get {
                 return this.DataDefinition.ParameterFields[36];
             }
@@ -426,7 +426,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraHostName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[37];
             }
@@ -434,7 +434,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraConcernId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraMachineId {
             get {
                 return this.DataDefinition.ParameterFields[38];
             }
@@ -442,7 +442,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraFromDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraProviderId {
             get {
                 return this.DataDefinition.ParameterFields[39];
             }
@@ -450,7 +450,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraMachineId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraToDate {
             get {
                 return this.DataDefinition.ParameterFields[40];
             }
@@ -458,7 +458,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraProviderId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraTypeId {
             get {
                 return this.DataDefinition.ParameterFields[41];
             }
@@ -466,7 +466,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraToDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraBillAmt {
             get {
                 return this.DataDefinition.ParameterFields[42];
             }
@@ -474,7 +474,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraTypeId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraBillNo {
             get {
                 return this.DataDefinition.ParameterFields[43];
             }
@@ -482,225 +482,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraConcernName {
-            get {
-                return this.DataDefinition.ParameterFields[44];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraMachineName {
-            get {
-                return this.DataDefinition.ParameterFields[45];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraVendorName {
-            get {
-                return this.DataDefinition.ParameterFields[46];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraTypeName {
-            get {
-                return this.DataDefinition.ParameterFields[47];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraCustomerName {
-            get {
-                return this.DataDefinition.ParameterFields[48];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraBillNoName {
-            get {
-                return this.DataDefinition.ParameterFields[49];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraBillAmountName {
-            get {
-                return this.DataDefinition.ParameterFields[50];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraBillAmt {
-            get {
-                return this.DataDefinition.ParameterFields[51];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraBillNo {
-            get {
-                return this.DataDefinition.ParameterFields[52];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Mid_Sumrpt_paraCustomerId {
-            get {
-                return this.DataDefinition.ParameterFields[53];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraUserName {
-            get {
-                return this.DataDefinition.ParameterFields[54];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraHostName {
-            get {
-                return this.DataDefinition.ParameterFields[55];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraConcernId {
-            get {
-                return this.DataDefinition.ParameterFields[56];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraFromDate {
-            get {
-                return this.DataDefinition.ParameterFields[57];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraMachineId {
-            get {
-                return this.DataDefinition.ParameterFields[58];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraProviderId {
-            get {
-                return this.DataDefinition.ParameterFields[59];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraToDate {
-            get {
-                return this.DataDefinition.ParameterFields[60];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraTypeId {
-            get {
-                return this.DataDefinition.ParameterFields[61];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraConcernName {
-            get {
-                return this.DataDefinition.ParameterFields[62];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraMachineName {
-            get {
-                return this.DataDefinition.ParameterFields[63];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraVendorName {
-            get {
-                return this.DataDefinition.ParameterFields[64];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraTypeName {
-            get {
-                return this.DataDefinition.ParameterFields[65];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraCustomerName {
-            get {
-                return this.DataDefinition.ParameterFields[66];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraBillNoName {
-            get {
-                return this.DataDefinition.ParameterFields[67];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraBillAmountName {
-            get {
-                return this.DataDefinition.ParameterFields[68];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraBillAmt {
-            get {
-                return this.DataDefinition.ParameterFields[69];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraBillNo {
-            get {
-                return this.DataDefinition.ParameterFields[70];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Card_Payment_Detail_Vendor_Sumrpt_paraCustomerId {
             get {
-                return this.DataDefinition.ParameterFields[71];
+                return this.DataDefinition.ParameterFields[44];
             }
         }
     }

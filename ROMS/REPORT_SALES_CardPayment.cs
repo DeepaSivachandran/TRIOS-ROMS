@@ -379,14 +379,29 @@ namespace ROMS
                         // Detail Report Only
                         objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                         objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
-
                         objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
                         objBillreport.SetParameterValue("paraBillNoName", varBillNoName);
                         objBillreport.SetParameterValue("paraBillAmountName", varBillAmtName);
-
                         objBillreport.SetParameterValue("paraBillAmt", varBillAmt);
                         objBillreport.SetParameterValue("paraBillNo", varBillNo);
                         objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
+
+                        string[] subReportNames = new string[3];
+                        for (int i = 0; i < 3; i++)
+                        {
+                            subReportNames[i] = objBillreport.Subreports[i].Name;
+
+                            objBillreport.SetParameterValue("paraConcernId", varConcernId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text), subReportNames[i]);
+                            objBillreport.SetParameterValue("paraMachineId", varMachineId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraProviderId", varProviderId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text), subReportNames[i]);
+                            objBillreport.SetParameterValue("paraTypeId", varTypeId, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraBillAmt", varBillAmt, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraBillNo", varBillNo, subReportNames[i]);
+                            objBillreport.SetParameterValue("paraCustomerId", varCustomerId, subReportNames[i]);
+                        }
+
                     }
                     else if (varReportTypeID == 644)
                     {
