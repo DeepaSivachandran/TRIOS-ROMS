@@ -370,6 +370,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text.Trim());
                     if (varReportType == 666)
                     {
+                        string subReportName0 = objBillreport.Subreports[0].Name;
+
                         objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbBillCategory.Text));
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
@@ -387,6 +389,21 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraCustomerId", varCustomerId);
                         objBillreport.SetParameterValue("paraSchemeType", varSchemeType);
                         objBillreport.SetParameterValue("paraViewType", varViewType);
+
+                        objBillreport.SetParameterValue("paraCategoryName", varCategoryName, subReportName0);
+                        objBillreport.SetParameterValue("paraProductName", varProductName, subReportName0);
+                        objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName, subReportName0);
+                        objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName, subReportName0);
+                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"), subReportName0);
+                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"), subReportName0);
+                        objBillreport.SetParameterValue("paraBilledBy", varBilledBy, subReportName0);
+                        objBillreport.SetParameterValue("paraBilltype", varBillType, subReportName0);
+                        objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId, subReportName0);
+                        objBillreport.SetParameterValue("paraCustomerId", varCustomerId, subReportName0);
+                        objBillreport.SetParameterValue("paraSchemeType", varSchemeType, subReportName0);
+                        objBillreport.SetParameterValue("paraViewType", varViewType, subReportName0);
+                        objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text.Trim(), subReportName0);
+                        objBillreport.SetParameterValue("paraToDate", dpToDate.Text.Trim(), subReportName0);
                     }
                     else if (varReportType == 667)
                     {
