@@ -6790,7 +6790,69 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnSalesReports(MR_Sales objMR_Sales)
+        {
+            DataSet ds = new DataSet();
 
+            try
+            {
+                tmpspcall = new SPCall();
+
+                SqlCommand varSqlCommand = new SqlCommand(
+                    "[TRNG_SalesReport]",
+                    tmpspcall.objConn);
+
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Sales.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objMR_Sales.paraConcernId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID ?? "");
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress ?? "");
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objMR_Sales.paraFromDate ?? "");
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objMR_Sales.paraToDate ?? "");
+                varSqlCommand.Parameters.AddWithValue("@paraFromTime", objMR_Sales.paraFromTime);
+                varSqlCommand.Parameters.AddWithValue("@paraTotime", objMR_Sales.paraToTime);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", objMR_Sales.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_Sales.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_Sales.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@ParaProductCode", objMR_Sales.paraProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_Sales.paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objMR_Sales.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitID", objMR_Sales.paraUnitID);
+                varSqlCommand.Parameters.AddWithValue("@paraClassification", objMR_Sales.paraClassification);
+                varSqlCommand.Parameters.AddWithValue("@paraPicode", objMR_Sales.paraPicode ?? "0");
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", objMR_Sales.paraSubgroupType);
+                varSqlCommand.Parameters.AddWithValue("@paraBillType", objMR_Sales.paraBillType);
+                varSqlCommand.Parameters.AddWithValue("@paraSalesType", objMR_Sales.paraSalesType);
+                varSqlCommand.Parameters.AddWithValue("@paraSalesValue", objMR_Sales.paraSalesValue);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Sales.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderby", objMR_Sales.paraOrderby);
+                varSqlCommand.Parameters.AddWithValue("@paraBilledBy", objMR_Sales.paraBilledBy);
+                varSqlCommand.Parameters.AddWithValue("@paraSchemeType", objMR_Sales.paraSchemeType);
+                varSqlCommand.Parameters.AddWithValue("@paraBillCategory", objMR_Sales.paraBillCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraDays", objMR_Sales.paraDays);
+                varSqlCommand.Parameters.AddWithValue("@paraMonths", objMR_Sales.paraMonths);
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerId", objMR_Sales.paraCustomerId);
+                varSqlCommand.Parameters.AddWithValue("@paraCusCategoryId", objMR_Sales.paraCUS_CategoryTypeID);
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerName", objMR_Sales.paraCUS_Name);
+                varSqlCommand.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (tmpspcall != null)
+                    tmpspcall.CloseConnection();
+            }
+
+            return ds;
+        }
     }
 
 }

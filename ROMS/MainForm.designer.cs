@@ -268,6 +268,10 @@ namespace ROMS
             this.tsmTransportReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCardMachineReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHallReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesSummaryDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesProductWise = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesNonMovingProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
@@ -276,7 +280,6 @@ namespace ROMS
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSReports = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2339,7 +2342,8 @@ namespace ROMS
             // 
             this.tsmSalesReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmCardPayment,
-            this.tsmSalesMastersReport});
+            this.tsmSalesMastersReport,
+            this.tsmSalesReport});
             this.tsmSalesReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmSalesReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmSalesReports.Name = "tsmSalesReports";
@@ -2444,6 +2448,41 @@ namespace ROMS
             this.tsmMarriageHallReport.Text = "Marriage Hall";
             this.tsmMarriageHallReport.Visible = false;
             this.tsmMarriageHallReport.Click += new System.EventHandler(this.tsmMarriageHallReport_Click);
+            // 
+            // tsmSalesReport
+            // 
+            this.tsmSalesReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmSalesSummaryDetail,
+            this.tsmSalesProductWise,
+            this.tsmSalesNonMovingProduct});
+            this.tsmSalesReport.Name = "tsmSalesReport";
+            this.tsmSalesReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSalesReport.Text = "Sales Report";
+            this.tsmSalesReport.Visible = false;
+            // 
+            // tsmSalesSummaryDetail
+            // 
+            this.tsmSalesSummaryDetail.Name = "tsmSalesSummaryDetail";
+            this.tsmSalesSummaryDetail.Size = new System.Drawing.Size(201, 22);
+            this.tsmSalesSummaryDetail.Text = "Sales Summary && Detail";
+            this.tsmSalesSummaryDetail.Visible = false;
+            this.tsmSalesSummaryDetail.Click += new System.EventHandler(this.tsmSalesSummaryDetail_Click);
+            // 
+            // tsmSalesProductWise
+            // 
+            this.tsmSalesProductWise.Name = "tsmSalesProductWise";
+            this.tsmSalesProductWise.Size = new System.Drawing.Size(201, 22);
+            this.tsmSalesProductWise.Text = "Sales Productwise";
+            this.tsmSalesProductWise.Visible = false;
+            this.tsmSalesProductWise.Click += new System.EventHandler(this.tsmSalesProductWise_Click);
+            // 
+            // tsmSalesNonMovingProduct
+            // 
+            this.tsmSalesNonMovingProduct.Name = "tsmSalesNonMovingProduct";
+            this.tsmSalesNonMovingProduct.Size = new System.Drawing.Size(201, 22);
+            this.tsmSalesNonMovingProduct.Text = "Sales Non Moving Product";
+            this.tsmSalesNonMovingProduct.Visible = false;
+            this.tsmSalesNonMovingProduct.Click += new System.EventHandler(this.tsmSalesNonMovingProduct_Click);
             // 
             // tsmHelp
             // 
@@ -2786,5 +2825,9 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmTransportReport;
         private System.Windows.Forms.ToolStripMenuItem tsmCardMachineReport;
         private System.Windows.Forms.ToolStripMenuItem tsmMarriageHallReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesSummaryDetail;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesProductWise;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesNonMovingProduct;
     }
 }

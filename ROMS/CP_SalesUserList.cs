@@ -873,7 +873,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSalesUserList(5, txtDUserList.Text, "","",0,0,"");
+                    objDs = objspdservice.udfnSalesUserList(8, txtDUserList.Text, "","",0,0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
