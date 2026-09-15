@@ -372,6 +372,7 @@
             this.btnImageUpdate = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
             this.btnFetch = new System.Windows.Forms.Button();
+            this.chkITCReversible = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -537,6 +538,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.chkITCReversible);
             this.grbform.Controls.Add(this.txtSalesPICode);
             this.grbform.Controls.Add(this.txtDSalesPICode);
             this.grbform.Controls.Add(this.chkSalesProduct);
@@ -765,7 +767,7 @@
             this.cmbRM.FormattingEnabled = true;
             this.cmbRM.Location = new System.Drawing.Point(359, 49);
             this.cmbRM.Name = "cmbRM";
-            this.cmbRM.Size = new System.Drawing.Size(182, 27);
+            this.cmbRM.Size = new System.Drawing.Size(74, 27);
             this.cmbRM.TabIndex = 3;
             // 
             // lblSaleRackCode
@@ -4218,6 +4220,19 @@
             this.btnFetch.Visible = false;
             this.btnFetch.Click += new System.EventHandler(this.btnFetch_Click);
             // 
+            // chkITCReversible
+            // 
+            this.chkITCReversible.AutoSize = true;
+            this.chkITCReversible.Location = new System.Drawing.Point(436, 49);
+            this.chkITCReversible.Name = "chkITCReversible";
+            this.chkITCReversible.Size = new System.Drawing.Size(105, 24);
+            this.chkITCReversible.TabIndex = 111111165;
+            this.chkITCReversible.Text = "ITC Reversible";
+            this.chkITCReversible.UseVisualStyleBackColor = true;
+            this.chkITCReversible.Enter += new System.EventHandler(this.chkITCReversible_Enter);
+            this.chkITCReversible.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkITCReversible_KeyDown);
+            this.chkITCReversible.Leave += new System.EventHandler(this.chkITCReversible_Leave);
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -4629,5 +4644,6 @@
         private System.Windows.Forms.Button btnNext;
         public System.Windows.Forms.Button btnViewImages;
         public System.Windows.Forms.Button btnFetch;
+        private System.Windows.Forms.CheckBox chkITCReversible;
     }
 }

@@ -1523,7 +1523,9 @@ namespace ROMS
                         txtPICode.Text = txtPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                         txtSalesPICode.Text = txtSalesPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                     }
-                    int pbschemeFlag = 0;
+                    int pbschemeFlag = 0, pbFreeITC = 0;
+                    if(chkBillScheme.Checked==true)
+                    { pbFreeITC = 1; }
                     if (pbSG_BillScheme == 1 && BillSchemeApplicable == 0)
                     {
                         pbschemeFlag = 1;
@@ -1545,7 +1547,7 @@ namespace ROMS
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
                         , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "",
-                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable
+                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable,"",pbFreeITC
                     );
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -3242,7 +3244,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbProductType.Enabled == true)
+                    if(chkITCReversible.Enabled==true)
+                    {
+                        chkITCReversible.Focus();
+                    }
+                    else if (cmbProductType.Enabled == true)
                     {
                         cmbProductType.Focus();
                     }
@@ -3355,18 +3361,22 @@ namespace ROMS
                     txtProductionMSQ.Text = "";
                     cmbIntermediateUnit.SelectedValue = -1;
                 }
+                chkITCReversible.Checked = false;
                 if (Convert.ToInt16(cmbProductCategory.SelectedValue) == 15) //Free
                 {
                     chkProductScheme.Checked = true;
                     chkBillScheme.Checked = true;
                     chkProductScheme.Enabled = false;
                     chkBillScheme.Enabled = false;
+                    chkITCReversible.Enabled = true;
                 }
                 else
                 {
                     chkProductScheme.Enabled = true;
                     chkBillScheme.Enabled = true;
+                    chkITCReversible.Enabled = false;
                 }
+                
             }
             catch (Exception ex)
             {
@@ -9560,6 +9570,56 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void chkITCReversible_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkITCReversible.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkITCReversible_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkITCReversible.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkITCReversible_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (cmbProductType.Enabled == true)
+                    {
+                        cmbProductType.Focus();
+                    }
+                    else
+                    {
+                        txtPICode.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -11354,6 +11414,8 @@ namespace ROMS
                             {
                                 txtRackMOQQty.Enabled = false;
                             }
+                            if(Convert.ToInt16(objDS.Tables[0].Rows[0]["PR_FreeITC"])==1)
+                            { chkITCReversible.Checked = true; }
                         }
                         if (objDS.Tables[1] != null)
                         {
