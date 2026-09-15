@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms; 
 
 namespace ROMS
@@ -2811,6 +2812,17 @@ namespace ROMS
             }
             return bs;
         }
+        private async Task ShowLoaderAsync()
+        {
+            picLoader.Visible = true;
+            picLoader.BringToFront();
+             
+            // Keep the loader visible for 2 seconds
+            await Task.Delay(300);
+
+            picLoader.Visible = false;
+            picLoader.SendToBack();
+        }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -2858,9 +2870,9 @@ namespace ROMS
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "1")
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                         this.ActiveControl = cmbConcern;
-                        udfnList(0);
+                        ShowLoaderAsync();
                     }
                     else
                     {

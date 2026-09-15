@@ -11,6 +11,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Forms; 
 
 namespace ROMS
@@ -126,7 +127,7 @@ namespace ROMS
                 objdSer.CloseConnection();
                 if (objDTable != null)
                 {
-                    if (objDTable.Tables.Count > 0)
+                    if (objDTable.Tables.Count > 0) 
                     {
                         if (objDTable.Tables[0].Rows.Count > 0)
                         {  
@@ -2020,10 +2021,10 @@ namespace ROMS
                 }
                 var selIds = cmbMultiUnit.CheckedIds;
                 var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
-                varUnit = string.Join(", ", selItems.Select(x => x.Id));
+                varUnit = string.Join(",", selItems.Select(x => x.Id));
                 if (selIds.Count > 0)
                 {
-                    varUnitName = string.Join(", ", selItems.Select(x => x.Text));
+                    varUnitName = string.Join(",", selItems.Select(x => x.Text));
                     lblUnits.Text = varUnitName;
                 }
                 else
@@ -2822,7 +2823,17 @@ namespace ROMS
             }
             return bs;
         }
-       
+        private async Task ShowLoaderAsync()
+        {
+            picLoader.Visible = true;
+            picLoader.BringToFront();
+
+            // Keep the loader visible for 2 seconds
+            await Task.Delay(300);
+
+            picLoader.Visible = false;
+            picLoader.SendToBack();
+        }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -2869,6 +2880,7 @@ namespace ROMS
                     if (varvalue[0] == "1")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ShowLoaderAsync();
                         this.ActiveControl = cmbConcern;
                     }
                     else
