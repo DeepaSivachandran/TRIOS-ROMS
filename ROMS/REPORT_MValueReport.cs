@@ -97,7 +97,7 @@ namespace ROMS
                 cmbType.Enabled = false;
                 cmbProductName.SelectedValue = 271;
                 cmbMultiUnit.ClearAll();
-                cmbPrintType.SelectedValue = 357;
+                cmbPrintType.SelectedValue = 356;
                 for (int i = 0; i < chkboxRatelist.Items.Count; i++)
                 {
                     chkboxRatelist.SetItemChecked(i, false);
@@ -205,7 +205,7 @@ namespace ROMS
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
                 cmbProductName.SelectedValue = 271;
-                cmbPrintType.SelectedValue = 357;
+                cmbPrintType.SelectedValue = 356;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     string privilege = "";
@@ -1888,14 +1888,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbEntryType.Enabled == true)
-                    {
-                        cmbEntryType.Focus();
-                    }
-                    else
-                    {
-                        txtSupplier.Focus();
-                    }
+                    txtSupplier.Focus();
                 }
             }
             catch (Exception ex)
@@ -2050,7 +2043,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    dpFromDate.Focus();
                 }
             }
             catch (Exception ex)
@@ -2173,13 +2166,13 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbType.Enabled == true)
+                    if (cmbEntryType.Enabled == true)
                     {
-                        dpFromDate.Focus();
+                        cmbEntryType.Focus();
                     }
                     else
                     {
-                        cmbConcern.Focus();
+                        dpFromDate.Focus();
                     }
                 }
             }

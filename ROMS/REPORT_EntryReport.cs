@@ -122,8 +122,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (107)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (179)", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (107)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 MR_Master objMR_Master = new MR_Master();
@@ -157,7 +156,7 @@ namespace ROMS
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
                 cmbProductName.SelectedValue = 271;
-                cmbPrintType.SelectedValue = 357;
+                cmbPrintType.SelectedValue = 356;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     string privilege = "";
@@ -201,9 +200,7 @@ namespace ROMS
         {
             try
             {
-                //cmbReportType.SelectedValue = -1;
-                dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
-                dpToDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                //cmbReportType.SelectedValue = -1;  
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 txtGroup.Text = "";
                 lblGroupCode.Text = "0";
@@ -211,9 +208,7 @@ namespace ROMS
                 lblSubGroupCode.Text = "0";
                 txtBrand.Text = "";
                 lblBrandCode.Text = "0";
-                txtAlpha.Text = "";
-                cmbEntryType.SelectedValue = 592;
-                cmbEntryType.Enabled = false;
+                txtAlpha.Text = ""; 
                 txtSupplier.Text = "";
                 lblSupplierCode.Text = "0";
                 cmbCategory.SelectedValue = 0;
@@ -1639,90 +1634,8 @@ namespace ROMS
         //        objError.WriteFile(ex);
         //    }
         //}
-
-        private void dpFromDate_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnGridNull((Control)sender);
-                dpFromDate.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void dpFromDate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                dpFromDate.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void dpFromDate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    dpToDate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void dpFromDate_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpToDate.MinDate = varmindate;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void dpToDate_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnGridNull((Control)sender);
-                dpToDate.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void dpToDate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                dpToDate.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+           
+          
 
         private void dpToDate_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1989,9 +1902,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbEntryType.Enabled == true)
+                    if (txtSupplier.Enabled == true)
                     {
-                        cmbEntryType.Focus();
+                        txtSupplier.Focus();
                     }
                     else
                     {
@@ -2095,7 +2008,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbFilterType.Focus();
+                    txtRateCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -2173,33 +2086,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void cmbEntryType_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnGridNull((Control)sender);
-                cmbEntryType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbEntryType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbEntryType.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+          
 
         private void cmbEntryType_KeyDown(object sender, KeyEventArgs e)
         {
@@ -2514,6 +2401,7 @@ namespace ROMS
         {
             try
             {
+                int varEntyType = 592;//Manual
                 if (Convert.ToInt32(cmbPrintType.SelectedValue) == -1)
                 {
                     epReport.SetError(cmbPrintType, "Please select print type.");
@@ -2586,10 +2474,10 @@ namespace ROMS
                     }
                     var selIds = cmbMultiUnit.CheckedIds;
                     var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
-                    varUnit = string.Join(", ", selItems.Select(x => x.Id));
+                    varUnit = string.Join(",", selItems.Select(x => x.Id));
                     if (selIds.Count > 0)
                     {
-                        varUnitName = string.Join(", ", selItems.Select(x => x.Text));
+                        varUnitName = string.Join(",", selItems.Select(x => x.Text));
                         lblUnits.Text = varUnitName;
                     }
                     else
@@ -2641,10 +2529,8 @@ namespace ROMS
                     objMR_MarginEntry.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                     objMR_MarginEntry.paraType = varTypeId;
                     objMR_MarginEntry.paraUnitId = varUnit;
-                    objMR_MarginEntry.paraFilterType = varFilterType;
-                    objMR_MarginEntry.ParaFromDate = dpFromDate.Text;
-                    objMR_MarginEntry.ParaToDate = dpToDate.Text;
-                    objMR_MarginEntry.paraEntryType= Convert.ToInt32(cmbEntryType.SelectedValue);
+                    objMR_MarginEntry.paraFilterType = varFilterType; 
+                    objMR_MarginEntry.paraEntryType= varEntyType;
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
                     objDs = objspservice.udfnmarginlist(objMR_MarginEntry);

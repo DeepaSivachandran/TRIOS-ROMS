@@ -157,7 +157,7 @@ namespace ROMS
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
                 cmbProductName.SelectedValue = 271;
-                cmbPrintType.SelectedValue = 357;
+                cmbPrintType.SelectedValue = 356;
                 //if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 //{
                 //    string privilege = "";
@@ -221,7 +221,7 @@ namespace ROMS
                 cmbType.Enabled = false;
                 cmbProductName.SelectedValue = 271;
                 cmbMultiUnit.ClearAll();
-                cmbPrintType.SelectedValue = 357;
+                cmbPrintType.SelectedValue = 356;
                 for (int i = 0; i < chkboxRatelist.Items.Count; i++)
                 {
                     chkboxRatelist.SetItemChecked(i, false);
@@ -1991,7 +1991,7 @@ namespace ROMS
                 {
                     if (cmbEntryType.Enabled == true)
                     {
-                        cmbEntryType.Focus();
+                        txtSupplier.Focus();
                     }
                     else
                     {
@@ -2207,7 +2207,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    if (dpFromDate.Enabled == true)
+                    {
+                        dpFromDate.Focus();
+                    }
+                    else
+                    {
+                        cmbConcern.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2508,7 +2515,28 @@ namespace ROMS
         {
             udfnSelectAll();
         }
-         
+
+        private void cmbEntryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 592)
+                {
+                    dpFromDate.Enabled = false;
+                    dpToDate.Enabled = false;
+                }
+                else
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         public void udfnList(int varFlag)
         {
@@ -2617,7 +2645,7 @@ namespace ROMS
                     varConcern = cmbConcern.Text;
                     Application.DoEvents();
                     MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
-                    objMR_MarginEntry.paraViewType = 1;
+                    objMR_MarginEntry.paraViewType = 5;
                     //if (Convert.ToInt32(cmbReportType.SelectedValue) == 583)
                     //{
                     //    objMR_MarginEntry.paraViewType = 1;
