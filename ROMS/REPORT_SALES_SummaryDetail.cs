@@ -1887,17 +1887,23 @@ namespace ROMS
                 dpFromDate.Enabled = true;
                 dpToDate.Enabled = true;
                 cmbBillType.Enabled = true;
+                cmbBillType.SelectedValue = 0;
                 cmbSalesType.Enabled = true;
                 txtCustomer.Enabled = true;
                 txtBilledBy.Enabled = true;
                 cmbCustomerCategory.Enabled = false;
+                cmbCustomerCategory.SelectedValue = 0;
                 cmbSchemeType.Enabled = false;
+                cmbSchemeType.SelectedValue = 0;
                 cmbBillCategory.Enabled = false;
+                cmbBillCategory.SelectedValue = 0;
                 cmbPrintType.Enabled = false;
                 cmbMultiSelectDays.Enabled = false;
                 cmbMultiMonths.Enabled = false;
                 dpFromTime.Enabled = false;
                 dpToTime.Enabled = false;
+                lblDays.Text = "";
+                lblMonths.Text = "";
                 switch (varReportType)
                 {
                     case 666:
