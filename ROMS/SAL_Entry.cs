@@ -2207,7 +2207,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("varTypeName", varTypeName);
                     objBillreport.SetParameterValue("varUnitName", varUnitName);
                     objBillreport.SetParameterValue("VarFilterName", VarFilterName);
-                    objBillreport.SetParameterValue("varFlag", varFlag);
+                    objBillreport.SetParameterValue("varFlag", varEmptyFilledFlag);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
