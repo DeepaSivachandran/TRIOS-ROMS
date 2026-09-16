@@ -1084,7 +1084,7 @@
             // 
             // clmRackGroup
             // 
-            this.clmRackGroup.HeaderText = "Rack Group";
+            this.clmRackGroup.HeaderText = "Pur. Rack Group";
             this.clmRackGroup.MinimumWidth = 6;
             this.clmRackGroup.Name = "clmRackGroup";
             this.clmRackGroup.ReadOnly = true;
@@ -1093,7 +1093,7 @@
             // 
             // clmRack
             // 
-            this.clmRack.HeaderText = "Rack";
+            this.clmRack.HeaderText = "Pur. Rack";
             this.clmRack.MinimumWidth = 6;
             this.clmRack.Name = "clmRack";
             this.clmRack.ReadOnly = true;

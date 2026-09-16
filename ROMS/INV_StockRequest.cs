@@ -3349,8 +3349,9 @@ namespace ROMS
                             }
                             if (shopFlag == 1 && stkFlag == 1)
                             {
-                                grdStockRequest.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
-                                 
+                                grdStockRequest.Rows[rowindex].DefaultCellStyle.BackColor = Color.LightPink;
+                                grdStockRequest.Rows[rowindex].Cells["clmRequiredQty"].ReadOnly = true;
+                                grdStockRequest.Rows[rowindex].Cells["clmRequiredQty"].Style.BackColor = Color.LightGray;
                             }
                         }
                         ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
