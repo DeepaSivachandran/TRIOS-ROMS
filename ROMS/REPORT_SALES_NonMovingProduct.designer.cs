@@ -507,6 +507,7 @@
             this.txtDays.Name = "txtDays";
             this.txtDays.Size = new System.Drawing.Size(53, 27);
             this.txtDays.TabIndex = 10;
+            this.txtDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDays.Enter += new System.EventHandler(this.txtDays_Enter);
             this.txtDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDays_KeyDown);
             this.txtDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDays_KeyPress);
