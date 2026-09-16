@@ -3300,21 +3300,23 @@ namespace ROMS
 
                     if (objDs.Tables[0].Rows.Count > 0)
                     {
-                        int shopFlag = 0,PRID=0;
+                        int shopFlag = 0, stkFlag = 0, PRID=0;
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
                             int rowindex = Convert.ToInt16(grdStockRequest.Rows.Count);
                             grdStockRequest.Rows.Add(grdStockRequest.Rows.Count+1, Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["RK_ShortName"]),
                                 Convert.ToString(objDs.Tables[0].Rows[i]["EMP_Name"]), "", grdStockRequest.Rows.Count + 1, "", Convert.ToString(objDs.Tables[0].Rows[i]["UT_Symbol"]), "",
-                                Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]),Convert.ToInt16(objDs.Tables[0].Rows[i]["ShopFlag"])); 
+                                Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]),
+                                Convert.ToInt16(objDs.Tables[0].Rows[i]["ShopFlag"]), Convert.ToInt16(objDs.Tables[0].Rows[i]["StkFlag"])
+                                ); 
                             dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["RKID"]), 0, 0);
                              
                             shopFlag = Convert.ToInt16(objDs.Tables[0].Rows[i]["ShopFlag"]);    
+                            stkFlag = Convert.ToInt16(objDs.Tables[0].Rows[i]["StkFlag"]);    
                             PRID= Convert.ToInt16(objDs.Tables[0].Rows[i]["PRID"]);
 
-                            if (shopFlag == 1)
-                            { 
-                                
+                            if (shopFlag == 1 && stkFlag==0)
+                            {  
                                 var rows = dtLocation.AsEnumerable().Where(x => x.Field<int>("PRID") == PRID); 
                                 dtStockLocation = dtLocation.Clone();
                                 if (rows.Any())
@@ -3328,7 +3330,7 @@ namespace ROMS
                                     cmb.DisplayMember = "Location";
                                     cmb.ValueMember = "LocationID";
                                     cmb.DataSource = dtStockLocation;
-                                    if (dtStockLocation.Rows.Count > 2)
+                                    if (dtStockLocation.Rows.Count == 2)
                                     {
                                         int id = Convert.ToInt16(dtStockLocation.Rows[1]["LocationID"]);
                                         grdStockRequest.Rows[rowindex].Cells["clmLoc"].Value = id;
@@ -3344,7 +3346,12 @@ namespace ROMS
                                 grdStockRequest.Rows[rowindex].Cells["clmLoc"] = textBoxCell;
                                 grdStockRequest.Rows[rowindex].Cells["clmLoc"].ReadOnly = true;
                                 grdStockRequest.Rows[rowindex].Cells["clmLoc"].Style.BackColor = Color.LightGray;
-                            } 
+                            }
+                            if (shopFlag == 1 && stkFlag == 1)
+                            {
+                                grdStockRequest.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                 
+                            }
                         }
                         ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                         grdStockRequest.Columns["clmSno"].Width = 50;
@@ -3521,8 +3528,9 @@ namespace ROMS
         {
             try
             {
+                int stkflag = 0, shopFlag = 0;
                 for (int i = 0; i < grdStockRequest.Rows.Count; i++)
-                {
+                { 
                     if (varStatus == 29)
                     {
                         DataGridView dataGridView = (DataGridView)sender;
@@ -3538,6 +3546,15 @@ namespace ROMS
                         cell.Style.BackColor = Color.PaleGreen;
                         cell.Style.ForeColor = Color.Black;
                         cell.ReadOnly = false;
+
+                        //shopFlag = Convert.ToInt16(grdStockRequest.Rows[i].Cells["clmShopFlag"].Value);
+                        //stkflag = Convert.ToInt16(grdStockRequest.Rows[i].Cells["clmStkFlag"].Value);
+
+                        //if(stkflag==1 && shopFlag==1)
+                        //{
+                        //    grdStockRequest.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                        //    cell.ReadOnly = true;
+                        //}
                     }
                     if (Convert.ToString(grdStockRequest.Rows[i].Cells["clmStatusID"].Value) == "47")
                     {

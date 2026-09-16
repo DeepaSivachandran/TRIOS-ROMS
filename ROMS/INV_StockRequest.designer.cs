@@ -123,6 +123,7 @@
             this.clmStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShopFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStkFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmLoc = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequest.SuspendLayout();
@@ -845,6 +846,7 @@
             this.clmStatusID,
             this.clmSLID,
             this.clmShopFlag,
+            this.clmStkFlag,
             this.clmLoc,
             this.clmRemove});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1200,6 +1202,13 @@
             this.clmShopFlag.ReadOnly = true;
             this.clmShopFlag.Visible = false;
             // 
+            // clmStkFlag
+            // 
+            this.clmStkFlag.HeaderText = "Stock Flag";
+            this.clmStkFlag.Name = "clmStkFlag";
+            this.clmStkFlag.ReadOnly = true;
+            this.clmStkFlag.Visible = false;
+            // 
             // clmLoc
             // 
             this.clmLoc.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
@@ -1332,6 +1341,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatusID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShopFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStkFlag;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmLoc;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
