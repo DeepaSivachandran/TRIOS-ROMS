@@ -1061,7 +1061,7 @@
             this.clmPICode.Name = "clmPICode";
             this.clmPICode.ReadOnly = true;
             this.clmPICode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmPICode.Width = 125;
+            this.clmPICode.Width = 110;
             // 
             // clmProductnameInEnglish
             // 
@@ -1089,7 +1089,7 @@
             this.clmRackGroup.Name = "clmRackGroup";
             this.clmRackGroup.ReadOnly = true;
             this.clmRackGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRackGroup.Width = 80;
+            this.clmRackGroup.Width = 120;
             // 
             // clmRack
             // 

@@ -1846,7 +1846,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=133 ", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,120) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbRetailRate, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,143) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbStockTakken, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=144", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN(144,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (3,0) AND MSTID<>-1 ", "MST_ShortName,MSTID", cmbShopLocType, "", "MST_ShortName", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;

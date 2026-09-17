@@ -137,6 +137,7 @@ namespace ROMS
                     btnPrint.Visible = true;
                     chbCompleted.Visible = true;
                     btnSave.Enabled = false;
+                    btnView.Visible = false;
                     btnSave.Text = "Save";
                 }
                 else
@@ -300,9 +301,10 @@ namespace ROMS
                         {
                             grdStockRequest.Rows.Clear();
                             dtStock.Rows.Clear();
-                            int shopFlag = 0, PRID=0,SLID=0;
+                            int shopFlag = 0, stkFlag=0, PRID =0,SLID=0;
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
+                                int rowindex = Convert.ToInt16(grdStockRequest.Rows.Count);
                                 decimal requestedQty = 0;
 
                                 decimal.TryParse(
@@ -311,19 +313,23 @@ namespace ROMS
                                 );
                                 grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), 
                                     Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status"]),
-                                    Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status ID"]),Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["ShopFlag"]));
+                                    Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status ID"]),Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["ShopFlag"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["StkFlag"]));
                                 
                                 dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_SLID"]),  Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_RKID"]), requestedQty, 0);
-
-                                varProductsIDs.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
+                                if (requestedQty != 0)
+                                {
+                                    varProductsIDs.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
+                                }
 
                                 shopFlag = Convert.ToInt16(objDS.Tables[0].Rows[i]["ShopFlag"]);
+                                stkFlag = Convert.ToInt16(objDS.Tables[0].Rows[i]["StkFlag"]);
+
                                 PRID = Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_PRID"]);
                                 SLID = Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_SLID"]);
 
                                 if (varStatus == 28 && pbDeleteFlag == 0)
                                 { 
-                                    if (shopFlag == 1)
+                                    if (shopFlag == 1 && stkFlag==0)
                                     {
                                         var rows = dtLocation.AsEnumerable().Where(x => x.Field<int>("PRID") == PRID);
                                         dtStockLocation = dtLocation.Clone();
@@ -347,23 +353,41 @@ namespace ROMS
                                         grdStockRequest.Rows[i].Cells["clmLoc"].Style.BackColor = Color.LightGray;
                                     }
                                 }
+                                if (shopFlag == 1 && stkFlag == 1)
+                                {
+                                    grdStockRequest.Rows[rowindex].DefaultCellStyle.BackColor = Color.LightPink;
+                                    grdStockRequest.Rows[rowindex].Cells["clmRequiredQty"].ReadOnly = true;
+                                    grdStockRequest.Rows[rowindex].Cells["clmRequiredQty"].Style.BackColor = Color.LightGray;
+                                } 
 
-                            }
-                            for (int j = 0; j < grdStockRequest.Rows.Count; j++)
-                            {
-                                if (varProducts == "")
+                                if (requestedQty != 0)
                                 {
-                                    varProducts = Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
-                                }
-                                else
-                                {
-                                    varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
+                                    if (varProducts == "")
+                                    {
+                                        varProducts = Convert.ToString(grdStockRequest.Rows[i].Cells["clmPRID"].Value);
+                                    }
+                                    else
+                                    {
+                                        varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[i].Cells["clmPRID"].Value);
+                                    }
                                 }
                             }
+                              
+                            //for (int j = 0; j < grdStockRequest.Rows.Count; j++)
+                            //{
+                            //    if (varProducts == "")
+                            //    {
+                            //        varProducts = Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
+                            //    }
+                            //    else
+                            //    {
+                            //        varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
+                            //    }
+                            //}
                             ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
-                            grdStockRequest.Columns["clmIncharge"].Width = 250;
+                            grdStockRequest.Columns["clmIncharge"].Width = 180;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -3357,7 +3381,7 @@ namespace ROMS
                         ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                         grdStockRequest.Columns["clmSno"].Width = 50;
                         //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
-                        grdStockRequest.Columns["clmIncharge"].Width = 200;
+                        grdStockRequest.Columns["clmIncharge"].Width = 180;
                         grdStockRequest.Columns["clmStockQty"].Width = 100; 
                         grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
