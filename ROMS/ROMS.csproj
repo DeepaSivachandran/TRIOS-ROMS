@@ -1097,6 +1097,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_GeneralCustomerNameChange.cs">
+      <DependentUpon>RPT_SALES_GeneralCustomerNameChange.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_Details_Bill_Sum.cs">
       <DependentUpon>RPT_SALES_Details_Bill_Sum.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1943,6 +1950,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_SALES_GeneralCustomerNameChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_GeneralCustomerNameChange.designer.cs">
+      <DependentUpon>REPORT_SALES_GeneralCustomerNameChange.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_SALES_NonMovingProduct.cs">
       <SubType>Form</SubType>
@@ -6678,6 +6691,11 @@
       <LastGenOutput>RPT_SALES_Card_Payment_Detail_BillType_Sum.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_SALES_GeneralCustomerNameChange.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_GeneralCustomerNameChange.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SAL_Summary.cs</LastGenOutput>
@@ -7778,6 +7796,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_SALES_GeneralCustomerNameChange.resx">
+      <DependentUpon>REPORT_SALES_GeneralCustomerNameChange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_NonMovingProduct.resx">
       <DependentUpon>REPORT_SALES_NonMovingProduct.cs</DependentUpon>
     </EmbeddedResource>

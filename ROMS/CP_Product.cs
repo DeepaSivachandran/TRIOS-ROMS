@@ -1338,7 +1338,7 @@ namespace ROMS
                     {
                         varProductionMSQ = Convert.ToDecimal(txtProductionMSQ.Text);
                     }
-                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0, ProductSchemeApplicable = 0, BillSchemeApplicable = 0;
+                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0,OndemandFlag=0, ProductSchemeApplicable = 0, BillSchemeApplicable = 0;
                     if (chkFocus.Checked == true)
                     {
                         FocusFlag = 1;
@@ -1354,6 +1354,10 @@ namespace ROMS
                     if (chkOwn.Checked == true)
                     {
                         OwnFlag = 1;
+                    }
+                    if (chkOndemand.Checked == true)
+                    {
+                        OndemandFlag = 1;
                     }
                     if (chkProductScheme.Checked == true)
                     {
@@ -1547,7 +1551,7 @@ namespace ROMS
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
                         , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "",
-                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable,"",pbFreeITC
+                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable,"",pbFreeITC, OndemandFlag
                     );
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -11379,7 +11383,8 @@ namespace ROMS
                                , Spl_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Spl_Flag"].ToString())
                                , OwnFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_OwnFlag"].ToString())
                                , ProductSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Product_Scheme_Eligible"].ToString())
-                               , BillSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Bill_Scheme_Eligible"].ToString());
+                               , BillSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Bill_Scheme_Eligible"].ToString())
+                               , OndemandFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["Ondemand_Flag"].ToString());
                             if (FocusFlag == 1)
                             {
                                 chkFocus.Checked = true;
@@ -11403,6 +11408,10 @@ namespace ROMS
                             if (BillSchemeApplicable == 1)
                             {
                                 chkBillScheme.Checked = true;
+                            }
+                            if (OndemandFlag == 1)
+                            {
+                                chkOndemand.Checked = true;
                             }
                             btnSave.Text = "Update";
                             //pnlStatus.Enabled = true;

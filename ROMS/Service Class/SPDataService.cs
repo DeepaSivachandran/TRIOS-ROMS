@@ -1643,7 +1643,7 @@ namespace ROMS
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
               int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames,int paraIntermediateUPP,int paraIntermediateUnit,decimal paraProductionMSQ, DataTable paraMR_SPl_Bulk,
              int FocusFlag , int Priority_Flag  , int Spl_Flag  , int OwnFlag ,DataTable ParaPrice_Markup,int parastockTaken,string  paraEffectiveFrom,string paraSalesPICode,string paraLockTeller,string paraUnLockTeller,
-             string paraProductUsage,int paraProductSchemeEligible, int paraProductBillSchemeEligible,string paraRemarks ="",int paraFreeITC=0)
+             string paraProductUsage,int paraProductSchemeEligible, int paraProductBillSchemeEligible,string paraRemarks ="",int paraFreeITC=0,int paraOndemand_Flag=0)
         {
             string result = "";  
             try
@@ -1727,6 +1727,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductBillSchemeEligible", paraProductBillSchemeEligible);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraFreeITC", paraFreeITC);
+                varSqlCommand.Parameters.AddWithValue("@paraOndemand_Flag", paraOndemand_Flag);
                  
                 varSqlCommand.CommandTimeout = 0;
 
@@ -6771,6 +6772,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBrandName", objMR_Sales.paraBrandName);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Sales.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraTypeId", objMR_Sales.paraTypeId);
+                varSqlCommand.Parameters.AddWithValue("@parafromdate", objMR_Sales.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paratodate", objMR_Sales.paraToDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraBilledUser", objMR_Sales.paraBilledBy);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Sales.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);

@@ -462,6 +462,11 @@ namespace ROMS
                     ////own
                     objMR_Product.paraFlag = 4;
                 }
+                else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 675)
+                {
+                    ////own
+                    objMR_Product.paraFlag = 4;
+                }
                 DataSet objDs = new DataSet();
                 objdtProducts = null;
                 udfnInitProduct();
@@ -2270,6 +2275,11 @@ namespace ROMS
                     paraFlag = 3;
                 }
                 else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 440)
+                {
+                    ////own
+                    paraFlag = 4;
+                }
+                else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 675)
                 {
                     ////own
                     paraFlag = 4;
