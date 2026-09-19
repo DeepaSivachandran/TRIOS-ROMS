@@ -465,7 +465,7 @@ namespace ROMS
                 else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 675)
                 {
                     ////own
-                    objMR_Product.paraFlag = 4;
+                    objMR_Product.paraFlag = 5;
                 }
                 DataSet objDs = new DataSet();
                 objdtProducts = null;
@@ -2070,6 +2070,12 @@ namespace ROMS
                         flag = 4;
                         varOriginator = "own Product Flag Update";
                     }
+                    else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 675)
+                    {
+                        ////own
+                        flag = 5;
+                        varOriginator = "On-demand Flag Update";
+                    }
 
                     DataTable saveobjDtProductsMapping = objdtProductsMapping.DefaultView.ToTable(false, "PRODUCTID", "P.I Code");
 
@@ -2282,7 +2288,7 @@ namespace ROMS
                 else if (Convert.ToInt32(cmbFiledtype.SelectedValue) == 675)
                 {
                     ////own
-                    paraFlag = 4;
+                    paraFlag = 5;
                 }
                 string varHeader = "";
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
