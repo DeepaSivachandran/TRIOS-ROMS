@@ -480,6 +480,7 @@ namespace ROMS
         public static CP_ProductDetails objCP_ProductDetails; 
         public static ProductDetails objProductDetails;
         public static REPORT_SALES_GeneralCustomerNameChange objREPORT_SALES_GeneralCustomerNameChange;
+        public static REPORT_Batchwise_Stock_Taking objREPORT_Batchwise_Stock_Taking;
 
         public MainForm()
         {
@@ -5513,6 +5514,12 @@ namespace ROMS
         private void tsmGenCusNameChange_Click(object sender, EventArgs e)
         {
              OpenReportForm(ref MainForm.objREPORT_SALES_GeneralCustomerNameChange, "REPORT_SALES_GeneralCustomerNameChange", 140210);
+        }
+
+        private void tsmBatchwiseStockTaking_Click(object sender, EventArgs e)
+        {
+            
+                  OpenReportForm(ref MainForm.objREPORT_Batchwise_Stock_Taking, "REPORT_Batchwise_Stock_Taking", 80417);
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

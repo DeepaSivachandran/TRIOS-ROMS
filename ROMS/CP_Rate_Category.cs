@@ -514,7 +514,7 @@ namespace ROMS
             {
                 string symbol = row["Symbol"]?.ToString();
 
-                if (!string.IsNullOrEmpty(symbol) && text.Contains(symbol))
+                if (!string.IsNullOrEmpty(symbol) && text==symbol)
                 {
                     return true;
                 }
