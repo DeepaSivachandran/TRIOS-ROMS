@@ -741,6 +741,12 @@
     <Compile Include="INV_GoodsOutward_AutoConversion.designer.cs">
       <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_Batchwise_Stock_TakingSheet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Batchwise_Stock_TakingSheet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_CP_AddressBook_Details.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -6129,6 +6135,10 @@
       <LastGenOutput>RPT_CP_ProductWeight_LocationWiseProductDetail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_Batchwise_Stock_TakingSheet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Batchwise_Stock_TakingSheet.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_AddressBook_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_AddressBook_Details.cs</LastGenOutput>
