@@ -210,6 +210,7 @@ namespace ROMS
             this.tsmStockJournalReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockTaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInvcount = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBatchwiseStockTaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinanceReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierLedgerReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -281,7 +282,6 @@ namespace ROMS
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBatchwiseStockTaking = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1769,8 +1769,8 @@ namespace ROMS
             this.tsmStockConversionReport,
             this.tsmStockJournalReport,
             this.tsmStockTaking,
-            this.tsmInvcount,
-            this.tsmBatchwiseStockTaking});
+            this.tsmBatchwiseStockTaking,
+            this.tsmInvcount});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
@@ -1901,6 +1901,13 @@ namespace ROMS
             this.tsmInvcount.Size = new System.Drawing.Size(204, 22);
             this.tsmInvcount.Text = "Inventory Count ";
             this.tsmInvcount.Click += new System.EventHandler(this.inventoryCountToolStripMenuItem_Click);
+            // 
+            // tsmBatchwiseStockTaking
+            // 
+            this.tsmBatchwiseStockTaking.Name = "tsmBatchwiseStockTaking";
+            this.tsmBatchwiseStockTaking.Size = new System.Drawing.Size(204, 22);
+            this.tsmBatchwiseStockTaking.Text = "Batchwise Stock Taking";
+            this.tsmBatchwiseStockTaking.Click += new System.EventHandler(this.tsmBatchwiseStockTaking_Click);
             // 
             // tsmFinanceReport
             // 
@@ -2557,13 +2564,6 @@ namespace ROMS
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // tsmBatchwiseStockTaking
-            // 
-            this.tsmBatchwiseStockTaking.Name = "tsmBatchwiseStockTaking";
-            this.tsmBatchwiseStockTaking.Size = new System.Drawing.Size(204, 22);
-            this.tsmBatchwiseStockTaking.Text = "Batchwise Stock Taking";
-            this.tsmBatchwiseStockTaking.Click += new System.EventHandler(this.tsmBatchwiseStockTaking_Click);
             // 
             // MainForm
             // 

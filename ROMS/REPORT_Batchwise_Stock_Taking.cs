@@ -217,9 +217,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName); 
                     objBillreport.SetParameterValue("paraCategoryName", cmbCategory.Text);
                     objBillreport.SetParameterValue("paraLocationName", varLocationName);
-                    objBillreport.SetParameterValue("paraPICodeName", varPICodeName);
-                    objBillreport.SetParameterValue("paraReportFormat", cmbReportFormat.Text);
-                    objBillreport.SetParameterValue("paraReportFormat", cmbPrintFormat.Text); 
+                    objBillreport.SetParameterValue("paraPICodeName", varPICodeName); 
                     objBillreport.SetParameterValue("paraTypeName", cmbType.Text); 
                     objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraGroupId", varGroupId);
@@ -230,11 +228,12 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraScheduleID", varScheduleCode); 
                     objBillreport.SetParameterValue("paraRowCount", varRowcount); 
                     objBillreport.SetParameterValue("paraFlag", Convert.ToInt32(cmbReportFormat.SelectedValue)); 
-                    objBillreport.SetParameterValue("paraPicode", Convert.ToString(txtSearchByPICode.Text.Trim())); 
-                    
-
-                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue)); 
-                    objBillreport.SetParameterValue("paraReportFormatType", Convert.ToInt32(cmbPrintFormat.SelectedValue)); 
+                    objBillreport.SetParameterValue("paraPicode", Convert.ToString(txtSearchByPICode.Text.Trim()));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraReportFormatType", Convert.ToInt32(cmbPrintFormat.SelectedValue));
+                     
+                    objBillreport.SetParameterValue("paraReportFormat", cmbReportFormat.Text);
+                    objBillreport.SetParameterValue("paraPrintType", Convert.ToString(cmbPrintFormat.Text));
 
                     // Name Parameters
                     
