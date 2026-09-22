@@ -2219,6 +2219,25 @@ namespace ROMS
 
         }
 
+        private void txtRowCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar)  && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+            }
+        }
+
         private void DGV_FilterSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
