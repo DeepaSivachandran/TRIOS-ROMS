@@ -273,8 +273,7 @@ namespace ROMS
                         {
                             lblPICode.Text = "P.I Code : " + (Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]));
                             lblStatus.Text = "Status : "+ Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
-                            lblRetailRateValue.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ParentTname"]);
-
+                            lblRetailRateValue.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ParentTname"]); 
                             lblPICodeValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]);
                             lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]);
                             lblUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
@@ -291,8 +290,7 @@ namespace ROMS
                             lblFocus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Focus"]);
                             lblPriority.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Priority"]);
                             lblSpecial.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Special"]);
-                            lblOwn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Own"]);
-                             
+                            lblOwn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Own"]); 
                             lblStock.Text = Convert.ToString(objDs.Tables[0].Rows[0]["StockValue"]);
                             lblBarcode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Barcode"]);
                             lblRetailRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate"]);  
@@ -300,8 +298,7 @@ namespace ROMS
                             lblPurRack.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Pur_Rack"]);
                             lblSalesLocation.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Sales_Location"]);
                             lblRackGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Rackgroup"]);
-                            lblUpp.Text = Convert.ToString(objDs.Tables[0].Rows[0]["UPP"]);
-                             
+                            lblUpp.Text = Convert.ToString(objDs.Tables[0].Rows[0]["UPP"]); 
                             lblInfoStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
                             lblProductUnitsTitle.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ChildProdutType"]);
                         }
@@ -331,7 +328,7 @@ namespace ROMS
                             grdItemList.ClearSelection(); 
                             if(grdItemList.Rows.Count!=0)
                             { lblNoProductUnits.Visible = false;
-                                grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
                             else
                             { lblNoProductUnits.Visible = true; }
@@ -403,9 +400,7 @@ namespace ROMS
                         if (objDs.Tables.Count > 11)
                         {
                             lblRackIncharge.Text = Convert.ToString(objDs.Tables[11].Rows[0]["EMP_Name"]);
-                        }
-
-
+                        } 
                     }
                 }
             }
@@ -489,13 +484,13 @@ namespace ROMS
         {
             try
             {
-                if (txtProductName.Text.Trim() == "")
-                {
-                    pbPrid = 0;
-                    grdItemList.DataSource = null;
-                    grdSupplierList.DataSource = null;
-                    udfnProductClear();
-                }
+                //if (txtProductName.Text.Trim() == "")
+                //{
+                //    pbPrid = 0;
+                //    grdItemList.DataSource = null;
+                //    grdSupplierList.DataSource = null;
+                //    udfnProductClear();
+                //}
                 if (varUpDownKey == 0)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -803,12 +798,32 @@ namespace ROMS
         {
             udfnProductClear();
         }
-
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
          
+        private void btnSearch_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSearch.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnSearch_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSearch.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void CP_Product_FormClosing(object sender, FormClosingEventArgs e)
         {
