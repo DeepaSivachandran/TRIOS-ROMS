@@ -34,6 +34,11 @@
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportRackgroup = new System.Windows.Forms.Panel();
+            this.lblEmpCode = new System.Windows.Forms.Label();
+            this.lblEmployeeName = new System.Windows.Forms.Label();
+            this.txtEmployeeName = new System.Windows.Forms.TextBox();
+            this.lblRack = new System.Windows.Forms.Label();
+            this.txtRack = new System.Windows.Forms.TextBox();
             this.cmbSubgroupType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -51,8 +56,9 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbRackType = new System.Windows.Forms.ComboBox();
             this.cmbShopLocType = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.cmbLocationType = new System.Windows.Forms.ComboBox();
             this.chkLocBreakup = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -75,21 +81,16 @@
             this.lblConcern = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblRackCode = new System.Windows.Forms.Label();
-            this.lblEmpCode = new System.Windows.Forms.Label();
             this.lblRackgroupCode = new System.Windows.Forms.Label();
-            this.txtRack = new System.Windows.Forms.TextBox();
-            this.lblRack = new System.Windows.Forms.Label();
-            this.txtEmployeeName = new System.Windows.Forms.TextBox();
-            this.lblEmployeeName = new System.Windows.Forms.Label();
             this.lblRackgroup = new System.Windows.Forms.Label();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblReportType = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cmbRackType = new System.Windows.Forms.ComboBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.tsRackGroupReport.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -171,6 +172,66 @@
             this.pnlReportRackgroup.Name = "pnlReportRackgroup";
             this.pnlReportRackgroup.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportRackgroup.TabIndex = 958788;
+            // 
+            // lblEmpCode
+            // 
+            this.lblEmpCode.AutoSize = true;
+            this.lblEmpCode.Location = new System.Drawing.Point(453, 257);
+            this.lblEmpCode.Name = "lblEmpCode";
+            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
+            this.lblEmpCode.TabIndex = 1111233;
+            this.lblEmpCode.Text = "0";
+            this.lblEmpCode.Visible = false;
+            // 
+            // lblEmployeeName
+            // 
+            this.lblEmployeeName.AutoSize = true;
+            this.lblEmployeeName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeName.Location = new System.Drawing.Point(435, 231);
+            this.lblEmployeeName.Name = "lblEmployeeName";
+            this.lblEmployeeName.Size = new System.Drawing.Size(92, 20);
+            this.lblEmployeeName.TabIndex = 1111179;
+            this.lblEmployeeName.Text = "Employee Name";
+            this.lblEmployeeName.Visible = false;
+            // 
+            // txtEmployeeName
+            // 
+            this.txtEmployeeName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtEmployeeName.Location = new System.Drawing.Point(542, 254);
+            this.txtEmployeeName.MaxLength = 100;
+            this.txtEmployeeName.Name = "txtEmployeeName";
+            this.txtEmployeeName.Size = new System.Drawing.Size(93, 27);
+            this.txtEmployeeName.TabIndex = 2;
+            this.txtEmployeeName.Visible = false;
+            this.txtEmployeeName.TextChanged += new System.EventHandler(this.TxtEmployeeName_TextChanged);
+            this.txtEmployeeName.Enter += new System.EventHandler(this.TxtEmployeeName_Enter);
+            this.txtEmployeeName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEmployeeName_KeyDown);
+            this.txtEmployeeName.Leave += new System.EventHandler(this.TxtEmployeeName_Leave);
+            // 
+            // lblRack
+            // 
+            this.lblRack.AutoSize = true;
+            this.lblRack.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRack.Location = new System.Drawing.Point(542, 231);
+            this.lblRack.Name = "lblRack";
+            this.lblRack.Size = new System.Drawing.Size(35, 20);
+            this.lblRack.TabIndex = 1111181;
+            this.lblRack.Text = "Rack";
+            this.lblRack.Visible = false;
+            // 
+            // txtRack
+            // 
+            this.txtRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRack.Location = new System.Drawing.Point(434, 254);
+            this.txtRack.MaxLength = 100;
+            this.txtRack.Name = "txtRack";
+            this.txtRack.Size = new System.Drawing.Size(93, 27);
+            this.txtRack.TabIndex = 3;
+            this.txtRack.Visible = false;
+            this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
+            this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
+            this.txtRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRack_KeyDown);
+            this.txtRack.Leave += new System.EventHandler(this.TxtRack_Leave);
             // 
             // cmbSubgroupType
             // 
@@ -313,10 +374,11 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label13);
+            this.grpfilter.Controls.Add(this.label12);
             this.grpfilter.Controls.Add(this.label11);
             this.grpfilter.Controls.Add(this.cmbRackType);
             this.grpfilter.Controls.Add(this.cmbShopLocType);
-            this.grpfilter.Controls.Add(this.label10);
             this.grpfilter.Controls.Add(this.cmbLocationType);
             this.grpfilter.Controls.Add(this.chkLocBreakup);
             this.grpfilter.Controls.Add(this.label9);
@@ -350,35 +412,47 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(399, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 20);
+            this.label11.TabIndex = 1111257;
+            this.label11.Text = "Rack Type";
+            // 
+            // cmbRackType
+            // 
+            this.cmbRackType.FormattingEnabled = true;
+            this.cmbRackType.Location = new System.Drawing.Point(399, 45);
+            this.cmbRackType.Name = "cmbRackType";
+            this.cmbRackType.Size = new System.Drawing.Size(106, 27);
+            this.cmbRackType.TabIndex = 2;
+            this.cmbRackType.Enter += new System.EventHandler(this.cmbRackType_Enter);
+            this.cmbRackType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRackType_KeyDown);
+            this.cmbRackType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRackType_KeyPress);
+            this.cmbRackType.Leave += new System.EventHandler(this.cmbRackType_Leave);
+            // 
             // cmbShopLocType
             // 
             this.cmbShopLocType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShopLocType.FormattingEnabled = true;
-            this.cmbShopLocType.Location = new System.Drawing.Point(889, 80);
+            this.cmbShopLocType.Location = new System.Drawing.Point(989, 80);
             this.cmbShopLocType.Name = "cmbShopLocType";
-            this.cmbShopLocType.Size = new System.Drawing.Size(184, 27);
+            this.cmbShopLocType.Size = new System.Drawing.Size(84, 27);
             this.cmbShopLocType.TabIndex = 13;
             this.cmbShopLocType.Enter += new System.EventHandler(this.cmbShopLocType_Enter);
             this.cmbShopLocType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbShopLocType_KeyDown);
             this.cmbShopLocType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbShopLocType_KeyPress);
             this.cmbShopLocType.Leave += new System.EventHandler(this.cmbShopLocType_Leave);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(633, 83);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 20);
-            this.label10.TabIndex = 1111255;
-            this.label10.Text = "Location Type";
-            // 
             // cmbLocationType
             // 
             this.cmbLocationType.FormattingEnabled = true;
-            this.cmbLocationType.Location = new System.Drawing.Point(719, 80);
+            this.cmbLocationType.Location = new System.Drawing.Point(795, 80);
             this.cmbLocationType.Name = "cmbLocationType";
-            this.cmbLocationType.Size = new System.Drawing.Size(163, 27);
+            this.cmbLocationType.Size = new System.Drawing.Size(131, 27);
             this.cmbLocationType.TabIndex = 12;
             this.cmbLocationType.Enter += new System.EventHandler(this.cmbLocationType_Enter);
             this.cmbLocationType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbLocationType_KeyDown);
@@ -400,7 +474,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(400, 83);
+            this.label9.Location = new System.Drawing.Point(513, 83);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(105, 20);
             this.label9.TabIndex = 1111253;
@@ -411,7 +485,7 @@
             this.cmbStockTakken.Enabled = false;
             this.cmbStockTakken.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStockTakken.FormattingEnabled = true;
-            this.cmbStockTakken.Location = new System.Drawing.Point(513, 80);
+            this.cmbStockTakken.Location = new System.Drawing.Point(625, 80);
             this.cmbStockTakken.Name = "cmbStockTakken";
             this.cmbStockTakken.Size = new System.Drawing.Size(114, 27);
             this.cmbStockTakken.TabIndex = 11;
@@ -632,16 +706,6 @@
             this.lblRackCode.Text = "0";
             this.lblRackCode.Visible = false;
             // 
-            // lblEmpCode
-            // 
-            this.lblEmpCode.AutoSize = true;
-            this.lblEmpCode.Location = new System.Drawing.Point(453, 257);
-            this.lblEmpCode.Name = "lblEmpCode";
-            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
-            this.lblEmpCode.TabIndex = 1111233;
-            this.lblEmpCode.Text = "0";
-            this.lblEmpCode.Visible = false;
-            // 
             // lblRackgroupCode
             // 
             this.lblRackgroupCode.AutoSize = true;
@@ -651,56 +715,6 @@
             this.lblRackgroupCode.TabIndex = 1111232;
             this.lblRackgroupCode.Text = "0";
             this.lblRackgroupCode.Visible = false;
-            // 
-            // txtRack
-            // 
-            this.txtRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRack.Location = new System.Drawing.Point(434, 254);
-            this.txtRack.MaxLength = 100;
-            this.txtRack.Name = "txtRack";
-            this.txtRack.Size = new System.Drawing.Size(93, 27);
-            this.txtRack.TabIndex = 3;
-            this.txtRack.Visible = false;
-            this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
-            this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
-            this.txtRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRack_KeyDown);
-            this.txtRack.Leave += new System.EventHandler(this.TxtRack_Leave);
-            // 
-            // lblRack
-            // 
-            this.lblRack.AutoSize = true;
-            this.lblRack.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRack.Location = new System.Drawing.Point(542, 231);
-            this.lblRack.Name = "lblRack";
-            this.lblRack.Size = new System.Drawing.Size(35, 20);
-            this.lblRack.TabIndex = 1111181;
-            this.lblRack.Text = "Rack";
-            this.lblRack.Visible = false;
-            // 
-            // txtEmployeeName
-            // 
-            this.txtEmployeeName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEmployeeName.Location = new System.Drawing.Point(542, 254);
-            this.txtEmployeeName.MaxLength = 100;
-            this.txtEmployeeName.Name = "txtEmployeeName";
-            this.txtEmployeeName.Size = new System.Drawing.Size(93, 27);
-            this.txtEmployeeName.TabIndex = 2;
-            this.txtEmployeeName.Visible = false;
-            this.txtEmployeeName.TextChanged += new System.EventHandler(this.TxtEmployeeName_TextChanged);
-            this.txtEmployeeName.Enter += new System.EventHandler(this.TxtEmployeeName_Enter);
-            this.txtEmployeeName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEmployeeName_KeyDown);
-            this.txtEmployeeName.Leave += new System.EventHandler(this.TxtEmployeeName_Leave);
-            // 
-            // lblEmployeeName
-            // 
-            this.lblEmployeeName.AutoSize = true;
-            this.lblEmployeeName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeName.Location = new System.Drawing.Point(435, 231);
-            this.lblEmployeeName.Name = "lblEmployeeName";
-            this.lblEmployeeName.Size = new System.Drawing.Size(92, 20);
-            this.lblEmployeeName.TabIndex = 1111179;
-            this.lblEmployeeName.Text = "Employee Name";
-            this.lblEmployeeName.Visible = false;
             // 
             // lblRackgroup
             // 
@@ -775,31 +789,29 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(399, 22);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 20);
-            this.label11.TabIndex = 1111257;
-            this.label11.Text = "Rack Type";
-            // 
-            // cmbRackType
-            // 
-            this.cmbRackType.FormattingEnabled = true;
-            this.cmbRackType.Location = new System.Drawing.Point(399, 45);
-            this.cmbRackType.Name = "cmbRackType";
-            this.cmbRackType.Size = new System.Drawing.Size(106, 27);
-            this.cmbRackType.TabIndex = 2;
-            this.cmbRackType.Enter += new System.EventHandler(this.cmbRackType_Enter);
-            this.cmbRackType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRackType_KeyDown);
-            this.cmbRackType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRackType_KeyPress);
-            this.cmbRackType.Leave += new System.EventHandler(this.cmbRackType_Leave);
-            // 
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(932, 83);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 20);
+            this.label12.TabIndex = 1111258;
+            this.label12.Text = "Location";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(744, 83);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 20);
+            this.label13.TabIndex = 1111259;
+            this.label13.Text = "Default";
             // 
             // REPORT_CP_Rackgroup
             // 
@@ -889,9 +901,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox chkLocBreakup;
         private System.Windows.Forms.ComboBox cmbLocationType;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbShopLocType;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbRackType;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
     }
 }

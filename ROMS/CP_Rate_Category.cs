@@ -25,6 +25,7 @@ namespace ROMS
         public int varmastertype = 0;
         public int varflag = 0;
         public int varBankId = 0;
+        DataTable dtSymbol = new DataTable();
         public CP_Rate_Category()
         {
             InitializeComponent();
@@ -253,6 +254,38 @@ namespace ROMS
                     tpcode.Show("Please enter prefix Code.", txtPrefixCode, 5000);
                     ErrorFlag = true;
                 }
+                if (ContainsInvalidSymbol(txtPreTam.Text))
+                {
+                    epRateChange.SetError(txtPreTam, "Please enter valid prefix Code.");
+                    txtPreTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcode.ShowAlways = true;
+                    tpcode.Show("Please enter valid prefix Code.", txtPreTam, 5000); 
+                    ErrorFlag = true;
+                }
+                if (ContainsInvalidSymbol(txtPreEng.Text))
+                {
+                    epRateChange.SetError(txtPreEng, "Please enter valid prefix Code.");
+                    txtPreEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcode.ShowAlways = true;
+                    tpcode.Show("Please enter valid prefix Code.", txtPreEng, 5000);
+                    ErrorFlag = true;
+                }
+                if (ContainsInvalidSymbol(txtSufTam.Text))
+                {
+                    epRateChange.SetError(txtSufTam, "Please enter valid prefix Code.");
+                    txtSufTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcode.ShowAlways = true;
+                    tpcode.Show("Please enter valid prefix Code.", txtSufTam, 5000);
+                    ErrorFlag = true;
+                }
+                if (ContainsInvalidSymbol(txtSufEng.Text))
+                {
+                    epRateChange.SetError(txtSufEng, "Please enter valid prefix Code.");
+                    txtSufEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcode.ShowAlways = true;
+                    tpcode.Show("Please enter valid prefix Code.", txtSufEng, 5000);
+                    ErrorFlag = true;
+                }
                 //else if (txtPreTam.Text.Trim() == "")
                 //{
                 //    epRateChange.SetError(txtPreTam, "Please enter prefix text tamil.");
@@ -447,11 +480,53 @@ namespace ROMS
             }
         }
 
+        public void udfnLoadSymbol()
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType =42;
+                objDs = objspservice.udfnMaster(objMR_Master);
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        dtSymbol = objDs.Tables[0];
+                    } 
+                    objspservice.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public bool ContainsInvalidSymbol(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return false;
+
+            foreach (DataRow row in dtSymbol.Rows)
+            {
+                string symbol = row["Symbol"]?.ToString();
+
+                if (!string.IsNullOrEmpty(symbol) && text==symbol)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         private void CP_Rate_Category_Load(object sender, EventArgs e)
         {
             try
             {
-
+                udfnLoadSymbol();
                 MainForm.objCP_Rate_CategoryList.picLoader.Visible = false;
                 MainForm.objCP_Rate_CategoryList.picLoader.SendToBack();
                 this.ActiveControl = txtPrefixCode;
