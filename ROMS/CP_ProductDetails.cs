@@ -803,7 +803,7 @@ namespace ROMS
         {
             try
             {
-                btnSearch.BackColor = Color.LemonChiffon;
+               // btnSearch.BackColor = Color.DarkBlue;
             }
             catch (Exception ex)
             {
@@ -816,7 +816,7 @@ namespace ROMS
         {
             try
             {
-                btnSearch.BackColor = Color.Transparent;
+              //  btnSearch.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
