@@ -17,7 +17,7 @@ namespace ROMS
     {
         DataValidation objvalidation = new DataValidation();
         DataError objError;
-
+        public bool VarSearchFlag = true;
         public int varUpDownKeyProduct = 0, varUpDownKey=0;
         public int pbPrid = 0;
 
@@ -499,7 +499,14 @@ namespace ROMS
                     {
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 49;
-                        objMR_Product.paraProductName = txtProductName.Text;
+                        if (VarSearchFlag == false)
+                        {
+                            objMR_Product.paraProductName = txtProductName.Text.Trim(); 
+                        }
+                        else
+                        {
+                            objMR_Product.paraPicode = txtProductName.Text.Trim(); 
+                        } 
                         objMR_Product.paraFlag = 1;                         //Load Only Eligible for Sales Products
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
@@ -712,6 +719,29 @@ namespace ROMS
                     DGV_FilterProduct.Focus();
 
                 }
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblSearchBy.Text = "Search by P.I Code (F11)";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblSearchBy.Text = "Search by Product Name (F11)";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterProduct.Focus();
@@ -740,7 +770,14 @@ namespace ROMS
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                if (VarSearchFlag == true)
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                                }
+                                else
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                }
                             }
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
@@ -752,7 +789,14 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                if (VarSearchFlag == true)
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                                }
+                                else
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                }
                             }
 
                             txtProductName.Focus();
