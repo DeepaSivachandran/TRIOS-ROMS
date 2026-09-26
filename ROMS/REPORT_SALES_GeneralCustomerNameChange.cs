@@ -109,10 +109,10 @@ namespace ROMS
             {
                 string BilledUser = "-All-";
                 int billedUserID = 0;
-                if(Convert.ToString(lblBilledUserID.Text)!="0")
+                if (Convert.ToString(txtBilledUser.Text.Trim()) != "")
                 {
                     BilledUser = txtBilledUser.Text;
-                    billedUserID=Convert.ToInt32(lblBilledUserID.Text);
+                    billedUserID = Convert.ToInt32(lblBilledUserID.Text);
                 }
 
                 btnListPrint.Enabled = false;
@@ -506,7 +506,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterArea.Focus();
-                } 
+                }
+                if (e.KeyCode == Keys.Enter && DGV_FilterArea.Visible == false)
+                {
+                    btnListPrint.Focus();
+                }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterArea.Focus();

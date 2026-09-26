@@ -206,7 +206,7 @@
             this.dpToDate.Location = new System.Drawing.Point(253, 21);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(107, 27);
-            this.dpToDate.TabIndex = 2;
+            this.dpToDate.TabIndex = 1;
             this.dpToDate.Enter += new System.EventHandler(this.dpToDate_Enter);
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dpToDate_KeyDown);
             this.dpToDate.Leave += new System.EventHandler(this.dpToDate_Leave);
@@ -228,7 +228,7 @@
             this.dpFromDate.Location = new System.Drawing.Point(80, 21);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.TabIndex = 0;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.dpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.dpFromDate_Enter);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dpFromDate_KeyDown);
@@ -264,7 +264,7 @@
             this.txtBilledUser.MaxLength = 100;
             this.txtBilledUser.Name = "txtBilledUser";
             this.txtBilledUser.Size = new System.Drawing.Size(248, 27);
-            this.txtBilledUser.TabIndex = 3;
+            this.txtBilledUser.TabIndex = 2;
             this.txtBilledUser.TextChanged += new System.EventHandler(this.txtArea_TextChanged);
             this.txtBilledUser.Enter += new System.EventHandler(this.txtArea_Enter);
             this.txtBilledUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
@@ -300,7 +300,7 @@
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 4;
+            this.btnListPrint.TabIndex = 3;
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
