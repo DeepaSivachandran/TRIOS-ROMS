@@ -104,29 +104,43 @@ namespace ROMS
                     int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
                     if (varReportType == 668)
                     {
-                        var selDayIds = cmbMultiSelectDays.CheckedIds;
-                        if (selDayIds == null || selDayIds.Count == 0)
+                        if (Convert.ToInt32(cmbDayFilter.SelectedIndex) == 1)
                         {
-                            epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
-                            cmbMultiSelectDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpDays.ShowAlways = true;
-                            tpDays.Show("Please select at least one day.", cmbMultiSelectDays, 5000);
-                            cmbMultiSelectDays.Focus();
-                            return;
+                            var selDayIds = cmbMultiSelectDays.CheckedIds;
+                            if (selDayIds == null || selDayIds.Count == 0)
+                            {
+                                epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
+                                cmbMultiSelectDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpDays.ShowAlways = true;
+                                tpDays.Show("Please select at least one day.", cmbMultiSelectDays, 5000);
+                                cmbMultiSelectDays.Focus();
+                                return;
+                            }
+                        }
+                        else
+                        {
+
                         }
                         lblMonths.Text = "";
                     }
                     else if (varReportType == 669)
                     {
-                        var selMonthIds = cmbMultiMonths.CheckedIds;
-                        if (selMonthIds == null || selMonthIds.Count == 0)
+                        if (Convert.ToInt32(cmbDayFilter.SelectedIndex) == 1)
                         {
-                            epReport.SetError(cmbMultiMonths, "Please select at least one month.");
-                            cmbMultiMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpMonths.ShowAlways = true;
-                            tpMonths.Show("Please select at least one month.", cmbMultiMonths, 5000);
-                            cmbMultiMonths.Focus();
-                            return;
+                            var selMonthIds = cmbMultiMonths.CheckedIds;
+                            if (selMonthIds == null || selMonthIds.Count == 0)
+                            {
+                                epReport.SetError(cmbMultiMonths, "Please select at least one month.");
+                                cmbMultiMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpMonths.ShowAlways = true;
+                                tpMonths.Show("Please select at least one month.", cmbMultiMonths, 5000);
+                                cmbMultiMonths.Focus();
+                                return;
+                            }
+                        }
+                        else
+                        {
+
                         }
                         lblDays.Text = "";
                     }
@@ -324,8 +338,8 @@ namespace ROMS
                 objMR_Sales.paraViewType = varViewType;
                 objMR_Sales.paraFromDate = dpFromDate.Text.Trim();
                 objMR_Sales.paraToDate = dpToDate.Text.Trim();
-                objMR_Sales.paraFromTime = Convert.ToString(dpFromTime.Value.TimeOfDay);
-                objMR_Sales.paraToTime = Convert.ToString(dpToTime.Value.TimeOfDay);
+                //objMR_Sales.paraFromTime = Convert.ToString(dpFromTime.Value.TimeOfDay);
+                //objMR_Sales.paraToTime = Convert.ToString(dpToTime.Value.TimeOfDay);
                 objMR_Sales.paraSalesType = varSalesType;
                 objMR_Sales.paraBillType = varBillType;
                 objMR_Sales.paraCustomerId = varCustomerId;
@@ -376,8 +390,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
-                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"));
-                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"));
+                        //objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"));
+                        //objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"));
                         objBillreport.SetParameterValue("paraBillByName", varBillByName);
                         objBillreport.SetParameterValue("paraCustomerName", txtCustomer.Text.Trim());
                         objBillreport.SetParameterValue("paraCusName", varCustomerName);
@@ -394,8 +408,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductName", varProductName, subReportName0);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName, subReportName0);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName, subReportName0);
-                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"), subReportName0);
-                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"), subReportName0);
+                        //objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"), subReportName0);
+                        //objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"), subReportName0);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy, subReportName0);
                         objBillreport.SetParameterValue("paraBilltype", varBillType, subReportName0);
                         objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId, subReportName0);
@@ -415,8 +429,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
-                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"));
-                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"));
+                        //objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"));
+                        //objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"));
                         objBillreport.SetParameterValue("paraBillByName", varBillByName);
                         objBillreport.SetParameterValue("paraCustomerName", txtCustomer.Text.Trim());
                         objBillreport.SetParameterValue("paraCusName", varCustomerName);
@@ -436,8 +450,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductName", varProductName, subReportName0);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName, subReportName0);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName, subReportName0);
-                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"), subReportName0);
-                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"), subReportName0);
+                        //objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"), subReportName0);
+                        //objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"), subReportName0);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy, subReportName0);
                         objBillreport.SetParameterValue("paraBilltype", varBillType, subReportName0);
                         objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId, subReportName0);
@@ -452,8 +466,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductName", varProductName, subReportName1);
                         objBillreport.SetParameterValue("paraBillTypeName", varBillTypeName, subReportName1);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName, subReportName1);
-                        objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"), subReportName1);
-                        objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"), subReportName1);
+                        //objBillreport.SetParameterValue("paraFromTime", dpFromTime.Value.ToString("HH:mm"), subReportName1);
+                        //objBillreport.SetParameterValue("paraToTime", dpToTime.Value.ToString("HH:mm"), subReportName1);
                         objBillreport.SetParameterValue("paraBilledBy", varBilledBy, subReportName1);
                         objBillreport.SetParameterValue("paraBilltype", varBillType, subReportName1);
                         objBillreport.SetParameterValue("paraCusCategoryId", varCusCategoryId, subReportName1);
@@ -578,8 +592,6 @@ namespace ROMS
                 udfnLoadDays();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                dpFromTime.Value = DateTime.Today.AddHours(6);
-                dpToTime.Value = DateTime.Now;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -591,6 +603,9 @@ namespace ROMS
                     privilege = result.PrivilegeCode;
                     btnTelegram.Visible = privilege.Contains("7");
                 }
+                cmbDayFilter.SelectedIndex = 0;
+                cmbFormat1.SelectedIndex = 0;
+                cmbFormat2.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -951,7 +966,7 @@ namespace ROMS
             try
             {
                 udfnGridNull((Control)sender);
-                dpFromTime.BackColor = Color.LemonChiffon;
+                mtbTime1.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -965,7 +980,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpToTime.Focus();
+                    mtbTime2.Focus();
                 }
             }
             catch (Exception ex)
@@ -978,7 +993,7 @@ namespace ROMS
         {
             try
             {
-                dpFromTime.BackColor = Color.White;
+                mtbTime1.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -991,7 +1006,7 @@ namespace ROMS
             try
             {
                 udfnGridNull((Control)sender);
-                dpToTime.BackColor = Color.LemonChiffon;
+                mtbTime2.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1018,7 +1033,7 @@ namespace ROMS
         {
             try
             {
-                dpToTime.BackColor = Color.White;
+                mtbTime2.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1774,9 +1789,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (dpFromTime.Enabled == true)
+                    if (mtbTime1.Enabled == true)
                     {
-                        dpFromTime.Focus();
+                        mtbTime1.Focus();
                     }
                     else
                     {
@@ -1900,8 +1915,11 @@ namespace ROMS
                 cmbPrintType.Enabled = false;
                 cmbMultiSelectDays.Enabled = false;
                 cmbMultiMonths.Enabled = false;
-                dpFromTime.Enabled = false;
-                dpToTime.Enabled = false;
+                cmbDayFilter.Enabled = false;
+                mtbTime1.Enabled = false;
+                cmbFormat1.Enabled = false;
+                mtbTime2.Enabled = false;
+                cmbFormat2.Enabled = false;
                 lblDays.Text = "";
                 lblMonths.Text = "";
                 switch (varReportType)
@@ -1910,8 +1928,10 @@ namespace ROMS
                         cmbCustomerCategory.Enabled = true;
                         cmbSchemeType.Enabled = true;
                         cmbBillCategory.Enabled = true;
-                        dpFromTime.Enabled = true;
-                        dpToTime.Enabled = true;
+                        mtbTime1.Enabled = true;
+                        cmbFormat1.Enabled = true;
+                        mtbTime2.Enabled = true;
+                        cmbFormat2.Enabled = true;
                         break;
 
 
@@ -1922,16 +1942,28 @@ namespace ROMS
 
                         cmbPrintType.Enabled = true;
 
-                        dpFromTime.Enabled = true;
-                        dpToTime.Enabled = true;
+                        mtbTime1.Enabled = true;
+                        cmbFormat1.Enabled = true;
+                        mtbTime2.Enabled = true;
+                        cmbFormat2.Enabled = true;
 
                         break;
 
                     case 668:
-                        cmbMultiSelectDays.Enabled = true;
+                        //cmbMultiSelectDays.Enabled = true;
+                        cmbDayFilter.Enabled = true;
+                        cmbDayFilter.Items.Clear();
+                        cmbDayFilter.Items.Add("-All Days-");
+                        cmbDayFilter.Items.Add("Specific Days");
+                        cmbDayFilter.SelectedIndex = 0;
                         break;
                     case 669:
-                        cmbMultiMonths.Enabled = true;
+                        //cmbMultiMonths.Enabled = true;
+                        cmbDayFilter.Enabled = true;
+                        cmbDayFilter.Items.Clear();
+                        cmbDayFilter.Items.Add("-All Months-");
+                        cmbDayFilter.Items.Add("Specific Months");
+                        cmbDayFilter.SelectedIndex = 0;
                         dpFromDate.Enabled = false;
                         dpToDate.Enabled = false;
                         break;
@@ -1950,6 +1982,438 @@ namespace ROMS
             {
                 DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkTimeRange_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkTimeRange.Checked == true)
+                {
+                    mtbTime1.Enabled = true;
+                    cmbFormat1.Enabled = true;
+                    mtbTime2.Enabled = true;
+                    cmbFormat2.Enabled = true;
+                }
+                else
+                {
+                    mtbTime1.Enabled = false;
+                    cmbFormat1.Enabled = false;
+                    cmbFormat2.Enabled = false;
+                    mtbTime2.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDayFilter_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDayFilter.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDayFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    if (cmbPrintType.Enabled == true)
+                    {
+                        cmbPrintType.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDayFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDayFilter_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDayFilter.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                mtbTime1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFormat1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                mtbTime1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    mtbTime2.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat1.BackColor = Color.White;
+                if (mtbTime1.Text != "")
+                {
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = Convert.ToString(MainForm.pbCurrentDate);
+                    objMR_Master.paraTime = mtbTime1.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    {
+                        epReport.SetError(mtbTime1, "Please enter valid Time");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        epReport.SetError(cmbFormat1, "Please enter valid Format");
+                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime1_Leave_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int error = 0;
+                string[] varTime = mtbTime1.Text.Split(':');
+                int Hour = varTime[0].Trim().Length;
+                int Min = varTime[1].Trim().Length;
+                if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
+                {
+                    epReport.SetError(mtbTime1, "Please enter valid hour");
+                    mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    error = 1;
+                }
+                if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
+                {
+                    epReport.SetError(mtbTime1, "Please enter valid minute");
+                    mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    error = 1;
+                }
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 21;
+                objMR_Master.paraDate = Convert.ToString(MainForm.pbCurrentDate);
+                objMR_Master.paraTime = mtbTime1.Text;
+                objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(objMR_Master);
+                if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                {
+                    epReport.SetError(mtbTime1, "Please enter valid Time");
+                    mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epReport.SetError(cmbFormat1, "Please enter valid Format");
+                    cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    error = 1;
+                }
+                if (error == 0)
+                {
+                    epReport.Clear();
+                    mtbTime1.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                mtbTime2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFormat2.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                int error = 0;
+
+                string[] varTime = mtbTime2.Text.Split(':');
+                int Hour = varTime[0].Trim().Length;
+                int Min = varTime[1].Trim().Length;
+                if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
+                {
+                    epReport.SetError(mtbTime2, "Please enter valid hour");
+                    mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    error = 1;
+                }
+                if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
+                {
+                    epReport.SetError(mtbTime2, "Please enter valid minute");
+                    mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    error = 1;
+                }
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 21;
+                objMR_Master.paraDate = Convert.ToString(MainForm.pbCurrentDate);
+                objMR_Master.paraTime = mtbTime2.Text;
+                objMR_Master.paraTimeFormat = cmbFormat2.Text;
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(objMR_Master);
+                if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                {
+                    epReport.SetError(mtbTime2, "Please enter valid Time");
+                    mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epReport.SetError(cmbFormat2, "Please enter valid Format");
+                    cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    error = 1;
+                }
+                if (error == 0)
+                {
+                    epReport.Clear();
+                    mtbTime2.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbSalesType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat2.BackColor = Color.White;
+                if (mtbTime2.Text != "")
+                {
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = Convert.ToString(MainForm.pbCurrentDate);
+                    objMR_Master.paraTime = mtbTime1.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    {
+                        epReport.SetError(mtbTime2, "Please enter valid Time");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        epReport.SetError(cmbFormat2, "Please enter valid Format");
+                        cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDayFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbDayFilter.SelectedIndex) == 1)
+                {
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 668)
+                    {
+                        cmbMultiSelectDays.Enabled = true;
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 669)
+                    {
+                        cmbMultiMonths.Enabled = true;
+                    }
+                }
+                else
+                {
+                    cmbMultiSelectDays.Enabled = false;
+                    cmbMultiMonths.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
