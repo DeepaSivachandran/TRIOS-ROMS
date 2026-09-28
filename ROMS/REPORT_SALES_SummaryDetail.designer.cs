@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_SALES_SummaryDetail));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportSupplier = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -44,6 +44,12 @@
             this.DGV_BilledBy = new System.Windows.Forms.DataGridView();
             this.DGV_Customer = new System.Windows.Forms.DataGridView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbFormat2 = new System.Windows.Forms.ComboBox();
+            this.mtbTime2 = new System.Windows.Forms.MaskedTextBox();
+            this.cmbFormat1 = new System.Windows.Forms.ComboBox();
+            this.mtbTime1 = new System.Windows.Forms.MaskedTextBox();
+            this.cmbDayFilter = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.chkTimeRange = new System.Windows.Forms.CheckBox();
             this.lblBilledByID = new System.Windows.Forms.Label();
             this.txtBilledBy = new System.Windows.Forms.TextBox();
@@ -81,12 +87,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label12 = new System.Windows.Forms.Label();
-            this.cmbDayFilter = new System.Windows.Forms.ComboBox();
-            this.cmbFormat1 = new System.Windows.Forms.ComboBox();
-            this.mtbTime1 = new System.Windows.Forms.MaskedTextBox();
-            this.cmbFormat2 = new System.Windows.Forms.ComboBox();
-            this.mtbTime2 = new System.Windows.Forms.MaskedTextBox();
             this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.cmbMultiMonths = new MultiSelectComboBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
@@ -173,24 +173,24 @@
             this.DGV_BilledBy.AllowUserToResizeRows = false;
             this.DGV_BilledBy.BackgroundColor = System.Drawing.Color.White;
             this.DGV_BilledBy.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_BilledBy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_BilledBy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.DGV_BilledBy.ColumnHeadersHeight = 30;
             this.DGV_BilledBy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_BilledBy.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_BilledBy.DefaultCellStyle = dataGridViewCellStyle14;
             this.DGV_BilledBy.EnableHeadersVisualStyles = false;
             this.DGV_BilledBy.GridColor = System.Drawing.Color.White;
             this.DGV_BilledBy.Location = new System.Drawing.Point(1131, 72);
@@ -198,9 +198,9 @@
             this.DGV_BilledBy.ReadOnly = true;
             this.DGV_BilledBy.RowHeadersVisible = false;
             this.DGV_BilledBy.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_BilledBy.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_BilledBy.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.DGV_BilledBy.RowTemplate.Height = 25;
             this.DGV_BilledBy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_BilledBy.Size = new System.Drawing.Size(214, 226);
@@ -217,24 +217,24 @@
             this.DGV_Customer.AllowUserToResizeRows = false;
             this.DGV_Customer.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Customer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_Customer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_Customer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.DGV_Customer.ColumnHeadersHeight = 30;
             this.DGV_Customer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_Customer.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_Customer.DefaultCellStyle = dataGridViewCellStyle17;
             this.DGV_Customer.EnableHeadersVisualStyles = false;
             this.DGV_Customer.GridColor = System.Drawing.Color.White;
             this.DGV_Customer.Location = new System.Drawing.Point(233, 131);
@@ -242,9 +242,9 @@
             this.DGV_Customer.ReadOnly = true;
             this.DGV_Customer.RowHeadersVisible = false;
             this.DGV_Customer.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_Customer.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_Customer.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.DGV_Customer.RowTemplate.Height = 25;
             this.DGV_Customer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_Customer.Size = new System.Drawing.Size(237, 226);
@@ -298,10 +298,90 @@
             this.grpfilter.Controls.Add(this.btnView);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1348, 173);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 154);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // cmbFormat2
+            // 
+            this.cmbFormat2.FormattingEnabled = true;
+            this.cmbFormat2.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.cmbFormat2.Location = new System.Drawing.Point(700, 43);
+            this.cmbFormat2.Name = "cmbFormat2";
+            this.cmbFormat2.Size = new System.Drawing.Size(41, 27);
+            this.cmbFormat2.TabIndex = 7;
+            this.cmbFormat2.Enter += new System.EventHandler(this.cmbFormat2_Enter);
+            this.cmbFormat2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFormat2_KeyDown);
+            this.cmbFormat2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFormat2_KeyPress);
+            this.cmbFormat2.Leave += new System.EventHandler(this.cmbFormat2_Leave);
+            // 
+            // mtbTime2
+            // 
+            this.mtbTime2.Location = new System.Drawing.Point(647, 43);
+            this.mtbTime2.Mask = "90:00";
+            this.mtbTime2.Name = "mtbTime2";
+            this.mtbTime2.Size = new System.Drawing.Size(53, 27);
+            this.mtbTime2.TabIndex = 6;
+            this.mtbTime2.ValidatingType = typeof(System.DateTime);
+            this.mtbTime2.Enter += new System.EventHandler(this.mtbTime2_Enter);
+            this.mtbTime2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtbTime2_KeyDown);
+            this.mtbTime2.Leave += new System.EventHandler(this.mtbTime2_Leave);
+            // 
+            // cmbFormat1
+            // 
+            this.cmbFormat1.FormattingEnabled = true;
+            this.cmbFormat1.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.cmbFormat1.Location = new System.Drawing.Point(598, 43);
+            this.cmbFormat1.Name = "cmbFormat1";
+            this.cmbFormat1.Size = new System.Drawing.Size(41, 27);
+            this.cmbFormat1.TabIndex = 5;
+            this.cmbFormat1.Enter += new System.EventHandler(this.cmbFormat1_Enter);
+            this.cmbFormat1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFormat1_KeyDown);
+            this.cmbFormat1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFormat1_KeyPress);
+            this.cmbFormat1.Leave += new System.EventHandler(this.cmbFormat1_Leave);
+            // 
+            // mtbTime1
+            // 
+            this.mtbTime1.Location = new System.Drawing.Point(545, 43);
+            this.mtbTime1.Mask = "90:00";
+            this.mtbTime1.Name = "mtbTime1";
+            this.mtbTime1.Size = new System.Drawing.Size(53, 27);
+            this.mtbTime1.TabIndex = 4;
+            this.mtbTime1.ValidatingType = typeof(System.DateTime);
+            this.mtbTime1.Enter += new System.EventHandler(this.mtbTime1_Enter);
+            this.mtbTime1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtbTime1_KeyDown);
+            this.mtbTime1.Leave += new System.EventHandler(this.mtbTime1_Leave_1);
+            // 
+            // cmbDayFilter
+            // 
+            this.cmbDayFilter.FormattingEnabled = true;
+            this.cmbDayFilter.Items.AddRange(new object[] {
+            "-All Days-",
+            "Specific Days"});
+            this.cmbDayFilter.Location = new System.Drawing.Point(448, 102);
+            this.cmbDayFilter.Name = "cmbDayFilter";
+            this.cmbDayFilter.Size = new System.Drawing.Size(91, 27);
+            this.cmbDayFilter.TabIndex = 15;
+            this.cmbDayFilter.SelectedIndexChanged += new System.EventHandler(this.cmbDayFilter_SelectedIndexChanged);
+            this.cmbDayFilter.Enter += new System.EventHandler(this.cmbDayFilter_Enter);
+            this.cmbDayFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDayFilter_KeyDown);
+            this.cmbDayFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDayFilter_KeyPress);
+            this.cmbDayFilter.Leave += new System.EventHandler(this.cmbDayFilter_Leave);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(448, 79);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(66, 20);
+            this.label12.TabIndex = 111111228;
+            this.label12.Text = "Days Filter";
             // 
             // chkTimeRange
             // 
@@ -309,10 +389,11 @@
             this.chkTimeRange.Location = new System.Drawing.Point(448, 44);
             this.chkTimeRange.Name = "chkTimeRange";
             this.chkTimeRange.Size = new System.Drawing.Size(91, 24);
-            this.chkTimeRange.TabIndex = 111111226;
+            this.chkTimeRange.TabIndex = 3;
             this.chkTimeRange.Text = "Enable Time";
             this.chkTimeRange.UseVisualStyleBackColor = true;
             this.chkTimeRange.CheckedChanged += new System.EventHandler(this.chkTimeRange_CheckedChanged);
+            this.chkTimeRange.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkTimeRange_KeyDown);
             // 
             // lblBilledByID
             // 
@@ -329,7 +410,7 @@
             this.txtBilledBy.Location = new System.Drawing.Point(1128, 43);
             this.txtBilledBy.Name = "txtBilledBy";
             this.txtBilledBy.Size = new System.Drawing.Size(211, 27);
-            this.txtBilledBy.TabIndex = 8;
+            this.txtBilledBy.TabIndex = 11;
             this.txtBilledBy.TextChanged += new System.EventHandler(this.txtBilledBy_TextChanged);
             this.txtBilledBy.Enter += new System.EventHandler(this.txtBilledBy_Enter);
             this.txtBilledBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBilledBy_KeyDown);
@@ -361,7 +442,7 @@
             this.cmbCustomerCategory.Location = new System.Drawing.Point(120, 102);
             this.cmbCustomerCategory.Name = "cmbCustomerCategory";
             this.cmbCustomerCategory.Size = new System.Drawing.Size(101, 27);
-            this.cmbCustomerCategory.TabIndex = 10;
+            this.cmbCustomerCategory.TabIndex = 13;
             this.cmbCustomerCategory.Enter += new System.EventHandler(this.cmbCustomerCategory_Enter);
             this.cmbCustomerCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCustomerCategory_KeyDown);
             this.cmbCustomerCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCustomerCategory_KeyPress);
@@ -383,7 +464,7 @@
             this.cmbBillCategory.Location = new System.Drawing.Point(10, 102);
             this.cmbBillCategory.Name = "cmbBillCategory";
             this.cmbBillCategory.Size = new System.Drawing.Size(104, 27);
-            this.cmbBillCategory.TabIndex = 9;
+            this.cmbBillCategory.TabIndex = 12;
             this.cmbBillCategory.Enter += new System.EventHandler(this.cmbBillCategory_Enter);
             this.cmbBillCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBillCategory_KeyDown);
             this.cmbBillCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbBillCategory_KeyPress);
@@ -434,7 +515,7 @@
             this.txtCustomer.Location = new System.Drawing.Point(230, 102);
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.Size = new System.Drawing.Size(212, 27);
-            this.txtCustomer.TabIndex = 11;
+            this.txtCustomer.TabIndex = 14;
             this.txtCustomer.TextChanged += new System.EventHandler(this.txtCustomer_TextChanged);
             this.txtCustomer.Enter += new System.EventHandler(this.txtCustomer_Enter);
             this.txtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomer_KeyDown);
@@ -476,7 +557,7 @@
             this.cmbSchemeType.Location = new System.Drawing.Point(958, 43);
             this.cmbSchemeType.Name = "cmbSchemeType";
             this.cmbSchemeType.Size = new System.Drawing.Size(164, 27);
-            this.cmbSchemeType.TabIndex = 7;
+            this.cmbSchemeType.TabIndex = 10;
             this.cmbSchemeType.Enter += new System.EventHandler(this.cmbSchemeType_Enter);
             this.cmbSchemeType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeType_KeyDown);
             this.cmbSchemeType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSchemeType_KeyPress);
@@ -518,7 +599,7 @@
             this.cmbPrintType.Location = new System.Drawing.Point(747, 102);
             this.cmbPrintType.Name = "cmbPrintType";
             this.cmbPrintType.Size = new System.Drawing.Size(205, 27);
-            this.cmbPrintType.TabIndex = 14;
+            this.cmbPrintType.TabIndex = 18;
             this.cmbPrintType.Enter += new System.EventHandler(this.cmbPrintType_Enter);
             this.cmbPrintType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbPrintType_KeyDown);
             this.cmbPrintType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPrintType_KeyPress);
@@ -540,7 +621,7 @@
             this.cmbBillType.Location = new System.Drawing.Point(852, 43);
             this.cmbBillType.Name = "cmbBillType";
             this.cmbBillType.Size = new System.Drawing.Size(100, 27);
-            this.cmbBillType.TabIndex = 6;
+            this.cmbBillType.TabIndex = 9;
             this.cmbBillType.Enter += new System.EventHandler(this.cmbBillType_Enter);
             this.cmbBillType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBillType_KeyDown);
             this.cmbBillType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbBillType_KeyPress);
@@ -552,7 +633,7 @@
             this.cmbSalesType.Location = new System.Drawing.Point(747, 43);
             this.cmbSalesType.Name = "cmbSalesType";
             this.cmbSalesType.Size = new System.Drawing.Size(99, 27);
-            this.cmbSalesType.TabIndex = 5;
+            this.cmbSalesType.TabIndex = 8;
             this.cmbSalesType.Enter += new System.EventHandler(this.cmbSalesType_Enter);
             this.cmbSalesType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSalesType_KeyDown);
             this.cmbSalesType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSalesType_KeyPress);
@@ -588,7 +669,7 @@
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
-            this.btnTelegram.TabIndex = 16;
+            this.btnTelegram.TabIndex = 20;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -660,7 +741,7 @@
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 29);
-            this.btnView.TabIndex = 15;
+            this.btnView.TabIndex = 19;
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -672,7 +753,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 380);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 392);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
@@ -686,9 +767,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 181);
+            this.picLoader.Location = new System.Drawing.Point(3, 162);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1351, 461);
+            this.picLoader.Size = new System.Drawing.Size(1351, 480);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -699,10 +780,10 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(3, 181);
+            this.RPTViewer.Location = new System.Drawing.Point(3, 162);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1348, 458);
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 477);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
@@ -710,86 +791,6 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(448, 79);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(66, 20);
-            this.label12.TabIndex = 111111228;
-            this.label12.Text = "Days Filter";
-            // 
-            // cmbDayFilter
-            // 
-            this.cmbDayFilter.FormattingEnabled = true;
-            this.cmbDayFilter.Items.AddRange(new object[] {
-            "-All Days-",
-            "Specific Days"});
-            this.cmbDayFilter.Location = new System.Drawing.Point(448, 102);
-            this.cmbDayFilter.Name = "cmbDayFilter";
-            this.cmbDayFilter.Size = new System.Drawing.Size(91, 27);
-            this.cmbDayFilter.TabIndex = 111111229;
-            this.cmbDayFilter.SelectedIndexChanged += new System.EventHandler(this.cmbDayFilter_SelectedIndexChanged);
-            this.cmbDayFilter.Enter += new System.EventHandler(this.cmbDayFilter_Enter);
-            this.cmbDayFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDayFilter_KeyDown);
-            this.cmbDayFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDayFilter_KeyPress);
-            this.cmbDayFilter.Leave += new System.EventHandler(this.cmbDayFilter_Leave);
-            // 
-            // cmbFormat1
-            // 
-            this.cmbFormat1.FormattingEnabled = true;
-            this.cmbFormat1.Items.AddRange(new object[] {
-            "AM",
-            "PM"});
-            this.cmbFormat1.Location = new System.Drawing.Point(598, 43);
-            this.cmbFormat1.Name = "cmbFormat1";
-            this.cmbFormat1.Size = new System.Drawing.Size(41, 27);
-            this.cmbFormat1.TabIndex = 111111231;
-            this.cmbFormat1.Enter += new System.EventHandler(this.cmbFormat1_Enter);
-            this.cmbFormat1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFormat1_KeyDown);
-            this.cmbFormat1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFormat1_KeyPress);
-            this.cmbFormat1.Leave += new System.EventHandler(this.cmbFormat1_Leave);
-            // 
-            // mtbTime1
-            // 
-            this.mtbTime1.Location = new System.Drawing.Point(545, 43);
-            this.mtbTime1.Mask = "90:00";
-            this.mtbTime1.Name = "mtbTime1";
-            this.mtbTime1.Size = new System.Drawing.Size(53, 27);
-            this.mtbTime1.TabIndex = 111111230;
-            this.mtbTime1.ValidatingType = typeof(System.DateTime);
-            this.mtbTime1.Enter += new System.EventHandler(this.mtbTime1_Enter);
-            this.mtbTime1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtbTime1_KeyDown);
-            this.mtbTime1.Leave += new System.EventHandler(this.mtbTime1_Leave_1);
-            // 
-            // cmbFormat2
-            // 
-            this.cmbFormat2.FormattingEnabled = true;
-            this.cmbFormat2.Items.AddRange(new object[] {
-            "AM",
-            "PM"});
-            this.cmbFormat2.Location = new System.Drawing.Point(700, 43);
-            this.cmbFormat2.Name = "cmbFormat2";
-            this.cmbFormat2.Size = new System.Drawing.Size(41, 27);
-            this.cmbFormat2.TabIndex = 111111233;
-            this.cmbFormat2.Enter += new System.EventHandler(this.cmbFormat2_Enter);
-            this.cmbFormat2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFormat2_KeyDown);
-            this.cmbFormat2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFormat2_KeyPress);
-            this.cmbFormat2.Leave += new System.EventHandler(this.cmbFormat2_Leave);
-            // 
-            // mtbTime2
-            // 
-            this.mtbTime2.Location = new System.Drawing.Point(647, 43);
-            this.mtbTime2.Mask = "90:00";
-            this.mtbTime2.Name = "mtbTime2";
-            this.mtbTime2.Size = new System.Drawing.Size(53, 27);
-            this.mtbTime2.TabIndex = 111111232;
-            this.mtbTime2.ValidatingType = typeof(System.DateTime);
-            this.mtbTime2.Enter += new System.EventHandler(this.mtbTime2_Enter);
-            this.mtbTime2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtbTime2_KeyDown);
-            this.mtbTime2.Leave += new System.EventHandler(this.mtbTime2_Leave);
             // 
             // cmbMultiSelectDays
             // 
@@ -800,7 +801,7 @@
             this.cmbMultiSelectDays.Location = new System.Drawing.Point(545, 102);
             this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
             this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
-            this.cmbMultiSelectDays.TabIndex = 12;
+            this.cmbMultiSelectDays.TabIndex = 16;
             this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
             this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
             this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
@@ -814,7 +815,7 @@
             this.cmbMultiMonths.Location = new System.Drawing.Point(647, 102);
             this.cmbMultiMonths.Name = "cmbMultiMonths";
             this.cmbMultiMonths.Size = new System.Drawing.Size(94, 27);
-            this.cmbMultiMonths.TabIndex = 13;
+            this.cmbMultiMonths.TabIndex = 17;
             this.cmbMultiMonths.Enter += new System.EventHandler(this.cmbMultiMonths_Enter);
             this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiMonths_KeyDown);
             this.cmbMultiMonths.Leave += new System.EventHandler(this.cmbMultiMonths_Leave);
