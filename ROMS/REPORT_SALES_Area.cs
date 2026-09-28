@@ -34,7 +34,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    cmbProductLanguage.Focus();
                 }
             }
             catch (Exception ex)
@@ -223,6 +223,7 @@ namespace ROMS
                 }
                 objMR_Sales.paraRouteId = varRouteId;
                 objMR_Sales.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Sales.paraPrintType = Convert.ToInt32(cmbProductLanguage.SelectedValue);
                 objDs = objdserv.udfnSalesMasterReports(objMR_Sales);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -241,13 +242,13 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraRouteId",varRouteId);
                             objBillreport.SetParameterValue("paraRouteName",varRouteName);
                             break;
-
                         case 654:
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Route_Area_Customer_Count.rpt");
                             objBillreport.SetParameterValue("paraRouteName",varRouteName);
                             objBillreport.SetParameterValue("paraAreaName",varAreaName);
                             objBillreport.SetParameterValue("paraAreaId",varAreaId);
                             objBillreport.SetParameterValue("paraRouteId",varRouteId);
+                            objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbProductLanguage.SelectedValue));
                             break;
                         case 655:
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Route_Area_Customer.rpt");
@@ -261,10 +262,9 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraCusCategoryId",Convert.ToInt32(cmbCustomerCategory.SelectedValue));
                             objBillreport.SetParameterValue("paraCustomerId",varCustomerId);
                             objBillreport.SetParameterValue("paraCustomerTypeId",Convert.ToInt32(cmbCustomerType.SelectedValue));
-                            objBillreport.SetParameterValue("paraPrintType",322/*Convert.ToInt32(cmbPrintType.SelectedValue)*/);
+                            objBillreport.SetParameterValue("paraPrintType",Convert.ToInt32(cmbProductLanguage.SelectedValue));
                             break;
                     }
-
                     objBillreport.SetParameterValue("paraUserName",MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraHostName",MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraStatusId",Convert.ToInt32(cmbStatus.SelectedValue));
@@ -311,7 +311,9 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,157) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbCustomerType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Customer_Type", "CusTypeID<>-1 ORDER BY CusTypeID", "CusType_Name,CusTypeID", cmbCustomerCategory, "", "CusType_Name", "CusTypeID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductLanguage, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbProductLanguage.SelectedValue = 271;
                 cmbStatus.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -1261,6 +1263,8 @@ namespace ROMS
                 txtCustomer.Enabled = false;
                 cmbCustomerType.Enabled = false;
                 cmbCustomerCategory.Enabled = false;
+                cmbProductLanguage.Enabled = true;
+
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 654)
                 {
                     txtArea.Enabled = true;
@@ -1271,6 +1275,10 @@ namespace ROMS
                     txtCustomer.Enabled = true;
                     cmbCustomerType.Enabled = true;
                     cmbCustomerCategory.Enabled = true;
+                }
+                else
+                {
+                    cmbProductLanguage.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -1382,6 +1390,61 @@ namespace ROMS
             try
             {
                 cmbCustomerCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductLanguage_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductLanguage.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductLanguage_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductLanguage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled=true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductLanguage_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductLanguage.BackColor = Color.White;
             }
             catch (Exception ex)
             {
