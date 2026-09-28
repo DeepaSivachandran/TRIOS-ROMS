@@ -159,7 +159,7 @@ namespace ROMS
                     varUserId = Convert.ToInt32(lblUserId.Text);
                     varFilterUserName = txtDUserList.Text.Trim();
                 }
-                objDs = objspservice.udfnUserRoleList(varViewType, varUserRoleId, 0, 0, "", reportType, varUserId);
+                objDs = objspservice.udfnUserRoleList(varViewType, varUserRoleId, 0, 0, "", reportType, varUserId, Convert.ToInt32(cmbRoleAccess.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 string varReportName = "";
@@ -218,6 +218,7 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_RoleWise_UserPermission.rpt");
                         varReportName = "UserRoleWiseUserPermission";
+                        objBillreport.SetParameterValue("paraRoleAccess", Convert.ToInt32(cmbRoleAccess.SelectedValue));
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) != 413 && Convert.ToInt32(cmbReportType.SelectedValue) != 414)
                     {
@@ -388,6 +389,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,207) AND MSTID!=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRoleAccess, "", "MST_DisplayText", "MSTID");
                 cmbReportType.SelectedValue = -1;
                 //btnListPrint.Enabled = true;
                 RPTViewer.Visible = true;
@@ -448,7 +450,8 @@ namespace ROMS
                         tsbPrintFormat.ToolTipText = string.Empty;
                     }
                 }
-
+                cmbRoleAccess.SelectedValue = 0;
+                cmbRoleAccess.Enabled = false;
                 txtDUserList.Enabled = true;
                 txtDUserList.BackColor = Color.White;
                 ////user role report
@@ -456,6 +459,10 @@ namespace ROMS
                 {
                     txtDUserList.Enabled = false;
                     txtDUserList.BackColor = SystemColors.Control;
+                }
+                if(Convert.ToInt32(cmbReportType.SelectedValue) == 582)
+                {
+                    cmbRoleAccess.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -537,7 +544,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtUserRole.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserRoleList(4, 0, 1, 0, txtUserRole.Text, 0, 0);
+                    objDs = objspdservice.udfnUserRoleList(4, 0, 1, 0, txtUserRole.Text, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -627,7 +634,7 @@ namespace ROMS
         {
             try
             {
-                if (txtUserRole.Text != "")
+                if (txtUserRole.Text.Trim() != "")
                 {
                     ListViewItem selectedItem = lvUserRole.SelectedItems[0];
                     lblUserRoleId.Text = selectedItem.SubItems[1].Text;
@@ -740,7 +747,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    if(cmbRoleAccess.Enabled== true)
+                    {
+                        cmbRoleAccess.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -769,7 +783,14 @@ namespace ROMS
             try
             {
                 udfnGrdevent();
-                btnListPrint.Focus();
+                if (cmbRoleAccess.Enabled == true)
+                {
+                    cmbRoleAccess.Focus();
+                }
+                else
+                {
+                    btnListPrint.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -784,7 +805,14 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnGrdevent();
-                    btnListPrint.Focus();
+                    if (cmbRoleAccess.Enabled == true)
+                    {
+                        cmbRoleAccess.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -797,7 +825,7 @@ namespace ROMS
         {
             try
             {
-                if (txtDUserList.Text != "")
+                if (txtDUserList.Text.Trim() != "")
                 {
                     ListViewItem selectedItem = lvUserList.SelectedItems[0];
                     lblUserId.Text = selectedItem.SubItems[1].Text;
@@ -838,6 +866,61 @@ namespace ROMS
             try
             {
                 btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRoleAccess_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRoleAccess.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRoleAccess_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRoleAccess_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRoleAccess_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRoleAccess.BackColor = Color.White;
             }
             catch (Exception ex)
             {

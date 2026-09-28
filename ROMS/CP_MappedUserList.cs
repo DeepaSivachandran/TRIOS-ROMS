@@ -120,7 +120,7 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnUserRoleList(6, pbvarUserRoleID, 0, 0, "", 0, 0);
+                    objDs = objspservice.udfnUserRoleList(6, pbvarUserRoleID, 0, 0, "", 0, 0, 0);
                     objspservice.CloseConnection();
                     if (objDs != null)
                     {

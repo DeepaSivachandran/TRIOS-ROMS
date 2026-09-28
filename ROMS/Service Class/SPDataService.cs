@@ -4879,7 +4879,7 @@ namespace ROMS
 
         // Created by : Venkat
         // Created on : 03/10/2025
-        public DataSet udfnUserRoleList(int paraviewType, int paraUserRoleId, int paraStatusId, int paraMenuId, string paraUserroleName, int paraType, int paraUId)
+        public DataSet udfnUserRoleList(int paraviewType, int paraUserRoleId, int paraStatusId, int paraMenuId, string paraUserroleName, int paraType, int paraUId,int paraRoleAccess)
         {
             DataSet ds = new DataSet();
             try
@@ -4896,6 +4896,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserroleName", paraUserroleName);
                 varSqlCommand.Parameters.AddWithValue("@paraUId", paraUId);
                 varSqlCommand.Parameters.AddWithValue("@paraType", paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraRoleAccess", paraRoleAccess);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

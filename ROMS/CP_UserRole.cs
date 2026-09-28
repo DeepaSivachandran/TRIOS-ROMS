@@ -114,7 +114,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
                 grdUserPermission.Rows.Clear();
-                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0);
+                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -860,7 +860,7 @@ namespace ROMS
                                 //**** To call the function from SP ***************
                                 SPDataService objspservice = new SPDataService();
                                 grdUserPermission.Rows.Clear();
-                                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(UserRoleID), 0, 0, "", 0, 0);
+                                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(UserRoleID), 0, 0, "", 0, 0, 0);
                                 objspservice.CloseConnection();
                                 if (objDs != null)
                                 {
@@ -2153,7 +2153,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objspservice = new SPDataService();
 
-                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0);
+                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0, 0);
                     objspservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2185,7 +2185,7 @@ namespace ROMS
                     if (varCLone == 1)
                     {
                         grdUserPermission.Rows.Clear();
-                        objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0);
+                        objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0, "", 0, 0, 0);
                         objspservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -2221,7 +2221,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUserRoleList(3, varUserRoleID, 0, 0, "", 0, 0);
+                objDs = objspservice.udfnUserRoleList(3, varUserRoleID, 0, 0, "", 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {

@@ -149,7 +149,7 @@ namespace ROMS
                 {
                     varUserList = Convert.ToInt32(lblUserId.Text);
                 }
-                objDs = objspservice.udfnUserRoleList(0, varUserList, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0);
+                objDs = objspservice.udfnUserRoleList(0, varUserList, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -861,7 +861,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserRoleList(4, 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, txtDUserList.Text, 0, 0);
+                    objDs = objspdservice.udfnUserRoleList(4, 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, txtDUserList.Text, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
