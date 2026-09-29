@@ -106,12 +106,12 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.lblcityid);
             this.grbform.Controls.Add(this.cmbState);
             this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.txtBrokerConcern);
             this.grbform.Controls.Add(this.lvCity);
             this.grbform.Controls.Add(this.txtCity);
-            this.grbform.Controls.Add(this.lblcityid);
             this.grbform.Controls.Add(this.btnNew);
             this.grbform.Controls.Add(this.txtGstinNo);
             this.grbform.Controls.Add(this.groupBox2);

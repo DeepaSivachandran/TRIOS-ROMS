@@ -73,12 +73,22 @@ namespace ROMS
                     MainForm.objCP_Citylist.picLoader.Visible = false;
                     MainForm.objCP_Citylist.picLoader.SendToBack();
                 }
-                else
+                else if (varflog == 1)
                 {
                     DataBind objDTBind = new DataBind();
                     objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID ="+ MainForm.objCP_CP_Broker.varStateID, "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                    objDTBind.BindComboBoxListSelected("DEF_District", " DIST_STSID=1 AND DISTID NOT IN (0) Order by DISTID", "DIST_Name,DISTID", cmbDistrict, "", "DIST_Name", "DISTID");
                     cmbState.Enabled = false;
                     objDTBind = null;
+                }
+                else if (varflog == 2)
+                {
+                   
+                    DataBind objDTBind = new DataBind();
+                    objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID =" + MainForm.objCP_AddressBook.varStateID, "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                    objDTBind.BindComboBoxListSelected("DEF_District", " DIST_STSID=1 AND DISTID NOT IN (0) Order by DISTID", "DIST_Name,DISTID", cmbDistrict, "", "DIST_Name", "DISTID");
+                    cmbState.Enabled = false;
+                    objDTBind = null; 
                 }
             }
             catch (Exception ex)
@@ -141,6 +151,17 @@ namespace ROMS
                         MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
                         MainForm.objCP_CP_Broker.varCityCode = varCityCode;
                         MainForm.objCP_CP_Broker.varStateID = Convert.ToInt32(cmbState.SelectedValue);
+                        udfnclose();
+                    }
+                    else if (varmastertype == 2)
+                    {
+                        varmastertype = 0;
+                        varUpdate = 1;
+                        varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        varCityName = Convert.ToString(varResult.Split('~')[2]);
+                        MainForm.objCP_AddressBook.varCityName = txtCityName.Text;
+                        MainForm.objCP_AddressBook.varCityCode = varCityCode;
+                        MainForm.objCP_AddressBook.varStateID = Convert.ToInt32(cmbState.SelectedValue);
                         udfnclose();
                     }
                     else
