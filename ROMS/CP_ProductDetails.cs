@@ -406,8 +406,8 @@ namespace ROMS
                         {
                             grdRateTypeList.DataSource = objDs.Tables[7];
                             grdRateTypeList.Columns["S.No."].Width = 50;
-                            grdRateTypeList.Columns["Rate Type"].Width = 50; 
-                            grdRateTypeList.Columns["P.I Code"].Width = 100; 
+                            grdRateTypeList.Columns["Rate Type"].Width = 70; 
+                            grdRateTypeList.Columns["P.I Code"].Width = 80; 
                             
                             grdRateTypeList.ClearSelection();
                             if (grdRateTypeList.Rows.Count != 0)

@@ -111,6 +111,8 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnNewCity = new System.Windows.Forms.Label();
+            this.lblcityid = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
@@ -489,6 +491,8 @@
             // 
             // grpCompanyDetails
             // 
+            this.grpCompanyDetails.Controls.Add(this.lblcityid);
+            this.grpCompanyDetails.Controls.Add(this.btnNewCity);
             this.grpCompanyDetails.Controls.Add(this.cmbContactGroup);
             this.grpCompanyDetails.Controls.Add(this.textBox2);
             this.grpCompanyDetails.Controls.Add(this.lvCity);
@@ -1101,6 +1105,27 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // btnNewCity
+            // 
+            this.btnNewCity.Image = global::ROMS.Properties.Resources.New;
+            this.btnNewCity.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNewCity.Location = new System.Drawing.Point(504, 176);
+            this.btnNewCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNewCity.Name = "btnNewCity";
+            this.btnNewCity.Size = new System.Drawing.Size(21, 22);
+            this.btnNewCity.TabIndex = 87;
+            this.btnNewCity.Text = "        ";
+            this.btnNewCity.Click += new System.EventHandler(this.btnNewCity_Click);
+            // 
+            // lblcityid
+            // 
+            this.lblcityid.AutoSize = true;
+            this.lblcityid.Location = new System.Drawing.Point(265, 154);
+            this.lblcityid.Name = "lblcityid";
+            this.lblcityid.Size = new System.Drawing.Size(0, 20);
+            this.lblcityid.TabIndex = 1111152;
+            this.lblcityid.Visible = false;
+            // 
             // CP_AddressBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1221,5 +1246,7 @@
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbContactGroup;
         private System.Windows.Forms.TextBox textBox2;
+        internal System.Windows.Forms.Label btnNewCity;
+        private System.Windows.Forms.Label lblcityid;
     }
 }

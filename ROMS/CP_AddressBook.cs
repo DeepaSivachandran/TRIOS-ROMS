@@ -66,6 +66,9 @@ namespace ROMS
         public int varDefaultBank = 0,pbCityID=0,pbCPCityid=0,pbABID=0;
         public string varDefault = "";
         DataSet objDTBank = new DataSet();
+        public string varCityName = "";
+        public int varStateID = 0;
+        public int varCityCode;
         public CP_AddressBook()
         {
             InitializeComponent();
@@ -2388,6 +2391,72 @@ namespace ROMS
         private void btnClose_Click(object sender, EventArgs e)
         {
             udfnclose();
+        }
+        public void udfnListView()
+        {
+            try
+            {
+                lvCity.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtCity.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text, 0, 0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvCity.Items.Add(objList);
+                                }
+                                lvCity.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvCity.Visible = false;
+                    lvCity.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+        private void btnNewCity_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                varStateID = Convert.ToInt32(cmbState.SelectedValue);
+                MainForm.objCP_City = new CP_City();
+                MainForm.objCP_City.varmastertype = 1;
+                MainForm.objCP_City.varflog = 1;
+                MainForm.objCP_City.ShowDialog();
+
+                udfnListView();
+                txtCity.Text = varCityName;
+                lblcityid.Text = Convert.ToString(varCityCode);
+                lvCity.Visible = false;
+                txtPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtAccName_KeyDown(object sender, KeyEventArgs e)
