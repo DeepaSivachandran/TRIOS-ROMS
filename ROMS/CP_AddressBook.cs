@@ -2442,7 +2442,7 @@ namespace ROMS
             {
                 varStateID = Convert.ToInt32(cmbState.SelectedValue);
                 MainForm.objCP_City = new CP_City();
-                MainForm.objCP_City.varmastertype = 1;
+                MainForm.objCP_City.varmastertype = 2;
                 MainForm.objCP_City.varflog = 2;
                 MainForm.objCP_City.ShowDialog();
 
