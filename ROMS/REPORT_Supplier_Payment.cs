@@ -117,13 +117,28 @@ namespace ROMS
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     varErrFlag = true;
                 }
-                if (Convert.ToString(txtSupplier.Text.Trim()) == "")
+                //if (Convert.ToString(txtSupplier.Text.Trim()) == "")
+                //{
+                //    epReport.SetError(txtSupplier, "Please enter supplier name.");
+                //    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpSupplier.ShowAlways = true;
+                //    tpSupplier.Show("Please enter supplier name.", txtSupplier, 5000);
+                //    varErrFlag = true;
+                //}
+                if (Convert.ToString(txtSupplier.Text.Trim()) != "")
                 {
-                    epReport.SetError(txtSupplier, "Please enter supplier name.");
-                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSupplier.ShowAlways = true;
-                    tpSupplier.Show("Please enter supplier name.", txtSupplier, 5000);
-                    varErrFlag = true;
+                    if (Convert.ToString(lblSupplierCode.Text.Trim()) == "")
+                    {
+                        epReport.SetError(txtSupplier, "Please enter valid supplier name.");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Please enter valid supplier name.", txtSupplier, 5000);
+                        varErrFlag = true;
+                    }
+                }
+                else
+                {
+                    lblSupplierCode.Text = "0";
                 }
                 if (varErrFlag == false)
                 {
@@ -421,6 +436,7 @@ namespace ROMS
                 {
                     if (txtSupplier.Text.Length > 0)
                     {
+                        lblSupplierCode.Text = "";
                         MR_Supplier objMR_Supplier = new MR_Supplier();
                         objMR_Supplier.ViewType = 43;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
@@ -520,9 +536,9 @@ namespace ROMS
             {
                 if (txtSupplier.Text.Trim() != "")
                 {
+                    txtSupplier.Text = DGV_FilterProduct.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                     lblSupplierCode.Text = DGV_FilterProduct.SelectedRows[0].Cells["SPID"].Value.ToString();
                     lblschedleCode.Text = DGV_FilterProduct.SelectedRows[0].Cells["SPSCID"].Value.ToString();
-                    txtSupplier.Text = DGV_FilterProduct.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
                 txtCity.Focus();
             }
@@ -665,8 +681,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,104) AND MSTID<>-1 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbPayType, "", "MST_DisplayText", "MSTID");
                 //Transaction id 	115
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC"
-                   , "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
@@ -860,6 +875,15 @@ namespace ROMS
                         tsbPrintFormat.ToolTipText = string.Empty;
                     }
                 }
+                dpFromDate.Enabled = true;
+                dpToDate.Enabled = true;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 374 || Convert.ToInt32(cmbReportType.SelectedValue) == 376)
+                {
+                    dpFromDate.Enabled = false;
+                    dpToDate.Enabled = false;
+                    dpFromDate.Value = MainForm.pbFYStartDate;
+                    dpToDate.Value = MainForm.pbCurrentDate;
+                }
                 txtCity.Text = "";
                 txtSupplier.Text = "";
                 lblcityid.Text = "0";
@@ -892,7 +916,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    if (dpFromDate.Enabled == true)
+                    {
+                        dpFromDate.Focus();
+                    }
+                    else
+                    {
+                        txtSupplier.Focus();
+                    }
                 }
             }
             catch (Exception ex)
