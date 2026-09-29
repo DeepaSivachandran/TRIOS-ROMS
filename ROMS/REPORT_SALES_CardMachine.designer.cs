@@ -82,8 +82,8 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
-            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
+            this.tsbPrintFormat.Text = "A4-Landscape";
             this.tsbPrintFormat.ToolTipText = "A4-Portrait";
             // 
             // tsbFormat
