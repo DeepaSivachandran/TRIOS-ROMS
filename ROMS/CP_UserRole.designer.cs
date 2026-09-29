@@ -64,6 +64,11 @@
             this.grpUserPermission = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdUserPermission = new System.Windows.Forms.DataGridView();
+            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmMenuname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFullAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmViewchk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -78,12 +83,8 @@
             this.clmParentFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrivilegeCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsplflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmClone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewImageColumn();
-            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.pnlUserRole.SuspendLayout();
@@ -488,6 +489,7 @@
             this.clmParentFlag,
             this.clmPrivilegeCode,
             this.clmsplflag,
+            this.clmClone,
             this.Action});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -519,6 +521,41 @@
             this.grdUserPermission.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdUserPermission_DataBindingComplete);
             this.grdUserPermission.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.grdUserPermission_DefaultValuesNeeded);
             // 
+            // epCompany
+            // 
+            this.epCompany.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Edit";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 120;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Width = 80;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Edit";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Remove";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // clmMenuname
             // 
             this.clmMenuname.HeaderText = "Menu Name";
@@ -543,26 +580,31 @@
             // 
             this.clmCreatechk.HeaderText = "Create";
             this.clmCreatechk.Name = "clmCreatechk";
+            this.clmCreatechk.Width = 80;
             // 
             // clmEditchk
             // 
             this.clmEditchk.HeaderText = "Edit";
             this.clmEditchk.Name = "clmEditchk";
+            this.clmEditchk.Width = 80;
             // 
             // clmDeletechk
             // 
             this.clmDeletechk.HeaderText = "Delete";
             this.clmDeletechk.Name = "clmDeletechk";
+            this.clmDeletechk.Width = 80;
             // 
             // clmPrintchk
             // 
             this.clmPrintchk.HeaderText = "Print";
             this.clmPrintchk.Name = "clmPrintchk";
+            this.clmPrintchk.Width = 80;
             // 
             // clmExcelchk
             // 
             this.clmExcelchk.HeaderText = "Excel";
             this.clmExcelchk.Name = "clmExcelchk";
+            this.clmExcelchk.Width = 80;
             // 
             // clmNotificationchk
             // 
@@ -599,6 +641,12 @@
             this.clmsplflag.Name = "clmsplflag";
             this.clmsplflag.Visible = false;
             // 
+            // clmClone
+            // 
+            this.clmClone.HeaderText = "Clone";
+            this.clmClone.Name = "clmClone";
+            this.clmClone.Width = 80;
+            // 
             // Action
             // 
             this.Action.HeaderText = "Special Permission";
@@ -608,41 +656,6 @@
             this.Action.ReadOnly = true;
             this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Action.Width = 120;
-            // 
-            // epCompany
-            // 
-            this.epCompany.ContainerControl = this;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Edit";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn1.MinimumWidth = 6;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 120;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Remove";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Width = 80;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "Edit";
-            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "Remove";
-            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // CP_UserRole
             // 
@@ -719,6 +732,9 @@
         public System.Windows.Forms.Button btnMappedUser;
         private System.Windows.Forms.TextBox txtMenuName;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbMenus;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private ReadOnlyCheckboxTreeView tvMappedMenus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMenuname;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmFullAccess;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmViewchk;
@@ -733,9 +749,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmParentFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrivilegeCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsplflag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmClone;
         private System.Windows.Forms.DataGridViewImageColumn Action;
-        private System.Windows.Forms.ComboBox cmbMenus;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private ReadOnlyCheckboxTreeView tvMappedMenus;
     }
 }

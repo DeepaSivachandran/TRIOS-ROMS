@@ -125,7 +125,7 @@ namespace ROMS
                             dtMenus = objDs.Tables[0];
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
+                                grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]), 0);
 
                             }
                         }
