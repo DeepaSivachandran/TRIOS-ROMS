@@ -876,6 +876,7 @@ namespace ROMS
                                     lvUserList.Items.Add(objList);
                                 }
                                 lvUserList.Visible = true;
+                                lvUserList.BringToFront();
                             }
                             else
                             {
@@ -996,7 +997,7 @@ namespace ROMS
         {
             try
             {
-                if (txtDUserList.Text != "")
+                if (txtDUserList.Text.Trim() != "")
                 {
                     ListViewItem selectedItem = lvUserList.SelectedItems[0];
                     lblUserId.Text = selectedItem.SubItems[1].Text;
