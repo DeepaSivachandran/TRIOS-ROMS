@@ -243,7 +243,7 @@ namespace ROMS
                 objMR_AddressBook.paraCompanyName = txtCompanyName.Text.Trim();
                 objMR_AddressBook.paraAddress1 = txtAddressLine1.Text.Trim();
                 objMR_AddressBook.paraAddress2 = txtAddressLine2.Text.Trim();
-                objMR_AddressBook.paraStatusID = Convert.ToInt32(cmbState.SelectedValue);
+                objMR_AddressBook.paraStatusID = Convert.ToInt32(varstatus);
                 objMR_AddressBook.paraCTYID = pbCityID;
                 objMR_AddressBook.paraPincode = txtPincode.Text.Trim();
                 objMR_AddressBook.paraPhoneNo = txtPhoneNo.Text.Trim();
@@ -265,7 +265,7 @@ namespace ROMS
                 objMR_AddressBook.paraIFSC = txtIFScode.Text.Trim();
                 objMR_AddressBook.paraBranchName = txtbranchname.Text.Trim();
                 objMR_AddressBook.paraRemarks = txtRemarks.Text.Trim();
-                objMR_AddressBook.paraSTID =Convert.ToInt32(varStatus);
+                objMR_AddressBook.paraSTID = Convert.ToInt32(cmbState.SelectedValue);
                 objMR_AddressBook.paraContactGroupID = Convert.ToInt16(cmbContactGroup.SelectedValue);
                 objMR_AddressBook.paraAccountName = txtAccName.Text.Trim();
                 objMR_AddressBook.paraABID = pbABID;

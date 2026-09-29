@@ -2238,6 +2238,30 @@ namespace ROMS
             }
         }
 
+        private void cmbReportFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt16(cmbReportFormat.SelectedValue) == 676)
+                {
+                    txtRowCount.ReadOnly = false;
+                    txtRowCount.Enabled = true;
+                    txtRowCount.Text = "2";
+                }
+                else if (Convert.ToInt16(cmbReportFormat.SelectedValue) == 677)
+                {
+                    txtRowCount.ReadOnly = true;
+                    txtRowCount.Enabled = false;
+                    txtRowCount.Text = "6";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try

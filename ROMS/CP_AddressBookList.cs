@@ -29,7 +29,7 @@ namespace ROMS
         public CP_AddressBookList()
         {
             InitializeComponent();
-            windowControl.Initialize(tsSupplierList, this);
+            windowControl.Initialize(tsbMenu, this);
             
         }
 
@@ -1241,12 +1241,16 @@ namespace ROMS
                 if (emptyprint == 0)
                 { 
                     tsbEmpty.Visible = true; 
-                    tsbFilled.Visible = true;  
+                    tsbFilled.Visible = true; 
+                    tsbEmptySep.Visible = true;
+                    tsbEnvelopPrintSep.Visible = true;
                 }
                 else
                 {
                     tsbEmpty.Visible = false;
-                    tsbFilled.Visible = false;
+                    tsbFilled.Visible = false; 
+                    tsbEmptySep.Visible = false;
+                    tsbEnvelopPrintSep.Visible = false;
                 }
             }
             catch (Exception ex)

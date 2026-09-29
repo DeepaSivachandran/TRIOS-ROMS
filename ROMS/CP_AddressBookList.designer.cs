@@ -32,18 +32,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsSupplierList = new System.Windows.Forms.ToolStrip();
+            this.tsbMenu = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbFilledSep = new System.Windows.Forms.ToolStripSeparator();
             this.tsbFilled = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbEmptySep = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEmpty = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbEnvelopPrintSep = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEnvelopPrint = new System.Windows.Forms.ToolStripButton();
             this.pnlsupplier = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
@@ -62,7 +62,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsSupplierList.SuspendLayout();
+            this.tsbMenu.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAddressBookList)).BeginInit();
@@ -71,31 +71,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsSupplierList
+            // tsbMenu
             // 
-            this.tsSupplierList.BackColor = System.Drawing.Color.White;
-            this.tsSupplierList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsSupplierList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsSupplierList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsSupplierList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbMenu.BackColor = System.Drawing.Color.White;
+            this.tsbMenu.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsbMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsbMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew,
-            this.toolStripSeparator1,
+            this.tsbFilledSep,
             this.tsbFilled,
-            this.toolStripSeparator3,
+            this.tsbEmptySep,
             this.tsbEmpty,
-            this.toolStripSeparator2,
+            this.tsbEnvelopPrintSep,
             this.tsbEnvelopPrint});
-            this.tsSupplierList.Location = new System.Drawing.Point(0, 0);
-            this.tsSupplierList.Name = "tsSupplierList";
-            this.tsSupplierList.Size = new System.Drawing.Size(1354, 27);
-            this.tsSupplierList.TabIndex = 35;
-            this.tsSupplierList.Text = "Supplier List";
-            this.tsSupplierList.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsSupplierList_ItemClicked);
+            this.tsbMenu.Location = new System.Drawing.Point(0, 0);
+            this.tsbMenu.Name = "tsbMenu";
+            this.tsbMenu.Size = new System.Drawing.Size(1354, 27);
+            this.tsbMenu.TabIndex = 35;
+            this.tsbMenu.Text = "Supplier List";
+            this.tsbMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsSupplierList_ItemClicked);
             // 
             // tspHeader
             // 
@@ -160,13 +160,13 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // toolStripSeparator1
+            // tsbFilledSep
             // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            this.toolStripSeparator1.Click += new System.EventHandler(this.toolStripSeparator1_Click);
+            this.tsbFilledSep.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFilledSep.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tsbFilledSep.Name = "tsbFilledSep";
+            this.tsbFilledSep.Size = new System.Drawing.Size(6, 27);
+            this.tsbFilledSep.Click += new System.EventHandler(this.toolStripSeparator1_Click);
             // 
             // tsbFilled
             // 
@@ -181,12 +181,12 @@
             this.tsbFilled.Text = "Filled";
             this.tsbFilled.Click += new System.EventHandler(this.tsbFilled_Click);
             // 
-            // toolStripSeparator3
+            // tsbEmptySep
             // 
-            this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            this.tsbEmptySep.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEmptySep.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tsbEmptySep.Name = "tsbEmptySep";
+            this.tsbEmptySep.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbEmpty
             // 
@@ -201,12 +201,12 @@
             this.tsbEmpty.Text = "Empty";
             this.tsbEmpty.Click += new System.EventHandler(this.tsbEmpty_Click);
             // 
-            // toolStripSeparator2
+            // tsbEnvelopPrintSep
             // 
-            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.tsbEnvelopPrintSep.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEnvelopPrintSep.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tsbEnvelopPrintSep.Name = "tsbEnvelopPrintSep";
+            this.tsbEnvelopPrintSep.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbEnvelopPrint
             // 
@@ -487,7 +487,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlsupplier);
-            this.Controls.Add(this.tsSupplierList);
+            this.Controls.Add(this.tsbMenu);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -497,8 +497,8 @@
             this.Text = "Supplier";
             this.Load += new System.EventHandler(this.CP_Supplierlist_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplierlist_KeyDown);
-            this.tsSupplierList.ResumeLayout(false);
-            this.tsSupplierList.PerformLayout();
+            this.tsbMenu.ResumeLayout(false);
+            this.tsbMenu.PerformLayout();
             this.pnlsupplier.ResumeLayout(false);
             this.pnlsupplier.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -514,7 +514,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsSupplierList;
+        private System.Windows.Forms.ToolStrip tsbMenu;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
@@ -536,12 +536,12 @@
         private System.Windows.Forms.Label lblschedule;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
-        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripSeparator tsbFilledSep;
         public System.Windows.Forms.ToolStripButton tsbEnvelopPrint;
         public System.Windows.Forms.ToolStripButton tsbFilled;
-        public System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        public System.Windows.Forms.ToolStripSeparator tsbEmptySep;
         public System.Windows.Forms.ToolStripButton tsbEmpty;
-        public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        public System.Windows.Forms.ToolStripSeparator tsbEnvelopPrintSep;
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Label label1;
     }

@@ -234,6 +234,7 @@ namespace ROMS
                             grdItemList.DataSource = objDs.Tables[0];
                             grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdItemList.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             grdItemList.Columns["Product Name"].Width = 300;
                             grdItemList.Columns["Supplier"].Width = 300;
                             grdItemList.Columns["PRID"].Visible = false;
@@ -737,7 +738,7 @@ namespace ROMS
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
-                        objMR_Supplier.ViewType = 15;
+                        objMR_Supplier.ViewType = 53;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
@@ -758,6 +759,7 @@ namespace ROMS
                                     DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
                                     DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
                                     DGV_FilterSupplier.Columns["SP_NAME"].Width = 260;
+                                    DGV_FilterSupplier.Columns["City"].Width = 120;
                                     DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
                                     DGV_FilterSupplier.BringToFront();
                                 }
@@ -1164,7 +1166,7 @@ namespace ROMS
                     {
 
                         MR_Product objMR_Product = new MR_Product();
-                        objMR_Product.paraViewType = 49; 
+                        objMR_Product.paraViewType = 108; 
                         objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
                         objMR_Product.paraProductName = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
@@ -1186,6 +1188,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UNIT"].Width = 50;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1;
+                                    DGV_FilterProduct.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.BringToFront();
                                 }

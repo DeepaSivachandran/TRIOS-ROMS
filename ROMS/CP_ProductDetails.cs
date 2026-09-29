@@ -254,6 +254,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnLoadProCount()
+        { 
+            try
+            {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 43; 
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnMaster(objMR_Master);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        lblTotalProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TotalProCount"]);
+                    }
+                    if (objDs.Tables.Count > 1)
+                    {
+                        lblActiveProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ActiveProCount"]);
+                    }
+                    if (objDs.Tables.Count > 2)
+                    {
+                        lblInactiveIProduct.Text = Convert.ToString(objDs.Tables[2].Rows[0]["InactiveProCount"]);
+                    }
+                    if (objDs.Tables.Count > 3)
+                    {
+                        lblDraftProCount.Text = Convert.ToString(objDs.Tables[3].Rows[0]["DraftProCount"]);
+                    }
+                    if (objDs.Tables.Count > 4)
+                    {
+                        lblZeroRateProCount.Text = Convert.ToString(objDs.Tables[4].Rows[0]["ZeroRateProCount"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
         public void udfnProductDetails()
         {
             try
@@ -322,13 +362,15 @@ namespace ROMS
                         {
                             grdItemList.DataSource = objDs.Tables[2];
                             grdItemList.Columns["S.No."].Width = 50;
-                            grdItemList.Columns["Product"].Width = 400;
+                            grdItemList.Columns["Product"].Width = 320;
+                            grdItemList.Columns["Rate"].Width = 80;
                             grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             
                             grdItemList.ClearSelection(); 
                             if(grdItemList.Rows.Count!=0)
                             { lblNoProductUnits.Visible = false;
                                 grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdItemList.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else
                             { lblNoProductUnits.Visible = true; }
@@ -364,7 +406,8 @@ namespace ROMS
                         {
                             grdRateTypeList.DataSource = objDs.Tables[7];
                             grdRateTypeList.Columns["S.No."].Width = 50;
-                            grdRateTypeList.Columns["Rate Type"].Width = 100; 
+                            grdRateTypeList.Columns["Rate Type"].Width = 50; 
+                            grdRateTypeList.Columns["P.I Code"].Width = 100; 
                             
                             grdRateTypeList.ClearSelection();
                             if (grdRateTypeList.Rows.Count != 0)
@@ -400,6 +443,10 @@ namespace ROMS
                         if (objDs.Tables.Count > 11)
                         {
                             lblRackIncharge.Text = Convert.ToString(objDs.Tables[11].Rows[0]["EMP_Name"]);
+                        } 
+                        if (objDs.Tables.Count > 12)
+                        {
+                            lblZeroRateProCount.Text = Convert.ToString(objDs.Tables[12].Rows[0]["ZeroRateProCount"]);
                         } 
                     }
                 }
@@ -498,7 +545,7 @@ namespace ROMS
                     if (txtProductName.Text.Length > 0)
                     {
                         MR_Product objMR_Product = new MR_Product();
-                        objMR_Product.paraViewType = 49;
+                        objMR_Product.paraViewType = 108;
                         if (VarSearchFlag == false)
                         {
                             objMR_Product.paraProductName = txtProductName.Text.Trim(); 
@@ -522,12 +569,14 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_EName"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
-                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
-                                    DGV_FilterProduct.Columns["PR_TName"].Width = 350;
+                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 100;
+                                    DGV_FilterProduct.Columns["PR_TName"].Width = 280;
                                     DGV_FilterProduct.Columns["UNIT"].Width = 50;
                                     DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
+                                    DGV_FilterProduct.Columns["Rate"].Width = 100;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
-                                    DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1;
+                                    DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1; 
+                                    DGV_FilterProduct.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.BringToFront();
                                 }
@@ -861,6 +910,19 @@ namespace ROMS
             try
             {
               //  btnSearch.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_ProductDetails_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLoadProCount();
             }
             catch (Exception ex)
             {
