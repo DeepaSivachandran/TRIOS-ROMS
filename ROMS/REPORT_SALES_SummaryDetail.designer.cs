@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_SALES_SummaryDetail));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportSupplier = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -63,8 +63,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCustomer = new System.Windows.Forms.TextBox();
+            this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.lblMonths = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.cmbMultiMonths = new MultiSelectComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbSchemeType = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -87,8 +89,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbMultiSelectDays = new MultiSelectComboBox();
-            this.cmbMultiMonths = new MultiSelectComboBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
@@ -173,24 +173,24 @@
             this.DGV_BilledBy.AllowUserToResizeRows = false;
             this.DGV_BilledBy.BackgroundColor = System.Drawing.Color.White;
             this.DGV_BilledBy.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_BilledBy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_BilledBy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_BilledBy.ColumnHeadersHeight = 30;
             this.DGV_BilledBy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_BilledBy.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_BilledBy.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_BilledBy.EnableHeadersVisualStyles = false;
             this.DGV_BilledBy.GridColor = System.Drawing.Color.White;
             this.DGV_BilledBy.Location = new System.Drawing.Point(1131, 72);
@@ -198,9 +198,9 @@
             this.DGV_BilledBy.ReadOnly = true;
             this.DGV_BilledBy.RowHeadersVisible = false;
             this.DGV_BilledBy.RowHeadersWidth = 51;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_BilledBy.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_BilledBy.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_BilledBy.RowTemplate.Height = 25;
             this.DGV_BilledBy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_BilledBy.Size = new System.Drawing.Size(214, 226);
@@ -217,24 +217,24 @@
             this.DGV_Customer.AllowUserToResizeRows = false;
             this.DGV_Customer.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Customer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_Customer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_Customer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_Customer.ColumnHeadersHeight = 30;
             this.DGV_Customer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_Customer.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_Customer.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_Customer.EnableHeadersVisualStyles = false;
             this.DGV_Customer.GridColor = System.Drawing.Color.White;
             this.DGV_Customer.Location = new System.Drawing.Point(233, 131);
@@ -242,9 +242,9 @@
             this.DGV_Customer.ReadOnly = true;
             this.DGV_Customer.RowHeadersVisible = false;
             this.DGV_Customer.RowHeadersWidth = 51;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_Customer.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_Customer.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_Customer.RowTemplate.Height = 25;
             this.DGV_Customer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_Customer.Size = new System.Drawing.Size(237, 226);
@@ -340,6 +340,7 @@
             this.cmbFormat1.Name = "cmbFormat1";
             this.cmbFormat1.Size = new System.Drawing.Size(41, 27);
             this.cmbFormat1.TabIndex = 5;
+            this.cmbFormat1.SelectedIndexChanged += new System.EventHandler(this.cmbFormat1_SelectedIndexChanged);
             this.cmbFormat1.Enter += new System.EventHandler(this.cmbFormat1_Enter);
             this.cmbFormat1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFormat1_KeyDown);
             this.cmbFormat1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFormat1_KeyPress);
@@ -521,6 +522,20 @@
             this.txtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomer_KeyDown);
             this.txtCustomer.Leave += new System.EventHandler(this.txtCustomer_Leave);
             // 
+            // cmbMultiSelectDays
+            // 
+            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiSelectDays.DropDownHeight = 1;
+            this.cmbMultiSelectDays.FormattingEnabled = true;
+            this.cmbMultiSelectDays.IntegralHeight = false;
+            this.cmbMultiSelectDays.Location = new System.Drawing.Point(545, 102);
+            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
+            this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
+            this.cmbMultiSelectDays.TabIndex = 16;
+            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
+            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
+            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
+            // 
             // lblMonths
             // 
             this.lblMonths.AutoSize = true;
@@ -540,6 +555,20 @@
             this.label9.Size = new System.Drawing.Size(50, 20);
             this.label9.TabIndex = 111111211;
             this.label9.Text = "Months";
+            // 
+            // cmbMultiMonths
+            // 
+            this.cmbMultiMonths.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiMonths.DropDownHeight = 1;
+            this.cmbMultiMonths.FormattingEnabled = true;
+            this.cmbMultiMonths.IntegralHeight = false;
+            this.cmbMultiMonths.Location = new System.Drawing.Point(647, 102);
+            this.cmbMultiMonths.Name = "cmbMultiMonths";
+            this.cmbMultiMonths.Size = new System.Drawing.Size(94, 27);
+            this.cmbMultiMonths.TabIndex = 17;
+            this.cmbMultiMonths.Enter += new System.EventHandler(this.cmbMultiMonths_Enter);
+            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiMonths_KeyDown);
+            this.cmbMultiMonths.Leave += new System.EventHandler(this.cmbMultiMonths_Leave);
             // 
             // label1
             // 
@@ -791,34 +820,6 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
-            // 
-            // cmbMultiSelectDays
-            // 
-            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbMultiSelectDays.DropDownHeight = 1;
-            this.cmbMultiSelectDays.FormattingEnabled = true;
-            this.cmbMultiSelectDays.IntegralHeight = false;
-            this.cmbMultiSelectDays.Location = new System.Drawing.Point(545, 102);
-            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
-            this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
-            this.cmbMultiSelectDays.TabIndex = 16;
-            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
-            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
-            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
-            // 
-            // cmbMultiMonths
-            // 
-            this.cmbMultiMonths.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbMultiMonths.DropDownHeight = 1;
-            this.cmbMultiMonths.FormattingEnabled = true;
-            this.cmbMultiMonths.IntegralHeight = false;
-            this.cmbMultiMonths.Location = new System.Drawing.Point(647, 102);
-            this.cmbMultiMonths.Name = "cmbMultiMonths";
-            this.cmbMultiMonths.Size = new System.Drawing.Size(94, 27);
-            this.cmbMultiMonths.TabIndex = 17;
-            this.cmbMultiMonths.Enter += new System.EventHandler(this.cmbMultiMonths_Enter);
-            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiMonths_KeyDown);
-            this.cmbMultiMonths.Leave += new System.EventHandler(this.cmbMultiMonths_Leave);
             // 
             // dynamicLabelControl
             // 
