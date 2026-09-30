@@ -549,6 +549,7 @@ namespace ROMS
                 objdtUserRole_Menu_Access.Columns.Add("UA_PrintAccess", typeof(int));
                 objdtUserRole_Menu_Access.Columns.Add("UA_ExcelAccess", typeof(int));
                 objdtUserRole_Menu_Access.Columns.Add("UA_NotificationAccess", typeof(int));
+                objdtUserRole_Menu_Access.Columns.Add("UA_CloneAccess", typeof(int));
 
 
                 if (grdUserPermission.RowCount > 0)
@@ -563,7 +564,8 @@ namespace ROMS
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmDeletechk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmDeletechk"].Value),
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmPrintchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmPrintchk"].Value),
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmExcelchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmExcelchk"].Value),
-                    Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value)
+                    Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value),
+                    Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmClonechk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmClonechk"].Value)
                         );
                     }
                 }
@@ -871,7 +873,7 @@ namespace ROMS
                                             dtMenus = objDs.Tables[0];
                                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                             {
-                                                grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
+                                                grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]), 0);
 
                                             }
                                         }
@@ -969,7 +971,8 @@ namespace ROMS
             { "clmDeletechk", 4 },
             { "clmPrintchk", 5 },
             { "clmExcelchk", 6 },
-            { "clmNotificationchk", 7 }
+            { "clmNotificationchk", 7 },
+            { "clmClonechk", 11 }
         };
 
                 foreach (DataGridViewRow row in grdUserPermission.Rows)
@@ -1125,7 +1128,10 @@ namespace ROMS
                                     case 7:
                                         if (row.Cells["clmNotificationchk"] is DataGridViewCheckBoxCell)
                                             row.Cells["clmNotificationchk"].Value = true;
-                                        break;
+                                        break;case 11:
+    if (row.Cells["clmClonechk"] is DataGridViewCheckBoxCell)
+        row.Cells["clmClonechk"].Value = true;
+    break;
                                 }
                             }
                         }
@@ -1307,7 +1313,8 @@ namespace ROMS
         "clmDeletechk",
         "clmPrintchk",
         "clmExcelchk",
-        "clmNotificationchk"
+        "clmNotificationchk",
+        "clmClonechk"
     };
                     if (isFullAccessChecked)
                     {
@@ -1361,7 +1368,8 @@ namespace ROMS
             { "clmDeletechk", 4 },
             { "clmPrintchk", 5 },
             { "clmExcelchk", 6 },
-            { "clmNotificationchk", 7 }
+            { "clmNotificationchk", 7 },
+            { "clmClonechk", 11 }
         };
 
                 List<int> allowed = new List<int>();
@@ -2195,7 +2203,7 @@ namespace ROMS
                                 {
                                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                     {
-                                        grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
+                                        grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]), 0);
                                     }
                                 }
                             }

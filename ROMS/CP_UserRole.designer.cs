@@ -83,7 +83,7 @@
             this.clmParentFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrivilegeCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsplflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmClone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmClonechk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
@@ -489,7 +489,7 @@
             this.clmParentFlag,
             this.clmPrivilegeCode,
             this.clmsplflag,
-            this.clmClone,
+            this.clmClonechk,
             this.Action});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -641,11 +641,13 @@
             this.clmsplflag.Name = "clmsplflag";
             this.clmsplflag.Visible = false;
             // 
-            // clmClone
+            // clmClonechk
             // 
-            this.clmClone.HeaderText = "Clone";
-            this.clmClone.Name = "clmClone";
-            this.clmClone.Width = 80;
+            this.clmClonechk.HeaderText = "Clone";
+            this.clmClonechk.Name = "clmClonechk";
+            this.clmClonechk.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmClonechk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmClonechk.Width = 80;
             // 
             // Action
             // 
@@ -749,7 +751,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmParentFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrivilegeCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsplflag;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmClone;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmClonechk;
         private System.Windows.Forms.DataGridViewImageColumn Action;
     }
 }
