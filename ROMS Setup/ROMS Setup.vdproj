@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_00C530BC4C484E8C86E327EA996064F8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_00D957108CDEBFC0FD89073D24B6C6FC"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,6 +58,12 @@
         "Entry"
         {
         "MsmKey" = "8:_0313A0768BD049538AFA9D00BBB8A74C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_034BDF71262E4BAA998B4BDC602A4343"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -231,6 +243,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_10F3392670FD4D83AECE2DCB97D1E317"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_115D20040B434514AF6C06452917A15A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -292,6 +310,18 @@
         "Entry"
         {
         "MsmKey" = "8:_12CFB6AA621047E48890654DBFCED436"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1315AD2F7BE44BDB97461B609D633F6C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_131B9F60052F4C7399F0555AAB9A19CB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -363,6 +393,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_15D38851D2EF4F51A19CA424796AE1E3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_15EBF1B98D894DF8A03226CF627CF74B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -393,7 +429,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_167C8D257E394B338D6D0E6E843880F9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_17B5C8267DC94A7B8B029E5EEF10B790"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_17FC7E322D2746E5BBD744F004064F39"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -417,6 +465,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1A526F83ADE549CCA36CA0663E51171A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1AD998E91CB44CE7A29304042EFFA6F6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -430,6 +484,12 @@
         "Entry"
         {
         "MsmKey" = "8:_1B2F6A4CFA0C4B90B9930347797B0AB4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1B814717E564419683F0EE478DFFFACC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -471,6 +531,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_204A93E877F7430696FD0C745A6FECC4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2090A56504F65B5C4EA26CE0C9ECB180"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -478,6 +544,12 @@
         "Entry"
         {
         "MsmKey" = "8:_209662A0E8BF4692800E5110638A3FCD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2119325B0D734DA4BBF39494052A55B3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -513,6 +585,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_24EEB86AE88B4CA6B5956EA5C90D0A71"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_25A91092D0FB4429A18F8E72B5337949"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -520,6 +598,12 @@
         "Entry"
         {
         "MsmKey" = "8:_267F798DFC644817B8FBC49455AFFB1E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_26CA62B31F9244F48E44655AAC8A479B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -555,6 +639,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_29207E4711404594ABFAC1B4354BDB63"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_294AD621A0E45B8D4B67324B1239DCD4"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -568,6 +658,12 @@
         "Entry"
         {
         "MsmKey" = "8:_29A8729E9B12418B84BBA2D12FB170DB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2A0827E9A3614809BEE4F5F62F690C56"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -627,7 +723,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2FA73FBE759D4C758A81DE6D71E5395D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_304962A6C8824319B90357AA8836B213"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_30A3580DFB5345DF88F7CE7A0E109030"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -681,6 +789,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_34A965D8877E493E98559F190C36A5CE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_34B856FBC1524BB8BF749B1FD005449D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -688,6 +802,12 @@
         "Entry"
         {
         "MsmKey" = "8:_36165C23FF9B4246AD4AF5F9E1AA8C6B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_36BB5CDA528A4013BC81778DDCD6FF88"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -736,6 +856,12 @@
         "Entry"
         {
         "MsmKey" = "8:_3A2F5479361843D0A929A7AB61BF50F6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3A650B02FBF641638E43BD671B52115E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -897,6 +1023,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_432036EAD4E34BD989459A83DDBD4A17"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_43E5CDDD223E47428191ED52A0C951C3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -993,6 +1125,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4A3998D5CA614DB1B8D18196F0E40D44"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4AA0087E0B3C7E6BD38D2703529B67F7"
         "OwnerKey" = "8:_A5E4CBFB93C0907BFF831EA06E0C682D"
         "MsmSig" = "8:_UNDEFINED"
@@ -1012,6 +1150,12 @@
         "Entry"
         {
         "MsmKey" = "8:_4BFD223B82D64B25B4A9B3FA6D182E65"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D6FE33E82A344B090E404F4567E055B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1233,8 +1377,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6145D6D2C053433EB6EC0E4B73C007CB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_61B86D1411BF41BFB3C7E80F140106D4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_62075CE3CC27FE5CB5F4AF952D823656"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_627308A77524473B9A835FA29A116099"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1371,6 +1533,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_69F9A368A9534162801F6A81FEAD5579"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6A91A7DEC01B41369BBEBD276156FEB2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1389,7 +1557,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6BED98289ACD47FF8025A39CAB79BCAA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6CB85A1191E7409E8CDE3A1CE1888B8E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6DC430F875364F86BAB2C268206A1978"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1426,6 +1606,12 @@
         "Entry"
         {
         "MsmKey" = "8:_6F49E8A33CF14F4C9F64D9DEE214090B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6F6D7F9C74584BA8817E33A8A2E322E7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1473,6 +1659,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_71B9747EBC1B4C2596BC3A1C562D144B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_71BCAC6F689D4761A539C35ED56A9FEE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1480,6 +1672,12 @@
         "Entry"
         {
         "MsmKey" = "8:_71DB0C9141544B619699DA2543D207DE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_71F691717F334AC698B6B181E67CB10D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1593,6 +1791,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7B2A6D326C854FF2BE54090AE2B6AB93"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7B4685D3BDFE466D80C9E2EE30B5435B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1647,6 +1851,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7F03993A2C5E4713944A1B1EF0F4D683"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7F0CD17B792242DF9F201C1F070022DA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1685,6 +1895,12 @@
         {
         "MsmKey" = "8:_8278A33D38E694B193921DC4AA3DA52D"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_82835EC6412D4B198C826EEFF978617B"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1875,6 +2091,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8A76E3350A4842DD847095E98C9F76CC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8AC1D8A698224A6BB78968B98056785E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1912,6 +2134,12 @@
         "Entry"
         {
         "MsmKey" = "8:_8C95F619E7E64D89BC1DE0A65C962C30"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8D0F9009C5C64033ACE13BA011FA08F9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1978,6 +2206,12 @@
         "Entry"
         {
         "MsmKey" = "8:_904EE94EB73249CD9EEF828A5F55B24C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9190C37209BA457687A7933B7A506CDA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2109,6 +2343,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9697B84C609848AEBE5F8C427003AED4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_96C36A904693413AB2BA19658CD9D39A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2212,6 +2452,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9CB5A7B8BE1A47F28C72369B45E6EF9E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9CEFF1BFC9D14C60AB088898CEC2CBC0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2493,7 +2739,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_ABF51F69268C48328993C2FCAAB91599"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_ABF5E6796BE44A8C8552EDCBB5E8EA15"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AC5AA29EEF17426CB41281467502B6C1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2643,6 +2901,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B1542F7B39094BB889D35D09A224DBB4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B246A47BDB424AC3B5FB6DA9CE412B67"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2691,7 +2955,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B5F97E8E7BF24A868B96FA87E7F1E822"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B62365257DF54578AD447F48D1F25295"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B6521CECFD534F6BAFF480C4113F693B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2710,6 +2986,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B69B1789A4A4443FBC0E922F4AB838B4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B747CF24D3D64FF7A2EB9FA343D31110"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2836,6 +3118,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C063E6BFC4A245B6AD468A98784ED5F9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C110BB4ECC94425086EF54BB2340CCC6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3021,6 +3309,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CA5D9D6AFE204A6FABAF256A662701D4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CA8A43D04CF34F309F610CFAF2DC17A4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -3057,7 +3351,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CB87E05D1100425A9C3E7EBF3C5B672F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CB8E709FD6CA4631A66F02FE07E6EED2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CBB01414D0834585968C012CF1195078"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CBDB731546534269B3E603BBA544C38F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3189,6 +3501,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D44A8C15BA7F492CB3A365BA0D3F8108"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D48BAAE6F65F46CAB8F5E8E5E7F4ACC4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -3226,6 +3544,12 @@
         "Entry"
         {
         "MsmKey" = "8:_D8D147D00A054FF38EF3F8EF42803973"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D8E5FC53F43541DE875DB44657F41749"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3573,6 +3897,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F0EC944853434295B4C19C1056167041"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F1110EBCF7FCFA6492EC28C065192321"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -3765,6 +4095,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FADADFA7C85644818CD290F70D0963FE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FB011F3D246814DD9C425097E91E4D06"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
@@ -3783,6 +4119,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FCA9A2EE50AF4ADEA70A9085C082EA5D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FDD07C82FD5E4931AC1CB3CE25B7869C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -3796,6 +4138,12 @@
         "Entry"
         {
         "MsmKey" = "8:_FEC3178278174ABB8E759B7B84843971"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FEE77FA978A14460AB098384B0F3A499"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4778,6 +5126,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00C530BC4C484E8C86E327EA996064F8"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Medium.ttf"
+            "TargetName" = "8:Oswald-Medium.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_00D957108CDEBFC0FD89073D24B6C6FC"
             {
             "AssemblyRegister" = "3:1"
@@ -4886,6 +5254,26 @@
             "TargetName" = "8:RPT_PUR_Tax_AdditionalValue_DayWise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_034BDF71262E4BAA998B4BDC602A4343"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-MediumItalic.ttf"
+            "TargetName" = "8:Oswald-MediumItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5428,6 +5816,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_10F3392670FD4D83AECE2DCB97D1E317"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-06.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-06.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_115D20040B434514AF6C06452917A15A"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SALES_Card_Payment_Detail.rpt"
@@ -5585,6 +5993,46 @@
             "TargetName" = "8:RPT_CP_Product_RateCategory_Offset.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1315AD2F7BE44BDB97461B609D633F6C"
+            {
+            "SourcePath" = "8:..\\Font\\segoe-ui-4\\Segoe UI.ttf"
+            "TargetName" = "8:Segoe UI.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_1EE06CFCED1B49989AE6FC1DB25B260E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_131B9F60052F4C7399F0555AAB9A19CB"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Demi-BoldItalic.ttf"
+            "TargetName" = "8:Oswald-Demi-BoldItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5781,6 +6229,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15D38851D2EF4F51A19CA424796AE1E3"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaNarrow3.ttf"
+            "TargetName" = "8:Code39AzaleaNarrow3.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15EBF1B98D894DF8A03226CF627CF74B"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_MValue_BrandWiseReport.rpt"
@@ -5832,12 +6300,52 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_167C8D257E394B338D6D0E6E843880F9"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-RegularItalic.ttf"
+            "TargetName" = "8:Oswald-RegularItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17B5C8267DC94A7B8B029E5EEF10B790"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList.rpt"
             "TargetName" = "8:RPT_PUR_PO_ProductList.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17FC7E322D2746E5BBD744F004064F39"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-04.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-04.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5923,6 +6431,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1A526F83ADE549CCA36CA0663E51171A"
+            {
+            "SourcePath" = "8:..\\Font\\Baamini.ttf"
+            "TargetName" = "8:Baamini.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1AD998E91CB44CE7A29304042EFFA6F6"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Product_100x70_Copy.rpt"
@@ -5969,6 +6497,26 @@
             "TargetName" = "8:RPT_Sticker_Print_Rack_100x70.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B814717E564419683F0EE478DFFFACC"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaNarrow2.ttf"
+            "TargetName" = "8:Code39AzaleaNarrow2.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6103,6 +6651,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_204A93E877F7430696FD0C745A6FECC4"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-07.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-07.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2090A56504F65B5C4EA26CE0C9ECB180"
             {
             "AssemblyRegister" = "3:1"
@@ -6140,6 +6708,26 @@
             "TargetName" = "8:RPT_SALES_Summary_Sum.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2119325B0D734DA4BBF39494052A55B3"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Regular.ttf"
+            "TargetName" = "8:Oswald-Regular.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6287,6 +6875,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_24EEB86AE88B4CA6B5956EA5C90D0A71"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-05.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-05.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_25A91092D0FB4429A18F8E72B5337949"
             {
             "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-05.ttf"
@@ -6313,6 +6921,26 @@
             "TargetName" = "8:RPT_PUR_Tax_TaxDetails_DayWise_Summary.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_26CA62B31F9244F48E44655AAC8A479B"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaNarrow1.ttf"
+            "TargetName" = "8:Code39AzaleaNarrow1.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6449,6 +7077,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_29207E4711404594ABFAC1B4354BDB63"
+            {
+            "SourcePath" = "8:..\\Font\\segoe-ui-4\\Segoe UI Bold Italic.ttf"
+            "TargetName" = "8:Segoe UI Bold Italic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_1EE06CFCED1B49989AE6FC1DB25B260E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_294AD621A0E45B8D4B67324B1239DCD4"
             {
             "AssemblyRegister" = "3:1"
@@ -6506,6 +7154,26 @@
             "TargetName" = "8:RPT_Sticker_Print_Rack_Description_50x60.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2A0827E9A3614809BEE4F5F62F690C56"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaRegular2.ttf"
+            "TargetName" = "8:Code39AzaleaRegular2.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6711,12 +7379,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2FA73FBE759D4C758A81DE6D71E5395D"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Bold.ttf"
+            "TargetName" = "8:Oswald-Bold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_304962A6C8824319B90357AA8836B213"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SALES_Card_Payment_Monthwise_Mid.rpt"
             "TargetName" = "8:RPT_SALES_Card_Payment_Monthwise_Mid.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_30A3580DFB5345DF88F7CE7A0E109030"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-02.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-02.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6891,6 +7599,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_34A965D8877E493E98559F190C36A5CE"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-ExtraLight.ttf"
+            "TargetName" = "8:Oswald-ExtraLight.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_34B856FBC1524BB8BF749B1FD005449D"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Sticker_Print_Basket_50x60.rpt"
@@ -6917,6 +7645,26 @@
             "TargetName" = "8:RPT_PUR_ProductWise_DayWisePurchaseValue.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36BB5CDA528A4013BC81778DDCD6FF88"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\code128.ttf"
+            "TargetName" = "8:code128.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7099,6 +7847,26 @@
             "TargetName" = "8:RPT_TP_PUR_PurchaseDC.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3A650B02FBF641638E43BD671B52115E"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaWide1.ttf"
+            "TargetName" = "8:Code39AzaleaWide1.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7688,6 +8456,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_432036EAD4E34BD989459A83DDBD4A17"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Stencil.ttf"
+            "TargetName" = "8:Oswald-Stencil.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_43E5CDDD223E47428191ED52A0C951C3"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Purchase_Summary_Portrait.rpt"
@@ -8072,6 +8860,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A3998D5CA614DB1B8D18196F0E40D44"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-08.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-08.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4AA0087E0B3C7E6BD38D2703529B67F7"
             {
             "AssemblyRegister" = "3:1"
@@ -8129,6 +8937,26 @@
             "TargetName" = "8:RPT_SALES_Productwise_Details.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D6FE33E82A344B090E404F4567E055B"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Light.ttf"
+            "TargetName" = "8:Oswald-Light.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8982,6 +9810,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6145D6D2C053433EB6EC0E4B73C007CB"
+            {
+            "SourcePath" = "8:..\\Font\\segoe-ui-4\\Segoe UI Bold.ttf"
+            "TargetName" = "8:Segoe UI Bold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_1EE06CFCED1B49989AE6FC1DB25B260E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61B86D1411BF41BFB3C7E80F140106D4"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-DemiBold.ttf"
+            "TargetName" = "8:Oswald-DemiBold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_62075CE3CC27FE5CB5F4AF952D823656"
             {
             "AssemblyRegister" = "3:1"
@@ -9011,6 +9879,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_627308A77524473B9A835FA29A116099"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-DemiBold.ttf"
+            "TargetName" = "8:Oswald-DemiBold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_629DFB8FB982482F8741FA280B6A1F9D"
@@ -9388,6 +10276,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_69F9A368A9534162801F6A81FEAD5579"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Heavy.ttf"
+            "TargetName" = "8:Oswald-Heavy.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A91A7DEC01B41369BBEBD276156FEB2"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PAY_BillWise_SupplierPaymentPending.rpt"
@@ -9459,12 +10367,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6BED98289ACD47FF8025A39CAB79BCAA"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-BoldItalic.ttf"
+            "TargetName" = "8:Oswald-BoldItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6CB85A1191E7409E8CDE3A1CE1888B8E"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock_Valuation_Subgroupwise.rpt"
             "TargetName" = "8:RPT_Stock_Valuation_Subgroupwise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6DC430F875364F86BAB2C268206A1978"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Medium.ttf"
+            "TargetName" = "8:Oswald-Medium.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9585,6 +10533,26 @@
             "TargetName" = "8:RPT_PUR_GRNDetailsDC.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F6D7F9C74584BA8817E33A8A2E322E7"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Heavy.ttf"
+            "TargetName" = "8:Oswald-Heavy.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9730,6 +10698,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_71B9747EBC1B4C2596BC3A1C562D144B"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-MediumItalic.ttf"
+            "TargetName" = "8:Oswald-MediumItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_71BCAC6F689D4761A539C35ED56A9FEE"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Rate.rpt"
@@ -9756,6 +10744,26 @@
             "TargetName" = "8:RPT_CP_Rackgroup_Product_Weight_Loc_Split.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_71F691717F334AC698B6B181E67CB10D"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Light.ttf"
+            "TargetName" = "8:Oswald-Light.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10163,6 +11171,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B2A6D326C854FF2BE54090AE2B6AB93"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Extra-LightItalic.ttf"
+            "TargetName" = "8:Oswald-Extra-LightItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B4685D3BDFE466D80C9E2EE30B5435B"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierProductList.rpt"
@@ -10345,6 +11373,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F03993A2C5E4713944A1B1EF0F4D683"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-01.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-01.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F0CD17B792242DF9F201C1F070022DA"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_Detail.rpt"
@@ -10505,6 +11553,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82835EC6412D4B198C826EEFF978617B"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Demi-BoldItalic.ttf"
+            "TargetName" = "8:Oswald-Demi-BoldItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_82958AB2FB3C7D4CDD4E18AE7CCBD2B2"
@@ -11022,6 +12090,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A76E3350A4842DD847095E98C9F76CC"
+            {
+            "SourcePath" = "8:..\\Font\\QR font tfb.ttf"
+            "TargetName" = "8:QR font tfb.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8AC1D8A698224A6BB78968B98056785E"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Products.rpt"
@@ -11159,6 +12247,26 @@
             "TargetName" = "8:RPT_PUR_HSNCodeWiseTaxDetails.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D0F9009C5C64033ACE13BA011FA08F9"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaRegular3.ttf"
+            "TargetName" = "8:Code39AzaleaRegular3.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11412,6 +12520,26 @@
             "TargetName" = "8:RPT_TP_Stock_Taking.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9190C37209BA457687A7933B7A506CDA"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-LightItalic.ttf"
+            "TargetName" = "8:Oswald-LightItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11725,6 +12853,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9697B84C609848AEBE5F8C427003AED4"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaWide3.ttf"
+            "TargetName" = "8:Code39AzaleaWide3.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96C36A904693413AB2BA19658CD9D39A"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_ProductWeight_LocationWiseGroup.rpt"
@@ -12004,6 +13152,26 @@
             "TargetName" = "8:RPT_CP_Pro_MultipleRate_Offset_PICode.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9CEFF1BFC9D14C60AB088898CEC2CBC0"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-09.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-09.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -12906,12 +14074,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ABF51F69268C48328993C2FCAAB91599"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-03.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-03.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ABF5E6796BE44A8C8552EDCBB5E8EA15"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_SALES_GeneralCustomerNameChange.rpt"
             "TargetName" = "8:RPT_SALES_GeneralCustomerNameChange.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC5AA29EEF17426CB41281467502B6C1"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-HeavyItalic.ttf"
+            "TargetName" = "8:Oswald-HeavyItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13341,6 +14549,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B1542F7B39094BB889D35D09A224DBB4"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-ExtraLight.ttf"
+            "TargetName" = "8:Oswald-ExtraLight.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B24103BCE0384F2FB169F03D91657940"
             {
             "SourcePath" = "8:..\\ssslicense.rtf"
@@ -13554,12 +14782,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B5F97E8E7BF24A868B96FA87E7F1E822"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaRegular1.ttf"
+            "TargetName" = "8:Code39AzaleaRegular1.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B62365257DF54578AD447F48D1F25295"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_List.rpt"
             "TargetName" = "8:RPT_CP_Supplier_List.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6521CECFD534F6BAFF480C4113F693B"
+            {
+            "SourcePath" = "8:..\\Font\\Rupee_Foradian.ttf"
+            "TargetName" = "8:Rupee_Foradian.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -13631,6 +14899,26 @@
             "TargetName" = "8:RPT_Stock_Valuation_Groupwise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B747CF24D3D64FF7A2EB9FA343D31110"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-LightItalic.ttf"
+            "TargetName" = "8:Oswald-LightItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -14095,6 +15383,26 @@
             "TargetName" = "8:RPT_PAY_Advance-SubReport.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C110BB4ECC94425086EF54BB2340CCC6"
+            {
+            "SourcePath" = "8:..\\Font\\Scanme - QR - BC.ttf"
+            "TargetName" = "8:Scanme - QR - BC.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -14748,6 +16056,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CA5D9D6AFE204A6FABAF256A662701D4"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Regular.ttf"
+            "TargetName" = "8:Oswald-Regular.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CA8A43D04CF34F309F610CFAF2DC17A4"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_User_RoleWise_Menu.rpt"
@@ -14868,12 +16196,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB87E05D1100425A9C3E7EBF3C5B672F"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-HeavyItalic.ttf"
+            "TargetName" = "8:Oswald-HeavyItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB8E709FD6CA4631A66F02FE07E6EED2"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-Extra-LightItalic.ttf"
+            "TargetName" = "8:Oswald-Extra-LightItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CBB01414D0834585968C012CF1195078"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Product_Portrait_Print_A7.rpt"
             "TargetName" = "8:RPT_Product_Portrait_Print_A7.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CBDB731546534269B3E603BBA544C38F"
+            {
+            "SourcePath" = "8:..\\Font\\segoe-ui-4\\Segoe UI Italic.ttf"
+            "TargetName" = "8:Segoe UI Italic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_1EE06CFCED1B49989AE6FC1DB25B260E"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -15374,6 +16762,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D44A8C15BA7F492CB3A365BA0D3F8108"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Code39AzaleaWide2.ttf"
+            "TargetName" = "8:Code39AzaleaWide2.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_FE80A44DECEE443B891504F0239CD1B8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D48BAAE6F65F46CAB8F5E8E5E7F4ACC4"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_ItemMovementAnalysis.rpt"
@@ -15511,6 +16919,26 @@
             "TargetName" = "8:RPT_INV_Damage_SupplierWise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D8E5FC53F43541DE875DB44657F41749"
+            {
+            "SourcePath" = "8:..\\Font\\Uni Ila.Sundaram-10.ttf"
+            "TargetName" = "8:Uni Ila.Sundaram-10.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -16710,6 +18138,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F0EC944853434295B4C19C1056167041"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Bold.ttf"
+            "TargetName" = "8:Oswald-Bold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F1110EBCF7FCFA6492EC28C065192321"
             {
             "AssemblyRegister" = "3:1"
@@ -17280,6 +18728,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FADADFA7C85644818CD290F70D0963FE"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-BoldItalic.ttf"
+            "TargetName" = "8:Oswald-BoldItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FB011F3D246814DD9C425097E91E4D06"
             {
             "AssemblyRegister" = "3:1"
@@ -17351,6 +18819,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FCA9A2EE50AF4ADEA70A9085C082EA5D"
+            {
+            "SourcePath" = "8:..\\Font\\Barcode font\\Oswald\\Oswald-Stencil.ttf"
+            "TargetName" = "8:Oswald-Stencil.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_8C99F684328D43CDBD442F077DD984EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDD07C82FD5E4931AC1CB3CE25B7869C"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_Tax_TaxDetails_DayWise_Summary_Total.rpt"
@@ -17408,6 +18896,26 @@
             "TargetName" = "8:RPT_PUR_PO_ProductList_Product_wise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FEE77FA978A14460AB098384B0F3A499"
+            {
+            "SourcePath" = "8:..\\Font\\Oswald-RegularItalic.ttf"
+            "TargetName" = "8:Oswald-RegularItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_449DB99236DF48F9BA2E076D46C35E4C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -17511,6 +19019,50 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_449DB99236DF48F9BA2E076D46C35E4C"
+                    {
+                    "Name" = "8:Font"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_5476B9C0C5D249069791AD4A71952162"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_1EE06CFCED1B49989AE6FC1DB25B260E"
+                            {
+                            "Name" = "8:segoe-ui-4"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_38B35F708DA34F37B192DD964C82E251"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_FE80A44DECEE443B891504F0239CD1B8"
+                            {
+                            "Name" = "8:Barcode font"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_B9068171F92E47BA86112DBB9D041A61"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8C99F684328D43CDBD442F077DD984EC"
+                                    {
+                                    "Name" = "8:Oswald"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_7097B5D742E14A2C88F90C09475586EF"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_B198CE041B734750B0A71D5424ACA430"
                     {
                     "Name" = "8:Reports"
@@ -17563,7 +19115,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROMS"
         "ProductCode" = "8:{65644A01-522F-434C-BB65-3E5C488DC7F5}"
-        "PackageCode" = "8:{5D50ED83-46BC-49D1-812C-D6AF16E85818}"
+        "PackageCode" = "8:{A95766F6-E6E7-4F23-815B-E3A173780778}"
         "UpgradeCode" = "8:{FC2AE767-A3BF-4189-A07F-0B601778A960}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
