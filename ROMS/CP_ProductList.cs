@@ -1564,6 +1564,9 @@ namespace ROMS
                 tsbDelete.Visible = privilege.Contains("4");  
                 btnExport.Visible = privilege.Contains("6");
 
+                grdItemList.Columns["clmClone"].Visible = privilege.Contains("11");
+                DGV_SearchGrid.Columns["clmClone"].Visible = privilege.Contains("11");
+
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     varListTypeView = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 47 && sp.EditAccess.Split(',').Contains("9"));
