@@ -2246,7 +2246,9 @@ namespace ROMS
                     {
                         mtbTime1.Enabled = true;
                         cmbFormat1.Enabled = true;
+                        cmbFormat1.SelectedIndex = 0;
                         mtbTime2.Enabled = true;
+                        cmbFormat2.SelectedIndex = 0;
                         cmbFormat2.Enabled = true;
                     }
                 }
@@ -2277,6 +2279,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbDayFilter.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2343,6 +2346,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 epReport.Clear();
                 mtbTime1.BackColor = Color.LemonChiffon;
             }
@@ -2386,6 +2390,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 epReport.Clear();
                 cmbFormat1.BackColor = Color.LemonChiffon;
             }
@@ -2430,24 +2435,6 @@ namespace ROMS
             try
             {
                 cmbFormat1.BackColor = Color.White;
-                if (mtbTime1.Text != "")
-                {
-                    MR_Master objMR_Master = new MR_Master();
-                    objMR_Master.ViewType = 21;
-                    objMR_Master.paraDate = Convert.ToString(MainForm.pbCurrentDate);
-                    objMR_Master.paraTime = mtbTime1.Text;
-                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
-                    SPDataService objDServ = new SPDataService();
-                    DataSet objd = new DataSet();
-                    objd = objDServ.udfnMaster(objMR_Master);
-                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
-                    {
-                        epReport.SetError(mtbTime1, "Please enter valid Time");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        epReport.SetError(cmbFormat1, "Please enter valid Format");
-                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -2509,6 +2496,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 epReport.Clear();
                 mtbTime2.BackColor = Color.LemonChiffon;
             }
@@ -2589,6 +2577,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 epReport.Clear();
                 cmbFormat2.BackColor = Color.LemonChiffon;
             }
@@ -2633,24 +2622,6 @@ namespace ROMS
             try
             {
                 cmbFormat2.BackColor = Color.White;
-                if (mtbTime2.Text != "")
-                {
-                    MR_Master objMR_Master = new MR_Master();
-                    objMR_Master.ViewType = 21;
-                    objMR_Master.paraDate = Convert.ToString(MainForm.pbCurrentDate);
-                    objMR_Master.paraTime = mtbTime1.Text;
-                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
-                    SPDataService objDServ = new SPDataService();
-                    DataSet objd = new DataSet();
-                    objd = objDServ.udfnMaster(objMR_Master);
-                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
-                    {
-                        epReport.SetError(mtbTime2, "Please enter valid Time");
-                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        epReport.SetError(cmbFormat2, "Please enter valid Format");
-                        cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -2691,9 +2662,24 @@ namespace ROMS
 
         private void chkTimeRange_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                mtbTime1.Focus();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (mtbTime1.Enabled == true)
+                    {
+                        mtbTime1.Focus();
+                    }
+                    else
+                    {
+                        cmbSalesType.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
