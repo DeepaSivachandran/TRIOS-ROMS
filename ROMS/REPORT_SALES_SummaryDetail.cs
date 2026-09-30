@@ -1272,13 +1272,17 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_Customer.Visible == false)
                 {
-                    if (cmbMultiSelectDays.Enabled == true)
+                    if (cmbDayFilter.Enabled == true)
                     {
-                        cmbMultiSelectDays.Focus();
+                        cmbDayFilter.Focus();
                     }
                     else if (cmbMultiSelectDays.Enabled == true)
                     {
                         cmbMultiSelectDays.Focus();
+                    }
+                    else if (cmbMultiMonths.Enabled == true)
+                    {
+                        cmbMultiMonths.Focus();
                     }
                     else if (cmbPrintType.Enabled == true)
                     {
@@ -1358,13 +1362,17 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        if (cmbMultiSelectDays.Enabled == true)
+                        if (cmbDayFilter.Enabled == true)
                         {
-                            cmbMultiSelectDays.Focus();
+                            cmbDayFilter.Focus();
                         }
                         else if (cmbMultiSelectDays.Enabled == true)
                         {
                             cmbMultiSelectDays.Focus();
+                        }
+                        else if (cmbMultiMonths.Enabled == true)
+                        {
+                            cmbMultiMonths.Focus();
                         }
                         else if (cmbPrintType.Enabled == true)
                         {
@@ -1475,16 +1483,21 @@ namespace ROMS
             try
             {
                 varUpDownKeyCustomer = 1;
-                udfnCustomerAutocomplete(); 
-                if (cmbMultiSelectDays.Enabled == true)
+                udfnCustomerAutocomplete();
+
+                if (cmbDayFilter.Enabled == true)
+                {
+                    cmbDayFilter.Focus();
+                }
+                else if (cmbMultiSelectDays.Enabled == true)
                 {
                     cmbMultiSelectDays.Focus();
                 }
-                else if(cmbMultiSelectDays.Enabled == true)
+                else if (cmbMultiMonths.Enabled == true)
                 {
-                    cmbMultiSelectDays.Focus();
+                    cmbMultiMonths.Focus();
                 }
-                else if(cmbPrintType.Enabled == true)
+                else if (cmbPrintType.Enabled == true)
                 {
                     cmbPrintType.Focus();
                 }
@@ -1556,13 +1569,17 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        if (cmbMultiSelectDays.Enabled == true)
+                        if (cmbDayFilter.Enabled == true)
                         {
-                            cmbMultiSelectDays.Focus();
+                            cmbDayFilter.Focus();
                         }
                         else if (cmbMultiSelectDays.Enabled == true)
                         {
                             cmbMultiSelectDays.Focus();
+                        }
+                        else if (cmbMultiMonths.Enabled == true)
+                        {
+                            cmbMultiMonths.Focus();
                         }
                         else if (cmbPrintType.Enabled == true)
                         {
