@@ -1754,7 +1754,11 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    txtRowCount.Focus();
+                    if (txtRowCount.Enabled == true)
+                    {
+                        txtRowCount.Focus();
+                    }
+                    else { btnView.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -2252,7 +2256,14 @@ namespace ROMS
                 {
                     txtRowCount.ReadOnly = true;
                     txtRowCount.Enabled = false;
-                    txtRowCount.Text = "6";
+                    if (Convert.ToInt16(cmbPrintFormat.SelectedValue) == 359)
+                    {
+                        txtRowCount.Text = "4";
+                    }
+                    else
+                    {
+                        txtRowCount.Text = "6";
+                    }
                 }
             }
             catch (Exception ex)

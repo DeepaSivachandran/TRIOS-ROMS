@@ -1428,7 +1428,7 @@ namespace ROMS
         {
             try
             {
-                lvCity.Items.Clear();
+                lvCPCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtCPCity.Text.Length > 2)
@@ -2449,6 +2449,7 @@ namespace ROMS
                 udfnListView();
                 txtCity.Text = varCityName;
                 lblcityid.Text = Convert.ToString(varCityCode);
+                pbCityID = varCityCode;
                 lvCity.Visible = false;
                 txtPincode.Focus();
             }
@@ -2620,8 +2621,7 @@ namespace ROMS
                             txtCPAddressLine2.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Address2"]);
                             cmbCPState.SelectedValue = Convert.ToInt16(objDS.Tables[0].Rows[0]["AB_CPSTID"]);
                             txtCPCity.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Contact City"]);
-                            pbCPCityid = Convert.ToInt16(objDS.Tables[0].Rows[0]["AB_CPCTYID"]);
-                            txtPincode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Pincode"]);
+                            pbCPCityid = Convert.ToInt16(objDS.Tables[0].Rows[0]["AB_CPCTYID"]); 
                             txtCPPincode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Contact Pincode"]);
                             txtCPPhoneNo.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Contact Phone No"]);
                             txtCPMobileNo1.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Mobile No1"]);
@@ -2635,6 +2635,7 @@ namespace ROMS
                             txtRemarks.Text = Convert.ToString(objDS.Tables[0].Rows[0]["AB_Remarks"]);
                             txtCPMobileNo2.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Mobile No2"]);
                             lvCPCity.Visible = false;
+                            lvCity.Visible = false;
                         }
                     }
                 } 

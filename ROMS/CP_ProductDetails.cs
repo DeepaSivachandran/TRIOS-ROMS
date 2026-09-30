@@ -349,8 +349,9 @@ namespace ROMS
                                 grdSupplierList.DataSource = objDs.Tables[1];
                                 grdSupplierList.Columns["S.No."].Width = 50; 
                                 grdSupplierList.ClearSelection();
-                                if (grdStock.Rows.Count != 0)
-                                { lblSupplierNorecord.Visible = false;
+                                if (grdSupplierList.Rows.Count != 0)
+                                {
+                                    lblSupplierNorecord.Visible = false;
 
                                     grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 }
@@ -432,6 +433,7 @@ namespace ROMS
                             }
                             else 
                             {
+                                ShowNoImage();
                                 btnNext.Visible = false;
                                 btnPrevious.Visible = false;
                             }
@@ -571,9 +573,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 100;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 280;
+                                    DGV_FilterProduct.Columns["Rate"].Width = 100;
                                     DGV_FilterProduct.Columns["UNIT"].Width = 50;
                                     DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
-                                    DGV_FilterProduct.Columns["Rate"].Width = 100;
+                                    DGV_FilterProduct.Columns["Rate"].Width = 70;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1; 
                                     DGV_FilterProduct.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -757,6 +760,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void ShowNoImage()
+        {
+            try
+            {
+                _imageTimer.Stop();
+
+                imagePaths.Clear();
+                currentImageIndex = 0;
+
+                if (picProduct.Image != null)
+                {
+                    picProduct.Image.Dispose();
+                    picProduct.Image = null;
+                }
+
+                picProduct.Image = Properties.Resources.picture;
+
+                picProduct.SizeMode = PictureBoxSizeMode.Zoom;
+
+                btnNext.Visible = false;
+                btnPrevious.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
@@ -923,6 +954,7 @@ namespace ROMS
             try
             {
                 udfnLoadProCount();
+                ShowNoImage();
             }
             catch (Exception ex)
             {
