@@ -884,6 +884,11 @@ namespace ROMS
                     dpFromDate.Value = MainForm.pbFYStartDate;
                     dpToDate.Value = MainForm.pbCurrentDate;
                 }
+                else
+                {
+                    dpFromDate.Value = MainForm.pbCurrentDate;
+                    dpToDate.Value = MainForm.pbCurrentDate;
+                }
                 txtCity.Text = "";
                 txtSupplier.Text = "";
                 lblcityid.Text = "0";

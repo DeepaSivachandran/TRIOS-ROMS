@@ -311,6 +311,8 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            lblProductName.AutoSize = true;
+                            lblProductName.MaximumSize = new Size(550, 0);
                             lblPICode.Text = "P.I Code : " + (Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]));
                             lblStatus.Text = "Status : "+ Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
                             lblRetailRateValue.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ParentTname"]); 
@@ -341,6 +343,7 @@ namespace ROMS
                             lblUpp.Text = Convert.ToString(objDs.Tables[0].Rows[0]["UPP"]); 
                             lblInfoStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
                             lblProductUnitsTitle.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ChildProdutType"]);
+                          
                         }
                         if (objDs.Tables.Count > 1)
                         {
