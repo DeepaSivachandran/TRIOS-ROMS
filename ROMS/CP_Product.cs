@@ -9074,6 +9074,18 @@ namespace ROMS
                         e.Cancel = true; // Prevents the user from selecting this tab
                     }
                 }
+                if (e.TabPage == tabPage4)  // Price Markup Tab
+                {
+                    // Free Product No need to Allow Rate Change
+                    if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 15)
+                    {
+                        e.Cancel = true; // Prevents the user from selecting this tab
+                    }
+                    else
+                    {
+                        e.Cancel = false;
+                    }
+                }
             }
             catch (Exception ex)
             {

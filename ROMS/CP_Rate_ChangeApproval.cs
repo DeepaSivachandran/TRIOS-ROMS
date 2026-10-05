@@ -2241,6 +2241,33 @@ namespace ROMS
             }
         }
 
+        private void btnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                btnView.BackColor=Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnGridNull(Control skipControl)
         {
             try
