@@ -6859,6 +6859,49 @@ namespace ROMS
 
             return ds;
         }
+        public DataSet udfnSalesTaxReport(MR_Sales objMR_Sales)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                tmpspcall = new SPCall();
+
+                SqlCommand varSqlCommand = new SqlCommand(   "[TRNG_SalesTaxReport]", tmpspcall.objConn);
+
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Sales.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerId", objMR_Sales.paraCustomerId);
+                varSqlCommand.Parameters.AddWithValue("@paraGSTType", objMR_Sales.paraGSTType);
+                varSqlCommand.Parameters.AddWithValue("@paraBillType", objMR_Sales.paraBillType);
+                varSqlCommand.Parameters.AddWithValue("@paraSalesType", objMR_Sales.paraSalesType);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objMR_Sales.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objMR_Sales.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Sales.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraDays", objMR_Sales.paraDays);
+                varSqlCommand.Parameters.AddWithValue("@paraMonths", objMR_Sales.paraMonths);  
+                varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID ?? "");
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName ?? "");  
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress ?? "");  
+                varSqlCommand.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (tmpspcall != null)
+                    tmpspcall.CloseConnection();
+            }
+
+            return ds;
+        }
     }
 
 }

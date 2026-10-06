@@ -131,6 +131,7 @@ namespace ROMS.Model
         public int paraBilledBy { get; set; } = 0;
         public int paraSchemeType { get; set; } = 0;
         public int paraBillCategory { get; set; } = 0;
+        public int paraGSTType { get; set; } = 0;
     }
 
 }
