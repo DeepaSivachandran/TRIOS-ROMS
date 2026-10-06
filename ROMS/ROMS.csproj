@@ -1069,6 +1069,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_Tax_Customerwise_Summary.cs">
+      <DependentUpon>RPT_SALES_Tax_Customerwise_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_Tax_Monthwise_Details.cs">
       <DependentUpon>RPT_SALES_Tax_Monthwise_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6600,6 +6607,11 @@
     <EmbeddedResource Include="Reports\RPT_SALES_Tax_Billwise_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_Tax_Billwise_Details.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_SALES_Tax_Customerwise_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_Tax_Customerwise_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_SALES_Tax_Monthwise_Details.rpt">
