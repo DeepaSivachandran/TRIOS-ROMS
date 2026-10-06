@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,6 +85,243 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private int GetDisplayWidth(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return 0;
+            return new StringInfo(text).LengthInTextElements;
+        }
+        private string PadDisplayRight(string text, int width)
+        {
+            int currentWidth = GetDisplayWidth(text);
+
+            if (currentWidth >= width)
+                return text;
+
+            return text + new string(' ', width - currentWidth);
+        }
+
+        public async Task udfnTelegramRCNotification(string varMessage, string varURL)
+        {
+            try
+            {
+                // Find Product section
+                int productIndex = varMessage.IndexOf("*Product :*");
+
+                string finalMessage = varMessage;
+
+                if (productIndex >= 0)
+                {
+                    // Get everything before Product section
+                    string header = varMessage.Substring(0, productIndex);
+
+                    // Get product section
+                    string productSection = varMessage.Substring(productIndex);
+
+                    // Remove Product header
+                    string productText = productSection
+                        .Replace("*Product :*", "")
+                        .Trim();
+
+                    // Get products
+                    string[] products = productText
+                        .Split(
+                            new[] { '\r', '\n' },
+                            StringSplitOptions.RemoveEmptyEntries
+                        )
+                        .Where(x => x.TrimStart().StartsWith("•"))
+                        .Select(x => x.Trim().TrimStart('•').Trim())
+                        .ToArray();
+
+                    // ===============================
+                    // BUILD TELEGRAM TABLE
+                    // ===============================
+
+                    StringBuilder table = new StringBuilder();
+
+                    int noWidth = 4;
+                    int productWidth = 36;
+
+                    string topLine =
+                        "┌" +
+                        new string('─', noWidth) +
+                        "┬" +
+                        new string('─', productWidth) +
+                        "┐";
+
+                    string middleLine =
+                        "├" +
+                        new string('─', noWidth) +
+                        "┼" +
+                        new string('─', productWidth) +
+                        "┤";
+
+                    string bottomLine =
+                        "└" +
+                        new string('─', noWidth) +
+                        "┴" +
+                        new string('─', productWidth) +
+                        "┘";
+
+                    table.AppendLine("📦 PRODUCT DETAILS");
+                    table.AppendLine();
+
+                    table.AppendLine(topLine);
+
+                    // Header
+                    table.AppendLine(
+                        "│" +
+                        PadDisplayRight("No.", noWidth) +
+                        "│" +
+                        PadDisplayRight("Product", productWidth) +
+                        "│"
+                    );
+
+                    table.AppendLine(middleLine);
+
+                    // Products
+                    for (int i = 0; i < products.Length; i++)
+                    {
+                        string product = products[i];
+
+                        List<string> productLines =
+                            WrapText(product, productWidth);
+
+                        for (int j = 0; j < productLines.Count; j++)
+                        {
+                            string no = j == 0
+                                ? (i + 1).ToString("00")
+                                : "";
+
+                            table.AppendLine(
+                                "│" +
+                                PadDisplayRight(no, noWidth) +
+                                "│" +
+                                PadDisplayRight(
+                                    productLines[j],
+                                    productWidth
+                                ) +
+                                "│"
+                            );
+                        }
+
+                        if (i < products.Length - 1)
+                        {
+                            table.AppendLine(middleLine);
+                        }
+                    }
+
+                    table.AppendLine(bottomLine);
+
+                    table.AppendLine();
+                    table.AppendLine(
+                        $"Total Products : {products.Length}"
+                    );
+
+
+                    // Put table inside Markdown code block
+                    finalMessage =
+    header.TrimEnd()
+    + "\r\n\r\n"
+    + "```"
+    + "\r\n"
+    + table.ToString()
+    + "```";
+
+                }
+
+                using (var httpClient = new HttpClient())
+                {
+                    var apiUrl = varURL;
+
+                    var data = new Dictionary<string, string>
+        {
+            {
+                "text",
+                finalMessage
+            },
+            {
+                "parse_mode",
+                "Markdown"
+            }
+        };
+
+                    var response = await httpClient.PostAsync(
+                        apiUrl,
+                        new FormUrlEncodedContent(data)
+                    );
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine(
+                            "Notification sent successfully."
+                        );
+                    }
+                    else
+                    {
+                        Console.WriteLine(
+                            await response.Content.ReadAsStringAsync()
+                        );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private List<string> WrapText(string text, int maxWidth)
+        {
+            List<string> lines = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                lines.Add("");
+                return lines;
+            }
+
+            string remaining = text.Trim();
+
+            while (GetDisplayWidth(remaining) > maxWidth)
+            {
+                int breakPosition = FindBreakPosition(
+                    remaining,
+                    maxWidth
+                );
+
+                string line = remaining.Substring(0, breakPosition).Trim();
+
+                lines.Add(line);
+
+                remaining = remaining.Substring(breakPosition).Trim();
+            }
+
+            if (!string.IsNullOrEmpty(remaining))
+            {
+                lines.Add(remaining);
+            }
+
+            return lines;
+        }
+        private int FindBreakPosition(string text, int maxWidth)
+        {
+            int[] indexes = StringInfo.ParseCombiningCharacters(text);
+
+            if (indexes.Length <= maxWidth)
+                return text.Length;
+
+            int position = indexes[maxWidth];
+
+            // Try to break at a space
+            int spacePosition = text.LastIndexOf(' ', position - 1);
+
+            if (spacePosition > 0)
+                return spacePosition;
+
+            return position;
+        }
         private void CP_SubGroupList_Load(object sender, EventArgs e)
         {
             try
@@ -104,6 +343,7 @@ namespace ROMS
                 {
                     udfnFieldAccess();
                 }
+                udfnTelegramRCNotification("⚡️ *Rate Change Alert* ⚡️\r\n\r\n*Tolerance Alert:* CP rate change has exceeded the configured tolerance limit.\r\n\r\n*Product :*\r\n• 50மி ஜான்சன் பேபி ஷாம்பு\r\n• 5லி யானை செக்கு தேங்காய்.எ(கேன்)(200கி ட்ரைமி ஜவ்வரிசி கூழ்வடகம்-1பாக்கெட்-ஆபர்)\r\n• 200மி ஹிமாலயா பேபி ஷாம்பு\r\n• 1லி டெட்டால் லிகுடு - 1L\r\n• 50மி சதீஷ் ஹேர்ஆயில்", "https://api.telegram.org/bot8231243458:AAGNPs5nl50HrF7TEWMRXGL7Cs_xlVw6oLc/sendMessage?chat_id=2112767339");
             }
             catch (Exception ex)
             {
