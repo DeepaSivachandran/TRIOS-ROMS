@@ -1062,8 +1062,8 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_SALES_TAX_Billwise_Consolidated.cs">
-      <DependentUpon>RPT_SALES_TAX_Billwise_Consolidated.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_SALES_Tax_Billwise_Consolidated.cs">
+      <DependentUpon>RPT_SALES_Tax_Billwise_Consolidated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -6571,9 +6571,9 @@
       <LastGenOutput>RPT_PUR_PurchaseReturnDC.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_SALES_TAX_Billwise_Consolidated.rpt">
+    <EmbeddedResource Include="Reports\RPT_SALES_Tax_Billwise_Consolidated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_SALES_TAX_Billwise_Consolidated.cs</LastGenOutput>
+      <LastGenOutput>RPT_SALES_Tax_Billwise_Consolidated.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_REPORT_Product_RC.rpt">
