@@ -296,7 +296,19 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 687)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Billwise_Details.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Daywise_Details.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 688)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Monthwise_Details.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 689)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Customerwise_Summary.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 690)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Customerwise_Details.rpt");
                     }
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "");
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? ""); 
