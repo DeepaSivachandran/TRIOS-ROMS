@@ -182,6 +182,8 @@ namespace ROMS
                             .ToList();
                             cmbMultiUnit.LoadItems(unit, "Select Unit");
                         }
+                        cmbMultiUnit.SelectAll();
+                        udfnUnitList();
                     }
                 }
                 objdserv.CloseConnection();
@@ -1932,12 +1934,36 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnUnitList()
+        {
+            try
+            {
+                string varUnit = "", varUnitName = "";
+                var selIds = cmbMultiUnit.CheckedIds;
+                var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
+                varUnit = string.Join(",", selItems.Select(x => x.Id));
+                if (selIds.Count > 0)
+                {
+                    varUnitName = string.Join(",", selItems.Select(x => x.Text));
+                    lblUnits.Text = varUnitName;
+                }
+                else
+                {
+                    lblUnits.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void cmbMultiUnit_Leave(object sender, EventArgs e)
         {
             try
             {
                 cmbMultiUnit.BackColor = Color.White;
+                udfnUnitList();
             }
             catch (Exception ex)
             {
