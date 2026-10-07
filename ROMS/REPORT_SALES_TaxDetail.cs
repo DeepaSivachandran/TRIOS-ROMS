@@ -98,7 +98,7 @@ namespace ROMS
                         return;
                     }
                     int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
-                    if (varReportType == 668)
+                    if (varReportType == 687)
                     {
                         if (Convert.ToInt32(cmbDayFilter.SelectedIndex) == 1)
                         {
@@ -115,7 +115,7 @@ namespace ROMS
                         }
                         lblMonths.Text = "";
                     }
-                    else if (varReportType == 669)
+                    else if (varReportType == 688)
                     {
                         if (Convert.ToInt32(cmbDayFilter.SelectedIndex) == 1)
                         {
@@ -193,7 +193,15 @@ namespace ROMS
                 {
                     varViewType =3;
                 }
-                if (varReportType == 686)
+                else if (varReportType == 689)
+                {
+                    varViewType = 4;
+                }
+                else if (varReportType == 690)
+                {
+                    varViewType = 5;
+                }
+                if (varReportType == 687)
                 {
                     lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
                     if (string.IsNullOrWhiteSpace(lblDays.Text))
@@ -207,7 +215,7 @@ namespace ROMS
                         varDays = string.Join(",", selDayIds);
                     }
                 }
-                else if (varReportType == 669)
+                else if (varReportType == 688)
                 {
                     lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
                     if (string.IsNullOrWhiteSpace(lblMonths.Text))
