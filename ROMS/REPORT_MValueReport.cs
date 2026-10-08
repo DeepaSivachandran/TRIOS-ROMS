@@ -174,6 +174,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (179)", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (211,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbShowBy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (213,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbShowByValue, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (212,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (109)  ", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID"); 
                 objDataBind = null;
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 32;
@@ -2165,6 +2170,20 @@ namespace ROMS
                     cmbEntryType.Enabled = true; 
                     cmbEntryType.SelectedValue = 592;
                 }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 597)
+                {
+                    cmbRateType.Enabled = true;
+                    cmbShowBy.Enabled = true;
+                    cmbShowByValue.Enabled = true;
+                    cmbOrderBy.Enabled = true;
+                }
+                else
+                {
+                    cmbRateType.Enabled = false;
+                    cmbShowBy.Enabled = false;
+                    cmbShowByValue.Enabled = false;
+                    cmbOrderBy.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -2472,15 +2491,19 @@ namespace ROMS
             {
                 dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 dpToDate.Text = Convert.ToString(MainForm.pbCurrentDate);
-                if (Convert.ToInt16(cmbEntryType.SelectedValue) == 592)
+                if (Convert.ToInt16(cmbEntryType.SelectedValue) == 592) //Manual
                 {
                     dpFromDate.Enabled = false;
                     dpToDate.Enabled = false;
+                    //cmbShowByValue.Enabled = true;
+                    //cmbShowByValue.SelectedValue = 0;
                 }
-                else
+                else 
                 {
                     dpFromDate.Enabled = true;
                     dpToDate.Enabled = true;
+                    //cmbShowByValue.Enabled = false;
+                    //cmbShowByValue.SelectedValue = 0;
                 }
             }
             catch (Exception ex)
@@ -2544,7 +2567,232 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void cmbRateType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbRateType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbShowBy.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbShowBy.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbShowByValue.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShowBy.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueFilter_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbShowByValue.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbOrderBy.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbValueFilter_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShowByValue.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbOrderBy.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnList(int varFlag)
         {
             try
@@ -2678,6 +2926,10 @@ namespace ROMS
                     objMR_MarginEntry.ParaToDate = dpToDate.Text;
                     objMR_MarginEntry.paraFilterType = varFilterType;
                     objMR_MarginEntry.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
+                    objMR_MarginEntry.paraRateType = Convert.ToInt32(cmbRateType.SelectedValue);
+                    objMR_MarginEntry.paraShowBy = Convert.ToInt32(cmbShowBy.SelectedValue);
+                    objMR_MarginEntry.paraShowByValue = Convert.ToInt32(cmbShowByValue.SelectedValue);
+                    objMR_MarginEntry.paraOrderBy = Convert.ToInt32(cmbOrderBy.SelectedValue);
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
                     objDs = objspservice.udfnmarginlist(objMR_MarginEntry);
@@ -2708,6 +2960,10 @@ namespace ROMS
                             objBillreport.SetParameterValue("varHeader", "M.Value Product Wise Report");
                             objBillreport.SetParameterValue("paraFilterType", varFilterName);
                             objBillreport.SetParameterValue("paraFilterType", varFilterType);
+                            objBillreport.SetParameterValue("paraOrderBy", Convert.ToInt16(cmbOrderBy.SelectedValue));
+                            objBillreport.SetParameterValue("paraRateType", Convert.ToInt16(cmbRateType.SelectedValue));
+                            objBillreport.SetParameterValue("paraShowBy", Convert.ToInt16(cmbShowBy.SelectedValue));
+                            objBillreport.SetParameterValue("paraShowByValue", Convert.ToInt16(cmbShowByValue.SelectedValue));
                         }
                         else if (Convert.ToInt32(cmbReportType.SelectedValue) == 598)
                         {
