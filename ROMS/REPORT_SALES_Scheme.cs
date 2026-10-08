@@ -194,17 +194,17 @@ namespace ROMS
         {
             try
             {
-                MainForm objMainForm = new MainForm(); 
-                //dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80124; 
-                //string ReportTypeIDs = string.Join(",",
-                // MainForm.objDtMenuDetailsUser?.AsEnumerable()
-                //  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
-                //  .Select(r => r.Field<int?>("MU_EQID"))
-                //  .Where(q => q.HasValue)
-                //  .Select(q => q.Value.ToString())
-                //  ?? Enumerable.Empty<string>());
-                //dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+                 
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 1404;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;

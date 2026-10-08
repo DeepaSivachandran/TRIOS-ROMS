@@ -667,6 +667,7 @@
     <Compile Include="INV_StockRequestQueueList.designer.cs">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Scheme.cs" />
     <Compile Include="ProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2020,6 +2021,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_SALES_SchemeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_SchemeReport.designer.cs">
+      <DependentUpon>REPORT_SALES_SchemeReport.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_SALES_GeneralCustomerNameChange.cs">
       <SubType>Form</SubType>
@@ -7934,6 +7941,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_SALES_SchemeReport.resx">
+      <DependentUpon>REPORT_SALES_SchemeReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_GeneralCustomerNameChange.resx">
       <DependentUpon>REPORT_SALES_GeneralCustomerNameChange.cs</DependentUpon>
     </EmbeddedResource>
