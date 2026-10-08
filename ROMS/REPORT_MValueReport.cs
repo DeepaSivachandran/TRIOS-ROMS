@@ -1040,7 +1040,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    txtAlpha.Focus();
+                    txtSupplier.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1111,7 +1111,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtAlpha.Focus();
+                        txtSupplier.Focus();
                     }
                 }
             }
@@ -1145,7 +1145,7 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                txtAlpha.Focus();
+                txtSupplier.Focus();
             }
             catch (Exception ex)
             {
@@ -1215,7 +1215,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtAlpha.Focus();
+                        txtSupplier.Focus();
                     }
                 }
             }
@@ -1274,7 +1274,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterSupplier.Visible == false)
                 {
-                    cmbCategory.Focus();
+                    txtAlpha.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1345,7 +1345,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbCategory.Focus();
+                        txtAlpha.Focus();
                     }
                 }
             }
@@ -1444,7 +1444,7 @@ namespace ROMS
             {
                 varUpDownKeySupplier = 1;
                 udfnSupplierAutocomplete();
-                cmbCategory.Focus();
+                txtAlpha.Focus();
             }
             catch (Exception ex)
             {
@@ -1536,7 +1536,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbCategory.Focus();
+                        txtAlpha.Focus();
                     }
                 }
             }
@@ -1896,7 +1896,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    cmbCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -2019,7 +2019,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbFilterType.Focus();
                 }
             }
             catch (Exception ex)
