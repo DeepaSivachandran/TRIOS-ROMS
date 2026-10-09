@@ -1338,7 +1338,7 @@ namespace ROMS
                     {
                         varProductionMSQ = Convert.ToDecimal(txtProductionMSQ.Text);
                     }
-                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0,OndemandFlag=0, ProductSchemeApplicable = 0, BillSchemeApplicable = 0;
+                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0, OndemandFlag = 0, ProductSchemeApplicable = 0, BillSchemeApplicable = 0;
                     if (chkFocus.Checked == true)
                     {
                         FocusFlag = 1;
@@ -1528,7 +1528,7 @@ namespace ROMS
                         txtSalesPICode.Text = txtSalesPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                     }
                     int pbschemeFlag = 0, pbFreeITC = 0;
-                    if(chkBillScheme.Checked==true)
+                    if (chkBillScheme.Checked == true)
                     { pbFreeITC = 1; }
                     if (pbSG_BillScheme == 1 && BillSchemeApplicable == 0)
                     {
@@ -1551,12 +1551,13 @@ namespace ROMS
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
                         , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "",
-                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable,"",pbFreeITC, OndemandFlag
+                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable, BillSchemeApplicable, "", pbFreeITC, OndemandFlag,
+                    chkAutoUpdateMargin.Checked == true ? 1 : 0, chkAutoUpdateCp.Checked == true ? 1 : 0
                     );
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
-                    {
+                    { 
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         btnSave.Enabled = true;
                         if (tbProduct.SelectedIndex == 4)
@@ -1641,8 +1642,7 @@ namespace ROMS
                         //{
                         //    this.Close();
                         //} 
-
-                    }
+                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1665,9 +1665,7 @@ namespace ROMS
                 //cmbConcern.Focus();
             }
         }
-
-
-        public void udfnTelegramNotification(int id)
+         public void udfnTelegramNotification(int id)
         {
             try
             {
@@ -1692,9 +1690,7 @@ namespace ROMS
                 {
                     objMainForm.udfnTelegramRCNotification(varMessage);
                 }
-
-
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -3248,7 +3244,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(chkITCReversible.Enabled==true)
+                    if (chkITCReversible.Enabled == true)
                     {
                         chkITCReversible.Focus();
                     }
@@ -3380,8 +3376,7 @@ namespace ROMS
                     chkBillScheme.Enabled = true;
                     chkITCReversible.Enabled = false;
                 }
-                
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -9085,6 +9080,16 @@ namespace ROMS
                     {
                         e.Cancel = false;
                     }
+                     if (Convert.ToInt32(cmbProductType.SelectedValue) == 342) ////child
+                    {
+                        chkAutoUpdateCp.Enabled = true;
+                        chkAutoUpdateMargin.Enabled = true;
+                    }
+                    else
+                    {
+                        chkAutoUpdateCp.Enabled = false;
+                        chkAutoUpdateMargin.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -9586,8 +9591,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void chkITCReversible_Enter(object sender, EventArgs e)
+         private void chkITCReversible_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -9599,8 +9603,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void chkITCReversible_Leave(object sender, EventArgs e)
+         private void chkITCReversible_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -9612,8 +9615,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void chkITCReversible_KeyDown(object sender, KeyEventArgs e)
+         private void chkITCReversible_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -9635,8 +9637,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
+         private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -11435,8 +11436,11 @@ namespace ROMS
                             {
                                 txtRackMOQQty.Enabled = false;
                             }
-                            if(Convert.ToInt16(objDS.Tables[0].Rows[0]["PR_FreeITC"])==1)
+                            if (Convert.ToInt16(objDS.Tables[0].Rows[0]["PR_FreeITC"]) == 1)
                             { chkITCReversible.Checked = true; }
+
+                            chkAutoUpdateCp.Checked = Convert.ToInt32(objDS.Tables[0].Rows[0]["AutoCP"].ToString()) == 1;
+                            chkAutoUpdateMargin.Checked = Convert.ToInt32(objDS.Tables[0].Rows[0]["AutoMargin"].ToString()) == 1;
                         }
                         if (objDS.Tables[1] != null)
                         {
