@@ -30,5 +30,10 @@ namespace ROMS.Model
         public int paraEntryType = 0;
         public int paraProductNameID = 0;
         public string paraRateCategoryIDs = "";
+
+        public int paraRateType = 0;
+        public int paraShowBy = 0;
+        public int paraShowByValue = 0;
+        public int paraOrderBy  = 0;
     }
 }

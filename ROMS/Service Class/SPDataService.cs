@@ -6601,6 +6601,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraEntryType", objMR_MarginEntry.paraEntryType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductNameID", objMR_MarginEntry.paraProductNameID);
                 varSqlCommand.Parameters.AddWithValue("@paraRateCategoryIDs", objMR_MarginEntry.paraRateCategoryIDs);
+                varSqlCommand.Parameters.AddWithValue("@paraRateType", objMR_MarginEntry.paraRateType);
+                varSqlCommand.Parameters.AddWithValue("@paraShowBy", objMR_MarginEntry.paraShowBy);
+                varSqlCommand.Parameters.AddWithValue("@paraShowByValue", objMR_MarginEntry.paraShowByValue);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderBy", objMR_MarginEntry.paraOrderBy);
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
             }

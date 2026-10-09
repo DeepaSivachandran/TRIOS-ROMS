@@ -175,9 +175,11 @@ namespace ROMS
                             .ToList();
                             cmbMultiUnit.LoadItems(unit, "Select Unit");
                         }
+                        cmbMultiUnit.SelectAll();
+                        udfnUnitList();
                     }
                 }
-                objdserv.CloseConnection();
+                objdserv.CloseConnection(); 
                 udfnFilterCount();
                 udfnGroupFilter();
                 udfnSubgroupFilter();
@@ -1811,12 +1813,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnUnitList()
+        {
+            try
+            {
+                string varUnit = "", varUnitName = "";
+                var selIds = cmbMultiUnit.CheckedIds;
+                var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
+                varUnit = string.Join(",", selItems.Select(x => x.Id));
+                if (selIds.Count > 0)
+                {
+                    varUnitName = string.Join(",", selItems.Select(x => x.Text));
+                    lblUnits.Text = varUnitName;
+                }
+                else
+                {
+                    lblUnits.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void cmbMultiUnit_Leave(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 cmbMultiUnit.BackColor = Color.White;
+                udfnUnitList();
             }
             catch (Exception ex)
             {
@@ -2828,8 +2855,10 @@ namespace ROMS
             picLoader.Visible = true;
             picLoader.BringToFront();
 
-            // Keep the loader visible for 2 seconds
-            await Task.Delay(300);
+            grdMarginList.DataSource = null;
+            lblNoRecordsFound.Visible = true;
+            lblNoRecordsFound.BringToFront();
+            udfnDefaultSearchGrid(1);
 
             picLoader.Visible = false;
             picLoader.SendToBack();
@@ -3345,7 +3374,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         private void tspEmpty_Click(object sender, EventArgs e)
         {
             try
@@ -3377,7 +3406,7 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Do you want to discard the changes and close?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     windowControl?.TriggerClose();
