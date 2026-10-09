@@ -1643,7 +1643,8 @@ namespace ROMS
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
               int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames,int paraIntermediateUPP,int paraIntermediateUnit,decimal paraProductionMSQ, DataTable paraMR_SPl_Bulk,
              int FocusFlag , int Priority_Flag  , int Spl_Flag  , int OwnFlag ,DataTable ParaPrice_Markup,int parastockTaken,string  paraEffectiveFrom,string paraSalesPICode,string paraLockTeller,string paraUnLockTeller,
-             string paraProductUsage,int paraProductSchemeEligible, int paraProductBillSchemeEligible,string paraRemarks ="",int paraFreeITC=0,int paraOndemand_Flag=0)
+             string paraProductUsage,int paraProductSchemeEligible, int paraProductBillSchemeEligible,string paraRemarks ="",int paraFreeITC=0,int paraOndemand_Flag=0
+            ,int paraAutoUpdateMargin =0, int paraAutoUpdateCp=0)
         {
             string result = "";  
             try
@@ -1728,6 +1729,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraFreeITC", paraFreeITC);
                 varSqlCommand.Parameters.AddWithValue("@paraOndemand_Flag", paraOndemand_Flag);
+                varSqlCommand.Parameters.AddWithValue("@paraAutoUpdateMargin", paraAutoUpdateMargin);
+                varSqlCommand.Parameters.AddWithValue("@paraAutoUpdateCp", paraAutoUpdateCp);
                  
                 varSqlCommand.CommandTimeout = 0;
 
