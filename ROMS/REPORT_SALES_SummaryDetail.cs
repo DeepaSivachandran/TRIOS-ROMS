@@ -1429,7 +1429,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
                     MR_Sales obj = new MR_Sales();
-                    obj.paraViewType = 6;
+                    obj.paraViewType = 7;
                     if (txtCustomer.Text.Length > 0)
                     {
                         obj.paraCUS_Name = txtCustomer.Text;
