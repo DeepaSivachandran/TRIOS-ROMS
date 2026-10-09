@@ -6884,6 +6884,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Sales.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraDays", objMR_Sales.paraDays);
                 varSqlCommand.Parameters.AddWithValue("@paraMonths", objMR_Sales.paraMonths);  
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerName", objMR_Sales.paraCustomerName);  
                 varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID ?? "");
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName ?? "");  
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress ?? "");  

@@ -275,6 +275,7 @@ namespace ROMS
                 MR_Sales objMR_Sales = new MR_Sales();
                 objMR_Sales.paraViewType = varViewType; 
                 objMR_Sales.paraCustomerId = varCustomerId; 
+                objMR_Sales.paraCustomerName = txtCustomer.Text.Trim();
                 objMR_Sales.paraGSTType = Convert.ToInt16(cmbGSTType.SelectedValue); 
                 objMR_Sales.paraBillType = Convert.ToInt16(cmbBillType.SelectedValue); 
                 objMR_Sales.paraSalesType = Convert.ToInt16(cmbSalesType.SelectedValue); 
@@ -332,9 +333,10 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGSTTypeName",cmbGSTType.Text); 
                     objBillreport.SetParameterValue("paraBillTypeName", cmbBillType.Text); 
                     objBillreport.SetParameterValue("paraSalesTypeName", cmbSalesType.Text); 
-                    objBillreport.SetParameterValue("paraCustomerName",varCustomerName); 
+                    objBillreport.SetParameterValue("paraCusName", varCustomerName); 
+                    objBillreport.SetParameterValue("paraCustomerName",txtCustomer.Text.Trim()); 
                     objBillreport.SetParameterValue("paraDaysName", varDayName); 
-                    objBillreport.SetParameterValue("paraMonthName",varMonthName);
+                    objBillreport.SetParameterValue("paraMonthName",varMonthName); 
 
                     //Subreport GST Summary
                     string subReportName = objBillreport.Subreports[0].Name;
@@ -348,6 +350,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraFlag", 0, subReportName); 
                     objBillreport.SetParameterValue("paraDays", varDays, subReportName); 
                     objBillreport.SetParameterValue("paraMonths", varMonths, subReportName); 
+                    objBillreport.SetParameterValue("paraCustomerName", txtCustomer.Text.Trim(), subReportName);
 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -958,7 +961,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
                     MR_Sales obj = new MR_Sales();
-                    obj.paraViewType = 6;
+                    obj.paraViewType = 7;
                     if (txtCustomer.Text.Length > 0)
                     {
                         obj.paraCUS_Name = txtCustomer.Text;
