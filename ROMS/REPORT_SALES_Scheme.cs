@@ -231,27 +231,7 @@ namespace ROMS
                 SPDataService objdSer = new SPDataService();
                 objDTable = objdSer.udfnMaster(objMR_Master);
                 objdSer.CloseConnection();
-                if (objDTable != null)
-                {
-                    if (objDTable.Tables.Count > 0)
-                    {
-                        if (objDTable.Tables[0].Rows.Count > 0)
-                        {
-                            chkboxRatelist.DrawMode = DrawMode.Normal;
-                            chkboxRatelist.FormattingEnabled = true;
-                            chkboxRatelist.DisplayMember = "MST_DisplayText";
-                            chkboxRatelist.ValueMember = "MSTID";
-                            chkboxRatelist.DataSource = objDTable.Tables[0];
-                            DataView dv = objDTable.Tables[0].DefaultView;
-                            dv.RowFilter = "MSTID <> 0";
-                            DataTable dt = dv.ToTable();
-                            dt = objDTable.Tables[0];
-                            chkboxRatelist.DataSource = dt;
-                            chkboxRatelist.DisplayMember = "MST_DisplayText";   // text
-                            chkboxRatelist.ValueMember = "MSTID";       // value 
-                        }
-                    }
-                }
+                 
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     string privilege = "";
@@ -373,7 +353,7 @@ namespace ROMS
             try
             {
                 udfnGridNull((Control)sender);
-                cmbSchemeType.BackColor = Color.LemonChiffon;
+                cmbRecursive.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -388,7 +368,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRateCategory.Focus();
+                    cmbRateCategory.Focus();
                     e.Handled = true;
                 }
             }
@@ -423,173 +403,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void txtRateCategory_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                pnlRateCategory.Visible = true;
-                pnlRateCategory.BringToFront();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtRateCategory_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbValidityType.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtRateCategory_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //pnlRateCategory.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnSelectAll()
-        {
-            try
-            {
-                txtRateCategory.Text = "";
-                pbRateCategoryIDs = "";
-                List<string> texts = new List<string>();
-                List<string> ids = new List<string>();
-
-                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
-                {
-                    DataRowView row = (DataRowView)chkboxRatelist.Items[i];
-                    int id = Convert.ToInt32(row["MSTID"]);
-                    if (Convert.ToInt32(row["MSTID"]) == 0)
-                        continue;
-
-                    chkboxRatelist.SetItemChecked(i, true);
-
-                    texts.Add(row["MST_DisplayText"].ToString());
-                    ids.Add(id.ToString());
-                }
-                // TextBox (RR, WR)
-                txtRateCategory.Text = texts.Count > 0
-                    ? string.Join(", ", texts)
-                    : "";
-
-                // Label (447,448)
-                pbRateCategoryIDs = ids.Count > 0
-                    ? string.Join(",", ids)
-                    : "0";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void btnSelectAll_Click(object sender, EventArgs e)
-        {
-            udfnSelectAll();
-        }
-
-        private void btnConditionClear_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
-                {
-                    chkboxRatelist.SetItemChecked(i, false);
-                }
-
-                txtRateCategory.Text = "";
-                pbRateCategoryIDs = "";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            try
-            {
-                BeginInvoke((MethodInvoker)UpdateSelectedValues);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void UpdateSelectedValues()
-        {
-            try
-            {
-                List<string> texts = new List<string>();
-                List<string> ids = new List<string>();
-
-                foreach (DataRowView row in chkboxRatelist.CheckedItems)
-                {
-                    int id = Convert.ToInt32(row["MSTID"]);
-
-                    // ignore -All- in textbox
-                    if (id == 0) continue;
-
-                    texts.Add(row["MST_DisplayText"].ToString());
-                    ids.Add(id.ToString());
-                }
-
-                // TextBox (RR, WR)
-                txtRateCategory.Text = texts.Count > 0
-                    ? string.Join(", ", texts)
-                    : "";
-
-                // Label (447,448)
-                pbRateCategoryIDs = ids.Count > 0
-                    ? string.Join(",", ids)
-                    : "0";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void chkboxRatelist_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbValidityType.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        }      
 
         private void cmbValidityType_Enter(object sender, EventArgs e)
         {
@@ -811,6 +625,63 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbRateCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbValidityType.Focus();
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateCategory.BackColor = Color.White;
             }
             catch (Exception ex)
             {

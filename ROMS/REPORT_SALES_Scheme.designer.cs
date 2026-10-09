@@ -36,6 +36,10 @@
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbRateCategory = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbRecursive = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbSchemeAvailTime = new System.Windows.Forms.ComboBox();
@@ -54,23 +58,12 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnlRateCategory = new System.Windows.Forms.Panel();
-            this.btnSelectAll = new System.Windows.Forms.Button();
-            this.btnConditionClear = new System.Windows.Forms.Button();
-            this.chkboxRatelist = new System.Windows.Forms.CheckedListBox();
-            this.txtRateCategory = new System.Windows.Forms.TextBox();
-            this.cmbRecursive = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbRateCategory = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.dynamicToolStripLabelControl1 = new ROMS.DynamicToolStripLabelControl();
             this.tsProductCategoryReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
-            this.pnlRateCategory.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsProductCategoryReport
@@ -128,7 +121,6 @@
             // pnlReportStockLocation
             // 
             this.pnlReportStockLocation.BackColor = System.Drawing.Color.White;
-            this.pnlReportStockLocation.Controls.Add(this.pnlRateCategory);
             this.pnlReportStockLocation.Controls.Add(this.grpfilter);
             this.pnlReportStockLocation.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportStockLocation.Controls.Add(this.picLoader);
@@ -144,8 +136,6 @@
             this.grpfilter.Controls.Add(this.label9);
             this.grpfilter.Controls.Add(this.cmbRecursive);
             this.grpfilter.Controls.Add(this.label3);
-            this.grpfilter.Controls.Add(this.label1);
-            this.grpfilter.Controls.Add(this.txtRateCategory);
             this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.label8);
             this.grpfilter.Controls.Add(this.cmbSchemeAvailTime);
@@ -167,10 +157,52 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // cmbRateCategory
+            // 
+            this.cmbRateCategory.FormattingEnabled = true;
+            this.cmbRateCategory.Location = new System.Drawing.Point(370, 56);
+            this.cmbRateCategory.Name = "cmbRateCategory";
+            this.cmbRateCategory.Size = new System.Drawing.Size(119, 27);
+            this.cmbRateCategory.TabIndex = 111111247;
+            this.cmbRateCategory.Enter += new System.EventHandler(this.cmbRateCategory_Enter);
+            this.cmbRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRateCategory_KeyDown);
+            this.cmbRateCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRateCategory_KeyPress);
+            this.cmbRateCategory.Leave += new System.EventHandler(this.cmbRateCategory_Leave);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(370, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 20);
+            this.label9.TabIndex = 111111248;
+            this.label9.Text = "Applicable Rate Type";
+            // 
+            // cmbRecursive
+            // 
+            this.cmbRecursive.FormattingEnabled = true;
+            this.cmbRecursive.Location = new System.Drawing.Point(244, 56);
+            this.cmbRecursive.Name = "cmbRecursive";
+            this.cmbRecursive.Size = new System.Drawing.Size(112, 27);
+            this.cmbRecursive.TabIndex = 2;
+            this.cmbRecursive.Enter += new System.EventHandler(this.cmbRecursive_Enter);
+            this.cmbRecursive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRecursive_KeyDown);
+            this.cmbRecursive.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRecursive_KeyPress);
+            this.cmbRecursive.Leave += new System.EventHandler(this.cmbRecursive_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(244, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 20);
+            this.label3.TabIndex = 111111246;
+            this.label3.Text = "Recusrive";
+            // 
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(916, 56);
+            this.cmbStatus.Location = new System.Drawing.Point(830, 56);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(94, 27);
             this.cmbStatus.TabIndex = 7;
@@ -182,7 +214,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(916, 28);
+            this.label8.Location = new System.Drawing.Point(830, 28);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 20);
             this.label8.TabIndex = 111111227;
@@ -191,7 +223,7 @@
             // cmbSchemeAvailTime
             // 
             this.cmbSchemeAvailTime.FormattingEnabled = true;
-            this.cmbSchemeAvailTime.Location = new System.Drawing.Point(791, 56);
+            this.cmbSchemeAvailTime.Location = new System.Drawing.Point(705, 56);
             this.cmbSchemeAvailTime.Name = "cmbSchemeAvailTime";
             this.cmbSchemeAvailTime.Size = new System.Drawing.Size(118, 27);
             this.cmbSchemeAvailTime.TabIndex = 6;
@@ -203,7 +235,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(791, 28);
+            this.label7.Location = new System.Drawing.Point(705, 28);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 20);
             this.label7.TabIndex = 111111225;
@@ -212,7 +244,7 @@
             // cmbDaysType
             // 
             this.cmbDaysType.FormattingEnabled = true;
-            this.cmbDaysType.Location = new System.Drawing.Point(688, 56);
+            this.cmbDaysType.Location = new System.Drawing.Point(602, 56);
             this.cmbDaysType.Name = "cmbDaysType";
             this.cmbDaysType.Size = new System.Drawing.Size(94, 27);
             this.cmbDaysType.TabIndex = 5;
@@ -224,7 +256,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(688, 28);
+            this.label5.Location = new System.Drawing.Point(602, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 111111223;
@@ -233,7 +265,7 @@
             // cmbValidityType
             // 
             this.cmbValidityType.FormattingEnabled = true;
-            this.cmbValidityType.Location = new System.Drawing.Point(587, 56);
+            this.cmbValidityType.Location = new System.Drawing.Point(501, 56);
             this.cmbValidityType.Name = "cmbValidityType";
             this.cmbValidityType.Size = new System.Drawing.Size(94, 27);
             this.cmbValidityType.TabIndex = 4;
@@ -245,7 +277,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(587, 28);
+            this.label4.Location = new System.Drawing.Point(501, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 20);
             this.label4.TabIndex = 111111221;
@@ -297,7 +329,7 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1093, 56);
+            this.btnTelegram.Location = new System.Drawing.Point(1007, 56);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
@@ -313,7 +345,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1016, 56);
+            this.btnView.Location = new System.Drawing.Point(930, 56);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(65, 29);
@@ -369,116 +401,6 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1137, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 20);
-            this.label1.TabIndex = 111111245;
-            this.label1.Text = "Applicable Rate Category";
-            // 
-            // pnlRateCategory
-            // 
-            this.pnlRateCategory.Controls.Add(this.btnSelectAll);
-            this.pnlRateCategory.Controls.Add(this.btnConditionClear);
-            this.pnlRateCategory.Controls.Add(this.chkboxRatelist);
-            this.pnlRateCategory.Location = new System.Drawing.Point(374, 91);
-            this.pnlRateCategory.Name = "pnlRateCategory";
-            this.pnlRateCategory.Size = new System.Drawing.Size(137, 147);
-            this.pnlRateCategory.TabIndex = 111111244;
-            // 
-            // btnSelectAll
-            // 
-            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectAll.Image = global::ROMS.Properties.Resources.checked1;
-            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelectAll.Location = new System.Drawing.Point(3, 119);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(72, 24);
-            this.btnSelectAll.TabIndex = 111111227;
-            this.btnSelectAll.Text = "Select All";
-            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
-            // 
-            // btnConditionClear
-            // 
-            this.btnConditionClear.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConditionClear.Image = global::ROMS.Properties.Resources.Cleared;
-            this.btnConditionClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConditionClear.Location = new System.Drawing.Point(74, 119);
-            this.btnConditionClear.Name = "btnConditionClear";
-            this.btnConditionClear.Size = new System.Drawing.Size(57, 24);
-            this.btnConditionClear.TabIndex = 111111224;
-            this.btnConditionClear.Text = "Clear";
-            this.btnConditionClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConditionClear.UseVisualStyleBackColor = true;
-            this.btnConditionClear.Click += new System.EventHandler(this.btnConditionClear_Click);
-            // 
-            // chkboxRatelist
-            // 
-            this.chkboxRatelist.CheckOnClick = true;
-            this.chkboxRatelist.FormattingEnabled = true;
-            this.chkboxRatelist.Location = new System.Drawing.Point(3, 3);
-            this.chkboxRatelist.Name = "chkboxRatelist";
-            this.chkboxRatelist.Size = new System.Drawing.Size(128, 114);
-            this.chkboxRatelist.TabIndex = 111111221;
-            this.chkboxRatelist.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkboxRatelist_ItemCheck);
-            this.chkboxRatelist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkboxRatelist_KeyDown);
-            // 
-            // txtRateCategory
-            // 
-            this.txtRateCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRateCategory.Location = new System.Drawing.Point(1137, 55);
-            this.txtRateCategory.MaxLength = 50;
-            this.txtRateCategory.Name = "txtRateCategory";
-            this.txtRateCategory.ReadOnly = true;
-            this.txtRateCategory.Size = new System.Drawing.Size(212, 27);
-            this.txtRateCategory.TabIndex = 3;
-            this.txtRateCategory.Enter += new System.EventHandler(this.txtRateCategory_Enter);
-            this.txtRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRateCategory_KeyDown);
-            this.txtRateCategory.Leave += new System.EventHandler(this.txtRateCategory_Leave);
-            // 
-            // cmbRecursive
-            // 
-            this.cmbRecursive.FormattingEnabled = true;
-            this.cmbRecursive.Location = new System.Drawing.Point(244, 56);
-            this.cmbRecursive.Name = "cmbRecursive";
-            this.cmbRecursive.Size = new System.Drawing.Size(112, 27);
-            this.cmbRecursive.TabIndex = 2;
-            this.cmbRecursive.Enter += new System.EventHandler(this.cmbRecursive_Enter);
-            this.cmbRecursive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRecursive_KeyDown);
-            this.cmbRecursive.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRecursive_KeyPress);
-            this.cmbRecursive.Leave += new System.EventHandler(this.cmbRecursive_Leave);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(244, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 20);
-            this.label3.TabIndex = 111111246;
-            this.label3.Text = "Recusrive";
-            // 
-            // cmbRateCategory
-            // 
-            this.cmbRateCategory.FormattingEnabled = true;
-            this.cmbRateCategory.Location = new System.Drawing.Point(370, 56);
-            this.cmbRateCategory.Name = "cmbRateCategory";
-            this.cmbRateCategory.Size = new System.Drawing.Size(119, 27);
-            this.cmbRateCategory.TabIndex = 111111247;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(370, 29);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 20);
-            this.label9.TabIndex = 111111248;
-            this.label9.Text = "Applicable Rate Type";
-            // 
             // dynamicToolStripLabelControl1
             // 
             this.dynamicToolStripLabelControl1.PlaceholderLabel = null;
@@ -508,7 +430,6 @@
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
-            this.pnlRateCategory.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,12 +463,6 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label8;
         private DynamicToolStripLabelControl dynamicToolStripLabelControl1;
-        private System.Windows.Forms.Panel pnlRateCategory;
-        private System.Windows.Forms.Button btnSelectAll;
-        private System.Windows.Forms.Button btnConditionClear;
-        private System.Windows.Forms.CheckedListBox chkboxRatelist;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtRateCategory;
         private System.Windows.Forms.ComboBox cmbRecursive;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbRateCategory;
