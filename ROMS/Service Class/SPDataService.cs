@@ -6183,6 +6183,7 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@paraRateCategorys", obj.paraRateCategorys);
                 cmd.Parameters.AddWithValue("@paraPrintType", obj.paraPrintType);
                 cmd.Parameters.AddWithValue("@ParaCompanycode", obj.ParaCompanycode);
+                cmd.Parameters.AddWithValue("@paraBulkMinqty", obj.paraBulkMinqty);
                  
 
 

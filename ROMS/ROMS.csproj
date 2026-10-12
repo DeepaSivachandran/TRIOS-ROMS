@@ -354,6 +354,12 @@
     <Compile Include="CP_AddressBookList.designer.cs">
       <DependentUpon>CP_AddressBookList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_BulkProductDemo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkProductDemo.designer.cs">
+      <DependentUpon>CP_BulkProductDemo.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_UPI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5284,6 +5290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_AddressBookList.resx">
       <DependentUpon>CP_AddressBookList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkProductDemo.resx">
+      <DependentUpon>CP_BulkProductDemo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UPI.resx">
       <DependentUpon>CP_UPI.cs</DependentUpon>
