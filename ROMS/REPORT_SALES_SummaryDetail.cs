@@ -596,7 +596,7 @@ namespace ROMS
                         else
                         {
                             varHeaderName = "Sales Return Summary Report";
-                            varBillByName = "SR No.";
+                            varBillNo = "SR No.";
                             varBillDate = "SR Date";
                         }
                         objBillreport.SetParameterValue("paraVarBillNo", varBillNo);
@@ -612,7 +612,7 @@ namespace ROMS
                         else
                         {
                             varHeaderName = "Sales Return Detail Report";
-                            varBillByName="SR No.";
+                            varBillNo = "SR No.";
                             varBillDate = "SR Date";
                         }
                         objBillreport.SetParameterValue("paraVarBillNo", varBillNo);
