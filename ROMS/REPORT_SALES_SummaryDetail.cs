@@ -585,7 +585,7 @@ namespace ROMS
                     /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    string varHeaderName = "Report";
+                    string varHeaderName = "Report", varBillNo="Bill No.", varBillDate="Bill Date";
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 666)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Summary.rpt");
@@ -596,7 +596,11 @@ namespace ROMS
                         else
                         {
                             varHeaderName = "Sales Return Summary Report";
+                            varBillByName = "SR No.";
+                            varBillDate = "SR Date";
                         }
+                        objBillreport.SetParameterValue("paraVarBillNo", varBillNo);
+                        objBillreport.SetParameterValue("paraVarBillDate", varBillDate);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 667)
                     {
@@ -608,7 +612,11 @@ namespace ROMS
                         else
                         {
                             varHeaderName = "Sales Return Detail Report";
+                            varBillByName="SR No.";
+                            varBillDate = "SR Date";
                         }
+                        objBillreport.SetParameterValue("paraVarBillNo", varBillNo);
+                        objBillreport.SetParameterValue("paraVarBillDate", varBillDate);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 668)
                     {
