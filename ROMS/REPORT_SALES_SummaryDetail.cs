@@ -555,24 +555,30 @@ namespace ROMS
                     /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    string varHeaderName = "Report";
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 666)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Summary.rpt");
+                        varHeaderName = "Sales Summary Report";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 667)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Details.rpt");
+                        varHeaderName = "Sales Detail Report";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 668)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Daywise.rpt");
+                        varHeaderName = "Daywise Sales Report";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 669)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Monthwise.rpt");
+                        varHeaderName = "Monthwise Sales Report";
                     }
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "");
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? "");
+                    objBillreport.SetParameterValue("paraVarHeaderName", varHeaderName);
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text.Trim());
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text.Trim());
                     string varFromTimeValue = "05:00 AM - 11:59 PM";
