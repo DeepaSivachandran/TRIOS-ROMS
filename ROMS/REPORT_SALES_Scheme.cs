@@ -212,18 +212,14 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
 
 
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-
-
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,190) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,214) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRecursive, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,547) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,159) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbValidityType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,215) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDaysType, "", "MST_DisplayText", "MSTID");  
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,160) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeAvailTime, "", "MST_DisplayText", "MSTID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,160) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,31)   ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID"); 
-
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,160) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeAvailTime, "", "MST_DisplayText", "MSTID");  
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,31) AND STSID NOT IN (-1)  ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");  
                 objDataBind = null;
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 32;
@@ -462,7 +458,7 @@ namespace ROMS
             }
         }
 
-        private void cmbDaysType_Enter(object sender, EventArgs e)
+        private void cmbDaysType_Enter(object sender, EventArgs e) 
         {
             try
             {
