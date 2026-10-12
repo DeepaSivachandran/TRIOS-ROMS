@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_SALES_TaxDetail));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportSupplier = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -44,7 +44,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.cmbDayFilter = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.lblCustomerId = new System.Windows.Forms.Label();
             this.lblDays = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -70,6 +69,7 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.lblCustomerId = new System.Windows.Forms.Label();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Customer)).BeginInit();
@@ -151,24 +151,24 @@
             this.DGV_Customer.AllowUserToResizeRows = false;
             this.DGV_Customer.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Customer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_Customer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_Customer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_Customer.ColumnHeadersHeight = 30;
             this.DGV_Customer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_Customer.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_Customer.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_Customer.EnableHeadersVisualStyles = false;
             this.DGV_Customer.GridColor = System.Drawing.Color.White;
             this.DGV_Customer.Location = new System.Drawing.Point(963, 75);
@@ -176,9 +176,9 @@
             this.DGV_Customer.ReadOnly = true;
             this.DGV_Customer.RowHeadersVisible = false;
             this.DGV_Customer.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_Customer.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_Customer.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_Customer.RowTemplate.Height = 25;
             this.DGV_Customer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_Customer.Size = new System.Drawing.Size(300, 226);
@@ -268,16 +268,6 @@
             this.label12.Size = new System.Drawing.Size(66, 20);
             this.label12.TabIndex = 111111228;
             this.label12.Text = "Days Filter";
-            // 
-            // lblCustomerId
-            // 
-            this.lblCustomerId.AutoSize = true;
-            this.lblCustomerId.Location = new System.Drawing.Point(1132, 50);
-            this.lblCustomerId.Name = "lblCustomerId";
-            this.lblCustomerId.Size = new System.Drawing.Size(16, 20);
-            this.lblCustomerId.TabIndex = 111111218;
-            this.lblCustomerId.Text = "0";
-            this.lblCustomerId.Visible = false;
             // 
             // lblDays
             // 
@@ -559,6 +549,16 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
+            // lblCustomerId
+            // 
+            this.lblCustomerId.AutoSize = true;
+            this.lblCustomerId.Location = new System.Drawing.Point(1132, 50);
+            this.lblCustomerId.Name = "lblCustomerId";
+            this.lblCustomerId.Size = new System.Drawing.Size(16, 20);
+            this.lblCustomerId.TabIndex = 111111218;
+            this.lblCustomerId.Text = "0";
+            this.lblCustomerId.Visible = false;
+            // 
             // REPORT_SALES_TaxDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -621,7 +621,6 @@
         private System.Windows.Forms.Label lblMonths;
         private System.Windows.Forms.Label label9;
         private MultiSelectComboBox cmbMultiMonths;
-        public System.Windows.Forms.Label lblCustomerId;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCustomer;
         public System.Windows.Forms.DataGridView DGV_Customer;
@@ -629,5 +628,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cmbDayFilter;
         private System.Windows.Forms.Label label12;
+        public System.Windows.Forms.Label lblCustomerId;
     }
 }

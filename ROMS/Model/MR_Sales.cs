@@ -132,6 +132,7 @@ namespace ROMS.Model
         public int paraSchemeType { get; set; } = 0;
         public int paraBillCategory { get; set; } = 0;
         public int paraGSTType { get; set; } = 0;
+        public string paraCustomerName { get; set; } = "";
     }
 
 }

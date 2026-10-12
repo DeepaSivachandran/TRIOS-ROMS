@@ -250,7 +250,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraCustomerName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCusName {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -274,7 +274,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraUserName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCustomerName {
             get {
                 return this.DataDefinition.ParameterFields[17];
             }
@@ -282,7 +282,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraHostName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraUserName {
             get {
                 return this.DataDefinition.ParameterFields[18];
             }
@@ -290,7 +290,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraGroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraHostName {
             get {
                 return this.DataDefinition.ParameterFields[19];
             }
@@ -298,7 +298,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraSubgroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraGroupName {
             get {
                 return this.DataDefinition.ParameterFields[20];
             }
@@ -306,7 +306,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraBrandName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraSubgroupName {
             get {
                 return this.DataDefinition.ParameterFields[21];
             }
@@ -314,7 +314,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraCategoryName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraBrandName {
             get {
                 return this.DataDefinition.ParameterFields[22];
             }
@@ -322,7 +322,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraDaysName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraCategoryName {
             get {
                 return this.DataDefinition.ParameterFields[23];
             }
@@ -330,7 +330,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraProductName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraDaysName {
             get {
                 return this.DataDefinition.ParameterFields[24];
             }
@@ -338,7 +338,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraUnitName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraProductName {
             get {
                 return this.DataDefinition.ParameterFields[25];
             }
@@ -346,7 +346,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraClassificationName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraUnitName {
             get {
                 return this.DataDefinition.ParameterFields[26];
             }
@@ -354,7 +354,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraBillTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraClassificationName {
             get {
                 return this.DataDefinition.ParameterFields[27];
             }
@@ -362,7 +362,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraProductTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraBillTypeName {
             get {
                 return this.DataDefinition.ParameterFields[28];
             }
@@ -370,7 +370,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraSalesTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraProductTypeName {
             get {
                 return this.DataDefinition.ParameterFields[29];
             }
@@ -378,7 +378,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraFilterTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraSalesTypeName {
             get {
                 return this.DataDefinition.ParameterFields[30];
             }
@@ -386,7 +386,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraBillType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraFilterTypeName {
             get {
                 return this.DataDefinition.ParameterFields[31];
             }
@@ -394,7 +394,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraCustomerId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraBillType {
             get {
                 return this.DataDefinition.ParameterFields[32];
             }
@@ -402,7 +402,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraDays {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraCustomerId {
             get {
                 return this.DataDefinition.ParameterFields[33];
             }
@@ -410,7 +410,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraFlag {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraDays {
             get {
                 return this.DataDefinition.ParameterFields[34];
             }
@@ -418,7 +418,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraFromDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraFlag {
             get {
                 return this.DataDefinition.ParameterFields[35];
             }
@@ -426,7 +426,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraGSTType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[36];
             }
@@ -434,7 +434,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraMonths {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraGSTType {
             get {
                 return this.DataDefinition.ParameterFields[37];
             }
@@ -442,7 +442,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraSalesType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraMonths {
             get {
                 return this.DataDefinition.ParameterFields[38];
             }
@@ -450,9 +450,25 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraToDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraSalesType {
             get {
                 return this.DataDefinition.ParameterFields[39];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraToDate {
+            get {
+                return this.DataDefinition.ParameterFields[40];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_SALES_Tax_GST_Summaryrpt_paraCustomerName {
+            get {
+                return this.DataDefinition.ParameterFields[41];
             }
         }
     }

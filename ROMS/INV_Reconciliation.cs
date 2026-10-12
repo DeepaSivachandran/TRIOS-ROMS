@@ -674,30 +674,29 @@ namespace ROMS
         {
             try
             {
-                DataValidation objValidation = new DataValidation();
                 var validPICODEColumns = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    "P.I Code", "P.I.Code", "PI Code", "PICODE", "PR_PICode"
-                };
+        {
+            "P.I Code", "P.I.Code", "PI Code", "PICODE", "PR_PICode"
+        };
 
-                if (DGV_SearchGrid.ColumnCount == 0) return;
+                if (DGV_SearchGrid.ColumnCount == 0 || DGV_SearchGrid.Rows.Count == 0) return;
 
-                // Collect active filters from the search row: (columnIndex, text, isPICode)
-                var filters = new List<(int ColIndex, string Text, bool IsPICode)>();
-                int searchRow = 0;
-                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++) // skip S.No. like the original
+                // (TARGET column index resolved by NAME, text, isPICode)
+                var filters = new List<(int TargetIndex, string Text, bool IsPICode)>();
+                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)          // skip S.No.
                 {
-                    var cell = DGV_SearchGrid.Rows[searchRow].Cells[j];
+                    DataGridViewColumn searchCol = DGV_SearchGrid.Columns[j];
+                    DataGridViewCell cell = DGV_SearchGrid.Rows[0].Cells[j];
                     string val = Convert.ToString(cell.Value);
-                    if (!string.IsNullOrEmpty(val) &&
-                        cell.ValueType != null &&
-                        cell.ValueType.Name != "Image" &&
-                        cell.ValueType.Name != "CheckBox")
-                    {
-                        bool isPICode = validPICODEColumns.Contains(DGV_SearchGrid.Columns[j].Name) ||
-                                         validPICODEColumns.Contains(DGV_SearchGrid.Columns[j].HeaderText);
-                        filters.Add((j, val, isPICode));
-                    }
+
+                    if (string.IsNullOrEmpty(val)) continue;
+                    if (cell.ValueType != null && (cell.ValueType.Name == "Image" || cell.ValueType.Name == "CheckBox")) continue;
+                    if (!grdTargetList.Columns.Contains(searchCol.Name)) continue;   // no matching column in target
+
+                    bool isPICode = validPICODEColumns.Contains(searchCol.Name) ||
+                                    validPICODEColumns.Contains(searchCol.HeaderText);
+
+                    filters.Add((grdTargetList.Columns[searchCol.Name].Index, val, isPICode));
                 }
 
                 foreach (DataGridViewRow row in grdTargetList.Rows)
@@ -707,9 +706,7 @@ namespace ROMS
                     bool isMatch = true;
                     foreach (var f in filters)
                     {
-                        if (f.ColIndex >= row.Cells.Count) continue;
-
-                        string cellValue = Convert.ToString(row.Cells[f.ColIndex].Value);
+                        string cellValue = Convert.ToString(row.Cells[f.TargetIndex].Value);
 
                         bool thisMatch = f.IsPICode
                             ? cellValue.StartsWith(f.Text, StringComparison.OrdinalIgnoreCase)
@@ -4562,7 +4559,14 @@ namespace ROMS
             try
             {
                 udfnGridSearchHeading(grdStockadjustment, DGV_SearchGrid);  // reuse as-is, already generic
-                DGV_SearchGrid.Columns["ClmSNo"].ReadOnly = true;           // match whichever S.No column name this grid uses
+                DGV_SearchGrid.Columns["clmdsno"].ReadOnly = true;           // match whichever S.No column name this grid uses
+                DGV_SearchGrid.Columns["clmicode"].ReadOnly = false;
+                DGV_SearchGrid.Columns["clmproductname"].ReadOnly = false;
+                DGV_SearchGrid.Columns["clmRack"].ReadOnly = false;
+                DGV_SearchGrid.Columns["clmmrp"].ReadOnly = false;
+                DGV_SearchGrid.Columns["clmExpiryDate"].ReadOnly = false;
+                DGV_SearchGrid.Columns["clmBatchNo"].ReadOnly = false;
+                DGV_SearchGrid.Columns["clmunit"].ReadOnly = false;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
