@@ -92,13 +92,10 @@ namespace ROMS
         public void udfnPrint(int varFlag)
         {
             try
-            {
-                 
-                epReport.Clear(); int varViewType = 0;
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0;
-                 
-                 
+            { 
+                epReport.Clear(); int varViewType = 0,paraFlag=0;
+                string varApplicationRateType = "-All-", varSubgroupName = "-All-", varBrandName = "-All-",varDaysIDs="0";
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0; 
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -107,10 +104,16 @@ namespace ROMS
                  Application.DoEvents();
                 int varPrint = 0; 
                 TRN_Scheme objTRN_Scheme = new TRN_Scheme();
-                objTRN_Scheme.ViewType = varViewType; 
-                objTRN_Scheme.paraGroupID = varGroupId;
-                objTRN_Scheme.paraSubGroupID = varSubgroupId;
-                objTRN_Scheme.paraBrandID = varBrandId;   
+                objTRN_Scheme.ViewType = varViewType;  
+                objTRN_Scheme.paraFlag = paraFlag;  
+                objTRN_Scheme.paraConcernID = Convert.ToInt32(cmbConcern.SelectedValue);  
+                objTRN_Scheme.paraAppRateType = varViewType;  
+                objTRN_Scheme.paraRecursive = Convert.ToInt32(cmbRecursive.SelectedValue);  
+                objTRN_Scheme.paraValitityType = Convert.ToInt32(cmbValidityType.SelectedValue);  
+                objTRN_Scheme.paraDaysType = Convert.ToInt32(cmbDaysType.SelectedValue);  
+                objTRN_Scheme.paraSchAvailTime = Convert.ToInt32(cmbSchemeAvailTime.SelectedValue);  
+                objTRN_Scheme.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);  
+                objTRN_Scheme.paraDaysId = varDaysIDs;  
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnSchemeReport(objTRN_Scheme);
@@ -122,17 +125,29 @@ namespace ROMS
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     /////RPTViewer.RefreshReport();
+                    ///
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();   
-                    objBillreport.SetParameterValue("paraGroupID", varGroupId);   
-                    objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);   
-                    objBillreport.SetParameterValue("paraBrandID", varBrandId);    
-                    objBillreport.SetParameterValue("paraGroupName", varGroupName);   
-                    objBillreport.SetParameterValue("paraSubGroupName", varSubgroupName);   
-                    objBillreport.SetParameterValue("paraBrandName", varBrandName);   
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 626)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_SCH_ProductScheme.rpt");
+                    }
+                     
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "");
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? "");
+                    objBillreport.SetParameterValue("paraApplicateRateType", varApplicationRateType);
+                    objBillreport.SetParameterValue("paraRecursive", Convert.ToInt16(cmbRecursive.SelectedValue) );
+                    objBillreport.SetParameterValue("paraDaysType", Convert.ToInt16(cmbDaysType.SelectedValue) );
+                    objBillreport.SetParameterValue("paraSchemeAvailTime", Convert.ToInt16(cmbSchemeAvailTime.SelectedValue));
+                    objBillreport.SetParameterValue("paraAppRateType", Convert.ToInt16(cmbRateCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraConcernID", Convert.ToInt16(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraSchAvailTime", Convert.ToInt16(cmbSchemeAvailTime.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt16(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraValitityType", Convert.ToInt16(cmbValidityType.SelectedValue));
+                    objBillreport.SetParameterValue("paraDaysId", varDaysIDs);
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraValidityName", Convert.ToString(cmbValidityType.Text));
+                    objBillreport.SetParameterValue("paraRecursiveName", Convert.ToString(cmbRecursive.Text));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)

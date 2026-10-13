@@ -6916,11 +6916,22 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNG_SchemeReport]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Scheme.ViewType);
+
                 varSqlCommand.Parameters.AddWithValue("@paraGroupID", objTRN_Scheme.paraGroupID);
                 varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", objTRN_Scheme.paraSubGroupID);
                 varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRN_Scheme.paraOrderType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRN_Scheme.paraBrandID);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_Scheme.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraConcernID", objTRN_Scheme.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraAppRateType", objTRN_Scheme.paraAppRateType);
+                varSqlCommand.Parameters.AddWithValue("@paraRecursive", objTRN_Scheme.paraRecursive);
+                varSqlCommand.Parameters.AddWithValue("@paraValitityType", objTRN_Scheme.paraValitityType);
+                varSqlCommand.Parameters.AddWithValue("@paraDaysType", objTRN_Scheme.paraDaysType);
+                varSqlCommand.Parameters.AddWithValue("@paraSchAvailTime", objTRN_Scheme.paraSchAvailTime);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRN_Scheme.paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraDaysId", objTRN_Scheme.paraDaysId);
+
+
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
