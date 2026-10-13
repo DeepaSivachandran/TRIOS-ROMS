@@ -881,7 +881,7 @@ namespace ROMS
                 }
                 dpFromDate.Enabled = true;
                 dpToDate.Enabled = true;
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 374 || Convert.ToInt32(cmbReportType.SelectedValue) == 376)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 374 || Convert.ToInt32(cmbReportType.SelectedValue) == 376|| Convert.ToInt32(cmbReportType.SelectedValue) == 702)
                 {
                     dpFromDate.Enabled = false;
                     dpToDate.Enabled = false;
