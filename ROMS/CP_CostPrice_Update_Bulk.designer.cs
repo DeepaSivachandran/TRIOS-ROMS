@@ -361,10 +361,11 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.grdProducts.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdProducts.RowTemplate.Height = 25;
-            this.grdProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdProducts.Size = new System.Drawing.Size(1327, 450);
             this.grdProducts.TabIndex = 8;
             this.grdProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProducts_CellContentClick);
+            this.grdProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProducts_CellDoubleClick);
             this.grdProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdProducts_CellFormatting);
             this.grdProducts.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdProducts_CurrentCellDirtyStateChanged);
             this.grdProducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdProducts_DataBindingComplete);

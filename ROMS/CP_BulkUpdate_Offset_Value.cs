@@ -250,53 +250,8 @@ namespace ROMS
                 grdProducts.FirstDisplayedScrollingRowIndex = vscroll;
                 grdProducts.FirstDisplayedScrollingColumnIndex = hscroll;
 
-                // Commit the current cell edit
-                grdProducts.EndEdit();
 
-                // Refresh the data binding
-                grdProducts.Refresh();
 
-                this.BindingContext[grdProducts.DataSource]?.EndCurrentEdit();
-
-                // Get the original DataTable
-                DataTable rowTable = (DataTable)grdProducts.DataSource;
-
-                // Create a new DataTable with the same columns
-                DataTable selectedRowTable = rowTable.Clone();
-
-                // Get the row you edited/clicked
-                DataRowView rowView =
-                    grdProducts.Rows[e.RowIndex].DataBoundItem as DataRowView;
-
-                if (rowView != null)
-                {
-                    selectedRowTable.ImportRow(rowView.Row);
-                }
-
-                // Now selectedRowTable contains only the clicked row
-                DataTable showobjDtProducts = ConvertRowOnly(selectedRowTable);
-
-                MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 9;
-                objMR_Product.paraGroup = varGroupId;
-                objMR_Product.paraSubgroup = varSubGroupId;
-                objMR_Product.paraBrandID = varBrandId;
-                objMR_Product.ParaProductCode = Convert.ToInt32(lblProductcode.Text);
-                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
-                objMR_Product.paraRateCategorys = lblRateId.Text;
-                objMR_Product.paraPrintType = Convert.ToInt32(cmbprinttype.SelectedValue);
-                objMR_Product.paraOffSetType = Convert.ToInt32(cmbOffsetType.SelectedValue);
-                objMR_Product.paraId = varId;
-                objMR_Product.paraBulkMinqty = showobjDtProducts;
-                DataSet objDs = new DataSet();
-                objdtProductsShow = null;
-                udfnInitShowProduct();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRateCategoryList(objMR_Product);
-                DataTable productData = objDs.Tables[0];
-                CP_BulkProductDemo popup = new CP_BulkProductDemo(productData);
-                popup.ShowDialog();
                 // }
             }
             catch (Exception ex)
@@ -340,7 +295,7 @@ namespace ROMS
                                 DataRow newRow = result.NewRow();
                                 newRow[0] = prid;
                                 newRow[1] = leftPart;
-                                newRow[2] = row[i] == DBNull.Value ? 0 : (row[i] == "" ? oldValue : row[i]);
+                                newRow[2] = row[i] == DBNull.Value ? oldValue : (row[i] == "" ? oldValue : row[i]);
                                 result.Rows.Add(newRow);
                                 oldValue = 0;
                             }
@@ -2634,8 +2589,66 @@ namespace ROMS
 
         private void grdProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            try {
 
-            
+
+                // Commit the current cell edit
+                grdProducts.EndEdit();
+
+                // Refresh the data binding
+                grdProducts.Refresh();
+                if (grdProducts.Columns[e.ColumnIndex].Name == "Product Name in Tamil" || grdProducts.Columns[e.ColumnIndex].Name == "P.I Code")
+                {
+
+
+                    this.BindingContext[grdProducts.DataSource]?.EndCurrentEdit();
+
+                    // Get the original DataTable
+                    DataTable rowTable = (DataTable)grdProducts.DataSource;
+
+                    // Create a new DataTable with the same columns
+                    DataTable selectedRowTable = rowTable.Clone();
+
+                    // Get the row you edited/clicked
+                    DataRowView rowView =
+                        grdProducts.Rows[e.RowIndex].DataBoundItem as DataRowView;
+
+                    if (rowView != null)
+                    {
+                        selectedRowTable.ImportRow(rowView.Row);
+                    }
+
+                    // Now selectedRowTable contains only the clicked row
+                    DataTable showobjDtProducts = ConvertRowOnly(selectedRowTable);
+
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 9;
+                    objMR_Product.paraGroup = varGroupId;
+                    objMR_Product.paraSubgroup = varSubGroupId;
+                    objMR_Product.paraBrandID = varBrandId;
+                    objMR_Product.ParaProductCode = Convert.ToInt32(lblProductcode.Text);
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
+                    objMR_Product.paraRateCategorys = lblRateId.Text;
+                    objMR_Product.paraPrintType = Convert.ToInt32(cmbprinttype.SelectedValue);
+                    objMR_Product.paraOffSetType = Convert.ToInt32(cmbOffsetType.SelectedValue);
+                    objMR_Product.paraId = varId;
+                    objMR_Product.paraBulkMinqty = showobjDtProducts;
+                    DataSet objDs = new DataSet();
+                    objdtProductsShow = null;
+                    udfnInitShowProduct();
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnRateCategoryList(objMR_Product);
+                    DataTable productData = objDs.Tables[0];
+                    CP_BulkProductDemo popup = new CP_BulkProductDemo(productData);
+                    popup.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnClear()

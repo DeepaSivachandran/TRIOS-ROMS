@@ -49,7 +49,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(313, 208);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(486, 231);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958801;
@@ -94,7 +94,7 @@
             this.grdProducts.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdProducts.RowTemplate.Height = 25;
             this.grdProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdProducts.Size = new System.Drawing.Size(727, 412);
+            this.grdProducts.Size = new System.Drawing.Size(1072, 458);
             this.grdProducts.TabIndex = 958800;
             this.grdProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdProducts_CellFormatting);
             // 
@@ -103,7 +103,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(733, 436);
+            this.ClientSize = new System.Drawing.Size(1078, 482);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.grdProducts);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,6 +116,7 @@
             this.Name = "CP_BulkProductDemo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bulk Data";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BulkProductDemo_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
             this.ResumeLayout(false);

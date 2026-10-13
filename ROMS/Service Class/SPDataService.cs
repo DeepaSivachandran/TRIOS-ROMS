@@ -6184,6 +6184,7 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@paraPrintType", obj.paraPrintType);
                 cmd.Parameters.AddWithValue("@ParaCompanycode", obj.ParaCompanycode);
                 cmd.Parameters.AddWithValue("@paraBulkMinqty", obj.paraBulkMinqty);
+                cmd.Parameters.AddWithValue("@paraBulk", obj.paraBulk);
                  
 
 

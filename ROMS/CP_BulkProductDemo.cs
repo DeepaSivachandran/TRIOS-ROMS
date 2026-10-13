@@ -33,11 +33,13 @@ namespace ROMS
                 udfnLoad(objDataBulk);
                 lblNoRecordsFound.Visible = false;
             }
-            else {
+            else
+            {
                 lblNoRecordsFound.Visible = true;
             }
         }
-        public void udfnLoad(DataTable objDataBulk) {
+        public void udfnLoad(DataTable objDataBulk)
+        {
             try
             { // Fixed columns that should always remain
                 string[] fixedColumns =
@@ -56,7 +58,7 @@ namespace ROMS
                         continue;
                     bool allMinusOne = objDataBulk.AsEnumerable().All(row =>
                         !row.IsNull(column) &&
-                        Convert.ToString(row[column]) == "-1");
+                        (Convert.ToString(row[column]) == "-1.00" || Convert.ToString(row[column]) == "-1") );
                     if (allMinusOne)
                     {
                         objDataBulk.Columns.Remove(column);
@@ -66,11 +68,11 @@ namespace ROMS
                 grdProducts.DataSource = objDataBulk;
                 // Hide required columns
                 if (grdProducts.Columns.Contains("PRODUCTID"))
-                    grdProducts.Columns["PRODUCTID"].Visible = false;               
+                    grdProducts.Columns["PRODUCTID"].Visible = false;
                 grdProducts.Columns["P.I Code"].Width = 120;
                 grdProducts.Columns["S.No."].Width = 50;
                 grdProducts.Columns["Product Name in Tamil"].Width = 350;
-                grdProducts.Columns["UNIT"].Width = 50; 
+                grdProducts.Columns["UNIT"].Width = 50;
                 grdProducts.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 grdProducts.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
@@ -91,7 +93,7 @@ namespace ROMS
                 if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
                 var col = grdProducts.Columns[e.ColumnIndex];
                 // Only for Live / New columns
-                if (e.Value != null && e.Value.ToString() == "-1")
+                if (e.Value != null && (e.Value.ToString() == "-1.00" || e.Value.ToString() == "-1"))
                 {
                     e.CellStyle.BackColor = Color.LightGray;
                     e.CellStyle.ForeColor = Color.LightGray;
@@ -101,6 +103,23 @@ namespace ROMS
                 {
 
                     e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_BulkProductDemo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                if (e.KeyCode == Keys.Escape)
+                {
+                    this.Close();
                 }
             }
             catch (Exception ex)

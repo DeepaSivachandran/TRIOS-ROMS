@@ -93,7 +93,8 @@ namespace ROMS.Model
         public int paraRateId = 0;
         public int paraRateSno = 0;
         public DataTable paraBulkStatus = null;
-        public DataTable paraBulkMinqty = null; 
+        public DataTable paraBulkMinqty = null;
+        public DataTable paraBulk { get; set; } = null;
         public int paraRateCategory = 0;        
         public int paraOffSetType = 0;        
         public string paraRateCategorys = "0"; 

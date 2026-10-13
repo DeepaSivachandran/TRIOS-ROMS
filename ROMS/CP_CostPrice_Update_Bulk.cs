@@ -1373,6 +1373,77 @@ namespace ROMS
             }
         }
 
+        private void grdProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+
+                // Commit the current cell edit
+                grdProducts.EndEdit();
+
+                // Refresh the data binding
+                grdProducts.Refresh();
+                if (grdProducts.Columns[e.ColumnIndex].Name == "Product Name in Tamil" || grdProducts.Columns[e.ColumnIndex].Name == "P.I Code")
+                {
+
+
+                    this.BindingContext[grdProducts.DataSource]?.EndCurrentEdit();
+
+                    // Get the original DataTable
+                    DataTable rowTable = objdtProducts.DefaultView.ToTable(false, "PRODUCTID", "Last Rate", "Live Rate");
+
+                    // Create a new DataTable with the same columns
+                    DataTable showobjDtProducts = rowTable.Clone();
+
+                    // Get the row you edited/clicked
+                    DataRowView rowView =
+                        grdProducts.Rows[e.RowIndex].DataBoundItem as DataRowView;
+
+                    if (rowView != null)
+                    {
+                        showobjDtProducts.ImportRow(rowView.Row);
+                    }
+
+                    foreach (DataRow row in showobjDtProducts.Rows)
+                    {
+                        if (row.IsNull("Last Rate") || string.IsNullOrWhiteSpace(row["Last Rate"].ToString()))
+                            row["Last Rate"] = 0;
+
+                        if (row.IsNull("Live Rate") || string.IsNullOrWhiteSpace(row["Live Rate"].ToString()))
+                            row["Live Rate"] = 0;
+                    }
+
+                    // Now selectedRowTable contains only the clicked row
+
+
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 10;
+                    objMR_Product.paraGroup = varGroupId;
+                    objMR_Product.paraSubgroup = varSubGroupId;
+                    objMR_Product.paraBrandID = varBrandId;
+                    objMR_Product.ParaProductCode = 0;
+                    objMR_Product.ParaCompanycode = 0;
+                    objMR_Product.paraProductCategory = 0;
+                    objMR_Product.paraRateCategorys = "0";
+                    objMR_Product.paraPrintType = 0;
+                    objMR_Product.paraOffSetType = 0;
+                    objMR_Product.paraId = varId;
+                    objMR_Product.paraBulk = showobjDtProducts;
+                    DataSet objDs = new DataSet(); 
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnRateCategoryList(objMR_Product);
+                    DataTable productData = objDs.Tables[0];
+                    CP_BulkProductDemo popup = new CP_BulkProductDemo(productData);
+                    popup.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         public void udfnSave()
         {
