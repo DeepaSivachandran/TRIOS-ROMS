@@ -236,7 +236,7 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 374)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_BillWise_SupplierPaymentPending.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_BillWise_SupplierPaymentPendingDetail.rpt");
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 375)
                     {
@@ -261,6 +261,10 @@ namespace ROMS
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_SupplierPaymentGiven_Summary.rpt");
                         objBillreport.SetParameterValue("paraPayModeName", Convert.ToString(cmbPayType.Text));
                         varReportName = "PAY_SupplierPaymentGiven_Summary";
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 702)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_BillWise_SupplierPaymentPending.rpt");
                     }
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraPayType", Convert.ToInt32(cmbPayType.SelectedValue));
