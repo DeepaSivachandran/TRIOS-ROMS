@@ -94,15 +94,15 @@ namespace ROMS
                 {
                     lblDays.Text = "";
                     lblMonths.Text = "";
-                    if (Convert.ToInt32(cmbSalesType.SelectedValue) == 585)
-                    {
-                        RPTViewer.ReportSource = null;
-                        RPTViewer.Visible = false;
-                        RPTViewer.BringToFront();
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                        return;
-                    }
+                    //if (Convert.ToInt32(cmbSalesType.SelectedValue) == 585)
+                    //{
+                    //    RPTViewer.ReportSource = null;
+                    //    RPTViewer.Visible = false;
+                    //    RPTViewer.BringToFront();
+                    //    lblNoRecordsFound.Visible = true;
+                    //    lblNoRecordsFound.BringToFront();
+                    //    return;
+                    //}
                     int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
                     if (varReportType == 668)
                     {
@@ -372,21 +372,51 @@ namespace ROMS
                 if (!string.IsNullOrWhiteSpace(cmbBillType.Text))
                     varBillTypeName = cmbBillType.Text.Trim();
                 int varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
+                int varFilterSalesType = Convert.ToInt32(cmbSalesType.SelectedValue);
+
                 if (varReportType == 666)
                 {
-                    varViewType = 0;
+                    if (varFilterSalesType == 505)
+                    {
+                        varViewType = 0;
+                    }
+                    else
+                    {
+                        varViewType = 1;
+                    }
                 }
                 else if (varReportType == 667)
                 {
-                    varViewType = 2;
+                    if (varFilterSalesType == 505)
+                    {
+                        varViewType = 2;
+                    }
+                    else
+                    {
+                        varViewType = 3;
+                    }
                 }
                 else if (varReportType == 668)
                 {
-                    varViewType = 4;
+                    if (varFilterSalesType == 505)
+                    {
+                        varViewType = 4;
+                    }
+                    else
+                    {
+                        varViewType = 5;
+                    }
                 }
                 else if (varReportType == 669)
                 {
-                    varViewType = 6;
+                    if (varFilterSalesType == 505)
+                    {
+                        varViewType = 6;
+                    }
+                    else
+                    {
+                        varViewType = 7;
+                    }
                 }
                 if (varReportType == 668)
                 {
@@ -555,24 +585,70 @@ namespace ROMS
                     /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    string varHeaderName = "Report", varBillNo="Bill No.", varBillDate="Bill Date";
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 666)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Summary.rpt");
+                        if (varFilterSalesType == 505)
+                        {
+                            varHeaderName = "Sales Summary Report";
+                            objBillreport.SetParameterValue("paraSalesType", 0);
+                            objBillreport.SetParameterValue("paraVarBillBy", "Billed By");
+                        }
+                        else
+                        {
+                            varHeaderName = "Sales Return Summary Report";
+                            objBillreport.SetParameterValue("paraSalesType", 1);
+                            varBillNo = "SR No.";
+                            varBillDate = "SR Date";
+                            objBillreport.SetParameterValue("paraVarBillBy", "Sales Return By");
+                        }
+                        objBillreport.SetParameterValue("paraVarBillNo", varBillNo);
+                        objBillreport.SetParameterValue("paraVarBillDate", varBillDate);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 667)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Details.rpt");
+                        if (varFilterSalesType == 505)
+                        {
+                            varHeaderName = "Sales Detail Report";
+                        }
+                        else
+                        {
+                            varHeaderName = "Sales Return Detail Report";
+                            varBillNo = "SR No.";
+                            varBillDate = "SR Date";
+                        }
+                        objBillreport.SetParameterValue("paraVarBillNo", varBillNo);
+                        objBillreport.SetParameterValue("paraVarBillDate", varBillDate);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 668)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Daywise.rpt");
+                        if (varFilterSalesType == 505)
+                        {
+                            varHeaderName = "Daywise Sales Report";
+                        }
+                        else
+                        {
+                            varHeaderName = "Daywise Sales Return Report";
+                        }
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 669)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Monthwise.rpt");
+                        if (varFilterSalesType == 505)
+                        {
+                            varHeaderName = "Monthwise Sales Report";
+                        }
+                        else
+                        {
+                            varHeaderName = "Monthwise Sales Return Report";
+                        }
                     }
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "");
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? "");
+                    objBillreport.SetParameterValue("paraVarHeaderName", varHeaderName);
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text.Trim());
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text.Trim());
                     string varFromTimeValue = "05:00 AM - 11:59 PM";
@@ -781,7 +857,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN(0,505,585)", "MST_DisplayText,MSTID", cmbSalesType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN(505,585)", "MST_DisplayText,MSTID", cmbSalesType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (198)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,190,202) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID");
@@ -2693,6 +2769,30 @@ namespace ROMS
                 {
                     cmbFormat2.Enabled = false;
                     cmbFormat2.SelectedIndex = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSalesType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
+                {
+                    cmbBillType.Enabled = true;
+                    cmbSchemeType.Enabled = true;
+                }
+                else
+                {
+                    cmbBillType.Enabled = false;
+                    cmbBillType.SelectedValue = 0;
+                    cmbSchemeType.Enabled = false;
+                    cmbSchemeType.SelectedValue = 0;
                 }
             }
             catch (Exception ex)
