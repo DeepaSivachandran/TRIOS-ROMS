@@ -744,18 +744,7 @@ namespace ROMS
         {
             try
             {
-                if (txtProductName.Text == "")
-                {
-                    errItems.SetError(txtProductName, "Please enter valid product");
-                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProduct.ShowAlways = true;
-                    tpProduct.Show("Please enter valid product", txtProductName, 5000);
-                }
-                else
-                {
-                    txtProductName.BackColor = Color.White;
-                    errItems.Clear();
-                }
+                txtProductName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -800,7 +789,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterProduct.Focus();
-
                 }
                 if (VarSearchFlag == true)
                 {
@@ -930,7 +918,18 @@ namespace ROMS
         {
             try
             {
-               // btnSearch.BackColor = Color.DarkBlue;
+                if (txtProductName.Text.Trim() == "")
+                {
+                    errItems.SetError(txtProductName, "Please enter valid product");
+                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter valid product", txtProductName, 5000);
+                }
+                else
+                {
+                    errItems.Clear();
+                }
+                // btnSearch.BackColor = Color.DarkBlue;
             }
             catch (Exception ex)
             {
