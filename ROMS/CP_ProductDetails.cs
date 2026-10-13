@@ -790,13 +790,16 @@ namespace ROMS
                 {
                     DGV_FilterProduct.Focus();
                 }
-                if (VarSearchFlag == true)
+                if (e.KeyCode == Keys.F11)
                 {
-                    txtProductName.CharacterCasing = CharacterCasing.Upper;
-                }
-                else
-                {
-                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    if (VarSearchFlag == true)
+                    {
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
                 }
                 if (e.KeyCode == Keys.F11)
                 {
