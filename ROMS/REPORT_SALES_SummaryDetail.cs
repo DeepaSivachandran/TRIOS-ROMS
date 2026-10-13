@@ -592,12 +592,16 @@ namespace ROMS
                         if (varFilterSalesType == 505)
                         {
                             varHeaderName = "Sales Summary Report";
+                            objBillreport.SetParameterValue("paraSalesType", 0);
+                            objBillreport.SetParameterValue("paraVarBillBy", "Billed By");
                         }
                         else
                         {
                             varHeaderName = "Sales Return Summary Report";
+                            objBillreport.SetParameterValue("paraSalesType", 1);
                             varBillNo = "SR No.";
                             varBillDate = "SR Date";
+                            objBillreport.SetParameterValue("paraVarBillBy", "Sales Return By");
                         }
                         objBillreport.SetParameterValue("paraVarBillNo", varBillNo);
                         objBillreport.SetParameterValue("paraVarBillDate", varBillDate);
@@ -2765,6 +2769,30 @@ namespace ROMS
                 {
                     cmbFormat2.Enabled = false;
                     cmbFormat2.SelectedIndex = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSalesType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
+                {
+                    cmbBillType.Enabled = true;
+                    cmbSchemeType.Enabled = true;
+                }
+                else
+                {
+                    cmbBillType.Enabled = false;
+                    cmbBillType.SelectedValue = 0;
+                    cmbSchemeType.Enabled = false;
+                    cmbSchemeType.SelectedValue = 0;
                 }
             }
             catch (Exception ex)
