@@ -839,7 +839,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_SALES_SummaryDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Price List Report";
+            this.Text = "Sales Summary && Detail Report";
             this.Load += new System.EventHandler(this.REPORT_GRNSummary_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_GRNSummary_KeyDown);
             this.ReportSupplier.ResumeLayout(false);
