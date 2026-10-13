@@ -1362,16 +1362,16 @@
       <DependentUpon>RPT_SAL_BillDiscountScheme_Product.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RPT_SAL_ProductScheme.cs">
+    <Compile Include="Reports\RPT_SALES_SCH_ProductScheme.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_SAL_ProductScheme.rpt</DependentUpon>
+      <DependentUpon>RPT_SALES_SCH_ProductScheme.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RPT_SAL_RateScheme.cs">
+    <Compile Include="Reports\RPT_SALES_SCH_RateScheme.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_SAL_RateScheme.rpt</DependentUpon>
+      <DependentUpon>RPT_SALES_SCH_RateScheme.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_SAL_Summary.cs">
@@ -6868,13 +6868,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SAL_BillDiscountScheme_Product.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_SAL_ProductScheme.rpt">
+    <EmbeddedResource Include="Reports\RPT_SALES_SCH_ProductScheme.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_SAL_ProductScheme.cs</LastGenOutput>
+      <LastGenOutput>RPT_SALES_SCH_ProductScheme.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_SAL_RateScheme.rpt">
+    <EmbeddedResource Include="Reports\RPT_SALES_SCH_RateScheme.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_SAL_RateScheme.cs</LastGenOutput>
+      <LastGenOutput>RPT_SALES_SCH_RateScheme.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
