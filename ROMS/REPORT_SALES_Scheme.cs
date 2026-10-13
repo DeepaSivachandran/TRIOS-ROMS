@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument(); public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyProduct = 0, varUpDownKeyBrand = 0, varUpDownKeyLocation=0;
         public string pbRateCategoryIDs = "";
+        private List<ComboItem> days;
         public REPORT_SALES_Scheme()
         {
             InitializeComponent();
@@ -94,15 +95,40 @@ namespace ROMS
             try
             { 
                 epReport.Clear(); int varViewType = 0,paraFlag=0;
-                string varApplicationRateType = "-All-", varSubgroupName = "-All-", varBrandName = "-All-",varDaysIDs="0";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0; 
+                string varApplicationRateIDs="0", varApplicationRateType = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varReportType="";
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0;
+
+                var selDayIds = cmbMultiSelectDays.CheckedIds;
+                var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
                 picLoader.BringToFront();
                  Application.DoEvents();
-                int varPrint = 0; 
+                int varPrint = 0; string varDays = "0"; string varDayName = "-All-";
+
+                if (Convert.ToInt32(cmbDaysType.SelectedValue) == 0)
+                {
+                    lblDays.Text = ""; 
+                    varDays = "0"; 
+                    varDayName = "-All-"; 
+                }
+                else if (Convert.ToInt16(cmbDaysType.SelectedValue) == 701)
+                {
+                    lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+                    if (string.IsNullOrWhiteSpace(lblDays.Text))
+                    {
+                        varDayName = "-All-";
+                        varDays = "0";
+                    }
+                    else
+                    {
+                        varDayName = lblDays.Text;
+                        varDays = string.Join(",", selDayIds);
+                    }
+                }
+
                 TRN_Scheme objTRN_Scheme = new TRN_Scheme();
                 objTRN_Scheme.ViewType = varViewType;  
                 objTRN_Scheme.paraFlag = paraFlag;  
@@ -113,7 +139,7 @@ namespace ROMS
                 objTRN_Scheme.paraDaysType = Convert.ToInt32(cmbDaysType.SelectedValue);  
                 objTRN_Scheme.paraSchAvailTime = Convert.ToInt32(cmbSchemeAvailTime.SelectedValue);  
                 objTRN_Scheme.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);  
-                objTRN_Scheme.paraDaysId = varDaysIDs;  
+                objTRN_Scheme.paraDaysId = varDays;  
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnSchemeReport(objTRN_Scheme);
@@ -125,17 +151,39 @@ namespace ROMS
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     /////RPTViewer.RefreshReport();
-                    ///
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                     
                     if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 626)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_SCH_ProductScheme.rpt");
+                        objBillreport.SetParameterValue("paraRecursiveName", Convert.ToString(cmbRecursive.Text));
                     }
-                     
+                    else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 627)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_SCH_RateScheme.rpt");
+                    } 
+                    else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 628 || Convert.ToInt32(cmbSchemeType.SelectedValue) == 629)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_SCH_DiscountScheme_Value.rpt");
+                        objBillreport.SetParameterValue("paraFlag", Convert.ToInt16(cmbSchemeType.SelectedValue));
+                        if(Convert.ToInt32(cmbSchemeType.SelectedValue) == 628)
+                        {
+                            varReportType = "Bill Discount Scheme(Value) Report";
+                        }
+                        else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 629)
+                        {
+                            varReportType = "Bill Discount Scheme(Percentage) Report";
+                        }
+                        objBillreport.SetParameterValue("paraReportName", varReportType); 
+                    }
+                    else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 703)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_SCH_DiscountScheme_Product.rpt");
+                    }
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "");
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? "");
-                    objBillreport.SetParameterValue("paraApplicateRateType", varApplicationRateType);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? ""); 
                     objBillreport.SetParameterValue("paraRecursive", Convert.ToInt16(cmbRecursive.SelectedValue) );
                     objBillreport.SetParameterValue("paraDaysType", Convert.ToInt16(cmbDaysType.SelectedValue) );
                     objBillreport.SetParameterValue("paraSchemeAvailTime", Convert.ToInt16(cmbSchemeAvailTime.SelectedValue));
@@ -144,10 +192,13 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSchAvailTime", Convert.ToInt16(cmbSchemeAvailTime.SelectedValue));
                     objBillreport.SetParameterValue("paraStatus", Convert.ToInt16(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraValitityType", Convert.ToInt16(cmbValidityType.SelectedValue));
-                    objBillreport.SetParameterValue("paraDaysId", varDaysIDs);
+                    objBillreport.SetParameterValue("paraDaysId", varDays);
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraValidityName", Convert.ToString(cmbValidityType.Text));
-                    objBillreport.SetParameterValue("paraRecursiveName", Convert.ToString(cmbRecursive.Text));
+                    objBillreport.SetParameterValue("paraApplicableRateName", Convert.ToString(cmbRateCategory.Text));
+                    objBillreport.SetParameterValue("paraSATName", Convert.ToString(cmbSchemeAvailTime.Text));
+                    objBillreport.SetParameterValue("paraDaysName", varDayName);
+                    
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -228,9 +279,9 @@ namespace ROMS
 
 
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,190) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID"); 
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (190) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,214) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRecursive, "", "MST_DisplayText", "MSTID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,547) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID"); 
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,167) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,159) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbValidityType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,215) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDaysType, "", "MST_DisplayText", "MSTID");  
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,160) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeAvailTime, "", "MST_DisplayText", "MSTID");  
@@ -242,7 +293,7 @@ namespace ROMS
                 SPDataService objdSer = new SPDataService();
                 objDTable = objdSer.udfnMaster(objMR_Master);
                 objdSer.CloseConnection();
-                 
+                udfnLoadDays();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     string privilege = "";
@@ -256,8 +307,39 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }         
-                    
+        }
+        public void udfnLoadDays()
+        {
+            try
+            {
+                lblDays.Text = "";
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 41;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnMaster(objMR_Master);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs != null && objDs.Tables.Count > 0 && objDs.Tables[0].Rows.Count > 0)
+                    {
+                        days = objDs.Tables[0].AsEnumerable()
+                            .Select(r => new ComboItem
+                            {
+                                Id = r.Field<int>("DYID"),
+                                Text = r.Field<string>("DayName")
+                            })
+                            .ToList();
+                        cmbMultiSelectDays.LoadItems(days, "Select Day");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnTelegram_Enter(object sender, EventArgs e)
         {
             try
@@ -322,7 +404,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbRecursive.Focus();
+                    cmbConcern.Focus();
                     e.Handled = true;
                 }
             }
@@ -701,13 +783,63 @@ namespace ROMS
             }
         }
 
+        private void cmbMultiSelectDays_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbMultiSelectDays.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiSelectDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbSchemeAvailTime.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiSelectDays_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMultiSelectDays.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void cmbconcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                     cmbSchemeType.Focus();
+                    if (cmbRecursive.Enabled == true)
+                    {
+                        cmbRecursive.Focus();
+                    }
+                    else
+                    {
+                        cmbRateCategory.Focus();
+                    }
                     e.Handled = true;
                 }
             }

@@ -59,6 +59,9 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicToolStripLabelControl1 = new ROMS.DynamicToolStripLabelControl();
+            this.lblDays = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.tsProductCategoryReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -132,6 +135,9 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.lblDays);
+            this.grpfilter.Controls.Add(this.label11);
+            this.grpfilter.Controls.Add(this.cmbMultiSelectDays);
             this.grpfilter.Controls.Add(this.cmbRateCategory);
             this.grpfilter.Controls.Add(this.label9);
             this.grpfilter.Controls.Add(this.cmbRecursive);
@@ -160,7 +166,7 @@
             // cmbRateCategory
             // 
             this.cmbRateCategory.FormattingEnabled = true;
-            this.cmbRateCategory.Location = new System.Drawing.Point(370, 56);
+            this.cmbRateCategory.Location = new System.Drawing.Point(478, 56);
             this.cmbRateCategory.Name = "cmbRateCategory";
             this.cmbRateCategory.Size = new System.Drawing.Size(119, 27);
             this.cmbRateCategory.TabIndex = 111111247;
@@ -172,7 +178,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(370, 29);
+            this.label9.Location = new System.Drawing.Point(478, 28);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(120, 20);
             this.label9.TabIndex = 111111248;
@@ -181,7 +187,7 @@
             // cmbRecursive
             // 
             this.cmbRecursive.FormattingEnabled = true;
-            this.cmbRecursive.Location = new System.Drawing.Point(244, 56);
+            this.cmbRecursive.Location = new System.Drawing.Point(356, 56);
             this.cmbRecursive.Name = "cmbRecursive";
             this.cmbRecursive.Size = new System.Drawing.Size(112, 27);
             this.cmbRecursive.TabIndex = 2;
@@ -193,7 +199,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(244, 29);
+            this.label3.Location = new System.Drawing.Point(356, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 20);
             this.label3.TabIndex = 111111246;
@@ -202,10 +208,10 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(830, 56);
+            this.cmbStatus.Location = new System.Drawing.Point(1069, 56);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(94, 27);
-            this.cmbStatus.TabIndex = 7;
+            this.cmbStatus.Size = new System.Drawing.Size(141, 27);
+            this.cmbStatus.TabIndex = 8;
             this.cmbStatus.Enter += new System.EventHandler(this.cmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStatus_KeyPress);
@@ -214,7 +220,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(830, 28);
+            this.label8.Location = new System.Drawing.Point(1069, 28);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 20);
             this.label8.TabIndex = 111111227;
@@ -223,10 +229,10 @@
             // cmbSchemeAvailTime
             // 
             this.cmbSchemeAvailTime.FormattingEnabled = true;
-            this.cmbSchemeAvailTime.Location = new System.Drawing.Point(705, 56);
+            this.cmbSchemeAvailTime.Location = new System.Drawing.Point(941, 56);
             this.cmbSchemeAvailTime.Name = "cmbSchemeAvailTime";
             this.cmbSchemeAvailTime.Size = new System.Drawing.Size(118, 27);
-            this.cmbSchemeAvailTime.TabIndex = 6;
+            this.cmbSchemeAvailTime.TabIndex = 7;
             this.cmbSchemeAvailTime.Enter += new System.EventHandler(this.cmbSchemeAvailTime_Enter);
             this.cmbSchemeAvailTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeAvailTime_KeyDown);
             this.cmbSchemeAvailTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSchemeAvailTime_KeyPress);
@@ -235,7 +241,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(705, 28);
+            this.label7.Location = new System.Drawing.Point(941, 28);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 20);
             this.label7.TabIndex = 111111225;
@@ -244,7 +250,7 @@
             // cmbDaysType
             // 
             this.cmbDaysType.FormattingEnabled = true;
-            this.cmbDaysType.Location = new System.Drawing.Point(602, 56);
+            this.cmbDaysType.Location = new System.Drawing.Point(733, 56);
             this.cmbDaysType.Name = "cmbDaysType";
             this.cmbDaysType.Size = new System.Drawing.Size(94, 27);
             this.cmbDaysType.TabIndex = 5;
@@ -256,7 +262,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(602, 28);
+            this.label5.Location = new System.Drawing.Point(733, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 111111223;
@@ -265,9 +271,9 @@
             // cmbValidityType
             // 
             this.cmbValidityType.FormattingEnabled = true;
-            this.cmbValidityType.Location = new System.Drawing.Point(501, 56);
+            this.cmbValidityType.Location = new System.Drawing.Point(607, 56);
             this.cmbValidityType.Name = "cmbValidityType";
-            this.cmbValidityType.Size = new System.Drawing.Size(94, 27);
+            this.cmbValidityType.Size = new System.Drawing.Size(116, 27);
             this.cmbValidityType.TabIndex = 4;
             this.cmbValidityType.Enter += new System.EventHandler(this.cmbValidityType_Enter);
             this.cmbValidityType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbValidityType_KeyDown);
@@ -277,7 +283,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(501, 28);
+            this.label4.Location = new System.Drawing.Point(607, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 20);
             this.label4.TabIndex = 111111221;
@@ -286,10 +292,10 @@
             // cmbSchemeType
             // 
             this.cmbSchemeType.FormattingEnabled = true;
-            this.cmbSchemeType.Location = new System.Drawing.Point(113, 56);
+            this.cmbSchemeType.Location = new System.Drawing.Point(9, 56);
             this.cmbSchemeType.Name = "cmbSchemeType";
-            this.cmbSchemeType.Size = new System.Drawing.Size(125, 27);
-            this.cmbSchemeType.TabIndex = 1;
+            this.cmbSchemeType.Size = new System.Drawing.Size(233, 27);
+            this.cmbSchemeType.TabIndex = 0;
             this.cmbSchemeType.Enter += new System.EventHandler(this.cmbSchemeType_Enter);
             this.cmbSchemeType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeType_KeyDown);
             this.cmbSchemeType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSchemeType_KeyPress);
@@ -298,19 +304,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(113, 28);
+            this.label2.Location = new System.Drawing.Point(9, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.Size = new System.Drawing.Size(74, 20);
             this.label2.TabIndex = 111111217;
-            this.label2.Text = "Scheme";
+            this.label2.Text = "Report Type";
             // 
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(13, 56);
+            this.cmbConcern.Location = new System.Drawing.Point(252, 56);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(94, 27);
-            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.TabIndex = 1;
             this.cmbConcern.Enter += new System.EventHandler(this.cmbconcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbconcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbconcern_KeyPress);
@@ -319,7 +325,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 28);
+            this.label6.Location = new System.Drawing.Point(252, 28);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 20);
             this.label6.TabIndex = 111111213;
@@ -329,7 +335,7 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1007, 56);
+            this.btnTelegram.Location = new System.Drawing.Point(1298, 56);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
@@ -345,7 +351,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(930, 56);
+            this.btnView.Location = new System.Drawing.Point(1221, 56);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(65, 29);
@@ -404,6 +410,40 @@
             // dynamicToolStripLabelControl1
             // 
             this.dynamicToolStripLabelControl1.PlaceholderLabel = null;
+            // 
+            // lblDays
+            // 
+            this.lblDays.AutoSize = true;
+            this.lblDays.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDays.Location = new System.Drawing.Point(837, 83);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(90, 15);
+            this.lblDays.TabIndex = 111111251;
+            this.lblDays.Text = "Su,Mo,Tu,We,Th,Fr,Sa";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(837, 28);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 20);
+            this.label11.TabIndex = 111111250;
+            this.label11.Text = "Days";
+            // 
+            // cmbMultiSelectDays
+            // 
+            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiSelectDays.DropDownHeight = 1;
+            this.cmbMultiSelectDays.FormattingEnabled = true;
+            this.cmbMultiSelectDays.IntegralHeight = false;
+            this.cmbMultiSelectDays.Location = new System.Drawing.Point(837, 56);
+            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
+            this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
+            this.cmbMultiSelectDays.TabIndex = 6;
+            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
+            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
+            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
             // 
             // REPORT_SALES_Scheme
             // 
@@ -467,5 +507,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbRateCategory;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblDays;
+        private System.Windows.Forms.Label label11;
+        private MultiSelectComboBox cmbMultiSelectDays;
     }
 }
