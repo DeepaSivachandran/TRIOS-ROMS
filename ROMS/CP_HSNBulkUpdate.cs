@@ -203,6 +203,7 @@ namespace ROMS
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 objMR_Product.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objMR_Product.paraIPAddress = MainForm.pbIpAddress;  
+                objMR_Product.paraAlpha =txtAlpha.Text.Trim();  
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
@@ -2006,7 +2007,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    txtAlpha.Focus();
                 }
             }
             catch (Exception ex)
@@ -2034,6 +2035,49 @@ namespace ROMS
             try
             {
                 cmbCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                txtAlpha.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAlpha_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAlpha_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAlpha.BackColor = Color.White;
             }
             catch (Exception ex)
             {

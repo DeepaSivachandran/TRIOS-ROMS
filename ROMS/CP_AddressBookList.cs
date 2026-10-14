@@ -273,17 +273,21 @@ namespace ROMS
                             grdAddressBookList.Columns["Type"].Width = 100;
                             grdAddressBookList.Columns["Contact"].Width = 100;
                             grdAddressBookList.Columns["Address"].Width = 350;
-                            grdAddressBookList.Columns["CreatedDate"].Width = 150;
-                            grdAddressBookList.Columns["UpdatedDate"].Width = 150;
-                            grdAddressBookList.Columns["S.No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdAddressBookList.Columns["Created By"].Width = 180;
+                            grdAddressBookList.Columns["Updated By"].Width = 180;
+                            grdAddressBookList.Columns["S.No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAddressBookList.Columns["Contact"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
-                            grdAddressBookList.Columns["CreatedDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
-                            grdAddressBookList.Columns["UpdatedDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAddressBookList.Columns["IsEditable"].Visible = false;
                             grdAddressBookList.Columns["STSID"].Visible = false;
                             grdAddressBookList.Columns["CONGID"].Visible = false;
                             grdAddressBookList.Columns["ID"].Visible = false;
 
+                            if (objDs.Tables[1].Rows.Count != 0)
+                            {
+                                lblOthersCount.Text = Convert.ToString(objDs.Tables[1].Rows[0]["OthersCount"]);
+                                lblSupplierCount.Text = Convert.ToString(objDs.Tables[1].Rows[0]["SupplierCount"]);
+                                lblTotalCount.Text = Convert.ToString(objDs.Tables[1].Rows[0]["TotalCount"]);
+                            }
                         }
                         else
                         {
@@ -1239,8 +1243,36 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        } 
+        public void udfnPrintFlag()
+        {
+            try
+            {
+                int emptyprint = grdAddressBookList.Rows.Cast<DataGridViewRow>().Count(r => Convert.ToBoolean(r.Cells[0].Value) &&
+               Convert.ToInt32(r.Cells["IsEditable"].Value) == 0) > 0 ? 1 : 0;
+                pbPrintFlag = grdAddressBookList.Rows.Cast<DataGridViewRow>().Count(r => Convert.ToBoolean(r.Cells[0].Value) &&
+                Convert.ToInt32(r.Cells["IsEditable"].Value) == 1);
+                if (emptyprint == 0)
+                {
+                    tsbEmpty.Visible = true;
+                    tsbFilled.Visible = true;
+                    tsbEmptySep.Visible = true;
+                    tsbEnvelopPrintSep.Visible = true;
+                }
+                else
+                {
+                    tsbEmpty.Visible = false;
+                    tsbFilled.Visible = false;
+                    tsbEmptySep.Visible = false;
+                    tsbEnvelopPrintSep.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
         private void grdAddressBookList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1344,6 +1376,38 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void chkAll_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkAll.Checked == true)
+                {
+                    for (int i = 0; i < grdAddressBookList.Rows.Count; i++)
+                    {
+                        grdAddressBookList.Rows[i].Cells[0].Value = true;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < grdAddressBookList.Rows.Count; i++)
+                    {
+                        grdAddressBookList.Rows[i].Cells[0].Value = false;
+                    }
+                }
+                    udfnPrintFlag();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdAddressBookList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private void cmbType_KeyDown(object sender, KeyEventArgs e)
