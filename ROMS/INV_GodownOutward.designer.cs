@@ -99,6 +99,8 @@
             this.lblConcern = new System.Windows.Forms.Label();
             this.lbloutwardno = new System.Windows.Forms.Label();
             this.grpproductname = new System.Windows.Forms.GroupBox();
+            this.txtRetailRate = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnProductInfo = new System.Windows.Forms.Button();
             this.cmbReason = new System.Windows.Forms.ComboBox();
@@ -143,7 +145,7 @@
             // 
             this.epGoodsOutward.SetIconAlignment(this.btnAdd, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1258, 41);
+            this.btnAdd.Location = new System.Drawing.Point(1269, 41);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(25, 24);
             this.btnAdd.TabIndex = 8;
@@ -156,7 +158,7 @@
             // 
             this.epGoodsOutward.SetIconAlignment(this.btnConversion, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnConversion.Image = global::ROMS.Properties.Resources.Convert;
-            this.btnConversion.Location = new System.Drawing.Point(1217, 36);
+            this.btnConversion.Location = new System.Drawing.Point(1228, 36);
             this.btnConversion.Name = "btnConversion";
             this.btnConversion.Size = new System.Drawing.Size(35, 35);
             this.btnConversion.TabIndex = 7;
@@ -889,6 +891,8 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.txtRetailRate);
+            this.grpproductname.Controls.Add(this.label7);
             this.grpproductname.Controls.Add(this.label6);
             this.grpproductname.Controls.Add(this.btnProductInfo);
             this.grpproductname.Controls.Add(this.cmbReason);
@@ -917,10 +921,30 @@
             this.grpproductname.TabIndex = 1;
             this.grpproductname.TabStop = false;
             // 
+            // txtRetailRate
+            // 
+            this.txtRetailRate.Enabled = false;
+            this.txtRetailRate.Location = new System.Drawing.Point(579, 40);
+            this.txtRetailRate.MaxLength = 10;
+            this.txtRetailRate.Name = "txtRetailRate";
+            this.txtRetailRate.ReadOnly = true;
+            this.txtRetailRate.Size = new System.Drawing.Size(79, 27);
+            this.txtRetailRate.TabIndex = 111111179;
+            this.txtRetailRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(579, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 20);
+            this.label7.TabIndex = 111111178;
+            this.label7.Text = "Rate";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1063, 16);
+            this.label6.Location = new System.Drawing.Point(1074, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 20);
             this.label6.TabIndex = 111111177;
@@ -941,7 +965,7 @@
             // 
             this.cmbReason.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbReason.FormattingEnabled = true;
-            this.cmbReason.Location = new System.Drawing.Point(1063, 40);
+            this.cmbReason.Location = new System.Drawing.Point(1074, 40);
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.Size = new System.Drawing.Size(148, 27);
             this.cmbReason.TabIndex = 6;
@@ -953,7 +977,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(812, 16);
+            this.label5.Location = new System.Drawing.Point(851, 16);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 20);
             this.label5.TabIndex = 1111158;
@@ -970,11 +994,11 @@
             // txtStockQuantity
             // 
             this.txtStockQuantity.Enabled = false;
-            this.txtStockQuantity.Location = new System.Drawing.Point(812, 40);
+            this.txtStockQuantity.Location = new System.Drawing.Point(851, 40);
             this.txtStockQuantity.Name = "txtStockQuantity";
             this.txtStockQuantity.ReadOnly = true;
             this.txtStockQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtStockQuantity.Size = new System.Drawing.Size(100, 27);
+            this.txtStockQuantity.Size = new System.Drawing.Size(85, 27);
             this.txtStockQuantity.TabIndex = 91;
             this.txtStockQuantity.TextChanged += new System.EventHandler(this.TxtStockQuantity_TextChanged);
             // 
@@ -1017,10 +1041,11 @@
             // 
             // txtOutwardQuantity
             // 
-            this.txtOutwardQuantity.Location = new System.Drawing.Point(918, 40);
+            this.txtOutwardQuantity.Location = new System.Drawing.Point(942, 40);
+            this.txtOutwardQuantity.MaxLength = 8;
             this.txtOutwardQuantity.Name = "txtOutwardQuantity";
             this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtOutwardQuantity.Size = new System.Drawing.Size(104, 27);
+            this.txtOutwardQuantity.Size = new System.Drawing.Size(85, 27);
             this.txtOutwardQuantity.TabIndex = 5;
             this.txtOutwardQuantity.TextChanged += new System.EventHandler(this.TxtOutwardQuantity_TextChanged);
             this.txtOutwardQuantity.Enter += new System.EventHandler(this.TxtOutwardQuantity_Enter);
@@ -1031,17 +1056,17 @@
             // txtBatchNo
             // 
             this.txtBatchNo.Enabled = false;
-            this.txtBatchNo.Location = new System.Drawing.Point(666, 40);
+            this.txtBatchNo.Location = new System.Drawing.Point(749, 40);
             this.txtBatchNo.MaxLength = 10;
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.ReadOnly = true;
-            this.txtBatchNo.Size = new System.Drawing.Size(140, 27);
+            this.txtBatchNo.Size = new System.Drawing.Size(96, 27);
             this.txtBatchNo.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(918, 16);
+            this.label2.Location = new System.Drawing.Point(942, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 20);
             this.label2.TabIndex = 958829;
@@ -1061,7 +1086,7 @@
             // txtExpiryDate
             // 
             this.txtExpiryDate.Enabled = false;
-            this.txtExpiryDate.Location = new System.Drawing.Point(579, 40);
+            this.txtExpiryDate.Location = new System.Drawing.Point(664, 40);
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.ReadOnly = true;
             this.txtExpiryDate.Size = new System.Drawing.Size(81, 27);
@@ -1072,7 +1097,7 @@
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(579, 16);
+            this.lblStock.Location = new System.Drawing.Point(664, 16);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(70, 20);
             this.lblStock.TabIndex = 958833;
@@ -1081,7 +1106,7 @@
             // lblBatchNo
             // 
             this.lblBatchNo.AutoSize = true;
-            this.lblBatchNo.Location = new System.Drawing.Point(666, 16);
+            this.lblBatchNo.Location = new System.Drawing.Point(749, 16);
             this.lblBatchNo.Name = "lblBatchNo";
             this.lblBatchNo.Size = new System.Drawing.Size(61, 20);
             this.lblBatchNo.TabIndex = 958827;
@@ -1247,5 +1272,7 @@
         public System.Windows.Forms.DataGridView grdChildStock;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbReason;
+        private System.Windows.Forms.TextBox txtRetailRate;
+        private System.Windows.Forms.Label label7;
     }
 }

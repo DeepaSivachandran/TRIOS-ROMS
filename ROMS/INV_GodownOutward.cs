@@ -1233,6 +1233,7 @@ namespace ROMS
                     txtBatchNo.Text = "";
                     txtStockQuantity.Text = "";
                     txtOutwardQuantity.Text = "";
+                    txtRetailRate.Text = "";
                     txtOutwardQuantity.BackColor = Color.White;
                     lblQuantity.Text = "";
                     SLID = varStockLocationId;
@@ -1444,6 +1445,7 @@ namespace ROMS
                 txtStockQuantity.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_Qty"].Value.ToString();
                 lblQuantity.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
                 txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                txtRetailRate.Text = DGV_FilterProduct.SelectedRows[0].Cells["Retail Rate"].Value.ToString();
                 varChildStockFlag = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["isChildStockFlag"].Value.ToString());
                 txtStockQuantity.TextAlign = HorizontalAlignment.Right;
                 txtMrp.TextAlign = HorizontalAlignment.Right;
@@ -3073,6 +3075,7 @@ namespace ROMS
                 txtBatchNo.Text = "";
                 txtStockQuantity.Text = "";
                 txtOutwardQuantity.Text = "";
+                txtRetailRate.Text = "";
                 varPRID = "";
                 varPICode = "";
                 varTamilname = "";

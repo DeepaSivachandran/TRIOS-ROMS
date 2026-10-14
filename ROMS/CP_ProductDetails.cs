@@ -245,8 +245,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     udfnclose();
-                } 
-
+                }
+                if (e.KeyCode == Keys.F7)
+                {
+                    udfnProductClear();
+                }
             }
             catch (Exception ex)
             {
@@ -317,7 +320,7 @@ namespace ROMS
                             lblStatus.Text = "Status : "+ Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
                             lblRetailRateValue.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ParentTname"]); 
                             lblPICodeValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]);
-                            lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]);
+                            lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]) + "-" + Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
                             lblUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
                             lblGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Group"]);
                             lblSubGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Subgroup"]);
@@ -367,12 +370,17 @@ namespace ROMS
                             grdItemList.DataSource = objDs.Tables[2];
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product"].Width = 320;
-                            grdItemList.Columns["Rate"].Width = 80;
-                            grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdItemList.Columns["Unit"].Width = 60;
+                            grdItemList.Columns["Rate"].Width = 100;
+                            grdItemList.Columns["S.No."].DefaultCellStyle.Font =  new Font("Segoe UI", 10, FontStyle.Regular);
+                            grdItemList.Columns["Rate"].DefaultCellStyle.Font =  new Font("Segoe UI", 10, FontStyle.Regular);
+                            grdItemList.Columns["Unit"].DefaultCellStyle.Font =  new Font("Segoe UI", 10, FontStyle.Regular);
+                            grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12.75F);
                             
-                            grdItemList.ClearSelection(); 
-                            if(grdItemList.Rows.Count!=0)
-                            { lblNoProductUnits.Visible = false;
+                            grdItemList.ClearSelection();
+                            if (grdItemList.Rows.Count != 0)
+                            {
+                                lblNoProductUnits.Visible = false;
                                 grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdItemList.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
@@ -484,6 +492,7 @@ namespace ROMS
                 lblPurLocation.Text = "";
                 lblPurRack.Text = "";
                 lblSalesLocation.Text = "";
+                lblSalesRack.Text = "";
                 lblRackGroup.Text = "";
                 lblUpp.Text = "";
                 lblHSN.Text = "";
@@ -744,18 +753,7 @@ namespace ROMS
         {
             try
             {
-                if (txtProductName.Text == "")
-                {
-                    errItems.SetError(txtProductName, "Please enter valid product");
-                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProduct.ShowAlways = true;
-                    tpProduct.Show("Please enter valid product", txtProductName, 5000);
-                }
-                else
-                {
-                    txtProductName.BackColor = Color.White;
-                    errItems.Clear();
-                }
+                txtProductName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -800,15 +798,17 @@ namespace ROMS
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterProduct.Focus();
-
                 }
-                if (VarSearchFlag == true)
+                if (e.KeyCode == Keys.F11)
                 {
-                    txtProductName.CharacterCasing = CharacterCasing.Upper;
-                }
-                else
-                {
-                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    if (VarSearchFlag == true)
+                    {
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
                 }
                 if (e.KeyCode == Keys.F11)
                 {
@@ -930,7 +930,18 @@ namespace ROMS
         {
             try
             {
-               // btnSearch.BackColor = Color.DarkBlue;
+                if (txtProductName.Text.Trim() == "")
+                {
+                    errItems.SetError(txtProductName, "Please enter valid product");
+                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter valid product", txtProductName, 5000);
+                }
+                else
+                {
+                    errItems.Clear();
+                }
+                // btnSearch.BackColor = Color.DarkBlue;
             }
             catch (Exception ex)
             {
