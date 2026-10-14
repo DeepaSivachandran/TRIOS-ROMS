@@ -245,8 +245,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     udfnclose();
-                } 
-
+                }
+                if (e.KeyCode == Keys.F7)
+                {
+                    udfnProductClear();
+                }
             }
             catch (Exception ex)
             {
@@ -317,7 +320,7 @@ namespace ROMS
                             lblStatus.Text = "Status : "+ Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
                             lblRetailRateValue.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ParentTname"]); 
                             lblPICodeValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]);
-                            lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]);
+                            lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]) + "-" + Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
                             lblUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
                             lblGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Group"]);
                             lblSubGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Subgroup"]);
@@ -367,12 +370,17 @@ namespace ROMS
                             grdItemList.DataSource = objDs.Tables[2];
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product"].Width = 320;
-                            grdItemList.Columns["Rate"].Width = 80;
-                            grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdItemList.Columns["Unit"].Width = 60;
+                            grdItemList.Columns["Rate"].Width = 100;
+                            grdItemList.Columns["S.No."].DefaultCellStyle.Font =  new Font("Segoe UI", 10, FontStyle.Regular);
+                            grdItemList.Columns["Rate"].DefaultCellStyle.Font =  new Font("Segoe UI", 10, FontStyle.Regular);
+                            grdItemList.Columns["Unit"].DefaultCellStyle.Font =  new Font("Segoe UI", 10, FontStyle.Regular);
+                            grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12.75F);
                             
-                            grdItemList.ClearSelection(); 
-                            if(grdItemList.Rows.Count!=0)
-                            { lblNoProductUnits.Visible = false;
+                            grdItemList.ClearSelection();
+                            if (grdItemList.Rows.Count != 0)
+                            {
+                                lblNoProductUnits.Visible = false;
                                 grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdItemList.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
