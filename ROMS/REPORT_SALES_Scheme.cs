@@ -16,6 +16,8 @@ namespace ROMS
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
+        private ToolTip tpReportType = new ToolTip();
+        private ToolTip tpDays = new ToolTip();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument(); public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyProduct = 0, varUpDownKeyBrand = 0, varUpDownKeyLocation=0;
         public string pbRateCategoryIDs = "";
@@ -81,8 +83,42 @@ namespace ROMS
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
             try
-            {  
-                udfnPrint(0);
+            {
+                RPTViewer.ReportSource = null;
+                RPTViewer.Visible = false;
+                RPTViewer.BringToFront();
+                lblNoRecordsFound.Visible = true;
+                lblNoRecordsFound.BringToFront();
+
+                if (Convert.ToInt32(cmbSchemeType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbSchemeType, "Please select report type.");
+                    cmbSchemeType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbSchemeType, 5000);
+                    cmbSchemeType.Focus();
+                    return;
+                }
+                else
+                {
+                    int varDaysType = Convert.ToInt32(cmbDaysType.SelectedValue);
+                    if (varDaysType != 0)
+                    {
+
+                        var selDayIds = cmbMultiSelectDays.CheckedIds;
+                        if (selDayIds == null || selDayIds.Count == 0)
+                        {
+                            epReport.SetError(cmbMultiSelectDays, "Please select at least one day.");
+                            cmbMultiSelectDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpDays.ShowAlways = true;
+                            tpDays.Show("Please select at least one day.", cmbMultiSelectDays, 5000);
+                            cmbMultiSelectDays.Focus();
+                            return;
+                        }
+                    }
+                    udfnPrint(0);
+                }
+
             }
             catch (Exception ex)
             {
@@ -128,12 +164,25 @@ namespace ROMS
                         varDays = string.Join(",", selDayIds);
                     }
                 }
+                if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 626)
+                {
+                    varViewType = 0;
+                }
+                else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 627)
+                { varViewType = 1; }
+                else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 628)
+                { varViewType = 2; paraFlag = 628; }
+                else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 629)
+                { varViewType = 2; paraFlag = 629; }
+                else if (Convert.ToInt32(cmbSchemeType.SelectedValue) == 630)
+                { varViewType = 2; paraFlag = 630; }
+
 
                 TRN_Scheme objTRN_Scheme = new TRN_Scheme();
                 objTRN_Scheme.ViewType = varViewType;  
                 objTRN_Scheme.paraFlag = paraFlag;  
                 objTRN_Scheme.paraConcernID = Convert.ToInt32(cmbConcern.SelectedValue);  
-                objTRN_Scheme.paraAppRateType = varViewType;  
+                objTRN_Scheme.paraAppRateType = Convert.ToInt32(cmbRateCategory.SelectedValue); ;  
                 objTRN_Scheme.paraRecursive = Convert.ToInt32(cmbRecursive.SelectedValue);  
                 objTRN_Scheme.paraValitityType = Convert.ToInt32(cmbValidityType.SelectedValue);  
                 objTRN_Scheme.paraDaysType = Convert.ToInt32(cmbDaysType.SelectedValue);  
@@ -575,7 +624,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbSchemeAvailTime.Focus();
+                    if (cmbMultiSelectDays.Enabled == true)
+                    {
+                        cmbMultiSelectDays.Focus();
+                    }
+                    else
+                    {
+                        cmbSchemeAvailTime.Focus();
+                    } 
                     e.Handled = true;
                 }
             }
@@ -746,7 +802,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbValidityType.Focus();
+                    if (cmbValidityType.Enabled == true)
+                    {
+                        cmbValidityType.Focus();
+                    }
+                    else { cmbDaysType.Focus(); }
                     e.Handled = true;
                 }
             }
@@ -818,6 +878,61 @@ namespace ROMS
             try
             {
                 cmbMultiSelectDays.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSchemeType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSchemeType.SelectedValue == null)
+                return;
+             
+
+            if (!int.TryParse(
+                cmbSchemeType.SelectedValue.ToString(),
+                out int varReportType))
+            {
+                return;
+            } 
+            cmbConcern.SelectedValue = 0;
+            cmbRecursive.SelectedValue = 0;
+            cmbRateCategory.SelectedValue = 0;
+            cmbValidityType.SelectedValue = 0;
+            cmbDaysType.SelectedValue = 0;
+            cmbSchemeAvailTime.SelectedValue = 0;
+            cmbStatus.SelectedValue = 0;   
+            cmbMultiSelectDays.Enabled = false; 
+            lblDays.Text = ""; 
+            epReport.Clear(); 
+
+            if(Convert.ToInt16(cmbSchemeType.SelectedValue) != 626)
+            {
+                cmbRecursive.Enabled = false;
+            }
+            if( Convert.ToInt16(cmbSchemeType.SelectedValue)== 628 || Convert.ToInt16(cmbSchemeType.SelectedValue) == 629|| Convert.ToInt16(cmbSchemeType.SelectedValue) == 630)
+            {
+                cmbValidityType.Enabled = false;
+            }
+            else { cmbValidityType.Enabled = true; }
+        }
+
+        private void cmbDaysType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbDaysType.SelectedValue) != 0)
+                {
+                    cmbMultiSelectDays.Enabled = true;
+                }
+                else
+                {
+                    lblDays.Text = "";  
+                    cmbMultiSelectDays.Enabled = false; 
+                }
             }
             catch (Exception ex)
             {

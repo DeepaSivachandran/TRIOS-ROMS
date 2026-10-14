@@ -6922,7 +6922,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRN_Scheme.paraOrderType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRN_Scheme.paraBrandID);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_Scheme.paraFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraConcernID", objTRN_Scheme.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraConcernID", objTRN_Scheme.paraConcernID);
                 varSqlCommand.Parameters.AddWithValue("@paraAppRateType", objTRN_Scheme.paraAppRateType);
                 varSqlCommand.Parameters.AddWithValue("@paraRecursive", objTRN_Scheme.paraRecursive);
                 varSqlCommand.Parameters.AddWithValue("@paraValitityType", objTRN_Scheme.paraValitityType);

@@ -36,6 +36,9 @@
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblDays = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.cmbRateCategory = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbRecursive = new System.Windows.Forms.ComboBox();
@@ -59,9 +62,6 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicToolStripLabelControl1 = new ROMS.DynamicToolStripLabelControl();
-            this.lblDays = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.tsProductCategoryReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -163,6 +163,40 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // lblDays
+            // 
+            this.lblDays.AutoSize = true;
+            this.lblDays.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDays.Location = new System.Drawing.Point(837, 83);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(90, 15);
+            this.lblDays.TabIndex = 111111251;
+            this.lblDays.Text = "Su,Mo,Tu,We,Th,Fr,Sa";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(837, 28);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 20);
+            this.label11.TabIndex = 111111250;
+            this.label11.Text = "Days";
+            // 
+            // cmbMultiSelectDays
+            // 
+            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiSelectDays.DropDownHeight = 1;
+            this.cmbMultiSelectDays.FormattingEnabled = true;
+            this.cmbMultiSelectDays.IntegralHeight = false;
+            this.cmbMultiSelectDays.Location = new System.Drawing.Point(837, 56);
+            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
+            this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
+            this.cmbMultiSelectDays.TabIndex = 6;
+            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
+            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
+            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
+            // 
             // cmbRateCategory
             // 
             this.cmbRateCategory.FormattingEnabled = true;
@@ -254,6 +288,7 @@
             this.cmbDaysType.Name = "cmbDaysType";
             this.cmbDaysType.Size = new System.Drawing.Size(94, 27);
             this.cmbDaysType.TabIndex = 5;
+            this.cmbDaysType.SelectedIndexChanged += new System.EventHandler(this.cmbDaysType_SelectedIndexChanged);
             this.cmbDaysType.Enter += new System.EventHandler(this.cmbDaysType_Enter);
             this.cmbDaysType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDaysType_KeyDown);
             this.cmbDaysType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDaysType_KeyPress);
@@ -296,6 +331,7 @@
             this.cmbSchemeType.Name = "cmbSchemeType";
             this.cmbSchemeType.Size = new System.Drawing.Size(233, 27);
             this.cmbSchemeType.TabIndex = 0;
+            this.cmbSchemeType.SelectedIndexChanged += new System.EventHandler(this.cmbSchemeType_SelectedIndexChanged);
             this.cmbSchemeType.Enter += new System.EventHandler(this.cmbSchemeType_Enter);
             this.cmbSchemeType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeType_KeyDown);
             this.cmbSchemeType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSchemeType_KeyPress);
@@ -410,40 +446,6 @@
             // dynamicToolStripLabelControl1
             // 
             this.dynamicToolStripLabelControl1.PlaceholderLabel = null;
-            // 
-            // lblDays
-            // 
-            this.lblDays.AutoSize = true;
-            this.lblDays.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDays.Location = new System.Drawing.Point(837, 83);
-            this.lblDays.Name = "lblDays";
-            this.lblDays.Size = new System.Drawing.Size(90, 15);
-            this.lblDays.TabIndex = 111111251;
-            this.lblDays.Text = "Su,Mo,Tu,We,Th,Fr,Sa";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(837, 28);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 20);
-            this.label11.TabIndex = 111111250;
-            this.label11.Text = "Days";
-            // 
-            // cmbMultiSelectDays
-            // 
-            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbMultiSelectDays.DropDownHeight = 1;
-            this.cmbMultiSelectDays.FormattingEnabled = true;
-            this.cmbMultiSelectDays.IntegralHeight = false;
-            this.cmbMultiSelectDays.Location = new System.Drawing.Point(837, 56);
-            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
-            this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
-            this.cmbMultiSelectDays.TabIndex = 6;
-            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
-            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
-            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
             // 
             // REPORT_SALES_Scheme
             // 
