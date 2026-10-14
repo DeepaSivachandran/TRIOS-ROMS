@@ -482,6 +482,7 @@ namespace ROMS
         public static REPORT_SALES_GeneralCustomerNameChange objREPORT_SALES_GeneralCustomerNameChange;
         public static REPORT_Batchwise_Stock_Taking objREPORT_Batchwise_Stock_Taking;
         public static REPORT_SALES_TaxDetail objREPORT_SALES_TaxDetail;
+        public static REPORT_SALES_Scheme objREPORT_SALES_Scheme;
 
         public MainForm()
         {
@@ -5528,6 +5529,19 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_SALES_TaxDetail, "REPORT_SALES_TaxDetail", 140303);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSchemeReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_SALES_Scheme, "REPORT_SALES_Scheme", 1404);
             }
             catch (Exception ex)
             {

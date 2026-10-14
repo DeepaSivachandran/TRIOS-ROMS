@@ -295,30 +295,10 @@ namespace ROMS
                     /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 685)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 626)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Billwise_Consolidated.rpt");
-                    } 
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 686)
-                    {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Billwise_Details.rpt");
-                    }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 687)
-                    {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Daywise_Details.rpt");
-                    }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 688)
-                    {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Monthwise_Details.rpt");
-                    }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 689)
-                    {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Customerwise_Summary.rpt");
-                    }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 690)
-                    {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Tax_Customerwise_Details.rpt");
-                    }
+                    }  
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "");
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? ""); 
                     objBillreport.SetParameterValue("paraBillType", Convert.ToInt16(cmbBillType.SelectedValue));
