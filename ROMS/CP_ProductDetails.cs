@@ -492,6 +492,7 @@ namespace ROMS
                 lblPurLocation.Text = "";
                 lblPurRack.Text = "";
                 lblSalesLocation.Text = "";
+                lblSalesRack.Text = "";
                 lblRackGroup.Text = "";
                 lblUpp.Text = "";
                 lblHSN.Text = "";
