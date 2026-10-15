@@ -1174,6 +1174,7 @@ namespace ROMS
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraBrandID = varBrandId;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
+                objMR_Product.paraAlpha = Convert.ToString(txtAlpha.Text.Trim());
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
@@ -3597,6 +3598,52 @@ namespace ROMS
                 }
                 
                     
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAlpha_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvSubGroup.Visible = false;
+                lvGroup.Visible = false;
+                lvBrand.Visible = false;
+                txtAlpha.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAlpha_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            { 
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAlpha_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAlpha.BackColor = Color.White; 
             }
             catch (Exception ex)
             {

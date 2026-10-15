@@ -36,14 +36,15 @@
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbSts = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblDays = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.cmbRateCategory = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbRecursive = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.cmbAppStatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbSchemeAvailTime = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbMultiSelectDays = new MultiSelectComboBox();
             this.dynamicToolStripLabelControl1 = new ROMS.DynamicToolStripLabelControl();
             this.tsProductCategoryReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
@@ -135,6 +137,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.cmbSts);
+            this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.lblDays);
             this.grpfilter.Controls.Add(this.label11);
             this.grpfilter.Controls.Add(this.cmbMultiSelectDays);
@@ -142,7 +146,7 @@
             this.grpfilter.Controls.Add(this.label9);
             this.grpfilter.Controls.Add(this.cmbRecursive);
             this.grpfilter.Controls.Add(this.label3);
-            this.grpfilter.Controls.Add(this.cmbStatus);
+            this.grpfilter.Controls.Add(this.cmbAppStatus);
             this.grpfilter.Controls.Add(this.label8);
             this.grpfilter.Controls.Add(this.cmbSchemeAvailTime);
             this.grpfilter.Controls.Add(this.label7);
@@ -163,11 +167,32 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // cmbSts
+            // 
+            this.cmbSts.FormattingEnabled = true;
+            this.cmbSts.Location = new System.Drawing.Point(984, 56);
+            this.cmbSts.Name = "cmbSts";
+            this.cmbSts.Size = new System.Drawing.Size(88, 27);
+            this.cmbSts.TabIndex = 8;
+            this.cmbSts.Enter += new System.EventHandler(this.cmbSts_Enter);
+            this.cmbSts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSts_KeyDown);
+            this.cmbSts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSts_KeyPress);
+            this.cmbSts.Leave += new System.EventHandler(this.cmbSts_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(984, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 20);
+            this.label1.TabIndex = 111111253;
+            this.label1.Text = "Status";
+            // 
             // lblDays
             // 
             this.lblDays.AutoSize = true;
             this.lblDays.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDays.Location = new System.Drawing.Point(837, 83);
+            this.lblDays.Location = new System.Drawing.Point(769, 83);
             this.lblDays.Name = "lblDays";
             this.lblDays.Size = new System.Drawing.Size(90, 15);
             this.lblDays.TabIndex = 111111251;
@@ -177,32 +202,18 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(837, 28);
+            this.label11.Location = new System.Drawing.Point(769, 28);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 20);
             this.label11.TabIndex = 111111250;
             this.label11.Text = "Days";
             // 
-            // cmbMultiSelectDays
-            // 
-            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbMultiSelectDays.DropDownHeight = 1;
-            this.cmbMultiSelectDays.FormattingEnabled = true;
-            this.cmbMultiSelectDays.IntegralHeight = false;
-            this.cmbMultiSelectDays.Location = new System.Drawing.Point(837, 56);
-            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
-            this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
-            this.cmbMultiSelectDays.TabIndex = 6;
-            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
-            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
-            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
-            // 
             // cmbRateCategory
             // 
             this.cmbRateCategory.FormattingEnabled = true;
-            this.cmbRateCategory.Location = new System.Drawing.Point(478, 56);
+            this.cmbRateCategory.Location = new System.Drawing.Point(422, 56);
             this.cmbRateCategory.Name = "cmbRateCategory";
-            this.cmbRateCategory.Size = new System.Drawing.Size(119, 27);
+            this.cmbRateCategory.Size = new System.Drawing.Size(108, 27);
             this.cmbRateCategory.TabIndex = 111111247;
             this.cmbRateCategory.Enter += new System.EventHandler(this.cmbRateCategory_Enter);
             this.cmbRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRateCategory_KeyDown);
@@ -212,7 +223,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(478, 28);
+            this.label9.Location = new System.Drawing.Point(416, 28);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(120, 20);
             this.label9.TabIndex = 111111248;
@@ -221,9 +232,9 @@
             // cmbRecursive
             // 
             this.cmbRecursive.FormattingEnabled = true;
-            this.cmbRecursive.Location = new System.Drawing.Point(356, 56);
+            this.cmbRecursive.Location = new System.Drawing.Point(328, 56);
             this.cmbRecursive.Name = "cmbRecursive";
-            this.cmbRecursive.Size = new System.Drawing.Size(112, 27);
+            this.cmbRecursive.Size = new System.Drawing.Size(87, 27);
             this.cmbRecursive.TabIndex = 2;
             this.cmbRecursive.Enter += new System.EventHandler(this.cmbRecursive_Enter);
             this.cmbRecursive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRecursive_KeyDown);
@@ -233,39 +244,39 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(356, 28);
+            this.label3.Location = new System.Drawing.Point(328, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 20);
             this.label3.TabIndex = 111111246;
             this.label3.Text = "Recusrive";
             // 
-            // cmbStatus
+            // cmbAppStatus
             // 
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(1069, 56);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(141, 27);
-            this.cmbStatus.TabIndex = 8;
-            this.cmbStatus.Enter += new System.EventHandler(this.cmbStatus_Enter);
-            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStatus_KeyDown);
-            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStatus_KeyPress);
-            this.cmbStatus.Leave += new System.EventHandler(this.cmbStatus_Leave);
+            this.cmbAppStatus.FormattingEnabled = true;
+            this.cmbAppStatus.Location = new System.Drawing.Point(1079, 56);
+            this.cmbAppStatus.Name = "cmbAppStatus";
+            this.cmbAppStatus.Size = new System.Drawing.Size(141, 27);
+            this.cmbAppStatus.TabIndex = 9;
+            this.cmbAppStatus.Enter += new System.EventHandler(this.cmbStatus_Enter);
+            this.cmbAppStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStatus_KeyDown);
+            this.cmbAppStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStatus_KeyPress);
+            this.cmbAppStatus.Leave += new System.EventHandler(this.cmbStatus_Leave);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1069, 28);
+            this.label8.Location = new System.Drawing.Point(1079, 28);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 20);
+            this.label8.Size = new System.Drawing.Size(95, 20);
             this.label8.TabIndex = 111111227;
-            this.label8.Text = "Status";
+            this.label8.Text = "Approval Status";
             // 
             // cmbSchemeAvailTime
             // 
             this.cmbSchemeAvailTime.FormattingEnabled = true;
-            this.cmbSchemeAvailTime.Location = new System.Drawing.Point(941, 56);
+            this.cmbSchemeAvailTime.Location = new System.Drawing.Point(870, 56);
             this.cmbSchemeAvailTime.Name = "cmbSchemeAvailTime";
-            this.cmbSchemeAvailTime.Size = new System.Drawing.Size(118, 27);
+            this.cmbSchemeAvailTime.Size = new System.Drawing.Size(107, 27);
             this.cmbSchemeAvailTime.TabIndex = 7;
             this.cmbSchemeAvailTime.Enter += new System.EventHandler(this.cmbSchemeAvailTime_Enter);
             this.cmbSchemeAvailTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSchemeAvailTime_KeyDown);
@@ -275,7 +286,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(941, 28);
+            this.label7.Location = new System.Drawing.Point(870, 28);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 20);
             this.label7.TabIndex = 111111225;
@@ -284,7 +295,7 @@
             // cmbDaysType
             // 
             this.cmbDaysType.FormattingEnabled = true;
-            this.cmbDaysType.Location = new System.Drawing.Point(733, 56);
+            this.cmbDaysType.Location = new System.Drawing.Point(668, 56);
             this.cmbDaysType.Name = "cmbDaysType";
             this.cmbDaysType.Size = new System.Drawing.Size(94, 27);
             this.cmbDaysType.TabIndex = 5;
@@ -297,7 +308,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(733, 28);
+            this.label5.Location = new System.Drawing.Point(668, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 111111223;
@@ -306,9 +317,9 @@
             // cmbValidityType
             // 
             this.cmbValidityType.FormattingEnabled = true;
-            this.cmbValidityType.Location = new System.Drawing.Point(607, 56);
+            this.cmbValidityType.Location = new System.Drawing.Point(537, 56);
             this.cmbValidityType.Name = "cmbValidityType";
-            this.cmbValidityType.Size = new System.Drawing.Size(116, 27);
+            this.cmbValidityType.Size = new System.Drawing.Size(124, 27);
             this.cmbValidityType.TabIndex = 4;
             this.cmbValidityType.Enter += new System.EventHandler(this.cmbValidityType_Enter);
             this.cmbValidityType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbValidityType_KeyDown);
@@ -318,7 +329,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(607, 28);
+            this.label4.Location = new System.Drawing.Point(537, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 20);
             this.label4.TabIndex = 111111221;
@@ -329,7 +340,7 @@
             this.cmbSchemeType.FormattingEnabled = true;
             this.cmbSchemeType.Location = new System.Drawing.Point(9, 56);
             this.cmbSchemeType.Name = "cmbSchemeType";
-            this.cmbSchemeType.Size = new System.Drawing.Size(233, 27);
+            this.cmbSchemeType.Size = new System.Drawing.Size(219, 27);
             this.cmbSchemeType.TabIndex = 0;
             this.cmbSchemeType.SelectedIndexChanged += new System.EventHandler(this.cmbSchemeType_SelectedIndexChanged);
             this.cmbSchemeType.Enter += new System.EventHandler(this.cmbSchemeType_Enter);
@@ -349,9 +360,9 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(252, 56);
+            this.cmbConcern.Location = new System.Drawing.Point(235, 56);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(94, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(86, 27);
             this.cmbConcern.TabIndex = 1;
             this.cmbConcern.Enter += new System.EventHandler(this.cmbconcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbconcern_KeyDown);
@@ -361,7 +372,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(252, 28);
+            this.label6.Location = new System.Drawing.Point(235, 28);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 20);
             this.label6.TabIndex = 111111213;
@@ -371,11 +382,11 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1298, 56);
+            this.btnTelegram.Location = new System.Drawing.Point(1299, 56);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
-            this.btnTelegram.TabIndex = 9;
+            this.btnTelegram.TabIndex = 11;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -387,11 +398,11 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1221, 56);
+            this.btnView.Location = new System.Drawing.Point(1227, 56);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(65, 29);
-            this.btnView.TabIndex = 8;
+            this.btnView.TabIndex = 10;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -442,6 +453,20 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
+            // 
+            // cmbMultiSelectDays
+            // 
+            this.cmbMultiSelectDays.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiSelectDays.DropDownHeight = 1;
+            this.cmbMultiSelectDays.FormattingEnabled = true;
+            this.cmbMultiSelectDays.IntegralHeight = false;
+            this.cmbMultiSelectDays.Location = new System.Drawing.Point(769, 56);
+            this.cmbMultiSelectDays.Name = "cmbMultiSelectDays";
+            this.cmbMultiSelectDays.Size = new System.Drawing.Size(94, 27);
+            this.cmbMultiSelectDays.TabIndex = 6;
+            this.cmbMultiSelectDays.Enter += new System.EventHandler(this.cmbMultiSelectDays_Enter);
+            this.cmbMultiSelectDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiSelectDays_KeyDown);
+            this.cmbMultiSelectDays.Leave += new System.EventHandler(this.cmbMultiSelectDays_Leave);
             // 
             // dynamicToolStripLabelControl1
             // 
@@ -502,7 +527,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbValidityType;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.ComboBox cmbAppStatus;
         private System.Windows.Forms.Label label8;
         private DynamicToolStripLabelControl dynamicToolStripLabelControl1;
         private System.Windows.Forms.ComboBox cmbRecursive;
@@ -512,5 +537,7 @@
         private System.Windows.Forms.Label lblDays;
         private System.Windows.Forms.Label label11;
         private MultiSelectComboBox cmbMultiSelectDays;
+        private System.Windows.Forms.ComboBox cmbSts;
+        private System.Windows.Forms.Label label1;
     }
 }
