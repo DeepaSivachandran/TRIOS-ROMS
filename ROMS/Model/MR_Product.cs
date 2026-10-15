@@ -103,6 +103,7 @@ namespace ROMS.Model
         public int paraSchemeApplicable = 0;
         public int paraShopLocType = 0;
         public int paraRackType = 0;
+        public string paraAlpha = "";
 
     }
 }
