@@ -1917,6 +1917,7 @@ namespace ROMS
                 varRKID = "";
                 varUTID = "";
                 txtunit.Text = "";
+                txtRetailRate.Text = "";
                 varExpiryDate = "";
                 varTamilname = ""; 
                 Shelflife = "";
@@ -4184,6 +4185,7 @@ namespace ROMS
                 varEditPRID = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                 txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 varMRPEditFlag = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PR_MRPflag"].Value);
+                txtRetailRate.Text = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["Retail Rate"].Value);
                 varAutocompleteProduct = 1; 
                 udfnProductWiseDetails();
                 if (varRMProductionFlag == 1)
@@ -4428,6 +4430,7 @@ namespace ROMS
                     txtMonth.Text = "";
                     txtYear.Text = "";
                     txtunit.Text = "";
+                    txtRetailRate.Text = "";
                     //SLID = varStockLocationId;
                     varPRID = "0";
                     if (VarSearchFlag == true)
