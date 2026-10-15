@@ -60,6 +60,8 @@
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.txtCPCity = new System.Windows.Forms.TextBox();
             this.grpCompanyDetails = new System.Windows.Forms.GroupBox();
+            this.lblcityid = new System.Windows.Forms.Label();
+            this.btnNewCity = new System.Windows.Forms.Label();
             this.cmbContactGroup = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.lvCity = new System.Windows.Forms.ListView();
@@ -111,8 +113,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnNewCity = new System.Windows.Forms.Label();
-            this.lblcityid = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
@@ -521,6 +521,27 @@
             this.grpCompanyDetails.TabIndex = 0;
             this.grpCompanyDetails.TabStop = false;
             this.grpCompanyDetails.Text = "Company Details";
+            // 
+            // lblcityid
+            // 
+            this.lblcityid.AutoSize = true;
+            this.lblcityid.Location = new System.Drawing.Point(265, 154);
+            this.lblcityid.Name = "lblcityid";
+            this.lblcityid.Size = new System.Drawing.Size(0, 20);
+            this.lblcityid.TabIndex = 1111152;
+            this.lblcityid.Visible = false;
+            // 
+            // btnNewCity
+            // 
+            this.btnNewCity.Image = global::ROMS.Properties.Resources.New;
+            this.btnNewCity.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNewCity.Location = new System.Drawing.Point(504, 176);
+            this.btnNewCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNewCity.Name = "btnNewCity";
+            this.btnNewCity.Size = new System.Drawing.Size(21, 22);
+            this.btnNewCity.TabIndex = 87;
+            this.btnNewCity.Text = "        ";
+            this.btnNewCity.Click += new System.EventHandler(this.btnNewCity_Click);
             // 
             // cmbContactGroup
             // 
@@ -1105,27 +1126,6 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // btnNewCity
-            // 
-            this.btnNewCity.Image = global::ROMS.Properties.Resources.New;
-            this.btnNewCity.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewCity.Location = new System.Drawing.Point(504, 176);
-            this.btnNewCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNewCity.Name = "btnNewCity";
-            this.btnNewCity.Size = new System.Drawing.Size(21, 22);
-            this.btnNewCity.TabIndex = 87;
-            this.btnNewCity.Text = "        ";
-            this.btnNewCity.Click += new System.EventHandler(this.btnNewCity_Click);
-            // 
-            // lblcityid
-            // 
-            this.lblcityid.AutoSize = true;
-            this.lblcityid.Location = new System.Drawing.Point(265, 154);
-            this.lblcityid.Name = "lblcityid";
-            this.lblcityid.Size = new System.Drawing.Size(0, 20);
-            this.lblcityid.TabIndex = 1111152;
-            this.lblcityid.Visible = false;
-            // 
             // CP_AddressBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1140,9 +1140,10 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_AddressBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Company";
+            this.Text = "Company"; 
             this.Load += new System.EventHandler(this.CP_Company_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_AddressBook_Leave);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);

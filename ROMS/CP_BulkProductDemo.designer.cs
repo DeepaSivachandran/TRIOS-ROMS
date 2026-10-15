@@ -115,7 +115,7 @@
             this.MinimizeBox = false;
             this.Name = "CP_BulkProductDemo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Bulk Data";
+            this.Text = "Parent–Child Item Details";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BulkProductDemo_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();

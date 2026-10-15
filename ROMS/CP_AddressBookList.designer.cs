@@ -46,6 +46,7 @@
             this.tsbEnvelopPrintSep = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEnvelopPrint = new System.Windows.Forms.ToolStripButton();
             this.pnlsupplier = new System.Windows.Forms.Panel();
+            this.chkAll = new System.Windows.Forms.CheckBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -53,6 +54,12 @@
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.grbFilterBySupplier = new System.Windows.Forms.GroupBox();
+            this.lblTotalCount = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblSupplierCount = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblOthersCount = new System.Windows.Forms.Label();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblschedule = new System.Windows.Forms.Label();
@@ -224,6 +231,7 @@
             // pnlsupplier
             // 
             this.pnlsupplier.BackColor = System.Drawing.Color.White;
+            this.pnlsupplier.Controls.Add(this.chkAll);
             this.pnlsupplier.Controls.Add(this.DGV_SearchGrid);
             this.pnlsupplier.Controls.Add(this.lblSupplierCode);
             this.pnlsupplier.Controls.Add(this.lblNoRecordsFound);
@@ -235,6 +243,17 @@
             this.pnlsupplier.Name = "pnlsupplier";
             this.pnlsupplier.Size = new System.Drawing.Size(1354, 641);
             this.pnlsupplier.TabIndex = 36;
+            // 
+            // chkAll
+            // 
+            this.chkAll.AutoSize = true;
+            this.chkAll.BackColor = System.Drawing.Color.Transparent;
+            this.chkAll.Location = new System.Drawing.Point(19, 84);
+            this.chkAll.Name = "chkAll";
+            this.chkAll.Size = new System.Drawing.Size(15, 14);
+            this.chkAll.TabIndex = 1111229;
+            this.chkAll.UseVisualStyleBackColor = false;
+            this.chkAll.CheckedChanged += new System.EventHandler(this.chkAll_CheckedChanged);
             // 
             // DGV_SearchGrid
             // 
@@ -267,6 +286,7 @@
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 51;
+            this.DGV_SearchGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -331,6 +351,7 @@
             this.grdAddressBookList.Size = new System.Drawing.Size(1348, 501);
             this.grdAddressBookList.TabIndex = 958797;
             this.grdAddressBookList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.GrdSupplierList_CellBeginEdit);
+            this.grdAddressBookList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAddressBookList_CellClick);
             this.grdAddressBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAddressBookList_CellContentClick);
             this.grdAddressBookList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierList_CurrentCellDirtyStateChanged);
             this.grdAddressBookList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierList_DataBindingComplete);
@@ -362,6 +383,12 @@
             // 
             // grbFilterBySupplier
             // 
+            this.grbFilterBySupplier.Controls.Add(this.lblTotalCount);
+            this.grbFilterBySupplier.Controls.Add(this.label5);
+            this.grbFilterBySupplier.Controls.Add(this.label3);
+            this.grbFilterBySupplier.Controls.Add(this.lblSupplierCount);
+            this.grbFilterBySupplier.Controls.Add(this.label2);
+            this.grbFilterBySupplier.Controls.Add(this.lblOthersCount);
             this.grbFilterBySupplier.Controls.Add(this.cmbType);
             this.grbFilterBySupplier.Controls.Add(this.label1);
             this.grbFilterBySupplier.Controls.Add(this.lblschedule);
@@ -378,6 +405,72 @@
             this.grbFilterBySupplier.TabStop = false;
             this.grbFilterBySupplier.Text = "Filter By";
             this.grbFilterBySupplier.Enter += new System.EventHandler(this.grbFilterBySupplier_Enter);
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalCount.ForeColor = System.Drawing.Color.Maroon;
+            this.lblTotalCount.Location = new System.Drawing.Point(855, 29);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(41, 20);
+            this.lblTotalCount.TabIndex = 958831;
+            this.lblTotalCount.Text = "0000";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(805, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 20);
+            this.label5.TabIndex = 958830;
+            this.label5.Text = "Total : ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(678, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 20);
+            this.label3.TabIndex = 958828;
+            this.label3.Text = "Suppliers :";
+            // 
+            // lblSupplierCount
+            // 
+            this.lblSupplierCount.AutoSize = true;
+            this.lblSupplierCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblSupplierCount.ForeColor = System.Drawing.Color.Green;
+            this.lblSupplierCount.Location = new System.Drawing.Point(750, 29);
+            this.lblSupplierCount.Name = "lblSupplierCount";
+            this.lblSupplierCount.Size = new System.Drawing.Size(41, 20);
+            this.lblSupplierCount.TabIndex = 958829;
+            this.lblSupplierCount.Text = "0000";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(556, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 20);
+            this.label2.TabIndex = 958826;
+            this.label2.Text = "Others  :  ";
+            // 
+            // lblOthersCount
+            // 
+            this.lblOthersCount.AutoSize = true;
+            this.lblOthersCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblOthersCount.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblOthersCount.Location = new System.Drawing.Point(621, 29);
+            this.lblOthersCount.Name = "lblOthersCount";
+            this.lblOthersCount.Size = new System.Drawing.Size(41, 20);
+            this.lblOthersCount.TabIndex = 958827;
+            this.lblOthersCount.Text = "0000";
             // 
             // cmbType
             // 
@@ -544,5 +637,12 @@
         public System.Windows.Forms.ToolStripSeparator tsbEnvelopPrintSep;
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblSupplierCount;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblOthersCount;
+        private System.Windows.Forms.Label lblTotalCount;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox chkAll;
     }
 }

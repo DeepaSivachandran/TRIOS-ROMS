@@ -237,8 +237,8 @@ namespace ROMS
                 string varStatus = "1";
                 int viewType=0;
                 if(pbABID == 0)
-                { viewType = 0; }
-                else { viewType = 1; }
+                { viewType = 0; varoriginator = "Address Book Creation"; }
+                else { viewType = 1; varoriginator = "Address Book Updation"; }
                 if (rbActive.Checked == true) { varstatus = "1"; }
                 if (rbInactive.Checked == true) { varstatus = "2"; }
                 MR_AddressBook objMR_AddressBook = new MR_AddressBook();
@@ -2447,11 +2447,29 @@ namespace ROMS
                 MainForm.objCP_City.ShowDialog();
 
                 udfnListView();
-                txtCity.Text = varCityName;
-                lblcityid.Text = Convert.ToString(varCityCode);
-                pbCityID = varCityCode;
+                
+                if (varCityCode != 0)
+                {
+                    txtCity.Text = varCityName;
+                    lblcityid.Text = Convert.ToString(varCityCode);
+                    pbCityID = varCityCode;
+                }
                 lvCity.Visible = false;
                 txtPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+          
+        private void CP_AddressBook_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                udfntooltiphide();
             }
             catch (Exception ex)
             {

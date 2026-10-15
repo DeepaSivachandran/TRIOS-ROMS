@@ -26,6 +26,7 @@ namespace ROMS.Model
         public int paraDaysType = 0;
         public int paraSchAvailTime = 0;
         public int paraStatus = 0;
+        public int paraAppStatus = 0;
         public string paraDaysId = "";
     }
 }

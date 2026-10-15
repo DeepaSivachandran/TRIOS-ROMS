@@ -174,6 +174,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 string varSupplierName = "-All-", varProductName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varRackGroupName = "-All-";
                 int varViewType = 0, varSupplierCode = 0, varScheduleCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0, varRackGroupCode = 0;
 
@@ -353,7 +354,7 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1,369)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (0,13,14,16,369)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
                 //Transaction id 	113
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");

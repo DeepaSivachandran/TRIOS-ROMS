@@ -187,7 +187,8 @@ namespace ROMS
                 objTRN_Scheme.paraValitityType = Convert.ToInt32(cmbValidityType.SelectedValue);  
                 objTRN_Scheme.paraDaysType = Convert.ToInt32(cmbDaysType.SelectedValue);  
                 objTRN_Scheme.paraSchAvailTime = Convert.ToInt32(cmbSchemeAvailTime.SelectedValue);  
-                objTRN_Scheme.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);  
+                objTRN_Scheme.paraAppStatus = Convert.ToInt32(cmbAppStatus.SelectedValue);  
+                objTRN_Scheme.paraStatus = Convert.ToInt32(cmbSts.SelectedValue);  
                 objTRN_Scheme.paraDaysId = varDays;  
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -239,7 +240,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraAppRateType", Convert.ToInt16(cmbRateCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernID", Convert.ToInt16(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraSchAvailTime", Convert.ToInt16(cmbSchemeAvailTime.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt16(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt16(cmbSts.SelectedValue));
+                    objBillreport.SetParameterValue("paraAppStatus", Convert.ToInt16(cmbAppStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraValitityType", Convert.ToInt16(cmbValidityType.SelectedValue));
                     objBillreport.SetParameterValue("paraDaysId", varDays);
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
@@ -334,7 +336,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,159) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbValidityType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,215) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDaysType, "", "MST_DisplayText", "MSTID");  
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,160) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeAvailTime, "", "MST_DisplayText", "MSTID");  
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,31) AND STSID NOT IN (-1)  ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");  
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,31) AND STSID NOT IN (-1)  ORDER BY STSID", "STS_Name,STSID", cmbAppStatus, "", "STS_Name", "STSID");  
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,1) AND STSID NOT IN (-1)  ORDER BY STSID", "STS_Name,STSID", cmbSts, "", "STS_Name", "STSID");  
                 objDataBind = null;
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 32;
@@ -688,7 +691,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    cmbSts.Focus();
                     e.Handled = true;
                 }
             }
@@ -730,7 +733,7 @@ namespace ROMS
             try
             {
                 udfnGridNull((Control)sender);
-                cmbStatus.BackColor = Color.LemonChiffon;
+                cmbAppStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -773,7 +776,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.BackColor = Color.White;
+                cmbAppStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -904,7 +907,8 @@ namespace ROMS
             cmbValidityType.SelectedValue = 0;
             cmbDaysType.SelectedValue = 0;
             cmbSchemeAvailTime.SelectedValue = 0;
-            cmbStatus.SelectedValue = 0;   
+            cmbAppStatus.SelectedValue = 0;   
+            cmbSts.SelectedValue = 0;   
             cmbMultiSelectDays.Enabled = false; 
             lblDays.Text = ""; 
             epReport.Clear(); 
@@ -913,7 +917,7 @@ namespace ROMS
             {
                 cmbRecursive.Enabled = false;
             }
-            if( Convert.ToInt16(cmbSchemeType.SelectedValue)== 628 || Convert.ToInt16(cmbSchemeType.SelectedValue) == 629|| Convert.ToInt16(cmbSchemeType.SelectedValue) == 630)
+            if( Convert.ToInt16(cmbSchemeType.SelectedValue)== 628 || Convert.ToInt16(cmbSchemeType.SelectedValue) == 629|| Convert.ToInt16(cmbSchemeType.SelectedValue) == 703)
             {
                 cmbValidityType.Enabled = false;
             }
@@ -933,6 +937,63 @@ namespace ROMS
                     lblDays.Text = "";  
                     cmbMultiSelectDays.Enabled = false; 
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSts_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbSts.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSts_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbAppStatus.Focus();
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSts_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSts_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSts.BackColor = Color.White;
             }
             catch (Exception ex)
             {
