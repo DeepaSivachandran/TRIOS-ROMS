@@ -2447,10 +2447,11 @@ namespace ROMS
                 MainForm.objCP_City.ShowDialog();
 
                 udfnListView();
-                txtCity.Text = varCityName;
-                lblcityid.Text = Convert.ToString(varCityCode);
+                
                 if (varCityCode != 0)
                 {
+                    txtCity.Text = varCityName;
+                    lblcityid.Text = Convert.ToString(varCityCode);
                     pbCityID = varCityCode;
                 }
                 lvCity.Visible = false;

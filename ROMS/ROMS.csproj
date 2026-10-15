@@ -1083,12 +1083,6 @@
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_SALES_SCH_DiscountScheme_Product1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_SALES_SCH_DiscountScheme_Product.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\RPT_SALES_SCH_DiscountScheme_Value.cs">
       <DependentUpon>RPT_SALES_SCH_DiscountScheme_Value.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
