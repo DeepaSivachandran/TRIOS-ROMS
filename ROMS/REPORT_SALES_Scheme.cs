@@ -908,6 +908,7 @@ namespace ROMS
             cmbDaysType.SelectedValue = 0;
             cmbSchemeAvailTime.SelectedValue = 0;
             cmbAppStatus.SelectedValue = 0;   
+            cmbSts.SelectedValue = 0;   
             cmbMultiSelectDays.Enabled = false; 
             lblDays.Text = ""; 
             epReport.Clear(); 
