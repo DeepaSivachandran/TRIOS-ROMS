@@ -6682,8 +6682,8 @@
     </Content>
     <EmbeddedResource Include="Reports\RPT_SALES_SCH_DiscountScheme_Product.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_SALES_SCH_DiscountScheme_Product.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_SALES_SCH_DiscountScheme_Product1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_SALES_SCH_DiscountScheme_Value.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

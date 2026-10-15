@@ -6936,8 +6936,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraValitityType", objTRN_Scheme.paraValitityType);
                 varSqlCommand.Parameters.AddWithValue("@paraDaysType", objTRN_Scheme.paraDaysType);
                 varSqlCommand.Parameters.AddWithValue("@paraSchAvailTime", objTRN_Scheme.paraSchAvailTime);
-                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRN_Scheme.paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRN_Scheme.paraStatus); 
                 varSqlCommand.Parameters.AddWithValue("@paraDaysId", objTRN_Scheme.paraDaysId);
+                varSqlCommand.Parameters.AddWithValue("@paraAppStatus", objTRN_Scheme.paraAppStatus);
 
 
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
