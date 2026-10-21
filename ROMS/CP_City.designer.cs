@@ -33,6 +33,8 @@
             this.txtDCityName = new System.Windows.Forms.TextBox();
             this.txtDStateName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.txtDPincode = new System.Windows.Forms.TextBox();
+            this.txtPincode = new System.Windows.Forms.TextBox();
             this.cmbDistrict = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtCityName = new System.Windows.Forms.TextBox();
@@ -44,8 +46,7 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtDPincode = new System.Windows.Forms.TextBox();
-            this.txtPincode = new System.Windows.Forms.TextBox();
+            this.chkSalesApplicable = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
@@ -56,7 +57,7 @@
             this.txtDCityName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDCityName.Enabled = false;
             this.txtDCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDCityName.Location = new System.Drawing.Point(37, 102);
+            this.txtDCityName.Location = new System.Drawing.Point(37, 94);
             this.txtDCityName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDCityName.Name = "txtDCityName";
             this.txtDCityName.ReadOnly = true;
@@ -69,7 +70,7 @@
             this.txtDStateName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStateName.Enabled = false;
             this.txtDStateName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStateName.Location = new System.Drawing.Point(37, 46);
+            this.txtDStateName.Location = new System.Drawing.Point(37, 38);
             this.txtDStateName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDStateName.Name = "txtDStateName";
             this.txtDStateName.ReadOnly = true;
@@ -79,6 +80,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.chkSalesApplicable);
             this.grbform.Controls.Add(this.txtDPincode);
             this.grbform.Controls.Add(this.txtPincode);
             this.grbform.Controls.Add(this.cmbDistrict);
@@ -96,15 +98,40 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(437, 248);
+            this.grbform.Size = new System.Drawing.Size(437, 240);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            // 
+            // txtDPincode
+            // 
+            this.txtDPincode.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPincode.Enabled = false;
+            this.txtDPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPincode.Location = new System.Drawing.Point(37, 122);
+            this.txtDPincode.Name = "txtDPincode";
+            this.txtDPincode.ReadOnly = true;
+            this.txtDPincode.Size = new System.Drawing.Size(122, 27);
+            this.txtDPincode.TabIndex = 48;
+            this.txtDPincode.Text = "Pincode";
+            // 
+            // txtPincode
+            // 
+            this.txtPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPincode.Location = new System.Drawing.Point(159, 122);
+            this.txtPincode.MaxLength = 6;
+            this.txtPincode.Name = "txtPincode";
+            this.txtPincode.Size = new System.Drawing.Size(240, 27);
+            this.txtPincode.TabIndex = 3;
+            this.txtPincode.Enter += new System.EventHandler(this.txtPincode_Enter);
+            this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPincode_KeyDown);
+            this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPincode_KeyPress);
+            this.txtPincode.Leave += new System.EventHandler(this.txtPincode_Leave);
             // 
             // cmbDistrict
             // 
             this.cmbDistrict.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDistrict.FormattingEnabled = true;
-            this.cmbDistrict.Location = new System.Drawing.Point(159, 74);
+            this.cmbDistrict.Location = new System.Drawing.Point(159, 66);
             this.cmbDistrict.Name = "cmbDistrict";
             this.cmbDistrict.Size = new System.Drawing.Size(240, 28);
             this.cmbDistrict.TabIndex = 1;
@@ -118,7 +145,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(37, 74);
+            this.textBox2.Location = new System.Drawing.Point(37, 66);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -129,7 +156,7 @@
             // txtCityName
             // 
             this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCityName.Location = new System.Drawing.Point(159, 102);
+            this.txtCityName.Location = new System.Drawing.Point(159, 94);
             this.txtCityName.MaxLength = 50;
             this.txtCityName.Name = "txtCityName";
             this.txtCityName.Size = new System.Drawing.Size(240, 28);
@@ -142,7 +169,7 @@
             // 
             this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(159, 46);
+            this.cmbState.Location = new System.Drawing.Point(159, 38);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(240, 28);
             this.cmbState.TabIndex = 0;
@@ -157,11 +184,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(319, 193);
+            this.btnClose.Location = new System.Drawing.Point(319, 192);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -174,11 +201,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(234, 193);
+            this.btnSave.Location = new System.Drawing.Point(234, 192);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -191,7 +218,7 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(37, 157);
+            this.txtStatus.Location = new System.Drawing.Point(69, 215);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -205,7 +232,7 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(159, 157);
+            this.pnlStatus.Location = new System.Drawing.Point(191, 215);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(240, 28);
             this.pnlStatus.TabIndex = 4;
@@ -243,37 +270,25 @@
             // 
             this.epCity.ContainerControl = this;
             // 
-            // txtDPincode
+            // chkSalesApplicable
             // 
-            this.txtDPincode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPincode.Enabled = false;
-            this.txtDPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPincode.Location = new System.Drawing.Point(37, 130);
-            this.txtDPincode.Name = "txtDPincode";
-            this.txtDPincode.ReadOnly = true;
-            this.txtDPincode.Size = new System.Drawing.Size(122, 27);
-            this.txtDPincode.TabIndex = 48;
-            this.txtDPincode.Text = "Pincode";
-            // 
-            // txtPincode
-            // 
-            this.txtPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPincode.Location = new System.Drawing.Point(159, 130);
-            this.txtPincode.MaxLength = 6;
-            this.txtPincode.Name = "txtPincode";
-            this.txtPincode.Size = new System.Drawing.Size(240, 27);
-            this.txtPincode.TabIndex = 3;
-            this.txtPincode.Enter += new System.EventHandler(this.txtPincode_Enter);
-            this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPincode_KeyDown);
-            this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPincode_KeyPress);
-            this.txtPincode.Leave += new System.EventHandler(this.txtPincode_Leave);
+            this.chkSalesApplicable.AutoSize = true;
+            this.chkSalesApplicable.Location = new System.Drawing.Point(159, 156);
+            this.chkSalesApplicable.Name = "chkSalesApplicable";
+            this.chkSalesApplicable.Size = new System.Drawing.Size(114, 24);
+            this.chkSalesApplicable.TabIndex = 6;
+            this.chkSalesApplicable.Text = "Sales Applicable";
+            this.chkSalesApplicable.UseVisualStyleBackColor = true;
+            this.chkSalesApplicable.Enter += new System.EventHandler(this.chkSalesApplicable_Enter);
+            this.chkSalesApplicable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkSalesApplicable_KeyDown);
+            this.chkSalesApplicable.Leave += new System.EventHandler(this.chkSalesApplicable_Leave);
             // 
             // CP_City
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(469, 276);
+            this.ClientSize = new System.Drawing.Size(469, 271);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -316,5 +331,6 @@
         private System.Windows.Forms.ComboBox cmbDistrict;
         private System.Windows.Forms.TextBox txtDPincode;
         private System.Windows.Forms.TextBox txtPincode;
+        private System.Windows.Forms.CheckBox chkSalesApplicable;
     }
 }

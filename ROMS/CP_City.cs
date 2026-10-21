@@ -32,7 +32,7 @@ namespace ROMS
         public int varUpdate = 0;
         public int varmastertype = 0;
         public int varflog = 0;
-        public int pbDistrictID = 0;
+        public int pbDistrictID = 0, pbSalesApplicable = 0;
         public CP_City()
         {
             InitializeComponent();
@@ -108,6 +108,7 @@ namespace ROMS
                 cmbDistrict.SelectedValue = pbDistrictID;
                 cmbState.SelectedValue = PbStateId;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
+                if (pbSalesApplicable == 1) { chkSalesApplicable.Checked = true; } else { chkSalesApplicable.Checked = false; }
             }
             catch (Exception ex)
             {
@@ -119,6 +120,7 @@ namespace ROMS
         {
             try
             {
+                int salesApplicable = 0;
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
@@ -134,7 +136,11 @@ namespace ROMS
                     varoriginator = "City Updation";
                     varType = 1;    
                 }
-                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbDistrict.SelectedValue), Convert.ToInt32(txtPincode.Text));
+                if(chkSalesApplicable.Checked==true)
+                {
+                    salesApplicable = 1;
+                }
+                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbDistrict.SelectedValue), Convert.ToInt32(txtPincode.Text), salesApplicable);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -659,7 +665,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkSalesApplicable.Focus();
                 }
             }
             catch (Exception ex)
@@ -690,6 +696,48 @@ namespace ROMS
             try
             {
                 txtPincode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesApplicable_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesApplicable.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesApplicable_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesApplicable.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesApplicable_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {

@@ -586,7 +586,7 @@ namespace ROMS
             return ds;
         }
         //Created By :-Sathish ; Created On :-11/08/2023
-        public string udfnCity(int paraviewType, int paraCityId, string paraStateId, string paraCityName, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, int paraDistrictId, int paraPincode)
+        public string udfnCity(int paraviewType, int paraCityId, string paraStateId, string paraCityName, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, int paraDistrictId, int paraPincode,int paraSalesApplicable)
         {
             string varResult = "";
             try
@@ -604,6 +604,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDistrictId", paraDistrictId);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraPincode", paraPincode);
+                varSqlCommand.Parameters.AddWithValue("@paraSalesApplicable", paraSalesApplicable);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
