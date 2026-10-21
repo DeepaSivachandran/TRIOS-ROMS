@@ -1906,7 +1906,7 @@ namespace ROMS
                 var varSticker = new[] { 268, 269 };
                 var varSheet = new[] { 316, 317, 318, 319 };
                 if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
-                    (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                    (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1 || varTemplateIndex == 4 || varTemplateIndex == 5)))
                 {
                     cmbTitle.Enabled = true;
                     chkNone.Enabled = true;

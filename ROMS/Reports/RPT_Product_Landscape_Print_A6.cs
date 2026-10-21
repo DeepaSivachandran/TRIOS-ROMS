@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection6 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -98,7 +98,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection7 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
             get {
                 return this.ReportDefinition.Sections[6];
             }
@@ -106,7 +106,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection6 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection7 {
             get {
                 return this.ReportDefinition.Sections[7];
             }
