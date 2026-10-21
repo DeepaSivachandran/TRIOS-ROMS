@@ -483,6 +483,7 @@ namespace ROMS
         public static REPORT_Batchwise_Stock_Taking objREPORT_Batchwise_Stock_Taking;
         public static REPORT_SALES_TaxDetail objREPORT_SALES_TaxDetail;
         public static REPORT_SALES_Scheme objREPORT_SALES_Scheme;
+        public static REPORT_SALES_Report_Customer objREPORT_SALES_Report_Customer;
 
         public MainForm()
         {
@@ -5548,6 +5549,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void tsmCustomer_Click_1(object sender, EventArgs e)
+        {
+            OpenReportForm(ref MainForm.objREPORT_SALES_Report_Customer, "REPORT_SALES_Report_Customer", 140211);
         }
 
         private void tsmLock_Click(object sender, EventArgs e)
