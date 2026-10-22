@@ -183,7 +183,7 @@ namespace ROMS
         {
             try
             {
-                int varRouteId = 0,varAreaId = 0,varCustomerId = 0,varViewType=0,varCityId=0,varCustomerId=0;
+                int varRouteId = 0,varAreaId = 0,varCustomerId = 0,varViewType=0,varCityId=0;
                 string varRouteName = "-All-",varAreaName = "-All-",varCustomerName = "-All-",varCityName="--All--";
                 if (txtRoute.Text.Trim() != "")
                 {
@@ -249,36 +249,33 @@ namespace ROMS
                     int reportType = Convert.ToInt32(cmbReportType.SelectedValue);
                     switch (reportType)
                     {
-                        case 653:
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Area.rpt");
-                            objBillreport.SetParameterValue("paraRouteId",varRouteId);
-                            objBillreport.SetParameterValue("paraRouteName",varRouteName);
-                            break;
-                        case 654:
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Route_Area_Customer_Count.rpt");
-                            objBillreport.SetParameterValue("paraRouteName",varRouteName);
-                            objBillreport.SetParameterValue("paraAreaName",varAreaName);
-                            objBillreport.SetParameterValue("paraAreaId",varAreaId);
-                            objBillreport.SetParameterValue("paraRouteId",varRouteId); 
-                            break;
-                        case 655:
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_Route_Area_Customer.rpt");
-                            objBillreport.SetParameterValue("paraRouteName",varRouteName);
-                            objBillreport.SetParameterValue("paraAreaName",varAreaName);
-                            objBillreport.SetParameterValue("paraAreaId",varAreaId);
-                            objBillreport.SetParameterValue("paraRouteId",varRouteId);
-                            objBillreport.SetParameterValue("paraCustomerName",varCustomerName);
-                            objBillreport.SetParameterValue("paraCustomerTypeName",Convert.ToString(cmbGSTType.Text));
-                            objBillreport.SetParameterValue("paraCategoryName",Convert.ToString(cmbCustomerType.Text));
-                            objBillreport.SetParameterValue("paraCusCategoryId",Convert.ToInt32(cmbCustomerType.SelectedValue));
-                            objBillreport.SetParameterValue("paraCustomerId",varCustomerId);
-                            objBillreport.SetParameterValue("paraCustomerTypeId",Convert.ToInt32(cmbGSTType.SelectedValue)); 
-                            break;
+                        case 714:
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Contact.rpt"); 
+                            break; 
                     }
+                    objBillreport.SetParameterValue("paraAreaID", varAreaId);
+                    objBillreport.SetParameterValue("paraCategoryType", Convert.ToInt16(cmbCustomerCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraCityID", varCityId);
+                    objBillreport.SetParameterValue("paraCustomerID", varCustomerId);
+                    objBillreport.SetParameterValue("paraCustomerName", varCustomerName);
+                    objBillreport.SetParameterValue("paraCusType", Convert.ToInt16(cmbCustomerType.SelectedValue));
+                    objBillreport.SetParameterValue("paraCusVerifyLoc", Convert.ToInt16(cmbVerificationOnLoc.SelectedValue));
+                    objBillreport.SetParameterValue("paraDeliPrefernceID", Convert.ToInt16(cmbDeliveryPrefernce.SelectedValue));
+                    objBillreport.SetParameterValue("paraFilterType", Convert.ToInt16(cmbFilter.SelectedValue));
+                    objBillreport.SetParameterValue("paraGSTType", Convert.ToInt16(cmbGSTType.SelectedValue));
+                    objBillreport.SetParameterValue("paraPackingPrefId", 0);
+                    objBillreport.SetParameterValue("paraPackingTypeID", 0);
+                    objBillreport.SetParameterValue("paraPrefPeriod", 0);
+                    objBillreport.SetParameterValue("paraRouteID", varRouteId);
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt16(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraCusName", varCustomerName);
+                    objBillreport.SetParameterValue("paraGSTTypeName", Convert.ToString(cmbGSTType.Text));
+                    objBillreport.SetParameterValue("paraCusTypeName", Convert.ToString(cmbCustomerType.Text));
+                    objBillreport.SetParameterValue("paraCusCategoryName", Convert.ToString(cmbCustomerCategory.Text));
+                    objBillreport.SetParameterValue("paraCityName", varCityName); 
                     objBillreport.SetParameterValue("paraUserName",MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraHostName",MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraStatusId",Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusName",Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue)); 
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
