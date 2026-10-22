@@ -1000,6 +1000,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_GST_Detail.cs">
+      <DependentUpon>RPT_SALES_CUS_GST_Detail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_CUS_Route.cs">
       <DependentUpon>RPT_SALES_CUS_Route.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6744,6 +6751,11 @@
     <Content Include="Reports\RPT_SALES_CUS_Limit_Period_SchEligible.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_CUS_Limit_Period_SchEligible.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_GST_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_GST_Detail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SALES_SCH_DiscountScheme_Product.rpt">
