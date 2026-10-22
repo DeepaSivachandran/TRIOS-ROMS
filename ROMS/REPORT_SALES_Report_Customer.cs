@@ -306,15 +306,20 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (29) OR STSID=0", "STS_Name,STSID", cmbGstinStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,157) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbGSTType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("MR_Customer_Type", "CusTypeID<>-1 ORDER BY CusTypeID", "CusType_Name,CusTypeID", cmbCustomerType, "", "CusType_Name", "CusTypeID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,206) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbCustomerType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,221) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbFilter, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,158) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDeliveryPrefernce, "", "MST_DisplayText", "MSTID"); 
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,4) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbVerificationOnLoc, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("MR_Customer_Type", "CusTypeID<>-1 ORDER BY CusTypeID", "CusType_Name,CusTypeID", cmbCustomerCategory, "", "CusType_Name", "CusTypeID");
                
                 cmbStatus.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
-            }
+            } 
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1253,27 +1258,7 @@ namespace ROMS
                         tsbPrintFormat.Text = string.Empty;
                         tsbPrintFormat.ToolTipText = string.Empty;
                     }
-                }
-                txtArea.Enabled = false;
-                txtCustomer.Enabled = false;
-                cmbGSTType.Enabled = false;
-                cmbCustomerType.Enabled = false; 
-
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 654)
-                {
-                    txtArea.Enabled = true;
-                }
-                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 655)
-                {
-                    txtArea.Enabled = true;
-                    txtCustomer.Enabled = true;
-                    cmbGSTType.Enabled = true;
-                    cmbCustomerType.Enabled = true;
-                }
-                else
-                {
-                   // cmbProductLanguage.Enabled = false;
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -1282,74 +1267,7 @@ namespace ROMS
             }
         }
 
-        private void cmbCustomerType_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbGSTType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbCustomerType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if(e.KeyCode == Keys.Enter)
-                {
-                    cmbCustomerType.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbCustomerType_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbCustomerType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbGSTType.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbCustomerCategory_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbCustomerType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+          
         private void cmbCustomerCategory_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1378,8 +1296,370 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
+        private void cmbGSTType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGSTType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
-        private void cmbCustomerCategory_Leave(object sender, EventArgs e)
+        private void cmbCustomerType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCustomerType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCustomerCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFilter.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCity.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDeliveryPrefernce_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDeliveryPrefernce.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVerificationOnLoc_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbVerificationOnLoc.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGstinStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGstinStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGSTType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbCustomerType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerCategory_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFilter.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbCustomerCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCity.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDeliveryPrefernce_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbVerificationOnLoc.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVerificationOnLoc_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbPrintType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbGstinStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGstinStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGSTType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerCategory_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDeliveryPrefernce_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVerificationOnLoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGstinStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGSTType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGSTType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCustomerType_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -1391,7 +1671,84 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void cmbCustomerCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCustomerCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFilter.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDeliveryPrefernce_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDeliveryPrefernce.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVerificationOnLoc_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbVerificationOnLoc.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGstinStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGstinStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void DGV_Customer_KeyDown(object sender, KeyEventArgs e)
         {
