@@ -170,7 +170,7 @@ namespace ROMS
                 else
                 {
                     epReport.Clear();
-                    udfnRoute();
+                    udfnPrint();
                 }
             }
             catch (Exception ex)
@@ -179,11 +179,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnRoute()
+        public void udfnPrint()
         {
             try
             {
-                int varRouteId = 0,varAreaId = 0,varCustomerId = 0;string varRouteName = "-All-",varAreaName = "-All-",varCustomerName = "-All-";
+                int varRouteId = 0,varAreaId = 0,varCustomerId = 0,varViewType=0,varCityId=0,varCustomerId=0;
+                string varRouteName = "-All-",varAreaName = "-All-",varCustomerName = "-All-",varCityName="--All--";
                 if (txtRoute.Text.Trim() != "")
                 {
                     varRouteId = Convert.ToInt32(lblRouteId.Text);
@@ -199,6 +200,12 @@ namespace ROMS
                     varCustomerId = Convert.ToInt32(lblCustomerId.Text);
                     varCustomerName = txtCustomer.Text.Trim();
                 }
+                if (txtCity.Text.Trim() != "")
+                {
+                    varCityId = Convert.ToInt32(lblCustomerId.Text);
+                    varCityName = txtCustomer.Text.Trim();
+                }
+                
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -206,24 +213,30 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 714)
+                {
+                    varViewType = 0;
+                }
+
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 MR_Sales objMR_Sales = new MR_Sales();
-                if(Convert.ToInt32(cmbReportType.SelectedValue) == 653)
-                {
-                    objMR_Sales.paraViewType = 1;
-                }
-                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 654)
-                {
-                    objMR_Sales.paraViewType = 9;
-                }
-                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 655)
-                {
-                    objMR_Sales.paraViewType = 10;
-                }
-                objMR_Sales.paraRouteId = varRouteId;
-                objMR_Sales.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue); 
-                objDs = objdserv.udfnSalesMasterReports(objMR_Sales);
+                
+                objMR_Sales.paraViewType = varViewType;     
+                objMR_Sales.paraGSTType = Convert.ToInt32(cmbGSTType.SelectedValue);   
+                objMR_Sales.paraCusType = Convert.ToInt32(cmbCustomerType.SelectedValue);
+                objMR_Sales.paraCityID = varCityId;
+                objMR_Sales.paraCustomerName = txtCustomer.Text;   
+                objMR_Sales.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);   
+                objMR_Sales.paraFilterType = Convert.ToInt32(cmbFilter.SelectedValue);   
+                objMR_Sales.paraCategoryType = Convert.ToInt32(cmbCustomerCategory.SelectedValue);   
+                objMR_Sales.paraRouteID = varRouteId;   
+                objMR_Sales.paraAreaID = varAreaId;   
+                objMR_Sales.paraDeliPrefernceID = Convert.ToInt32(cmbDeliveryPrefernce.SelectedValue);   
+                objMR_Sales.paraCusVerifyLoc = Convert.ToInt32(cmbVerificationOnLoc.SelectedValue);   
+                objMR_Sales.paraCustomerID = varCustomerId;  
+                objMR_Sales.paraGSTINStatus = Convert.ToInt32(cmbGstinStatus.SelectedValue);  
+                objDs = objdserv.udfnCustomerMasterReports(objMR_Sales);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -997,7 +1010,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_Customer.Visible == false)
                 {
-                    cmbGSTType.Focus();
+                    cmbDeliveryPrefernce.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1070,7 +1083,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbGSTType.Focus();
+                        cmbDeliveryPrefernce.Focus();
                     }
                 }
             }
@@ -1176,7 +1189,7 @@ namespace ROMS
             {
                 varUpDownKeyGroup = 1;
                 udfnCustomerAutocomplete();
-                cmbGSTType.Focus();
+                cmbDeliveryPrefernce.Focus();
             }
             catch (Exception ex)
             {
@@ -1204,7 +1217,7 @@ namespace ROMS
             {
                 if(e.KeyCode == Keys.Enter)
                 {
-                    txtRoute.Focus();
+                    cmbGSTType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1750,6 +1763,16 @@ namespace ROMS
             }
         }
 
+        private void txtCity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGV_Customer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void DGV_Customer_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1811,7 +1834,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbGSTType.Focus();
+                        cmbDeliveryPrefernce.Focus();
                     }
                 }
             }
