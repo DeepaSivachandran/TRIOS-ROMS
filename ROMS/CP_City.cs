@@ -1,4 +1,6 @@
-﻿using System;
+﻿ 
+using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +35,7 @@ namespace ROMS
         public int varmastertype = 0;
         public int varflog = 0;
         public int pbDistrictID = 0, pbSalesApplicable = 0;
+        private List<ComboItem> transports;
         public CP_City()
         {
             InitializeComponent();
@@ -57,9 +60,14 @@ namespace ROMS
                 if (varflog == 0)
                 {
                     DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                    objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name" , "STID");
                     objDataBind.BindComboBoxListSelected("DEF_District", " DIST_STSID=1 AND DISTID NOT IN (0) Order by DISTID", "DIST_Name,DISTID", cmbDistrict, "", "DIST_Name", "DISTID");
+                    objDataBind.BindComboBoxListSelected("DEF_District", " DIST_STSID=1 AND DISTID NOT IN (0) Order by DISTID", "DIST_Name,DISTID", cmbDistrict, "", "DIST_Name", "DISTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=4  Order by MSTID", "MST_DisplayText,MSTID", cmbApplicable, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=158 OR MSTID = -1 Order by MSTID", "MST_DisplayText,MSTID", cmbDeliveryPref, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
+                    cmbApplicable.SelectedValue = 12;
+                    udfnLoadTrasnport();
                     if (btnSave.Text == "Save")
                     {
                         pnlStatus.Enabled = false;
@@ -99,7 +107,7 @@ namespace ROMS
             finally {
             }
         }
-        private void udfnLoad()
+        private void  udfnLoad()
         {
             try
             {
@@ -108,7 +116,8 @@ namespace ROMS
                 cmbDistrict.SelectedValue = pbDistrictID;
                 cmbState.SelectedValue = PbStateId;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
-                if (pbSalesApplicable == 1) { chkSalesApplicable.Checked = true; } else { chkSalesApplicable.Checked = false; }
+                if (pbSalesApplicable == 1) { cmbApplicable.SelectedValue = 11; } else { cmbApplicable.SelectedValue = 12; }
+                udfnEditLoad();
             }
             catch (Exception ex)
             {
@@ -121,6 +130,13 @@ namespace ROMS
             try
             {
                 int salesApplicable = 0;
+                string varTransportIds = "", varTransportName = "";
+                var selIds = cmbMultiTransport.CheckedIds;
+                var selItems = transports.Where(m => selIds.Contains(m.Id)).ToList();
+                lblTransports.Text = string.Join(", ", selItems.Select(x => x.Text));
+                varTransportName = lblTransports.Text;
+                varTransportIds = string.Join(", ", selItems.Select(x => x.Id));
+
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
@@ -136,11 +152,12 @@ namespace ROMS
                     varoriginator = "City Updation";
                     varType = 1;    
                 }
-                if(chkSalesApplicable.Checked==true)
+                if(Convert.ToInt32(cmbApplicable.SelectedValue) == 11)
                 {
                     salesApplicable = 1;
                 }
-                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbDistrict.SelectedValue), Convert.ToInt32(txtPincode.Text), salesApplicable);
+                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbDistrict.SelectedValue), Convert.ToInt32(txtPincode.Text), salesApplicable,
+                    Convert.ToInt32(cmbDeliveryPref.SelectedValue), varTransportIds);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -211,8 +228,13 @@ namespace ROMS
                 txtPincode.Text = "";
                 cmbState.SelectedValue = -1;
                 cmbDistrict.SelectedValue = -1;
-                txtCityName.Focus(); 
+                cmbState.Focus(); 
                 this.ActiveControl = txtCityName;
+
+                cmbDeliveryPref.SelectedValue = -1;
+                cmbApplicable.SelectedValue = 12;
+                lblTransports.Text = "";
+                cmbMultiTransport.ClearAll();
             }
             catch (Exception ex)
             {
@@ -284,6 +306,12 @@ namespace ROMS
         {
             try
             {
+                string varTransportIds = "", varTransportName = "";
+                var selIds = cmbMultiTransport.CheckedIds;
+                var selItems = transports.Where(m => selIds.Contains(m.Id)).ToList();
+                lblTransports.Text = string.Join(", ", selItems.Select(x => x.Text));
+                varTransportName = lblTransports.Text;
+                varTransportIds = string.Join(", ", selItems.Select(x => x.Id));
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -665,7 +693,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkSalesApplicable.Focus();
+                    cmbApplicable.Focus();
                 }
             }
             catch (Exception ex)
@@ -703,12 +731,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
 
-        private void chkSalesApplicable_Enter(object sender, EventArgs e)
+        public void udfnLoadTrasnport()
         {
             try
             {
-                chkSalesApplicable.BackColor = Color.LemonChiffon;
+                lblTransports.Text = "";
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 44;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnMaster(objMR_Master);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs != null && objDs.Tables.Count > 0 && objDs.Tables[0].Rows.Count > 0)
+                    {
+                        transports = objDs.Tables[0].AsEnumerable()
+                            .Select(r => new ComboItem
+                            {
+                                Id = r.Field<int>("PreferenceID"),
+                                Text = r.Field<string>("Preference")
+                            })
+                            .ToList();
+                        cmbMultiTransport.LoadItems(transports, "Select Transport");
+                    }
+
+                }
             }
             catch (Exception ex)
             {
@@ -717,11 +767,57 @@ namespace ROMS
             }
         }
 
-        private void chkSalesApplicable_Leave(object sender, EventArgs e)
+        public void udfnEditLoad() {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnCitylist(6, "", 0, 0, varCityCode);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    { 
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            cmbDeliveryPref.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CTY_Delivery_Pref"]);
+                            string ids = objDs.Tables[0].Rows[0]["MultitransportId"].ToString();
+
+                            List<int> selectedIds = ids
+                                .Split(',', (char)StringSplitOptions.RemoveEmptyEntries)
+                                .Select(id => int.Parse(id.Trim()))
+                                .ToList(); 
+
+                            cmbMultiTransport.SetCheckedIds(selectedIds);
+
+                            var selItems = transports.Where(m => selectedIds.Contains(m.Id)).ToList();
+                            lblTransports.Text = string.Join(", ", selItems.Select(x => x.Text));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
+
+      
+        private void cmbApplicable_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                chkSalesApplicable.BackColor = Color.White;
+                ////== 12 means not applicable for sales, so disable delivery preference and multi transport
+                if (Convert.ToInt32(cmbApplicable.SelectedValue) == 12)
+                {
+                    cmbDeliveryPref.Enabled = false;
+                    cmbMultiTransport.Enabled = false;
+                }
+                else
+                { 
+                    cmbDeliveryPref.Enabled = true;
+                }
+
             }
             catch (Exception ex)
             {
@@ -730,8 +826,115 @@ namespace ROMS
             }
         }
 
-        private void chkSalesApplicable_KeyDown(object sender, KeyEventArgs e)
+        private void cmbDeliveryPref_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                ////cmbApplicable = 510 is  other delivery type
+                if (Convert.ToInt32(cmbDeliveryPref.SelectedValue) == 510)
+                {
+                    cmbMultiTransport.Enabled = true; 
+                }
+                else
+                {
+                    cmbMultiTransport.Enabled = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbApplicable_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbDeliveryPref.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbApplicable_Leave(object sender, EventArgs e)
+        {
+            try { cmbApplicable.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDeliveryPref_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbMultiTransport.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDeliveryPref_Leave(object sender, EventArgs e)
+        {
+            try { cmbDeliveryPref.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void cmbDeliveryPref_Enter(object sender, EventArgs e)
+        {
+            try { cmbDeliveryPref.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiTransport_Leave(object sender, EventArgs e)
+        {
+            try { cmbMultiTransport.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiTransport_Enter(object sender, EventArgs e)
+        {
+            try { cmbMultiTransport.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void cmbMultiTransport_KeyDown(object sender, KeyEventArgs e)
+        {
+
             try
             {
                 if (e.KeyCode == Keys.Enter)
@@ -745,5 +948,56 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void cmbMultiTransport_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDeliveryPref_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbApplicable_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbApplicable_Enter(object sender, EventArgs e)
+        {
+            try { cmbApplicable.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        
     }
 }

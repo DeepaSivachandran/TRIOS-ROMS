@@ -210,6 +210,18 @@ public class MultiSelectComboBox : ComboBox
         }
     }
 
+    public void SetCheckedIds(List<int> ids)
+    {
+        _checkedIds.Clear();
+
+        foreach (var id in ids)
+        {
+            _checkedIds.Add(id);
+        }
+
+        ApplyFilter(""); 
+    }
+
     public void ClearAll()
     {
         _checkedIds.Clear();

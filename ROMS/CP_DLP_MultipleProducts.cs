@@ -392,7 +392,6 @@ namespace ROMS
             }
             finally
             {
-                txtProductName.Focus();
                 lblPICode.Text = "";
                 lblProductName.Text = "";
                 lblUnit.Text = "";
@@ -1272,6 +1271,7 @@ namespace ROMS
                     cmbTemplate.Enabled = false;
                     txtFontSize.Enabled = false;
                 }
+                txtProductName.Focus();
             }
             catch (Exception ex)
             {
@@ -1854,7 +1854,7 @@ namespace ROMS
                 var varSticker = new[] { 268, 269 };
                 var varSheet = new[] { 316, 317, 318, 319 };
                 if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
-                    (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                    (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1 || varTemplateIndex == 4 || varTemplateIndex == 5)))
                 {
                     cmbTitle.Enabled = true;
                 }

@@ -766,8 +766,7 @@ namespace ROMS
         private void CmbMultiMonths_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {
-                e.Handled = true;
+            { 
             }
             catch (Exception ex)
             {

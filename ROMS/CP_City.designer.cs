@@ -46,7 +46,13 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
-            this.chkSalesApplicable = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblTransports = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.cmbApplicable = new System.Windows.Forms.ComboBox();
+            this.cmbDeliveryPref = new System.Windows.Forms.ComboBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.cmbMultiTransport = new MultiSelectComboBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
@@ -62,7 +68,7 @@
             this.txtDCityName.Name = "txtDCityName";
             this.txtDCityName.ReadOnly = true;
             this.txtDCityName.Size = new System.Drawing.Size(122, 28);
-            this.txtDCityName.TabIndex = 6;
+            this.txtDCityName.TabIndex = 60;
             this.txtDCityName.Text = "City Name";
             // 
             // txtDStateName
@@ -75,12 +81,18 @@
             this.txtDStateName.Name = "txtDStateName";
             this.txtDStateName.ReadOnly = true;
             this.txtDStateName.Size = new System.Drawing.Size(122, 28);
-            this.txtDStateName.TabIndex = 7;
+            this.txtDStateName.TabIndex = 70;
             this.txtDStateName.Text = "State Name";
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.chkSalesApplicable);
+            this.grbform.Controls.Add(this.cmbDeliveryPref);
+            this.grbform.Controls.Add(this.textBox4);
+            this.grbform.Controls.Add(this.cmbApplicable);
+            this.grbform.Controls.Add(this.textBox3);
+            this.grbform.Controls.Add(this.lblTransports);
+            this.grbform.Controls.Add(this.cmbMultiTransport);
+            this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.txtDPincode);
             this.grbform.Controls.Add(this.txtPincode);
             this.grbform.Controls.Add(this.cmbDistrict);
@@ -89,16 +101,14 @@
             this.grbform.Controls.Add(this.cmbState);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
-            this.grbform.Controls.Add(this.txtStatus);
             this.grbform.Controls.Add(this.txtDCityName);
             this.grbform.Controls.Add(this.txtDStateName);
-            this.grbform.Controls.Add(this.pnlStatus);
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.grbform.Location = new System.Drawing.Point(13, 14);
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(437, 240);
+            this.grbform.Size = new System.Drawing.Size(437, 284);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
@@ -184,7 +194,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(319, 192);
+            this.btnClose.Location = new System.Drawing.Point(320, 240);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
@@ -201,7 +211,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(234, 192);
+            this.btnSave.Location = new System.Drawing.Point(235, 240);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
@@ -218,7 +228,7 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(69, 215);
+            this.txtStatus.Location = new System.Drawing.Point(88, 244);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -232,7 +242,7 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(191, 215);
+            this.pnlStatus.Location = new System.Drawing.Point(210, 244);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(240, 28);
             this.pnlStatus.TabIndex = 4;
@@ -270,26 +280,105 @@
             // 
             this.epCity.ContainerControl = this;
             // 
-            // chkSalesApplicable
+            // textBox1
             // 
-            this.chkSalesApplicable.AutoSize = true;
-            this.chkSalesApplicable.Location = new System.Drawing.Point(159, 156);
-            this.chkSalesApplicable.Name = "chkSalesApplicable";
-            this.chkSalesApplicable.Size = new System.Drawing.Size(114, 24);
-            this.chkSalesApplicable.TabIndex = 6;
-            this.chkSalesApplicable.Text = "Sales Applicable";
-            this.chkSalesApplicable.UseVisualStyleBackColor = true;
-            this.chkSalesApplicable.Enter += new System.EventHandler(this.chkSalesApplicable_Enter);
-            this.chkSalesApplicable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkSalesApplicable_KeyDown);
-            this.chkSalesApplicable.Leave += new System.EventHandler(this.chkSalesApplicable_Leave);
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox1.Location = new System.Drawing.Point(37, 205);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(122, 27);
+            this.textBox1.TabIndex = 49;
+            this.textBox1.Text = "Preference";
+            // 
+            // lblTransports
+            // 
+            this.lblTransports.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.lblTransports.Location = new System.Drawing.Point(37, 237);
+            this.lblTransports.Name = "lblTransports";
+            this.lblTransports.Size = new System.Drawing.Size(179, 36);
+            this.lblTransports.TabIndex = 111111202;
+            this.lblTransports.Text = "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox3.Location = new System.Drawing.Point(37, 149);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(122, 27);
+            this.textBox3.TabIndex = 111111203;
+            this.textBox3.Text = "Sales Applicable";
+            // 
+            // cmbApplicable
+            // 
+            this.cmbApplicable.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbApplicable.FormattingEnabled = true;
+            this.cmbApplicable.Location = new System.Drawing.Point(159, 149);
+            this.cmbApplicable.Name = "cmbApplicable";
+            this.cmbApplicable.Size = new System.Drawing.Size(240, 28);
+            this.cmbApplicable.TabIndex = 4;
+            this.cmbApplicable.SelectedIndexChanged += new System.EventHandler(this.cmbApplicable_SelectedIndexChanged);
+            this.cmbApplicable.Enter += new System.EventHandler(this.cmbApplicable_Enter);
+            this.cmbApplicable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbApplicable_KeyDown);
+            this.cmbApplicable.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbApplicable_KeyPress);
+            this.cmbApplicable.Leave += new System.EventHandler(this.cmbApplicable_Leave);
+            // 
+            // cmbDeliveryPref
+            // 
+            this.cmbDeliveryPref.Enabled = false;
+            this.cmbDeliveryPref.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDeliveryPref.FormattingEnabled = true;
+            this.cmbDeliveryPref.Location = new System.Drawing.Point(159, 177);
+            this.cmbDeliveryPref.Name = "cmbDeliveryPref";
+            this.cmbDeliveryPref.Size = new System.Drawing.Size(240, 28);
+            this.cmbDeliveryPref.TabIndex = 5;
+            this.cmbDeliveryPref.SelectedIndexChanged += new System.EventHandler(this.cmbDeliveryPref_SelectedIndexChanged);
+            this.cmbDeliveryPref.Enter += new System.EventHandler(this.cmbDeliveryPref_Enter);
+            this.cmbDeliveryPref.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDeliveryPref_KeyDown);
+            this.cmbDeliveryPref.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDeliveryPref_KeyPress);
+            this.cmbDeliveryPref.Leave += new System.EventHandler(this.cmbDeliveryPref_Leave);
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox4.Location = new System.Drawing.Point(37, 177);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(122, 27);
+            this.textBox4.TabIndex = 111111205;
+            this.textBox4.Text = "Delivery Preference";
+            // 
+            // cmbMultiTransport
+            // 
+            this.cmbMultiTransport.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiTransport.DropDownHeight = 1;
+            this.cmbMultiTransport.Enabled = false;
+            this.cmbMultiTransport.FormattingEnabled = true;
+            this.cmbMultiTransport.IntegralHeight = false;
+            this.cmbMultiTransport.Location = new System.Drawing.Point(159, 205);
+            this.cmbMultiTransport.Name = "cmbMultiTransport";
+            this.cmbMultiTransport.Size = new System.Drawing.Size(240, 27);
+            this.cmbMultiTransport.TabIndex = 6;
+            this.cmbMultiTransport.Enter += new System.EventHandler(this.cmbMultiTransport_Enter);
+            this.cmbMultiTransport.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiTransport_KeyDown);
+            this.cmbMultiTransport.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiTransport_KeyPress);
+            this.cmbMultiTransport.Leave += new System.EventHandler(this.cmbMultiTransport_Leave);
             // 
             // CP_City
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(469, 271);
+            this.ClientSize = new System.Drawing.Size(466, 318);
             this.Controls.Add(this.grbform);
+            this.Controls.Add(this.pnlStatus);
+            this.Controls.Add(this.txtStatus);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -310,6 +399,7 @@
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -331,6 +421,12 @@
         private System.Windows.Forms.ComboBox cmbDistrict;
         private System.Windows.Forms.TextBox txtDPincode;
         private System.Windows.Forms.TextBox txtPincode;
-        private System.Windows.Forms.CheckBox chkSalesApplicable;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblTransports;
+        private MultiSelectComboBox cmbMultiTransport;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox cmbApplicable;
+        private System.Windows.Forms.ComboBox cmbDeliveryPref;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

@@ -586,7 +586,7 @@ namespace ROMS
             return ds;
         }
         //Created By :-Sathish ; Created On :-11/08/2023
-        public string udfnCity(int paraviewType, int paraCityId, string paraStateId, string paraCityName, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, int paraDistrictId, int paraPincode,int paraSalesApplicable)
+        public string udfnCity(int paraviewType, int paraCityId, string paraStateId, string paraCityName, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, int paraDistrictId, int paraPincode,int paraSalesApplicable,int paraDeliveryPref, string paraTransportIds)
         {
             string varResult = "";
             try
@@ -605,6 +605,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraPincode", paraPincode);
                 varSqlCommand.Parameters.AddWithValue("@paraSalesApplicable", paraSalesApplicable);
+                varSqlCommand.Parameters.AddWithValue("@paraDeliveryPref", paraDeliveryPref);
+                varSqlCommand.Parameters.AddWithValue("@paraTransportIds", paraTransportIds);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
@@ -622,7 +624,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-11/08/2023 Modified by:- 28/09/2023 two places repeated use this Citylist so clear one
-        public DataSet udfnCitylist(int ViewType, string paraCityName, int paraStateId, int paraStatus)
+        public DataSet udfnCitylist(int ViewType, string paraCityName, int paraStateId, int paraStatus,int paraCityId = 0)
         {
             DataSet ds = new DataSet();
             try
@@ -636,6 +638,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
