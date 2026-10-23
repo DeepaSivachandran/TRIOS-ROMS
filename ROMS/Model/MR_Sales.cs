@@ -148,6 +148,7 @@ namespace ROMS.Model
         public int paraPackingPrefId { get; set; } = 0;
         public int paraCustomerID { get; set; } = 0;
         public int paraGSTINStatus { get; set; } = 0;
+        public int paraPreferedTransID { get; set; } = 0; 
     }
 
 }

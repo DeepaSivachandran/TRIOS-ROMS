@@ -6786,8 +6786,8 @@
     </Content>
     <Content Include="Reports\RPT_SALES_CUS_Delivery_Preference.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_SALES_CUS_Delivery_Preference.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_SALES_CUS_Delivery_Preference1.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\RPT_SALES_CUS_DeliveryTiming_PackingPreference.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
