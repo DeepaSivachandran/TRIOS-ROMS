@@ -338,6 +338,7 @@ namespace ROMS
                 objdtUserRole_Menu_Access.Columns.Add("UA_PrintAccess", typeof(int));
                 objdtUserRole_Menu_Access.Columns.Add("UA_ExcelAccess", typeof(int));
                 objdtUserRole_Menu_Access.Columns.Add("UA_NotificationAccess", typeof(int));
+                objdtUserRole_Menu_Access.Columns.Add("UA_CloneAccess", typeof(int));
 
 
                 if (grdUserPermission.RowCount > 0)
@@ -352,7 +353,8 @@ namespace ROMS
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmDeletechk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmDeletechk"].Value),
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmPrintchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmPrintchk"].Value),
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmExcelchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmExcelchk"].Value),
-                    Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value)
+                    Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value),
+                    Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmClonechk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmClonechk"].Value)
                         );
                     }
                 }
@@ -827,7 +829,7 @@ namespace ROMS
                         string PrivilegeCode = row.Cells["clmPrivilegeCode"].Value?.ToString() ?? "";
                         string splFlag = row.Cells["clmsplflag"].Value?.ToString() ?? "";
                         int privilegeNo = 0;
-                        var chkCols = new[] { "clmViewchk", "clmCreatechk", "clmEditchk", "clmDeletechk", "clmPrintchk", "clmExcelchk", "clmNotificationchk" };
+                        var chkCols = new[] { "clmViewchk", "clmCreatechk", "clmEditchk", "clmDeletechk", "clmPrintchk", "clmExcelchk", "clmNotificationchk", "clmClonechk" };
                         // Split allowed privileges like "1,2,5"
                         var allowed = PrivilegeCode.Split(',')
                                                    .Select(s => s.Trim())
@@ -936,13 +938,12 @@ namespace ROMS
                                             case 5: row.Cells["clmPrintchk"].Value = true; break;
                                             case 6: row.Cells["clmExcelchk"].Value = true; break;
                                             case 7: row.Cells["clmNotificationchk"].Value = true; break;
+                                            case 11: row.Cells["clmClonechk"].Value = true; break;
                                         }
                                     }
                                 }
-
                             }
                         //}
-
                     } 
             }
             catch (Exception ex)
@@ -1080,6 +1081,7 @@ namespace ROMS
             "clmPrintchk",
             "clmExcelchk",
             "clmNotificationchk",
+            "clmClonechk",
                 "Action"
         };
 
@@ -1659,12 +1661,9 @@ namespace ROMS
                                 {
                                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                     {
-                                        grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["SLMU_NAME"]), 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["SURM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
-
+                                        grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["SLMU_NAME"]), 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["SURM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]), 0);
                                     }
                                 }
-
-
                             }
                         }
 
