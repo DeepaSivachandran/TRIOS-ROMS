@@ -213,9 +213,38 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 714)
+                int reportType = Convert.ToInt32(cmbReportType.SelectedValue);
+                if (reportType == 714)
                 {
                     varViewType = 0;
+                }
+                else if (reportType == 715)
+                {
+                    varViewType = 1;
+                }
+                else if (reportType == 716)
+                {
+                    varViewType = 2;
+                }
+                else if (reportType == 717)
+                {
+                    varViewType =3;
+                }
+                else if (reportType == 718)
+                {
+                    varViewType = 4;
+                }
+                else if (reportType == 719)
+                {
+                    varViewType = 5;
+                }
+                else if (reportType == 720)
+                {
+                    varViewType = 6;
+                }
+                else if (reportType == 721)
+                {
+                    varViewType = 7;
                 }
 
                 DataSet objDs = new DataSet();
@@ -246,12 +275,41 @@ namespace ROMS
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    int reportType = Convert.ToInt32(cmbReportType.SelectedValue);
+                    
                     switch (reportType)
                     {
                         case 714:
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Contact.rpt"); 
                             break; 
+                        case 715:
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Address.rpt");
+                            objBillreport.SetParameterValue("paraFilterName", Convert.ToString(cmbFilter.Text)); 
+                            break;
+                        case 716:
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Route.rpt");
+                            objBillreport.SetParameterValue("paraRouteName",varRouteName); 
+                            objBillreport.SetParameterValue("paraAreaName", varAreaName); 
+                            break;
+                        case 717:
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Route.rpt");  
+                            break;
+                        case 718:
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Route.rpt"); 
+                            break;
+                        case 719:
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Limit_Period_SchEligible.rpt");
+                            objBillreport.SetParameterValue("paraDeliPreferenceName", Convert.ToString(cmbDeliveryPrefernce.Text));
+                            objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                            break;
+                        case 720:
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_GST_Detail.rpt");
+                            objBillreport.SetParameterValue("paraDeliPreferenceName", Convert.ToString(cmbDeliveryPrefernce.Text));
+                            objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                            break;
+                        case 721: 
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_ContactPersonDetail.rpt");
+                            break;
+
                     }
                     objBillreport.SetParameterValue("paraAreaID", varAreaId);
                     objBillreport.SetParameterValue("paraCategoryType", Convert.ToInt16(cmbCustomerCategory.SelectedValue));
