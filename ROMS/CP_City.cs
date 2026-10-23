@@ -806,17 +806,22 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             cmbDeliveryPref.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CTY_Delivery_Pref"]);
-                            string ids = objDs.Tables[0].Rows[0]["MultitransportId"].ToString();
 
-                            List<int> selectedIds = ids
-                                .Split(',', (char)StringSplitOptions.RemoveEmptyEntries)
-                                .Select(id => int.Parse(id.Trim()))
-                                .ToList(); 
+                            if (objDs.Tables[0].Rows[0]["MultitransportId"].ToString() != "0")
+                            {
+                                string ids = objDs.Tables[0].Rows[0]["MultitransportId"].ToString();
 
-                            cmbMultiTransport.SetCheckedIds(selectedIds);
+                                List<int> selectedIds = ids
+                                    .Split(',', (char)StringSplitOptions.RemoveEmptyEntries)
+                                    .Select(id => int.Parse(id.Trim()))
+                                    .ToList();
 
-                            var selItems = transports.Where(m => selectedIds.Contains(m.Id)).ToList();
-                            lblTransports.Text = string.Join(", ", selItems.Select(x => x.Text));
+                                cmbMultiTransport.SetCheckedIds(selectedIds);
+
+                                var selItems = transports.Where(m => selectedIds.Contains(m.Id)).ToList();
+                                lblTransports.Text = string.Join(", ", selItems.Select(x => x.Text));
+
+                            }
                         }
                     }
                 }
