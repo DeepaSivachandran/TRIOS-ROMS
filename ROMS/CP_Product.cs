@@ -12560,7 +12560,7 @@ namespace ROMS
                     if (status == "453" && statusAutoUpdate == "453") //yes
                     {
                         grdPrice.Columns["clmRate"].DefaultCellStyle.Format = "0.00";
-                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate - Convert.ToDouble(NewRate.ToString("0.00"));
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + Convert.ToDouble(NewRate.ToString("0.00"));
                         if (vartype != 0)
                         {
                             grdPrice.Columns["clmOffsetValue"].DefaultCellStyle.Format = "0.00";
@@ -12600,7 +12600,7 @@ namespace ROMS
                 {
                     if (status == "453" && statusAutoUpdate == "453") //yes
                     {
-                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate - NewRate;
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + NewRate;
                         grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value = newGst;
                     }
                     else
