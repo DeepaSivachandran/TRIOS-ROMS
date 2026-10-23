@@ -297,7 +297,11 @@ namespace ROMS
                             
                             break;
                         case 718:
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Route.rpt"); 
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_DeliveryTiming_PackingPreference.rpt");
+                            objBillreport.SetParameterValue("paraDeliPreferenceName", Convert.ToString(cmbDeliveryPrefernce.Text));
+                            objBillreport.SetParameterValue("paraPreferedTransportName", Convert.ToString(cmbPreferedTransport.Text));
+                            objBillreport.SetParameterValue("paraPreferedPeriod", "All");
+                            objBillreport.SetParameterValue("paraStatusName",Convert.ToString(cmbStatus.Text));
                             break;
                         case 719:
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Limit_Period_SchEligible.rpt");
