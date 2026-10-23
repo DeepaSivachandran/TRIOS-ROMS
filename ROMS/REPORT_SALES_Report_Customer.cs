@@ -291,7 +291,10 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraAreaName", varAreaName); 
                             break;
                         case 717:
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Route.rpt");  
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Delivery_Preference.rpt");
+                            objBillreport.SetParameterValue("paraDeliPreferenceName", Convert.ToString(cmbDeliveryPrefernce.Text));
+                            objBillreport.SetParameterValue("paraPreferedTransportName", Convert.ToString(cmbPreferedTransport.Text));
+                            
                             break;
                         case 718:
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SALES_CUS_Route.rpt"); 
@@ -1460,7 +1463,7 @@ namespace ROMS
         {
             try
             {
-                cmbPrintType.BackColor = Color.LemonChiffon;
+                cmbPreferedTransport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1568,7 +1571,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPrintType.Focus();
+                    cmbPreferedTransport.Focus();
                 }
             }
             catch (Exception ex)
@@ -1796,7 +1799,7 @@ namespace ROMS
         {
             try
             {
-                cmbPrintType.BackColor = Color.White;
+                cmbPreferedTransport.BackColor = Color.White;
             }
             catch (Exception ex)
             {

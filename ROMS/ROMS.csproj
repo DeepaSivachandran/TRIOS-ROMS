@@ -993,6 +993,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_Delivery_Preference.cs">
+      <DependentUpon>RPT_SALES_CUS_Delivery_Preference.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_SALES_CUS_ContactPersonDetail.cs">
       <DependentUpon>RPT_SALES_CUS_ContactPersonDetail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6768,6 +6775,11 @@
     <Content Include="Reports\RPT_SALES_CUS_ContactPersonDetail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_CUS_ContactPersonDetail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_Delivery_Preference.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_Delivery_Preference.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SALES_SCH_DiscountScheme_Product.rpt">
