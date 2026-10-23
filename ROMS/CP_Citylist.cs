@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -190,8 +191,12 @@ namespace ROMS
                             grdCityList.Columns["Status"].Visible = false;
                             grdCityList.Columns["DistrictId"].Visible = false;
                             grdCityList.Columns["SalesApplicable"].Visible = false;
+                            grdCityList.Columns["TotSupplier"].Visible = false;
+                            grdCityList.Columns["TotCus"].Visible = false;
                             grdCityList.Columns["S.No."].Width = 50;
                             grdCityList.Columns["State Name"].Width = 120;
+                            grdCityList.Columns["Courier Transport"].Width = 120;
+                            grdCityList.Columns["Other Transport"].Width = 120;
                             grdCityList.Columns["City Name"].Width = 200;
                             grdCityList.Columns["Status"].Width = 80;
                             grdCityList.Columns["Pincode"].Width = 60;
@@ -200,6 +205,8 @@ namespace ROMS
                             grdCityList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdCityList.Columns["State Code"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdCityList.Columns["Total Suppliers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            tspTotSup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TotSupplier"]);
+                           tspTotCus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TotCus"]);
                         }
                         else
                         {
@@ -419,6 +426,54 @@ namespace ROMS
                         grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+
+                    grdCityList.Rows[i].Cells["S.Applicable"].Style.Font = new Font(grdCityList.Font, FontStyle.Bold);
+                    grdCityList.Rows[i].Cells["Other Delivery"].Style.Font = new Font(grdCityList.Font, FontStyle.Bold);
+                    grdCityList.Rows[i].Cells["Own Transport"].Style.Font = new Font(grdCityList.Font, FontStyle.Bold);
+                    grdCityList.Rows[i].Cells["Courier Transport"].Style.Font = new Font(grdCityList.Font, FontStyle.Bold);
+                    grdCityList.Rows[i].Cells["Other Transport"].Style.Font = new Font(grdCityList.Font, FontStyle.Bold);
+
+                    if (Convert.ToString(grdCityList.Rows[i].Cells["S.Applicable"].Value) == "Y")
+                    {
+                        grdCityList.Rows[i].Cells["S.Applicable"].Style.ForeColor = Color.Green; 
+                    }
+                    else
+                    {
+                        grdCityList.Rows[i].Cells["S.Applicable"].Style.ForeColor = Color.Red;
+                    }
+                    if (Convert.ToString(grdCityList.Rows[i].Cells["Other Delivery"].Value) == "Y")
+                    {
+                        grdCityList.Rows[i].Cells["Other Delivery"].Style.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        grdCityList.Rows[i].Cells["Other Delivery"].Style.ForeColor = Color.Red;
+                    }
+                    if (Convert.ToString(grdCityList.Rows[i].Cells["Own Transport"].Value) == "Y")
+                    {
+                        grdCityList.Rows[i].Cells["Own Transport"].Style.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        grdCityList.Rows[i].Cells["Own Transport"].Style.ForeColor = Color.Red;
+                    }
+                    if (Convert.ToString(grdCityList.Rows[i].Cells["Courier Transport"].Value) == "Y")
+                    {   
+                        grdCityList.Rows[i].Cells["Courier Transport"].Style.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        grdCityList.Rows[i].Cells["Courier Transport"].Style.ForeColor = Color.Red;
+                    }
+                    if (Convert.ToString(grdCityList.Rows[i].Cells["Other Transport"].Value) == "Y")
+                    {
+                        grdCityList.Rows[i].Cells["Other Transport"].Style.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        grdCityList.Rows[i].Cells["Other Transport"].Style.ForeColor = Color.Red;
+                    }
+
                     grdCityList.ClearSelection();
                 }
             }

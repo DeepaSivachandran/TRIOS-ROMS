@@ -286,6 +286,32 @@ namespace ROMS
                     tpState.Show("Please select district name.", cmbDistrict, 5000);
                     blnErrorFlag = true;
                 }
+                
+                if (Convert.ToInt32(cmbApplicable.SelectedValue) != 12)
+                {
+                    if (Convert.ToInt32(cmbDeliveryPref.SelectedValue) == -1)
+                    {
+                        epCity.SetError(cmbDeliveryPref, "Please select deleivery preference.");
+                        cmbDeliveryPref.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpState.ShowAlways = true;
+                        tpState.Show("Please select deleivery preference.", cmbDeliveryPref, 5000);
+                        blnErrorFlag = true;
+                    }
+                    else if (Convert.ToInt32(cmbDeliveryPref.SelectedValue) == 510 )
+                    {
+                        var selid = cmbMultiTransport.CheckedIds;
+
+                        if (selid.Count == 0) {
+
+                            epCity.SetError(cmbMultiTransport, "Please select atleast preference.");
+                            cmbMultiTransport.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpState.ShowAlways = true;
+                            tpState.Show("Please select atleast preference.", cmbMultiTransport, 5000);
+                            blnErrorFlag = true;
+                        }
+                    }
+                }
+
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -812,6 +838,9 @@ namespace ROMS
                 {
                     cmbDeliveryPref.Enabled = false;
                     cmbMultiTransport.Enabled = false;
+                    cmbDeliveryPref.SelectedValue = -1;
+                    lblTransports.Text = "";
+                    cmbMultiTransport.ClearAll(); 
                 }
                 else
                 { 
@@ -837,7 +866,9 @@ namespace ROMS
                 }
                 else
                 {
-                    cmbMultiTransport.Enabled = false;
+                    cmbMultiTransport.Enabled = false; 
+                    lblTransports.Text = "";
+                    cmbMultiTransport.ClearAll();
                 }
 
             }

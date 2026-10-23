@@ -49,6 +49,12 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdCityList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tspTotCus = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tspTotSup = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsCityList.SuspendLayout();
             this.pnlCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -69,6 +75,12 @@
             this.tsbEdit,
             this.tssNew,
             this.tsbNew,
+            this.toolStripSeparator3,
+            this.tspTotCus,
+            this.toolStripButton3,
+            this.toolStripSeparator2,
+            this.tspTotSup,
+            this.toolStripButton5,
             this.toolStripSeparator1,
             this.tsbTotalCount,
             this.toolStripButton2});
@@ -309,6 +321,70 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // tspTotCus
+            // 
+            this.tspTotCus.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tspTotCus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspTotCus.ForeColor = System.Drawing.Color.Crimson;
+            this.tspTotCus.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspTotCus.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tspTotCus.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tspTotCus.Name = "tspTotCus";
+            this.tspTotCus.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tspTotCus.Size = new System.Drawing.Size(41, 24);
+            this.tspTotCus.Text = "0000";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton3.Size = new System.Drawing.Size(111, 24);
+            this.toolStripButton3.Text = "No. of Customers :";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tspTotSup
+            // 
+            this.tspTotSup.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tspTotSup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspTotSup.ForeColor = System.Drawing.Color.Crimson;
+            this.tspTotSup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspTotSup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tspTotSup.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tspTotSup.Name = "tspTotSup";
+            this.tspTotSup.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tspTotSup.Size = new System.Drawing.Size(41, 24);
+            this.tspTotSup.Text = "0000";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton5.Size = new System.Drawing.Size(103, 24);
+            this.toolStripButton5.Text = "No. of Suppliers :";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            // 
             // CP_Citylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -356,5 +432,11 @@
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.ToolStripButton tsbTotalCount;
         public System.Windows.Forms.ToolStripButton toolStripButton2;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        public System.Windows.Forms.ToolStripButton tspTotCus;
+        public System.Windows.Forms.ToolStripButton toolStripButton3;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        public System.Windows.Forms.ToolStripButton tspTotSup;
+        public System.Windows.Forms.ToolStripButton toolStripButton5;
     }
 }
