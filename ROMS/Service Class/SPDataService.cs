@@ -6811,6 +6811,51 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnCustomerMasterReports(MR_Sales objMR_Sales)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_CustomerReport]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Sales.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraConcernID", objMR_Sales.paraConcernId); 
+                varSqlCommand.Parameters.AddWithValue("@paraGSTType", objMR_Sales.paraGSTType); 
+                varSqlCommand.Parameters.AddWithValue("@paraCusType", objMR_Sales.paraCusType); 
+                varSqlCommand.Parameters.AddWithValue("@paraCityID", objMR_Sales.paraCityID); 
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerName", objMR_Sales.paraCustomerName); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objMR_Sales.paraStatus); 
+                varSqlCommand.Parameters.AddWithValue("@paraFilterType", objMR_Sales.paraFilterType); 
+                varSqlCommand.Parameters.AddWithValue("@paraCategoryType", objMR_Sales.paraCategoryType); 
+                varSqlCommand.Parameters.AddWithValue("@paraRouteID", objMR_Sales.paraRouteID); 
+                varSqlCommand.Parameters.AddWithValue("@paraAreaID", objMR_Sales.paraAreaID); 
+                varSqlCommand.Parameters.AddWithValue("@paraDeliPrefernceID", objMR_Sales.paraDeliPrefernceID); 
+                varSqlCommand.Parameters.AddWithValue("@paraCusVerifyLoc", objMR_Sales.paraCusVerifyLoc); 
+                varSqlCommand.Parameters.AddWithValue("@paraPrefPeriod", objMR_Sales.paraPrefPeriod); 
+                varSqlCommand.Parameters.AddWithValue("@paraPackingTypeID", objMR_Sales.paraPackingTypeID); 
+                varSqlCommand.Parameters.AddWithValue("@paraPackingPrefId", objMR_Sales.paraPackingPrefId); 
+                varSqlCommand.Parameters.AddWithValue("@paraCustomerID", objMR_Sales.paraCustomerID);  
+                varSqlCommand.Parameters.AddWithValue("@paraGSTINStatus", objMR_Sales.paraGSTINStatus);  
+                varSqlCommand.Parameters.AddWithValue("@paraPreferedTransID", objMR_Sales.paraPreferedTransID);   
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         public DataSet udfnSalesReports(MR_Sales objMR_Sales)
         {
             DataSet ds = new DataSet();

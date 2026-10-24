@@ -993,6 +993,67 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_DeliveryTiming_PackingPreference.cs">
+      <DependentUpon>RPT_SALES_CUS_DeliveryTiming_PackingPreference.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_Delivery_Preference.cs">
+      <DependentUpon>RPT_SALES_CUS_Delivery_Preference.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_ContactPersonDetail.cs">
+      <DependentUpon>RPT_SALES_CUS_ContactPersonDetail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_Delivery_Preference1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_SALES_CUS_Delivery_Preference.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_Limit_Period_SchEligible.cs">
+      <DependentUpon>RPT_SALES_CUS_Limit_Period_SchEligible.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_GST_Detail.cs">
+      <DependentUpon>RPT_SALES_CUS_GST_Detail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_Route.cs">
+      <DependentUpon>RPT_SALES_CUS_Route.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_Contact.cs">
+      <DependentUpon>RPT_SALES_CUS_Contact.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_SALES_CUS_Address.cs">
+      <DependentUpon>RPT_SALES_CUS_Address.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Print_SP_A6.cs">
       <DependentUpon>RPT_Product_Landscape_Print_SP_A6.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2102,6 +2163,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_SALES_Report_Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_SALES_Report_Customer.designer.cs">
+      <DependentUpon>REPORT_SALES_Report_Customer.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_SALES_SchemeReport.cs">
       <SubType>Form</SubType>
@@ -6470,6 +6537,11 @@
       <LastGenOutput>RPT_PAY_BillWise_SupplierPaymentPendingDetail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_SALES_CUS_Address.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_Address.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_Product_Landscape_Print_SP_A6.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Product_Landscape_Print_SP_A6.cs</LastGenOutput>
@@ -6738,6 +6810,41 @@
     <Content Include="Reports\RPT_SALES_Tax_GST_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_Tax_GST_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_Contact.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_Contact.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_Route.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_Route.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_Limit_Period_SchEligible.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_Limit_Period_SchEligible.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_GST_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_GST_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_ContactPersonDetail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_ContactPersonDetail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_Delivery_Preference.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_SALES_CUS_Delivery_Preference1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reports\RPT_SALES_CUS_DeliveryTiming_PackingPreference.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SALES_CUS_DeliveryTiming_PackingPreference.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SALES_SCH_DiscountScheme_Product.rpt">
@@ -8078,6 +8185,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_SALES_Report_Customer.resx">
+      <DependentUpon>REPORT_SALES_Report_Customer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_SALES_SchemeReport.resx">
       <DependentUpon>REPORT_SALES_SchemeReport.cs</DependentUpon>
     </EmbeddedResource>

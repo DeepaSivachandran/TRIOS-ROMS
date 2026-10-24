@@ -10,6 +10,7 @@ namespace ROMS.Model
     {
         // -------------------- Common Parameters --------------------
         public int paraViewType { get; set; } = 0;
+        public int ViewType { get; set; } = 0;
         public int paraStatusId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
 
@@ -133,6 +134,21 @@ namespace ROMS.Model
         public int paraBillCategory { get; set; } = 0;
         public int paraGSTType { get; set; } = 0;
         public string paraCustomerName { get; set; } = "";
+        public int paraCusType { get; set; } = 0;
+        public int paraCityID { get; set; } = 0;
+        public int paraStatus { get; set; } = 0;
+        public int paraFilterType { get; set; } = 0;
+        public int paraCategoryType { get; set; } = 0;
+        public int paraRouteID { get; set; } = 0;
+        public int paraAreaID { get; set; } = 0;
+        public int paraDeliPrefernceID { get; set; } = 0;
+        public int paraCusVerifyLoc { get; set; } = 0;
+        public int paraPrefPeriod { get; set; } = 0;
+        public int paraPackingTypeID { get; set; } = 0;
+        public int paraPackingPrefId { get; set; } = 0;
+        public int paraCustomerID { get; set; } = 0;
+        public int paraGSTINStatus { get; set; } = 0;
+        public int paraPreferedTransID { get; set; } = 0; 
     }
 
 }
