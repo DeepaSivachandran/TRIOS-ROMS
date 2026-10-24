@@ -762,6 +762,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Sales_Applicable_City.cs">
+      <DependentUpon>RPT_CP_Sales_Applicable_City.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_ProductWeight_LocationWiseProductDetail.cs">
       <DependentUpon>RPT_CP_ProductWeight_LocationWiseProductDetail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -6305,6 +6312,11 @@
       <LastGenOutput>RPT_CP_AddressBook_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_CP_Sales_Applicable_City.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Sales_Applicable_City.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Product_RateCategory_Enable.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Product_RateCategory_Enable.cs</LastGenOutput>

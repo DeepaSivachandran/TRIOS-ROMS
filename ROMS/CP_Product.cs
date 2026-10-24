@@ -12607,7 +12607,7 @@ namespace ROMS
                     {
                         grdPrice.Rows[rowIndex].Cells["clmRate"].Value = grdPrice.Rows[rowIndex].Cells["clmRate"].Value;
                     }
-                }
+                } 
             }
             catch (Exception ex)
             {
