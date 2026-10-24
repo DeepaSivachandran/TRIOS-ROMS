@@ -1014,11 +1014,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_SALES_CUS_Delivery_Preference1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_SALES_CUS_Delivery_Preference.rpt</DependentUpon>
-    </Compile>
     <Compile Include="Reports\RPT_SALES_CUS_Limit_Period_SchEligible.cs">
       <DependentUpon>RPT_SALES_CUS_Limit_Period_SchEligible.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
