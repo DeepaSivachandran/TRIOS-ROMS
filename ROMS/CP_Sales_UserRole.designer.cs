@@ -72,6 +72,7 @@
             this.clmParentFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrivilegeCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsplflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmClonechk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
@@ -358,6 +359,7 @@
             this.clmParentFlag,
             this.clmPrivilegeCode,
             this.clmsplflag,
+            this.clmClonechk,
             this.Action});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -451,35 +453,35 @@
             this.clmCreatechk.HeaderText = "Create";
             this.clmCreatechk.MinimumWidth = 6;
             this.clmCreatechk.Name = "clmCreatechk";
-            this.clmCreatechk.Width = 125;
+            this.clmCreatechk.Width = 80;
             // 
             // clmEditchk
             // 
             this.clmEditchk.HeaderText = "Edit";
             this.clmEditchk.MinimumWidth = 6;
             this.clmEditchk.Name = "clmEditchk";
-            this.clmEditchk.Width = 125;
+            this.clmEditchk.Width = 80;
             // 
             // clmDeletechk
             // 
             this.clmDeletechk.HeaderText = "Delete";
             this.clmDeletechk.MinimumWidth = 6;
             this.clmDeletechk.Name = "clmDeletechk";
-            this.clmDeletechk.Width = 125;
+            this.clmDeletechk.Width = 80;
             // 
             // clmPrintchk
             // 
             this.clmPrintchk.HeaderText = "Print";
             this.clmPrintchk.MinimumWidth = 6;
             this.clmPrintchk.Name = "clmPrintchk";
-            this.clmPrintchk.Width = 125;
+            this.clmPrintchk.Width = 80;
             // 
             // clmExcelchk
             // 
             this.clmExcelchk.HeaderText = "Excel";
             this.clmExcelchk.MinimumWidth = 6;
             this.clmExcelchk.Name = "clmExcelchk";
-            this.clmExcelchk.Width = 125;
+            this.clmExcelchk.Width = 80;
             // 
             // clmNotificationchk
             // 
@@ -527,6 +529,12 @@
             this.clmsplflag.Name = "clmsplflag";
             this.clmsplflag.Visible = false;
             this.clmsplflag.Width = 125;
+            // 
+            // clmClonechk
+            // 
+            this.clmClonechk.HeaderText = "Clone";
+            this.clmClonechk.Name = "clmClonechk";
+            this.clmClonechk.Width = 80;
             // 
             // Action
             // 
@@ -617,6 +625,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmParentFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrivilegeCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsplflag;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmClonechk;
         private System.Windows.Forms.DataGridViewImageColumn Action;
     }
 }

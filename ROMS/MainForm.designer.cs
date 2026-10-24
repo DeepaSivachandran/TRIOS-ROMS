@@ -275,15 +275,16 @@ namespace ROMS
             this.tsmSalesProductWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalesNonMovingProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalesTax = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSchemeReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF9 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSchemeReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2385,7 +2386,8 @@ namespace ROMS
             this.tsmTransportReport,
             this.tsmCardMachineReport,
             this.tsmMarriageHallReport,
-            this.tsmGenCusNameChange});
+            this.tsmGenCusNameChange,
+            this.tsmCustomer});
             this.tsmSalesMastersReport.Name = "tsmSalesMastersReport";
             this.tsmSalesMastersReport.Size = new System.Drawing.Size(180, 22);
             this.tsmSalesMastersReport.Text = "Sales Masters";
@@ -2513,25 +2515,12 @@ namespace ROMS
             this.tsmSalesTax.Text = "Sales Tax";
             this.tsmSalesTax.Click += new System.EventHandler(this.tsmSalesTax_Click);
             // 
-            // timer2
+            // tsmSchemeReport
             // 
-            this.timer2.Interval = 5000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // statusBar
-            // 
-            this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusBar.Location = new System.Drawing.Point(0, 537);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1275, 22);
-            this.statusBar.TabIndex = 115;
-            this.statusBar.Text = "statusStrip1";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.tsmSchemeReport.Name = "tsmSchemeReport";
+            this.tsmSchemeReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSchemeReport.Text = "Scheme Report";
+            this.tsmSchemeReport.Click += new System.EventHandler(this.tsmSchemeReport_Click);
             // 
             // tsmHelp
             // 
@@ -2576,12 +2565,32 @@ namespace ROMS
             this.tsmGif.Visible = false;
             this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
             // 
-            // tsmSchemeReport
+            // timer2
             // 
-            this.tsmSchemeReport.Name = "tsmSchemeReport";
-            this.tsmSchemeReport.Size = new System.Drawing.Size(180, 22);
-            this.tsmSchemeReport.Text = "Scheme Report";
-            this.tsmSchemeReport.Click += new System.EventHandler(this.tsmSchemeReport_Click);
+            this.timer2.Interval = 5000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // statusBar
+            // 
+            this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusBar.Location = new System.Drawing.Point(0, 537);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(1275, 22);
+            this.statusBar.TabIndex = 115;
+            this.statusBar.Text = "statusStrip1";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // tsmCustomer
+            // 
+            this.tsmCustomer.Name = "tsmCustomer";
+            this.tsmCustomer.Size = new System.Drawing.Size(230, 22);
+            this.tsmCustomer.Text = "Customer ";
+            this.tsmCustomer.Click += new System.EventHandler(this.tsmCustomer_Click_1);
             // 
             // MainForm
             // 
@@ -2869,5 +2878,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmBatchwiseStockTaking;
         private System.Windows.Forms.ToolStripMenuItem tsmSalesTax;
         private System.Windows.Forms.ToolStripMenuItem tsmSchemeReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmCustomer;
     }
 }
