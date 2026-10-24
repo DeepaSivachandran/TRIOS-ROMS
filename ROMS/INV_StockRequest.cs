@@ -223,6 +223,7 @@ namespace ROMS
         {
             try
             {
+                lblRackIncharge.Text = "";
                 cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
@@ -2195,6 +2196,7 @@ namespace ROMS
         {
             try
             {
+                lblRackIncharge.Text = "";  
                 if (chkRackGroup.Checked == false)
                 { 
                     lblDEProductName.Visible = true;
@@ -2369,6 +2371,7 @@ namespace ROMS
             try
             {
                 txtGeneralBillNo.Text = "";
+                lblRackIncharge.Text = "";
                 if (Convert.ToInt32(cmbRequestType.SelectedValue) == 562) //General Bill
                 {
                     txtGeneralBillNo.Enabled = true;
@@ -3280,7 +3283,8 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt16(cmbRackGroup.SelectedValue)==-1 || Convert.ToInt16(cmbRackGroup.SelectedValue) == 0)
+                lblRackIncharge.Text = "";
+                if (Convert.ToInt16(cmbRackGroup.SelectedValue)==-1 || Convert.ToInt16(cmbRackGroup.SelectedValue) == 0)
                 {
                     errStockRequest.SetError(cmbRackGroup, "Please select rack group");
                     cmbRackGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -3320,6 +3324,13 @@ namespace ROMS
                     if (objDs.Tables[1].Rows.Count > 0)
                     {
                         dtLocation = objDs.Tables[1];
+                    }
+                    if (objDs.Tables.Count > 1)
+                    {
+                        if (objDs.Tables[2].Rows.Count > 0)
+                        {
+                            lblRackIncharge.Text = objDs.Tables[2].Rows[0]["RackIncharge"].ToString();
+                        }
                     }
 
                     if (objDs.Tables[0].Rows.Count > 0)

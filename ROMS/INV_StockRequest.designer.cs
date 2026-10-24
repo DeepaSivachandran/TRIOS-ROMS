@@ -106,6 +106,7 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblRackIncharge = new System.Windows.Forms.Label();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -187,6 +188,7 @@
             // grpStockRequest
             // 
             this.grpStockRequest.BackColor = System.Drawing.Color.White;
+            this.grpStockRequest.Controls.Add(this.lblRackIncharge);
             this.grpStockRequest.Controls.Add(this.cmbLocation);
             this.grpStockRequest.Controls.Add(this.lblLocation);
             this.grpStockRequest.Controls.Add(this.lblProductTamil);
@@ -1044,6 +1046,17 @@
             // 
             this.errStockRequest.ContainerControl = this;
             // 
+            // lblRackIncharge
+            // 
+            this.lblRackIncharge.AutoSize = true;
+            this.lblRackIncharge.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRackIncharge.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblRackIncharge.Location = new System.Drawing.Point(89, 79);
+            this.lblRackIncharge.Name = "lblRackIncharge";
+            this.lblRackIncharge.Size = new System.Drawing.Size(86, 20);
+            this.lblRackIncharge.TabIndex = 1110001040;
+            this.lblRackIncharge.Text = "Rack Incharge";
+            // 
             // clmSno
             // 
             this.clmSno.HeaderText = "S.No.";
@@ -1107,6 +1120,7 @@
             this.clmIncharge.Name = "clmIncharge";
             this.clmIncharge.ReadOnly = true;
             this.clmIncharge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmIncharge.Visible = false;
             this.clmIncharge.Width = 250;
             // 
             // clmStockQty
@@ -1324,6 +1338,7 @@
         private System.Windows.Forms.Label lblProductTamil;
         private System.Windows.Forms.ComboBox cmbLocation;
         private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.Label lblRackIncharge;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
