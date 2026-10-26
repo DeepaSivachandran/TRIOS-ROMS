@@ -298,6 +298,14 @@ namespace ROMS
                             if (objDS.Tables[2].Rows.Count > 0)
                             { dtLocation = objDS.Tables[2]; }
                         }
+                        if (objDS.Tables.Count > 2)
+                        {
+                            if (objDS.Tables[3].Rows.Count > 0)
+                            {
+                                lblRackIncharge.Text = objDS.Tables[3].Rows[0]["RackIncharge"].ToString();
+                            }
+                        }
+
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
                             grdStockRequest.Rows.Clear();
@@ -314,7 +322,8 @@ namespace ROMS
                                 );
                                 grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), 
                                     Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status"]),
-                                    Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status ID"]),Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["ShopFlag"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["StkFlag"]));
+                                    Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status ID"]),Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["ShopFlag"]),
+                                    Convert.ToInt16(objDS.Tables[0].Rows[i]["StkFlag"]), Convert.ToString(objDS.Tables[0].Rows[i]["RequestedLocation"]));
                                 
                                 dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_SLID"]),  Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_RKID"]), requestedQty, 0);
                                 if (requestedQty != 0)
@@ -329,7 +338,8 @@ namespace ROMS
                                 SLID = Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_SLID"]);
 
                                 if (varStatus == 28 && pbDeleteFlag == 0)
-                                { 
+                                {
+                                    
                                     if (shopFlag == 1 && stkFlag==0)
                                     {
                                         var rows = dtLocation.AsEnumerable().Where(x => x.Field<int>("PRID") == PRID);
@@ -415,11 +425,13 @@ namespace ROMS
                             else
                             {
                                 cmbStatus.SelectedValue = 28;
+                                grdStockRequest.Columns["clmRemove"].Visible = true;
                             }
                         }
                     }
                     cmbConcern.Enabled = false;
                     dpDate.Enabled = false;
+                    cmbRequestType.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -447,6 +459,7 @@ namespace ROMS
                     cmbRackGroup.Enabled = false;
                     cmbRequestType.Enabled = false;
                     chkRackGroup.Enabled=false;
+                    btnView.Enabled=false;
                 }
             }
         }
@@ -603,7 +616,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbRequestType.Focus();
+                    txtTeller.Focus();
                 }
             }
             catch (Exception ex)
@@ -1242,14 +1255,15 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             int slid = 0;string locationName = "";
-                            if(pbShopFlag==1)
+                            locationName = Convert.ToString(objDs.Tables[0].Rows[0]["PurLocation"]);
+                            if (pbShopFlag==1)
                             {
                                 slid = Convert.ToInt32(cmbLocation.SelectedValue);
-                                locationName = cmbLocation.Text;
+                                //locationName = cmbLocation.Text;
                             }
                             else
                             {
-                                slid = Convert.ToInt32(objDs.Tables[0].Rows[0]["SLID"]);
+                                slid = Convert.ToInt32(objDs.Tables[0].Rows[0]["SLID"]); 
                             }
                                 int rowIndex = grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]),
                                     Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]),locationName,
@@ -2412,14 +2426,20 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (Convert.ToInt16(cmbRequestType.SelectedValue) == 562)
+                    if (txtGeneralBillNo.Enabled==true)
                     {
                         txtGeneralBillNo.Focus();
                     }
-                    else
+                    else if(chkRackGroup.Visible==true)
                     {
                         chkRackGroup.Focus();
                     }
+                    else if(txtProductNamePICode.Visible==true)
+                    {
+                        txtProductNamePICode.Focus(); 
+                    }
+                    else if(cmbRackGroup.Visible==true)
+                    { cmbRackGroup.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -2716,7 +2736,16 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbRequestType.Focus();
+                    if(cmbRequestType.Enabled==true)
+                    {
+                        cmbRequestType.Focus();
+                    }
+                    else if(cmbRackGroup.Visible==true)
+                    {
+                        cmbRackGroup.Focus(); 
+                    }
+                    else { txtProductNamePICode.Focus(); }
+                   
                 }
             }
             catch (Exception ex)
