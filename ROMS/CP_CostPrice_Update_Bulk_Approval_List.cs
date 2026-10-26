@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel; 
@@ -85,196 +86,68 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private const int NoWidth = 4;
+        private const int ProductWidth = 30;
+        private const bool CloseRightBorder = false;
+        private static readonly Regex ProductHeader = new Regex(@"\*?Product\s*:\*?", RegexOptions.IgnoreCase);
+
+        private static bool IsWide(int cp) =>
+            (cp >= 0x1100 && cp <= 0x115F) || (cp >= 0x2E80 && cp <= 0xA4CF) ||
+            (cp >= 0xAC00 && cp <= 0xD7A3) || (cp >= 0xF900 && cp <= 0xFAFF) ||
+            (cp >= 0xFE30 && cp <= 0xFE6F) || (cp >= 0xFF00 && cp <= 0xFF60) ||
+            (cp >= 0x1F300 && cp <= 0x1FAFF) || (cp >= 0x20000 && cp <= 0x3FFFD);
         private int GetDisplayWidth(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return 0;
-            return new StringInfo(text).LengthInTextElements;
+
+            int width = 0;
+            var e = StringInfo.GetTextElementEnumerator(text);
+            while (e.MoveNext())
+            {
+                string el = (string)e.Current;
+                width += IsWide(char.ConvertToUtf32(el, 0)) ? 2 : 1;
+            }
+            return width;
         }
+
         private string PadDisplayRight(string text, int width)
         {
-            int currentWidth = GetDisplayWidth(text);
-
-            if (currentWidth >= width)
-                return text;
-
-            return text + new string(' ', width - currentWidth);
+            int w = GetDisplayWidth(text);
+            return w >= width ? text : text + new string(' ', width - w);
         }
 
-        public async Task udfnTelegramRCNotification(string varMessage, string varURL)
+        private int FindBreakPosition(string text, int maxWidth)
         {
-            try
+            int[] idx = StringInfo.ParseCombiningCharacters(text);
+            int used = 0;
+            int end = text.Length;
+
+            for (int i = 0; i < idx.Length; i++)
             {
-                // Find Product section
-                int productIndex = varMessage.IndexOf("*Product :*");
-
-                string finalMessage = varMessage;
-
-                if (productIndex >= 0)
+                int next = i + 1 < idx.Length ? idx[i + 1] : text.Length;
+                int cw = GetDisplayWidth(text.Substring(idx[i], next - idx[i]));
+                if (used + cw > maxWidth)
                 {
-                    // Get everything before Product section
-                    string header = varMessage.Substring(0, productIndex);
-
-                    // Get product section
-                    string productSection = varMessage.Substring(productIndex);
-
-                    // Remove Product header
-                    string productText = productSection
-                        .Replace("*Product :*", "")
-                        .Trim();
-
-                    // Get products
-                    string[] products = productText
-                        .Split(
-                            new[] { '\r', '\n' },
-                            StringSplitOptions.RemoveEmptyEntries
-                        )
-                        .Where(x => x.TrimStart().StartsWith("•"))
-                        .Select(x => x.Trim().TrimStart('•').Trim())
-                        .ToArray();
-
-                    // ===============================
-                    // BUILD TELEGRAM TABLE
-                    // ===============================
-
-                    StringBuilder table = new StringBuilder();
-
-                    int noWidth = 4;
-                    int productWidth = 36;
-
-                    string topLine =
-                        "┌" +
-                        new string('─', noWidth) +
-                        "┬" +
-                        new string('─', productWidth) +
-                        "┐";
-
-                    string middleLine =
-                        "├" +
-                        new string('─', noWidth) +
-                        "┼" +
-                        new string('─', productWidth) +
-                        "┤";
-
-                    string bottomLine =
-                        "└" +
-                        new string('─', noWidth) +
-                        "┴" +
-                        new string('─', productWidth) +
-                        "┘";
-
-                    table.AppendLine("📦 PRODUCT DETAILS");
-                    table.AppendLine();
-
-                    table.AppendLine(topLine);
-
-                    // Header
-                    table.AppendLine(
-                        "│" +
-                        PadDisplayRight("No.", noWidth) +
-                        "│" +
-                        PadDisplayRight("Product", productWidth) +
-                        "│"
-                    );
-
-                    table.AppendLine(middleLine);
-
-                    // Products
-                    for (int i = 0; i < products.Length; i++)
-                    {
-                        string product = products[i];
-
-                        List<string> productLines =
-                            WrapText(product, productWidth);
-
-                        for (int j = 0; j < productLines.Count; j++)
-                        {
-                            string no = j == 0
-                                ? (i + 1).ToString("00")
-                                : "";
-
-                            table.AppendLine(
-                                "│" +
-                                PadDisplayRight(no, noWidth) +
-                                "│" +
-                                PadDisplayRight(
-                                    productLines[j],
-                                    productWidth
-                                ) +
-                                "│"
-                            );
-                        }
-
-                        if (i < products.Length - 1)
-                        {
-                            table.AppendLine(middleLine);
-                        }
-                    }
-
-                    table.AppendLine(bottomLine);
-
-                    table.AppendLine();
-                    table.AppendLine(
-                        $"Total Products : {products.Length}"
-                    );
-
-
-                    // Put table inside Markdown code block
-                    finalMessage =
-    header.TrimEnd()
-    + "\r\n\r\n"
-    + "```"
-    + "\r\n"
-    + table.ToString()
-    + "```";
-
+                    end = idx[i];
+                    break;
                 }
-
-                using (var httpClient = new HttpClient())
-                {
-                    var apiUrl = varURL;
-
-                    var data = new Dictionary<string, string>
-        {
-            {
-                "text",
-                finalMessage
-            },
-            {
-                "parse_mode",
-                "Markdown"
+                used += cw;
             }
-        };
 
-                    var response = await httpClient.PostAsync(
-                        apiUrl,
-                        new FormUrlEncodedContent(data)
-                    );
+            if (end == text.Length || text[end] == ' ')
+                return end;
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        Console.WriteLine(
-                            "Notification sent successfully."
-                        );
-                    }
-                    else
-                    {
-                        Console.WriteLine(
-                            await response.Content.ReadAsStringAsync()
-                        );
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            int space = text.LastIndexOf(' ', end - 1);
+            int hyphen = text.LastIndexOf('-', end - 1) + 1;
+            int best = Math.Max(space, hyphen);
+
+            return best > 0 ? best : end;
         }
 
         private List<string> WrapText(string text, int maxWidth)
         {
-            List<string> lines = new List<string>();
+            var lines = new List<string>();
 
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -286,42 +159,122 @@ namespace ROMS
 
             while (GetDisplayWidth(remaining) > maxWidth)
             {
-                int breakPosition = FindBreakPosition(
-                    remaining,
-                    maxWidth
-                );
-
-                string line = remaining.Substring(0, breakPosition).Trim();
-
-                lines.Add(line);
-
-                remaining = remaining.Substring(breakPosition).Trim();
+                int brk = FindBreakPosition(remaining, maxWidth);
+                lines.Add(remaining.Substring(0, brk).Trim());
+                remaining = remaining.Substring(brk).Trim();
             }
 
-            if (!string.IsNullOrEmpty(remaining))
-            {
+            if (remaining.Length > 0)
                 lines.Add(remaining);
-            }
 
             return lines;
         }
-        private int FindBreakPosition(string text, int maxWidth)
+        private string BuildProductTable(string[] products)
         {
-            int[] indexes = StringInfo.ParseCombiningCharacters(text);
+            int noWidth = Math.Max(3, products.Length.ToString().Length);
+            int leftWidth = noWidth + 2;
+            int rightWidth = ProductWidth + 1;
 
-            if (indexes.Length <= maxWidth)
-                return text.Length;
+            string heavyTop = new string('═', leftWidth) + "╤" + new string('═', rightWidth);
+            string heavyMid = new string('═', leftWidth) + "╪" + new string('═', rightWidth);
+            string heavyBottom = new string('═', leftWidth) + "╧" + new string('═', rightWidth);
+            string light = new string('─', leftWidth) + "┼" + new string('─', rightWidth);
 
-            int position = indexes[maxWidth];
+            string Row(string no, string text) =>
+                " " + PadDisplayRight(no, noWidth) + " │ " + text;
 
-            // Try to break at a space
-            int spacePosition = text.LastIndexOf(' ', position - 1);
+            var sb = new StringBuilder();
+            sb.AppendLine(heavyTop);
+            sb.AppendLine(Row("No.", "Product"));
+            sb.AppendLine(heavyMid);
 
-            if (spacePosition > 0)
-                return spacePosition;
+            for (int i = 0; i < products.Length; i++)
+            {
+                var lines = WrapText(products[i], ProductWidth);
+                for (int j = 0; j < lines.Count; j++)
+                {
+                    string no = j == 0 ? (i + 1).ToString("00") : "";
+                    sb.AppendLine(Row(no, lines[j]));
+                }
 
-            return position;
+                if (i < products.Length - 1)
+                    sb.AppendLine(light);
+            }
+
+            sb.AppendLine(heavyBottom);
+            return sb.ToString().TrimEnd();
         }
+        public async Task udfnTelegramRCNotification(string varMessage, string varURL)
+        {
+            try
+            {
+                var match = ProductHeader.Match(varMessage);
+                string finalMessage = varMessage;
+
+                if (match.Success)
+                {
+                    string header = varMessage.Substring(0, match.Index);
+                    string productText = varMessage.Substring(match.Index + match.Length);
+
+                    // Get products
+                    string[] products = productText
+    .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+    .Select(x => x.Trim())
+    .Where(x => x.StartsWith("•"))
+    .Select(x => x.TrimStart('•').Trim())
+    .ToArray();
+
+                    if (products.Length > 0)
+                    {
+                        finalMessage = header.TrimEnd()
+                                     + "\r\n\r\n*📦 PRODUCT DETAILS*"
+                                     + "\r\n```\r\n" + BuildProductTable(products) + "\r\n```"
+                                     + "\r\n*Total Products :* " + products.Length;
+                    }
+
+                    using (var httpClient = new HttpClient())
+                    {
+                        var apiUrl = varURL;
+
+                        var data = new Dictionary<string, string>
+        {
+            {
+                "text",
+                finalMessage
+            },
+            {
+                "parse_mode",
+                "Markdown"
+            }
+        };
+
+                        var response = await httpClient.PostAsync(
+                            apiUrl,
+                            new FormUrlEncodedContent(data)
+                        );
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine(
+                                "Notification sent successfully."
+                            );
+                        }
+                        else
+                        {
+                            Console.WriteLine(
+                                await response.Content.ReadAsStringAsync()
+                            );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CP_SubGroupList_Load(object sender, EventArgs e)
         {
             try
