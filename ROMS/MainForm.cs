@@ -11,6 +11,8 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Security.Policy;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Services.Description;
 using System.Windows.Forms;
@@ -1860,6 +1862,7 @@ namespace ROMS
             {
             }
         }
+        /*
         public async Task udfnTelegramRCNotification(string varMessage)
         {
             try
@@ -1905,6 +1908,202 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        */
+        
+        private const int NoWidth = 4;
+        private const int ProductWidth = 30;
+        private const bool CloseRightBorder = false;
+        private static readonly Regex ProductHeader = new Regex(@"\*?Product\s*:\*?", RegexOptions.IgnoreCase);
+
+        private static bool IsWide(int cp) =>
+            (cp >= 0x1100 && cp <= 0x115F) || (cp >= 0x2E80 && cp <= 0xA4CF) ||
+            (cp >= 0xAC00 && cp <= 0xD7A3) || (cp >= 0xF900 && cp <= 0xFAFF) ||
+            (cp >= 0xFE30 && cp <= 0xFE6F) || (cp >= 0xFF00 && cp <= 0xFF60) ||
+            (cp >= 0x1F300 && cp <= 0x1FAFF) || (cp >= 0x20000 && cp <= 0x3FFFD);
+        private int GetDisplayWidth(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return 0;
+
+            int width = 0;
+            var e = StringInfo.GetTextElementEnumerator(text);
+            while (e.MoveNext())
+            {
+                string el = (string)e.Current;
+                width += IsWide(char.ConvertToUtf32(el, 0)) ? 2 : 1;
+            }
+            return width;
+        }
+
+        private string PadDisplayRight(string text, int width)
+        {
+            int w = GetDisplayWidth(text);
+            return w >= width ? text : text + new string(' ', width - w);
+        }
+
+        private int FindBreakPosition(string text, int maxWidth)
+        {
+            int[] idx = StringInfo.ParseCombiningCharacters(text);
+            int used = 0;
+            int end = text.Length;
+
+            for (int i = 0; i < idx.Length; i++)
+            {
+                int next = i + 1 < idx.Length ? idx[i + 1] : text.Length;
+                int cw = GetDisplayWidth(text.Substring(idx[i], next - idx[i]));
+                if (used + cw > maxWidth)
+                {
+                    end = idx[i];
+                    break;
+                }
+                used += cw;
+            }
+
+            if (end == text.Length || text[end] == ' ')
+                return end;
+
+            int space = text.LastIndexOf(' ', end - 1);
+            int hyphen = text.LastIndexOf('-', end - 1) + 1;
+            int best = Math.Max(space, hyphen);
+
+            return best > 0 ? best : end;
+        }
+
+        private List<string> WrapText(string text, int maxWidth)
+        {
+            var lines = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                lines.Add("");
+                return lines;
+            }
+
+            string remaining = text.Trim();
+
+            while (GetDisplayWidth(remaining) > maxWidth)
+            {
+                int brk = FindBreakPosition(remaining, maxWidth);
+                lines.Add(remaining.Substring(0, brk).Trim());
+                remaining = remaining.Substring(brk).Trim();
+            }
+
+            if (remaining.Length > 0)
+                lines.Add(remaining);
+
+            return lines;
+        }
+        private string BuildProductTable(string[] products)
+        {
+            int noWidth = Math.Max(3, products.Length.ToString().Length);
+            int leftWidth = noWidth + 2;
+            int rightWidth = ProductWidth + 1;
+
+            string heavyTop = new string('═', leftWidth) + "╤" + new string('═', rightWidth);
+            string heavyMid = new string('═', leftWidth) + "╪" + new string('═', rightWidth);
+            string heavyBottom = new string('═', leftWidth) + "╧" + new string('═', rightWidth);
+            string light = new string('─', leftWidth) + "┼" + new string('─', rightWidth);
+
+            string Row(string no, string text) =>
+                " " + PadDisplayRight(no, noWidth) + " │ " + text;
+
+            var sb = new StringBuilder();
+            sb.AppendLine(heavyTop);
+            sb.AppendLine(Row("No.", "Product"));
+            sb.AppendLine(heavyMid);
+
+            for (int i = 0; i < products.Length; i++)
+            {
+                var lines = WrapText(products[i], ProductWidth);
+                for (int j = 0; j < lines.Count; j++)
+                {
+                    //string no = j == 0 ? (i + 1).ToString("00") : "";
+                    //string no = j == 0 ? "P" + (i + 1).ToString("00") : "P";
+                    string no = "P" + (i + 1).ToString("00");
+                    sb.AppendLine(Row(no, lines[j]));
+                }
+
+                if (i < products.Length - 1)
+                    sb.AppendLine(light);
+            }
+
+            sb.AppendLine(heavyBottom);
+            return sb.ToString().TrimEnd();
+        }
+        //public async Task udfnTelegramRCNotification(string varMessage, string varURL)
+        public async Task udfnTelegramRCNotification(string varMessage)
+        {
+            try
+            {
+                var match = ProductHeader.Match(varMessage);
+                string finalMessage = varMessage;
+
+                if (match.Success)
+                {
+                    string header = varMessage.Substring(0, match.Index);
+                    string productText = varMessage.Substring(match.Index + match.Length);
+
+                    // Get products
+                    string[] products = productText
+    .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+    .Select(x => x.Trim())
+    .Where(x => x.StartsWith("•"))
+    .Select(x => x.TrimStart('•').Trim())
+    .ToArray();
+
+                    if (products.Length > 0)
+                    {
+                        finalMessage = header.TrimEnd()
+                                     + "\r\n\r\n*📦 PRODUCT DETAILS*"
+                                     + "\r\n```\r\n" + BuildProductTable(products) + "\r\n```"
+                                     + "\r\n*Total Products :* " + products.Length;
+                    }
+
+                    using (var httpClient = new HttpClient())
+                    {
+                        var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendMessage?chat_id=" + varChatID;
+                        //var apiUrl = varURL;
+
+                        var data = new Dictionary<string, string>
+                        {
+                            {
+                                "text",
+                                finalMessage
+                            },
+                            {
+                                "parse_mode",
+                                "Markdown"
+                            }
+                        };
+
+                        var response = await httpClient.PostAsync(
+                            apiUrl,
+                            new FormUrlEncodedContent(data)
+                        );
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine(
+                                "Notification sent successfully."
+                            );
+                        }
+                        else
+                        {
+                            Console.WriteLine(
+                                await response.Content.ReadAsStringAsync()
+                            );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
         //take all splfield  menu for user role master
         public void udfnGetMenuSplPermissionDetails()
         {

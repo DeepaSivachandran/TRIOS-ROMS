@@ -193,7 +193,9 @@ namespace ROMS
                 var lines = WrapText(products[i], ProductWidth);
                 for (int j = 0; j < lines.Count; j++)
                 {
-                    string no = j == 0 ? (i + 1).ToString("00") : "";
+                    //string no = j == 0 ? (i + 1).ToString("00") : "";
+                    //string no = j == 0 ? "P" + (i + 1).ToString("00") : "P";
+                    string no = "P" + (i + 1).ToString("00");
                     sb.AppendLine(Row(no, lines[j]));
                 }
 
@@ -296,7 +298,7 @@ namespace ROMS
                 {
                     udfnFieldAccess();
                 }
-                udfnTelegramRCNotification("⚡️ *Rate Change Alert* ⚡️\r\n\r\n*Tolerance Alert:* CP rate change has exceeded the configured tolerance limit.\r\n\r\n*Product :*\r\n• 50மி ஜான்சன் பேபி ஷாம்பு\r\n• 5லி யானை செக்கு தேங்காய்.எ(கேன்)(200கி ட்ரைமி ஜவ்வரிசி கூழ்வடகம்-1பாக்கெட்-ஆபர்)\r\n• 200மி ஹிமாலயா பேபி ஷாம்பு\r\n• 1லி டெட்டால் லிகுடு - 1L\r\n• 50மி சதீஷ் ஹேர்ஆயில்", "https://api.telegram.org/bot8231243458:AAGNPs5nl50HrF7TEWMRXGL7Cs_xlVw6oLc/sendMessage?chat_id=2112767339");
+                //udfnTelegramRCNotification("⚡️ *Rate Change Alert* ⚡️\r\n\r\n*Tolerance Alert:* CP rate change has exceeded the configured tolerance limit.\r\n\r\n*Product :*\r\n• 50மி ஜான்சன் பேபி ஷாம்பு\r\n• 5லி யானை செக்கு தேங்காய்.எ(கேன்)(200கி ட்ரைமி ஜவ்வரிசி கூழ்வடகம்-1பாக்கெட்-ஆபர்)\r\n• 200மி ஹிமாலயா பேபி ஷாம்பு\r\n• 1லி டெட்டால் லிகுடு - 1L\r\n• 50மி சதீஷ் ஹேர்ஆயில்", "https://api.telegram.org/bot8231243458:AAGNPs5nl50HrF7TEWMRXGL7Cs_xlVw6oLc/sendMessage?chat_id=2112767339");
             }
             catch (Exception ex)
             {
