@@ -814,137 +814,204 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private const string ViewCol = "clmViewchk";
+        private const string ActionCol = "Action";
+        private const int ViewCode = 1;
+        private const int ActionCode = 8;
 
+        private static readonly Dictionary<string, int> PrivilegeMap = new Dictionary<string, int>
+{
+    { "clmViewchk", 1 },
+    { "clmCreatechk", 2 },
+    { "clmEditchk", 3 },
+    { "clmDeletechk", 4 },
+    { "clmPrintchk", 5 },
+    { "clmExcelchk", 6 },
+    { "clmNotificationchk", 7 },
+    { "clmClonechk", 11 }
+};
+
+        private bool _isBinding;
+        private Image _actionImage;
+        private readonly Bitmap _blankImage = new Bitmap(1, 1);
+
+        private static HashSet<int> ParseCodes(object value)
+        {
+            var set = new HashSet<int>();
+            foreach (var s in Convert.ToString(value).Split(','))
+                if (int.TryParse(s.Trim(), out int n)) set.Add(n);
+            return set;
+        }
+
+        private static bool ToBool(object v)
+        {
+            if (v == null || v == DBNull.Value) return false;
+            if (v is bool b) return b;
+            string s = Convert.ToString(v);
+            return s == "1" || s.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private HashSet<int> GetAllowed(DataGridViewRow row)
+        {
+            return ParseCodes(row.Cells["clmPrivilegeCode"].Value);
+        }
+
+        // Subordinate cells are active only when View is checked (or View isn't a privilege for the row)
+        private bool IsGateOpen(DataGridViewRow row, HashSet<int> allowed)
+        {
+            return !allowed.Contains(ViewCode) || ToBool(row.Cells[ViewCol].Value);
+        }
+
+        private void CaptureActionImage()
+        {
+            if (_actionImage != null) return;
+            if (grdUserPermission.Columns[ActionCol] is DataGridViewImageColumn ic && ic.Image != null)
+            {
+                _actionImage = ic.Image;
+                return;
+            }
+            foreach (DataGridViewRow r in grdUserPermission.Rows)
+            {
+                if (r.IsNewRow) continue;
+                if (r.Cells[ActionCol].Value is Image img && img.Width > 1)
+                {
+                    _actionImage = img;
+                    return;
+                }
+            }
+        }
+
+        // Single place that decides visibility, editability and gray-out of a row's permission cells
+        private void ApplyRowState(DataGridViewRow row)
+        {
+            var allowed = GetAllowed(row);
+            bool gateOpen = IsGateOpen(row, allowed);
+
+            foreach (var kv in PrivilegeMap)
+            {
+                if (!grdUserPermission.Columns.Contains(kv.Key)) continue;
+                int ci = grdUserPermission.Columns[kv.Key].Index;
+                bool isView = kv.Key == ViewCol;
+
+                if (!allowed.Contains(kv.Value))
+                {
+                    if (!(row.Cells[ci] is DataGridViewTextBoxCell) || row.Cells[ci].Value as string != "")
+                        row.Cells[ci] = new DataGridViewTextBoxCell { Value = "" };
+                    row.Cells[ci].ReadOnly = true;
+                    row.Cells[ci].Style.BackColor = Color.LightGray;
+                    continue;
+                }
+
+                if (!(row.Cells[ci] is DataGridViewCheckBoxCell))
+                    row.Cells[ci] = (DataGridViewCell)grdUserPermission.Columns[ci].CellTemplate.Clone();
+
+                var cell = row.Cells[ci];
+                bool enabled = isView || gateOpen;
+
+                if (enabled)
+                {
+                    cell.ReadOnly = false;
+                    cell.Style.BackColor = Color.Empty;
+                }
+                else
+                {
+                    if (ToBool(cell.Value)) cell.Value = false;
+                    cell.ReadOnly = true;
+                    cell.Style.BackColor = Color.LightGray;
+                }
+            }
+
+            if (grdUserPermission.Columns.Contains(ActionCol))
+            {
+                var actCell = row.Cells[ActionCol];
+                string splFlag = row.Cells["clmsplflag"].Value?.ToString() ?? "";
+                bool actionAllowed = allowed.Contains(ActionCode) && splFlag != "0";
+
+                if (actionAllowed)
+                {
+                    actCell.Value = _actionImage;
+                    actCell.ReadOnly = !gateOpen;
+                    actCell.Style.BackColor = gateOpen ? Color.Empty : Color.LightGray;
+                }
+                else
+                {
+                    actCell.Value = _blankImage;
+                    actCell.ReadOnly = true;
+                    actCell.Style.BackColor = Color.LightGray;
+                }
+            }
+        }
+        // ===== 1. DataBindingComplete =====
         private void grdUserPermission_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            _isBinding = true;
+            try
+            {
+                CaptureActionImage();
+
+                foreach (DataGridViewRow row in grdUserPermission.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    int parentFlag = Convert.ToInt32(row.Cells["clmParentFlag"].Value);
+                    string saved = row.Cells["SURM_Access_Level"].Value?.ToString() ?? "";
+                    var allowed = GetAllowed(row);
+
+                    // Row highlight
+                    if (parentFlag == 1)
+                        row.DefaultCellStyle.BackColor = Color.LightBlue;
+                    else if (parentFlag == 10 || parentFlag == 1000)
+                        row.DefaultCellStyle.BackColor = Color.AliceBlue;
+                    else if (parentFlag == 100)
+                        row.DefaultCellStyle.BackColor = Color.Honeydew;
+
+                    // Make sure allowed columns hold checkbox cells, blank the rest
+                    ApplyRowState(row);
+
+                    // Apply saved selections (only where the privilege is allowed)
+                    foreach (var code in ParseCodes(saved))
+                    {
+                        if (!allowed.Contains(code)) continue;
+                        foreach (var kv in PrivilegeMap)
+                        {
+                            if (kv.Value != code) continue;
+                            var cell = row.Cells[kv.Key];
+                            if (cell is DataGridViewCheckBoxCell) cell.Value = true;
+                        }
+                    }
+
+                    // Re-evaluate now that View's saved value is known
+                    ApplyRowState(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                _isBinding = false;
+            }
+        }
+        // ===== 4. CellPainting (same output as before, de-duplicated) =====
+        private void grdUserPermission_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
             {
-                 
-                    foreach (DataGridViewRow row in grdUserPermission.Rows)
-                    {
-                        if (row.IsNewRow) continue;
+                if (e.RowIndex < 0 || e.ColumnIndex != grdUserPermission.Columns["clmMenuname"].Index) return;
 
-                        int parentFlag = Convert.ToInt32(row.Cells["clmParentFlag"].Value);
-                        string values = row.Cells["SURM_Access_Level"].Value?.ToString() ?? "";
-                        string PrivilegeCode = row.Cells["clmPrivilegeCode"].Value?.ToString() ?? "";
-                        string splFlag = row.Cells["clmsplflag"].Value?.ToString() ?? "";
-                        int privilegeNo = 0;
-                        var chkCols = new[] { "clmViewchk", "clmCreatechk", "clmEditchk", "clmDeletechk", "clmPrintchk", "clmExcelchk", "clmNotificationchk", "clmClonechk" };
-                        // Split allowed privileges like "1,2,5"
-                        var allowed = PrivilegeCode.Split(',')
-                                                   .Select(s => s.Trim())
-                                                   .Where(s => int.TryParse(s, out _))
-                                                   .Select(int.Parse)
-                                                   .ToList();
+                string menuType = grdUserPermission.Rows[e.RowIndex].Cells["clmParentFlag"].Value?.ToString();
+                bool selected = e.State.HasFlag(DataGridViewElementStates.Selected);
 
-                        // --- Flow 1: Hide/disable checkboxes + image ---
-                        foreach (var colName in chkCols)
-                        {
-                            privilegeNo = privilegeNo + 1; // map 1=View, 2=Create, etc.
-
-                            if (allowed.Contains(privilegeNo))
-                            {
-                                // keep checkbox cell (active)
-                                if (!(row.Cells[colName] is DataGridViewCheckBoxCell))
-                                {
-                                    row.Cells[colName] = new DataGridViewCheckBoxCell();
-                                }
-                                row.Cells[colName].ReadOnly = false;
-                            }
-                            else
-                            {
-                                // create a new text cell (blank)
-                                var blankCell = new DataGridViewTextBoxCell
-                                {
-                                    Value = ""
-                                };
-
-                                int colIndex = grdUserPermission.Columns[colName].Index;
-                                // replace the checkbox cell for this row
-                                row.Cells[colIndex] = blankCell;
-                                row.Cells[colIndex].ReadOnly = true;
-                            }
-
-                            //if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
-                            //{
-                            //    if (!grdUserPermission.Columns.Contains(colName)) continue;
-
-                            //    int colIndex = grdUserPermission.Columns[colName].Index;
-
-                            //    // create a new text cell (blank)
-                            //    var blankCell = new DataGridViewTextBoxCell
-                            //    {
-                            //        Value = ""
-                            //    };
-
-                            //    // replace the checkbox cell for this row
-                            //    row.Cells[colIndex] = blankCell;
-                            //    row.Cells[colIndex].ReadOnly = true;
-                            //}
-                        }
-
-                        string imgCol = "Action";
-                    if (splFlag == "0")
-                    {
-                        var imgCell = row.Cells[imgCol];
-                        imgCell.Value = new Bitmap(1, 1);
-                        imgCell.ReadOnly = true;
-                    }
-                    else {
-                        if (!allowed.Contains(8))
-                        {
-                            var imgCell = row.Cells[imgCol];
-                            imgCell.Value = new Bitmap(1, 1);
-                            imgCell.ReadOnly = true;
-                        }
-                    }
-
-                        //if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
-                        //{
-                           
-                            if (parentFlag == 1)
-                            {
-
-                                row.DefaultCellStyle.BackColor = Color.LightBlue; // highlight row
-                            }
-                            else if (parentFlag == 10 || parentFlag == 1000)
-                            {
-                                row.DefaultCellStyle.BackColor = Color.AliceBlue; // highlight row
-                            }
-                            else if (parentFlag == 100)
-                            {
-
-                                row.DefaultCellStyle.BackColor = Color.Honeydew; // highlight row 
-                            }
-                        //}
-                        //else
-                        //{
-
-                            // --- Flow 2: Apply checked values ---
-                            if (!string.IsNullOrEmpty(values))
-                            {
-                                string[] indexes = values.Split(',');
-
-                                foreach (string index in indexes)
-                                {
-                                    if (int.TryParse(index, out int colIndex))
-                                    {
-                                        switch (colIndex)
-                                        {
-                                            case 1: row.Cells["clmViewchk"].Value = true; break;
-                                            case 2: row.Cells["clmCreatechk"].Value = true; break;
-                                            case 3: row.Cells["clmEditchk"].Value = true; break;
-                                            case 4: row.Cells["clmDeletechk"].Value = true; break;
-                                            case 5: row.Cells["clmPrintchk"].Value = true; break;
-                                            case 6: row.Cells["clmExcelchk"].Value = true; break;
-                                            case 7: row.Cells["clmNotificationchk"].Value = true; break;
-                                            case 11: row.Cells["clmClonechk"].Value = true; break;
-                                        }
-                                    }
-                                }
-                            }
-                        //}
-                    } 
+                if (menuType == "2" || menuType == "10")
+                    DrawMenuCell(e, "├⮞", 3, 25, selected ? Color.Black : Color.Blue);
+                else if (menuType == "3" || menuType == "100")
+                    DrawMenuCell(e, "├⮞", 30, 50, selected ? Color.Black : Color.Blue);
+                else if (menuType == "4" || menuType == "1000")
+                    DrawMenuCell(e, "└⮞", 60, 80, selected ? Color.Black : Color.DarkBlue);
+                else if (menuType == "5")
+                    DrawMenuCell(e, "└⮞", 100, 120, selected ? Color.Black : Color.DarkBlue);
             }
             catch (Exception ex)
             {
@@ -953,95 +1020,18 @@ namespace ROMS
             }
         }
 
-        private void grdUserPermission_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void DrawMenuCell(DataGridViewCellPaintingEventArgs e, string arrow, int arrowX, int textX, Color arrowColor)
         {
-            try
-            {
-                if (e.ColumnIndex == grdUserPermission.Columns["clmMenuname"].Index && e.RowIndex >= 0)
-                {
-                    var row = grdUserPermission.Rows[e.RowIndex];
-                    string menuType = row.Cells["clmParentFlag"].Value?.ToString();
+            e.Handled = true;
+            e.PaintBackground(e.CellBounds, true);
 
-                    if (menuType == "2" || menuType == "10")
-                    {
-                        e.Handled = true;
-                        e.PaintBackground(e.CellBounds, true);
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
-                        Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
-                        // Draw arrow (-►)
-                        TextRenderer.DrawText(e.Graphics, "├⮞", e.CellStyle.Font,
-                            new Point(e.CellBounds.X + 3, e.CellBounds.Y + 2), textArrowColor);
+            TextRenderer.DrawText(e.Graphics, arrow, e.CellStyle.Font,
+                new Point(e.CellBounds.X + arrowX, e.CellBounds.Y + 2), arrowColor);
 
-                        // Draw actual text with padding
-                        TextRenderer.DrawText(e.Graphics, row.Cells[e.ColumnIndex].Value?.ToString(),
-                            e.CellStyle.Font,
-                            new Rectangle(e.CellBounds.X + 25, e.CellBounds.Y + 2,
-                                          e.CellBounds.Width - 10, e.CellBounds.Height),
-                            textColor, TextFormatFlags.Left);
-                    }
-                    if (menuType == "3" || menuType == "100")
-                    {
-                        e.Handled = true;
-                        e.PaintBackground(e.CellBounds, true);
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
-                        Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
-                        // Draw arrow (-►)
-                        TextRenderer.DrawText(e.Graphics, "├⮞", e.CellStyle.Font,
-                            new Point(e.CellBounds.X + 30, e.CellBounds.Y + 2), textArrowColor);
-
-                        // Draw actual text with padding
-                        TextRenderer.DrawText(e.Graphics, row.Cells[e.ColumnIndex].Value?.ToString(),
-                            e.CellStyle.Font,
-                            new Rectangle(e.CellBounds.X + 50, e.CellBounds.Y + 2,
-                                          e.CellBounds.Width - 10, e.CellBounds.Height),
-                            textColor, TextFormatFlags.Left);
-
-                    }
-                    if (menuType == "4" || menuType == "1000")
-                    {
-                        e.Handled = true;
-                        e.PaintBackground(e.CellBounds, true);
-
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
-                        Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
-                        // Draw arrow (-►)
-                        TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
-                            new Point(e.CellBounds.X + 60, e.CellBounds.Y + 2), textArrowColor);
-
-                        // Draw actual text with padding
-                        TextRenderer.DrawText(e.Graphics, row.Cells[e.ColumnIndex].Value?.ToString(),
-                            e.CellStyle.Font,
-                            new Rectangle(e.CellBounds.X + 80, e.CellBounds.Y + 2,
-                                          e.CellBounds.Width - 10, e.CellBounds.Height),
-                            textColor, TextFormatFlags.Left);
-
-                    }
-                    if (menuType == "5")
-                    {
-                        e.Handled = true;
-                        e.PaintBackground(e.CellBounds, true);
-
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
-                        Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
-                        // Draw arrow (-►)
-                        TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
-                            new Point(e.CellBounds.X + 100, e.CellBounds.Y + 2), textArrowColor);
-
-                        // Draw actual text with padding
-                        TextRenderer.DrawText(e.Graphics, row.Cells[e.ColumnIndex].Value?.ToString(),
-                            e.CellStyle.Font,
-                            new Rectangle(e.CellBounds.X + 120, e.CellBounds.Y + 2,
-                                          e.CellBounds.Width - 10, e.CellBounds.Height),
-                            textColor, TextFormatFlags.Left);
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            TextRenderer.DrawText(e.Graphics, e.Value?.ToString(), e.CellStyle.Font,
+                new Rectangle(e.CellBounds.X + textX, e.CellBounds.Y + 2,
+                              e.CellBounds.Width - 10, e.CellBounds.Height),
+                Color.Black, TextFormatFlags.Left);
         }
 
         private void grdUserPermission_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -1060,114 +1050,29 @@ namespace ROMS
             }
         }
 
+        // ===== 2. CellValueChanged =====
         private void grdUserPermission_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                // Find the index of the 'View' column by name
-                int viewColumnIndex = grdUserPermission.Columns["clmViewchk"]?.Index ?? -1;
-                string PrivilegeCode = Convert.ToString(grdUserPermission.Rows[e.RowIndex].Cells["clmPrivilegeCode"].Value);
-                int MenuId = Convert.ToInt32(grdUserPermission.Rows[e.RowIndex].Cells["clmMenuId"].Value);
+                if (_isBinding || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+                if (grdUserPermission.Columns[e.ColumnIndex].Name != ViewCol) return;
 
-                // Check if the change happened in the 'View' column
-                if (e.ColumnIndex == viewColumnIndex && e.RowIndex >= 0)
+                var row = grdUserPermission.Rows[e.RowIndex];
+                ApplyRowState(row);
+
+                if (!ToBool(row.Cells[ViewCol].Value) && objdtMR_UserRole_Menu_SPL_Access != null)
                 {
-                    // Define the names of the columns to enable/disable
-                    var permissionColumns = new[] {
-            "clmViewchk",
-            "clmCreatechk",
-            "clmEditchk",
-            "clmDeletechk",
-            "clmPrintchk",
-            "clmExcelchk",
-            "clmNotificationchk",
-            "clmClonechk",
-                "Action"
-        };
+                    int menuId = Convert.ToInt32(row.Cells["clmMenuId"].Value);
 
-                    // Safely convert the cell's value to a boolean (fixing the cast error)
-                    object cellValue = grdUserPermission.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                    bool isViewChecked = Convert.ToBoolean(cellValue);
-                    int privilegeNo = 0;
-                    // --- THIS IS THE KEY LOGIC LINE ---
-                    // If View is checked (TRUE), setReadOnly is FALSE (Enabled)
-                    // If View is UNCHECKED (FALSE), setReadOnly is TRUE (Disabled)
-                    bool setReadOnly = !isViewChecked;
+                    var rowsToDelete = objdtMR_UserRole_Menu_SPL_Access
+                        .AsEnumerable()
+                        .Where(r => r.RowState != DataRowState.Deleted &&
+                                    Convert.ToInt32(r["UAS_Menuid"]) == menuId)
+                        .ToList();
 
-                    // Iterate through the other permission columns
-                    foreach (var colName in permissionColumns)
-                    {
-                        int colIndex = grdUserPermission.Columns[colName]?.Index ?? -1;
-
-
-                        if (colIndex != -1)
-                        {
-                            var cell = grdUserPermission.Rows[e.RowIndex].Cells[colIndex];
-                            if (!string.IsNullOrEmpty(PrivilegeCode))
-                            {
-                                var allowed = PrivilegeCode.Split(',')
-                                                           .Select(s => s.Trim())
-                                                           .Where(s => int.TryParse(s, out _))
-                                                           .Select(int.Parse)
-                                                           .ToList();
-                                privilegeNo = privilegeNo + 1;
-                                // Set the ReadOnly property to enable/disable the cell
-                                if (colName != "clmViewchk")
-                                {
-                                    cell.ReadOnly = setReadOnly;
-                                }
-                                else
-                                {
-                                    cell.ReadOnly = false;
-                                }
-
-                                if (setReadOnly && colName != "clmViewchk")
-                                {
-                                    // OPTIONAL: Uncheck the box and gray out the cell when disabled
-                                    if (colName != "Action")
-                                    {
-                                        if (allowed.Contains(privilegeNo))
-                                        {
-                                            cell.Value = false;
-                                        }
-                                        else
-                                        {
-                                            cell.ReadOnly = true;
-                                        }
-                                    }
-                                    cell.Style.BackColor = System.Drawing.Color.LightGray;
-                                    var rowsToDelete = objdtMR_UserRole_Menu_SPL_Access
-                                        .AsEnumerable()
-                                        .Where(r => Convert.ToInt32(r["UAS_Menuid"]) == MenuId)
-                                        .ToList();
-
-                                    rowsToDelete.ForEach(r => r.Delete());
-
-                                    objdtMR_UserRole_Menu_SPL_Access.AcceptChanges();
-
-                                }
-                                else
-                                {
-                                    if (allowed.Contains(privilegeNo))
-                                    {
-                                        // Reset the background color when enabled
-                                        cell.Style.BackColor = grdUserPermission.DefaultCellStyle.BackColor;
-                                    }
-                                    else
-                                    {
-                                        cell.ReadOnly = true; 
-                                        cell.Style.BackColor = System.Drawing.Color.LightGray;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                cell.ReadOnly = true;
-                                // Reset the background color when enabled
-                                cell.Style.BackColor = System.Drawing.Color.LightGray;
-                            }
-                        }
-                    }
+                    rowsToDelete.ForEach(r => r.Delete());
+                    objdtMR_UserRole_Menu_SPL_Access.AcceptChanges();
                 }
             }
             catch (Exception ex)
@@ -1177,45 +1082,39 @@ namespace ROMS
             }
         }
 
+        // ===== 3. CellContentClick =====
         private void grdUserPermission_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (e.RowIndex != -1)
+                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+                if (grdUserPermission.Columns[e.ColumnIndex].Name != ActionCol) return;
+
+                DataGridViewRow row = grdUserPermission.Rows[e.RowIndex];
+                var allowed = GetAllowed(row);
+                string splFlag = row.Cells["clmsplflag"].Value?.ToString() ?? "";
+
+                if (!allowed.Contains(ActionCode) || splFlag == "0") return;
+                if (!IsGateOpen(row, allowed)) return;
+
+                try
                 {
-                    DataGridViewRow row = grdUserPermission.Rows[e.RowIndex];
-                    DataGridViewCell clickedCell = grdUserPermission.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    System.Drawing.Color cellColor = clickedCell.Style.BackColor;
-                    if (cellColor == System.Drawing.Color.LightGray)
-                    {
-                        return;
-                    }
-                        switch (grdUserPermission.Columns[e.ColumnIndex].Name)
-                    {
-                        case "Action":
-                            try
-                            {
-                                DataTable objDtSplPermissionClone = objDtSplPermission.Copy();
-                                DataView dvspl = new DataView(objDtSplPermissionClone);
-                                dvspl.RowFilter = "SLMUP_SLMU_CODE = " + Convert.ToInt32(row.Cells["clmMenuId"].Value) + " ";
-                                objDtSplPermissionFilterTable = dvspl.ToTable();
+                    DataTable objDtSplPermissionClone = objDtSplPermission.Copy();
+                    DataView dvspl = new DataView(objDtSplPermissionClone);
+                    dvspl.RowFilter = "SLMUP_SLMU_CODE = " + Convert.ToInt32(row.Cells["clmMenuId"].Value) + " ";
+                    objDtSplPermissionFilterTable = dvspl.ToTable();
 
-                                MainForm.objCP_Sales_UserRole_SPL = new CP_Sales_UserRole_SPL();
-                                MainForm.objCP_Sales_UserRole_SPL.FormBorderStyle = FormBorderStyle.FixedSingle;
-                                MainForm.objCP_Sales_UserRole_SPL.varmenuid = Convert.ToInt32(row.Cells["clmMenuId"].Value);
-                                MainForm.objCP_Sales_UserRole_SPL.PbMenuName = Convert.ToString(row.Cells["clmMenuname"].Value);
-                                MainForm.objCP_Sales_UserRole_SPL.varUserRoleID = varUserRoleID;
-                                MainForm.objCP_Sales_UserRole_SPL.ShowDialog();
-                            }
-                            catch (Exception ex)
-                            {
-                                objError = new DataError();
-
-                                objError.WriteFile(ex);
-                            }
-                        break;
-                    
-                    }
+                    MainForm.objCP_Sales_UserRole_SPL = new CP_Sales_UserRole_SPL();
+                    MainForm.objCP_Sales_UserRole_SPL.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    MainForm.objCP_Sales_UserRole_SPL.varmenuid = Convert.ToInt32(row.Cells["clmMenuId"].Value);
+                    MainForm.objCP_Sales_UserRole_SPL.PbMenuName = Convert.ToString(row.Cells["clmMenuname"].Value);
+                    MainForm.objCP_Sales_UserRole_SPL.varUserRoleID = varUserRoleID;
+                    MainForm.objCP_Sales_UserRole_SPL.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
             }
             catch (Exception ex)
@@ -1223,7 +1122,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void tvLevl2Submenu_AfterCheck(object sender, TreeViewEventArgs e)
