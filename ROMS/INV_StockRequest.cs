@@ -416,16 +416,18 @@ namespace ROMS
                                 grdStockRequest.ReadOnly = true;
                                 grdStockRequest.Columns["clmRemove"].Visible = false;
                                 grdStockRequest.Columns["clmLoc"].Visible = false;
+                                grdStockRequest.Columns["clmRequestedLocation"].Visible = true;
                                 cmbStatus.SelectedValue = 29;
                                 DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                 GrdStockRequest_DataBindingComplete(grdStockRequest, args);
                                 tpProduct.Active = false;
                                 errStockRequest.Clear();
+                                errStockRequest.Clear();
                             }
                             else
                             {
                                 cmbStatus.SelectedValue = 28;
-                                grdStockRequest.Columns["clmRemove"].Visible = true;
+                                grdStockRequest.Columns["clmRemove"].Visible = true; 
                             }
                         }
                     }
@@ -1765,10 +1767,10 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
-               
-
+                
+                 }
                 //Any one of the location should be mapped
-                 }int count = dtStock.AsEnumerable() .Count(r =>
+                int count = dtStock.AsEnumerable() .Count(r =>
                         ((r.Field<int>("SRQ_SLID") == 0 ||
                         r.Field<int>("SRQ_SLID") == -1)) && r.Field<decimal>("SRQ_RequestedQty") != 0
                         );
@@ -1848,6 +1850,57 @@ namespace ROMS
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
+
+                if (chkRackGroup.Checked == true)
+                {
+                    bool isExists = grdStockRequest.Rows .Cast<DataGridViewRow>()
+                      .Any(row =>
+                      {
+                          if (row.IsNewRow)
+                              return false;
+
+                          if (row.Cells["clmStkFlag"].Value == null ||
+                              row.Cells["clmShopFlag"].Value == null)
+                              return false;
+
+                          if (Convert.ToInt32(row.Cells["clmStkFlag"].Value) != 1 ||
+                              Convert.ToInt32(row.Cells["clmShopFlag"].Value) != 1)
+                              return false;
+
+                          object qtyValue = row.Cells["clmRequiredQty"].Value;
+
+                          return qtyValue != null &&
+                                 decimal.TryParse(qtyValue.ToString(), out decimal qty) &&
+                                 qty != 0;
+                      });
+                    if (isExists == true)
+                    {
+
+                        string message = "Some products have zero stock, So they will be removed automatically.";
+                        MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        var productIDs = grdStockRequest.Rows.Cast<DataGridViewRow>().Where(row => !row.IsNewRow &&
+                        row.Cells["clmStkFlag"].Value != null && Convert.ToInt32(row.Cells["clmStkFlag"].Value) == 1 &&
+                        row.Cells["clmShopFlag"].Value != null && Convert.ToInt32(row.Cells["clmShopFlag"].Value) == 1 &&
+                        decimal.TryParse(Convert.ToString(row.Cells["clmRequiredQty"].Value), out decimal requiredQty) && requiredQty != 0 && row.Cells["clmPRID"].Value != null)
+                        .Select(row => Convert.ToInt32(row.Cells["clmPRID"].Value)).ToList();
+
+                        // Remove matching product IDs from dtStock
+                        foreach (DataRow row in dtStock.Rows.Cast<DataRow>().ToList())
+                        {
+                            if (productIDs.Contains(Convert.ToInt32(row["SRQ_PRID"])))
+                            {
+                                dtStock.Rows.Remove(row);
+                            }
+                        }
+                    }
+                }
+                if(dtStock.Rows.Count==0)
+                {
+                    string message = "Please enter the requested quantity for at least one product.";
+                    MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)

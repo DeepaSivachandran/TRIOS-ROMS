@@ -1230,6 +1230,7 @@
             this.clmRequestedLocation.HeaderText = "Req Location";
             this.clmRequestedLocation.Name = "clmRequestedLocation";
             this.clmRequestedLocation.ReadOnly = true;
+            this.clmRequestedLocation.Visible = false;
             // 
             // clmLoc
             // 
