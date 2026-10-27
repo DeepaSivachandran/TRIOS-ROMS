@@ -50,6 +50,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlStockRequest = new System.Windows.Forms.Panel();
             this.grpStockRequest = new System.Windows.Forms.GroupBox();
+            this.lblRackIncharge = new System.Windows.Forms.Label();
             this.cmbLocation = new System.Windows.Forms.ComboBox();
             this.lblLocation = new System.Windows.Forms.Label();
             this.lblProductTamil = new System.Windows.Forms.Label();
@@ -124,6 +125,7 @@
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShopFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStkFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRequestedLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmLoc = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequest.SuspendLayout();
@@ -187,6 +189,7 @@
             // grpStockRequest
             // 
             this.grpStockRequest.BackColor = System.Drawing.Color.White;
+            this.grpStockRequest.Controls.Add(this.lblRackIncharge);
             this.grpStockRequest.Controls.Add(this.cmbLocation);
             this.grpStockRequest.Controls.Add(this.lblLocation);
             this.grpStockRequest.Controls.Add(this.lblProductTamil);
@@ -243,6 +246,17 @@
             this.grpStockRequest.TabIndex = 0;
             this.grpStockRequest.TabStop = false;
             this.grpStockRequest.Enter += new System.EventHandler(this.grpStockRequest_Enter);
+            // 
+            // lblRackIncharge
+            // 
+            this.lblRackIncharge.AutoSize = true;
+            this.lblRackIncharge.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRackIncharge.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblRackIncharge.Location = new System.Drawing.Point(89, 79);
+            this.lblRackIncharge.Name = "lblRackIncharge";
+            this.lblRackIncharge.Size = new System.Drawing.Size(86, 20);
+            this.lblRackIncharge.TabIndex = 1110001040;
+            this.lblRackIncharge.Text = "Rack Incharge";
             // 
             // cmbLocation
             // 
@@ -847,6 +861,7 @@
             this.clmSLID,
             this.clmShopFlag,
             this.clmStkFlag,
+            this.clmRequestedLocation,
             this.clmLoc,
             this.clmRemove});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1107,6 +1122,7 @@
             this.clmIncharge.Name = "clmIncharge";
             this.clmIncharge.ReadOnly = true;
             this.clmIncharge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmIncharge.Visible = false;
             this.clmIncharge.Width = 250;
             // 
             // clmStockQty
@@ -1208,6 +1224,12 @@
             this.clmStkFlag.Name = "clmStkFlag";
             this.clmStkFlag.ReadOnly = true;
             this.clmStkFlag.Visible = false;
+            // 
+            // clmRequestedLocation
+            // 
+            this.clmRequestedLocation.HeaderText = "Req Location";
+            this.clmRequestedLocation.Name = "clmRequestedLocation";
+            this.clmRequestedLocation.ReadOnly = true;
             // 
             // clmLoc
             // 
@@ -1324,6 +1346,7 @@
         private System.Windows.Forms.Label lblProductTamil;
         private System.Windows.Forms.ComboBox cmbLocation;
         private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.Label lblRackIncharge;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
@@ -1342,6 +1365,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShopFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStkFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRequestedLocation;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmLoc;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }

@@ -50,6 +50,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.txtRateCategory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbProductName = new System.Windows.Forms.ComboBox();
@@ -69,6 +71,7 @@
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.cmbFilterType = new System.Windows.Forms.ComboBox();
             this.lblFilterType = new System.Windows.Forms.Label();
+            this.cmbMultiUnit = new MultiSelectComboBox();
             this.lblUnit = new System.Windows.Forms.Label();
             this.lblAlpha = new System.Windows.Forms.Label();
             this.txtAlpha = new System.Windows.Forms.TextBox();
@@ -100,7 +103,6 @@
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
-            this.cmbMultiUnit = new MultiSelectComboBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.pnlEntryReport.SuspendLayout();
             this.pnlRateCategory.SuspendLayout();
@@ -239,6 +241,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label2);
+            this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.txtRateCategory);
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.cmbProductName);
@@ -289,6 +293,28 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             this.grpfilter.Enter += new System.EventHandler(this.grpfilter_Enter);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(14, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 20);
+            this.label2.TabIndex = 111111244;
+            this.label2.Text = "Report Type";
+            // 
+            // cmbReportType
+            // 
+            this.cmbReportType.FormattingEnabled = true;
+            this.cmbReportType.Location = new System.Drawing.Point(14, 51);
+            this.cmbReportType.Name = "cmbReportType";
+            this.cmbReportType.Size = new System.Drawing.Size(129, 27);
+            this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.Enter += new System.EventHandler(this.cmbReportType_Enter);
+            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReportType_KeyDown);
+            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReportType_KeyPress_1);
+            this.cmbReportType.Leave += new System.EventHandler(this.cmbReportType_Leave);
             // 
             // txtRateCategory
             // 
@@ -341,7 +367,7 @@
             // 
             this.lblEntryType.AutoSize = true;
             this.lblEntryType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEntryType.Location = new System.Drawing.Point(14, 23);
+            this.lblEntryType.Location = new System.Drawing.Point(152, 23);
             this.lblEntryType.Name = "lblEntryType";
             this.lblEntryType.Size = new System.Drawing.Size(65, 20);
             this.lblEntryType.TabIndex = 111111239;
@@ -350,9 +376,9 @@
             // cmbEntryType
             // 
             this.cmbEntryType.FormattingEnabled = true;
-            this.cmbEntryType.Location = new System.Drawing.Point(14, 51);
+            this.cmbEntryType.Location = new System.Drawing.Point(152, 51);
             this.cmbEntryType.Name = "cmbEntryType";
-            this.cmbEntryType.Size = new System.Drawing.Size(110, 27);
+            this.cmbEntryType.Size = new System.Drawing.Size(91, 27);
             this.cmbEntryType.TabIndex = 0;
             this.cmbEntryType.SelectedIndexChanged += new System.EventHandler(this.cmbEntryType_SelectedIndexChanged);
             this.cmbEntryType.Enter += new System.EventHandler(this.cmbEntryType_Enter);
@@ -364,7 +390,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(255, 50);
+            this.dpToDate.Location = new System.Drawing.Point(365, 50);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(103, 27);
             this.dpToDate.TabIndex = 2;
@@ -376,7 +402,7 @@
             // 
             this.lblToDate.AutoSize = true;
             this.lblToDate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToDate.Location = new System.Drawing.Point(255, 23);
+            this.lblToDate.Location = new System.Drawing.Point(365, 23);
             this.lblToDate.Name = "lblToDate";
             this.lblToDate.Size = new System.Drawing.Size(49, 20);
             this.lblToDate.TabIndex = 111111237;
@@ -386,7 +412,7 @@
             // 
             this.lblFromDate.AutoSize = true;
             this.lblFromDate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFromDate.Location = new System.Drawing.Point(136, 23);
+            this.lblFromDate.Location = new System.Drawing.Point(251, 23);
             this.lblFromDate.Name = "lblFromDate";
             this.lblFromDate.Size = new System.Drawing.Size(64, 20);
             this.lblFromDate.TabIndex = 111111236;
@@ -396,7 +422,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(136, 50);
+            this.dpFromDate.Location = new System.Drawing.Point(251, 50);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 1;
@@ -507,6 +533,20 @@
             this.lblFilterType.TabIndex = 111111224;
             this.lblFilterType.Text = "Filter Type";
             // 
+            // cmbMultiUnit
+            // 
+            this.cmbMultiUnit.DropDownHeight = 1;
+            this.cmbMultiUnit.FormattingEnabled = true;
+            this.cmbMultiUnit.IntegralHeight = false;
+            this.cmbMultiUnit.Location = new System.Drawing.Point(689, 111);
+            this.cmbMultiUnit.Name = "cmbMultiUnit";
+            this.cmbMultiUnit.Size = new System.Drawing.Size(107, 27);
+            this.cmbMultiUnit.TabIndex = 13;
+            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
+            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
+            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
+            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
+            // 
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
@@ -521,7 +561,7 @@
             // 
             this.lblAlpha.AutoSize = true;
             this.lblAlpha.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlpha.Location = new System.Drawing.Point(1123, 23);
+            this.lblAlpha.Location = new System.Drawing.Point(1207, 23);
             this.lblAlpha.Name = "lblAlpha";
             this.lblAlpha.Size = new System.Drawing.Size(39, 20);
             this.lblAlpha.TabIndex = 111111216;
@@ -530,7 +570,7 @@
             // txtAlpha
             // 
             this.txtAlpha.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAlpha.Location = new System.Drawing.Point(1123, 50);
+            this.txtAlpha.Location = new System.Drawing.Point(1207, 50);
             this.txtAlpha.MaxLength = 100;
             this.txtAlpha.Name = "txtAlpha";
             this.txtAlpha.Size = new System.Drawing.Size(120, 27);
@@ -566,7 +606,7 @@
             // 
             this.lblBrand.AutoSize = true;
             this.lblBrand.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrand.Location = new System.Drawing.Point(899, 23);
+            this.lblBrand.Location = new System.Drawing.Point(989, 23);
             this.lblBrand.Name = "lblBrand";
             this.lblBrand.Size = new System.Drawing.Size(42, 20);
             this.lblBrand.TabIndex = 111111150;
@@ -585,7 +625,7 @@
             // txtBrand
             // 
             this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBrand.Location = new System.Drawing.Point(899, 50);
+            this.txtBrand.Location = new System.Drawing.Point(989, 50);
             this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(212, 27);
@@ -599,7 +639,7 @@
             // 
             this.lblSubGroup.AutoSize = true;
             this.lblSubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubGroup.Location = new System.Drawing.Point(689, 23);
+            this.lblSubGroup.Location = new System.Drawing.Point(805, 23);
             this.lblSubGroup.Name = "lblSubGroup";
             this.lblSubGroup.Size = new System.Drawing.Size(62, 20);
             this.lblSubGroup.TabIndex = 1111234;
@@ -640,7 +680,7 @@
             // 
             this.lblConcern.AutoSize = true;
             this.lblConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConcern.Location = new System.Drawing.Point(370, 23);
+            this.lblConcern.Location = new System.Drawing.Point(480, 23);
             this.lblConcern.Name = "lblConcern";
             this.lblConcern.Size = new System.Drawing.Size(54, 20);
             this.lblConcern.TabIndex = 111111203;
@@ -649,9 +689,9 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(370, 50);
+            this.cmbConcern.Location = new System.Drawing.Point(480, 50);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(98, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(102, 27);
             this.cmbConcern.TabIndex = 3;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -692,7 +732,7 @@
             // 
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroup.Location = new System.Drawing.Point(480, 23);
+            this.lblGroup.Location = new System.Drawing.Point(589, 23);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(42, 20);
             this.lblGroup.TabIndex = 1111233;
@@ -701,10 +741,10 @@
             // txtSubGroup
             // 
             this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubGroup.Location = new System.Drawing.Point(689, 50);
+            this.txtSubGroup.Location = new System.Drawing.Point(805, 50);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
-            this.txtSubGroup.Size = new System.Drawing.Size(198, 27);
+            this.txtSubGroup.Size = new System.Drawing.Size(176, 27);
             this.txtSubGroup.TabIndex = 5;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
@@ -714,10 +754,10 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(480, 50);
+            this.txtGroup.Location = new System.Drawing.Point(590, 50);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(196, 27);
+            this.txtGroup.Size = new System.Drawing.Size(206, 27);
             this.txtGroup.TabIndex = 4;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
@@ -796,7 +836,7 @@
             this.DGV_FilterBrand.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FilterBrand.EnableHeadersVisualStyles = false;
             this.DGV_FilterBrand.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterBrand.Location = new System.Drawing.Point(899, 84);
+            this.DGV_FilterBrand.Location = new System.Drawing.Point(989, 84);
             this.DGV_FilterBrand.Name = "DGV_FilterBrand";
             this.DGV_FilterBrand.ReadOnly = true;
             this.DGV_FilterBrand.RowHeadersVisible = false;
@@ -840,7 +880,7 @@
             this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(689, 84);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(805, 84);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
@@ -884,7 +924,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(480, 84);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(590, 84);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
@@ -955,20 +995,6 @@
             this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
             this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
             this.tsLabelPlaceholder.Text = "Levels";
-            // 
-            // cmbMultiUnit
-            // 
-            this.cmbMultiUnit.DropDownHeight = 1;
-            this.cmbMultiUnit.FormattingEnabled = true;
-            this.cmbMultiUnit.IntegralHeight = false;
-            this.cmbMultiUnit.Location = new System.Drawing.Point(689, 111);
-            this.cmbMultiUnit.Name = "cmbMultiUnit";
-            this.cmbMultiUnit.Size = new System.Drawing.Size(107, 27);
-            this.cmbMultiUnit.TabIndex = 13;
-            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
-            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
-            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
-            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
             // 
             // dynamicLabelControl
             // 
@@ -1070,5 +1096,7 @@
         private System.Windows.Forms.CheckedListBox chkboxRatelist;
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbReportType;
     }
 }

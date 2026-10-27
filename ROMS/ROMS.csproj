@@ -993,6 +993,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_MAR__MEntry_Summary.cs">
+      <DependentUpon>RPT_MAR__MEntry_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PAY_BillWise_SupplierPaymentPendingDetail.cs">
       <DependentUpon>RPT_PAY_BillWise_SupplierPaymentPendingDetail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1493,6 +1500,13 @@
       <DependentUpon>RPT_SALES_SCH_RateScheme.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_SAL_SalesEntry_Summary.cs">
+      <DependentUpon>RPT_SAL_SalesEntry_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_SAL_Summary.cs">
       <DependentUpon>RPT_SAL_Summary.rpt</DependentUpon>
@@ -6514,6 +6528,11 @@
       <LastGenOutput>RPT_MAR_Entry.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_MAR__MEntry_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MAR__MEntry_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_MAR_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_MAR_Summary.cs</LastGenOutput>
@@ -7085,6 +7104,11 @@
     <EmbeddedResource Include="Reports\RPT_SALES_SCH_RateScheme.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SALES_SCH_RateScheme.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_SAL_SalesEntry_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SAL_SalesEntry_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">

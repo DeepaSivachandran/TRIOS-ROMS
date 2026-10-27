@@ -788,8 +788,10 @@ namespace ROMS
                 tsbDelete.Visible = true;
                 //First time load past date pending and current date all status records
                 pbFlag = 28;//Pending
-                udfnList();
+                cmbStatus.SelectedValue = 28;
                 udfnDate();
+                udfnList();
+                
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     udfnFieldAccess();
