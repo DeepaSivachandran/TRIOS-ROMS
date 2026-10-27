@@ -38,7 +38,6 @@
             this.cmbApplicable = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.lblTransports = new System.Windows.Forms.Label();
-            this.cmbMultiTransport = new MultiSelectComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDPincode = new System.Windows.Forms.TextBox();
             this.txtPincode = new System.Windows.Forms.TextBox();
@@ -53,6 +52,7 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbMultiTransport = new MultiSelectComboBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
@@ -163,7 +163,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(122, 27);
             this.textBox3.TabIndex = 111111203;
-            this.textBox3.Text = "Sales Applicable";
+            this.textBox3.Text = "Delivery Available";
             // 
             // lblTransports
             // 
@@ -173,22 +173,6 @@
             this.lblTransports.Size = new System.Drawing.Size(221, 36);
             this.lblTransports.TabIndex = 111111202;
             this.lblTransports.Text = "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec";
-            // 
-            // cmbMultiTransport
-            // 
-            this.cmbMultiTransport.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbMultiTransport.DropDownHeight = 1;
-            this.cmbMultiTransport.Enabled = false;
-            this.cmbMultiTransport.FormattingEnabled = true;
-            this.cmbMultiTransport.IntegralHeight = false;
-            this.cmbMultiTransport.Location = new System.Drawing.Point(159, 205);
-            this.cmbMultiTransport.Name = "cmbMultiTransport";
-            this.cmbMultiTransport.Size = new System.Drawing.Size(303, 27);
-            this.cmbMultiTransport.TabIndex = 6;
-            this.cmbMultiTransport.Enter += new System.EventHandler(this.cmbMultiTransport_Enter);
-            this.cmbMultiTransport.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiTransport_KeyDown);
-            this.cmbMultiTransport.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiTransport_KeyPress);
-            this.cmbMultiTransport.Leave += new System.EventHandler(this.cmbMultiTransport_Leave);
             // 
             // textBox1
             // 
@@ -200,7 +184,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(122, 27);
             this.textBox1.TabIndex = 49;
-            this.textBox1.Text = "Preference";
+            this.textBox1.Text = "Delivery Method";
             // 
             // txtDPincode
             // 
@@ -369,6 +353,22 @@
             // epCity
             // 
             this.epCity.ContainerControl = this;
+            // 
+            // cmbMultiTransport
+            // 
+            this.cmbMultiTransport.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbMultiTransport.DropDownHeight = 1;
+            this.cmbMultiTransport.Enabled = false;
+            this.cmbMultiTransport.FormattingEnabled = true;
+            this.cmbMultiTransport.IntegralHeight = false;
+            this.cmbMultiTransport.Location = new System.Drawing.Point(159, 205);
+            this.cmbMultiTransport.Name = "cmbMultiTransport";
+            this.cmbMultiTransport.Size = new System.Drawing.Size(303, 27);
+            this.cmbMultiTransport.TabIndex = 6;
+            this.cmbMultiTransport.Enter += new System.EventHandler(this.cmbMultiTransport_Enter);
+            this.cmbMultiTransport.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiTransport_KeyDown);
+            this.cmbMultiTransport.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiTransport_KeyPress);
+            this.cmbMultiTransport.Leave += new System.EventHandler(this.cmbMultiTransport_Leave);
             // 
             // CP_City
             // 
