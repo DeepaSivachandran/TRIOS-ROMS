@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using Newtonsoft.Json;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace ROMS
@@ -71,7 +73,10 @@ namespace ROMS
         public double varDVA = 0, varCPA = 0; 
         public int pbGSTINCloseFlag = 0, pbPaymentCompletedFlag = 0;
         public string pbConditionIDs = "0", pbCondition = "";
-        public int varLPFlag = 0, varNoDiffFlag = 0, varExpDateValidFlag = 0, MA_ReasonFlag = 0, varProValidation = 0, varReasonFlag = 0, MismatchQtyError = 0, varUpDownKeyLocation = 0;
+        private readonly string _recoveryKey = "PurchaseEntry";
+        private System.Windows.Forms.Timer _recoveryTimer;
+        private bool _isRestoringRecovery = false;
+        public int varLPFlag = 0, varNoDiffFlag = 0, varExpDateValidFlag = 0, MA_ReasonFlag = 0, varProValidation = 0, varReasonFlag = 0, MismatchQtyError = 0, varUpDownKeyLocation = 0 ;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -80,16 +85,28 @@ namespace ROMS
             timer.Interval = 2; // 2 seconds
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
+            PurchaseRecoveryStore.Initialize();
+
+            _recoveryTimer = new System.Windows.Forms.Timer();
+            _recoveryTimer.Interval = 5000; // Every 5 seconds
+            _recoveryTimer.Tick += RecoveryTimer_Tick;
+
+            this.Shown += PurchaseEntryForm_Shown;
         }
         private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
+                string json = PurchaseRecoveryStore.Load(_recoveryKey); 
+                var snapshot =
+                            JsonConvert.DeserializeObject<PurchaseRecoverySnapshot>(
+                                json);
+                 
                 errPurchaseentry.Clear();
                 DGV_FilterProduct.Visible = false;
                 txtProductName.Text = ""; 
                 udfnrowclear();
-                if (pbPurchaseno == "0")
+                if (pbPurchaseno == "0" && snapshot == null)
                 {
                     grdSupplierList.Enabled = true;
                     btnViewDataView.Visible = true;
@@ -221,6 +238,452 @@ namespace ROMS
                 else { cmbTransactionType.Enabled = false; cmbTransactionType.SelectedValue = 58; }
             }
         }
+
+
+        private void PurchaseEntryForm_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                string json = PurchaseRecoveryStore.Load(_recoveryKey);
+
+                if (!string.IsNullOrWhiteSpace(json))
+                {
+                    var answer = MessageBox.Show(
+                        "An unfinished purchase entry was found.\n\n" +
+                        "Do you want to recover it?",
+                        "Purchase Recovery",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (answer == DialogResult.Yes)
+                    {
+                        var snapshot =
+                            JsonConvert.DeserializeObject<PurchaseRecoverySnapshot>(json);
+
+                        if (snapshot != null)
+                            RestorePurchaseSnapshot(snapshot);
+
+                        LV_Supplier.Visible = false;
+                        lv_Broker.Visible = false;
+                        DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                        GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
+                    }
+                    else
+                    {
+                        PurchaseRecoveryStore.Delete(_recoveryKey);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Could not recover the previous purchase entry.\n" +
+                    ex.Message,
+                    "Recovery Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
+            _recoveryTimer.Start();
+        }
+
+
+        private void RestorePurchaseSnapshot(
+            PurchaseRecoverySnapshot snapshot)
+        {
+            _isRestoringRecovery = true;
+
+            try
+            {
+                // 1. Restore invoice fields, dates, checkboxes, etc.
+                RestoreControls(this, snapshot);
+
+                // 2. Restore all unbound grids.
+                foreach (Control control in GetAllControls(this))
+                {
+                    if (!(control is DataGridView grid))
+                        continue;
+
+                    if (grid.DataSource != null)
+                        continue;
+
+                    RestoreVariables(snapshot);
+                    if (snapshot.GridSnapshots.TryGetValue(
+                            grid.Name, out PurchaseGridSnapshot savedGrid))
+                    {
+                        RestoreGrid(grid, savedGrid);
+                    }
+
+                }
+
+                // 3. If required, call your existing total-recalculation
+                //    method here, after confirming it does not add duplicate rows.
+            }
+            finally
+            {
+                _isRestoringRecovery = false;
+            }
+        }
+ 
+
+        private void RestoreControls(
+            Control parent,
+            PurchaseRecoverySnapshot snapshot)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (!string.IsNullOrWhiteSpace(control.Name))
+                {
+                    string prefix = control.Name + ".";
+
+                  
+                    if (control is ComboBox combo)
+                    {
+                        if (snapshot.Fields.TryGetValue(
+                                prefix + "SelectedIndex", out string indexText) &&
+                            int.TryParse(indexText, out int index) &&
+                            index >= -1 && index < combo.Items.Count)
+                        {
+                            combo.SelectedIndex = index;
+                        }
+                        else if (snapshot.Fields.TryGetValue(
+                                     prefix + "Text", out string comboText))
+                        {
+                            combo.Text = comboText;
+                        }
+                    }
+                    else if (control is DateTimePicker datePicker &&
+                             snapshot.Fields.TryGetValue(
+                                 prefix + "Value", out string dateText) &&
+                             DateTime.TryParse(
+                                 dateText, null,
+                                 DateTimeStyles.RoundtripKind,
+                                 out DateTime date))
+                    {
+                        if (date >= datePicker.MinDate &&
+                            date <= datePicker.MaxDate)
+                            datePicker.Value = date;
+                    }
+                    else if (control is CheckBox checkBox &&
+                             snapshot.Fields.TryGetValue(
+                                 prefix + "Checked", out string checkText))
+                    {
+                        checkBox.Checked = bool.Parse(checkText);
+                    }
+                    else if (control is RadioButton radioButton &&
+                             snapshot.Fields.TryGetValue(
+                                 prefix + "Checked", out string radioText))
+                    {
+                        radioButton.Checked = bool.Parse(radioText);
+                    }
+                    else if (control is NumericUpDown numeric &&
+                             snapshot.Fields.TryGetValue(
+                                 prefix + "Value", out string numberText) &&
+                             decimal.TryParse(
+                                 numberText, NumberStyles.Number,
+                                 CultureInfo.InvariantCulture,
+                                 out decimal number))
+                    {
+                        if (number >= numeric.Minimum &&
+                            number <= numeric.Maximum)
+                            numeric.Value = number;
+                    }
+
+                    else if (control is Label label &&
+                            snapshot.Fields.TryGetValue(
+                                prefix + "Text", out string labelText))
+                    {
+                        label.Text = labelText;
+                    }
+
+                    else if (control is TextBoxBase textBox &&
+                        snapshot.Fields.TryGetValue(
+                            prefix + "Text", out string text))
+                    {
+                        textBox.Text = text;
+                    }
+                }
+
+                RestoreControls(control, snapshot);
+            }
+        }
+
+        private IEnumerable<Control> GetAllControls(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                yield return control;
+
+                foreach (Control child in GetAllControls(control))
+                    yield return child;
+            }
+        }
+
+
+
+
+        private void RecoveryTimer_Tick(object sender, EventArgs e)
+        {
+            if (_isRestoringRecovery)
+                return;
+
+            try
+            {
+                var snapshot = CreatePurchaseSnapshot();
+
+                bool hasData = snapshot.Fields.Any(
+                    x => !string.IsNullOrWhiteSpace(x.Value));
+
+                hasData = hasData || snapshot.GridSnapshots.Any(
+                    x => x.Value.Rows.Count > 0);
+
+                if (hasData)
+                    PurchaseRecoveryStore.Save(_recoveryKey, snapshot);
+                else
+                    PurchaseRecoveryStore.Delete(_recoveryKey);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+
+        private PurchaseRecoverySnapshot CreatePurchaseSnapshot()
+        {
+            var snapshot = new PurchaseRecoverySnapshot();
+
+            CaptureControls(this, snapshot);
+
+            return snapshot;
+        }
+        private void CaptureVariables(PurchaseRecoverySnapshot snapshot)
+        {
+            var fields = GetType().GetFields(
+                BindingFlags.Instance |
+                BindingFlags.Public |
+                BindingFlags.NonPublic);
+
+            foreach (FieldInfo field in fields)
+            {
+                if (field.IsStatic || field.IsInitOnly)
+                    continue;
+
+                Type type = field.FieldType;
+                object value = field.GetValue(this);
+
+                if (value == null)
+                    continue;
+
+                if (type == typeof(int) ||
+                    type == typeof(string) ||
+                    type == typeof(double) ||
+                    type == typeof(decimal) ||
+                    type == typeof(DataTable) ||
+                    type == typeof(DateTime) ||
+                    type == typeof(bool) ||
+                    type == typeof(List<int>))
+                {
+                    snapshot.Variables[field.Name] =
+                        JsonConvert.SerializeObject(value);
+                }
+            }
+        }
+        private void RestoreVariables(PurchaseRecoverySnapshot snapshot)
+        {
+            if (snapshot?.Variables == null)
+                return;
+
+            var fields = GetType().GetFields(
+                BindingFlags.Instance |
+                BindingFlags.Public |
+                BindingFlags.NonPublic);
+
+            foreach (FieldInfo field in fields)
+            {
+                if (field.IsStatic || field.IsInitOnly)
+                    continue;
+
+                if (!snapshot.Variables.TryGetValue(
+                    field.Name, out string json))
+                    continue;
+
+                Type type = field.FieldType; 
+
+                if (type == typeof(int) ||
+                    type == typeof(string) ||
+                    type == typeof(double) ||
+                    type == typeof(decimal) ||
+                    type == typeof(DateTime) ||
+                    type == typeof(DataTable) ||
+                    type == typeof(bool) ||
+                    type == typeof(List<int>))
+                    continue;
+
+                try
+                {
+                    object value = JsonConvert.DeserializeObject(
+                        json, type);
+
+                    field.SetValue(this, value);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        $"Restore failed for {field.Name}: {ex.Message}");
+                }
+            }
+        }
+
+        private void CaptureControls(
+            Control parent,
+            PurchaseRecoverySnapshot snapshot)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (!string.IsNullOrWhiteSpace(control.Name))
+                {
+                    string prefix = control.Name + ".";
+
+                    if (control is TextBoxBase textBox)
+                        snapshot.Fields[prefix + "Text"] = textBox.Text;
+
+                    else if (control is ComboBox combo)
+                    {
+                        snapshot.Fields[prefix + "Text"] = combo.Text;
+                        snapshot.Fields[prefix + "SelectedIndex"] =
+                            combo.SelectedIndex.ToString(
+                                CultureInfo.InvariantCulture);
+                    }
+                    else if (control is DateTimePicker datePicker)
+                    {
+                        snapshot.Fields[prefix + "Value"] =
+                            datePicker.Value.ToString("o");
+                    }
+                    else if (control is CheckBox checkBox)
+                    {
+                        snapshot.Fields[prefix + "Checked"] =
+                            checkBox.Checked.ToString();
+                    }
+                    else if (control is RadioButton radioButton)
+                    {
+                        snapshot.Fields[prefix + "Checked"] =
+                            radioButton.Checked.ToString();
+                    }
+                    else if (control is NumericUpDown numeric)
+                    {
+                        snapshot.Fields[prefix + "Value"] =
+                            numeric.Value.ToString(
+                                CultureInfo.InvariantCulture);
+                    }
+                    else if (control is Label label)
+                    {
+                        snapshot.Fields[prefix + "Text"] = label.Text;
+                    }
+
+                    if (control is DataGridView grid && grid.DataSource == null)
+                    {
+                        var gridSnapshot = new PurchaseGridSnapshot();
+
+                        foreach (DataGridViewColumn column in grid.Columns)
+                        {
+                            gridSnapshot.ColumnNames.Add(column.Name);
+                        }
+
+                        foreach (DataGridViewRow row in grid.Rows)
+                        {
+                            if (row.IsNewRow)
+                                continue;
+
+                            var savedRow = new List<string>();
+
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                object value = cell.Value;
+
+                                savedRow.Add(
+                                    value == null || value == DBNull.Value
+                                        ? null
+                                        : Convert.ToString(
+                                            value,
+                                            System.Globalization.CultureInfo.InvariantCulture));
+                            }
+
+                            gridSnapshot.Rows.Add(savedRow);
+                        }
+
+                        snapshot.GridSnapshots[grid.Name] = gridSnapshot;
+                    }
+
+                }
+
+                CaptureControls(control, snapshot);
+                CaptureVariables(snapshot);
+            }
+        }
+
+
+        private void RestoreGrid(
+            DataGridView grid,
+            PurchaseGridSnapshot savedGrid)
+        {
+            if (grid == null || savedGrid == null)
+                return;
+
+            if (grid.DataSource != null)
+                return;
+
+            grid.Rows.Clear();
+
+            foreach (List<string> savedRow in savedGrid.Rows)
+            {
+                int rowIndex = grid.Rows.Add();
+
+                for (int i = 0;
+                     i < savedRow.Count && i < grid.Columns.Count;
+                     i++)
+                {   // Skip image columns
+                    if (grid.Columns[i] is DataGridViewImageColumn)
+                        continue;
+                    string savedValue = savedRow[i];
+
+                    if (savedValue == null)
+                    {
+                        grid.Rows[rowIndex].Cells[i].Value = null;
+                        continue;
+                    }
+
+                    Type targetType = grid.Columns[i].ValueType;
+
+                    if (targetType == null || targetType == typeof(string))
+                    {
+                        grid.Rows[rowIndex].Cells[i].Value = savedValue;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            object convertedValue = Convert.ChangeType(
+                                savedValue,
+                                targetType,
+                                System.Globalization.CultureInfo.InvariantCulture);
+
+                            grid.Rows[rowIndex].Cells[i].Value = convertedValue;
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine(
+                                "Could not restore grid " + grid.Name +
+                                ", column " + grid.Columns[i].Name +
+                                ": " + ex.Message);
+                        }
+                    }
+                }
+            }
+        }
+
         public void udfnConditionEnable()
         {
             try
@@ -7239,7 +7702,7 @@ namespace ROMS
                                     chkCompleted.Enabled = true;
                                     varModifiedFlag = 0;
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                                    PurchaseRecoveryStore.Delete(_recoveryKey);
                                     this.ActiveControl = txtSupplier;
                                     MainForm.objCP_PurchaseList.udfnListLoad();
 
@@ -8861,7 +9324,7 @@ namespace ROMS
                     if (pbConditionIDs == "275" || pbConditionIDs == "280" || pbConditionIDs == "281")
                     {
                         cmbReason.Enabled = false; cmbReason.SelectedValue = 286;
-                        txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
+                        txtMrp.Enabled = false; txtMrp.ReadOnly = true;
                         if (pbConditionIDs == "275")
                         { txtMismatchQty.Enabled = false; txtMismatchQty.ReadOnly = true; }
                         else { txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false; }
@@ -8869,7 +9332,7 @@ namespace ROMS
                     else
                     {
                         cmbReason.Enabled = true; cmbReason.SelectedValue = 286;
-                        txtInvoiceamt.Enabled = true; txtInvoiceamt.ReadOnly = false;
+                        txtMrp.Enabled = true; txtMrp.ReadOnly = false;
                         txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
                     } 
                     pnlConditions.Visible = false;
@@ -9373,6 +9836,16 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Purchase_FormClosing(object sender, FormClosingEventArgs e)
+        {   
+            if (_recoveryTimer != null)
+            {
+                _recoveryTimer.Stop();
+                _recoveryTimer.Dispose();
+                _recoveryTimer = null;
             }
         }
 
@@ -12740,7 +13213,7 @@ namespace ROMS
         {
             try
             {
-                txtProductName.BackColor = Color.LemonChiffon;
+                txtProductName.BackColor = Color.LemonChiffon; 
             }
             catch (Exception ex)
             {
