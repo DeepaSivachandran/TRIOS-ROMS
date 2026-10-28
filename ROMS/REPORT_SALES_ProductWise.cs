@@ -339,11 +339,11 @@ namespace ROMS
                 objMR_Sales.paraPicode = string.IsNullOrWhiteSpace(varPicode)
                     ? ""
                     : varPicode;
-                objMR_Sales.paraSalesType = varSalesType;
+                objMR_Sales.paraSalesType = Convert.ToInt32(cmbFilterType.SelectedValue);
                 objMR_Sales.paraBillType = varBillType;
                 objMR_Sales.paraFlag = 0;
                 objMR_Sales.paraOrderby = varOrderType;
-                objMR_Sales.paraSalesValue = varSalesValue;
+                objMR_Sales.paraSalesValue = Convert.ToInt32(cmbOrderType.SelectedValue);
                 objDs = objdserv.udfnSalesReports(objMR_Sales);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -440,8 +440,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
                         objBillreport.SetParameterValue("paraFilterTypeName", varFilterTypeName);
                         objBillreport.SetParameterValue("paraFlag", 0);
-                        objBillreport.SetParameterValue("paraSalesType", varSalesType);
-                        objBillreport.SetParameterValue("paraSalesValue", varSalesValue);
+                        objBillreport.SetParameterValue("paraSalesType", Convert.ToInt32(cmbFilterType.SelectedValue));
+                        objBillreport.SetParameterValue("paraSalesValue", Convert.ToInt32(cmbOrderType.SelectedValue));
                         objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbPrintType.SelectedValue));
 
                         string subReportName = objBillreport.Subreports[0].Name;
@@ -458,8 +458,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName, subReportName);
                         objBillreport.SetParameterValue("paraFilterTypeName", varFilterTypeName, subReportName);
                         objBillreport.SetParameterValue("paraFlag", 1, subReportName);
-                        objBillreport.SetParameterValue("paraSalesType", varSalesType, subReportName);
-                        objBillreport.SetParameterValue("paraSalesValue", varSalesValue, subReportName);
+                        objBillreport.SetParameterValue("paraSalesType", Convert.ToInt32(cmbFilterType.SelectedValue), subReportName);
+                        objBillreport.SetParameterValue("paraSalesValue", Convert.ToInt32(cmbOrderType.SelectedValue), subReportName);
                         objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName ?? "", subReportName);
                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName ?? "", subReportName);
                         objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text.Trim(), subReportName);
@@ -496,8 +496,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraProductTypeName", varProductTypeName);
                         objBillreport.SetParameterValue("paraSalesTypeName", varSalesTypeName);
                         objBillreport.SetParameterValue("paraFlag", 0);
-                        objBillreport.SetParameterValue("paraSalesType", varSalesType);
-                        objBillreport.SetParameterValue("paraSalesValue", varSalesValue);
+                        objBillreport.SetParameterValue("paraSalesType", Convert.ToInt32(cmbFilterType.SelectedValue));
+                        objBillreport.SetParameterValue("paraSalesValue", Convert.ToInt32(cmbOrderType.SelectedValue));
                     }
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -579,7 +579,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN(505,585)", "MST_DisplayText,MSTID", cmbSalesType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (180,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (109)", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (200)", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (198)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
