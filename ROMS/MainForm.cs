@@ -486,6 +486,7 @@ namespace ROMS
         public static REPORT_SALES_TaxDetail objREPORT_SALES_TaxDetail;
         public static REPORT_SALES_Scheme objREPORT_SALES_Scheme;
         public static REPORT_SALES_Report_Customer objREPORT_SALES_Report_Customer;
+        public static CP_Product_Count objCP_Product_Count;
 
         public MainForm()
         {
@@ -4742,6 +4743,12 @@ namespace ROMS
                     MainForm.objCP_ProductDetails = new CP_ProductDetails(); 
                     MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
                     MainForm.objCP_ProductDetails.ShowDialog();
+                }
+                if (e.KeyCode == Keys.F7) // Product Count
+                {
+                    MainForm.objCP_Product_Count = new CP_Product_Count(); 
+                    MainForm.objCP_Product_Count.MdiParent = this.ParentForm;
+                    MainForm.objCP_Product_Count.ShowDialog();
                 }
             }
             catch (Exception ex)

@@ -534,6 +534,12 @@
     <Compile Include="CP_UserRole.designer.cs">
       <DependentUpon>CP_UserRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Product_Count.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product_Count.designer.cs">
+      <DependentUpon>CP_Product_Count.cs</DependentUpon>
+    </Compile>
     <Compile Include="DEF_IdleLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5551,6 +5557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UserRole.resx">
       <DependentUpon>CP_UserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product_Count.resx">
+      <DependentUpon>CP_Product_Count.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DEF_IdleLogin.resx">
       <DependentUpon>DEF_IdleLogin.cs</DependentUpon>
