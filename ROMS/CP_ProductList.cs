@@ -1084,6 +1084,19 @@ namespace ROMS
                 {
                     tsbDelete_Click(sender, e);
                 }
+                if (e.KeyCode == Keys.F8) // Product Count
+                {
+                    if (MainForm.objCP_Product_Count == null || MainForm.objCP_Product_Count.IsDisposed)
+                    {
+                        MainForm.objCP_Product_Count = new CP_Product_Count();
+                        MainForm.objCP_Product_Count.StartPosition = FormStartPosition.CenterScreen;
+                        MainForm.objCP_Product_Count.Show(this.ParentForm);
+                    }
+                    else
+                    {
+                        MainForm.objCP_Product_Count.Activate();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3707,6 +3720,28 @@ namespace ROMS
             try
             {
                 cmbRackType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsbProCountLabel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MainForm.objCP_Product_Count == null || MainForm.objCP_Product_Count.IsDisposed)
+                {
+                    MainForm.objCP_Product_Count = new CP_Product_Count();
+                    MainForm.objCP_Product_Count.StartPosition = FormStartPosition.CenterScreen;
+                    MainForm.objCP_Product_Count.Show(this.ParentForm);   // owned, no MdiParent
+                }
+                else
+                {
+                    MainForm.objCP_Product_Count.Activate();
+                }
             }
             catch (Exception ex)
             {

@@ -4744,12 +4744,6 @@ namespace ROMS
                     MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
                     MainForm.objCP_ProductDetails.ShowDialog();
                 }
-                if (e.KeyCode == Keys.F7) // Product Count
-                {
-                    MainForm.objCP_Product_Count = new CP_Product_Count(); 
-                    MainForm.objCP_Product_Count.MdiParent = this.ParentForm;
-                    MainForm.objCP_Product_Count.ShowDialog();
-                }
             }
             catch (Exception ex)
             {

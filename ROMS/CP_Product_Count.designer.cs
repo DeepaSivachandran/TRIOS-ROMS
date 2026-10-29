@@ -72,7 +72,7 @@
             this.grdItemList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdItemList.RowTemplate.Height = 25;
             this.grdItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdItemList.Size = new System.Drawing.Size(956, 233);
+            this.grdItemList.Size = new System.Drawing.Size(849, 203);
             this.grdItemList.TabIndex = 111111225;
             // 
             // CP_Product_Count
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(980, 258);
+            this.ClientSize = new System.Drawing.Size(873, 225);
             this.Controls.Add(this.grdItemList);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -93,6 +93,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Count";
             this.Load += new System.EventHandler(this.CP_Product_Count_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Product_Count_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).EndInit();
             this.ResumeLayout(false);
