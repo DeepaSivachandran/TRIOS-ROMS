@@ -250,6 +250,19 @@ namespace ROMS
                 {
                     udfnProductClear();
                 }
+                if (e.KeyCode == Keys.F8) // Product Count
+                {
+                    if (MainForm.objCP_Product_Count == null || MainForm.objCP_Product_Count.IsDisposed)
+                    {
+                        MainForm.objCP_Product_Count = new CP_Product_Count();
+                        MainForm.objCP_Product_Count.StartPosition = FormStartPosition.CenterScreen;
+                        MainForm.objCP_Product_Count.Show(this.ParentForm);
+                    }
+                    else
+                    {
+                        MainForm.objCP_Product_Count.Activate();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -969,6 +982,28 @@ namespace ROMS
             {
                 udfnLoadProCount();
                 ShowNoImage();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MainForm.objCP_Product_Count == null || MainForm.objCP_Product_Count.IsDisposed)
+                {
+                    MainForm.objCP_Product_Count = new CP_Product_Count();
+                    MainForm.objCP_Product_Count.StartPosition = FormStartPosition.CenterScreen;
+                    MainForm.objCP_Product_Count.Show(this.ParentForm);
+                }
+                else
+                {
+                    MainForm.objCP_Product_Count.Activate();
+                }
             }
             catch (Exception ex)
             {
