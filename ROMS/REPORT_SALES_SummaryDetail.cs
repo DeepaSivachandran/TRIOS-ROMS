@@ -1100,7 +1100,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBillType.Focus();
+                    if (cmbBillType.Enabled == true)
+                    {
+                        cmbBillType.Focus();
+                    }
+                    else if (cmbSchemeType.Enabled == true)
+                    {
+                        cmbSchemeType.Focus();
+                    }
+                    else if (txtBilledBy.Enabled == true)
+                    {
+                        txtBilledBy.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1869,6 +1880,10 @@ namespace ROMS
                     {
                         cmbBillCategory.Focus();
                     }
+                    else if (cmbCustomerCategory.Enabled == true)
+                    {
+                        cmbCustomerCategory.Focus();
+                    }
                     else
                     {
                         txtCustomer.Focus();
@@ -1946,6 +1961,10 @@ namespace ROMS
                         if (cmbBillCategory.Enabled == true)
                         {
                             cmbBillCategory.Focus();
+                        }
+                        else if (cmbCustomerCategory.Enabled == true)
+                        {
+                            cmbCustomerCategory.Focus();
                         }
                         else
                         {
@@ -2054,10 +2073,14 @@ namespace ROMS
             try
             {
                 varUpDownKeyBilledBy = 1;
-                udfnListviewBilledBy(); 
+                udfnListviewBilledBy();
                 if (cmbBillCategory.Enabled == true)
                 {
                     cmbBillCategory.Focus();
+                }
+                else if (cmbCustomerCategory.Enabled == true)
+                {
+                    cmbCustomerCategory.Focus();
                 }
                 else
                 {
@@ -2199,10 +2222,18 @@ namespace ROMS
                 {
                     return;
                 }
+
+                //cmbBillType.Enabled = true;
+                //cmbSchemeType.Enabled = true;
+                //cmbBillCategory.Enabled = true;
+
                 dpFromDate.Enabled = true;
                 dpToDate.Enabled = true;
-                cmbBillType.Enabled = true;
-                cmbBillType.SelectedValue = 0;
+                if (Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
+                {
+                    cmbBillType.Enabled = true;
+                    cmbBillType.SelectedValue = 0;
+                }
                 cmbSalesType.Enabled = true;
                 txtCustomer.Enabled = true;
                 txtBilledBy.Enabled = true;
@@ -2241,8 +2272,11 @@ namespace ROMS
                 {
                     case 666:
                         cmbCustomerCategory.Enabled = true;
-                        cmbSchemeType.Enabled = true;
-                        cmbBillCategory.Enabled = true;
+                        if (Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
+                        {
+                            cmbSchemeType.Enabled = true;
+                            cmbBillCategory.Enabled = true;
+                        }
                         if (chkTimeRange.Checked == true)
                         {
                             mtbTime1.Enabled = true;
@@ -2255,8 +2289,11 @@ namespace ROMS
 
                     case 667:
                         cmbCustomerCategory.Enabled = true;
-                        cmbSchemeType.Enabled = true;
-                        cmbBillCategory.Enabled = true;
+                        if (Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
+                        {
+                            cmbSchemeType.Enabled = true;
+                            cmbBillCategory.Enabled = true;
+                        }
 
                         cmbPrintType.Enabled = true;
                         if (chkTimeRange.Checked == true)
@@ -2786,9 +2823,14 @@ namespace ROMS
                 {
                     cmbBillType.Enabled = true;
                     cmbSchemeType.Enabled = true;
+                    cmbBillCategory.Enabled = true;
+                    label10.Text = "Billed By";
                 }
                 else
                 {
+                    label10.Text = "Created By";
+                    cmbBillCategory.Enabled = false;
+                    cmbBillCategory.SelectedValue = 0;
                     cmbBillType.Enabled = false;
                     cmbBillType.SelectedValue = 0;
                     cmbSchemeType.Enabled = false;
@@ -2862,6 +2904,10 @@ namespace ROMS
                         if (cmbBillCategory.Enabled == true)
                         {
                             cmbBillCategory.Focus();
+                        }
+                        else if (cmbCustomerCategory.Enabled == true)
+                        {
+                            cmbCustomerCategory.Focus();
                         }
                         else
                         {
