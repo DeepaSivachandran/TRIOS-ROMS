@@ -1,6 +1,8 @@
 ﻿using CrystalDecisions.ReportAppServer;
+using DocumentFormat.OpenXml.Bibliography;
 using ROMS.Model;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -21,6 +23,8 @@ namespace ROMS
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyProduct = 0, varUpDownKeyBrand = 0, varUpDownKeySupplier = 0;
         private ToolTip tpReportType = new ToolTip();
+        private ToolTip tpUnit = new ToolTip();
+        private List<ComboItem> units;
         public REPORT_SALES_ProductWise()
         {
             InitializeComponent();
@@ -110,6 +114,16 @@ namespace ROMS
                     //    lblNoRecordsFound.BringToFront();
                     //    return;
                     //}
+                    var selDayIds = cmbMultiUnit.CheckedIds;
+                    if (selDayIds == null || selDayIds.Count == 0)
+                    {
+                        epReport.SetError(cmbMultiUnit, "Please select at least one unit.");
+                        cmbMultiUnit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpUnit.ShowAlways = true;
+                        tpUnit.Show("Please select at least one unit.", cmbMultiUnit, 5000);
+                        cmbMultiUnit.Focus();
+                        return;
+                    }
                     udfnSalesProductwise(varFlag);
                 }
             }
@@ -344,6 +358,19 @@ namespace ROMS
                     }
                 }
 
+                string varUnitIds = "0";
+                var selUnitIds = cmbMultiUnit.CheckedIds;
+                var selUnitItems = units.Where(d => selUnitIds.Contains(d.Id)).ToList();
+                if (string.IsNullOrWhiteSpace(lblUnits.Text))
+                {
+                    varUnitIds = "0";
+                }
+                else
+                {
+                    varUnitIds = string.Join(",", selUnitIds);
+                }
+
+
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -364,6 +391,7 @@ namespace ROMS
                 objMR_Sales.paraBrandID = varBrandCode;
                 objMR_Sales.paraProductCode = varProductCode;
                 objMR_Sales.paraUnitID = varUnitCode;
+                objMR_Sales.paraUnitIds = varUnitIds;
                 objMR_Sales.paraProductCategory = varCategoryCode;
                 objMR_Sales.paraClassification = varClassificationCode;
                 objMR_Sales.paraSubgroupType = varProductType;
@@ -441,6 +469,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupType", varProductType);
                     objBillreport.SetParameterValue("paraType", 0);
                     objBillreport.SetParameterValue("paraUnitID", varUnitCode);
+                    objBillreport.SetParameterValue("paraUnitIds", varUnitIds);
                     objBillreport.SetParameterValue("paraViewType", varViewType);
 
                     if (varReportType == 658)
@@ -508,6 +537,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSubgroupType", varProductType, subReportName);
                         objBillreport.SetParameterValue("paraType", 0, subReportName);
                         objBillreport.SetParameterValue("paraUnitID", varUnitCode, subReportName);
+                        objBillreport.SetParameterValue("paraUnitIds", varUnitIds, subReportName);
                         objBillreport.SetParameterValue("paraViewType", varViewType, subReportName);
 
 
@@ -614,6 +644,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (198)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
+                udfnLoadUnits();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 RPTViewer.Visible = true;
@@ -640,6 +671,38 @@ namespace ROMS
                 mtbTime2.Enabled = false;
                 cmbFormat2.Enabled = false;
                 cmbFormat2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLoadUnits()
+        {
+            try
+            {
+                //lblDays.Text = "";
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 46;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnMaster(objMR_Master);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs != null && objDs.Tables.Count > 0 && objDs.Tables[0].Rows.Count > 0)
+                    {
+                        units = objDs.Tables[0].AsEnumerable()
+                            .Select(r => new ComboItem
+                            {
+                                Id = r.Field<int>("UTID"),
+                                Text = r.Field<string>("Unit")
+                            })
+                            .ToList();
+                        cmbMultiUnit.LoadItems(units, "Select Unit");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1235,7 +1298,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    cmbUnit.Focus();
+                    cmbMultiUnit.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1308,7 +1371,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbUnit.Focus();
+                        cmbMultiUnit.Focus();
                     }
                 }
             }
@@ -1739,7 +1802,7 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                cmbUnit.Focus();
+                cmbMultiUnit.Focus();
             }
             catch (Exception ex)
             {
@@ -1809,7 +1872,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbUnit.Focus();
+                        cmbMultiUnit.Focus();
                     }
                 }
             }
@@ -2892,6 +2955,61 @@ namespace ROMS
             try
             {
                 cmbFormat2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMultiUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    cmbCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMultiUnit.BackColor = Color.White;
             }
             catch (Exception ex)
             {
