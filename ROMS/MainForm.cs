@@ -5755,6 +5755,19 @@ namespace ROMS
             OpenReportForm(ref MainForm.objREPORT_SALES_Report_Customer, "REPORT_SALES_Report_Customer", 140211);
         }
 
+        private void tsmTokenGroupMapping_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_SALES_Scheme, "REPORT_SALES_Scheme", 1404);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 
