@@ -173,6 +173,9 @@ namespace ROMS
                             grdCourierList.DataSource = objDs.Tables[0];
                             grdCourierList.Columns["ID"].Visible = false;
                             grdCourierList.Columns["StatusID"].Visible = false;
+                            grdCourierList.Columns["State"].Visible = false;
+                            grdCourierList.Columns["District"].Visible = false;
+                            grdCourierList.Columns["City"].Visible = false;
                             grdCourierList.Columns["S.No."].Width = 50;
                             grdCourierList.Columns["Courier English Name"].Width = 200;
                             grdCourierList.Columns["Courier Tamil Name"].Width = 250;
