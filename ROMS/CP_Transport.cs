@@ -201,31 +201,14 @@ namespace ROMS
                 }
                 if (txtAddress1.Text.Trim() == "" && txtAddress2.Text.Trim() == "")
                 {
-                    epTransport.SetError(txtAddress1, "Please enter Address.");
+                    epTransport.SetError(txtAddress1, "Please enter Address 1 or Address 2.");
                     txtAddress1.BackColor = ColorTranslator.FromHtml("#fabdbd");
 
-                    tpTransport.ShowAlways = true;
-                    tpTransport.Show("Please enter Address.", txtAddress1, 5000);
-
-                    blnErrFlag = true;
-                }
-                else if (txtAddress1.Text.Trim() == "")
-                {
-                    epTransport.SetError(txtAddress1, "Please enter Address 1.");
-                    txtAddress1.BackColor = ColorTranslator.FromHtml("#fabdbd");
-
-                    tpTransport.ShowAlways = true;
-                    tpTransport.Show("Please enter Address 1.", txtAddress1, 5000);
-
-                    blnErrFlag = true;
-                }
-                else if (txtAddress2.Text.Trim() == "")
-                {
-                    epTransport.SetError(txtAddress2, "Please enter Address 2.");
+                    epTransport.SetError(txtAddress2, "Please enter Address 1 or Address 2.");
                     txtAddress2.BackColor = ColorTranslator.FromHtml("#fabdbd");
 
                     tpTransport.ShowAlways = true;
-                    tpTransport.Show("Please enter Address 2.", txtAddress2, 5000);
+                    tpTransport.Show("Please enter at least one Address.", txtAddress1, 5000);
 
                     blnErrFlag = true;
                 }
