@@ -5760,7 +5760,16 @@ namespace ROMS
 
         private void tsmCourier_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Courierlist, "CP_Courierlist", 1315);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void tsmLock_Click(object sender, EventArgs e)
