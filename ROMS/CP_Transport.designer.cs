@@ -80,7 +80,7 @@
             this.txtTransportEName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTransportEName.MaxLength = 30;
             this.txtTransportEName.Name = "txtTransportEName";
-            this.txtTransportEName.Size = new System.Drawing.Size(255, 27);
+            this.txtTransportEName.Size = new System.Drawing.Size(263, 27);
             this.txtTransportEName.TabIndex = 0;
             this.txtTransportEName.Enter += new System.EventHandler(this.txtTransportEName_Enter);
             this.txtTransportEName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTransportEName_KeyDown);
@@ -219,7 +219,7 @@
             this.txtMobileNo.Location = new System.Drawing.Point(152, 78);
             this.txtMobileNo.MaxLength = 15;
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(255, 27);
+            this.txtMobileNo.Size = new System.Drawing.Size(263, 27);
             this.txtMobileNo.TabIndex = 4;
             this.txtMobileNo.Enter += new System.EventHandler(this.txtMobileNo_Enter);
             this.txtMobileNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMobileNo_KeyDown);
@@ -272,7 +272,7 @@
             this.txtShortName.Location = new System.Drawing.Point(152, 49);
             this.txtShortName.MaxLength = 10;
             this.txtShortName.Name = "txtShortName";
-            this.txtShortName.Size = new System.Drawing.Size(255, 27);
+            this.txtShortName.Size = new System.Drawing.Size(263, 27);
             this.txtShortName.TabIndex = 2;
             this.txtShortName.Enter += new System.EventHandler(this.txtShortName_Enter);
             this.txtShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShortName_KeyDown);
