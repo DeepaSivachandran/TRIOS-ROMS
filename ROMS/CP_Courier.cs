@@ -214,12 +214,34 @@ namespace ROMS
                     tpShortName.Show("Please enter Short name.", txtShortName, 5000);
                     blnErrFlag = true;
                 }
-                if (txtAddress1.Text.Trim() == "")
+                if (txtAddress1.Text.Trim() == "" && txtAddress2.Text.Trim() == "")
                 {
                     epCourier.SetError(txtAddress1, "Please enter Address.");
-                    txtAddress1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    txtAddress1.BackColor = ColorTranslator.FromHtml("#fabdbd");
+
                     tpAddress.ShowAlways = true;
                     tpAddress.Show("Please enter Address.", txtAddress1, 5000);
+
+                    blnErrFlag = true;
+                }
+                else if (txtAddress1.Text.Trim() == "")
+                {
+                    epCourier.SetError(txtAddress1, "Please enter Address 1.");
+                    txtAddress1.BackColor = ColorTranslator.FromHtml("#fabdbd");
+
+                    tpAddress.ShowAlways = true;
+                    tpAddress.Show("Please enter Address 1.", txtAddress1, 5000);
+
+                    blnErrFlag = true;
+                }
+                else if (txtAddress2.Text.Trim() == "")
+                {
+                    epCourier.SetError(txtAddress2, "Please enter Address 2.");
+                    txtAddress2.BackColor = ColorTranslator.FromHtml("#fabdbd");
+
+                    tpAddress.ShowAlways = true;
+                    tpAddress.Show("Please enter Address 2.", txtAddress2, 5000);
+
                     blnErrFlag = true;
                 }
                 if (Convert.ToInt32(cmbState.SelectedValue) == -1)
