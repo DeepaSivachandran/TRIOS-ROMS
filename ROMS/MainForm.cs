@@ -487,6 +487,8 @@ namespace ROMS
         public static REPORT_SALES_Scheme objREPORT_SALES_Scheme;
         public static REPORT_SALES_Report_Customer objREPORT_SALES_Report_Customer;
         public static CP_Product_Count objCP_Product_Count;
+        public static CP_Courier objCP_Courier;
+        public static CP_Courierlist objCP_Courierlist;
 
         public MainForm()
         {
@@ -5754,6 +5756,11 @@ namespace ROMS
         private void tsmCustomer_Click_1(object sender, EventArgs e)
         {
             OpenReportForm(ref MainForm.objREPORT_SALES_Report_Customer, "REPORT_SALES_Report_Customer", 140211);
+        }
+
+        private void tsmCourier_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

@@ -218,6 +218,10 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_District", " DIST_STSID=1 AND DISTID NOT IN (0) Order by DISTID", "DIST_Name,DISTID", cmbDistrict, "", "DIST_Name", "DISTID");
+                objDataBind = null;
                 MainForm.objCP_Transportlist.picLoader.Visible = false;
                 MainForm.objCP_Transportlist.picLoader.SendToBack();
                 if (pbTransportId == 0)

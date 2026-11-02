@@ -67,6 +67,11 @@
             this.tsRoute = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlRoute = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_PurSearchGrid)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -77,6 +82,7 @@
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
             this.tsRoute.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDRouteTName
@@ -108,6 +114,7 @@
             // grbform
             // 
             this.grbform.BackColor = System.Drawing.Color.White;
+            this.grbform.Controls.Add(this.groupBox3);
             this.grbform.Controls.Add(this.DGV_PurSearchGrid);
             this.grbform.Controls.Add(this.btnPurRemove);
             this.grbform.Controls.Add(this.BtnPuraddMove);
@@ -467,7 +474,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.pnlStatus.Location = new System.Drawing.Point(517, 53);
+            this.pnlStatus.Location = new System.Drawing.Point(517, 51);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(202, 27);
             this.pnlStatus.TabIndex = 3;
@@ -538,6 +545,65 @@
             this.pnlRoute.Size = new System.Drawing.Size(1354, 645);
             this.pnlRoute.TabIndex = 37;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(726, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(151, 68);
+            this.groupBox3.TabIndex = 1111152;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Tolerance";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox1.Location = new System.Drawing.Point(6, 26);
+            this.textBox1.MaxLength = 2;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(36, 28);
+            this.textBox1.TabIndex = 1111153;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(42, 26);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(29, 28);
+            this.textBox2.TabIndex = 1111154;
+            this.textBox2.Text = "Hrs";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox3.Location = new System.Drawing.Point(71, 26);
+            this.textBox3.MaxLength = 2;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(36, 28);
+            this.textBox3.TabIndex = 1111155;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(107, 26);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(36, 28);
+            this.textBox4.TabIndex = 1111156;
+            this.textBox4.Text = "Mins";
+            // 
             // CP_Route
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -572,6 +638,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).EndInit();
             this.tsRoute.ResumeLayout(false);
             this.tsRoute.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -604,5 +672,10 @@
         public System.Windows.Forms.DataGridView grdMappedArea;
         public System.Windows.Forms.DataGridView DGV_PurSearchGrid;
         public System.Windows.Forms.DataGridView DGV_PurMappedSearchGrid;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
