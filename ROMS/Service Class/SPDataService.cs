@@ -7076,7 +7076,7 @@ namespace ROMS
 
                 cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
                 cmd.Parameters.AddWithValue("@paraCourierId", obj.paraCourierId);
-                cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraStatusId", obj.paraStatusId);
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 

@@ -139,9 +139,6 @@ namespace ROMS
                     objError = new DataError();
                     objError.WriteFile(ex);
                 }
-                finally
-                {
-                }
             }
         }
         public void udfnList()
@@ -180,9 +177,6 @@ namespace ROMS
                             grdCourierList.Columns["Courier English Name"].Width = 200;
                             grdCourierList.Columns["Courier Tamil Name"].Width = 250;
                             grdCourierList.Columns["Short Name"].Width = 120;
-                            grdCourierList.Columns["Contact Person"].Width = 150;
-                            grdCourierList.Columns["Mobile No."].Width = 120;
-                            grdCourierList.Columns["Landline No."].Width = 120;
                             grdCourierList.Columns["Status"].Width = 80;
                             grdCourierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdCourierList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
