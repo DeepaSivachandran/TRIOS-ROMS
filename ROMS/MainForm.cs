@@ -486,6 +486,8 @@ namespace ROMS
         public static REPORT_SALES_TaxDetail objREPORT_SALES_TaxDetail;
         public static REPORT_SALES_Scheme objREPORT_SALES_Scheme;
         public static REPORT_SALES_Report_Customer objREPORT_SALES_Report_Customer;
+        public static CP_Rack_Token objCP_Rack_Token;
+        public static CP_Rack_Token_List objCP_Rack_Token_List;
 
         public MainForm()
         {
@@ -5390,11 +5392,6 @@ namespace ROMS
             }
         }
 
-        private void tsmProductMenu_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tsmCustomerGroup_Click(object sender, EventArgs e)
         {
             try
@@ -5759,7 +5756,8 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_SALES_Scheme, "REPORT_SALES_Scheme", 1404);
+                OpenReportForm(ref MainForm.objCP_Rack_Token_List, "CP_Rack_Token_List", 50405);
+
             }
             catch (Exception ex)
             {
