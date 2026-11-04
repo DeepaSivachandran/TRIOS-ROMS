@@ -148,7 +148,24 @@ namespace ROMS.Model
         public int paraPackingPrefId { get; set; } = 0;
         public int paraCustomerID { get; set; } = 0;
         public int paraGSTINStatus { get; set; } = 0;
-        public int paraPreferedTransID { get; set; } = 0; 
+        public int paraPreferedTransID { get; set; } = 0;
+        public string paraUnitIds { get; set; } = "";
+
+
+        // -------------------- Courier --------------------
+        public int paraCourierId { get; set; } = 0;
+        public string paraCourierEName { get; set; } = "";
+        public string paraCourierTName { get; set; } = "";
+        public string paraCourierShortName { get; set; } = "";
+        // -------------------- Courier & Transport --------------------
+        public string paraCTAddress1 { get; set; } = "";
+        public string paraCTAddress2 { get; set; } = "";
+        public int paraCTDistrictId { get; set; } = 0;
+        public int paraCTCityId { get; set; } = 0;
+        public int paraCTAreaId { get; set; } = 0;
+        public int paraCTStateId { get; set; } = 0;
+        public string paraCTPincode { get; set; } = "";
+        public string paraCTLandmark { get; set; } = "";
     }
 
 }

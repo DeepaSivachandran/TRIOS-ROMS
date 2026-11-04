@@ -155,6 +155,7 @@
             this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Visible = false;
             // 
             // tsbTotalCount
             // 
