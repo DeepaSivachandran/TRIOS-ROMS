@@ -403,6 +403,12 @@
     <Compile Include="CP_BulkProductDemo.designer.cs">
       <DependentUpon>CP_BulkProductDemo.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Courierlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Courierlist.designer.cs">
+      <DependentUpon>CP_Courierlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_UPI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -576,6 +582,18 @@
     </Compile>
     <Compile Include="CP_UserRole.designer.cs">
       <DependentUpon>CP_UserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Product_Count.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product_Count.designer.cs">
+      <DependentUpon>CP_Product_Count.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Courier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Courier.designer.cs">
+      <DependentUpon>CP_Courier.cs</DependentUpon>
     </Compile>
     <Compile Include="DEF_IdleLogin.cs">
       <SubType>Form</SubType>
@@ -5510,6 +5528,9 @@
     <EmbeddedResource Include="CP_BulkProductDemo.resx">
       <DependentUpon>CP_BulkProductDemo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_Courierlist.resx">
+      <DependentUpon>CP_Courierlist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_UPI.resx">
       <DependentUpon>CP_UPI.cs</DependentUpon>
     </EmbeddedResource>
@@ -5596,6 +5617,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UserRole.resx">
       <DependentUpon>CP_UserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product_Count.resx">
+      <DependentUpon>CP_Product_Count.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Courier.resx">
+      <DependentUpon>CP_Courier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DEF_IdleLogin.resx">
       <DependentUpon>DEF_IdleLogin.cs</DependentUpon>

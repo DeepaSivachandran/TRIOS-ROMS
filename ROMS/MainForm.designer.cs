@@ -284,6 +284,7 @@ namespace ROMS
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCourier = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2230,7 +2231,8 @@ namespace ROMS
             this.tsmMarriageHall,
             this.tsmBasket,
             this.tsmCustomerGroup,
-            this.tsmAddressBook});
+            this.tsmAddressBook,
+            this.tsmCourier});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 24);
@@ -2582,6 +2584,13 @@ namespace ROMS
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // tsmCourier
+            // 
+            this.tsmCourier.Name = "tsmCourier";
+            this.tsmCourier.Size = new System.Drawing.Size(180, 22);
+            this.tsmCourier.Text = "Courier";
+            this.tsmCourier.Click += new System.EventHandler(this.tsmCourier_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2868,5 +2877,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmSalesTax;
         private System.Windows.Forms.ToolStripMenuItem tsmSchemeReport;
         private System.Windows.Forms.ToolStripMenuItem tsmCustomer;
+        private System.Windows.Forms.ToolStripMenuItem tsmCourier;
     }
 }

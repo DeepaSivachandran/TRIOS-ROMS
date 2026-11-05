@@ -459,7 +459,11 @@ using System.Windows.Forms;
         public static REPORT_SALES_TaxDetail objREPORT_SALES_TaxDetail;
         public static REPORT_SALES_Scheme objREPORT_SALES_Scheme;
         public static REPORT_SALES_Report_Customer objREPORT_SALES_Report_Customer;
-         public MainForm()
+        public static CP_Product_Count objCP_Product_Count;
+        public static CP_Courier objCP_Courier;
+        public static CP_Courierlist objCP_Courierlist;
+
+        public MainForm()
         {
             try
             {
@@ -5395,7 +5399,22 @@ using System.Windows.Forms;
         {
             OpenReportForm(ref MainForm.objREPORT_SALES_Report_Customer, "REPORT_SALES_Report_Customer", 140211);
         }
-         private void tsmLock_Click(object sender, EventArgs e)
+
+        private void tsmCourier_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Courierlist, "CP_Courierlist", 1315);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmLock_Click(object sender, EventArgs e)
         {
              try
             {
