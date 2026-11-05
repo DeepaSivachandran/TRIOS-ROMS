@@ -16,10 +16,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Services.Description;
 using System.Windows.Forms;
-
-
-
-namespace ROMS
+ namespace ROMS
 {
     public partial class MainForm : Form
     {
@@ -85,9 +82,7 @@ namespace ROMS
         public static int pbMenucode = 0;
         public static string varratechangecount = "0";
         public static string pbRateTolerance = "0";
-
-
-        //------- Form object declaration
+         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart;
         public static CP_ChangePassword objCP_ChangePassword;
@@ -189,14 +184,12 @@ namespace ROMS
         public static CP_ProductLockTeller objCP_ProductLockTeller;
         public static CP_Sales_Settings objCP_Sales_Settings;
         public static CP_Sales_GeneralSettings objCP_Sales_GeneralSettings;
-
-        // added by venkat on 30-09-2025
+         // added by venkat on 30-09-2025
         public static CP_UserRole objCP_UserRole;
         // added by venkat on 03-10-2025
         public static CP_UserRoleList objCP_UserRoleList;
         public static CP_UserRole_SPL objCP_UserRole_SPL;
-
-        //Added By Sathish ON 11-11-2025
+         //Added By Sathish ON 11-11-2025
         public static CP_Route objCP_Route;
         public static CP_Routelist objCP_Routelist;
         public static CP_CustomerType objCP_CustomerType;
@@ -227,11 +220,9 @@ namespace ROMS
         public static CP_MarriageHall objCP_MarriageHall;
         public static CP_MarriageHalllist objCP_MarriageHalllist;
         public static CP_LockItems objCP_LockItems;
-
-        //added by venkat on 21/01/2026 for report rate category 
+         //added by venkat on 21/01/2026 for report rate category 
         public static REPORT_CP_Product_RC objREPORT_CP_Product_RC;
-
-        public static PUR_ReturnDCList objINV_SalesInvoiceList;
+         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
         public static INV_SalesInvoice objINV_SalesInvoice;
         public static INV_GRNPODamaged objINV_GRNPODamaged;
@@ -267,11 +258,8 @@ namespace ROMS
         public static INV_StockJournal objINV_StockJournal;
         public static INV_StockJournal_ConversionList objINV_StockJournalConversionList;
         public static INV_StockJournal_Conversion objINV_StockJournalConversion;
-
-        public static Form1 objForm1;
-
-
-        public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
+         public static Form1 objForm1;
+         public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
         public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval;
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;
@@ -325,9 +313,7 @@ namespace ROMS
         public static PO_Details objPO_Details;
         public static PUR_RemainingProductList objPUR_RemainingProductList;
         public static REPORT_PUR_ReturnDC objREPORT_PUR_ReturnDC;
-
         public static REPORT_INV_Count objREPORT_INV_Count;
-
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
@@ -341,8 +327,7 @@ namespace ROMS
         public static PAY_DiscountVoucherList objPAY_DiscountVoucherList;
         public static PAY_DiscountVoucher objPAY_DiscountVoucher;
         public static PAY_SupplierPayment_BankDate objPAY_SupplierPayment_BankDate;
-
-        public static REPORT_CP_City objREPORT_CP_City;
+         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;
         public static REPORT_CP_Company objREPORT_CP_Company;
         public static REPORT_CP_HSN objREPORT_CP_HSN;
@@ -355,8 +340,7 @@ namespace ROMS
         public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
         public static REPORT_CP_Product objREPORT_CP_Product;
-
-        public static REPORT_Stock objREPORT_Stock;
+         public static REPORT_Stock objREPORT_Stock;
         public static REPORT_Stock_Hold objREPORT_Stock_Hold;
         public static REPORT_Damage_Entry objREPORT_Damage_Entry;
         public static INV_StockHold_Entry objINV_StockHold_Entry;
@@ -366,8 +350,7 @@ namespace ROMS
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
         public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
         public static REPORT_CP_UserRole objREPORT_CP_UserRole;
-
-        public static REPORT_Supplier_Payment objREPORT_Supplier_Payment;
+         public static REPORT_Supplier_Payment objREPORT_Supplier_Payment;
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
@@ -387,8 +370,7 @@ namespace ROMS
         public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
         public static REPORT_PurchaseOrder_Detail objREPORT_PurchaseOrder_Detail;
         public static REPORT_ProductWise_Po objREPORT_ProductWise_Po;
-
-        public static REPORT_Purchase_Summary objREPORT_Purchase_Summary;
+         public static REPORT_Purchase_Summary objREPORT_Purchase_Summary;
         public static REPORT_Purchase_Details objREPORT_Purchase_Details;
         public static REPORT_Unapproved_Purchase_Summary objREPORT_Unapproved_Purchase_Summary;
         public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
@@ -399,8 +381,7 @@ namespace ROMS
         public static REPORT_PUR_Tally objREPORT_PUR_Tally;
         public static REPORT_PUR_BatchDetails objREPORT_PUR_BatchDetails;
         public static REPORT_PUR_CostDetails objREPORT_PUR_CostDetails;
-
-        public static REPORT_PUR_BillWiseTax objREPORT_PUR_BillWiseTax;
+         public static REPORT_PUR_BillWiseTax objREPORT_PUR_BillWiseTax;
         public static REPORT_PUR_PeriodWiseTax objREPORT_PUR_PeriodWiseTax;
         public static REPORT_PUR_AdditionalValue objREPORT_PUR_AdditionalValue;
         public static REPORT_PUR_DiscountValue objREPORT_PUR_DiscountValue;
@@ -410,13 +391,11 @@ namespace ROMS
         public static REPORT_RC_PriceList objREPORT_RC_PriceList;
         public static REPORT_PUR_TCSValue objREPORT_PUR_TCSValue;
         public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
-
-        public static REPORT_HSN_Code objREPORT_HSN_Code;
+         public static REPORT_HSN_Code objREPORT_HSN_Code;
         public static REPORT_HSN_Tax_Summary objREPORT_HSN_Tax_Summary;
         public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
         public static REPORT_CP_RateChange objREPORT_CP_RateChange;
-
-        public static REPORT_Stock_Inward objREPORT_Stock_Inward;
+         public static REPORT_Stock_Inward objREPORT_Stock_Inward;
         public static REPORT_Stock_Outward objREPORT_Stock_Outward;
         public static REPORT_Stock_Adjustment objREPORT_Stock_Adjustment;
         public static REPORT_Stock_Conversion objREPORT_Stock_Conversion;
@@ -438,8 +417,7 @@ namespace ROMS
         public static REPORT_EntryReport objREPORT_EntryReport;
         public static REPORT_MValueReport objREPORT_MValueReport;
         public static REPORT_S_EntryReport objREPORT_S_EntryReport;
-
-        // Sales Master Report
+         // Sales Master Report
         public static REPORT_SALES_Route objREPORT_SALES_Route;
         public static REPORT_SALES_Area objREPORT_SALES_Area;
         public static REPORT_SALES_CustomerType objREPORT_SALES_CustomerType;
@@ -449,20 +427,16 @@ namespace ROMS
         public static REPORT_SALES_Transport objREPORT_SALES_Transport;
         public static REPORT_SALES_CardMachine objREPORT_SALES_CardMachine;
         public static REPORT_SALES_MarriageHall objREPORT_SALES_MarriageHall;
-
-        // Sales Report
+         // Sales Report
         public static REPORT_SALES_SummaryDetail objREPORT_SALES_SummaryDetail;
         public static REPORT_SALES_ProductWise objREPORT_SALES_ProductWise;
         public static REPORT_SALES_NonMovingProduct objREPORT_SALES_NonMovingProduct;
-
-        public static Financial_Year_Process objFinancial_Year_Process;
+         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
-
-        public static DataTable objDtMenuSplPermission;
-
-        public static DataTable objDtMenuDetailsUser;
+         public static DataTable objDtMenuSplPermission;
+         public static DataTable objDtMenuDetailsUser;
         public static DataTable objDtMenuSplPermissionUser;
         public static DataTable objDtSales_MenuDetails;
         public static DataTable objDtSales_MenuSplPermission;
@@ -474,8 +448,7 @@ namespace ROMS
         public static CP_Sales_UserRole_SPL objCP_Sales_UserRole_SPL;
         public static CP_SalesUserList objCp_SalesUserList;
         public static CP_SalesUser objCP_SalesUser;
-
-        public static INV_StockRequestQueueList objINV_StockRequestQueueList;
+         public static INV_StockRequestQueueList objINV_StockRequestQueueList;
         public static CP_Basketlist objCP_Basketlist;
         public static CP_Basket objCP_Basket;
         public static CP_Product_Supplier objCP_Product_Supplier;
@@ -486,8 +459,7 @@ namespace ROMS
         public static REPORT_SALES_TaxDetail objREPORT_SALES_TaxDetail;
         public static REPORT_SALES_Scheme objREPORT_SALES_Scheme;
         public static REPORT_SALES_Report_Customer objREPORT_SALES_Report_Customer;
-
-        public MainForm()
+         public MainForm()
         {
             try
             {
@@ -519,8 +491,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        // Added By Sathish On 30-04-2025 For Minimize Reports Screen
+         // Added By Sathish On 30-04-2025 For Minimize Reports Screen
         public void SubForm_Resize(object sender, EventArgs e)
         {
             try
@@ -535,13 +506,11 @@ namespace ROMS
                     }
                     form.Hide();
                     AddMinimizedFormToStatusBar(ref form, form.Name, 0);
-
-                    var nextForm = MdiChildren
+                     var nextForm = MdiChildren
                         .Where(f => f != form && f.Visible && f.WindowState != FormWindowState.Minimized && !f.IsDisposed)
                         .OrderByDescending(f => f == currentOpenForm)
                         .FirstOrDefault();
-
-                    if (nextForm != null)
+                     if (nextForm != null)
                     {
                         nextForm.Show();
                         nextForm.WindowState = FormWindowState.Normal;
@@ -560,8 +529,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        // Add minimized form to the status bar
+         // Add minimized form to the status bar
         private void AddMinimizedFormToStatusBar<T>(ref T form, string formName, int flag) where T : Form
         {
             try
@@ -575,16 +543,13 @@ namespace ROMS
                 {
                     return;  // Skip adding entry to status bar
                 }
-
-
-                if (flag == 1)
+                 if (flag == 1)
                 {
                     // Find all minimized instances of this form type
                     var existingList = minimizedFormList
                         .Where(m => m.FormName == formName)
                         .ToList();
-
-                    if (existingList.Any())
+                     if (existingList.Any())
                     {
                         foreach (var existing in existingList)
                         {
@@ -618,12 +583,9 @@ namespace ROMS
                     }
                     return;
                 }
-
-
-                if (form == null || form.IsDisposed)
+                 if (form == null || form.IsDisposed)
                     return;
-
-                Form localForm = form;
+                 Form localForm = form;
                 if (minimizedFormList.Any(m => m.FormInstance == localForm))
                     return;
                 form.Hide();
@@ -656,12 +618,9 @@ namespace ROMS
                     btn.ForeColor = Color.DarkBlue;      // Reset text color
                     btn.BackColor = Color.Transparent;   // Reset background
                 };
-
-                btn.Click += MinimizedFormButton_Click;
-
-                statusBar.Items.Add(btn);
-
-                minimizedFormList.Add(new MinimizedFormInfo
+                 btn.Click += MinimizedFormButton_Click;
+                 statusBar.Items.Add(btn);
+                 minimizedFormList.Add(new MinimizedFormInfo
                 {
                     FormName = form.Name,
                     FormInstance = form,
@@ -682,18 +641,15 @@ namespace ROMS
                 if (sender is ToolStripButton btn)
                 {
                     var info = minimizedFormList.FirstOrDefault(m => m.Button == btn);
-
-                    if (info == null || info.FormInstance == null || info.FormInstance.IsDisposed)
+                     if (info == null || info.FormInstance == null || info.FormInstance.IsDisposed)
                     {
                         statusBar.Items.Remove(btn);
                         minimizedFormList.RemoveAll(m => m.Button == btn);
                         return;
                     }
-
-                    if (info.FormInstance.WindowState == FormWindowState.Normal && info.FormInstance.Visible)
+                     if (info.FormInstance.WindowState == FormWindowState.Normal && info.FormInstance.Visible)
                         return;
-
-                    foreach (Form openForm in MdiChildren)
+                     foreach (Form openForm in MdiChildren)
                     {
                         if (openForm != info.FormInstance && openForm.WindowState == FormWindowState.Normal && openForm.Visible && !(openForm is DEF_Start))
                         {
@@ -705,20 +661,16 @@ namespace ROMS
                     {
                         CurrentEntryForm.Hide();
                     }
-
-                    info.FormInstance.SuspendLayout();
+                     info.FormInstance.SuspendLayout();
                     info.FormInstance.WindowState = FormWindowState.Normal;
                     info.FormInstance.StartPosition = FormStartPosition.Manual;
-
-                    CenterChildForm(info.FormInstance);
+                     CenterChildForm(info.FormInstance);
                     if (formMenuCodeMap.TryGetValue(info.FormInstance, out int menuCode))
                     {
                         ApplyUserPrivilegesToForm(info.FormInstance, menuCode);
                     }
-
-                    info.FormInstance.Show(); HideStartScreen();
-
-                    CenterChildForm(info.FormInstance);
+                     info.FormInstance.Show(); HideStartScreen();
+                     CenterChildForm(info.FormInstance);
                     info.FormInstance.BringToFront();
                     if (IsEntryFormOpen && CurrentParentListForm == info.FormInstance)
                     {
@@ -729,8 +681,7 @@ namespace ROMS
                         }
                     }
                     info.FormInstance.ResumeLayout();
-
-                    statusBar.Items.Remove(btn);
+                     statusBar.Items.Remove(btn);
                     minimizedFormList.Remove(info);
                     currentOpenForm = info.FormInstance;
                 }
@@ -741,9 +692,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        // Added By Sathish On 30-04-2025 For Minimize Reports Screen
+         // Added By Sathish On 30-04-2025 For Minimize Reports Screen
         public void MoveCurrentOpenFormToStatusBar(Form nextFormToOpen)
         {
             try
@@ -766,16 +715,14 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        //Close Form
+         //Close Form
         public void udfnCloseChildForms()
         {
             try
             {
                 string Str_ChildForm = "";
                 bool Bln_NoChildForm = true;
-
-                foreach (Form child in MdiChildren)
+                 foreach (Form child in MdiChildren)
                 {
                     if (child.Name == "DEF_Start")
                         continue;
@@ -784,23 +731,19 @@ namespace ROMS
                         continue;
                     if (child.WindowState == FormWindowState.Minimized)
                         continue;
-
-                    Bln_NoChildForm = false;
-
-                    bool isFound = IsFrmOpen(child);
+                     Bln_NoChildForm = false;
+                     bool isFound = IsFrmOpen(child);
                     bool exists = objDtMenuCloseDet.AsEnumerable()
                                     .Where(c => c.Field<string>("MenuName").Equals(child.Text) &&
                                                 c.Field<int>("CloseFlag").Equals(0))
                                     .Count() > 0;
-
-                    if (Str_ChildForm != "")
+                     if (Str_ChildForm != "")
                     {
                         child.Close();
                         isClose = true;
                         return;
                     }
-
-                    if (isFound == true && exists == false)
+                     if (isFound == true && exists == false)
                     {
                         child.Close();
                         isClose = true;
@@ -811,11 +754,9 @@ namespace ROMS
                         child.Close();
                     }
                 }
-
-                if (Bln_NoChildForm)
+                 if (Bln_NoChildForm)
                     isClose = true;
-
-                currentOpenForm = null;
+                 currentOpenForm = null;
             }
             catch (Exception ex)
             {
@@ -823,8 +764,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        // Added By Sathish On 30-04-2025 For Minimize Reports Screen
+         // Added By Sathish On 30-04-2025 For Minimize Reports Screen
         public void OpenReportForm<T>(ref T formInstance, string formName, int menuCode, string specialflag = null) where T : Form, new()
         {
             try
@@ -832,8 +772,7 @@ namespace ROMS
                 //udfnCloseChildForms();
                 if (isClose == false) { return; }
                 AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
-
-                if (formInstance != null && !formInstance.IsDisposed)
+                 if (formInstance != null && !formInstance.IsDisposed)
                 {
                     formInstance.FormClosing -= null;
                     formInstance.Dispose();
@@ -845,10 +784,8 @@ namespace ROMS
                     formInstance.MdiParent = this;
                     this.CenterChildForm(formInstance);
                     formInstance.Resize += SubForm_Resize;
-
-                    var localForm = formInstance;
-
-                    formInstance.FormClosing += (s, args) =>
+                     var localForm = formInstance;
+                     formInstance.FormClosing += (s, args) =>
                     {
                         if (args.CloseReason == CloseReason.MdiFormClosing || args.CloseReason == CloseReason.FormOwnerClosing || args.CloseReason == CloseReason.ApplicationExitCall)
                         {
@@ -864,8 +801,7 @@ namespace ROMS
                         {
                             if (localForm.WindowState == FormWindowState.Maximized)
                                 localForm.WindowState = FormWindowState.Normal;
-
-                            var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == localForm);
+                             var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == localForm);
                             if (minimizedItem != null)
                             {
                                 statusBar.Items.Remove(minimizedItem.Button);
@@ -887,10 +823,8 @@ namespace ROMS
                 //    MoveCurrentOpenFormToStatusBar(formInstance);
                 //}
                 //udfnCloseChildForms();
-
-                //if (!isClose) return;
-
-                // If entry form is open, hide it before opening new list form
+                 //if (!isClose) return;
+                 // If entry form is open, hide it before opening new list form
                 if (IsEntryFormOpen && CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
                 {
                     CurrentEntryForm.Hide();
@@ -899,8 +833,7 @@ namespace ROMS
                 //MoveCurrentOpenFormToStatusBar(formInstance);
                 //This is close the already opened form
                 CloseAllOtherForms(formInstance);
-
-                if (pbUserRoleId == "0" || menuCode == 9)
+                 if (pbUserRoleId == "0" || menuCode == 9)
                 {
                     if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                     {
@@ -914,19 +847,16 @@ namespace ROMS
                 {
                     var hasPrivilege = objDtMenuDetailsUser.AsEnumerable()
                         .Any(r => r.Field<int>("MU_Code") == menuCode);
-
-                    if (!hasPrivilege)
+                     if (!hasPrivilege)
                         return;
-
-                    var privileges = objDtMenuDetailsUser.AsEnumerable()
+                     var privileges = objDtMenuDetailsUser.AsEnumerable()
                                     .Where(r => r.Field<int>("MU_Code") == menuCode)
                                     .Select(r => r.Field<string>("MU_PrivilegeCode") // get as string
                                                   .Split(',')                       // split by comma
                                                   .Select(int.Parse)                // convert each to int
                                                   .ToList())
                                     .FirstOrDefault();
-
-                    if (privileges.Contains(8))
+                     if (privileges.Contains(8))
                     {
                         if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                         {
@@ -936,15 +866,11 @@ namespace ROMS
                     formInstance.MdiParent = this;
                     this.CenterChildForm(formInstance);
                     formInstance.Show(); HideStartScreen();
-
-                }
-
-                //   formInstance.WindowState = FormWindowState.Maximized;
-
-                formInstance.BringToFront();
+                 }
+                 //   formInstance.WindowState = FormWindowState.Maximized;
+                 formInstance.BringToFront();
                 currentOpenForm = formInstance;
-
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -959,20 +885,16 @@ namespace ROMS
                 AddMinimizedFormToStatusBar(ref closingForm, formName, 1);
                 return;
             }
-
-            if (closingForm.WindowState == FormWindowState.Maximized)
+             if (closingForm.WindowState == FormWindowState.Maximized)
                 closingForm.WindowState = FormWindowState.Normal;
-
-            var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == closingForm);
+             var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == closingForm);
             if (minimizedItem != null)
             {
                 statusBar.Items.Remove(minimizedItem.Button);
                 minimizedFormList.Remove(minimizedItem);
             }
-
-            currentOpenForm = null;
-
-            bool anyOtherMaximizedForms = this.MdiChildren.Any(f => f.WindowState == FormWindowState.Maximized && f.Visible);
+             currentOpenForm = null;
+             bool anyOtherMaximizedForms = this.MdiChildren.Any(f => f.WindowState == FormWindowState.Maximized && f.Visible);
             if (!anyOtherMaximizedForms)
             {
                 DEF_Start def = new DEF_Start();
@@ -980,10 +902,8 @@ namespace ROMS
                 def.WindowState = FormWindowState.Normal;
                 def.Show();
             }
-
-        }
-
-        public void PrepareFormClose(Form closingForm, string formName)
+         }
+         public void PrepareFormClose(Form closingForm, string formName)
         {
             HandleFormClosingManually(closingForm, formName, true);
             formMenuCodeMap.Remove(closingForm);
@@ -995,18 +915,15 @@ namespace ROMS
             {
                 if (child == newForm)
                     continue;
-
-                if (child is DEF_Start)
+                 if (child is DEF_Start)
                     continue;
-
-                if (IsEntryFormOpen && child == CurrentEntryForm)
+                 if (IsEntryFormOpen && child == CurrentEntryForm)
                 {
                     CurrentEntryForm.Close();
                     IsEntryFormOpen = false;
                     continue;
                 }
-
-                if (child.WindowState == FormWindowState.Minimized)
+                 if (child.WindowState == FormWindowState.Minimized)
                     continue;
                 child.Close();
             }
@@ -1020,25 +937,20 @@ namespace ROMS
                 return false;
             });
         }
-
-
-        public void OpenMainForm<T>(ref T formInstance, string formName, int menuCode, string tsbNewName = null, string tssNewName = null, string tsbEditName = null, string tssEditName = null, string tsbDeleteName = null, Control gridControl = null, EventHandler doubleClickHandler = null, KeyEventHandler keyDownHandler = null, string specialflag = null) where T : Form, new()
+         public void OpenMainForm<T>(ref T formInstance, string formName, int menuCode, string tsbNewName = null, string tssNewName = null, string tsbEditName = null, string tssEditName = null, string tsbDeleteName = null, Control gridControl = null, EventHandler doubleClickHandler = null, KeyEventHandler keyDownHandler = null, string specialflag = null) where T : Form, new()
         {
             try
             {
                 udfnCloseChildForms();
                 if (!isClose) return;
-
-                AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
-
-                if (formInstance == null || formInstance.IsDisposed)
+                 AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
+                 if (formInstance == null || formInstance.IsDisposed)
                 {
                     formInstance = new T();
                     formInstance.MdiParent = this;
                     this.CenterChildForm(formInstance);
                     formInstance.Resize += SubForm_Resize;
-
-                    var localForm = formInstance;
+                     var localForm = formInstance;
                     localForm.FormClosing += (s, args) =>
                     {
                         if (localForm.WindowState == FormWindowState.Minimized || localForm.Visible)
@@ -1051,8 +963,7 @@ namespace ROMS
                         {
                             if (localForm.WindowState == FormWindowState.Maximized)
                                 localForm.WindowState = FormWindowState.Normal;
-
-                            var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == localForm);
+                             var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == localForm);
                             if (minimizedItem != null)
                             {
                                 statusBar.Items.Remove(minimizedItem.Button);
@@ -1060,8 +971,7 @@ namespace ROMS
                             }
                             currentOpenForm = null;
                             bool anyOtherMaximizedForms = this.MdiChildren.Any(f => f != localForm && f.WindowState == FormWindowState.Maximized && f.Visible);
-
-                            if (!anyOtherMaximizedForms)
+                             if (!anyOtherMaximizedForms)
                             {
                                 DEF_Start def = new DEF_Start();
                                 def.MdiParent = this;
@@ -1071,18 +981,15 @@ namespace ROMS
                         }
                     };
                 }
-
-                if (minimizedForms.ContainsKey(formInstance))
+                 if (minimizedForms.ContainsKey(formInstance))
                 {
                     ToolStripButton btn = minimizedForms[formInstance];
                     statusBar.Items.Remove(btn);
                     minimizedForms.Remove(formInstance);
                     minimizedFormInfoList.RemoveAll(x => x.FormName == formName);
                 }
-
-                MoveCurrentOpenFormToStatusBar(formInstance);
-
-                if (pbUserRoleId == "0" || menuCode == 9)
+                 MoveCurrentOpenFormToStatusBar(formInstance);
+                 if (pbUserRoleId == "0" || menuCode == 9)
                 {
                     if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                     {
@@ -1101,17 +1008,12 @@ namespace ROMS
                                                   .Select(int.Parse)                // convert each to int
                                                   .ToList())
                                     .FirstOrDefault();
-
-                    var toolStrip = formInstance.Controls.OfType<ToolStrip>().FirstOrDefault();
-
-                    var gridView = formInstance.Controls.OfType<DataGridView>().FirstOrDefault();
-
-                    ToolStripItem btnNew = null, sepNew = null;
+                     var toolStrip = formInstance.Controls.OfType<ToolStrip>().FirstOrDefault();
+                     var gridView = formInstance.Controls.OfType<DataGridView>().FirstOrDefault();
+                     ToolStripItem btnNew = null, sepNew = null;
                     ToolStripItem btnEdit = null, sepEdit = null;
                     ToolStripItem btnDelete = null;
-
-
-                    if (toolStrip != null)
+                     if (toolStrip != null)
                     {
                         foreach (ToolStripItem item in toolStrip.Items)
                         {
@@ -1121,19 +1023,16 @@ namespace ROMS
                             if (item.Name == tssEditName) sepEdit = item;
                             if (item.Name == tsbDeleteName) btnDelete = item;
                         }
-
-                        if (btnNew != null) btnNew.Visible = false;
+                         if (btnNew != null) btnNew.Visible = false;
                         if (sepNew != null) sepNew.Visible = false;
                         if (btnEdit != null) btnEdit.Visible = false;
                         if (sepEdit != null) sepEdit.Visible = false;
                         if (btnDelete != null) btnDelete.Visible = false;
-
-                        if (gridControl != null)
+                         if (gridControl != null)
                         {
                             if (doubleClickHandler != null)
                                 gridControl.DoubleClick -= doubleClickHandler;
-
-                            if (keyDownHandler != null)
+                             if (keyDownHandler != null)
                                 gridControl.KeyDown -= keyDownHandler;
                         }
                         if (privileges.Contains(2))
@@ -1141,24 +1040,19 @@ namespace ROMS
                             if (btnNew != null) btnNew.Visible = true;
                             if (sepNew != null) sepNew.Visible = true;
                         }
-
-
-                        if (privileges.Contains(3))
+                         if (privileges.Contains(3))
                         {
                             if (btnEdit != null) btnEdit.Visible = true;
                             if (sepEdit != null) sepEdit.Visible = true;
-
-                            if (gridControl != null)
+                             if (gridControl != null)
                             {
                                 if (doubleClickHandler != null)
                                     gridControl.DoubleClick += doubleClickHandler;
-
-                                if (keyDownHandler != null)
+                                 if (keyDownHandler != null)
                                     gridControl.KeyDown += keyDownHandler;
                             }
                         }
-
-                        if (privileges.Contains(4))
+                         if (privileges.Contains(4))
                         {
                             if (btnDelete != null) btnDelete.Visible = true;
                         }
@@ -1188,23 +1082,19 @@ namespace ROMS
         private void ApplyUserPrivilegesToForm(Form formInstance, int menuCode)
         {
             if (pbUserRoleId == "0") return;
-
-            if (objDtMenuDetailsUser == null) return;
-
-            var privileges = objDtMenuDetailsUser.AsEnumerable()
+             if (objDtMenuDetailsUser == null) return;
+             var privileges = objDtMenuDetailsUser.AsEnumerable()
                             .Where(r => r.Field<int>("MU_Code") == menuCode)
                             .Select(r => r.Field<string>("MU_PrivilegeCode") // get as string
                                           .Split(',')                       // split by comma
                                           .Select(int.Parse)                // convert each to int
                                           .ToList())
                             .FirstOrDefault();
-
-            SetFormPrivilegeFlag(formInstance, "varNewFlag", privileges.Contains(2) ? 1 : 0);
+             SetFormPrivilegeFlag(formInstance, "varNewFlag", privileges.Contains(2) ? 1 : 0);
             SetFormPrivilegeFlag(formInstance, "varEditFlag", privileges.Contains(3) ? 1 : 0);
             SetFormPrivilegeFlag(formInstance, "varDeleteFlag", privileges.Contains(4) ? 1 : 0);
         }
-
-        private void SetFormPrivilegeFlag(Form form, string variableName, int value)
+         private void SetFormPrivilegeFlag(Form form, string variableName, int value)
         {
             var field = form.GetType().GetField(variableName);
             if (field != null && field.FieldType == typeof(int))
@@ -1212,8 +1102,7 @@ namespace ROMS
                 field.SetValue(form, value);
             }
         }
-
-        public bool IsFrmOpen(Form nameForm)
+         public bool IsFrmOpen(Form nameForm)
         {
             bool isFound = false;
             foreach (Form frm in Application.OpenForms)
@@ -1301,8 +1190,7 @@ namespace ROMS
                         break;
                     }
                 }
-
-                objStart = new DEF_Start();
+                 objStart = new DEF_Start();
                 objStart.MdiParent = this;
                 objStart.Show();
             }
@@ -1312,9 +1200,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        //take all  menu for sales user role master
+         //take all  menu for sales user role master
         public void udfnGetSalesMenuDetails()
         {
             try
@@ -1325,8 +1211,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnSalesMenu(objMR_Menu);
                 objdserv.CloseConnection();
-
-                if (objDs != null)
+                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
                     {
@@ -1371,8 +1256,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        //take a particular sales user 
+         //take a particular sales user 
         public void udfnGetSalesMenuDetailsForUser()
         {
             try
@@ -1443,45 +1327,36 @@ namespace ROMS
             {
                 childForm.StartPosition = FormStartPosition.Manual;
                 childForm.WindowState = FormWindowState.Normal;
-
-                int x = (mdiClientArea.Width - childForm.Width) / 2;
+                 int x = (mdiClientArea.Width - childForm.Width) / 2;
                 int y = (mdiClientArea.Height - childForm.Height) / 2;
-
-                childForm.Location = new Point(Math.Max(x, 0), Math.Max(y, 0));
+                 childForm.Location = new Point(Math.Max(x, 0), Math.Max(y, 0));
             }
             if (mdiClientArea == null && childForm != null)
             {
                 //childForm.StartPosition = FormStartPosition.Manual;
                 //childForm.WindowState = FormWindowState.Normal;
-
-                //int x = (1536 - childForm.Width) / 2;
+                 //int x = (1536 - childForm.Width) / 2;
                 //int y = (746 - childForm.Height) / 2;
                 // Get screen location of parent form
                 Point parentScreenLocation = this.PointToScreen(Point.Empty);
-
-                // Now offset manually relative to parent
+                 // Now offset manually relative to parent
                 int x = parentScreenLocation.X + 91;
                 int y = parentScreenLocation.Y + 500;
-
-                childForm.Location = new Point(x, y);
-
-            }
+                 childForm.Location = new Point(x, y);
+             }
         }
         public void CenterEntryForm(Form parentForm, Form childForm)
         {
             if (parentForm == null || childForm == null)
                 return;
-
-            childForm.StartPosition = FormStartPosition.Manual;
+             childForm.StartPosition = FormStartPosition.Manual;
             childForm.WindowState = FormWindowState.Normal;
-
-            try
+             try
             {
                 Point parentScreenLocation = parentForm.PointToScreen(Point.Empty);
                 int x = parentScreenLocation.X + (parentForm.Width - childForm.Width) / 2;
                 int y = parentScreenLocation.Y + (parentForm.Height - childForm.Height) / 2;
-
-                x = Math.Max(x, 0);
+                 x = Math.Max(x, 0);
                 y = Math.Max(y, 0);
                 childForm.Location = new Point(x, y);
             }
@@ -1490,9 +1365,7 @@ namespace ROMS
                 childForm.StartPosition = FormStartPosition.CenterScreen;
             }
         }
-
-
-        public void udfnUserMappedLocations()
+         public void udfnUserMappedLocations()
         {
             try
             {
@@ -1561,8 +1434,7 @@ namespace ROMS
             //    objError.WriteFile(ex);
             //}
         }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
@@ -1617,14 +1489,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsbBackup_Click(object sender, EventArgs e)
+         private void tsbBackup_Click(object sender, EventArgs e)
         {
             try
             {
                 SaveFileDialog objSaveDialogu = new SaveFileDialog();
-
-                if (objSaveDialogu.ShowDialog() == DialogResult.OK)
+                 if (objSaveDialogu.ShowDialog() == DialogResult.OK)
                 {
                     string varFileName = objSaveDialogu.FileName;
                     SPDataService objSPService = new SPDataService();
@@ -1642,8 +1512,7 @@ namespace ROMS
         {
             try
             {
-
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1716,8 +1585,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
-
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1803,8 +1671,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void udfnGetTelegramToken()
+         public void udfnGetTelegramToken()
         {
             try
             {
@@ -1830,8 +1697,7 @@ namespace ROMS
                     Directory.CreateDirectory(pbTelegramPath);
                 }
                 objdser.CloseConnection();
-
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1878,8 +1744,7 @@ namespace ROMS
                         { "parse_mode", "Markdown" } // Enables *bold* formatting
                     };
                     var response = await httpClient.PostAsync(apiUrl, new FormUrlEncodedContent(data));
-
-                    if (response.IsSuccessStatusCode)
+                     if (response.IsSuccessStatusCode)
                     {
                         Console.WriteLine("Notification sent successfully.");
                     }
@@ -1902,8 +1767,7 @@ namespace ROMS
                     //    }
                     //}
                 }
-
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1911,13 +1775,11 @@ namespace ROMS
             }
         }
         */
-        
-        private const int NoWidth = 4;
+         private const int NoWidth = 4;
         private const int ProductWidth = 30;
         private const bool CloseRightBorder = false;
         private static readonly Regex ProductHeader = new Regex(@"\*?Product\s*:\*?", RegexOptions.IgnoreCase);
-
-        private static bool IsWide(int cp) =>
+         private static bool IsWide(int cp) =>
             (cp >= 0x1100 && cp <= 0x115F) || (cp >= 0x2E80 && cp <= 0xA4CF) ||
             (cp >= 0xAC00 && cp <= 0xD7A3) || (cp >= 0xF900 && cp <= 0xFAFF) ||
             (cp >= 0xFE30 && cp <= 0xFE6F) || (cp >= 0xFF00 && cp <= 0xFF60) ||
@@ -1926,8 +1788,7 @@ namespace ROMS
         {
             if (string.IsNullOrEmpty(text))
                 return 0;
-
-            int width = 0;
+             int width = 0;
             var e = StringInfo.GetTextElementEnumerator(text);
             while (e.MoveNext())
             {
@@ -1936,20 +1797,17 @@ namespace ROMS
             }
             return width;
         }
-
-        private string PadDisplayRight(string text, int width)
+         private string PadDisplayRight(string text, int width)
         {
             int w = GetDisplayWidth(text);
             return w >= width ? text : text + new string(' ', width - w);
         }
-
-        private int FindBreakPosition(string text, int maxWidth)
+         private int FindBreakPosition(string text, int maxWidth)
         {
             int[] idx = StringInfo.ParseCombiningCharacters(text);
             int used = 0;
             int end = text.Length;
-
-            for (int i = 0; i < idx.Length; i++)
+             for (int i = 0; i < idx.Length; i++)
             {
                 int next = i + 1 < idx.Length ? idx[i + 1] : text.Length;
                 int cw = GetDisplayWidth(text.Substring(idx[i], next - idx[i]));
@@ -1960,61 +1818,48 @@ namespace ROMS
                 }
                 used += cw;
             }
-
-            if (end == text.Length || text[end] == ' ')
+             if (end == text.Length || text[end] == ' ')
                 return end;
-
-            int space = text.LastIndexOf(' ', end - 1);
+             int space = text.LastIndexOf(' ', end - 1);
             int hyphen = text.LastIndexOf('-', end - 1) + 1;
             int best = Math.Max(space, hyphen);
-
-            return best > 0 ? best : end;
+             return best > 0 ? best : end;
         }
-
-        private List<string> WrapText(string text, int maxWidth)
+         private List<string> WrapText(string text, int maxWidth)
         {
             var lines = new List<string>();
-
-            if (string.IsNullOrWhiteSpace(text))
+             if (string.IsNullOrWhiteSpace(text))
             {
                 lines.Add("");
                 return lines;
             }
-
-            string remaining = text.Trim();
-
-            while (GetDisplayWidth(remaining) > maxWidth)
+             string remaining = text.Trim();
+             while (GetDisplayWidth(remaining) > maxWidth)
             {
                 int brk = FindBreakPosition(remaining, maxWidth);
                 lines.Add(remaining.Substring(0, brk).Trim());
                 remaining = remaining.Substring(brk).Trim();
             }
-
-            if (remaining.Length > 0)
+             if (remaining.Length > 0)
                 lines.Add(remaining);
-
-            return lines;
+             return lines;
         }
         private string BuildProductTable(string[] products)
         {
             int noWidth = Math.Max(3, products.Length.ToString().Length);
             int leftWidth = noWidth + 2;
             int rightWidth = ProductWidth + 1;
-
-            string heavyTop = new string('═', leftWidth) + "╤" + new string('═', rightWidth);
+             string heavyTop = new string('═', leftWidth) + "╤" + new string('═', rightWidth);
             string heavyMid = new string('═', leftWidth) + "╪" + new string('═', rightWidth);
             string heavyBottom = new string('═', leftWidth) + "╧" + new string('═', rightWidth);
             string light = new string('─', leftWidth) + "┼" + new string('─', rightWidth);
-
-            string Row(string no, string text) =>
+             string Row(string no, string text) =>
                 " " + PadDisplayRight(no, noWidth) + " │ " + text;
-
-            var sb = new StringBuilder();
+             var sb = new StringBuilder();
             sb.AppendLine(heavyTop);
             sb.AppendLine(Row("No.", "Product"));
             sb.AppendLine(heavyMid);
-
-            for (int i = 0; i < products.Length; i++)
+             for (int i = 0; i < products.Length; i++)
             {
                 var lines = WrapText(products[i], ProductWidth);
                 for (int j = 0; j < lines.Count; j++)
@@ -2024,12 +1869,10 @@ namespace ROMS
                     string no = "P" + (i + 1).ToString("00");
                     sb.AppendLine(Row(no, lines[j]));
                 }
-
-                if (i < products.Length - 1)
+                 if (i < products.Length - 1)
                     sb.AppendLine(light);
             }
-
-            sb.AppendLine(heavyBottom);
+             sb.AppendLine(heavyBottom);
             return sb.ToString().TrimEnd();
         }
         //public async Task udfnTelegramRCNotification(string varMessage, string varURL)
@@ -2039,34 +1882,29 @@ namespace ROMS
             {
                 var match = ProductHeader.Match(varMessage);
                 string finalMessage = varMessage;
-
-                if (match.Success)
+                 if (match.Success)
                 {
                     string header = varMessage.Substring(0, match.Index);
                     string productText = varMessage.Substring(match.Index + match.Length);
-
-                    // Get products
+                     // Get products
                     string[] products = productText
     .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
     .Select(x => x.Trim())
     .Where(x => x.StartsWith("•"))
     .Select(x => x.TrimStart('•').Trim())
     .ToArray();
-
-                    if (products.Length > 0)
+                     if (products.Length > 0)
                     {
                         finalMessage = header.TrimEnd()
                                      + "\r\n\r\n*📦 PRODUCT DETAILS*"
                                      + "\r\n```\r\n" + BuildProductTable(products) + "\r\n```"
                                      + "\r\n*Total Products :* " + products.Length;
                     }
-
-                    using (var httpClient = new HttpClient())
+                     using (var httpClient = new HttpClient())
                     {
                         var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendMessage?chat_id=" + varChatID;
                         //var apiUrl = varURL;
-
-                        var data = new Dictionary<string, string>
+                         var data = new Dictionary<string, string>
                         {
                             {
                                 "text",
@@ -2077,13 +1915,11 @@ namespace ROMS
                                 "Markdown"
                             }
                         };
-
-                        var response = await httpClient.PostAsync(
+                         var response = await httpClient.PostAsync(
                             apiUrl,
                             new FormUrlEncodedContent(data)
                         );
-
-                        if (response.IsSuccessStatusCode)
+                         if (response.IsSuccessStatusCode)
                         {
                             Console.WriteLine(
                                 "Notification sent successfully."
@@ -2104,9 +1940,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        //take all splfield  menu for user role master
+         //take all splfield  menu for user role master
         public void udfnGetMenuSplPermissionDetails()
         {
             try
@@ -2134,8 +1968,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        //take a particular user 
+         //take a particular user 
         public void udfnGetMenuDetailsForUser()
         {
             try
@@ -2168,14 +2001,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        // --------- Bind Menus --------------
+         // --------- Bind Menus --------------
         public void BindMenu(object sender, EventArgs e)
         {
             try
             {
-
-                List<ToolStripItem> objAllItems = new List<ToolStripItem>();
+                 List<ToolStripItem> objAllItems = new List<ToolStripItem>();
                 List<ToolStripMenuItem> objMenuItems = new List<ToolStripMenuItem>();
                 foreach (ToolStripItem objToolItem in ms.Items)
                 {
@@ -2255,22 +2086,19 @@ namespace ROMS
                                 {
                                     item.Visible = true;
                                 }
-
-                                foreach (ToolStripMenuItem item1 in item.DropDownItems)
+                                 foreach (ToolStripMenuItem item1 in item.DropDownItems)
                                 {
                                     if (item1.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
                                     {
                                         item1.Visible = true;
                                     }
-
-                                    foreach (ToolStripMenuItem item2 in item1.DropDownItems)
+                                     foreach (ToolStripMenuItem item2 in item1.DropDownItems)
                                     {
                                         if (item2.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
                                         {
                                             item2.Visible = true;
                                         }
-
-                                        foreach (ToolStripMenuItem item3 in item2.DropDownItems)
+                                         foreach (ToolStripMenuItem item3 in item2.DropDownItems)
                                         {
                                             if (item3.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
                                             {
@@ -2401,8 +2229,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void Tsmbatchno_Click(object sender, EventArgs e)
+         private void Tsmbatchno_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2420,8 +2247,7 @@ namespace ROMS
         }
         private void TsmSupplierOrder_Click(object sender, EventArgs e)
         {
-
-            try
+             try
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
@@ -2435,8 +2261,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmBulkAttr_Click(object sender, EventArgs e)
+         private void TsmBulkAttr_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2611,8 +2436,7 @@ namespace ROMS
         }
         private void tsmProductsReport_Click(object sender, EventArgs e)
         {
-
-            try
+             try
             {
                 //PbCurrentForm = "7.1.13";
                 OpenReportForm(ref MainForm.objREPORT_CP_Product, "REPORT_CP_Product", 80113);
@@ -2623,8 +2447,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmProductCategory_Click(object sender, EventArgs e)
+         private void tsmProductCategory_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2637,8 +2460,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMarginEntry_Click(object sender, EventArgs e)
+         private void tsmMarginEntry_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2650,8 +2472,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesEntry_Click(object sender, EventArgs e)
+         private void tsmSalesEntry_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2663,8 +2484,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmEntryReport_Click(object sender, EventArgs e)
+         private void tsmEntryReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2676,8 +2496,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMValueReport_Click(object sender, EventArgs e)
+         private void tsmMValueReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2689,8 +2508,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmTaxChanges_Click(object sender, EventArgs e)
+         private void tsmTaxChanges_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2716,8 +2534,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSupplierWiseProducts_Click(object sender, EventArgs e)
+         private void tsmSupplierWiseProducts_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2756,8 +2573,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmUnassignedProducts_Click(object sender, EventArgs e)
+         private void tsmUnassignedProducts_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2770,8 +2586,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmZeroRate_Click(object sender, EventArgs e)
+         private void TsmZeroRate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2784,8 +2599,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPOProductWiseReport_Click(object sender, EventArgs e)
+         private void tsmPOProductWiseReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2824,8 +2638,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TSMGRNSummary_Click(object sender, EventArgs e)
+         private void TSMGRNSummary_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2877,8 +2690,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmGRNDefectPRoduct_Click(object sender, EventArgs e)
+         private void tsmGRNDefectPRoduct_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2891,8 +2703,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void udfnFormLoad()
+         public void udfnFormLoad()
         {
             try
             {
@@ -2930,8 +2741,7 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "3.1")
                 {
-
-                }
+                 }
                 if (PbCurrentForm == "3.2.1")
                 {
                     MainForm.objINV_InwardPurchaseList.udfnList();
@@ -2966,12 +2776,10 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "4.1")
                 {
-
-                }
+                 }
                 if (PbCurrentForm == "4.2")
                 {
-
-                }
+                 }
                 if (PbCurrentForm == "4.3")
                 {
                     MainForm.objPAY_CreditNoteList.udfnList();
@@ -3135,9 +2943,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        private void tsmItemMovementReport_Click(object sender, EventArgs e)
+         private void tsmItemMovementReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3150,10 +2956,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
-        public void Ms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+         public void Ms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             try
             {
@@ -3206,8 +3009,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void ProductWisePOToolStripMenuItem_Click(object sender, EventArgs e)
+         private void ProductWisePOToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3224,8 +3026,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseSummary_Click(object sender, EventArgs e)
+         private void tsmPurchaseSummary_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3238,8 +3039,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseDetail_Click(object sender, EventArgs e)
+         private void tsmPurchaseDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3252,8 +3052,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseBatchDetails_Click(object sender, EventArgs e)
+         private void TsmPurchaseBatchDetails_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3266,8 +3065,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseCostDetails_Click(object sender, EventArgs e)
+         private void TsmPurchaseCostDetails_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3280,8 +3078,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchasePendingSummary_Click(object sender, EventArgs e)
+         private void tsmPurchasePendingSummary_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3294,8 +3091,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchasePendingDetail_Click(object sender, EventArgs e)
+         private void tsmPurchasePendingDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3308,8 +3104,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseDefectProduct_Click(object sender, EventArgs e)
+         private void tsmPurchaseDefectProduct_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3335,8 +3130,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseCostPrice_Click(object sender, EventArgs e)
+         private void TsmPurchaseCostPrice_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3349,8 +3143,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseProductWiseReport_Click(object sender, EventArgs e)
+         private void TsmPurchaseProductWiseReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3388,8 +3181,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPriceList_Click(object sender, EventArgs e)
+         private void tsmPriceList_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3402,8 +3194,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseAdditionalValueReport_Click(object sender, EventArgs e)
+         private void TsmPurchaseAdditionalValueReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3416,8 +3207,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseDiscountValueReport_Click(object sender, EventArgs e)
+         private void TsmPurchaseDiscountValueReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3430,8 +3220,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmHSNCodeWiseReport_Click(object sender, EventArgs e)
+         private void TsmHSNCodeWiseReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3457,8 +3246,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSupplierLEdgerReport_Click(object sender, EventArgs e)
+         private void tsmSupplierLEdgerReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3471,8 +3259,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmStockInward_Click(object sender, EventArgs e)
+         private void TsmStockInward_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3485,8 +3272,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmStockOutward_Click(object sender, EventArgs e)
+         private void TsmStockOutward_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3499,8 +3285,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockReport_Click(object sender, EventArgs e)
+         private void tsmStockReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3526,8 +3311,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmStockAging_Click(object sender, EventArgs e)
+         private void TsmStockAging_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3553,8 +3337,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockValuationbyDate_Click(object sender, EventArgs e)
+         private void tsmStockValuationbyDate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3593,8 +3376,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseBillWiseTaxReport_Click(object sender, EventArgs e)
+         private void TsmPurchaseBillWiseTaxReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3607,8 +3389,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchasePeriodWiseTaxReport_Click(object sender, EventArgs e)
+         private void TsmPurchasePeriodWiseTaxReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3634,8 +3415,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseTCSValueReport_Click(object sender, EventArgs e)
+         private void TsmPurchaseTCSValueReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3688,8 +3468,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseOrder_Click(object sender, EventArgs e)
+         private void tsmPurchaseOrder_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3703,8 +3482,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmGRN_Click(object sender, EventArgs e)
+         private void TsmGRN_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3746,11 +3524,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmfromPurchase_Grn_DC_Click(object sender, EventArgs e)
+         private void tsmfromPurchase_Grn_DC_Click(object sender, EventArgs e)
         {
-
-            try
+             try
             {
                 udfnGetDefaultCompany();
                 OpenReportForm(ref MainForm.objINV_InwardPurchaseList, "INV_InwardPurchaseList", 30101);
@@ -3762,8 +3538,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmInwardfromothers_Click(object sender, EventArgs e)
+         private void tsmInwardfromothers_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3777,8 +3552,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmOutward_Click(object sender, EventArgs e)
+         private void TsmOutward_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3820,8 +3594,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockReconciliation_Click(object sender, EventArgs e)
+         private void tsmStockReconciliation_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3835,8 +3608,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmStockHold_Click(object sender, EventArgs e)
+         private void TsmStockHold_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3864,8 +3636,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmStockRequest_Click(object sender, EventArgs e)
+         private void TsmStockRequest_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3892,11 +3663,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockConversion_Click(object sender, EventArgs e)
+         private void tsmStockConversion_Click(object sender, EventArgs e)
         {
-
-            try
+             try
             {
                 udfnGetDefaultCompany();
                 OpenReportForm(ref MainForm.objINV_StockJournalList, "INV_StockJournalList", 310);
@@ -3921,8 +3690,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmBlockedSupplier_Click(object sender, EventArgs e)
+         private void TsmBlockedSupplier_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3947,8 +3715,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmAdvance_Click(object sender, EventArgs e)
+         private void tsmAdvance_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3960,8 +3727,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsbCreditNote_Click(object sender, EventArgs e)
+         private void TsbCreditNote_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3987,8 +3753,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmChequeTransaction_Click(object sender, EventArgs e)
+         private void TsmChequeTransaction_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4001,8 +3766,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmGSTRDetails_Click(object sender, EventArgs e)
+         private void tsmGSTRDetails_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4014,8 +3778,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCity_Click(object sender, EventArgs e)
+         private void tsmCity_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4028,8 +3791,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmBank_Click(object sender, EventArgs e)
+         private void TsmBank_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4094,8 +3856,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmBrand_Click(object sender, EventArgs e)
+         private void TsmBrand_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4186,8 +3947,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCategory_Click(object sender, EventArgs e)
+         private void tsmCategory_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4213,8 +3973,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmUser_Click(object sender, EventArgs e)
+         private void TsmUser_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4271,8 +4030,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void tsmMinsalesUpdate_Click(object sender, EventArgs e)
+         public void tsmMinsalesUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4290,8 +4048,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void tsmMinMaxUpdate_Click(object sender, EventArgs e)
+         public void tsmMinMaxUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4309,8 +4066,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void tsmUnitUppUpdate_Click(object sender, EventArgs e)
+         public void tsmUnitUppUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4328,8 +4084,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void tsmProductUpdate_Click(object sender, EventArgs e)
+         public void tsmProductUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4347,8 +4102,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void tsmNetGrossUpdate_Click(object sender, EventArgs e)
+         public void tsmNetGrossUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4366,8 +4120,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void tsmSubgrupBrandUpdate_Click(object sender, EventArgs e)
+         public void tsmSubgrupBrandUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4385,8 +4138,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmHSNUpdate_Click(object sender, EventArgs e)
+         private void tsmHSNUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4404,8 +4156,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void tsmProCodeUpdate_Click(object sender, EventArgs e)
+         public void tsmProCodeUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4448,8 +4199,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStickerPrint_Click(object sender, EventArgs e)
+         private void tsmStickerPrint_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4461,13 +4211,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmDirectLabelPrint_Click(object sender, EventArgs e)
+         private void tsmDirectLabelPrint_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tsmUserRole_Click(object sender, EventArgs e)
+         }
+         private void tsmUserRole_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4496,8 +4243,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmVoucherSettings_Click(object sender, EventArgs e)
+         private void tsmVoucherSettings_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4510,8 +4256,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmgenralSettings_Click(object sender, EventArgs e)
+         private void TsmgenralSettings_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4536,8 +4281,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmChequePrintSettings_Click(object sender, EventArgs e)
+         private void TsmChequePrintSettings_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4550,8 +4294,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmExportTally_Click(object sender, EventArgs e)
+         private void tsmExportTally_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4563,8 +4306,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmClearTransactions_Click(object sender, EventArgs e)
+         private void tsmClearTransactions_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4604,8 +4346,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmClearMasters_Click(object sender, EventArgs e)
+         private void tsmClearMasters_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4645,8 +4386,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmFinancialYearProcess_Click(object sender, EventArgs e)
+         private void tsmFinancialYearProcess_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4658,9 +4398,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        private void tsmPurPOBlockedProducts_Click(object sender, EventArgs e)
+         private void tsmPurPOBlockedProducts_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4695,9 +4433,7 @@ namespace ROMS
                 objError = new DataError();
             }
         }
-
-
-        private void tsmReportUserRole_Click(object sender, EventArgs e)
+         private void tsmReportUserRole_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4715,8 +4451,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -4750,8 +4485,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockAdjustment_Click(object sender, EventArgs e)
+         private void tsmStockAdjustment_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4764,8 +4498,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockConversionReport_Click(object sender, EventArgs e)
+         private void tsmStockConversionReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4778,8 +4511,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockJournalReport_Click(object sender, EventArgs e)
+         private void tsmStockJournalReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4792,8 +4524,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockDetailsReport_Click(object sender, EventArgs e)
+         private void tsmStockDetailsReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4806,18 +4537,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmProductClassification_Click(object sender, EventArgs e)
+         private void tsmProductClassification_Click(object sender, EventArgs e)
         {
             try
             {
                 MainForm.objCP_Spl_Products_Bulk = new CP_Spl_Products_Bulk();
                 MainForm.objCP_Spl_Products_Bulk.pbMenuFlag = 1;
                 OpenReportForm(ref MainForm.objCP_Spl_Products_Bulk, "CP_Spl_Products_Bulk", 50507);
-
-                //OpenReportForm(ref MainForm.objCP_Bulk_Image_Update, "CP_Bulk_Image_Update", 50507);
-
-                PbCurrentForm = "5.18";
+                 //OpenReportForm(ref MainForm.objCP_Bulk_Image_Update, "CP_Bulk_Image_Update", 50507);
+                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
             {
@@ -4825,8 +4553,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmRateApproval_Click(object sender, EventArgs e)
+         private void tsmRateApproval_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4838,8 +4565,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmRoute_Click(object sender, EventArgs e)
+         private void tsmRoute_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4852,8 +4578,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCustomerType_Click(object sender, EventArgs e)
+         private void tsmCustomerType_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4866,8 +4591,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCustomer_Click(object sender, EventArgs e)
+         private void tsmCustomer_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4880,8 +4604,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmVehicle_Click(object sender, EventArgs e)
+         private void tsmVehicle_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4894,8 +4617,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmArea_Click(object sender, EventArgs e)
+         private void tsmArea_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4908,18 +4630,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmControlPanel_Click(object sender, EventArgs e)
+         private void tsmControlPanel_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tsmReports_Click(object sender, EventArgs e)
+         }
+         private void tsmReports_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void temporToolStripMenuItem_Click(object sender, EventArgs e)
+         }
+         private void temporToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4932,8 +4649,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCardMachine_Click(object sender, EventArgs e)
+         private void tsmCardMachine_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4946,8 +4662,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmUPI_Click(object sender, EventArgs e)
+         private void tsmUPI_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4960,8 +4675,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmDeliveryPerson_Click(object sender, EventArgs e)
+         private void tsmDeliveryPerson_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4974,8 +4688,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMobile_Click(object sender, EventArgs e)
+         private void tsmMobile_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4988,8 +4701,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmTransport_Click(object sender, EventArgs e)
+         private void tsmTransport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5002,8 +4714,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMarriageHall_Click(object sender, EventArgs e)
+         private void tsmMarriageHall_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5016,13 +4727,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMaster_Click(object sender, EventArgs e)
+         private void tsmMaster_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tsmGif_Click(object sender, EventArgs e)
+         }
+         private void tsmGif_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5034,8 +4742,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmRateCategory_Click(object sender, EventArgs e)
+         private void tsmRateCategory_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5047,8 +4754,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCPBulkUpdate_Click(object sender, EventArgs e)
+         private void tsmCPBulkUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5061,8 +4767,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCPApproval_Click(object sender, EventArgs e)
+         private void tsmCPApproval_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5075,8 +4780,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmRcPriceList_Click(object sender, EventArgs e)
+         private void tsmRcPriceList_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5089,8 +4793,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmRackgroupProduct_Click(object sender, EventArgs e)
+         private void tsmRackgroupProduct_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5103,8 +4806,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmBulkRateCategory_Click(object sender, EventArgs e)
+         private void tsmBulkRateCategory_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5117,8 +4819,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmBulkupdateProductminbulk_Click(object sender, EventArgs e)
+         private void tsmBulkupdateProductminbulk_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5131,8 +4832,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmBulkOffsetUpdate_Click(object sender, EventArgs e)
+         private void tsmBulkOffsetUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5144,10 +4844,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
-        }
-
-        private void tsmZeroVsPOGenerated_Click(object sender, EventArgs e)
+         }
+         private void tsmZeroVsPOGenerated_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5160,8 +4858,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmLockItems_Click(object sender, EventArgs e)
+         private void tsmLockItems_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5174,8 +4871,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmProductReportRateCategory_Click(object sender, EventArgs e)
+         private void tsmProductReportRateCategory_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5187,10 +4883,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
-        }
-
-        private void tsmProductWeight_Click(object sender, EventArgs e)
+         }
+         private void tsmProductWeight_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5203,11 +4897,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesVoucherSettings_Click(object sender, EventArgs e)
+         private void tsmSalesVoucherSettings_Click(object sender, EventArgs e)
         {
-
-            try
+             try
             {
                 OpenReportForm(ref MainForm.objCP_Sales_Settings, "CP_Sales_Settings", 605);
                 PbCurrentForm = "6.1";
@@ -5218,23 +4910,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesGeneralSettings_Click(object sender, EventArgs e)
+         private void tsmSalesGeneralSettings_Click(object sender, EventArgs e)
         {
             try
             {
                 OpenReportForm(ref MainForm.objCP_Sales_GeneralSettings, "CP_Sales_GeneralSettings", 606);
                 PbCurrentForm = "7";
-
-            }
+             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesUserRole_Click(object sender, EventArgs e)
+         private void tsmSalesUserRole_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5246,8 +4935,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesSystemUser_Click(object sender, EventArgs e)
+         private void tsmSalesSystemUser_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5259,8 +4947,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmDamageEntryReport_Click(object sender, EventArgs e)
+         private void tsmDamageEntryReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5273,8 +4960,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmDLPSingleProduct_Click(object sender, EventArgs e)
+         private void tsmDLPSingleProduct_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5286,8 +4972,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmDLPMultipleProducts_Click(object sender, EventArgs e)
+         private void tsmDLPMultipleProducts_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5299,8 +4984,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockReqQueue_Click(object sender, EventArgs e)
+         private void tsmStockReqQueue_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5314,8 +4998,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmBasket_Click(object sender, EventArgs e)
+         private void tsmBasket_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5328,8 +5011,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmProductCount_Click(object sender, EventArgs e)
+         private void tsmProductCount_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5342,13 +5024,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmMs_Click(object sender, EventArgs e)
+         private void TsmMs_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tsmPurchaseConsolidated_Click(object sender, EventArgs e)
+         }
+         private void tsmPurchaseConsolidated_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5361,8 +5040,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmStockTaking_Click(object sender, EventArgs e)
+         private void tsmStockTaking_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5375,8 +5053,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseProductwiseBatch_Click(object sender, EventArgs e)
+         private void tsmPurchaseProductwiseBatch_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5389,13 +5066,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmProductMenu_Click(object sender, EventArgs e)
+         private void tsmProductMenu_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tsmCustomerGroup_Click(object sender, EventArgs e)
+         }
+         private void tsmCustomerGroup_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5408,8 +5082,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmAddressBook_Click(object sender, EventArgs e)
+         private void tsmAddressBook_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5422,8 +5095,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmProductImageApproval_Click(object sender, EventArgs e)
+         private void tsmProductImageApproval_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5436,30 +5108,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmF4_Click(object sender, EventArgs e)
+         private void tsmF4_Click(object sender, EventArgs e)
         {
             MainForm.objCP_ProductDetails = new CP_ProductDetails();
             MainForm.objCP_ProductDetails.MdiParent = this.ParentForm;
             MainForm.objCP_ProductDetails.ShowDialog();
         }
-
-        private void tsmF9_Click(object sender, EventArgs e)
+         private void tsmF9_Click(object sender, EventArgs e)
         {
-
-            MainForm.objCP_Product_Supplier = new CP_Product_Supplier();
+             MainForm.objCP_Product_Supplier = new CP_Product_Supplier();
             MainForm.objCP_Product_Supplier.MdiParent = this.ParentForm;
             MainForm.objCP_Product_Supplier.ShowDialog();
         }
-
-        private void tsmF10_Click(object sender, EventArgs e)
+         private void tsmF10_Click(object sender, EventArgs e)
         {
             MainForm.objCP_Product_Popup = new CP_Product_Popup();
             MainForm.objCP_Product_Popup.MdiParent = this.ParentForm;
             MainForm.objCP_Product_Popup.ShowDialog();
         }
-
-        private void tsmPurchaseReturnDCReport_Click(object sender, EventArgs e)
+         private void tsmPurchaseReturnDCReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5472,8 +5139,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void inventoryCountToolStripMenuItem_Click(object sender, EventArgs e)
+         private void inventoryCountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5486,13 +5152,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMastersReport_Click(object sender, EventArgs e)
+         private void tsmMastersReport_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tsmRateChangeConfirmation_Click(object sender, EventArgs e)
+         }
+         private void tsmRateChangeConfirmation_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5504,8 +5167,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmProductRateOffset_Click(object sender, EventArgs e)
+         private void tsmProductRateOffset_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5517,8 +5179,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSubgroupImage_Click(object sender, EventArgs e)
+         private void tsmSubgroupImage_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5530,8 +5191,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSReports_Click(object sender, EventArgs e)
+         private void tsmSReports_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5543,8 +5203,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCardPayment_Click(object sender, EventArgs e)
+         private void tsmCardPayment_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5556,8 +5215,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmRouteReport_Click(object sender, EventArgs e)
+         private void tsmRouteReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5569,8 +5227,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmAreaReport_Click(object sender, EventArgs e)
+         private void tsmAreaReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5582,8 +5239,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCustomerTypeReport_Click(object sender, EventArgs e)
+         private void tsmCustomerTypeReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5595,8 +5251,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmVehicleReport_Click(object sender, EventArgs e)
+         private void tsmVehicleReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5608,8 +5263,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmDeliveryPersonReport_Click(object sender, EventArgs e)
+         private void tsmDeliveryPersonReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5621,8 +5275,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMobileReport_Click(object sender, EventArgs e)
+         private void tsmMobileReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5634,8 +5287,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmTransportReport_Click(object sender, EventArgs e)
+         private void tsmTransportReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5647,8 +5299,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCardMachineReport_Click(object sender, EventArgs e)
+         private void tsmCardMachineReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5660,8 +5311,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmMarriageHallReport_Click(object sender, EventArgs e)
+         private void tsmMarriageHallReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5673,8 +5323,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesSummaryDetail_Click(object sender, EventArgs e)
+         private void tsmSalesSummaryDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5686,8 +5335,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesProductWise_Click(object sender, EventArgs e)
+         private void tsmSalesProductWise_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5699,8 +5347,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSalesNonMovingProduct_Click(object sender, EventArgs e)
+         private void tsmSalesNonMovingProduct_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5712,19 +5359,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmGenCusNameChange_Click(object sender, EventArgs e)
+         private void tsmGenCusNameChange_Click(object sender, EventArgs e)
         {
              OpenReportForm(ref MainForm.objREPORT_SALES_GeneralCustomerNameChange, "REPORT_SALES_GeneralCustomerNameChange", 140210);
         }
-
-        private void tsmBatchwiseStockTaking_Click(object sender, EventArgs e)
+         private void tsmBatchwiseStockTaking_Click(object sender, EventArgs e)
         {
-            
-                  OpenReportForm(ref MainForm.objREPORT_Batchwise_Stock_Taking, "REPORT_Batchwise_Stock_Taking", 80417);
+                   OpenReportForm(ref MainForm.objREPORT_Batchwise_Stock_Taking, "REPORT_Batchwise_Stock_Taking", 80417);
         }
-
-        private void tsmSalesTax_Click(object sender, EventArgs e)
+         private void tsmSalesTax_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5736,8 +5379,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmSchemeReport_Click(object sender, EventArgs e)
+         private void tsmSchemeReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5749,19 +5391,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmCustomer_Click_1(object sender, EventArgs e)
+         private void tsmCustomer_Click_1(object sender, EventArgs e)
         {
             OpenReportForm(ref MainForm.objREPORT_SALES_Report_Customer, "REPORT_SALES_Report_Customer", 140211);
         }
-
-        private void tsmLock_Click(object sender, EventArgs e)
+         private void tsmLock_Click(object sender, EventArgs e)
         {
-
-            try
+             try
             {
-
-                DEF_IdleLogin obj = new DEF_IdleLogin();
+                 DEF_IdleLogin obj = new DEF_IdleLogin();
                 obj.ShowDialog();
             }
             catch (Exception ex)
@@ -5770,8 +5408,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void DisablePageControls(bool status)
+         public void DisablePageControls(bool status)
         {
             foreach (Control c in this.Controls)
             {
