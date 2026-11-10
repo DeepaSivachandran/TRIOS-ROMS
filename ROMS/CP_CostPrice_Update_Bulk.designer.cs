@@ -36,7 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBulkAttribute = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblTotalProducts = new System.Windows.Forms.Label();
@@ -59,15 +58,11 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdProducts = new System.Windows.Forms.DataGridView();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.picloader2 = new System.Windows.Forms.PictureBox();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
-            this.btnMappingClose = new System.Windows.Forms.Button();
             this.lblDESubGroup = new System.Windows.Forms.Label();
-            this.btnMappingsave = new System.Windows.Forms.Button();
             this.lblDEGroup = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtMappingSubGroup = new System.Windows.Forms.TextBox();
-            this.btnMappingView = new System.Windows.Forms.Button();
             this.txtMappingGroup = new System.Windows.Forms.TextBox();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -94,15 +89,20 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errSpl = new System.Windows.Forms.ErrorProvider(this.components);
+            this.picloader2 = new System.Windows.Forms.PictureBox();
+            this.btnMappingClose = new System.Windows.Forms.Button();
+            this.btnMappingsave = new System.Windows.Forms.Button();
+            this.btnMappingView = new System.Windows.Forms.Button();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsBulkAttribute.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picloader2)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errSpl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picloader2)).BeginInit();
             this.SuspendLayout();
             // 
             // tsBulkAttribute
@@ -117,16 +117,6 @@
             this.tsBulkAttribute.Size = new System.Drawing.Size(1354, 27);
             this.tsBulkAttribute.TabIndex = 35;
             this.tsBulkAttribute.Text = "Purchase";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.add;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(107, 24);
-            this.tspHeader.Text = "CP Bulk Update";
             // 
             // pnlMenu
             // 
@@ -419,20 +409,6 @@
             this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
-            // picloader2
-            // 
-            this.picloader2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picloader2.ErrorImage = null;
-            this.picloader2.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picloader2.InitialImage = null;
-            this.picloader2.Location = new System.Drawing.Point(3, 11);
-            this.picloader2.Name = "picloader2";
-            this.picloader2.Size = new System.Drawing.Size(1325, 506);
-            this.picloader2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picloader2.TabIndex = 958825;
-            this.picloader2.TabStop = false;
-            this.picloader2.Visible = false;
-            // 
             // txtSearchByProduct1
             // 
             this.txtSearchByProduct1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -443,20 +419,6 @@
             this.txtSearchByProduct1.TabIndex = 5;
             this.txtSearchByProduct1.TextChanged += new System.EventHandler(this.txtSearchByProduct1_TextChanged);
             // 
-            // btnMappingClose
-            // 
-            this.btnMappingClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnMappingClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnMappingClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappingClose.Location = new System.Drawing.Point(1262, 595);
-            this.btnMappingClose.Name = "btnMappingClose";
-            this.btnMappingClose.Size = new System.Drawing.Size(75, 29);
-            this.btnMappingClose.TabIndex = 8;
-            this.btnMappingClose.Text = "Close";
-            this.btnMappingClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMappingClose.UseVisualStyleBackColor = true;
-            this.btnMappingClose.Click += new System.EventHandler(this.btnMappingClose_Click);
-            // 
             // lblDESubGroup
             // 
             this.lblDESubGroup.AutoSize = true;
@@ -466,20 +428,6 @@
             this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
             this.lblDESubGroup.TabIndex = 29;
             this.lblDESubGroup.Text = "Product Sub Group";
-            // 
-            // btnMappingsave
-            // 
-            this.btnMappingsave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnMappingsave.Image = global::ROMS.Properties.Resources.save;
-            this.btnMappingsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappingsave.Location = new System.Drawing.Point(1167, 595);
-            this.btnMappingsave.Name = "btnMappingsave";
-            this.btnMappingsave.Size = new System.Drawing.Size(92, 29);
-            this.btnMappingsave.TabIndex = 7;
-            this.btnMappingsave.Text = "Update";
-            this.btnMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMappingsave.UseVisualStyleBackColor = true;
-            this.btnMappingsave.Click += new System.EventHandler(this.btnMappingsave_Click);
             // 
             // lblDEGroup
             // 
@@ -513,19 +461,6 @@
             this.txtMappingSubGroup.Enter += new System.EventHandler(this.txtMappingSubGroup_Enter);
             this.txtMappingSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMappingSubGroup_KeyDown);
             this.txtMappingSubGroup.Leave += new System.EventHandler(this.txtMappingSubGroup_Leave);
-            // 
-            // btnMappingView
-            // 
-            this.btnMappingView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMappingView.Image = global::ROMS.Properties.Resources.view;
-            this.btnMappingView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappingView.Location = new System.Drawing.Point(372, 38);
-            this.btnMappingView.Name = "btnMappingView";
-            this.btnMappingView.Size = new System.Drawing.Size(33, 29);
-            this.btnMappingView.TabIndex = 4;
-            this.btnMappingView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMappingView.UseVisualStyleBackColor = true;
-            this.btnMappingView.Click += new System.EventHandler(this.btnMappingView_Click);
             // 
             // txtMappingGroup
             // 
@@ -777,6 +712,71 @@
             // 
             this.errSpl.ContainerControl = this;
             // 
+            // picloader2
+            // 
+            this.picloader2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picloader2.ErrorImage = null;
+            this.picloader2.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picloader2.InitialImage = null;
+            this.picloader2.Location = new System.Drawing.Point(3, 11);
+            this.picloader2.Name = "picloader2";
+            this.picloader2.Size = new System.Drawing.Size(1325, 506);
+            this.picloader2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picloader2.TabIndex = 958825;
+            this.picloader2.TabStop = false;
+            this.picloader2.Visible = false;
+            // 
+            // btnMappingClose
+            // 
+            this.btnMappingClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnMappingClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnMappingClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingClose.Location = new System.Drawing.Point(1262, 595);
+            this.btnMappingClose.Name = "btnMappingClose";
+            this.btnMappingClose.Size = new System.Drawing.Size(75, 29);
+            this.btnMappingClose.TabIndex = 8;
+            this.btnMappingClose.Text = "Close";
+            this.btnMappingClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMappingClose.UseVisualStyleBackColor = true;
+            this.btnMappingClose.Click += new System.EventHandler(this.btnMappingClose_Click);
+            // 
+            // btnMappingsave
+            // 
+            this.btnMappingsave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnMappingsave.Image = global::ROMS.Properties.Resources.save;
+            this.btnMappingsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingsave.Location = new System.Drawing.Point(1167, 595);
+            this.btnMappingsave.Name = "btnMappingsave";
+            this.btnMappingsave.Size = new System.Drawing.Size(92, 29);
+            this.btnMappingsave.TabIndex = 7;
+            this.btnMappingsave.Text = "Update";
+            this.btnMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMappingsave.UseVisualStyleBackColor = true;
+            this.btnMappingsave.Click += new System.EventHandler(this.btnMappingsave_Click);
+            // 
+            // btnMappingView
+            // 
+            this.btnMappingView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMappingView.Image = global::ROMS.Properties.Resources.view;
+            this.btnMappingView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingView.Location = new System.Drawing.Point(372, 38);
+            this.btnMappingView.Name = "btnMappingView";
+            this.btnMappingView.Size = new System.Drawing.Size(33, 29);
+            this.btnMappingView.TabIndex = 4;
+            this.btnMappingView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMappingView.UseVisualStyleBackColor = true;
+            this.btnMappingView.Click += new System.EventHandler(this.btnMappingView_Click);
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.add;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(107, 24);
+            this.tspHeader.Text = "CP Bulk Update";
+            // 
             // CP_CostPrice_Update_Bulk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -803,10 +803,10 @@
             this.grpSupplierMapping.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picloader2)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errSpl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picloader2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -313,6 +313,12 @@
     <Compile Include="CP_Rackgroup_Product.designer.cs">
       <DependentUpon>CP_Rackgroup_Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Rack_Token.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rack_Token.designer.cs">
+      <DependentUpon>CP_Rack_Token.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Rate_Category.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -402,6 +408,12 @@
     </Compile>
     <Compile Include="CP_BulkProductDemo.designer.cs">
       <DependentUpon>CP_BulkProductDemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Rack_Token_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rack_Token_List.designer.cs">
+      <DependentUpon>CP_Rack_Token_List.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_Courierlist.cs">
       <SubType>Form</SubType>
@@ -5483,6 +5495,9 @@
     <EmbeddedResource Include="CP_Rackgroup_Product.resx">
       <DependentUpon>CP_Rackgroup_Product.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rack_Token.resx">
+      <DependentUpon>CP_Rack_Token.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_Category.resx">
       <DependentUpon>CP_Rate_Category.cs</DependentUpon>
     </EmbeddedResource>
@@ -5527,6 +5542,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BulkProductDemo.resx">
       <DependentUpon>CP_BulkProductDemo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rack_Token_List.resx">
+      <DependentUpon>CP_Rack_Token_List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Courierlist.resx">
       <DependentUpon>CP_Courierlist.cs</DependentUpon>

@@ -267,6 +267,11 @@ namespace ROMS
                         lv_Broker.Visible = false;
                         DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                         GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
+                        if (grdSupplierList.Rows.Count != 0)
+                        {
+                            lblFinishedNoRecord.Visible = false;
+                        }
+                        else { lblFinishedNoRecord.Visible = true; }
                     }
                     else
                     {

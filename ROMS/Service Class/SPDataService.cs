@@ -1211,7 +1211,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish Created On:-18-08-2023
-        public string udfnRack(int paraViewType, int paraRackId, int paraConcern, int paraStockLocation, string paraRackName, string paraShortName, string paraDescription, int paraStatusId, string paraOriginator, int paraDeleteFlag, int paraSalesBillEnable)
+        public string udfnRack(int paraViewType, int paraRackId, int paraConcern, int paraStockLocation, string paraRackName, string paraShortName, string paraDescription, int paraStatusId, string paraOriginator, int paraDeleteFlag, int paraSalesBillEnable, int paraGroupSlipcode = 0, DataTable paraProducts = null,string paraSlipGroupName = "")
         {
             string varResult = "";
             try
@@ -1232,6 +1232,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraSalesBillEnable", paraSalesBillEnable);
+                varSqlCommand.Parameters.AddWithValue("@paraProducts", paraProducts);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupSlipcode", paraGroupSlipcode);
+                varSqlCommand.Parameters.AddWithValue("@paraSlipGroupName", paraSlipGroupName);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -1248,7 +1251,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-18/08/2023
-        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId, int paraStockLocationId, int paraRackId, string paraRackName, int paraSubGroupID, int paraStatusId)
+        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId, int paraStockLocationId, int paraRackId, string paraRackName, int paraSubGroupID, int paraStatusId,int paraGroupSlipcode = 0 )
         {
             DataSet ds = new DataSet();
             try
@@ -1264,8 +1267,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRackName", paraRackName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", paraSubGroupID);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", paraSubGroupID); 
+                varSqlCommand.Parameters.AddWithValue("@paraTokenId", paraGroupSlipcode);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

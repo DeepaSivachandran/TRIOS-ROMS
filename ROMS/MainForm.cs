@@ -462,6 +462,8 @@ using System.Windows.Forms;
         public static CP_Product_Count objCP_Product_Count;
         public static CP_Courier objCP_Courier;
         public static CP_Courierlist objCP_Courierlist;
+        public static CP_Rack_Token objCP_Rack_Token;
+        public static CP_Rack_Token_List objCP_Rack_Token_List;
 
         public MainForm()
         {
@@ -5406,6 +5408,20 @@ using System.Windows.Forms;
             {
                 OpenReportForm(ref MainForm.objCP_Courierlist, "CP_Courierlist", 1315);
                 PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmTokenGroupMapping_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Rack_Token_List, "CP_Rack_Token_List", 50405);
+
             }
             catch (Exception ex)
             {
