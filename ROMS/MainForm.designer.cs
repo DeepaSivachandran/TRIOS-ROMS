@@ -2273,11 +2273,11 @@ namespace ROMS
             // 
             // tsmTemporyCustomer
             // 
-            this.tsmTemporyCustomer.Name = "tsmTemporyCustomer";
-            this.tsmTemporyCustomer.Size = new System.Drawing.Size(175, 22);
-            this.tsmTemporyCustomer.Text = "Temporary Customer";
-            this.tsmTemporyCustomer.Visible = false;
-            this.tsmTemporyCustomer.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
+            //this.tsmTemporyCustomer.Name = "tsmTemporyCustomer";
+            //this.tsmTemporyCustomer.Size = new System.Drawing.Size(175, 22);
+            //this.tsmTemporyCustomer.Text = "Temporary Customer";
+            //this.tsmTemporyCustomer.Visible = false;
+            //this.tsmTemporyCustomer.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
             // 
             // tsmCardMachine
             // 
