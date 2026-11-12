@@ -1438,7 +1438,7 @@ namespace ROMS
                 }
                 if (varMessage != "" && (varProcount != "0"))
                 {
-                    objMainForm.udfnTelegramRCNotification(varMessage);
+                    objMainForm.udfnTelegramRCNotificationNew(varMessage);
                 }
             }
             catch (Exception ex)

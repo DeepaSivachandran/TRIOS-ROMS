@@ -1736,7 +1736,7 @@ using System.Windows.Forms;
             {
             }
         }
-        /*
+        
         public async Task udfnTelegramRCNotification(string varMessage)
         {
             try
@@ -1744,6 +1744,7 @@ using System.Windows.Forms;
                 using (var httpClient = new HttpClient())
                 {
                     var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendMessage?chat_id=" + varChatID;
+
                     var data = new Dictionary<string, string>
                     {
                         { "text", varMessage },
@@ -1780,7 +1781,7 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-        */
+        
          private const int NoWidth = 4;
         private const int ProductWidth = 30;
         private const bool CloseRightBorder = false;
@@ -1882,7 +1883,7 @@ using System.Windows.Forms;
             return sb.ToString().TrimEnd();
         }
         //public async Task udfnTelegramRCNotification(string varMessage, string varURL)
-        public async Task udfnTelegramRCNotification(string varMessage)
+        public async Task udfnTelegramRCNotificationNew(string varMessage)
         {
             try
             {
@@ -1909,8 +1910,7 @@ using System.Windows.Forms;
                      using (var httpClient = new HttpClient())
                     {
                         var apiUrl = $"https://api.telegram.org/bot" + varToken + "/sendMessage?chat_id=" + varChatID;
-                        //var apiUrl = varURL;
-                         var data = new Dictionary<string, string>
+                        var data = new Dictionary<string, string>
                         {
                             {
                                 "text",
