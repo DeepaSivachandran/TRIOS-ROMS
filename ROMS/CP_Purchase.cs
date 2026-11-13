@@ -9341,8 +9341,8 @@ namespace ROMS
                         txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
                     } 
                     pnlConditions.Visible = false;
-                    udfnConditionFocus();
                     udfnConditionDisable();
+                    udfnConditionFocus();
                 }
                 else
                 {
