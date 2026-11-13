@@ -3994,12 +3994,6 @@
         "Entry"
         {
         "MsmKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
-        "OwnerKey" = "8:_ADA029EC08676DF6423FA4DEE17C6F09"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
         "OwnerKey" = "8:_FB836E2F30174271AC811B1E9F293B3F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4007,6 +4001,12 @@
         {
         "MsmKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
         "OwnerKey" = "8:_9E365B120DC89449472EA99925022B05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
+        "OwnerKey" = "8:_ADA029EC08676DF6423FA4DEE17C6F09"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4450,6 +4450,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FB836E2F30174271AC811B1E9F293B3F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4571,12 +4577,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_ADA029EC08676DF6423FA4DEE17C6F09"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5313,7 +5313,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\ROMS v2.19.1.msi"
+        "OutputFilename" = "8:Debug\\ROMS v2.19.2.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -20163,15 +20163,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROMS"
-        "ProductCode" = "8:{8849504D-E8FC-4FDD-A819-C8E98492E429}"
-        "PackageCode" = "8:{7C0E9B02-F27E-41A2-856E-EB07AB651735}"
+        "ProductCode" = "8:{4E34FC31-75DB-43C7-9E81-09F21EB6BCAF}"
+        "PackageCode" = "8:{F1CA02F7-328E-4C33-A787-F58D76597C20}"
         "UpgradeCode" = "8:{FC2AE767-A3BF-4189-A07F-0B601778A960}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.19.1"
+        "ProductVersion" = "8:2.19.2"
         "Manufacturer" = "8:Trio-S"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://trio-s.com/"
