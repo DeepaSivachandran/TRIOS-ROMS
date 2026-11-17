@@ -860,7 +860,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN(505,585)", "MST_DisplayText,MSTID", cmbSalesType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (169,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (198)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,190,202) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (0,511,516,533,534,665) ", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,157) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCustomerCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,201) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBillCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -2241,7 +2241,7 @@ namespace ROMS
                 cmbCustomerCategory.SelectedValue = 0;
                 cmbSchemeType.Enabled = false;
                 cmbSchemeType.SelectedValue = 0;
-                cmbBillCategory.Enabled = false;
+                //cmbBillCategory.Enabled = false;
                 cmbBillCategory.SelectedValue = 0;
                 cmbPrintType.Enabled = false;
                 cmbMultiSelectDays.Enabled = false;
@@ -2272,10 +2272,10 @@ namespace ROMS
                 {
                     case 666:
                         cmbCustomerCategory.Enabled = true;
+                        cmbBillCategory.Enabled = true;
                         if (Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
                         {
                             cmbSchemeType.Enabled = true;
-                            cmbBillCategory.Enabled = true;
                         }
                         if (chkTimeRange.Checked == true)
                         {
@@ -2289,10 +2289,10 @@ namespace ROMS
 
                     case 667:
                         cmbCustomerCategory.Enabled = true;
+                        cmbBillCategory.Enabled = true;
                         if (Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
                         {
                             cmbSchemeType.Enabled = true;
-                            cmbBillCategory.Enabled = true;
                         }
 
                         cmbPrintType.Enabled = true;
@@ -2829,7 +2829,7 @@ namespace ROMS
                 else
                 {
                     label10.Text = "Created By";
-                    cmbBillCategory.Enabled = false;
+                    //cmbBillCategory.Enabled = false;
                     cmbBillCategory.SelectedValue = 0;
                     cmbBillType.Enabled = false;
                     cmbBillType.SelectedValue = 0;
