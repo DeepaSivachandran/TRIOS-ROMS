@@ -2292,7 +2292,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBillType.Focus();
+                    if (cmbBillType.Enabled == true)
+                    {
+                        cmbBillType.Focus();
+                    }
+                    else if (cmbFilterType.Enabled == true)
+                    {
+                        cmbFilterType.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2651,7 +2662,11 @@ namespace ROMS
                 cmbClassification.Enabled = true;
                 cmbProductType.Enabled = true;
                 cmbSalesType.Enabled = true;
-                cmbBillType.Enabled = true;
+                cmbBillType.Enabled = false;
+                if (Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
+                {
+                    cmbBillType.Enabled = true;
+                }
 
                 dpFromDate.Enabled = true;
                 dpToDate.Enabled = true;
@@ -3010,6 +3025,27 @@ namespace ROMS
             try
             {
                 cmbMultiUnit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSalesType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbSalesType.SelectedValue) == 505)
+                {
+                    cmbBillType.Enabled = true;
+                }
+                else
+                {
+                    cmbBillType.Enabled = false;
+                    cmbBillType.SelectedValue = 0;
+                }
             }
             catch (Exception ex)
             {
