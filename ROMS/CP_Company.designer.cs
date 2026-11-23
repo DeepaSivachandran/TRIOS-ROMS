@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.tcCompanyDetails = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -46,6 +47,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblCompanyLogoPath = new System.Windows.Forms.Label();
             this.lblCompanyLogoFilename = new System.Windows.Forms.Label();
+            this.btncollegeLogoUpload = new System.Windows.Forms.Button();
+            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.lvCity = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,6 +59,8 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.txtwhatsappNo = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbBankName = new System.Windows.Forms.ComboBox();
             this.chkDefaultBank = new System.Windows.Forms.CheckBox();
@@ -67,6 +72,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnAdd = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.txtBankShortName = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -84,6 +90,8 @@
             this.clmDefault = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBNKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -156,32 +164,48 @@
             this.clmid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatusContactID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatusContact = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCMEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtMobilenumber = new System.Windows.Forms.TextBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
+            this.btnAddContact = new System.Windows.Forms.Button();
+            this.btnSaveContact = new System.Windows.Forms.Button();
+            this.btnCloseContact = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtPerAddressLine2 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.cmbPerState = new System.Windows.Forms.ComboBox();
+            this.txtPerPincode = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.txtPerAddressLine1 = new System.Windows.Forms.TextBox();
+            this.txtPerPhoneNo = new System.Windows.Forms.TextBox();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.txtPerCity = new System.Windows.Forms.TextBox();
+            this.btnPersonDetClose = new System.Windows.Forms.Button();
             this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btncollegeLogoUpload = new System.Windows.Forms.Button();
-            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnAddContact = new System.Windows.Forms.Button();
-            this.clmCMEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnSaveContact = new System.Windows.Forms.Button();
-            this.btnCloseContact = new System.Windows.Forms.Button();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.lvPerCity = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblPerCityId = new System.Windows.Forms.Label();
+            this.btnPersonalAddUpdate = new System.Windows.Forms.Button();
+            this.txtPersonalName = new System.Windows.Forms.TextBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grbform.SuspendLayout();
             this.grpLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnlBStatus.SuspendLayout();
@@ -190,8 +214,9 @@
             this.grpform2.SuspendLayout();
             this.pnlStatusContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -207,6 +232,16 @@
             this.tsBrandList.TabIndex = 35;
             this.tsBrandList.Text = "Brand";
             // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(115, 22);
+            this.tspHeader.Text = "Company Details";
+            // 
             // pnlCompany
             // 
             this.pnlCompany.BackColor = System.Drawing.Color.White;
@@ -220,6 +255,7 @@
             // 
             this.tcCompanyDetails.Controls.Add(this.tabPage1);
             this.tcCompanyDetails.Controls.Add(this.grpform2);
+            this.tcCompanyDetails.Controls.Add(this.tabPage2);
             this.tcCompanyDetails.Location = new System.Drawing.Point(12, 1);
             this.tcCompanyDetails.Name = "tcCompanyDetails";
             this.tcCompanyDetails.SelectedIndex = 0;
@@ -350,6 +386,29 @@
             this.lblCompanyLogoFilename.TabIndex = 249;
             this.lblCompanyLogoFilename.Visible = false;
             // 
+            // btncollegeLogoUpload
+            // 
+            this.btncollegeLogoUpload.Image = global::ROMS.Properties.Resources.browse1;
+            this.btncollegeLogoUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btncollegeLogoUpload.Location = new System.Drawing.Point(102, 145);
+            this.btncollegeLogoUpload.Name = "btncollegeLogoUpload";
+            this.btncollegeLogoUpload.Size = new System.Drawing.Size(84, 29);
+            this.btncollegeLogoUpload.TabIndex = 246;
+            this.btncollegeLogoUpload.Text = "Browse";
+            this.btncollegeLogoUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btncollegeLogoUpload.UseVisualStyleBackColor = true;
+            this.btncollegeLogoUpload.Click += new System.EventHandler(this.BtncollegeLogoUpload_Click);
+            // 
+            // picCompanyLogo
+            // 
+            this.picCompanyLogo.Image = global::ROMS.Properties.Resources.picture;
+            this.picCompanyLogo.InitialImage = null;
+            this.picCompanyLogo.Location = new System.Drawing.Point(92, 32);
+            this.picCompanyLogo.Name = "picCompanyLogo";
+            this.picCompanyLogo.Size = new System.Drawing.Size(100, 100);
+            this.picCompanyLogo.TabIndex = 247;
+            this.picCompanyLogo.TabStop = false;
+            // 
             // lvCity
             // 
             this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -358,7 +417,7 @@
             this.columnHeader3});
             this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(125, 285);
+            this.lvCity.Location = new System.Drawing.Point(125, 216);
             this.lvCity.Name = "lvCity";
             this.lvCity.Size = new System.Drawing.Size(313, 99);
             this.lvCity.TabIndex = 62;
@@ -460,6 +519,40 @@
             this.textBox4.TabIndex = 56;
             this.textBox4.Text = "Status";
             this.textBox4.Visible = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1142, 562);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 30;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1230, 562);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 31;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // groupBox2
             // 
@@ -591,6 +684,22 @@
             // 
             this.columnHeader7.Width = 0;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(882, 56);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(25, 24);
+            this.btnAdd.TabIndex = 27;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
             // textBox5
             // 
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
@@ -649,14 +758,14 @@
             this.grdBankDetails.AllowUserToResizeRows = false;
             this.grdBankDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdBankDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.grdBankDetails.ColumnHeadersHeight = 30;
             this.grdBankDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdBankDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -674,22 +783,22 @@
             this.clmBNKID,
             this.clmEdit,
             this.clmremovebank});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle38;
             this.grdBankDetails.EnableHeadersVisualStyles = false;
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
             this.grdBankDetails.Location = new System.Drawing.Point(6, 87);
             this.grdBankDetails.Name = "grdBankDetails";
             this.grdBankDetails.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle39;
             this.grdBankDetails.RowTemplate.Height = 25;
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankDetails.Size = new System.Drawing.Size(1277, 135);
@@ -779,6 +888,23 @@
             this.clmBNKID.Name = "clmBNKID";
             this.clmBNKID.ReadOnly = true;
             this.clmBNKID.Visible = false;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "Edit";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
+            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmEdit.Width = 60;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.Width = 60;
             // 
             // textBox15
             // 
@@ -1522,14 +1648,14 @@
             this.grdContactManager.AllowUserToResizeRows = false;
             this.grdContactManager.BackgroundColor = System.Drawing.Color.White;
             this.grdContactManager.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle40.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
             this.grdContactManager.ColumnHeadersHeight = 30;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmContsno,
@@ -1546,23 +1672,23 @@
             this.clmStatusContact,
             this.clmCMEdit,
             this.clmRemove});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle41;
             this.grdContactManager.EnableHeadersVisualStyles = false;
             this.grdContactManager.GridColor = System.Drawing.Color.White;
             this.grdContactManager.Location = new System.Drawing.Point(13, 72);
             this.grdContactManager.Name = "grdContactManager";
             this.grdContactManager.ReadOnly = true;
             this.grdContactManager.RowHeadersVisible = false;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.White;
+            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle42;
             this.grdContactManager.RowTemplate.Height = 25;
             this.grdContactManager.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
@@ -1652,6 +1778,21 @@
             this.clmStatusContact.Name = "clmStatusContact";
             this.clmStatusContact.ReadOnly = true;
             // 
+            // clmCMEdit
+            // 
+            this.clmCMEdit.HeaderText = "Edit";
+            this.clmCMEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmCMEdit.Name = "clmCMEdit";
+            this.clmCMEdit.ReadOnly = true;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.exclude;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // txtMobilenumber
             // 
             this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1679,130 +1820,6 @@
             this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
             this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
             // 
-            // epCompany
-            // 
-            this.epCompany.ContainerControl = this;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Edit";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 60;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Remove";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Width = 80;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "Edit";
-            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "Remove";
-            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // btncollegeLogoUpload
-            // 
-            this.btncollegeLogoUpload.Image = global::ROMS.Properties.Resources.browse1;
-            this.btncollegeLogoUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncollegeLogoUpload.Location = new System.Drawing.Point(102, 145);
-            this.btncollegeLogoUpload.Name = "btncollegeLogoUpload";
-            this.btncollegeLogoUpload.Size = new System.Drawing.Size(84, 29);
-            this.btncollegeLogoUpload.TabIndex = 246;
-            this.btncollegeLogoUpload.Text = "Browse";
-            this.btncollegeLogoUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btncollegeLogoUpload.UseVisualStyleBackColor = true;
-            this.btncollegeLogoUpload.Click += new System.EventHandler(this.BtncollegeLogoUpload_Click);
-            // 
-            // picCompanyLogo
-            // 
-            this.picCompanyLogo.Image = global::ROMS.Properties.Resources.picture;
-            this.picCompanyLogo.InitialImage = null;
-            this.picCompanyLogo.Location = new System.Drawing.Point(92, 32);
-            this.picCompanyLogo.Name = "picCompanyLogo";
-            this.picCompanyLogo.Size = new System.Drawing.Size(100, 100);
-            this.picCompanyLogo.TabIndex = 247;
-            this.picCompanyLogo.TabStop = false;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1142, 562);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 30;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1230, 562);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 31;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(882, 56);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(25, 24);
-            this.btnAdd.TabIndex = 27;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "Edit";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
-            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmEdit.Width = 60;
-            // 
-            // clmremovebank
-            // 
-            this.clmremovebank.HeaderText = "Remove";
-            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremovebank.Name = "clmremovebank";
-            this.clmremovebank.Width = 60;
-            // 
             // btnAddContact
             // 
             this.btnAddContact.BackColor = System.Drawing.Color.White;
@@ -1817,21 +1834,6 @@
             this.btnAddContact.Click += new System.EventHandler(this.BtnAddContact_Click);
             this.btnAddContact.Enter += new System.EventHandler(this.BtnAddContact_Enter);
             this.btnAddContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAddContact_KeyDown);
-            // 
-            // clmCMEdit
-            // 
-            this.clmCMEdit.HeaderText = "Edit";
-            this.clmCMEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmCMEdit.Name = "clmCMEdit";
-            this.clmCMEdit.ReadOnly = true;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.exclude;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // btnSaveContact
             // 
@@ -1867,15 +1869,321 @@
             this.btnCloseContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnCloseContact_KeyDown);
             this.btnCloseContact.Leave += new System.EventHandler(this.BtnCloseContact_Leave);
             // 
-            // tspHeader
+            // tabPage2
             // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(115, 22);
-            this.tspHeader.Text = "Company Details";
+            this.tabPage2.Controls.Add(this.btnPersonalAddUpdate);
+            this.tabPage2.Controls.Add(this.lvPerCity);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.btnPersonDetClose);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1322, 586);
+            this.tabPage2.TabIndex = 2;
+            this.tabPage2.Text = "Personal Details";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtPersonalName);
+            this.groupBox1.Controls.Add(this.textBox14);
+            this.groupBox1.Controls.Add(this.lblPerCityId);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.txtPerAddressLine2);
+            this.groupBox1.Controls.Add(this.textBox12);
+            this.groupBox1.Controls.Add(this.cmbPerState);
+            this.groupBox1.Controls.Add(this.txtPerPincode);
+            this.groupBox1.Controls.Add(this.textBox16);
+            this.groupBox1.Controls.Add(this.textBox18);
+            this.groupBox1.Controls.Add(this.txtPerAddressLine1);
+            this.groupBox1.Controls.Add(this.txtPerPhoneNo);
+            this.groupBox1.Controls.Add(this.textBox22);
+            this.groupBox1.Controls.Add(this.textBox23);
+            this.groupBox1.Controls.Add(this.txtPerCity);
+            this.groupBox1.Location = new System.Drawing.Point(25, 16);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(567, 265);
+            this.groupBox1.TabIndex = 63;
+            this.groupBox1.TabStop = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox3.Location = new System.Drawing.Point(24, 91);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(111, 27);
+            this.textBox3.TabIndex = 60;
+            this.textBox3.Text = "Address Line 2";
+            // 
+            // txtPerAddressLine2
+            // 
+            this.txtPerAddressLine2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPerAddressLine2.Location = new System.Drawing.Point(135, 91);
+            this.txtPerAddressLine2.MaxLength = 250;
+            this.txtPerAddressLine2.Name = "txtPerAddressLine2";
+            this.txtPerAddressLine2.Size = new System.Drawing.Size(397, 27);
+            this.txtPerAddressLine2.TabIndex = 50;
+            this.txtPerAddressLine2.Enter += new System.EventHandler(this.txtPerAddressLine2_Enter);
+            this.txtPerAddressLine2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerAddressLine2_KeyDown);
+            this.txtPerAddressLine2.Leave += new System.EventHandler(this.txtPerAddressLine2_Leave);
+            // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox12.Enabled = false;
+            this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox12.Location = new System.Drawing.Point(24, 173);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
+            this.textBox12.Size = new System.Drawing.Size(111, 27);
+            this.textBox12.TabIndex = 59;
+            this.textBox12.Text = "Pincode";
+            // 
+            // cmbPerState
+            // 
+            this.cmbPerState.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPerState.FormattingEnabled = true;
+            this.cmbPerState.Location = new System.Drawing.Point(135, 118);
+            this.cmbPerState.Name = "cmbPerState";
+            this.cmbPerState.Size = new System.Drawing.Size(186, 27);
+            this.cmbPerState.TabIndex = 51;
+            this.cmbPerState.SelectedIndexChanged += new System.EventHandler(this.CmbState_SelectedIndexChanged);
+            this.cmbPerState.Enter += new System.EventHandler(this.cmbPerState_Enter);
+            this.cmbPerState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbPerState_KeyDown);
+            this.cmbPerState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPerState_KeyPress);
+            this.cmbPerState.Leave += new System.EventHandler(this.cmbPerState_Leave);
+            // 
+            // txtPerPincode
+            // 
+            this.txtPerPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPerPincode.Location = new System.Drawing.Point(135, 173);
+            this.txtPerPincode.MaxLength = 6;
+            this.txtPerPincode.Name = "txtPerPincode";
+            this.txtPerPincode.Size = new System.Drawing.Size(186, 27);
+            this.txtPerPincode.TabIndex = 53;
+            this.txtPerPincode.Enter += new System.EventHandler(this.txtPerPincode_Enter);
+            this.txtPerPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerPincode_KeyDown);
+            this.txtPerPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPerPincode_KeyPress);
+            this.txtPerPincode.Leave += new System.EventHandler(this.txtPerPincode_Leave);
+            // 
+            // textBox16
+            // 
+            this.textBox16.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox16.Enabled = false;
+            this.textBox16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox16.Location = new System.Drawing.Point(24, 118);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.ReadOnly = true;
+            this.textBox16.Size = new System.Drawing.Size(111, 27);
+            this.textBox16.TabIndex = 58;
+            this.textBox16.Text = "State";
+            // 
+            // textBox18
+            // 
+            this.textBox18.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox18.Enabled = false;
+            this.textBox18.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox18.Location = new System.Drawing.Point(24, 201);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.ReadOnly = true;
+            this.textBox18.Size = new System.Drawing.Size(111, 27);
+            this.textBox18.TabIndex = 57;
+            this.textBox18.Text = "Phone No.";
+            // 
+            // txtPerAddressLine1
+            // 
+            this.txtPerAddressLine1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPerAddressLine1.Location = new System.Drawing.Point(135, 64);
+            this.txtPerAddressLine1.MaxLength = 250;
+            this.txtPerAddressLine1.Name = "txtPerAddressLine1";
+            this.txtPerAddressLine1.Size = new System.Drawing.Size(397, 27);
+            this.txtPerAddressLine1.TabIndex = 49;
+            this.txtPerAddressLine1.Enter += new System.EventHandler(this.txtPerAddressLine1_Enter);
+            this.txtPerAddressLine1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerAddressLine1_KeyDown);
+            this.txtPerAddressLine1.Leave += new System.EventHandler(this.txtPerAddressLine1_Leave);
+            // 
+            // txtPerPhoneNo
+            // 
+            this.txtPerPhoneNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPerPhoneNo.Location = new System.Drawing.Point(135, 201);
+            this.txtPerPhoneNo.MaxLength = 15;
+            this.txtPerPhoneNo.Name = "txtPerPhoneNo";
+            this.txtPerPhoneNo.Size = new System.Drawing.Size(186, 27);
+            this.txtPerPhoneNo.TabIndex = 54;
+            this.txtPerPhoneNo.Enter += new System.EventHandler(this.txtPerPhoneNo_Enter);
+            this.txtPerPhoneNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerPhoneNo_KeyDown);
+            this.txtPerPhoneNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPerPhoneNo_KeyPress);
+            this.txtPerPhoneNo.Leave += new System.EventHandler(this.txtPerPhoneNo_Leave);
+            // 
+            // textBox22
+            // 
+            this.textBox22.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox22.Enabled = false;
+            this.textBox22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox22.Location = new System.Drawing.Point(24, 64);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.ReadOnly = true;
+            this.textBox22.Size = new System.Drawing.Size(111, 27);
+            this.textBox22.TabIndex = 55;
+            this.textBox22.Text = "Address Line 1";
+            // 
+            // textBox23
+            // 
+            this.textBox23.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox23.Enabled = false;
+            this.textBox23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox23.Location = new System.Drawing.Point(24, 145);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.ReadOnly = true;
+            this.textBox23.Size = new System.Drawing.Size(111, 27);
+            this.textBox23.TabIndex = 56;
+            this.textBox23.Text = "City";
+            // 
+            // txtPerCity
+            // 
+            this.txtPerCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPerCity.Location = new System.Drawing.Point(135, 145);
+            this.txtPerCity.MaxLength = 50;
+            this.txtPerCity.Name = "txtPerCity";
+            this.txtPerCity.Size = new System.Drawing.Size(186, 27);
+            this.txtPerCity.TabIndex = 52;
+            this.txtPerCity.TextChanged += new System.EventHandler(this.txtPerCity_TextChanged);
+            this.txtPerCity.Enter += new System.EventHandler(this.txtPerCity_Enter);
+            this.txtPerCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerCity_KeyDown);
+            this.txtPerCity.Leave += new System.EventHandler(this.txtPerCity_Leave);
+            // 
+            // btnPersonDetClose
+            // 
+            this.btnPersonDetClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPersonDetClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnPersonDetClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPersonDetClose.Location = new System.Drawing.Point(520, 287);
+            this.btnPersonDetClose.Name = "btnPersonDetClose";
+            this.btnPersonDetClose.Size = new System.Drawing.Size(75, 29);
+            this.btnPersonDetClose.TabIndex = 62;
+            this.btnPersonDetClose.Text = "Close";
+            this.btnPersonDetClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPersonDetClose.UseVisualStyleBackColor = true;
+            this.btnPersonDetClose.Click += new System.EventHandler(this.btnPersonDetClose_Click);
+            this.btnPersonDetClose.Enter += new System.EventHandler(this.btnPersonDetClose_Enter);
+            this.btnPersonDetClose.Leave += new System.EventHandler(this.btnPersonDetClose_Leave);
+            // 
+            // epCompany
+            // 
+            this.epCompany.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Edit";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 60;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Width = 80;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Edit";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Remove";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // lvPerCity
+            // 
+            this.lvPerCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.lvPerCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvPerCity.HideSelection = false;
+            this.lvPerCity.Location = new System.Drawing.Point(160, 188);
+            this.lvPerCity.Name = "lvPerCity";
+            this.lvPerCity.Size = new System.Drawing.Size(313, 99);
+            this.lvPerCity.TabIndex = 64;
+            this.lvPerCity.UseCompatibleStateImageBehavior = false;
+            this.lvPerCity.View = System.Windows.Forms.View.Details;
+            this.lvPerCity.Visible = false;
+            this.lvPerCity.DoubleClick += new System.EventHandler(this.lvPerCity_DoubleClick);
+            this.lvPerCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvPerCity_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
+            // lblPerCityId
+            // 
+            this.lblPerCityId.AutoSize = true;
+            this.lblPerCityId.Location = new System.Drawing.Point(349, 145);
+            this.lblPerCityId.Name = "lblPerCityId";
+            this.lblPerCityId.Size = new System.Drawing.Size(16, 20);
+            this.lblPerCityId.TabIndex = 61;
+            this.lblPerCityId.Text = "0";
+            this.lblPerCityId.Visible = false;
+            // 
+            // btnPersonalAddUpdate
+            // 
+            this.btnPersonalAddUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPersonalAddUpdate.Image = global::ROMS.Properties.Resources.save;
+            this.btnPersonalAddUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPersonalAddUpdate.Location = new System.Drawing.Point(428, 287);
+            this.btnPersonalAddUpdate.Name = "btnPersonalAddUpdate";
+            this.btnPersonalAddUpdate.Size = new System.Drawing.Size(84, 29);
+            this.btnPersonalAddUpdate.TabIndex = 65;
+            this.btnPersonalAddUpdate.Text = "Save";
+            this.btnPersonalAddUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPersonalAddUpdate.UseVisualStyleBackColor = true;
+            this.btnPersonalAddUpdate.Click += new System.EventHandler(this.btnPersonalAddUpdate_Click);
+            this.btnPersonalAddUpdate.Enter += new System.EventHandler(this.btnPersonalAddUpdate_Enter);
+            this.btnPersonalAddUpdate.Leave += new System.EventHandler(this.btnPersonalAddUpdate_Leave);
+            // 
+            // txtPersonalName
+            // 
+            this.txtPersonalName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPersonalName.Location = new System.Drawing.Point(135, 35);
+            this.txtPersonalName.MaxLength = 50;
+            this.txtPersonalName.Name = "txtPersonalName";
+            this.txtPersonalName.Size = new System.Drawing.Size(397, 27);
+            this.txtPersonalName.TabIndex = 62;
+            this.txtPersonalName.Enter += new System.EventHandler(this.txtPersonalName_Enter);
+            this.txtPersonalName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPersonalName_KeyDown);
+            this.txtPersonalName.Leave += new System.EventHandler(this.txtPersonalName_Leave);
+            // 
+            // textBox14
+            // 
+            this.textBox14.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox14.Enabled = false;
+            this.textBox14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox14.Location = new System.Drawing.Point(24, 35);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.ReadOnly = true;
+            this.textBox14.Size = new System.Drawing.Size(111, 27);
+            this.textBox14.TabIndex = 63;
+            this.textBox14.Text = "Name";
             // 
             // CP_Company
             // 
@@ -1904,6 +2212,7 @@
             this.grbform.PerformLayout();
             this.grpLogo.ResumeLayout(false);
             this.grpLogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1918,8 +2227,10 @@
             this.pnlStatusContact.ResumeLayout(false);
             this.pnlStatusContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2068,5 +2379,28 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBNKID;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtPerAddressLine2;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.ComboBox cmbPerState;
+        private System.Windows.Forms.TextBox txtPerPincode;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox txtPerAddressLine1;
+        private System.Windows.Forms.TextBox txtPerPhoneNo;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.TextBox txtPerCity;
+        private System.Windows.Forms.Button btnPersonDetClose;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.ListView lvPerCity;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.Label lblPerCityId;
+        public System.Windows.Forms.Button btnPersonalAddUpdate;
+        private System.Windows.Forms.TextBox txtPersonalName;
+        private System.Windows.Forms.TextBox textBox14;
     }
 }

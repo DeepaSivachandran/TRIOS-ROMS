@@ -41,6 +41,7 @@ namespace ROMS
         private ToolTip tpOperator = new ToolTip();
         private ToolTip tpStaffName = new ToolTip();
         private ToolTip tpMobileBrand = new ToolTip();
+        private ToolTip tpPerPincode = new ToolTip();
          
         private ToolTip tpBankShortName = new ToolTip();
         private ToolTip tpBranchName = new ToolTip();
@@ -2141,7 +2142,9 @@ namespace ROMS
                     result = objspdservice.udfnCompanyMaster(varviewtype, varcompanycode, Convert.ToString(txtCompanyName.Text).Trim(), Convert.ToString(txtShortName.Text).Trim(), txtAddressLine1.Text, txtAddressLine2.Text, cityid
                     , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
-                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable, lblCompanyLogoFilename.Text, varDefaultconcern);
+                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable, lblCompanyLogoFilename.Text, varDefaultconcern,
+                    txtPerAddressLine1.Text.Trim(),txtPerAddressLine2.Text.Trim(),Convert.ToInt16(cmbPerState.SelectedValue),Convert.ToInt16(lblPerCityId.Text),txtPerPincode.Text.Trim(),
+                    txtPhoneNo.Text.Trim() ,txtPersonalName.Text.Trim());
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -2336,6 +2339,13 @@ namespace ROMS
                 txtESI.Text = "";
                 txtEPF.Text = "";
                 txtPlno.Text = "";
+                txtPerAddressLine1.Text = "";
+                txtPerAddressLine2.Text = "";
+                cmbPerState.SelectedValue = -1;
+                txtPerPincode.Text = "";
+                lblPerCityId.Text = "0";
+                txtCity.Text = "";
+                txtPerPhoneNo.Text = "";
             }
             catch (Exception ex)
             {
@@ -3306,11 +3316,11 @@ namespace ROMS
 
                 if (btnSave.Text == "Save")
                 {
-                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable,"",0);
+                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable,"",0,"","",0,0,"","","");
                 }
                 else
                 {
-                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable,"",0);
+                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable, "", 0, "", "", 0, 0, "", "","");
                     varupdate = "1";
                 }
                 string[] varvalue = result.Split('~');
@@ -3570,6 +3580,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbPerState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,1) AND MSTID !=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 DataService objdservice = new DataService();
@@ -3827,6 +3838,18 @@ namespace ROMS
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; ;
                             pnlStatus.Enabled = true;
+
+                            txtPersonalName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PersonName"]);
+                            txtPerAddressLine1.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PresonalAddLine1"]);
+                            txtPerAddressLine2.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PresonalAddLine2"]);
+                            txtPerPincode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PersonalPincode"]);
+                            txtPerPhoneNo.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PersonalPhoneno"]);
+
+                            cmbPerState.SelectedValue = Convert.ToInt16(objDS.Tables[0].Rows[0]["PresonalStid"]);
+                            txtPerCity.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Percity"]);
+                            lblPerCityId.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PersonalCtyID"]);
+                            lvPerCity.Visible = false;
+                            btnPersonalAddUpdate.Text = "Update";
                             udfnButtontext();
                         }
                         if (objDS.Tables[1].Rows.Count > 0)
@@ -4024,6 +4047,25 @@ namespace ROMS
                     lvCity.Visible = false;  
                     }
                 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPersonalCity()
+        {
+            try
+            {
+                if (txtPerCity.Text != "")
+                {
+                    ListViewItem selectedItem = lvPerCity.SelectedItems[0];
+                    txtPerCity.Text = selectedItem.SubItems[0].Text;
+                    lblPerCityId.Text = selectedItem.SubItems[2].Text;
+                    lvPerCity.Visible = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -4589,6 +4631,616 @@ namespace ROMS
         private void txtEmail_Layout(object sender, LayoutEventArgs e)
         {
 
+        }
+          
+
+        private void btnPersonDetClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPersonDetClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnPersonDetClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSaveContact.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnPersonDetClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerAddressLine1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerAddressLine1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerAddressLine1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPerAddressLine2.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerAddressLine1_Leave(object sender, EventArgs e)
+        {
+            try
+            { 
+                txtPerAddressLine1.BackColor = Color.White; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerAddressLine2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerAddressLine2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerAddressLine2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbPerState.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerAddressLine2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerAddressLine2.BackColor = Color.White; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPerState_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPerState.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPerState_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPerCity.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void cmbPerState_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void cmbPerState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerCity_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerCity.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvPerCity.Items.Count == 0 || txtPerCity.Text == "")
+                    {
+                        txtCity.Focus();
+                        lvPerCity.Visible = false;
+                    }
+                    else
+                    {
+                        lvPerCity.Focus();
+                    }
+                    if (lvPerCity.Items.Count > 0)
+                    {
+                        lvPerCity.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPerPincode.Focus();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerCity_Leave(object sender, EventArgs e)
+        {
+
+            try
+            { 
+                txtPerCity.BackColor = Color.White; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerCity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvPerCity.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtPerCity.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnCitylist(1, txtPerCity.Text, Convert.ToInt32(cmbPerState.SelectedValue), 0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
+                                    //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvPerCity.Items.Add(objList);
+                                }
+                                lvPerCity.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvPerCity.Visible = false;
+                    lvPerCity.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void lvPerCity_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnPersonalCity();
+                txtPerPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvPerCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnPersonalCity();
+                    txtPerPincode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPincode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvPerCity.Visible = false;
+                txtPerPincode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPincode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPerPhoneNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPincode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPincode_Leave(object sender, EventArgs e)
+        {
+            try
+            { 
+                if (Convert.ToString(txtPerPincode.Text).Trim() != "" && txtPerPincode.TextLength != 6)
+                {
+                    epCompany.SetError(txtPerPincode, "Please enter valid pincode");
+                    txtPerPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPerPincode.ShowAlways = true;
+                    tpPerPincode.Show("Please enter valid pincode", txtPerPincode, 5000);
+                }
+                else
+                {
+                    epCompany.Clear();
+                    txtPerPincode.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPhoneNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerPhoneNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPhoneNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnPersonalAddUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPhoneNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPerPhoneNo_Leave(object sender, EventArgs e)
+        { 
+            try
+            { 
+                txtPerPhoneNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnPersonAddressSave()
+        {
+            try
+            {
+                string result = "";
+                SPDataService objspdservice = new SPDataService();
+                result = objspdservice.udfnCompanyMaster(5, Convert.ToInt32(varcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "Personal Address Update", null, null, "",0, txtPerAddressLine1.Text.Trim(), txtPerAddressLine2.Text.Trim(), Convert.ToInt16(cmbPerState.SelectedValue), Convert.ToInt16(lblPerCityId.Text), txtPerPincode.Text.Trim(),
+                    txtPhoneNo.Text.Trim(),txtPersonalName.Text.Trim());
+                objspdservice.CloseConnection();
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCompanyModifiedFlag = 0;
+                        this.ActiveControl = tcCompanyDetails; 
+                        MainForm.objCP_Companylist.udfnList();
+                        txtCompanyName.Focus();
+                        pnlBStatus.Enabled = false;
+                        rbBankActive.Checked = true;
+                        varupdate = "1";
+                        MainForm.objCP_Companylist.udfnList();
+                        udfnClear();
+                        udfnclose();
+                        //if (btnSave.Text == "Update")
+                        //{
+                        //    if (tcCompanyDetails.SelectedIndex == 1)
+                        //    {
+                        //        varupdate = "1";
+                        //        udfnClear();
+                        //        udfnclose();
+                        //    }
+                        //    else
+                        //    {
+                        //        tcCompanyDetails.SelectedIndex = 1;
+                        //    }
+                        //}
+                        //else
+                        //{ 
+                        //    varcontactcompanyid = varvalue[2];
+                        //    tcCompanyDetails.SelectedIndex = 1;
+                        //}
+                        //if (tcCompanyDetails.SelectedIndex == 1)
+                        //{ 
+                        //    btnSaveContact.Text = "Update";
+                        //    btnSave.Text = "Update";
+                        //}
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnPersonalAddUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool blnErrorFlag = false;
+                if (Convert.ToString(txtPerPincode.Text) != "")
+                {
+                    if (Convert.ToString(txtPerPincode.Text).Length != 6)
+                    {
+                        epCompany.SetError(txtPerPincode, "Please enter valid pincode");
+                        txtPerPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpPerPincode.ShowAlways = true;
+                        tpPerPincode.Show("Please enter valid pincode", txtPerPincode, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                udfnPersonAddressSave(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnPersonalAddUpdate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPersonalAddUpdate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnPersonalAddUpdate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPersonalAddUpdate.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPersonalName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPersonalName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPersonalName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPerAddressLine1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPersonalName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPersonalName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPerState_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPerState.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void RbInactiveContact_KeyDown(object sender, KeyEventArgs e)
