@@ -486,7 +486,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN list Sp
-        public DataSet udfnHsnList(int ViewType, int paraHSNID, int paraGstId, int paraStatusId, string paraHSN_Name, string paraHSN_Code)
+        public DataSet udfnHsnList(int ViewType, int paraHSNID, int paraGstId, int paraStatusId, string paraHSN_Name, string paraHSN_Code,int paraFilterType)
         {
             DataSet ds = new DataSet();
             try
@@ -501,6 +501,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraHSN_Name", paraHSN_Name);
                 varSqlCommand.Parameters.AddWithValue("@paraHSN_Code", paraHSN_Code);
+                varSqlCommand.Parameters.AddWithValue("@paraFilterType", paraFilterType);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);

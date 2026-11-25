@@ -570,7 +570,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtHsnName.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnHsnList(6, 0, 1, 0, txtHsnName.Text.Trim(), "");
+                        objDs = objspdservice.udfnHsnList(6, 0, 1, 0, txtHsnName.Text.Trim(), "", 0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

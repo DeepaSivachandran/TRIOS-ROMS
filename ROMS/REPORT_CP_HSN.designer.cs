@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_HSN));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsHSNReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -44,6 +44,7 @@
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtHsnName = new System.Windows.Forms.TextBox();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.lblHsnName = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -57,7 +58,9 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.btnTelegram = new System.Windows.Forms.Button(); 
+            this.cmbTaxFilter = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tsHSNReport.SuspendLayout();
             this.pnlReportHSN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.grpfilter.SuspendLayout();
@@ -139,24 +142,24 @@
             this.DGV_FilterProduct.AllowUserToResizeRows = false;
             this.DGV_FilterProduct.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.DGV_FilterProduct.ColumnHeadersHeight = 30;
             this.DGV_FilterProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle26;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
             this.DGV_FilterProduct.Location = new System.Drawing.Point(333, 47);
@@ -164,9 +167,9 @@
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
             this.DGV_FilterProduct.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle27;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterProduct.Size = new System.Drawing.Size(328, 226);
@@ -212,7 +215,7 @@
             this.txtHsnName.MaxLength = 50;
             this.txtHsnName.Name = "txtHsnName";
             this.txtHsnName.Size = new System.Drawing.Size(143, 27);
-            this.txtHsnName.TabIndex = 1111228;
+            this.txtHsnName.TabIndex = 1;
             this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
             this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
             this.txtHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsnName_KeyDown);
@@ -220,6 +223,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label1);
+            this.grpfilter.Controls.Add(this.cmbTaxFilter);
             this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.lblHsnName);
             this.grpfilter.Controls.Add(this.cmbStatus);
@@ -236,6 +241,21 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(1155, 18);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 6;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
             // 
             // lblHsnName
             // 
@@ -306,11 +326,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(864, 18);
+            this.btnListPrint.Location = new System.Drawing.Point(1074, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 4;
+            this.btnListPrint.TabIndex = 5;
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -385,20 +405,27 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // btnTelegram
+            // cmbTaxFilter
             // 
-            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
-            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(945, 18);
-            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnTelegram.Name = "btnTelegram";
-            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 5;
-            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTelegram.UseVisualStyleBackColor = true;
-            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
-            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
-            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
+            this.cmbTaxFilter.FormattingEnabled = true;
+            this.cmbTaxFilter.Location = new System.Drawing.Point(925, 19);
+            this.cmbTaxFilter.Name = "cmbTaxFilter";
+            this.cmbTaxFilter.Size = new System.Drawing.Size(143, 27);
+            this.cmbTaxFilter.TabIndex = 4;
+            this.cmbTaxFilter.Enter += new System.EventHandler(this.cmbTaxFilter_Enter);
+            this.cmbTaxFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTaxFilter_KeyDown);
+            this.cmbTaxFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbTaxFilter_KeyPress);
+            this.cmbTaxFilter.Leave += new System.EventHandler(this.cmbTaxFilter_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(864, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 20);
+            this.label1.TabIndex = 1111184;
+            this.label1.Text = "Tax Type";
             // 
             // REPORT_CP_HSN
             // 
@@ -458,5 +485,7 @@
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
         private System.Windows.Forms.Button btnTelegram;
+        private System.Windows.Forms.ComboBox cmbTaxFilter;
+        private System.Windows.Forms.Label label1;
     }
 }

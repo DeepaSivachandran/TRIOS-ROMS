@@ -34,7 +34,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    cmbTaxFilter.Focus();
                 }
             }
             catch (Exception ex)
@@ -151,7 +151,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "","");
+                objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "", "", Convert.ToInt32(cmbTaxFilter.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -165,6 +165,7 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
                     objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraFilterType", Convert.ToInt32(cmbTaxFilter.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
@@ -325,7 +326,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(4,0, Convert.ToInt32(cmbGST.SelectedValue),0,"",varHSNCode);
+                objDs = objspservice.udfnHsnList(4,0, Convert.ToInt32(cmbGST.SelectedValue),0,"", varHSNCode ,Convert.ToInt32(cmbTaxFilter.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -391,7 +392,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnHsnList(10, 0, 0, 0, "", txtHsnName.Text.Trim());
+                objDs = objdserv.udfnHsnList(10, 0, 0, 0, "", txtHsnName.Text.Trim(), Convert.ToInt32(cmbTaxFilter.SelectedValue));
                 objdserv.CloseConnection();
                 cmbGST.DataSource = null;
                 if (objDs != null)
@@ -432,6 +433,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 //Transaction id 	35
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN ("+ ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (226,0) AND MSTID<>-1", "MST_DisplayText,MSTID,MST_ShortName", cmbTaxFilter, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  NOT IN (-1)", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
@@ -498,7 +500,14 @@ namespace ROMS
                         tsbPrintFormat.ToolTipText = string.Empty;
                     }
                 }
-
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 103)
+                {
+                    cmbTaxFilter.Enabled = true;
+                }
+                else
+                {
+                    cmbTaxFilter.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -851,7 +860,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtHsnName.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnName.Text.Trim(), "");
+                        objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnName.Text.Trim(), "", Convert.ToInt32(cmbTaxFilter.SelectedValue));
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -1113,6 +1122,61 @@ namespace ROMS
                         udfnHSNSubgroup(1);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTaxFilter_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTaxFilter.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTaxFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTaxFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTaxFilter_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTaxFilter.BackColor = Color.White;
             }
             catch (Exception ex)
             {

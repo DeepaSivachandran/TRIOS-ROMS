@@ -319,7 +319,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnHsnList(0,0,0,Convert.ToInt32(cmbStatus.SelectedValue),"","");
+                objDs = objdserv.udfnHsnList(0,0,0,Convert.ToInt32(cmbStatus.SelectedValue),"","", 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

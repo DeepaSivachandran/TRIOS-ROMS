@@ -6708,7 +6708,7 @@ namespace ROMS
                                 string varHSNId = "0";
                                 DataSet objDsPurLoc = new DataSet();
                                 SPDataService objDServ3 = new SPDataService();
-                                objDsPurLoc = objDServ3.udfnHsnList(11, 0, 0, 0, SelectedHSNName, "");
+                                objDsPurLoc = objDServ3.udfnHsnList(11, 0, 0, 0, SelectedHSNName, "", 0);
                                 objDServ3.CloseConnection();
                                 if (objDsPurLoc != null)
                                 {

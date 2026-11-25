@@ -1530,7 +1530,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtOldHSN.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtOldHSN.Text.Trim(), "");
+                        objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtOldHSN.Text.Trim(), "", 0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -1761,7 +1761,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtNewHSN.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnHsnList(6, Convert.ToInt16(lblOldHSNId.Text), 0, 0, txtNewHSN.Text.Trim(), "");
+                        objDs = objspdservice.udfnHsnList(6, Convert.ToInt16(lblOldHSNId.Text), 0, 0, txtNewHSN.Text.Trim(), "", 0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

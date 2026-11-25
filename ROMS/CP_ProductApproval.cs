@@ -2426,7 +2426,7 @@ namespace ROMS
                     string varId_HSN = "0";
                     DataSet objDsHSN = new DataSet();
                     SPDataService objDs = new SPDataService();
-                    objDsHSN = objDs.udfnHsnList(12, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, "", txtHsncode.Text.Trim());
+                    objDsHSN = objDs.udfnHsnList(12, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, "", txtHsncode.Text.Trim(), 0);
                     objDs.CloseConnection();
                     if (objDsHSN != null)
                     {
@@ -2980,8 +2980,8 @@ namespace ROMS
                     DataSet objDsHSN = new DataSet();
                     DataSet objDsHSNGst = new DataSet();
                     SPDataService objDs = new SPDataService();
-                    objDsHSN = objDs.udfnHsnList(7, 0, 0, 0, txtHsnname.Text.Trim(), "");
-                    objDsHSNGst = objDs.udfnHsnList(8, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, "", "");
+                    objDsHSN = objDs.udfnHsnList(7, 0, 0, 0, txtHsnname.Text.Trim(), "", 0);
+                    objDsHSNGst = objDs.udfnHsnList(8, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, "", "", 0);
                     objDs.CloseConnection();
                     if (objDsHSN != null)
                     {
@@ -3441,7 +3441,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSalesHSNName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtSalesHSNName.Text.Trim(), "");
+                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtSalesHSNName.Text.Trim(), "", 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3489,7 +3489,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtPURHSNName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtPURHSNName.Text.Trim(), "");
+                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtPURHSNName.Text.Trim(), "", 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -5294,7 +5294,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsncode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHsncode.Text.Trim(), "");
+                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHsncode.Text.Trim(), "", 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -5380,7 +5380,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnname.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnname.Text.Trim(), "");
+                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnname.Text.Trim(), "", 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
