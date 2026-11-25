@@ -455,7 +455,7 @@ namespace ROMS
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
-                        objMR_Supplier.ViewType = 15;
+                        objMR_Supplier.ViewType = 53;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
@@ -476,6 +476,7 @@ namespace ROMS
                                     DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
                                     DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
                                     DGV_FilterSupplier.Columns["SP_NAME"].Width = 260;
+                                    DGV_FilterSupplier.Columns["City"].Width = 150;
                                     DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
                                     DGV_FilterSupplier.BringToFront();
                                 }

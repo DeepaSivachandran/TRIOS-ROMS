@@ -2187,6 +2187,27 @@ namespace ROMS
             }
         }
 
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 574 || Convert.ToInt32(cmbReportType.SelectedValue) == 575)
+                {
+                    cmbLocationType.SelectedValue = 467;
+                    cmbLocationType.Enabled = false;
+                }
+                else
+                {
+                    cmbLocationType.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void cmbSubgroupType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
