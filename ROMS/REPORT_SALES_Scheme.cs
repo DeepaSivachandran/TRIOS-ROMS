@@ -330,7 +330,7 @@ namespace ROMS
 
 
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (190) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID"); 
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (190,0) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSchemeType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,214) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRecursive, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,167) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,159) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbValidityType, "", "MST_DisplayText", "MSTID"); 
@@ -352,7 +352,9 @@ namespace ROMS
                     var result = UserAccessHelper.LoadUserAccess(currentMUCode);
                     privilege = result.PrivilegeCode;
                     btnTelegram.Visible = privilege.Contains("7");
-                } 
+                }
+                cmbSts.SelectedValue = 1;
+                cmbAppStatus.SelectedValue = 129;
             }
             catch (Exception ex)
             {
