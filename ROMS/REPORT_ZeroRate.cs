@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ROMS
 {
@@ -17,7 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0, varUpDownKeySupplier = 0, varUpDownKeyRackGroup = 0;
+        public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0, varUpDownKeySupplier = 0, varUpDownKeyRackGroup = 0, varUpDownKeyUser = 0;
 
         private ToolTip tpReportType = new ToolTip();
         public REPORT_ZeroRate()
@@ -30,7 +31,7 @@ namespace ROMS
         {
             try
             {
-                udfnGridNull((Control)sender);
+                udfnGridNull((Control)sender); pnlRateCategory.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -85,6 +86,7 @@ namespace ROMS
                     DGV_FilterRackgroup.DataSource = null;
                     DGV_FilterRackgroup.Visible = false;
                 }
+                pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
@@ -175,8 +177,8 @@ namespace ROMS
             try
             {
                 epReport.Clear();
-                string varSupplierName = "-All-", varProductName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varRackGroupName = "-All-";
-                int varViewType = 0, varSupplierCode = 0, varScheduleCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0, varRackGroupCode = 0;
+                string varSupplierName = "-All-", varProductName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varRackGroupName = "-All-", varTellerName = "-All-", varChangedByName = "-All-";
+                int varViewType = 0, varSupplierCode = 0, varScheduleCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0, varRackGroupCode = 0, varUserCode = 0;
 
                 if(txtSupplier.Text.Trim()!="")
                 {
@@ -213,6 +215,15 @@ namespace ROMS
                 {
                     varViewType = 1;
                 }
+                if (txtTeller.Text.Trim() != "")
+                {
+                    varTellerName = txtTeller.Text.Trim();
+                }
+                if (txtUser.Text.Trim() != "")
+                {
+                    varChangedByName = txtUser.Text.Trim();
+                    varUserCode = Convert.ToInt32(lblUserCode.Text);
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -233,10 +244,13 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.paraRKGID = varRackGroupCode;
                 objTRN_GoodsInward_Purchase.paraBrandID = varBrandCode;
                 objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbStatus.SelectedValue);
-                objTRN_GoodsInward_Purchase.paraRateType = Convert.ToInt32(cmbRate.SelectedValue);
+                //objTRN_GoodsInward_Purchase.paraRateType = Convert.ToInt32(cmbRate.SelectedValue);
                 objTRN_GoodsInward_Purchase.ParaFromDate = dpFromDate.Text;
                 objTRN_GoodsInward_Purchase.ParaToDate = dpToDate.Text;
                 objTRN_GoodsInward_Purchase.paraAlpha = txtProductName.Text;
+                objTRN_GoodsInward_Purchase.paraTeller = txtTeller.Text.Trim();
+                objTRN_GoodsInward_Purchase.paraUserCode = varUserCode;
+                objTRN_GoodsInward_Purchase.paraRateCategorys = lblRateId.Text;
                 objDs = objdserv.udfnZeroRateReport(objTRN_GoodsInward_Purchase);
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -269,12 +283,17 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraBrandID", varBrandCode);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
                     objBillreport.SetParameterValue("paraProCategoryID", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraRateType", Convert.ToInt32(cmbRate.SelectedValue));
+                    objBillreport.SetParameterValue("paraRateType", 0);
                     objBillreport.SetParameterValue("paraProTypeName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraSPID", varSupplierCode);
                     objBillreport.SetParameterValue("paraSPSCID", varScheduleCode);
+                    objBillreport.SetParameterValue("paraUserCode", varUserCode);
+                    objBillreport.SetParameterValue("paraChangedByName", varChangedByName);
+                    objBillreport.SetParameterValue("paraTellerName", varTellerName);
+                    objBillreport.SetParameterValue("paraTeller", txtTeller.Text.Trim());
                     objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraRateCategorys", lblRateId.Text);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -350,6 +369,8 @@ namespace ROMS
                   ?? Enumerable.Empty<string>());
 
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+                chkboxRatelist.DrawMode = DrawMode.Normal;
+                udfnDropdownbind();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -359,7 +380,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
 
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125) AND MSTID<>-1 ", "MST_DisplayText,MSTID,MST_ShortName", cmbRate, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125) AND MSTID<>-1 ", "MST_DisplayText,MSTID,MST_ShortName", cmbRate, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
@@ -374,6 +395,7 @@ namespace ROMS
                     privilege = result.PrivilegeCode;
                     btnTelegram.Visible = privilege.Contains("7");
                 }
+                pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
@@ -381,6 +403,51 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDropdownbind()
+        {
+            try
+            {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 32;
+                DataSet objDTable = new DataSet();
+                SPDataService objdSer = new SPDataService();
+                objDTable = objdSer.udfnMaster(objMR_Master);
+                objdSer.CloseConnection();
+                if (objDTable != null)
+                {
+                    if (objDTable.Tables.Count > 0)
+                    {
+                        if (objDTable.Tables[0].Rows.Count > 0)
+                        {
+                            chkboxRatelist.DrawMode = DrawMode.Normal;
+                            chkboxRatelist.FormattingEnabled = true;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";
+                            chkboxRatelist.ValueMember = "MSTID";
+                            chkboxRatelist.DataSource = objDTable.Tables[0];
+
+                            DataView dv = objDTable.Tables[0].DefaultView;
+                            dv.RowFilter = "MSTID <> 0";
+
+                            DataTable dt = dv.ToTable();
+
+
+                            dt = objDTable.Tables[0];
+
+                            chkboxRatelist.DataSource = dt;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";   // text
+                            chkboxRatelist.ValueMember = "MSTID";       // value
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtSupplier_Enter(object sender, EventArgs e)
         {
             try
@@ -639,7 +706,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    txtTeller.Focus();
                 }
             }
             catch (Exception ex)
@@ -2092,7 +2159,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbRate.Focus();
+                    txtRateCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -2264,12 +2331,11 @@ namespace ROMS
             udfnList(1);
         }
 
-        private void cmbRate_Enter(object sender, EventArgs e)
+        private void txtTeller_Enter(object sender, EventArgs e)
         {
             try
             {
-                cmbRate.BackColor = Color.LemonChiffon;
-                udfnGridNull((Control)sender);
+                txtTeller.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -2278,7 +2344,267 @@ namespace ROMS
             }
         }
 
-        private void cmbRate_KeyDown(object sender, KeyEventArgs e)
+        private void txtTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtUser.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtUser_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUser.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyUser = 0;
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    DGV_FilterUser.Focus();
+
+                }
+                if (e.KeyCode == Keys.Enter && DGV_FilterUser.Visible == false)
+                {
+                    btnView.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_FilterUser.Focus();
+                }
+                if (DGV_FilterUser.CurrentCell == null && DGV_FilterUser.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_FilterUser.Focus();
+                    int RowIndex = DGV_FilterUser.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterUser.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyUser = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyUser = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterUser.CurrentCell = DGV_FilterUser.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtUser.Text = DGV_FilterUser.Rows[RowIndex].Cells["U_Name"].Value.ToString();
+                            }
+                            txtUser.Focus();
+                            txtUser.SelectionStart = txtUser.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterUser.Rows.Count) DGV_FilterUser.CurrentCell = DGV_FilterUser.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterUser.Rows.Count))
+                            {
+                                txtUser.Text = DGV_FilterUser.Rows[RowIndex].Cells["U_Name"].Value.ToString();
+                            }
+
+                            txtUser.Focus();
+                            txtUser.SelectionStart = txtUser.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterUser.Rows.Count > 0)
+                                {
+                                    varUpDownKeyUser = 1;
+                                    udfnUser();
+                                    DGV_FilterUser.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtUser.Focus();
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtUser.SelectedText = true;
+                        TextBox txtUser = sender as TextBox;
+                        txtUser.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        btnView.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtUser_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUser.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtUser_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varUpDownKeyUser == 0)
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtUser.Text.Length > 0)
+                    {
+                        objDs = objspdservice.udfnUserList(5, txtUser.Text.Trim(), "", "", 0, 0, "");
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterUser.Visible = true;
+                                    DGV_FilterUser.DataSource = objDs.Tables[0];
+                                    DGV_FilterUser.Columns["UID"].Visible = false;
+                                    DGV_FilterUser.Columns["U_CTID"].Visible = false;
+                                    DGV_FilterUser.Columns["CTID"].Visible = false;
+                                    DGV_FilterUser.Columns["Designation"].Visible = false;
+                                    DGV_FilterUser.Columns["U_Name"].HeaderText = "User Name";
+                                    DGV_FilterUser.Columns["U_Name"].Width = 200;
+                                    DGV_FilterUser.Columns["U_Name"].DisplayIndex = 0;
+                                    DGV_FilterUser.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterUser.Visible = false;
+                                    DGV_FilterUser.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_FilterUser.Visible = false;
+                                DGV_FilterUser.DataSource = null;
+                            }
+                        }
+                        else
+                        {
+                            DGV_FilterUser.Visible = false;
+                            DGV_FilterUser.DataSource = null;
+                        }
+                    }
+                    else
+                    {
+                        DGV_FilterUser.Visible = false;
+                        DGV_FilterUser.DataSource = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnUser()
+        {
+            try
+            {
+                if (txtUser.Text.Trim() != "")
+                {
+                    lblUserCode.Text = DGV_FilterUser.SelectedRows[0].Cells["UID"].Value.ToString();
+                    txtUser.Text = DGV_FilterUser.SelectedRows[0].Cells["U_Name"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtTeller.Focus();
+            }
+        }
+
+        private void DGV_FilterUser_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyUser = 1;
+                udfnUser();
+                btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlRateCategory.Visible = true;
+                pnlRateCategory.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -2301,11 +2627,11 @@ namespace ROMS
             }
         }
 
-        private void cmbRate_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtRateCategory_Leave(object sender, EventArgs e)
         {
             try
             {
-                e.Handled = true;
+                //pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
@@ -2314,11 +2640,159 @@ namespace ROMS
             }
         }
 
-        private void cmbRate_Leave(object sender, EventArgs e)
+        private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             try
             {
-                cmbRate.BackColor = Color.White;
+                BeginInvoke((MethodInvoker)UpdateSelectedValues);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtProductName.Visible == true)
+                    {
+                        txtProductName.Focus();
+                    }
+                    else
+                    {
+                        txtSupplier.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void UpdateSelectedValues()
+        {
+            try
+            {
+                List<string> texts = new List<string>();
+                List<string> ids = new List<string>();
+
+                foreach (DataRowView row in chkboxRatelist.CheckedItems)
+                {
+                    int id = Convert.ToInt32(row["MSTID"]);
+
+                    // ignore -All- in textbox
+                    if (id == 0) continue;
+
+                    texts.Add(row["MST_DisplayText"].ToString());
+                    ids.Add(id.ToString());
+                }
+
+                // TextBox (RR, WR)
+                txtRateCategory.Text = texts.Count > 0
+                    ? string.Join(", ", texts)
+                    : "";
+
+                // Label (447,448)
+                lblRateId.Text = ids.Count > 0
+                    ? string.Join(",", ids)
+                    : "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConditionClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                {
+                    chkboxRatelist.SetItemChecked(i, false);
+                }
+
+                txtRateCategory.Text = "";
+                lblRateId.Text = "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_FilterUser.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterUser.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyUser = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyUser = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterUser.CurrentCell = DGV_FilterUser.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtUser.Text = DGV_FilterUser.SelectedRows[0].Cells["U_Name"].Value.ToString();
+
+                            txtUser.Focus();
+                            txtUser.SelectionStart = txtUser.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterUser.Rows.Count) DGV_FilterUser.CurrentCell = DGV_FilterUser.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterUser.Rows.Count))
+                            {
+                                txtUser.Text = DGV_FilterUser.Rows[RowIndex].Cells["U_Name"].Value.ToString();
+                            }
+
+                            txtUser.Focus();
+                            txtUser.SelectionStart = txtUser.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterUser.Rows.Count > 0)
+                                {
+                                    varUpDownKeyUser = 1;
+                                    udfnUser();
+                                    DGV_FilterUser.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        TextBox txtUser = sender as TextBox;
+                        txtUser.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        btnView.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {

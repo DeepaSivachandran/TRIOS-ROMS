@@ -47,6 +47,9 @@ namespace ROMS.Model
         public int paraEditFlag { get; set; } = 0;
         public DataTable paraTRN_GoodsInward_Purchase_Products { get; set; } = null;
         public string paraAlpha { get; set; } = "";
+        public string paraRateCategorys { get; set; } = "";
+        public string paraTeller { get; set; } = "";
+        public int paraUserCode { get; set; } = 0;
         public int paraGroupId { get; set; } = 0;
         public int paraSubgroupId { get; set; } = 0;
         public int paraEntryTypeID { get; set; } = 0;

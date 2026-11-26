@@ -141,6 +141,8 @@ namespace ROMS
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 73;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objMR_Product.paraFilterDate = Convert.ToInt32(cmbOrderType.SelectedValue);
                 objMR_Product.paraGroup = varGroupCode;
                 objMR_Product.paraSubgroup = varSubgroupCode;
                 objMR_Product.paraRKGId = varRackGroupCode;
@@ -163,6 +165,8 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_InactiveProduct.rpt");
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("paraFilterDate", Convert.ToInt32(cmbOrderType.SelectedValue));
                     objBillreport.SetParameterValue("paraGroup", varGroupCode);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode);
@@ -246,6 +250,8 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (227) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (109) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -1315,7 +1321,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterUser.Visible == false)
                 {
-                    btnView.Focus();
+                    cmbOrderBy.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1387,7 +1393,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbOrderBy.Focus();
                     }
                 }
             }
@@ -1437,7 +1443,7 @@ namespace ROMS
             {
                 varUpDownKeyUser = 1;
                 udfnUser();
-                btnView.Focus();
+                cmbOrderBy.Focus();
             }
             catch (Exception ex)
             {
@@ -1507,7 +1513,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbOrderBy.Focus();
                     }
                 }
             }
@@ -1577,10 +1583,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-
-            }
         }
 
         
@@ -1614,6 +1616,116 @@ namespace ROMS
         private void btnTelegram_Click(object sender, EventArgs e)
         {
             udfnInactiveProducts(1);
+        }
+
+        private void cmbOrderBy_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    cmbOrderType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DpToDate_Enter(object sender, EventArgs e)
