@@ -1,15 +1,16 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using ROMS.Model;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
-using System.IO;
 
 namespace ROMS
 {
@@ -28,12 +29,45 @@ namespace ROMS
         private DataService objService;
 
         private List<ComboItem> months;
+        private List<ComboItem> days;
 
 
         public REPORT_PUR_AdditionalValue()
         {
             InitializeComponent();
             windowControl.Initialize(tsAdditionalReport, this);
+        }
+        public void udfnLoadDays()
+        {
+            try
+            {
+                lblDays.Text = "";
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 41;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnMaster(objMR_Master);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs != null && objDs.Tables.Count > 0 && objDs.Tables[0].Rows.Count > 0)
+                    {
+                        days = objDs.Tables[0].AsEnumerable()
+                            .Select(r => new ComboItem
+                            {
+                                Id = r.Field<int>("DYID"),
+                                Text = r.Field<string>("DayName")
+                            })
+                            .ToList();
+                        cmbMultiSelectDays.LoadItems(days, "Select Day");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnLoadMonths()
         {
@@ -160,6 +194,7 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         objDataService.CloseConnection();
                     }
+                    /*
                     string varMonthIds = "";
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
                     {
@@ -176,6 +211,8 @@ namespace ROMS
                     {
                         udfnPurchaseAdditionalValueReport(varFlag);
                     }
+                    */
+                    udfnPurchaseAdditionalValueReport(varFlag);
                 }
             }
             catch (Exception ex)
@@ -201,6 +238,29 @@ namespace ROMS
         {
             try
             {
+                string varDayName = "-All-";
+                string varDays = "0";
+                var selDayIds = cmbMultiSelectDays.CheckedIds;
+                var selDayItems = days.Where(d => selDayIds.Contains(d.Id)).ToList();
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)
+                {
+                    lblDays.Text = string.Join(", ", selDayItems.Select(x => x.Text));
+                }
+                else
+                {
+                    lblDays.Text = "";
+                }
+                if (string.IsNullOrWhiteSpace(lblDays.Text))
+                {
+                    varDayName = "-All-";
+                    varDays = "0";
+                }
+                else
+                {
+                    varDayName = lblDays.Text;
+                    varDays = string.Join(",", selDayIds);
+                }
+
                 string varMonthIds = "", varMonthName = "";
                 var selIds = cmbMultiMonths.CheckedIds;
                 var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
@@ -212,13 +272,23 @@ namespace ROMS
                 {
                     lblMonths.Text = "";
                 }
-                varMonthName = lblMonths.Text;
-                varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
-                if(varMonthIds.Trim()=="")
+                if (string.IsNullOrWhiteSpace(lblMonths.Text))
                 {
-                    varMonthIds = "0";
                     varMonthName = "-All-";
+                    varMonthIds = "0";
                 }
+                else
+                {
+                    varMonthName = lblMonths.Text;
+                    varMonthIds = string.Join(",", selIds);
+                }
+                //varMonthName = lblMonths.Text;
+                //varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
+                //if(varMonthIds.Trim()=="")
+                //{
+                //    varMonthIds = "0";
+                //    varMonthName = "-All-";
+                //}
                 epReport.Clear();
                 string varSupplierName = "-All-";
                 int varSupplierId = 0, varViewType = 20, varScheduleId = 0;
@@ -245,7 +315,16 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport("TRNG_Purchase_Reports_18_22", varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "",varMonthIds, 0, 0, 0, 0, 0, 0, "", 0);
+                string varDayMonthIds = "0";
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)
+                {
+                    varDayMonthIds= varDays;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
+                {
+                    varDayMonthIds= varMonthIds;
+                }
+                objDs = objdserv.udfnPurHsnReport("TRNG_Purchase_Reports_18_22", varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", varDayMonthIds, 0, 0, 0, 0, 0, 0, "", 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 string varReportName = "";
@@ -260,22 +339,24 @@ namespace ROMS
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 332)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AdditionalValue_BillWise.rpt");
-                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                         objBillreport.SetParameterValue("paraInvoiceTypeName", Convert.ToString(cmbInvType.Text));
                         varReportName = "PUR_Tax_AdditionalValue_BillWise";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AdditionalValue_DayWise.rpt");
+                        objBillreport.SetParameterValue("paraDayNames", varDayName);
+                        objBillreport.SetParameterValue("paraMonth", varDayMonthIds);
                         varReportName = "PUR_Tax_AdditionalValue_DayWise";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AdditionalValue_MonthWise.rpt");
                         objBillreport.SetParameterValue("paraMonthName", varMonthName);
-                        objBillreport.SetParameterValue("paraMonth", varMonthIds);
+                        objBillreport.SetParameterValue("paraMonth", varDayMonthIds);
                         varReportName = "PUR_Tax_AdditionalValue_MonthWise";
                     }
+                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", 0);
                     objBillreport.SetParameterValue("paraGST", 0);
@@ -353,6 +434,7 @@ namespace ROMS
                   ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 udfnLoadMonths();
+                udfnLoadDays();
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -986,7 +1068,10 @@ namespace ROMS
         {
             try
             {
+                lblDays.Text = "";
                 lblMonths.Text = "";
+                cmbMultiSelectDays.Enabled = false;
+                cmbMultiMonths.Enabled = false;
                 if (cmbReportType.SelectedItem is DataRowView drv)
                 {
                     if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
@@ -1019,6 +1104,7 @@ namespace ROMS
                 {
                     cmbInvType.SelectedValue = 0;
                     cmbInvType.Enabled = false;
+                    cmbMultiSelectDays.Enabled = true;
                     cmbMonths.SelectedValue = 0;
                     cmbMonths.Enabled = false;
                 }
@@ -1038,7 +1124,6 @@ namespace ROMS
                 {
                     dpFromDate.Enabled = true;
                     dpToDate.Enabled = true;
-                    cmbMultiMonths.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -1067,7 +1152,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbMultiMonths.Enabled == true)
+                    if (cmbMultiSelectDays.Enabled == true)
+                    {
+                        cmbMultiSelectDays.Focus();
+                    }
+                    else if (cmbMultiMonths.Enabled == true)
                     {
                         cmbMultiMonths.Focus();
                     }
@@ -1243,6 +1332,54 @@ namespace ROMS
             try
             {
                 btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiSelectDays_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbMultiSelectDays.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void cmbMultiSelectDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (cmbMultiMonths.Enabled == true)
+                    {
+                        cmbMultiMonths.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void cmbMultiSelectDays_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMultiSelectDays.BackColor = Color.White;
             }
             catch (Exception ex)
             {
