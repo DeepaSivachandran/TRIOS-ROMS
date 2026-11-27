@@ -4306,6 +4306,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraType", objTrnRateChange.paraType);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTrnRateChange.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraRateCategorys", objTrnRateChange.paraRateCategorys);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

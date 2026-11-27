@@ -1,10 +1,11 @@
 ﻿using ROMS.Model;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.IO;
 
 namespace ROMS
 {
@@ -29,6 +30,7 @@ namespace ROMS
             try
             {
                 udfnGridNull((Control)sender);
+                pnlRateCategory.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -83,6 +85,7 @@ namespace ROMS
                     DGV_FilterSupplier.DataSource = null;
                     DGV_FilterSupplier.Visible = false;
                 }
+                pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
@@ -170,8 +173,8 @@ namespace ROMS
             try
             {
                 epReport.Clear();
-                string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = "",varCompany="--All--",varRateTypeName="--All--" ;  
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0,varReportType=0,varRateType=0,varCompanyCode=0;
+                string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = "",varCompany="--All--",varRateTypeName="--All--" ;
+                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0, varReportType = 0, varRateType = 407, varCompanyCode = 0;
 
                 if(txtSupplier.Text.Trim()!="")
                 {
@@ -199,14 +202,13 @@ namespace ROMS
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
-                if (Convert.ToInt16(cmbRateType.SelectedValue)!=0)
-                {
-                    varRateTypeName = cmbRateType.Text; 
-                }
+                //if (Convert.ToInt16(cmbRateType.SelectedValue)!=0)
+                //{
+                //    varRateTypeName = cmbRateType.Text; 
+                //}
                 if (Convert.ToInt32(cmbConcern.SelectedValue)!=0)
                 { varCompany = cmbConcern.Text; }
                 varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
-                varRateType = Convert.ToInt32(cmbRateType.SelectedValue);
                 varCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -226,7 +228,8 @@ namespace ROMS
                 objRateChange.paraFromDate = dpFromDate.Text; 
                 objRateChange.paraSupplierID = varSupplierCode; 
                 objRateChange.paraScheduleID = varScheduleCode; 
-                objRateChange.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue); 
+                objRateChange.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objRateChange.paraRateCategorys = lblRateId.Text;
                 objDs = objdserv.udfnRateChangeList(objRateChange);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -252,6 +255,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraProductName", varProductName);
                     objBillreport.SetParameterValue("paraReportType", varReportType);
                     objBillreport.SetParameterValue("paraRateType", varRateType); 
+                    objBillreport.SetParameterValue("paraRateCategorys", lblRateId.Text); 
                     objBillreport.SetParameterValue("paraCompany", varCompany);
                     objBillreport.SetParameterValue("paraSupplier", varSupplierName);
                     objBillreport.SetParameterValue("paraAlpha", txtAlpha.Text.Trim());
@@ -334,11 +338,13 @@ namespace ROMS
                   .Select(q => q.Value.ToString())
                   ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+                chkboxRatelist.DrawMode = DrawMode.Normal;
+                udfnDropdownbind();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC ",
                       "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
@@ -354,6 +360,7 @@ namespace ROMS
                     privilege = result.PrivilegeCode;
                     btnTelegram.Visible = privilege.Contains("7");
                 }
+                pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
@@ -361,6 +368,51 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDropdownbind()
+        {
+            try
+            {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 32;
+                DataSet objDTable = new DataSet();
+                SPDataService objdSer = new SPDataService();
+                objDTable = objdSer.udfnMaster(objMR_Master);
+                objdSer.CloseConnection();
+                if (objDTable != null)
+                {
+                    if (objDTable.Tables.Count > 0)
+                    {
+                        if (objDTable.Tables[0].Rows.Count > 0)
+                        {
+                            chkboxRatelist.DrawMode = DrawMode.Normal;
+                            chkboxRatelist.FormattingEnabled = true;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";
+                            chkboxRatelist.ValueMember = "MSTID";
+                            chkboxRatelist.DataSource = objDTable.Tables[0];
+
+                            DataView dv = objDTable.Tables[0].DefaultView;
+                            dv.RowFilter = "MSTID <> 0";
+
+                            DataTable dt = dv.ToTable();
+
+
+                            dt = objDTable.Tables[0];
+
+                            chkboxRatelist.DataSource = dt;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";   // text
+                            chkboxRatelist.ValueMember = "MSTID";       // value
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtSupplier_Enter(object sender, EventArgs e)
         {
             try
@@ -2034,7 +2086,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbRateType.Focus();
+                    txtRateCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -2056,83 +2108,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void cmbRateType_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnGridNull((Control)sender);
-                cmbRateType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbRateType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbRateType_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbRateType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbRateType.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void DGV_FilterSupplier_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void DGV_FilterGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void DGV_FilterSubgroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void DGV_FilterBrand_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnTelegram_Click(object sender, EventArgs e)
         {
             udfnList(1);
@@ -2156,6 +2131,145 @@ namespace ROMS
             try
             {
                 btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlRateCategory.Visible = true;
+                pnlRateCategory.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtProductName.Visible == true)
+                    {
+                        txtProductName.Focus();
+                    }
+                    else
+                    {
+                        txtSupplier.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                //pnlRateCategory.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                BeginInvoke((MethodInvoker)UpdateSelectedValues);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtProductName.Visible == true)
+                    {
+                        txtProductName.Focus();
+                    }
+                    else
+                    {
+                        txtSupplier.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void UpdateSelectedValues()
+        {
+            try
+            {
+                List<string> texts = new List<string>();
+                List<string> ids = new List<string>();
+
+                foreach (DataRowView row in chkboxRatelist.CheckedItems)
+                {
+                    int id = Convert.ToInt32(row["MSTID"]);
+
+                    // ignore -All- in textbox
+                    if (id == 0) continue;
+
+                    texts.Add(row["MST_DisplayText"].ToString());
+                    ids.Add(id.ToString());
+                }
+
+                // TextBox (RR, WR)
+                txtRateCategory.Text = texts.Count > 0
+                    ? string.Join(", ", texts)
+                    : "";
+
+                // Label (447,448)
+                lblRateId.Text = ids.Count > 0
+                    ? string.Join(",", ids)
+                    : "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConditionClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                {
+                    chkboxRatelist.SetItemChecked(i, false);
+                }
+
+                txtRateCategory.Text = "";
+                lblRateId.Text = "0";
             }
             catch (Exception ex)
             {

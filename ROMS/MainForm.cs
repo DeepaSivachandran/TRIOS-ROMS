@@ -4895,7 +4895,7 @@ using System.Windows.Forms;
             try
             {
                 //PbCurrentForm = "7.8.1";
-                OpenReportForm(ref MainForm.objREPORT_CP_Product_Weight, "REPORT_CP_Product_Weight", 80124);
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_Weight, "REPORT_CP_Product_Weight", 80418);
             }
             catch (Exception ex)
             {

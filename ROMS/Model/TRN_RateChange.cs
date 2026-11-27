@@ -21,6 +21,7 @@ namespace ROMS.Model
         public int paraSubGroupID { get; set; } = 0;
         public int paraBrandID { get; set; } = 0;
         public string paraFromDate { get; set; } = "";
+        public string paraRateCategorys { get; set; } = "";
         public string paraToDate { get; set; } = "";
         public string paraRemarks { get; set; } = "";
         public int paraType { get; set; } = 0;
