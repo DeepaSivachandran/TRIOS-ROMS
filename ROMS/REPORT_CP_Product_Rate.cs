@@ -256,6 +256,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraStatusName", cmbStatus.Text);
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraProductName", varProductName);
+                    objBillreport.SetParameterValue("varPrintType", Convert.ToInt32(cmbPrintType.SelectedValue));
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -347,6 +348,7 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (107)", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (144)", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
@@ -2239,7 +2241,7 @@ namespace ROMS
                     }
                     else
                     {
-                        btnView.Focus();
+                        cmbPrintType.Focus();
                     }
                 }
             }
@@ -2296,7 +2298,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbPrintType.Focus();
                 }
             }
             catch (Exception ex)
@@ -2367,6 +2369,61 @@ namespace ROMS
             }
         }
 
+        private void cmbPrintType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbPrintType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void cmbLocationType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

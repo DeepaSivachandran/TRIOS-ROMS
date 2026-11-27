@@ -174,7 +174,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
                     objBillreport.SetParameterValue("paraProductName", varProductName);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
-
+                    objBillreport.SetParameterValue("paraReportFormat", Convert.ToInt32(cmbReportFormat.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -254,6 +254,9 @@ namespace ROMS
                     privilege = result.PrivilegeCode;
                     btnTelegram.Visible = privilege.Contains("7");
                 }
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (124)", "MST_DisplayText,MSTID", cmbReportFormat, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -1056,11 +1059,10 @@ namespace ROMS
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterBrand.Focus();
-
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    btnView.Focus();
+                    cmbReportFormat.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1133,7 +1135,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbReportFormat.Focus();
                     }
                 }
             }
@@ -1429,7 +1431,7 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                btnView.Focus();
+                cmbReportFormat.Focus();
             }
             catch (Exception ex)
             {
@@ -1499,7 +1501,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbReportFormat.Focus();
                     }
                 }
             }
@@ -1540,7 +1542,62 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void cmbReportFormat_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbReportFormat.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbPrintType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportFormat.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void LvBrand_DoubleClick(object sender, EventArgs e)
         {
             udfnBrandAutocomplete();
