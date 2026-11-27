@@ -33,6 +33,8 @@ namespace ROMS.Model
         public int paraFlag { get; set; } = 0;
         public int paraConfirmUserID { get; set; } = 0;
         public int paraID { get; set; } = 0;
+        public int paraFilterType { get; set; } = 0;
+        public int paraUserCode { get; set; } = 0;
         public  DataTable paraApprove { get; set; } = null;
         public  DataTable paraBulk { get; set; } = null;
 

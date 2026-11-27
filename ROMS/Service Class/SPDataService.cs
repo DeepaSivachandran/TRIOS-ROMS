@@ -4307,6 +4307,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraType", objTrnRateChange.paraType);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTrnRateChange.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraRateCategorys", objTrnRateChange.paraRateCategorys);
+                varSqlCommand.Parameters.AddWithValue("@paraFilterType", objTrnRateChange.paraFilterType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserCode", objTrnRateChange.paraUserCode);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objTrnRateChange.paraTeller);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
