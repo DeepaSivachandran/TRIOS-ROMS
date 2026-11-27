@@ -1563,7 +1563,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPrintType.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
